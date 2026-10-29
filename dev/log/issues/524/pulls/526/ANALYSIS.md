@@ -145,6 +145,7 @@ PR 525, which is included without discarding its query-handling changes.
 | Split memory initialization fails at small reservation steps | Equality check shrinks a larger caller reservation; upstream C#/C++ zero-fill computes an invalid negative/unsigned length | Grow only when existing capacity is insufficient in both implementations; small-step tests and upstream Memory #93 with source-level fix suggestion |
 | Exceptions hidden without diagnostics | Intentional NoExceptionsDecorator has no observer/filter; explicit transaction disposal also swallows failed commit persistence | Optional exception filter and callback default off; default conversion behavior retained. Explicit disposal propagates persistence failure while finalization remains best effort; real I/O-failure regression |
 | Native package consumer and EnsurePointsCreated | Header-existence-only smoke never instantiates shipped templates; umbrella-only compilation reveals two-phase lookup hidden by test helpers, and self-point cleanup leaves indexed ghosts | Compile and run a standalone consumer from installed NuGet headers with real Conan dependency flags on every compiler. Use the visible base Update overload; reset intermediate values before deletion. Finite ASan reproduction changes exists(4) from true to false and the public example covers both stores |
+| Split storage runs out of index space while data space remains | Both languages calculate link capacity from data bytes alone; initialization also multiplies index count by the data record size | Reserve full layouts and use the minimum of both usable record counts. Three C# equal/unequal-buffer cases and a native 128-allocation regression fail before and pass after; full native suite now has 43 tests |
 | Remaining CodeQL quality findings | Malformed summury tags/missing summaries, dead assignments, mutable private fields and needlessly complex conditionals | Repair all recorded locations throughout C# and native sources; preserve active behavior and registration. Full new SARIF must contain zero results |
 | Historical credential detection | Removed old key remains in immutable Git history | Verify revoked via harmless authentication probe (HTTP 401), suppress only exact historical commit/rule/line fingerprint; keep full-history scan and fail new credentials. No history rewrite or broad exclusion |
 
@@ -316,5 +317,109 @@ passes (`local/native-final-build2.log`, `native-final-tests2.log`,
 The installed native NuGet consumer passes for both stores after the final
 dependency rebuild (`local/native-consumer-final.log`). Complete native static
 analysis also passes with the broadened header filter (`native-static-final.log`).
-Final feedback refresh found only GitHub’s informational code-scanning setup
-comment; no issue comments, required children, inline feedback or reviews.
+The early feedback refresh preceded the later automated reviews; the final
+review inventory below supersedes it.
+
+### Fourth validation iteration (2026-10-29 07:12–07:22 UTC)
+
+Run [40833592739](https://github.com/linksplatform/Data.Doublets/actions/runs/40833592739),
+head `65cadabdd11c4bf0f2ac9735d6a6385fe34845d4`, passed C# on both operating
+systems, docs, quality, links, audit and Actions CodeQL. The full log is
+`ci-logs/third-40833592739.log` (11,302 lines). Four native jobs failed at strict
+recipe export: cpuinfo's `cci.20220228` version had no explicit binary identity
+policy (`third-codeql-cpp.plain.log:1390`). Prior cached installs did not exercise
+this export warning. Conan's [official guidance](https://docs.conan.io/2/knowledge/guidelines.html#guidelines-bad-alphanumeric-majors)
+requires full-version identity for these non-semantic versions. The patch now
+sets both non-embedded and unknown relationship modes to `full_mode`.
+`experiments/test_conan_compatibility.py` reproduces the real strict export
+failure in an empty cache, then verifies the patched recipe succeeds. Before
+and after outputs and all 18 strict exports are preserved under `local/`.
+
+The enforced C# SARIF gate correctly failed three new findings: one implicit
+LINQ filter and two Path.Combine quality findings in the new disposal test
+(`third-40833592739.log:7084` onward; full SARIF under `github/`). The loop now
+filters explicitly and temporary paths use Path.Join. All 77 C# tests, strict
+build, formatting and installed-package consumer pass again (`local/csharp-fourth.log`).
+All 43 pipeline regressions pass (`local/pipeline-fourth.log`).
+
+The native CodeQL job also warned about attempting an overlay with a manual
+build (`third-40833592739.log:3872`). Full-database analysis is now explicitly
+selected by disabling overlay analysis alongside diff-informed queries. The
+pinned action feature definitions are preserved in `research/codeql-feature-flags.ts`.
+These changes retain full-repository analysis. Fresh CI remains required.
+
+
+### Fifth validation iteration: split-buffer capacity (2026-10-29)
+
+Fourth run [40834656679](https://github.com/linksplatform/Data.Doublets/actions/runs/40834656679)
+started at 07:19:06 UTC for `feb4dd0dfaba8c6efe4ce49d9c56eab2cff58577`.
+All strict recipe exports now succeed. Both C# platforms, docs, links, audit,
+quality, Clang and sanitizer jobs pass. The complete Actions and C# SARIF reports
+contain zero findings; no warning lines remain in the complete run log.
+GCC and the real GCC CodeQL build both expose the same actual storage defect:
+`Value [4160] ... out of range [0..4096]` in the split ownership test
+(`ci-logs/fourth-gcc.plain.log:1779`,
+`ci-logs/fourth-codeql-cpp-progress.log:2502`). Native CodeQL never reaches
+analysis because its prerequisite test fails; missing SARIF correctly fails too.
+All 1,058 available artifact files are archived and byte-verified in
+`ci-artifacts/fourth.tar.gz` with a SHA256 manifest. Full logs and each failed
+job log are retained, rather than treating another compiler's success as proof.
+
+The split store computed available links from its data buffer alone. For 64-bit
+addresses each data record occupies 16 bytes but each index record occupies 64.
+Two 4,096-byte buffers therefore fill at different link counts. The ignored
+index limit makes allocation 64 request 4,160 bytes. Initialization also used the
+data record size for index reservation and omitted header/zero-link space.
+This is present in **both C++ and C#**, not an upstream Conan or compiler issue.
+A finite standalone native probe reproduces allocation 64 failing
+(`local/split-growth-native-before3.log`). Three new C# theory cases with equal
+and unequal reservations all fail before the change
+(`local/split-growth-csharp-before.log`). The native unit regression covers the
+same three configurations, 128 allocations each, with explicit buffer bounds.
+
+Both implementations now reserve complete data/index layouts and define
+`ReservedLinks` as the minimum usable capacity after subtracting the zero data
+record and index header. Growth checks and recalculation use that same bound.
+All focused C# cases and the standalone ASan/UBSan probe pass afterward.
+The full C# check passes **80 tests, zero skipped, zero warnings/errors** and
+validates its installed NuGet consumer (`local/csharp-fifth.log`). All **43**
+pipeline regressions pass with Conan installed (`local/pipeline-fifth.log`).
+Conan is now included in quality requirements so the real empty-cache export
+regression cannot silently skip in CI. Full native validation and fresh CI are
+required before marking ready.
+
+One initial native probe accidentally selected Platform.Data's similarly named
+options type and failed to compile; the corrected fully-qualified Doublets type
+is retained. A subsequent ASan launch under a virtual-address cap could not map
+its shadow memory. Neither is evidence of the storage fix. The corrected finite
+probe's before/after results are separate and successful compilation precedes
+the actual failing allocation. No full GCC build is repeated in this container.
+
+### Final review inventory
+
+All issue comments and required sub-issues remain empty. Refreshed API responses
+for all three PR feedback types are under `github/*final-review2.json`.
+Eight inline comments are automated CodeQL findings, all addressed:
+commented-out native benchmark/test placeholders removed; included definition
+files changed from `.cpp` to `.h`; the implicit C# filter made explicit; temporary
+paths use `Path.Join`. The four automated reviews are verified against the
+complete SARIF inventory, not only changed-line alerts. There is one general
+informational CodeQL setup comment and no additional human requirements.
+
+Main `799502ce9275edc80d9fbc1953ff8892fe0eca19` is an ancestor of the PR head.
+GitHub rejects `gh pr diff` with HTTP 406 for this >300-file change
+(`local/pr-final-api-error.log`). The equivalent local main-to-head diff is saved,
+plus a 3,964-line code-focused comparison that normalizes formatting/comments
+while preserving string literals (`local/final-code-review.diff`). Every code
+section was reviewed in bounded chunks alongside the original source, and the
+latest focused changes were reviewed separately. Active API, package channels,
+release tags, tests, examples and benchmark registrations are retained; removed
+native files contained only commented-out placeholder code. The comparison
+helper is retained under `experiments/review_semantic_changes.py`.
+
+The complete local native rebuild passes at **955,052 KiB peak child RSS**;
+all **43 native tests** pass (`local/native-fifth-build2.log`,
+`local/native-fifth-tests.log`). The first new native test compilation rejected
+signed `int` capacities in a brace initializer; the fixture now uses explicit
+unsigned capacity types (`native-fifth-build.log` preserves that diagnostic).
+This was a test-fixture compile error, not a passing test run.

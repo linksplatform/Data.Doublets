@@ -1,0 +1,3964 @@
+--- c/ffi.h
++++ c/ffi.h
+@@ -36,42 +36,56 @@
+ typedef uint16_t (*EachCallback_u16)(struct Link_u16);
+ typedef uint32_t (*EachCallback_u32)(struct Link_u32);
+ typedef uint64_t (*EachCallback_u64)(struct Link_u64);
++typedef struct Record Record;
+ typedef struct SharedLogger
+ {
+     void (*formatter)(const Record*);
+ } SharedLogger;
+-void* ByteUnitedMemoryLinks_New(const char* path);
+-void* UInt16UnitedMemoryLinks_New(const char* path);
+-void* UInt32UnitedMemoryLinks_New(const char* path);
+-void* UInt64UnitedMemoryLinks_New(const char* path);
+-void ByteUnitedMemoryLinks_Drop(void* this_);
+-void UInt16UnitedMemoryLinks_Drop(void* this_);
+-void UInt32UnitedMemoryLinks_Drop(void* this_);
+-void UInt64UnitedMemoryLinks_Drop(void* this_);
+-uint8_t ByteUnitedMemoryLinks_Create(void* this_, const uint8_t* query, uintptr_t len, CUDCallback_u8 callback);
+-uint16_t UInt16UnitedMemoryLinks_Create(void* this_, const uint16_t* query, uintptr_t len, CUDCallback_u16 callback);
+-uint32_t UInt32UnitedMemoryLinks_Create(void* this_, const uint32_t* query, uintptr_t len, CUDCallback_u32 callback);
+-uint64_t UInt64UnitedMemoryLinks_Create(void* this_, const uint64_t* query, uintptr_t len, CUDCallback_u64 callback);
+-uint8_t ByteUnitedMemoryLinks_Each(void* this_, const uint8_t* query, uintptr_t len, EachCallback_u8 callback);
+-uint16_t UInt16UnitedMemoryLinks_Each(void* this_, const uint16_t* query, uintptr_t len, EachCallback_u16 callback);
+-uint32_t UInt32UnitedMemoryLinks_Each(void* this_, const uint32_t* query, uintptr_t len, EachCallback_u32 callback);
+-uint64_t UInt64UnitedMemoryLinks_Each(void* this_, const uint64_t* query, uintptr_t len, EachCallback_u64 callback);
+-uint8_t ByteUnitedMemoryLinks_Count(void* this_, const uint8_t* query, uintptr_t len);
+-uint16_t UInt16UnitedMemoryLinks_Count(void* this_, const uint16_t* query, uintptr_t len);
+-uint32_t UInt32UnitedMemoryLinks_Count(void* this_, const uint32_t* query, uintptr_t len);
+-uint64_t UInt64UnitedMemoryLinks_Count(void* this_, const uint64_t* query, uintptr_t len);
+-uint8_t ByteUnitedMemoryLinks_Update(void* this_, const uint8_t* query, uintptr_t len_q, const uint8_t* replacement,
+-                                     uintptr_t len_r, CUDCallback_u8 callback);
+-uint16_t UInt16UnitedMemoryLinks_Update(void* this_, const uint16_t* query, uintptr_t len_q,
+-                                        const uint16_t* replacement, uintptr_t len_r, CUDCallback_u16 callback);
+-uint32_t UInt32UnitedMemoryLinks_Update(void* this_, const uint32_t* query, uintptr_t len_q,
+-                                        const uint32_t* replacement, uintptr_t len_r, CUDCallback_u32 callback);
+-uint64_t UInt64UnitedMemoryLinks_Update(void* this_, const uint64_t* query, uintptr_t len_q,
+-                                        const uint64_t* replacement, uintptr_t len_r, CUDCallback_u64 callback);
+-uint8_t ByteUnitedMemoryLinks_Delete(void* this_, const uint8_t* query, uintptr_t len, CUDCallback_u8 callback);
+-uint16_t UInt16UnitedMemoryLinks_Delete(void* this_, const uint16_t* query, uintptr_t len, CUDCallback_u16 callback);
+-uint32_t UInt32UnitedMemoryLinks_Delete(void* this_, const uint32_t* query, uintptr_t len, CUDCallback_u32 callback);
+-uint64_t UInt64UnitedMemoryLinks_Delete(void* this_, const uint64_t* query, uintptr_t len, CUDCallback_u64 callback);
+-void setup_shared_logger(struct SharedLogger logger);
+-void init_fmt_logger(void);
++#ifdef __cplusplus
++extern "C"
++{
+ #endif
++    void* ByteUnitedMemoryLinks_New(const char* path);
++    void* UInt16UnitedMemoryLinks_New(const char* path);
++    void* UInt32UnitedMemoryLinks_New(const char* path);
++    void* UInt64UnitedMemoryLinks_New(const char* path);
++    void ByteUnitedMemoryLinks_Drop(void* this_);
++    void UInt16UnitedMemoryLinks_Drop(void* this_);
++    void UInt32UnitedMemoryLinks_Drop(void* this_);
++    void UInt64UnitedMemoryLinks_Drop(void* this_);
++    uint8_t ByteUnitedMemoryLinks_Create(void* this_, const uint8_t* query, uintptr_t len, CUDCallback_u8 callback);
++    uint16_t UInt16UnitedMemoryLinks_Create(void* this_, const uint16_t* query, uintptr_t len,
++                                            CUDCallback_u16 callback);
++    uint32_t UInt32UnitedMemoryLinks_Create(void* this_, const uint32_t* query, uintptr_t len,
++                                            CUDCallback_u32 callback);
++    uint64_t UInt64UnitedMemoryLinks_Create(void* this_, const uint64_t* query, uintptr_t len,
++                                            CUDCallback_u64 callback);
++    uint8_t ByteUnitedMemoryLinks_Each(void* this_, const uint8_t* query, uintptr_t len, EachCallback_u8 callback);
++    uint16_t UInt16UnitedMemoryLinks_Each(void* this_, const uint16_t* query, uintptr_t len, EachCallback_u16 callback);
++    uint32_t UInt32UnitedMemoryLinks_Each(void* this_, const uint32_t* query, uintptr_t len, EachCallback_u32 callback);
++    uint64_t UInt64UnitedMemoryLinks_Each(void* this_, const uint64_t* query, uintptr_t len, EachCallback_u64 callback);
++    uint8_t ByteUnitedMemoryLinks_Count(void* this_, const uint8_t* query, uintptr_t len);
++    uint16_t UInt16UnitedMemoryLinks_Count(void* this_, const uint16_t* query, uintptr_t len);
++    uint32_t UInt32UnitedMemoryLinks_Count(void* this_, const uint32_t* query, uintptr_t len);
++    uint64_t UInt64UnitedMemoryLinks_Count(void* this_, const uint64_t* query, uintptr_t len);
++    uint8_t ByteUnitedMemoryLinks_Update(void* this_, const uint8_t* query, uintptr_t len_q, const uint8_t* replacement,
++                                         uintptr_t len_r, CUDCallback_u8 callback);
++    uint16_t UInt16UnitedMemoryLinks_Update(void* this_, const uint16_t* query, uintptr_t len_q,
++                                            const uint16_t* replacement, uintptr_t len_r, CUDCallback_u16 callback);
++    uint32_t UInt32UnitedMemoryLinks_Update(void* this_, const uint32_t* query, uintptr_t len_q,
++                                            const uint32_t* replacement, uintptr_t len_r, CUDCallback_u32 callback);
++    uint64_t UInt64UnitedMemoryLinks_Update(void* this_, const uint64_t* query, uintptr_t len_q,
++                                            const uint64_t* replacement, uintptr_t len_r, CUDCallback_u64 callback);
++    uint8_t ByteUnitedMemoryLinks_Delete(void* this_, const uint8_t* query, uintptr_t len, CUDCallback_u8 callback);
++    uint16_t UInt16UnitedMemoryLinks_Delete(void* this_, const uint16_t* query, uintptr_t len,
++                                            CUDCallback_u16 callback);
++    uint32_t UInt32UnitedMemoryLinks_Delete(void* this_, const uint32_t* query, uintptr_t len,
++                                            CUDCallback_u32 callback);
++    uint64_t UInt64UnitedMemoryLinks_Delete(void* this_, const uint64_t* query, uintptr_t len,
++                                            CUDCallback_u64 callback);
++    void setup_shared_logger(struct SharedLogger logger);
++    void init_fmt_logger(void);
++#ifdef __cplusplus
++}
++#endif
++#endif
+--- cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp
++++ cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp
+@@ -1,5 +1,5 @@
+ #include <benchmark/benchmark.h>
+ #include <Platform.Data.Doublets.h>
+-#include "CreateMillionPointsBenchmarks.cpp"
+-#include "CheckDefaultHandlerOrJustCallBenchmarks.cpp"
++#include "CreateMillionPointsBenchmarks.h"
++#include "CheckDefaultHandlerOrJustCallBenchmarks.h"
+ BENCHMARK_MAIN();
+--- cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp
++++ cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h
+@@ -1,7 +1,7 @@
+ namespace Platform::Data::Doublets::Benchmarks
+ {
+     using TLinkAddress = std::uint64_t;
+-    constexpr auto DefaultHandler = [](TLinkAddress source, TLinkAddress target) { return 1; };
++    constexpr auto DefaultHandler = [](TLinkAddress, TLinkAddress) { return 1; };
+     TLinkAddress CheckDefaultHandlerAndCallHandler(TLinkAddress source, TLinkAddress target, auto&& handler)
+     {
+         if (DefaultHandler == handler)
+@@ -19,45 +19,44 @@
+     }
+     static void BM_CheckDefaultHandlerAndSumWithoutOptimization(benchmark::State& state)
+     {
+-        for (auto _ : state)
++        for ([[maybe_unused]] auto _ : state)
+         {
+             for (auto i = 0; i < state.range(0); ++i)
+             {
+                 benchmark::DoNotOptimize(CheckDefaultHandlerAndCallHandler(
+-                    TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress source, TLinkAddress target) { return 1; }));
++                    TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress, TLinkAddress) { return 1; }));
+             }
+         }
+     }
+     static void BM_JustCallHandlerWithoutOptimization(benchmark::State& state)
+     {
+-        for (auto _ : state)
++        for ([[maybe_unused]] auto _ : state)
+         {
+             for (auto i = 0; i < state.range(0); ++i)
+             {
+-                benchmark::DoNotOptimize(CallHandler(TLinkAddress{10}, TLinkAddress{10},
+-                                                     [](TLinkAddress source, TLinkAddress target) { return 1; }));
++                benchmark::DoNotOptimize(
++                    CallHandler(TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress, TLinkAddress) { return 1; }));
+             }
+         }
+     }
+     static void BM_CheckDefaultHandlerAndSum(benchmark::State& state)
+     {
+-        for (auto _ : state)
++        for ([[maybe_unused]] auto _ : state)
+         {
+             for (auto i = 0; i < state.range(0); ++i)
+             {
+                 CheckDefaultHandlerAndCallHandler(TLinkAddress{10}, TLinkAddress{10},
+-                                                  [](TLinkAddress source, TLinkAddress target) { return 1; });
++                                                  [](TLinkAddress, TLinkAddress) { return 1; });
+             }
+         }
+     }
+     static void BM_JustCallHandler(benchmark::State& state)
+     {
+-        for (auto _ : state)
++        for ([[maybe_unused]] auto _ : state)
+         {
+             for (auto i = 0; i < state.range(0); ++i)
+             {
+-                CallHandler(TLinkAddress{10}, TLinkAddress{10},
+-                            [](TLinkAddress source, TLinkAddress target) { return 1; });
++                CallHandler(TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress, TLinkAddress) { return 1; });
+             }
+         }
+     }
+--- cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.cpp
++++ cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.h
+@@ -1,3 +1,4 @@
++#include "../Tools/TemporaryDirectory.h"
+ namespace Platform::Data::Doublets::Benchmarks
+ {
+     using TLinkAddress = std::uint64_t;
+@@ -5,15 +6,16 @@
+     {
+         using namespace Platform::Memory;
+         using namespace Platform::Data::Doublets::Memory::United::Generic;
+-        for (auto _ : state)
++        for ([[maybe_unused]] auto _ : state)
+         {
+-            std::string memoryFilePath{std::tmpnam(nullptr)};
++            Tools::TemporaryDirectory temporary;
++            std::string memoryFilePath = temporary.File("data.links");
+             Expects(!Collections::IsWhiteSpace(memoryFilePath));
+             try
+             {
+                 UnitedMemoryLinks<LinksOptions<TLinkAddress>, FileMappedResizableDirectMemory> storage{
+                     FileMappedResizableDirectMemory{memoryFilePath}};
+-                for (std::size_t i = 0; i < state.range(0); ++i)
++                for (std::int64_t i = 0; i < state.range(0); ++i)
+                 {
+                     CreatePoint(storage);
+                 }
+@@ -30,17 +32,18 @@
+     {
+         using namespace Platform::Memory;
+         using namespace Platform::Data::Doublets::Memory::Split::Generic;
+-        for (auto _ : state)
++        for ([[maybe_unused]] auto _ : state)
+         {
+-            std::string dataMemoryFilePath{std::tmpnam(nullptr)};
+-            std::string indexMemoryFilePath{std::tmpnam(nullptr)};
++            Tools::TemporaryDirectory temporary;
++            std::string dataMemoryFilePath = temporary.File("data.links");
++            std::string indexMemoryFilePath = temporary.File("index.links");
+             Expects(!Collections::IsWhiteSpace(dataMemoryFilePath));
+             try
+             {
+                 SplitMemoryLinks<LinksOptions<TLinkAddress>, FileMappedResizableDirectMemory> storage{
+                     FileMappedResizableDirectMemory{dataMemoryFilePath},
+                     FileMappedResizableDirectMemory{indexMemoryFilePath}};
+-                for (std::size_t i = 0; i < state.range(0); ++i)
++                for (std::int64_t i = 0; i < state.range(0); ++i)
+                 {
+                     CreatePoint(storage);
+                 }
+--- cpp/Platform.Data.Doublets.Profiling/CreatePointsProfiling.h
++++ cpp/Platform.Data.Doublets.Profiling/CreatePointsProfiling.h
+@@ -1,3 +1,4 @@
++#include "../Tools/TemporaryDirectory.h"
+ namespace Platform::Data::Doublets::Profiling
+ {
+     using TLinkAddress = std::uint64_t;
+@@ -9,7 +10,8 @@
+         using namespace Platform::Data;
+         using namespace Platform::Data::Doublets;
+         using namespace Platform::Data::Doublets::Memory::United::Generic;
+-        std::string tempFilePath{std::tmpnam(nullptr)};
++        Tools::TemporaryDirectory temporary;
++        std::string tempFilePath = temporary.File("data.links");
+         Expects(!Collections::IsWhiteSpace(tempFilePath));
+         try
+         {
+--- cpp/Platform.Data.Doublets.Tests/AllTests.cpp
++++ cpp/Platform.Data.Doublets.Tests/AllTests.cpp
+@@ -1,9 +1,12 @@
+ #include <gtest/gtest.h>
+ #include <Platform.Data.Doublets.h>
+ #include "ILinksTestExtensions.h"
+-#include "LinksConstantsTests.cpp"
+-#include "ResizableDirectMemoryLinksTests.cpp"
+-#include "Static/GenericLinksTests.cpp"
+-#include "Static/SplitMemoryGenericLinksTests.cpp"
+-#include "Dynamic/GenericLinksTests.cpp"
+-#include "Dynamic/SplitMemoryGenericLinksTests.cpp"
++#include "ExtensionTests.h"
++#include "OwnershipTests.h"
++#include "LinksConstantsTests.h"
++#include "ResizableDirectMemoryLinksTests.h"
++#include "Static/GenericLinksTests.h"
++#include "Static/SplitMemoryGenericLinksTests.h"
++#include "TemporaryDirectoryTests.h"
++#include "Dynamic/GenericLinksTests.h"
++#include "Dynamic/SplitMemoryGenericLinksTests.h"
+--- cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp
++++ cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.h
+@@ -6,6 +6,7 @@
+         using namespace Platform::Memory;
+         TStorage storage{HeapResizableDirectMemory{}};
+         Platform::Data::ILinks<typename TStorage::LinksOptionsType>& upcastedStorage = storage;
++        EXPECT_EQ(upcastedStorage.Count({}), storage.Count({}));
+         action(storage);
+     }
+     template <std::integral TLinkAddress>
+--- cpp/Platform.Data.Doublets.Tests/ExtensionTests.h
++++ cpp/Platform.Data.Doublets.Tests/ExtensionTests.h
+@@ -0,0 +1,43 @@
++namespace Platform::Data::Doublets::Tests
++{
++    using ExtensionStorage = Memory::United::Generic::UnitedMemoryLinks<LinksOptions<std::uint64_t>,
++                                                                        Platform::Memory::HeapResizableDirectMemory>;
++    TEST(ExtensionTests, EnsureCreatedPreservesOnlyRequestedNewAddresses)
++    {
++        ExtensionStorage storage{Platform::Memory::HeapResizableDirectMemory{}};
++        auto existing = Create(storage);
++        EnsureCreated(storage, ExtensionStorage::LinkType{existing, 3, 5});
++        EXPECT_TRUE(Exists(storage, existing));
++        EXPECT_TRUE(Exists(storage, 3));
++        EXPECT_TRUE(Exists(storage, 5));
++        EXPECT_FALSE(Exists(storage, 2));
++        EXPECT_FALSE(Exists(storage, 4));
++        EXPECT_EQ(3, Count(storage));
++    }
++    TEST(ExtensionTests, EnsurePointsCreatedMakesSelfReferences)
++    {
++        ExtensionStorage storage{Platform::Memory::HeapResizableDirectMemory{}};
++        EnsurePointsCreated(storage, ExtensionStorage::LinkType{1, 3, 5});
++        auto link = GetLink(storage, 1);
++        EXPECT_EQ(1, link[1]);
++        EXPECT_EQ(1, link[2]);
++        EXPECT_EQ(3, Count(storage));
++        EXPECT_FALSE(Exists(storage, 2));
++        EXPECT_FALSE(Exists(storage, 4));
++        auto last = GetLink(storage, 5);
++        EXPECT_EQ(5, last[1]);
++        EXPECT_EQ(5, last[2]);
++    }
++    TEST(ExtensionTests, DeleteByQueryRemovesOnlyMatches)
++    {
++        ExtensionStorage storage{Platform::Memory::HeapResizableDirectMemory{}};
++        auto first = Create(storage);
++        auto second = Create(storage);
++        Update(storage, first, 1, 2);
++        Update(storage, second, 2, 1);
++        DeleteByQuery(storage, ExtensionStorage::LinkType{storage.Constants.Any, 1, 2});
++        EXPECT_FALSE(Exists(storage, first));
++        EXPECT_TRUE(Exists(storage, second));
++        EXPECT_EQ(1, Count(storage));
++    }
++} // namespace Platform::Data::Doublets::Tests
+--- cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h
++++ cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h
+@@ -45,7 +45,6 @@
+         static typename TStorage::LinkAddressType TestUpdateLinkToReferenceItself(
+             TStorage& storage, typename TStorage::LinkAddressType linkAddress)
+         {
+-            auto constants{storage.Constants};
+             auto updatedLinkAddress{Update(storage, linkAddress, linkAddress, linkAddress)};
+             Link link{GetLink(storage, updatedLinkAddress)};
+             Expects(link.Index == link.Source);
+@@ -85,7 +84,6 @@
+     template <typename TStorage>
+     static void TestCrudOperations(TStorage& storage)
+     {
+-        constexpr auto constants = storage.Constants;
+         Expects(0 == Platform::Data::Count(storage));
+         auto linkAddress{CrudOperationsTester::TestCreate(storage)};
+         linkAddress = {CrudOperationsTester::GetFirstLink(storage, linkAddress)};
+@@ -96,7 +94,7 @@
+     template <typename TStorage>
+     static void TestRawNumbersCrudOperations(TStorage& storage)
+     {
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         auto _continue = constants.Continue;
+         auto any = constants.Any;
+         Hybrid<typename TStorage::LinkAddressType> h106E{106, true};
+@@ -177,6 +175,7 @@
+                     auto target{Random::NextUInt64(randomGen64, linksAddressRange)};
+                     auto resultLink{GetOrCreate(storage, source, target)};
+                     auto linksCountAfterGetOrCreate{Count(storage)};
++                    EXPECT_LE(linksCountAfterGetOrCreate, linksCount + 1);
+                     if (resultLink > linksCount)
+                     {
+                         ++created;
+@@ -189,8 +188,9 @@
+                 }
+             }
+             std::vector<typename TStorage::LinkType> allLinks{All(storage)};
+-            for (auto link : allLinks)
++            for (const auto& link : allLinks)
+             {
++                EXPECT_TRUE(Exists(storage, link[0]));
+             }
+             Expects(Count(storage) == created);
+             for (auto i{0}; i < N; ++i)
+@@ -201,11 +201,13 @@
+                     Delete(storage, linkAddress);
+                     ++deleted;
+                     allLinks = {All(storage)};
+-                    for (auto link : allLinks)
++                    for (const auto& link : allLinks)
+                     {
++                        EXPECT_TRUE(Exists(storage, link[0]));
+                     }
+                 }
+             }
++            EXPECT_EQ(created, deleted);
+             Expects(0 == Count(storage));
+         }
+     }
+--- cpp/Platform.Data.Doublets.Tests/LinksConstantsTests.cpp
++++ cpp/Platform.Data.Doublets.Tests/LinksConstantsTests.h
+@@ -1,6 +1,12 @@
+ namespace Platform::Data::Doublets::Tests
+ {
+     using TLinkAddress = std::uint64_t;
++    TEST(LinksConstantsTests, NullLinkIsAConstantExpression)
++    {
++        constexpr auto value = Link<TLinkAddress>::Null;
++        static_assert(value.Index == 0 && value.Source == 0 && value.Target == 0);
++        EXPECT_EQ(0, value.Index);
++    }
+     TEST(LinksConstantsTests, ExternalReferencesTest)
+     {
+         using namespace Platform::Ranges;
+--- cpp/Platform.Data.Doublets.Tests/OwnershipTests.h
++++ cpp/Platform.Data.Doublets.Tests/OwnershipTests.h
+@@ -0,0 +1,68 @@
++namespace Platform::Data::Doublets::Tests
++{
++    template <typename T>
++    struct TrackedHelper : T
++    {
++        inline static int Instances = 0;
++        template <typename... TArgs>
++        explicit TrackedHelper(TArgs&&... args) : T(std::forward<TArgs>(args)...)
++        {
++            ++Instances;
++        }
++        ~TrackedHelper()
++        {
++            --Instances;
++        }
++    };
++    TEST(OwnershipTests, UnitedHelpersAreReleasedOnGrowthAndDestruction)
++    {
++        using namespace Memory::United::Generic;
++        using Options = LinksOptions<std::uint64_t>;
++        using Sources = TrackedHelper<LinksSourcesSizeBalancedTreeMethods<Options>>;
++        using Targets = TrackedHelper<LinksTargetsSizeBalancedTreeMethods<Options>>;
++        using Unused = TrackedHelper<UnusedLinksListMethods<Options>>;
++        {
++            UnitedMemoryLinks<Options, Platform::Memory::HeapResizableDirectMemory, Sources, Targets, Unused> storage{
++                Platform::Memory::HeapResizableDirectMemory{}, 512};
++            for (int i = 0; i < 128; ++i)
++                Create(storage);
++            EXPECT_EQ(1, Sources::Instances);
++            EXPECT_EQ(1, Targets::Instances);
++            EXPECT_EQ(1, Unused::Instances);
++        }
++        EXPECT_EQ(0, Sources::Instances);
++        EXPECT_EQ(0, Targets::Instances);
++        EXPECT_EQ(0, Unused::Instances);
++    }
++    TEST(OwnershipTests, SplitHelpersAreReleasedOnGrowthAndDestruction)
++    {
++        using namespace Memory::Split::Generic;
++        using Options = LinksOptions<std::uint64_t>;
++        using Sources = TrackedHelper<InternalLinksSourcesSizeBalancedTreeMethods<Options>>;
++        using List = TrackedHelper<InternalLinksSourcesLinkedListMethods<Options>>;
++        using Targets = TrackedHelper<InternalLinksTargetsSizeBalancedTreeMethods<Options>>;
++        using ExternalSources = TrackedHelper<ExternalLinksSourcesSizeBalancedTreeMethods<Options>>;
++        using ExternalTargets = TrackedHelper<ExternalLinksTargetsSizeBalancedTreeMethods<Options>>;
++        using Unused = TrackedHelper<UnusedLinksListMethods<Options>>;
++        {
++            SplitMemoryLinks<Options, Platform::Memory::HeapResizableDirectMemory, Sources, List, Targets,
++                             ExternalSources, ExternalTargets, Unused>
++                storage{Platform::Memory::HeapResizableDirectMemory{}, Platform::Memory::HeapResizableDirectMemory{},
++                        4};
++            for (int i = 0; i < 128; ++i)
++                Create(storage);
++            EXPECT_EQ(1, Sources::Instances);
++            EXPECT_EQ(0, List::Instances);
++            EXPECT_EQ(1, Targets::Instances);
++            EXPECT_EQ(1, ExternalSources::Instances);
++            EXPECT_EQ(1, ExternalTargets::Instances);
++            EXPECT_EQ(1, Unused::Instances);
++        }
++        EXPECT_EQ(0, Sources::Instances);
++        EXPECT_EQ(0, List::Instances);
++        EXPECT_EQ(0, Targets::Instances);
++        EXPECT_EQ(0, ExternalSources::Instances);
++        EXPECT_EQ(0, ExternalTargets::Instances);
++        EXPECT_EQ(0, Unused::Instances);
++    }
++} // namespace Platform::Data::Doublets::Tests
+--- cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp
++++ cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.h
+@@ -1,11 +1,24 @@
++#include "../Tools/TemporaryDirectory.h"
+ namespace Platform::Data::Doublets::Tests
+ {
+     using TLinkAddress = uint64_t;
++    TEST(ResizableDirectMemoryLinksTests, CountRequiresBothSpecifiedPartsToMatch)
++    {
++        using namespace Platform::Data::Doublets::Memory::United::Generic;
++        using namespace Platform::Memory;
++        using LinksOptionsType = LinksOptions<TLinkAddress>;
++        UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory> storage{HeapResizableDirectMemory{}};
++        auto link = Create(storage);
++        Update(storage, link, 1, 2);
++        EXPECT_EQ(0, storage.Count(typename decltype(storage)::LinkType{link, 1, 3}));
++        EXPECT_EQ(0, storage.Count(typename decltype(storage)::LinkType{link, 3, 2}));
++        EXPECT_EQ(1, storage.Count(typename decltype(storage)::LinkType{link, 1, 2}));
++    }
+     template <typename TStorage>
+     static void TestNonexistentReferences(TStorage& storage)
+     {
+         using namespace Platform::Interfaces;
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         auto $break = constants.Break;
+         auto linkAddress = Create(storage);
+         Update(storage, linkAddress, std::numeric_limits<TLinkAddress>::max(),
+@@ -32,7 +45,8 @@
+         using namespace Platform::Data::Doublets::Memory::United::Generic;
+         using namespace Platform::Memory;
+         using LinksOptionsType = LinksOptions<TLinkAddress>;
+-        auto tempName{std::tmpnam(nullptr)};
++        Tools::TemporaryDirectory temporary;
++        auto tempName = temporary.File("data.links");
+         try
+         {
+             FileMappedResizableDirectMemory memory{tempName};
+@@ -41,10 +55,10 @@
+         }
+         catch (...)
+         {
+-            std::remove(tempName);
++            std::remove(tempName.c_str());
+             throw;
+         }
+-        std::remove(tempName);
++        std::remove(tempName.c_str());
+     };
+     TEST(ResizableDirectMemoryLinksTests, BasicHeapMemoryTest)
+     {
+--- cpp/Platform.Data.Doublets.Tests/TemporaryDirectoryTests.h
++++ cpp/Platform.Data.Doublets.Tests/TemporaryDirectoryTests.h
+@@ -0,0 +1,20 @@
++#include "../Tools/TemporaryDirectory.h"
++#include <fstream>
++namespace Platform::Data::Doublets::Tests
++{
++    TEST(TemporaryDirectoryTests, OwnsDistinctDirectoryAndCleansItUp)
++    {
++        std::filesystem::path path;
++        {
++            Tools::TemporaryDirectory first;
++            Tools::TemporaryDirectory second;
++            path = first.File("links");
++            EXPECT_NE(path.parent_path(), std::filesystem::path(second.File("links")).parent_path());
++            std::ofstream file(path);
++            file << "fixture";
++            file.close();
++            EXPECT_TRUE(std::filesystem::is_regular_file(path));
++        }
++        EXPECT_FALSE(std::filesystem::exists(path.parent_path()));
++    }
++} // namespace Platform::Data::Doublets::Tests
+--- cpp/Platform.Data.Doublets/Decorators/LinksCascadeUsagesResolver.h
++++ cpp/Platform.Data.Doublets/Decorators/LinksCascadeUsagesResolver.h
+@@ -15,7 +15,6 @@
+       public:
+         LinkAddressType Delete(const LinkType& restriction, const WriteHandlerType& handler)
+         {
+-            auto $continue{Constants.Continue};
+             auto linkIndex = restriction[Constants.IndexPart];
+             WriteHandlerState<TDecorated> handlerState{Constants.Continue, Constants.Break, handler};
+             handlerState.Apply(DeleteAllUsages(this->facade(), linkIndex, handlerState.Handler));
+--- cpp/Platform.Data.Doublets/Decorators/NonNullContentsLinkDeletionResolver.h
++++ cpp/Platform.Data.Doublets/Decorators/NonNullContentsLinkDeletionResolver.h
+@@ -15,7 +15,6 @@
+       public:
+         LinkAddressType Delete(const LinkType& restriction, const WriteHandlerType& handler)
+         {
+-            auto $break = Constants.Break;
+             auto linkIndex = restriction[Constants.IndexPart];
+             WriteHandlerState<TDecorated> handlerState{Constants.Continue, Constants.Break, handler};
+             handlerState.Apply(EnforceResetValues(this->decorated(), linkIndex, handlerState.Handler));
+--- cpp/Platform.Data.Doublets/ILinksExtensions.h
++++ cpp/Platform.Data.Doublets/ILinksExtensions.h
+@@ -109,7 +109,7 @@
+     template <typename TStorage>
+     static typename TStorage::LinkAddressType First(const TStorage& storage)
+     {
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         auto $break{constants.Break};
+         typename TStorage::LinkAddressType firstLink = 0;
+         Expects(constants.Null != firstLink);
+@@ -129,7 +129,7 @@
+     {
+         typename TStorage::LinkType result{};
+         auto count = 0;
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         auto linkHandler{[&result, &count, &constants](const typename TStorage::LinkType& link) {
+             if (count == 0)
+             {
+@@ -156,7 +156,7 @@
+         {
+             return false;
+         }
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         for (typename TStorage::LinkAddressType i{1}; i < std::ranges::size(path); ++i)
+         {
+             auto next = path[i];
+@@ -348,55 +348,64 @@
+         }
+     }
+     template <typename TStorage>
+-    static void EnsureCreated(TStorage& storage, const typename TStorage::LinkType& addresses)
+-    {
+-        storage.EnsureCreated(storage.Create, addresses);
+-    }
+-    template <typename TStorage>
+-    static void EnsurePointsCreated(TStorage& storage, const typename TStorage::LinkType& addresses)
+-    {
+-        storage.EnsureCreated(storage.CreatePoint, addresses);
+-    }
+-    template <typename TStorage>
+     static void EnsureCreated(TStorage& storage, std::function<typename TStorage::LinkAddressType()> creator,
+                               const typename TStorage::LinkType& addresses)
+     {
+-        std::unordered_set<typename TStorage::LinkAddressType> nonExistentLinkAddresses{};
+-        typename TStorage::LinkAddressType maxLinkAddress{};
+-        for (auto linkAddress : nonExistentLinkAddresses)
+-        {
+-            if (!storage.Exists(linkAddress))
+-            {
+-                nonExistentLinkAddresses.insert(linkAddress);
+-                if (linkAddress > maxLinkAddress)
+-                {
+-                    maxLinkAddress = linkAddress;
+-                }
+-            }
+-        }
+-        if (!nonExistentLinkAddresses.empty())
+-        {
+-            maxLinkAddress = std::min(maxLinkAddress, storage.Constants.InternalReferencesRange.Maximum);
+-            std::vector<typename TStorage::LinkType> createdLinks{};
+-            typename TStorage::LinkAddressType createdLink = creator();
+-            while (maxLinkAddress != createdLink)
+-            {
+-                createdLinks.Add(createdLink);
+-            }
+-            for (auto i{0}; i < createdLinks.size(); ++i)
+-            {
+-                if (!nonExistentLinkAddresses.contains(createdLinks[i]))
+-                {
+-                    Delete(storage, createdLinks[i]);
+-                }
+-            }
+-        }
++        using Address = typename TStorage::LinkAddressType;
++        std::unordered_set<Address> remaining;
++        for (auto address : addresses)
++        {
++            if (address != storage.Constants.Null && address <= storage.Constants.InternalReferencesRange.Maximum &&
++                !Platform::Data::Exists(storage, address))
++            {
++                remaining.insert(address);
++            }
++        }
++        const auto requested = remaining;
++        std::unordered_set<Address> created;
++        while (!remaining.empty())
++        {
++            auto address = creator();
++            if (address == storage.Constants.Null || !created.insert(address).second)
++            {
++                throw std::runtime_error("The creator did not allocate a new link");
++            }
++            remaining.erase(address);
++        }
++        for (auto address : created)
++        {
++            if (!requested.contains(address))
++            {
++                Platform::Data::Update(
++                    storage, typename TStorage::LinkType{address},
++                    typename TStorage::LinkType{address, storage.Constants.Null, storage.Constants.Null});
++                Platform::Data::Delete(storage, address);
++            }
++        }
++    }
++    template <typename TStorage>
++    static void EnsureCreated(TStorage& storage, const typename TStorage::LinkType& addresses)
++    {
++        EnsureCreated(storage, std::function<typename TStorage::LinkAddressType()>{[&storage] {
++                          return Platform::Data::Create(storage);
++                      }},
++                      addresses);
++    }
++    template <typename TStorage>
++    static void EnsurePointsCreated(TStorage& storage, const typename TStorage::LinkType& addresses)
++    {
++        EnsureCreated(storage, std::function<typename TStorage::LinkAddressType()>{[&storage] {
++                          auto point = Platform::Data::Create(storage);
++                          return Platform::Data::Update(storage, typename TStorage::LinkType{point},
++                                                        typename TStorage::LinkType{point, point, point});
++                      }},
++                      addresses);
+     }
+     template <typename TStorage>
+     static typename TStorage::LinkAddressType CountUsages(TStorage& storage,
+                                                           typename TStorage::LinkAddressType linkAddress)
+     {
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         auto values = GetLink(storage, linkAddress);
+         auto usagesAsSource = DIRECT_METHOD_CALL(
+             TStorage, storage, Count, typename TStorage::LinkType{constants.Any, storage, linkAddress, constants.Any});
+@@ -421,7 +430,7 @@
+     typename TStorage::LinkAddressType SearchOrDefault(TStorage& storage, typename TStorage::LinkAddressType source,
+                                                        typename TStorage::LinkAddressType target)
+     {
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         auto _break = constants.Break;
+         typename TStorage::LinkAddressType searchedLinkAddress{};
+         DIRECT_METHOD_CALL(TStorage, storage, Each, typename TStorage::LinkType{storage.Constants.Any, source, target},
+@@ -441,7 +450,7 @@
+     static typename TStorage::LinkAddressType CreatePoint(TStorage& storage,
+                                                           const typename TStorage::WriteHandlerType& handler)
+     {
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         WriteHandlerState<TStorage> handlerState{constants.Continue, constants.Break, handler};
+         typename TStorage::LinkAddressType linkAddress;
+         typename TStorage::LinkAddressType HandlerWrapper = [&linkAddress,
+@@ -461,12 +470,12 @@
+     {
+         auto $continue{storage.Constants.Continue};
+         typename TStorage::LinkAddressType linkAddress;
+-        return CreateAndUpdate(storage, source, target,
+-                               [&linkAddress, $continue](const typename TStorage::LinkType& before,
+-                                                         const typename TStorage::LinkType& after) {
+-                                   linkAddress = after[0];
+-                                   return $continue;
+-                               });
++        return CreateAndUpdate(
++            storage, source, target,
++            [&linkAddress, $continue](const typename TStorage::LinkType&, const typename TStorage::LinkType& after) {
++                linkAddress = after[0];
++                return $continue;
++            });
+     }
+     template <typename TStorage>
+     static typename TStorage::LinkAddressType CreateAndUpdate(TStorage& storage,
+@@ -474,7 +483,7 @@
+                                                               typename TStorage::LinkAddressType target,
+                                                               const typename TStorage::WriteHandlerType& handler)
+     {
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         typename TStorage::LinkAddressType createdLinkAddress;
+         WriteHandlerState<TStorage> handlerState{constants.Continue, constants.Break, handler};
+         handlerState.Apply(
+@@ -494,7 +503,7 @@
+         auto $continue{storage.Constants.Continue};
+         typename TStorage::LinkAddressType updatedLinkAddress;
+         DIRECT_METHOD_CALL(TStorage, storage, Update, restriction, substitution,
+-                           [&updatedLinkAddress, $continue](const typename TStorage::LinkType& before,
++                           [&updatedLinkAddress, $continue](const typename TStorage::LinkType&,
+                                                             const typename TStorage::LinkType& after) {
+                                updatedLinkAddress = after[0];
+                                return $continue;
+@@ -537,7 +546,7 @@
+         auto $continue{storage.Constants.Continue};
+         typename TStorage::LinkAddressType updatedLinkAddress;
+         Update(storage, linkAddress, newSource, newTarget,
+-               [&updatedLinkAddress, $continue](const typename TStorage::LinkType& before,
++               [&updatedLinkAddress, $continue](const typename TStorage::LinkType&,
+                                                 const typename TStorage::LinkType& after) {
+                    updatedLinkAddress = after[0];
+                    return $continue;
+@@ -550,7 +559,7 @@
+         auto $continue{storage.Constants.Continue};
+         typename TStorage::LinkAddressType updatedLinkAddress;
+         return Update(storage, restriction,
+-                      [&updatedLinkAddress, $continue](const typename TStorage::LinkType& before,
++                      [&updatedLinkAddress, $continue](const typename TStorage::LinkType&,
+                                                        const typename TStorage::LinkType& after) {
+                           updatedLinkAddress = after;
+                           return $continue;
+@@ -571,7 +580,7 @@
+                                                                       const typename TStorage::LinkType& restriction,
+                                                                       const typename TStorage::LinkType& substitution)
+     {
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         auto restrictionIndex = GetIndex(storage, restriction);
+         auto substitutionIndex = GetIndex(storage, substitution);
+         if (constants.Null == substitutionIndex)
+@@ -588,7 +597,7 @@
+     typename TStorage::LinkAddressType GetOrCreate(TStorage& storage, typename TStorage::LinkAddressType source,
+                                                    typename TStorage::LinkAddressType target)
+     {
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         auto link = SearchOrDefault(storage, source, target);
+         if (link == constants.Null)
+         {
+@@ -624,19 +633,19 @@
+     {
+         auto $continue = storage.Constants.Continue;
+         typename TStorage::LinkAddressType resultLink;
+-        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget,
+-                            [&resultLink, $continue](const typename TStorage::LinkType& before,
+-                                                     const typename TStorage::LinkType& after) {
+-                                resultLink = after[0];
+-                                return $continue;
+-                            });
++        UpdateOrCreateOrGet(
++            storage, source, target, newSource, newTarget,
++            [&resultLink, $continue](const typename TStorage::LinkType&, const typename TStorage::LinkType& after) {
++                resultLink = after[0];
++                return $continue;
++            });
+         return resultLink;
+     }
+     template <typename TStorage>
+     typename TStorage::LinkAddressType DeleteIfExists(TStorage& storage, typename TStorage::LinkAddressType source,
+                                                       typename TStorage::LinkAddressType target)
+     {
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         auto linkAddress = storage.SearchOrDefault(source, target);
+         if (linkAddress != constants.Null)
+         {
+@@ -657,7 +666,7 @@
+                                                               typename TStorage::LinkAddressType linkIndex,
+                                                               const typename TStorage::WriteHandlerType& handler)
+     {
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         auto any = constants.Any;
+         auto $continue = storage.Constants.Continue;
+         auto $break = storage.Constants.Break;
+@@ -694,7 +703,7 @@
+     template <typename TStorage>
+     auto DeleteAll(TStorage& storage)
+     {
+-        auto handler = [](typename TStorage::LinkType before, typename TStorage::LinkType substitution) {
++        auto handler = [](typename TStorage::LinkType, typename TStorage::LinkType) {
+             return typename TStorage::LinkAddressType{};
+         };
+         auto any = storage.Constants.Any;
+@@ -757,7 +766,7 @@
+         {
+             return newLinkIndex;
+         }
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         auto usagesAsSource = All(storage, typename TStorage::LinkType(constants.Any, oldLinkIndex, constants.Any));
+         WriteHandlerState<TStorage> handlerState{constants.Continue, constants.Break, handler};
+         for (auto i{0}; i < std::ranges::size(usagesAsSource); ++i)
+@@ -810,7 +819,7 @@
+                                                              typename TStorage::LinkAddressType newLinkIndex,
+                                                              const typename TStorage::WriteHandlerType& handler)
+     {
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         WriteHandlerState<TStorage> handlerState{constants.Continue, constants.Break, handler};
+         if (newLinkIndex != oldLinkIndex)
+         {
+@@ -822,7 +831,7 @@
+     template <typename TStorage>
+     static std::string Format(TStorage& storage, const typename TStorage::LinkType& link)
+     {
+-        constexpr auto constants = storage.Constants;
++        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+         return std::string{}
+             .append("(")
+             .append(std::to_string(GetIndex(storage, link)))
+@@ -850,8 +859,10 @@
+     {
+         typename TStorage::LinkType queryResult;
+         DIRECT_METHOD_CALL(TStorage, storage, Each, query,
+-                           [&](typename TStorage::LinkType vec) ->
+-                           typename TStorage::LinkAddressType { return storage.Constants.Continue; });
++                           [&](typename TStorage::LinkType vec) -> typename TStorage::LinkAddressType {
++                               queryResult.push_back(vec[storage.Constants.IndexPart]);
++                               return storage.Constants.Continue;
++                           });
+         for (auto link : queryResult)
+         {
+             Delete(storage, link);
+--- cpp/Platform.Data.Doublets/Link.h
++++ cpp/Platform.Data.Doublets/Link.h
+@@ -1,11 +1,18 @@
+ namespace Platform::Data::Doublets
+ {
++    template <std::integral TLinkAddress>
++    struct Link;
++    namespace Details
++    {
++        template <std::integral TLinkAddress>
++        inline constexpr Link<TLinkAddress> NullLink{};
++    }
+     template <std::integral TLinkAddress>
+     struct Link
+     {
+         using value_type = TLinkAddress;
+       public:
+-        static constexpr Link Null{};
++        static constexpr const Link& Null = Details::NullLink<TLinkAddress>;
+       private:
+         static constexpr LinksConstants<TLinkAddress> _constants{};
+       private:
+--- cpp/Platform.Data.Doublets/LinksOptions.h
++++ cpp/Platform.Data.Doublets/LinksOptions.h
+@@ -9,9 +9,9 @@
+     {
+         using base = Platform::Data::LinksOptions<TLinkAddress, VConstants, TLink, TReadHandler, TWriteHandler>;
+         using base::Constants;
+-        using base::LinkAddressType;
+-        using base::LinkType;
+-        using base::ReadHandlerType;
+-        using base::WriteHandlerType;
++        using typename base::LinkAddressType;
++        using typename base::LinkType;
++        using typename base::ReadHandlerType;
++        using typename base::WriteHandlerType;
+     };
+ } // namespace Platform::Data::Doublets
+--- cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesLinkedListMethods.h
++++ cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesLinkedListMethods.h
+@@ -88,7 +88,7 @@
+             this->GetLinkIndexPartReference(head).RootAsSource = element;
+         }
+       public:
+-        void SetLast(LinkAddressType head, LinkAddressType element) {}
++        void SetLast(LinkAddressType, LinkAddressType) {}
+       public:
+         void SetPrevious(LinkAddressType element, LinkAddressType previous)
+         {
+--- cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h
++++ cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h
+@@ -19,12 +19,12 @@
+         TMemory _indexMemory;
+         std::uint64_t _dataMemoryReservationStepInBytes;
+         std::uint64_t _indexMemoryReservationStepInBytes;
+-        TInternalSourcesTreeMethods* InternalSourcesTreeMethods;
+-        TInternalLinksSourcesLinkedListMethods* InternalSourcesListMethods;
+-        TInternalTargetsTreeMethods* InternalTargetsTreeMethods;
+-        TExternalSourcesTreeMethods* ExternalSourcesTreeMethods;
+-        TExternalTargetsTreeMethods* ExternalTargetsTreeMethods;
+-        TUnusedLinksListMethods* UnusedLinksListMethods;
++        std::unique_ptr<TInternalSourcesTreeMethods> InternalSourcesTreeMethods;
++        std::unique_ptr<TInternalLinksSourcesLinkedListMethods> InternalSourcesListMethods;
++        std::unique_ptr<TInternalTargetsTreeMethods> InternalTargetsTreeMethods;
++        std::unique_ptr<TExternalSourcesTreeMethods> ExternalSourcesTreeMethods;
++        std::unique_ptr<TExternalTargetsTreeMethods> ExternalTargetsTreeMethods;
++        std::unique_ptr<TUnusedLinksListMethods> UnusedLinksListMethods;
+         std::byte* _header;
+         std::byte* _linksDataParts;
+         std::byte* _linksIndexParts;
+@@ -116,11 +116,11 @@
+                                                 _indexMemoryReservationStepInBytes) +
+                                                _indexMemoryReservationStepInBytes;
+             }
+-            if (dataMemory.ReservedCapacity() != minimumDataReservedCapacity)
++            if (dataMemory.ReservedCapacity() < minimumDataReservedCapacity)
+             {
+                 dataMemory.ReservedCapacity(minimumDataReservedCapacity);
+             }
+-            if (indexMemory.ReservedCapacity() != minimumIndexReservedCapacity)
++            if (indexMemory.ReservedCapacity() < minimumIndexReservedCapacity)
+             {
+                 indexMemory.ReservedCapacity(minimumIndexReservedCapacity);
+             }
+@@ -207,7 +207,7 @@
+                     {
+                         return this->Total();
+                     }
+-                    else if ((source == any))
++                    else if (source == any)
+                     {
+                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
+                         {
+@@ -218,7 +218,7 @@
+                             return InternalTargetsTreeMethods->CountUsages(target);
+                         }
+                     }
+-                    else if ((target == any))
++                    else if (target == any)
+                     {
+                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
+                         {
+@@ -308,11 +308,11 @@
+                         return LinkAddressType{0};
+                     }
+                     auto value = LinkAddressType{};
+-                    if ((source == any))
++                    if (source == any)
+                     {
+                         value = target;
+                     }
+-                    if ((target == any))
++                    if (target == any)
+                     {
+                         value = source;
+                     }
+@@ -332,17 +332,21 @@
+             _header = _linksIndexParts;
+             if (UseLinkedList)
+             {
++                InternalSourcesListMethods =
++                    std::make_unique<TInternalLinksSourcesLinkedListMethods>(_linksDataParts, _linksIndexParts);
+             }
+             else
+             {
+                 InternalSourcesTreeMethods =
+-                    new TInternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            }
+-            InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            UnusedLinksListMethods = new TUnusedLinksListMethods(_linksDataParts, _header);
++                    std::make_unique<TInternalSourcesTreeMethods>(_linksDataParts, _linksIndexParts, _header);
++            }
++            InternalTargetsTreeMethods =
++                std::make_unique<TInternalTargetsTreeMethods>(_linksDataParts, _linksIndexParts, _header);
++            ExternalSourcesTreeMethods =
++                std::make_unique<TExternalSourcesTreeMethods>(_linksDataParts, _linksIndexParts, _header);
++            ExternalTargetsTreeMethods =
++                std::make_unique<TExternalTargetsTreeMethods>(_linksDataParts, _linksIndexParts, _header);
++            UnusedLinksListMethods = std::make_unique<TUnusedLinksListMethods>(_linksDataParts, _header);
+         }
+         LinkAddressType Count(const LinkType& restriction)
+         {
+@@ -366,9 +370,9 @@
+             if (length == 2)
+             {
+                 auto value = restriction[1];
+-                if ((index == any))
+-                {
+-                    if ((value == any))
++                if (index == any)
++                {
++                    if (value == any)
+                     {
+                         return Total();
+                     }
+@@ -398,7 +402,7 @@
+                     {
+                         return LinkAddressType{0};
+                     }
+-                    if ((value == any))
++                    if (value == any)
+                     {
+                         return LinkAddressType{1};
+                     }
+@@ -415,13 +419,13 @@
+                 auto externalReferencesRange = constants.ExternalReferencesRange;
+                 auto source = GetSource(*this, restriction);
+                 auto target = GetTarget(*this, restriction);
+-                if ((index == any))
++                if (index == any)
+                 {
+                     if ((source == any) && (target == any))
+                     {
+                         return Total();
+                     }
+-                    else if ((source == any))
++                    else if (source == any)
+                     {
+                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
+                         {
+@@ -432,7 +436,7 @@
+                             return InternalTargetsTreeMethods->CountUsages(target);
+                         }
+                     }
+-                    else if ((target == any))
++                    else if (target == any)
+                     {
+                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
+                         {
+@@ -522,11 +526,11 @@
+                         return LinkAddressType{0};
+                     }
+                     auto value = LinkAddressType{0};
+-                    if ((source == any))
++                    if (source == any)
+                     {
+                         value = target;
+                     }
+-                    if ((target == any))
++                    if (target == any)
+                     {
+                         value = source;
+                     }
+@@ -562,7 +566,7 @@
+             auto index = GetIndex(*this, restriction);
+             if (length == 1)
+             {
+-                if ((index == any))
++                if (index == any)
+                 {
+                     return Each(LinkType{}, handler);
+                 }
+@@ -593,7 +597,7 @@
+                     {
+                         return $continue;
+                     }
+-                    if ((value == any))
++                    if (value == any)
+                     {
+                         return handler(GetLinkStruct(index));
+                     }
+@@ -610,13 +614,13 @@
+                 auto externalReferencesRange = constants.ExternalReferencesRange;
+                 auto source = GetSource(*this, restriction);
+                 auto target = GetTarget(*this, restriction);
+-                if ((index == any))
++                if (index == any)
+                 {
+                     if ((source == any) && (target == any))
+                     {
+                         return Each(LinkType{}, handler);
+                     }
+-                    else if ((source == any))
++                    else if (source == any)
+                     {
+                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
+                         {
+@@ -627,7 +631,7 @@
+                             return InternalTargetsTreeMethods->EachUsage(target, handler);
+                         }
+                     }
+-                    else if ((target == any))
++                    else if (target == any)
+                     {
+                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
+                         {
+@@ -811,7 +815,7 @@
+             }
+             return handler ? handler(before, LinkType{linkIndex, source, target}) : Constants.Continue;
+         }
+-        LinkAddressType Create(const LinkType& substitution, const WriteHandlerType& handler)
++        LinkAddressType Create(const LinkType&, const WriteHandlerType& handler)
+         {
+             using namespace Platform::Exceptions;
+             auto freeLink = this->GetHeaderReference().FirstFreeLink;
+@@ -831,7 +835,6 @@
+                     _dataMemory.ReservedCapacity(_dataMemory.ReservedCapacity() + _dataMemoryReservationStepInBytes);
+                     _indexMemory.ReservedCapacity(_indexMemory.ReservedCapacity() + _indexMemoryReservationStepInBytes);
+                     SetPointers(_dataMemory, _indexMemory);
+-                    this->GetHeaderReference() = this->GetHeaderReference();
+                     this->GetHeaderReference().ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
+                 }
+                 freeLink = ++this->GetHeaderReference().AllocatedLinks;
+--- cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h
++++ cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h
+@@ -22,9 +22,9 @@
+       private:
+         std::byte* _links;
+         const std::size_t _memoryReservationStep;
+-        TTargetTreeMethods* _TargetsTreeMethods;
+-        TSourceTreeMethods* _SourcesTreeMethods;
+-        TUnusedLinks* _UnusedLinksListMethods;
++        std::unique_ptr<TTargetTreeMethods> _TargetsTreeMethods;
++        std::unique_ptr<TSourceTreeMethods> _SourcesTreeMethods;
++        std::unique_ptr<TUnusedLinks> _UnusedLinksListMethods;
+         LinksHeader<LinkAddressType>& GetHeaderReference()
+         {
+             return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+@@ -146,7 +146,7 @@
+                         return LinkAddressType{1};
+                     }
+                     auto& storedLinkValue = GetLinkReference(index);
+-                    if (!source == any && !target == any)
++                    if (source != any && target != any)
+                     {
+                         if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
+                         {
+@@ -329,10 +329,10 @@
+             return handler(before, LinkType{linkIndex, link.Source, link.Target});
+         }
+       public:
+-        LinkAddressType Create(const LinkType& restriction, const WriteHandlerType& handler)
+-        {
+-            auto& header = this->GetHeaderReference();
+-            auto freeLink = header.FirstFreeLink;
++        LinkAddressType Create(const LinkType&, const WriteHandlerType& handler)
++        {
++            auto* header = &this->GetHeaderReference();
++            auto freeLink = header->FirstFreeLink;
+             if (freeLink != Constants.Null)
+             {
+                 _UnusedLinksListMethods->Detach(freeLink);
+@@ -340,18 +340,18 @@
+             else
+             {
+                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
+-                if (header.AllocatedLinks > maximumPossibleInnerReference)
+-                {
+-                }
+-                if (header.AllocatedLinks >= (header.ReservedLinks - 1))
++                if (header->AllocatedLinks > maximumPossibleInnerReference)
++                {
++                }
++                if (header->AllocatedLinks >= (header->ReservedLinks - 1))
+                 {
+                     _memory.ReservedCapacity(_memory.ReservedCapacity() + _memoryReservationStep);
+                     SetPointers(_memory);
+-                    header = this->GetHeaderReference();
+-                    header.ReservedLinks = _memory.ReservedCapacity() / LinkSizeInBytes;
+-                }
+-                ++header.AllocatedLinks;
+-                freeLink = header.AllocatedLinks;
++                    header = &this->GetHeaderReference();
++                    header->ReservedLinks = _memory.ReservedCapacity() / LinkSizeInBytes;
++                }
++                ++header->AllocatedLinks;
++                freeLink = header->AllocatedLinks;
+                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
+             }
+             return handler(LinkType{0, 0, 0}, LinkType{freeLink, 0, 0});
+@@ -367,7 +367,7 @@
+                 _UnusedLinksListMethods->AttachAsFirst(linkAddress);
+                 return handler ? handler(before, LinkType{}) : Constants.Continue;
+             }
+-            else if ((linkAddress == header.AllocatedLinks))
++            else if (linkAddress == header.AllocatedLinks)
+             {
+                 --header.AllocatedLinks;
+                 _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
+@@ -391,9 +391,9 @@
+         {
+             _links = static_cast<std::byte*>(memory.Pointer());
+             _header = _links;
+-            _SourcesTreeMethods = new TSourceTreeMethods(_links, _header);
+-            _TargetsTreeMethods = new TTargetTreeMethods(_links, _header);
+-            _UnusedLinksListMethods = new TUnusedLinks(_links, _header);
++            _SourcesTreeMethods = std::make_unique<TSourceTreeMethods>(_links, _header);
++            _TargetsTreeMethods = std::make_unique<TTargetTreeMethods>(_links, _header);
++            _UnusedLinksListMethods = std::make_unique<TUnusedLinks>(_links, _header);
+         }
+         bool Exists(LinkAddressType linkAddress) const
+         {
+--- cpp/Platform.Data.Doublets/Platform.Data.Doublets.h
++++ cpp/Platform.Data.Doublets/Platform.Data.Doublets.h
+@@ -6,6 +6,7 @@
+ #include <ostream>
+ #include <new>
+ #include <map>
++#include <memory>
+ #include <ranges>
+ #include <unordered_set>
+ #include <Platform.Exceptions.h>
+--- cpp/Platform.Data.Doublets/PropertyOperators/PropertiesOperator.h
++++ cpp/Platform.Data.Doublets/PropertyOperators/PropertiesOperator.h
+@@ -17,7 +17,7 @@
+             {
+                 return 0;
+             }
+-            constexpr auto constants = storage.Constants;
++            constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+             auto any = constants.Any;
+             auto query = Link<TLinkAddress>(any, objectProperty, any);
+             auto valueLink = storage.SingleOrDefault(query);
+--- cpp/Platform.Data.Doublets/PropertyOperators/PropertyOperator.h
++++ cpp/Platform.Data.Doublets/PropertyOperators/PropertyOperator.h
+@@ -31,7 +31,7 @@
+                 return valueContainer;
+             }
+             auto storage = _links;
+-            constexpr auto constants = storage.Constants;
++            constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+             auto countinueConstant = constants.Continue;
+             auto breakConstant = constants.Break;
+             auto anyConstant = constants.Any;
+--- cpp/Platform.Data.Doublets/Stacks/Stack.h
++++ cpp/Platform.Data.Doublets/Stacks/Stack.h
+@@ -36,7 +36,7 @@
+         TLinkAddress Pop()
+         {
+             auto element = this->Peek();
+-            if (!element == _stack)
++            if (element != _stack)
+             {
+                 auto top = this->GetTop();
+                 auto previousTop = _links.GetSource(top);
+--- cpp/Platform.Data.Doublets/UInt64LinksExtensions.h
++++ cpp/Platform.Data.Doublets/UInt64LinksExtensions.h
+@@ -11,7 +11,7 @@
+             {
+                 return false;
+             }
+-            constexpr auto constants = storage.Constants;
++            constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+             for (auto i = 0; i < sequence.Length; i++)
+             {
+                 if (sequence[i] == constants.Any)
+--- cpp/Tools/TemporaryDirectory.h
++++ cpp/Tools/TemporaryDirectory.h
+@@ -0,0 +1,41 @@
++#pragma once
++#include <filesystem>
++#include <random>
++#include <stdexcept>
++#include <string>
++#include <system_error>
++#include <utility>
++namespace Platform::Data::Doublets::Tools
++{
++    class TemporaryDirectory
++    {
++        std::filesystem::path _path;
++      public:
++        TemporaryDirectory()
++        {
++            std::random_device random;
++            for (int attempt = 0; attempt < 100; ++attempt)
++            {
++                auto candidate = std::filesystem::temp_directory_path() /
++                                 ("doublets-" + std::to_string(random()) + "-" + std::to_string(random()));
++                if (std::filesystem::create_directory(candidate))
++                {
++                    _path = std::move(candidate);
++                    return;
++                }
++            }
++            throw std::runtime_error("Cannot create a unique temporary directory");
++        }
++        TemporaryDirectory(const TemporaryDirectory&) = delete;
++        TemporaryDirectory& operator=(const TemporaryDirectory&) = delete;
++        ~TemporaryDirectory()
++        {
++            std::error_code error;
++            std::filesystem::remove_all(_path, error);
++        }
++        std::string File(const std::string& name) const
++        {
++            return (_path / name).string();
++        }
++    };
++} // namespace Platform::Data::Doublets::Tools
+--- csharp/Platform.Data.Doublets.Benchmarks/CountBenchmarks.cs
++++ csharp/Platform.Data.Doublets.Benchmarks/CountBenchmarks.cs
+@@ -13,18 +13,21 @@
+ [MemoryDiagnoser]
+ public class CountBenchmarks
+ {
+-    private static ILinks<TLinkAddress> _links;
++    private static ILinks<TLinkAddress>? _storage;
++    private static ILinks<TLinkAddress> _links =>
++        _storage ?? throw new System.InvalidOperationException("Run GlobalSetup before a benchmark.");
+     private static TLinkAddress _any;
+-    private static CheckedConverter<TLinkAddress, long> _addressToInt64Converter =
++    private static readonly CheckedConverter<TLinkAddress, long> _addressToInt64Converter =
+         CheckedConverter<TLinkAddress, long>.Default;
+-    private static HeapResizableDirectMemory _dataMemory;
++    private static HeapResizableDirectMemory? _dataMemory;
+     [Params(10, 100, 1000, 10000, 100000)]
+     public static ulong N;
+     [GlobalSetup]
+     public static void Setup()
+     {
+         _dataMemory = new HeapResizableDirectMemory();
+-        _links = new UnitedMemoryLinks<TLinkAddress>(_dataMemory).DecorateWithAutomaticUniquenessAndUsagesResolution();
++        _storage =
++            new UnitedMemoryLinks<TLinkAddress>(_dataMemory).DecorateWithAutomaticUniquenessAndUsagesResolution();
+         _any = _links.Constants.Any;
+         var firstLink = _links.CreatePoint();
+         for (ulong i = 0; i < N; i++)
+@@ -41,7 +44,10 @@
+     [GlobalCleanup]
+     public static void Cleanup()
+     {
+-        _dataMemory.Dispose();
++        (_storage as System.IDisposable)?.Dispose();
++        _storage = null;
++        _dataMemory?.Dispose();
++        _dataMemory = null;
+     }
+     [Benchmark]
+     public IList<IList<TLinkAddress>?> Array()
+--- csharp/Platform.Data.Doublets.Tests/ConstructorSafetyTests.cs
++++ csharp/Platform.Data.Doublets.Tests/ConstructorSafetyTests.cs
+@@ -0,0 +1,59 @@
++using System;
++using Platform.Memory;
++using Platform.Data.Doublets.Memory.Split.Generic;
++using Platform.Data.Doublets.Memory.United.Generic;
++using Xunit;
++namespace Platform.Data.Doublets.Tests;
++public class ConstructorSafetyTests
++{
++    [Fact]
++    public void UnitedConstructionDoesNotCallOverridesBeforeDerivedFieldsAreReady()
++    {
++        using var memory = new HeapResizableDirectMemory();
++        using var links = new UnitedProbe(memory);
++        Assert.Equal(1UL, links.Create());
++    }
++    [Fact]
++    public void SplitConstructionDoesNotCallOverridesBeforeDerivedFieldsAreReady()
++    {
++        using var data = new HeapResizableDirectMemory();
++        using var index = new HeapResizableDirectMemory();
++        using var links = new SplitProbe(data, index);
++        Assert.Equal(1UL, links.Create());
++    }
++    private class UnitedProbe : UnitedMemoryLinks<ulong>
++    {
++        private readonly bool _ready;
++        public UnitedProbe(IResizableDirectMemory memory) : base(memory, 4096) => _ready = true;
++        protected override void Init(IResizableDirectMemory memory, long memoryReservationStep)
++        {
++            if (!_ready)
++                throw new InvalidOperationException("Derived fields are not initialized");
++            base.Init(memory, memoryReservationStep);
++        }
++        protected override void SetPointers(IResizableDirectMemory memory)
++        {
++            if (!_ready)
++                throw new InvalidOperationException("Derived fields are not initialized");
++            base.SetPointers(memory);
++        }
++    }
++    private class SplitProbe : SplitMemoryLinks<ulong>
++    {
++        private readonly bool _ready;
++        public SplitProbe(IResizableDirectMemory data, IResizableDirectMemory index)
++            : base(data, index, 64) => _ready = true;
++        protected override void Init(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
++        {
++            if (!_ready)
++                throw new InvalidOperationException("Derived fields are not initialized");
++            base.Init(dataMemory, indexMemory);
++        }
++        protected override void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
++        {
++            if (!_ready)
++                throw new InvalidOperationException("Derived fields are not initialized");
++            base.SetPointers(dataMemory, indexMemory);
++        }
++    }
++}
+--- csharp/Platform.Data.Doublets.Tests/ExceptionDiagnosticsTests.cs
++++ csharp/Platform.Data.Doublets.Tests/ExceptionDiagnosticsTests.cs
+@@ -0,0 +1,92 @@
++using System;
++using System.Collections.Generic;
++using System.IO;
++using System.Reflection;
++using Platform.Data.Doublets.Decorators;
++using Platform.Data.Doublets.Memory.United.Generic;
++using Platform.Memory;
++using Xunit;
++namespace Platform.Data.Doublets.Tests;
++public class ExceptionDiagnosticsTests
++{
++    [Fact]
++    public void ErrorConversionPreservesDefaultBehaviorAndSupportsOptInDiagnosticsAndFiltering()
++    {
++        using var memory = new HeapResizableDirectMemory();
++        using var store = new UnitedMemoryLinks<ulong>(memory);
++        var decorator = new NoExceptionsDecorator<ulong>(new ThrowingLinks(store));
++        Assert.Null(decorator.ExceptionHandler);
++        Assert.Equal(store.Constants.Error, decorator.Count(null));
++        var errors = new List<Exception>();
++        decorator.ExceptionHandler = errors.Add;
++        Assert.Equal(store.Constants.Error, decorator.Count(null));
++        Assert.IsType<InvalidOperationException>(Assert.Single(errors));
++        decorator.ExceptionFilter =
++            _ => false;
++        Assert.Throws<InvalidOperationException>(() => decorator.Count(null));
++        Assert.Single(errors);
++    }
++    [Fact]
++    public void ExplicitTransactionDisposalReportsFailureToPersistCommitState()
++    {
++        var directory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
++        Directory.CreateDirectory(directory);
++        try
++        {
++            var logPath = Path.Combine(directory, "transactions.log");
++            using var memory = new HeapResizableDirectMemory();
++            using var store = new UnitedMemoryLinks<ulong>(memory);
++            var owner = new DisposalProbe(store);
++            var layer = new UInt64LinksTransactionsLayer(owner, logPath);
++            var field =
++                typeof(UInt64LinksTransactionsLayer).GetField("_log", BindingFlags.Instance | BindingFlags.NonPublic);
++            Assert.NotNull(field);
++            Assert.IsType<FileStream>(field.GetValue(layer)).Dispose();
++            using var exclusive = new FileStream(logPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
++            Assert.ThrowsAny<IOException>(() => layer.Dispose());
++            Assert.True(owner.IsDisposed);
++            GC.SuppressFinalize(layer);
++        }
++        finally
++        {
++            Directory.Delete(directory, true);
++        }
++    }
++    [Fact]
++    public void DamagedTransactionLogKeepsItsOriginalDiagnosticDuringConstructorCleanup()
++    {
++        var path = Path.GetTempFileName();
++        try
++        {
++            var bytes = new byte[checked((int)UInt64LinksTransactionsLayer.Transition.Size * 2)];
++            bytes[UInt64LinksTransactionsLayer.Transition.Size] = 1;
++            File.WriteAllBytes(path, bytes);
++            using var memory = new HeapResizableDirectMemory();
++            using var store = new UnitedMemoryLinks<ulong>(memory);
++            Assert.Throws<NotSupportedException>(() => new UInt64LinksTransactionsLayer(store, path));
++        }
++        finally
++        {
++            File.Delete(path);
++        }
++    }
++    private class DisposalProbe : LinksDecoratorBase<ulong>, IDisposable
++    {
++        public bool IsDisposed { get; private set; }
++        public DisposalProbe(ILinks<ulong> storage) : base(storage)
++        {
++        }
++        public void Dispose()
++        {
++            IsDisposed = true;
++            ((IDisposable)_links).Dispose();
++        }
++    }
++    private class ThrowingLinks : LinksDecoratorBase<ulong>
++    {
++        public ThrowingLinks(ILinks<ulong> storage) : base(storage)
++        {
++        }
++        public override ulong Count(IList<ulong>? restriction) => throw new InvalidOperationException("reproduction");
++    }
++}
+--- csharp/Platform.Data.Doublets.Tests/NullableContractTests.cs
++++ csharp/Platform.Data.Doublets.Tests/NullableContractTests.cs
+@@ -0,0 +1,130 @@
++using Platform.Data.Doublets.Memory.United.Generic;
++using Platform.Data.Doublets.Memory.Split.Generic;
++using Platform.Memory;
++using Platform.Data.Doublets.Decorators;
++using Xunit;
++namespace Platform.Data.Doublets.Tests;
++public class NullableContractTests
++{
++    [Theory]
++    [InlineData(false)]
++    [InlineData(true)]
++    public void OptionalRestrictionsAndReadHandlersAreSupported(bool split)
++    {
++        using var first = new HeapResizableDirectMemory();
++        using var second = new HeapResizableDirectMemory();
++        using var storage = split ? (System.IDisposable) new SplitMemoryLinks<ulong>(first, second)
++                                  : new UnitedMemoryLinks<ulong>(first);
++        var links = (ILinks<ulong>)storage;
++        links.Create();
++        Assert.Equal(1UL, links.Count(null));
++        Assert.Equal(links.Constants.Continue, links.Each(null, null));
++        var visited = 0;
++        links.Each(null,
++                   _ =>
++                   {
++                       visited++;
++                       return links.Constants.Continue;
++                   });
++        Assert.Equal(1, visited);
++        links.Create();
++        visited = 0;
++        Assert.Equal(links.Constants.Break, links.Each(null,
++                                                       _ =>
++                                                       {
++                                                           visited++;
++                                                           return links.Constants.Break;
++                                                       }));
++        Assert.Equal(1, visited);
++    }
++    [Theory]
++    [InlineData(false)]
++    [InlineData(true)]
++    public void UniversalCreationAndDeletionAllowIndependentOptionalHandlers(bool split)
++    {
++        using var first = new HeapResizableDirectMemory();
++        using var second = new HeapResizableDirectMemory();
++        using var storage = split ? (System.IDisposable) new SplitMemoryLinks<ulong>(first, second)
++                                  : new UnitedMemoryLinks<ulong>(first);
++        var links = (ILinks<ulong>)storage;
++        var universal = new UniLinks<ulong>(links);
++        var calls = 0;
++        var created = 0UL;
++        universal.Trigger(null, (Platform.Delegates.ReadHandler<ulong>?)null, new ulong[] { 0, 0, 0 }, (before, after) =>
++        {
++            System.ArgumentNullException.ThrowIfNull(after);
++            created = after[0];
++            calls++;
++            return links.Constants.Continue;
++        });
++        Assert.Equal(1, calls);
++        Assert.NotEqual(0UL, created);
++        universal.Trigger(new[] { created },
++                          _ => links.Constants.Continue, null, null);
++        Assert.Equal(0UL, links.Count());
++    }
++    [Theory]
++    [InlineData(false)]
++    [InlineData(true)]
++    public void EnsureCreatedFillsAllRequestedFreeAddresses(bool split)
++    {
++        using var first = new HeapResizableDirectMemory();
++        using var second = new HeapResizableDirectMemory();
++        using var storage = split ? (System.IDisposable) new SplitMemoryLinks<ulong>(first, second)
++                                  : new UnitedMemoryLinks<ulong>(first);
++        var links = (ILinks<ulong>)storage;
++        for (var i = 0; i < 4; i++)
++            links.Create();
++        links.Delete(1UL);
++        links.Delete(3UL);
++        links.EnsureCreated(1UL, 3UL);
++        Assert.True(links.Exists(1UL));
++        Assert.True(links.Exists(3UL));
++        Assert.Equal(4UL, links.Count());
++    }
++    [Theory]
++    [InlineData(false)]
++    [InlineData(true)]
++    public void EnsurePointsCreatedRetainsExistingLinksAndOnlyRequestedNewPoints(bool split)
++    {
++        using var first = new HeapResizableDirectMemory();
++        using var second = new HeapResizableDirectMemory();
++        using var storage = split ? (System.IDisposable) new SplitMemoryLinks<ulong>(first, second)
++                                  : new UnitedMemoryLinks<ulong>(first);
++        var links = (ILinks<ulong>)storage;
++        var existing = links.Create();
++        links.EnsurePointsCreated(existing, 0UL, 3UL, 5UL, 3UL, links.Constants.Any);
++        Assert.True(links.Exists(existing));
++        Assert.False(links.Exists(2UL));
++        Assert.False(links.Exists(4UL));
++        Assert.Equal(3UL, links.GetSource(3UL));
++        Assert.Equal(3UL, links.GetTarget(3UL));
++        Assert.Equal(5UL, links.GetSource(5UL));
++        Assert.Equal(5UL, links.GetTarget(5UL));
++        Assert.Equal(3UL, links.Count());
++    }
++    [Theory]
++    [InlineData(false)]
++    [InlineData(true)]
++    public void EnsureCreatedRejectsARepeatedCreatorResult(bool split)
++    {
++        using var first = new HeapResizableDirectMemory();
++        using var second = new HeapResizableDirectMemory();
++        using var storage = split ? (System.IDisposable) new SplitMemoryLinks<ulong>(first, second)
++                                  : new UnitedMemoryLinks<ulong>(first);
++        var links = (ILinks<ulong>)storage;
++        Assert.Throws<System.InvalidOperationException>(() => links.EnsureCreated(() => 1UL, 3UL));
++    }
++    [Fact]
++    public void UniversalUpdateUsesTheExistingLinkInsteadOfCreatingAnother()
++    {
++        using var memory = new HeapResizableDirectMemory();
++        using var links = new UnitedMemoryLinks<ulong>(memory);
++        var original = links.Create();
++        var universal = new UniLinks<ulong>(links);
++        universal.Trigger(new[] { original }, (Platform.Delegates.ReadHandler<ulong>?)null,
++            new ulong[] { 0, original, original }, null);
++        Assert.Equal(1UL, links.Count(null));
++        Assert.Equal(original, links.GetSource(original));
++    }
++}
+--- csharp/Platform.Data.Doublets.Tests/ScopeTests.cs
++++ csharp/Platform.Data.Doublets.Tests/ScopeTests.cs
+@@ -30,13 +30,13 @@
+             Assert.IsType<UnitedMemoryLinks<TLinkAddress>>(instance);
+         }
+     }
+-    [Fact(Skip = "Would be fixed later.")]
++    [Fact]
+     public static void FullAutoResolutionTest()
+     {
+         using (var scope = new Scope(autoInclude: true, autoExplore: true))
+         {
+             var instance = scope.Use<CombinedDecorator<TLinkAddress>>();
+-            Assert.IsType<TLinkAddress>(instance);
++            Assert.IsType<CombinedDecorator<TLinkAddress>>(instance);
+         }
+     }
+     [Fact]
+--- csharp/Platform.Data.Doublets/Decorators/LinksDecoratorBase.cs
++++ csharp/Platform.Data.Doublets/Decorators/LinksDecoratorBase.cs
+@@ -13,6 +13,7 @@
+     protected LinksDecoratorBase(ILinks<TLinkAddress> links) : base(links: links)
+     {
+         _constants = links.Constants;
++        _facade = this;
+         Facade = this;
+     }
+     public ILinks<TLinkAddress> Facade
+--- csharp/Platform.Data.Doublets/Decorators/LinksDisposableDecoratorBase.cs
++++ csharp/Platform.Data.Doublets/Decorators/LinksDisposableDecoratorBase.cs
+@@ -13,7 +13,8 @@
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     protected LinksDisposableDecoratorBase(ILinks<TLinkAddress> links) : base(links: links)
+     {
+-        Disposable = new DisposableWithMultipleCallsAllowed(disposal: Dispose);
++        Disposable =
++            new DisposableWithMultipleCallsAllowed(disposal: (manual, wasDisposed) => Dispose(manual, wasDisposed));
+     }
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     public void Dispose()
+--- csharp/Platform.Data.Doublets/Decorators/LinksItselfConstantToSelfReferenceResolver.cs
++++ csharp/Platform.Data.Doublets/Decorators/LinksItselfConstantToSelfReferenceResolver.cs
+@@ -16,7 +16,7 @@
+     {
+         var constants = _constants;
+         var itselfConstant = constants.Itself;
+-        if (constants.Any != itselfConstant && restriction.Contains(item: itselfConstant))
++        if (constants.Any != itselfConstant && restriction != null && restriction.Contains(item: itselfConstant))
+         {
+             return constants.Continue;
+         }
+--- csharp/Platform.Data.Doublets/Decorators/LinksNonExistentDependenciesCreator.cs
++++ csharp/Platform.Data.Doublets/Decorators/LinksNonExistentDependenciesCreator.cs
+@@ -15,7 +15,6 @@
+     public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution,
+                                         WriteHandler<TLinkAddress>? handler)
+     {
+-        var constants = _constants;
+         var links = _links;
+         links.EnsureCreated(links.GetSource(link: substitution), links.GetTarget(link: substitution));
+         return links.Update(restriction: restriction, substitution: substitution, handler: handler);
+--- csharp/Platform.Data.Doublets/Decorators/LinksUniquenessResolver.cs
++++ csharp/Platform.Data.Doublets/Decorators/LinksUniquenessResolver.cs
+@@ -15,7 +15,6 @@
+     public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution,
+                                         WriteHandler<TLinkAddress>? handler)
+     {
+-        var constants = _constants;
+         var links = _links;
+         var newLinkAddress = links.SearchOrDefault(source: links.GetSource(link: substitution),
+                                                    target: links.GetTarget(link: substitution));
+--- csharp/Platform.Data.Doublets/Decorators/LinksUniquenessValidator.cs
++++ csharp/Platform.Data.Doublets/Decorators/LinksUniquenessValidator.cs
+@@ -16,7 +16,6 @@
+                                         WriteHandler<TLinkAddress>? handler)
+     {
+         var links = _links;
+-        var constants = _constants;
+         links.EnsureDoesNotExists(source: links.GetSource(link: substitution),
+                                   target: links.GetTarget(link: substitution));
+         return links.Update(restriction: restriction, substitution: substitution, handler: handler);
+--- csharp/Platform.Data.Doublets/Decorators/LoggingDecorator.cs
++++ csharp/Platform.Data.Doublets/Decorators/LoggingDecorator.cs
+@@ -22,7 +22,7 @@
+             substitution: substitution,
+             handler: (before, after) =>
+             {
+-                handlerState.Handle(before: before, after: after);
++                handlerState.HandleNullable(before: before, after: after);
+                 _logStreamWriter.WriteLine(
+                     value: $"Create. Before: {new Link<TLinkAddress>(values: before)}. After: {new Link<TLinkAddress>(values: after)}");
+                 return _constants.Continue;
+@@ -37,7 +37,7 @@
+             restriction: restriction, substitution: substitution,
+             handler: (before, after) =>
+             {
+-                handlerState.Handle(before: before, after: after);
++                handlerState.HandleNullable(before: before, after: after);
+                 _logStreamWriter.WriteLine(
+                     value: $"Update. Before: {new Link<TLinkAddress>(values: before)}. After: {new Link<TLinkAddress>(values: after)}");
+                 return _constants.Continue;
+@@ -51,7 +51,7 @@
+             restriction: restriction,
+             handler: (before, after) =>
+             {
+-                handlerState.Handle(before: before, after: after);
++                handlerState.HandleNullable(before: before, after: after);
+                 _logStreamWriter.WriteLine(
+                     value: $"Delete. Before: {new Link<TLinkAddress>(values: before)}. After: {new Link<TLinkAddress>(values: after)}");
+                 return _constants.Continue;
+--- csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs
++++ csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs
+@@ -7,6 +7,8 @@
+ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddress>
+     where TLinkAddress : IUnsignedNumber<TLinkAddress>
+ {
++    public Func<Exception, bool>? ExceptionFilter { get; set; }
++    public Action<Exception>? ExceptionHandler { get; set; }
+     public NoExceptionsDecorator(ILinks<TLinkAddress> storage) : base(links: storage)
+     {
+     }
+@@ -16,8 +18,9 @@
+         {
+             return base.Count(restriction: restriction);
+         }
+-        catch (Exception exception)
++        catch (Exception exception) when (ExceptionFilter?.Invoke(exception) ?? true)
+         {
++            ExceptionHandler?.Invoke(exception);
+             exception.Ignore();
+             return Constants.Error;
+         }
+@@ -28,8 +31,9 @@
+         {
+             return base.Each(restriction: restriction, handler: handler);
+         }
+-        catch (Exception exception)
++        catch (Exception exception) when (ExceptionFilter?.Invoke(exception) ?? true)
+         {
++            ExceptionHandler?.Invoke(exception);
+             exception.Ignore();
+             return Constants.Error;
+         }
+@@ -40,8 +44,9 @@
+         {
+             return base.Create(substitution: substitution, handler: handler);
+         }
+-        catch (Exception exception)
++        catch (Exception exception) when (ExceptionFilter?.Invoke(exception) ?? true)
+         {
++            ExceptionHandler?.Invoke(exception);
+             exception.Ignore();
+             return Constants.Error;
+         }
+@@ -53,8 +58,9 @@
+         {
+             return base.Update(restriction: restriction, substitution: substitution, handler: handler);
+         }
+-        catch (Exception exception)
++        catch (Exception exception) when (ExceptionFilter?.Invoke(exception) ?? true)
+         {
++            ExceptionHandler?.Invoke(exception);
+             exception.Ignore();
+             return Constants.Error;
+         }
+@@ -65,8 +71,9 @@
+         {
+             return base.Delete(restriction: restriction, handler: handler);
+         }
+-        catch (Exception exception)
++        catch (Exception exception) when (ExceptionFilter?.Invoke(exception) ?? true)
+         {
++            ExceptionHandler?.Invoke(exception);
+             exception.Ignore();
+             return Constants.Error;
+         }
+--- csharp/Platform.Data.Doublets/Decorators/UInt64Links.cs
++++ csharp/Platform.Data.Doublets/Decorators/UInt64Links.cs
+@@ -21,6 +21,8 @@
+     public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution,
+                                         WriteHandler<TLinkAddress>? handler)
+     {
++        System.ArgumentNullException.ThrowIfNull(restriction);
++        System.ArgumentNullException.ThrowIfNull(substitution);
+         var constants = _constants;
+         var indexPartConstant = constants.IndexPart;
+         var sourcePartConstant = constants.SourcePart;
+@@ -38,7 +40,7 @@
+         }
+         if (existedLink == nullConstant)
+         {
+-            var before = links.GetLink(updatedLink);
++            var before = links.GetRequiredLink(updatedLink);
+             if (before[sourcePartConstant] != newSource || before[targetPartConstant] != newTarget)
+             {
+                 var source = newSource == itselfConstant ? updatedLink : newSource;
+--- csharp/Platform.Data.Doublets/Decorators/UniLinks.cs
++++ csharp/Platform.Data.Doublets/Decorators/UniLinks.cs
+@@ -22,46 +22,48 @@
+                                 IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? substitutionHandler)
+     {
+         var constants = _constants;
+-        if (patternOrCondition.IsNullOrEmpty() && substitution.IsNullOrEmpty())
++        if ((patternOrCondition is not { Count : > 0 }) && (substitution is not { Count : > 0 }))
+         {
+             return constants.Continue;
+         }
+-        if (patternOrCondition.EqualTo(right: substitution))
++        if (patternOrCondition != null && substitution != null && patternOrCondition.EqualTo(right: substitution))
+         {
+             throw new NotImplementedException();
+         }
+-        if (!substitution.IsNullOrEmpty())
++        if (patternOrCondition is not { Count : > 0 })
+         {
++            var creation = substitution ?? throw new ArgumentNullException(nameof(substitution));
+             var before = Array.Empty<TLinkAddress>();
+             if (matchHandler != null && matchHandler(link: before) == constants.Break)
+             {
+                 return constants.Break;
+             }
+-            var after = (IList<TLinkAddress>?)substitution.ToArray();
++            var after = (IList<TLinkAddress>)creation.ToArray();
+             if (after [index:0] == default)
+             {
+                 var newLink = _links.Create();
+                 after [index:0] = newLink;
+             }
+-            if (substitution.Count == 1)
++            if (creation.Count == 1)
+             {
+-                after = _links.GetLink(link: substitution [index:0]);
++                after = _links.GetRequiredLink(link: creation [index:0]);
+             }
+-            else if (substitution.Count == 3)
++            else if (creation.Count == 3)
+             {
+             }
+             else
+             {
+                 throw new NotSupportedException();
+             }
+-            return matchHandler != null ? substitutionHandler(before: before, after: after) : constants.Continue;
++            return substitutionHandler != null ? substitutionHandler(before: before, after: after) : constants.Continue;
+         }
+-        if (!patternOrCondition.IsNullOrEmpty())
++        if (substitution is not { Count : > 0 })
+         {
++            ArgumentNullException.ThrowIfNull(patternOrCondition);
+             if (patternOrCondition.Count == 1)
+             {
+                 var linkToDelete = patternOrCondition [index:0];
+-                var before = _links.GetLink(link: linkToDelete);
++                var before = _links.GetRequiredLink(link: linkToDelete);
+                 if (matchHandler != null && matchHandler(link: before) == constants.Break)
+                 {
+                     return constants.Break;
+@@ -69,19 +71,22 @@
+                 var after = Array.Empty<TLinkAddress>();
+                 _links.Update(link: linkToDelete, newSource: constants.Null, newTarget: constants.Null);
+                 _links.Delete(linkToDelete: linkToDelete);
+-                return matchHandler != null ? substitutionHandler(before: before, after: after) : constants.Continue;
++                return substitutionHandler != null ? substitutionHandler(before: before, after: after)
++                                                   : constants.Continue;
+             }
+             throw new NotSupportedException();
+         }
++        ArgumentNullException.ThrowIfNull(patternOrCondition);
++        ArgumentNullException.ThrowIfNull(substitution);
+         if (patternOrCondition.Count == 1)
+         {
+             var linkToUpdate = patternOrCondition [index:0];
+-            var before = _links.GetLink(link: linkToUpdate);
++            var before = _links.GetRequiredLink(link: linkToUpdate);
+             if (matchHandler != null && matchHandler(link: before) == constants.Break)
+             {
+                 return constants.Break;
+             }
+-            var after = (IList<TLinkAddress>?)substitution.ToArray();
++            var after = (IList<TLinkAddress>)substitution.ToArray();
+             if (after [index:0] == default)
+             {
+                 after [index:0] = linkToUpdate;
+@@ -90,19 +95,21 @@
+             {
+                 if (substitution [index:0] != linkToUpdate)
+                 {
+-                    after = _links.GetLink(link: substitution [index:0]);
++                    after = _links.GetRequiredLink(link: substitution [index:0]);
+                     _links.Update(link: linkToUpdate, newSource: constants.Null, newTarget: constants.Null);
+                     _links.Delete(linkToDelete: linkToUpdate);
+                 }
+             }
+             else if (substitution.Count == 3)
+             {
++                _links.Update(link: linkToUpdate, newSource: after[constants.SourcePart],
++                              newTarget: after[constants.TargetPart]);
+             }
+             else
+             {
+                 throw new NotSupportedException();
+             }
+-            return matchHandler != null ? substitutionHandler(before: before, after: after) : constants.Continue;
++            return substitutionHandler != null ? substitutionHandler(before: before, after: after) : constants.Continue;
+         }
+         throw new NotSupportedException();
+     }
+@@ -125,8 +132,8 @@
+     }
+     private struct Transition
+     {
+-        public IList<TLinkAddress>? Before;
+-        public IList<TLinkAddress>? After;
++        public readonly IList<TLinkAddress>? Before;
++        public readonly IList<TLinkAddress>? After;
+         public Transition(IList<TLinkAddress>? before, IList<TLinkAddress>? after)
+         {
+             Before = before;
+--- csharp/Platform.Data.Doublets/Doublet.cs
++++ csharp/Platform.Data.Doublets/Doublet.cs
+@@ -27,9 +27,9 @@
+         return Source == other.Source && Target == other.Target;
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public override bool Equals(object obj)
++    public override bool Equals(object? obj)
+     {
+-        return obj is Doublet<T> doublet ? base.Equals(doublet) : false;
++        return obj is Doublet<T> doublet && base.Equals(doublet);
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public override int GetHashCode()
+--- csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs
++++ csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs
+@@ -0,0 +1,153 @@
++using System;
++using System.Collections;
++using System.Collections.Generic;
++using System.Linq;
++using System.Numerics;
++using System.Runtime.CompilerServices;
++using System.Text;
++using Platform.Ranges;
++using Platform.Collections.Lists;
++using Platform.Random;
++using Platform.Setters;
++using Platform.Converters;
++using Platform.Numbers;
++using Platform.Data.Exceptions;
++using Platform.Data.Doublets.Decorators;
++using Platform.Delegates;
++#pragma warning disable CS1591
++namespace Platform.Data.Doublets
++{
++public static partial class ILinksExtensions
++{
++#region Ensure
++    [MethodImpl(MethodImplOptions.AggressiveInlining)]
++    public static void EnsureLinkExists<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction)
++        where TLinkAddress : IUnsignedNumber<TLinkAddress>
++    {
++        restriction ??= Array.Empty<TLinkAddress>();
++        for (var i = 0; i < restriction.Count; i++)
++        {
++            if (!links.Exists(restriction[i]))
++            {
++                throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(restriction[i], $"sequence[{i}]");
++            }
++        }
++    }
++    [MethodImpl(MethodImplOptions.AggressiveInlining)]
++    public static void EnsureInnerReferenceExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress reference,
++                                                                string argumentName)
++        where TLinkAddress : IUnsignedNumber<TLinkAddress>
++    {
++        if (links.Constants.IsInternalReference(reference) && !links.Exists(reference))
++        {
++            throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(reference, argumentName);
++        }
++    }
++    [MethodImpl(MethodImplOptions.AggressiveInlining)]
++    public static void EnsureInnerReferenceExists<TLinkAddress>(this ILinks<TLinkAddress> links,
++                                                                IList<TLinkAddress>? restriction, string argumentName)
++        where TLinkAddress : IUnsignedNumber<TLinkAddress>
++    {
++        restriction ??= Array.Empty<TLinkAddress>();
++        for (int i = 0; i < restriction.Count; i++)
++        {
++            links.EnsureInnerReferenceExists(restriction[i], argumentName);
++        }
++    }
++    [MethodImpl(MethodImplOptions.AggressiveInlining)]
++    public static void EnsureLinkIsAnyOrExists<TLinkAddress>(this ILinks<TLinkAddress> links,
++                                                             IList<TLinkAddress>? restriction)
++        where TLinkAddress : IUnsignedNumber<TLinkAddress>
++    {
++        restriction ??= Array.Empty<TLinkAddress>();
++        var any = links.Constants.Any;
++        for (var i = 0; i < restriction.Count; i++)
++        {
++            if (restriction[i] != any && !links.Exists(restriction[i]))
++            {
++                throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(restriction[i], $"sequence[{i}]");
++            }
++        }
++    }
++    [MethodImpl(MethodImplOptions.AggressiveInlining)]
++    public static void EnsureLinkIsAnyOrExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link,
++                                                             string argumentName)
++        where TLinkAddress : IUnsignedNumber<TLinkAddress>
++    {
++        if (link != links.Constants.Any && !links.Exists(link))
++        {
++            throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
++        }
++    }
++    [MethodImpl(MethodImplOptions.AggressiveInlining)]
++    public static void EnsureLinkIsItselfOrExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link,
++                                                                string argumentName)
++        where TLinkAddress : IUnsignedNumber<TLinkAddress>
++    {
++        if (link != links.Constants.Itself && !links.Exists(link))
++        {
++            throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
++        }
++    }
++    [MethodImpl(MethodImplOptions.AggressiveInlining)]
++    public static void EnsureDoesNotExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source,
++                                                         TLinkAddress target)
++        where TLinkAddress : IUnsignedNumber<TLinkAddress>
++    {
++        if (links.Exists(source, target))
++        {
++            throw new LinkWithSameValueAlreadyExistsException();
++        }
++    }
++    [MethodImpl(MethodImplOptions.AggressiveInlining)]
++    public static void EnsureNoUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)
++        where TLinkAddress : IUnsignedNumber<TLinkAddress>
++    {
++        if (links.HasUsages(link))
++        {
++            throw new ArgumentLinkHasDependenciesException<TLinkAddress>(link);
++        }
++    }
++    [MethodImpl(MethodImplOptions.AggressiveInlining)]
++    public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] addresses)
++        where TLinkAddress : IUnsignedNumber<TLinkAddress>
++    {
++        links.EnsureCreated(links.Create, addresses);
++    }
++    [MethodImpl(MethodImplOptions.AggressiveInlining)]
++    public static void EnsurePointsCreated<TLinkAddress>(this ILinks<TLinkAddress> links,
++                                                         params TLinkAddress[] addresses)
++        where TLinkAddress : IUnsignedNumber<TLinkAddress>
++    {
++        links.EnsureCreated(links.CreatePoint, addresses);
++    }
++    [MethodImpl(MethodImplOptions.AggressiveInlining)]
++    public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, Func<TLinkAddress> creator,
++                                                   params TLinkAddress[] addresses)
++        where TLinkAddress : IUnsignedNumber<TLinkAddress>
++    {
++        var remaining = new HashSet<TLinkAddress>(addresses.Where(
++            address =>
++                address != links.Constants.Null &&
++                Comparer<TLinkAddress>.Default.Compare(address, links.Constants.InternalReferencesRange.Maximum) <= 0 &&
++                !links.Exists(address)));
++        var requested = new HashSet<TLinkAddress>(remaining);
++        var created = new HashSet<TLinkAddress>();
++        while (remaining.Count > 0)
++        {
++            var address = creator();
++            if (address == links.Constants.Null || !created.Add(address))
++            {
++                throw new InvalidOperationException("The creator did not allocate a new link.");
++            }
++            remaining.Remove(address);
++        }
++        foreach (var address in created)
++        {
++            if (!requested.Contains(address))
++                links.Delete(address, null);
++        }
++    }
++#endregion
++}
++}
+--- csharp/Platform.Data.Doublets/ILinksExtensions.cs
++++ csharp/Platform.Data.Doublets/ILinksExtensions.cs
+@@ -17,7 +17,7 @@
+ #pragma warning disable CS1591
+ namespace Platform.Data.Doublets
+ {
+-public static class ILinksExtensions
++public static partial class ILinksExtensions
+ {
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public static void RunRandomCreations<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfCreations)
+@@ -82,7 +82,7 @@
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+         var comparer = Comparer<TLinkAddress>.Default;
+-        for (var i = links.Count(); comparer.Compare(i, default) > 0; i = --i)
++        for (var i = links.Count(); comparer.Compare(i, TLinkAddress.Zero) > 0; i = --i)
+         {
+             links.Delete(i);
+             if (links.Count() != --i)
+@@ -95,18 +95,19 @@
+     public static TLinkAddress First<TLinkAddress>(this ILinks<TLinkAddress> links)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+-        TLinkAddress firstLink = default;
+-        if (links.Count() == default)
++        TLinkAddress firstLink = TLinkAddress.Zero;
++        if (links.Count() == TLinkAddress.Zero)
+         {
+             throw new InvalidOperationException("В хранилище нет связей.");
+         }
+         links.Each(new Link<TLinkAddress>(links.Constants.Any, links.Constants.Any, links.Constants.Any),
+                    link =>
+                    {
+-                       firstLink = link[links.Constants.IndexPart];
++                       firstLink = (link ?? throw new InvalidOperationException(
++                                                "Read callback did not provide a link."))[links.Constants.IndexPart];
+                        return links.Constants.Break;
+                    });
+-        if (firstLink == default)
++        if (firstLink == TLinkAddress.Zero)
+         {
+             throw new InvalidOperationException("В процессе поиска по хранилищу не было найдено связей.");
+         }
+@@ -149,11 +150,10 @@
+         {
+             return false;
+         }
+-        var constants = links.Constants;
+         for (var i = 1; i < path.Length; i++)
+         {
+             var next = path[i];
+-            var values = links.GetLink(current);
++            var values = links.GetRequiredLink(current);
+             var source = links.GetSource(values);
+             var target = links.GetTarget(values);
+             if (source == target && source == next)
+@@ -177,7 +177,7 @@
+         var currentLink = root;
+         for (var i = 0; i < path.Length; i++)
+         {
+-            currentLink = links.GetLink(currentLink)[path[i]];
++            currentLink = links.GetRequiredLink(currentLink)[path[i]];
+         }
+         return currentLink;
+     }
+@@ -203,7 +203,7 @@
+         var currentLink = root;
+         for (var i = length - 1; i >= 0; i--)
+         {
+-            currentLink = links.GetLink(currentLink)[path[i] ? target : source];
++            currentLink = links.GetRequiredLink(currentLink)[path[i] ? target : source];
+         }
+         return currentLink;
+     }
+@@ -212,31 +212,31 @@
+     public static TLinkAddress GetIndex<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+-        return link[links.Constants.IndexPart];
++        return (link ?? throw new ArgumentNullException(nameof(link)))[links.Constants.IndexPart];
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public static TLinkAddress GetSource<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+-        return links.GetLink(link)[links.Constants.SourcePart];
++        return links.GetRequiredLink(link)[links.Constants.SourcePart];
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public static TLinkAddress GetSource<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+-        return link[links.Constants.SourcePart];
++        return (link ?? throw new ArgumentNullException(nameof(link)))[links.Constants.SourcePart];
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public static TLinkAddress GetTarget<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+-        return links.GetLink(link)[links.Constants.TargetPart];
++        return links.GetRequiredLink(link)[links.Constants.TargetPart];
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public static TLinkAddress GetTarget<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+-        return link[links.Constants.TargetPart];
++        return (link ?? throw new ArgumentNullException(nameof(link)))[links.Constants.TargetPart];
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public static IList<IList<TLinkAddress>?> All<TLinkAddress>(this ILinks<TLinkAddress> links,
+@@ -255,149 +255,24 @@
+     {
+         var allIndices = new List<TLinkAddress>();
+         var filler = new ListFiller<TLinkAddress, TLinkAddress>(allIndices, links.Constants.Continue);
+-        links.Each(filler.AddFirstAndReturnConstant, restriction);
++        links.Each(link => filler.AddFirstAndReturnConstant(
++                       link ?? throw new InvalidOperationException("Read callback did not provide a link.")),
++                   restriction);
+         return allIndices;
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public static bool Exists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+-        return Comparer<TLinkAddress>.Default.Compare(links.Count(links.Constants.Any, source, target), default) > 0;
+-    }
+-#region Ensure
+-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public static void EnsureLinkExists<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction)
+-        where TLinkAddress : IUnsignedNumber<TLinkAddress>
+-    {
+-        for (var i = 0; i < restriction.Count; i++)
+-        {
+-            if (!links.Exists(restriction[i]))
+-            {
+-                throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(restriction[i], $"sequence[{i}]");
+-            }
+-        }
+-    }
+-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public static void EnsureInnerReferenceExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress reference,
+-                                                                string argumentName)
+-        where TLinkAddress : IUnsignedNumber<TLinkAddress>
+-    {
+-        if (links.Constants.IsInternalReference(reference) && !links.Exists(reference))
+-        {
+-            throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(reference, argumentName);
+-        }
+-    }
+-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public static void EnsureInnerReferenceExists<TLinkAddress>(this ILinks<TLinkAddress> links,
+-                                                                IList<TLinkAddress>? restriction, string argumentName)
+-        where TLinkAddress : IUnsignedNumber<TLinkAddress>
+-    {
+-        for (int i = 0; i < restriction.Count; i++)
+-        {
+-            links.EnsureInnerReferenceExists(restriction[i], argumentName);
+-        }
+-    }
+-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public static void EnsureLinkIsAnyOrExists<TLinkAddress>(this ILinks<TLinkAddress> links,
+-                                                             IList<TLinkAddress>? restriction)
+-        where TLinkAddress : IUnsignedNumber<TLinkAddress>
+-    {
+-        var any = links.Constants.Any;
+-        for (var i = 0; i < restriction.Count; i++)
+-        {
+-            if (restriction[i] != any && !links.Exists(restriction[i]))
+-            {
+-                throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(restriction[i], $"sequence[{i}]");
+-            }
+-        }
+-    }
+-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public static void EnsureLinkIsAnyOrExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link,
+-                                                             string argumentName)
+-        where TLinkAddress : IUnsignedNumber<TLinkAddress>
+-    {
+-        if (link != links.Constants.Any && !links.Exists(link))
+-        {
+-            throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
+-        }
+-    }
+-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public static void EnsureLinkIsItselfOrExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link,
+-                                                                string argumentName)
+-        where TLinkAddress : IUnsignedNumber<TLinkAddress>
+-    {
+-        if (link != links.Constants.Itself && !links.Exists(link))
+-        {
+-            throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
+-        }
+-    }
+-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public static void EnsureDoesNotExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source,
+-                                                         TLinkAddress target)
+-        where TLinkAddress : IUnsignedNumber<TLinkAddress>
+-    {
+-        if (links.Exists(source, target))
+-        {
+-            throw new LinkWithSameValueAlreadyExistsException();
+-        }
+-    }
+-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public static void EnsureNoUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)
+-        where TLinkAddress : IUnsignedNumber<TLinkAddress>
+-    {
+-        if (links.HasUsages(link))
+-        {
+-            throw new ArgumentLinkHasDependenciesException<TLinkAddress>(link);
+-        }
+-    }
+-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] addresses)
+-        where TLinkAddress : IUnsignedNumber<TLinkAddress>
+-    {
+-        links.EnsureCreated(links.Create, addresses);
+-    }
+-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public static void EnsurePointsCreated<TLinkAddress>(this ILinks<TLinkAddress> links,
+-                                                         params TLinkAddress[] addresses)
+-        where TLinkAddress : IUnsignedNumber<TLinkAddress>
+-    {
+-        links.EnsureCreated(links.CreatePoint, addresses);
+-    }
+-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, Func<TLinkAddress> creator,
+-                                                   params TLinkAddress[] addresses)
+-        where TLinkAddress : IUnsignedNumber<TLinkAddress>
+-    {
+-        var addressToUInt64Converter = CheckedConverter<TLinkAddress, TLinkAddress>.Default;
+-        var uInt64ToAddressConverter = CheckedConverter<TLinkAddress, TLinkAddress>.Default;
+-        var nonExistentAddresses = new HashSet<TLinkAddress>(addresses.Where(x => !links.Exists(x)));
+-        if (nonExistentAddresses.Count > 0)
+-        {
+-            var max = nonExistentAddresses.Max();
+-            max = uInt64ToAddressConverter.Convert(TLinkAddress.CreateTruncating(System.Math.Min(
+-                ulong.CreateTruncating(max), ulong.CreateTruncating(links.Constants.InternalReferencesRange.Maximum))));
+-            var createdLinks = new List<TLinkAddress>();
+-            TLinkAddress createdLink = creator();
+-            while (createdLink != max)
+-            {
+-                createdLinks.Add(createdLink);
+-            }
+-            for (var i = 0; i < createdLinks.Count; i++)
+-            {
+-                if (!nonExistentAddresses.Contains(createdLinks[i]))
+-                {
+-                    links.Delete(createdLinks[i]);
+-                }
+-            }
+-        }
+-    }
+-#endregion
++        return Comparer<TLinkAddress>.Default.Compare(links.Count(links.Constants.Any, source, target),
++                                                      TLinkAddress.Zero) > 0;
++    }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public static TLinkAddress CountUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+         var constants = links.Constants;
+-        var values = links.GetLink(link);
++        var values = links.GetRequiredLink(link);
+         TLinkAddress usagesAsSource = links.Count(new Link<TLinkAddress>(constants.Any, link, constants.Any));
+         if (links.GetSource(values) == link)
+         {
+@@ -414,15 +289,14 @@
+     public static bool HasUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+-        return Comparer<TLinkAddress>.Default.Compare(links.CountUsages(link), default) > 0;
++        return Comparer<TLinkAddress>.Default.Compare(links.CountUsages(link), TLinkAddress.Zero) > 0;
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public static bool Equals<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, TLinkAddress source,
+                                             TLinkAddress target)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+-        var constants = links.Constants;
+-        var values = links.GetLink(link);
++        var values = links.GetRequiredLink(link);
+         return links.GetSource(values) == source && links.GetTarget(values) == target;
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+@@ -431,7 +305,7 @@
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+         var contants = links.Constants;
+-        var setter = new Setter<TLinkAddress, TLinkAddress>(contants.Continue, contants.Break, default);
++        var setter = new Setter<TLinkAddress, TLinkAddress>(contants.Continue, contants.Break, TLinkAddress.Zero);
+         links.Each(setter.SetFirstAndReturnFalse, contants.Any, source, target);
+         return setter.Result;
+     }
+@@ -450,11 +324,11 @@
+     {
+         var constants = links.Constants;
+         WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
+-        TLinkAddress link = default;
++        TLinkAddress link = TLinkAddress.Zero;
+             TLinkAddress HandlerWrapper(IList<TLinkAddress>? before, IList<TLinkAddress>? after)
+             {
+                 link = links.GetIndex(after);
+-                return handlerState.Handle(before, after);
++                return handlerState.HandleNullable(before, after);
+                 ;
+             }
+             handlerState.Apply(links.Create(null, HandlerWrapper));
+@@ -476,12 +350,12 @@
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+         var constants = links.Constants;
+-        TLinkAddress createdLink = default;
++        TLinkAddress createdLink = TLinkAddress.Zero;
+         WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
+         handlerState.Apply(links.Create(null, (before, after) =>
+                                               {
+                                                   createdLink = links.GetIndex(after);
+-                                                  return handlerState.Handle(before, after);
++                                                  return handlerState.HandleNullable(before, after);
+                                                   ;
+                                               }));
+         handlerState.Apply(links.Update(createdLink, source, target, handler));
+@@ -509,6 +383,7 @@
+     public static TLinkAddress Update<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
++        restriction ??= Array.Empty<TLinkAddress>();
+         var constants = links.Constants;
+         var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
+         links.Update(restriction, setter.SetFirstFromNonNullSecondListAndReturnTrue);
+@@ -519,6 +394,7 @@
+                                                     WriteHandler<TLinkAddress>? handler)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
++        restriction ??= Array.Empty<TLinkAddress>();
+         return restriction.Count switch {
+             2 => links.MergeAndDelete(restriction[0], restriction[1], handler),
+             4 => links.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3], handler),
+@@ -540,10 +416,9 @@
+                                                                                     IList<TLinkAddress>? substitution)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+-        var constants = links.Constants;
+         var restrictionIndex = links.GetIndex(restriction);
+         var substitutionIndex = links.GetIndex(substitution);
+-        if (substitutionIndex == default)
++        if (substitutionIndex == TLinkAddress.Zero)
+         {
+             substitutionIndex = restrictionIndex;
+         }
+@@ -559,7 +434,7 @@
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+         var link = links.SearchOrDefault(source, target);
+-        if (EqualityComparer<TLinkAddress>.Default.Equals(link, default))
++        if (EqualityComparer<TLinkAddress>.Default.Equals(link, TLinkAddress.Zero))
+         {
+             link = links.CreateAndUpdate(source, target);
+         }
+@@ -584,13 +459,12 @@
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+         var link = links.SearchOrDefault(source, target);
+-        if (link == default)
++        if (link == TLinkAddress.Zero)
+         {
+             return links.CreateAndUpdate(newSource, newTarget, handler);
+         }
+         if (newSource == source && newTarget == target)
+         {
+-            var linkStruct = new Link<TLinkAddress>(link, source, target);
+             return link;
+         }
+         return links.Update(link, newSource, newTarget, handler);
+@@ -601,17 +475,18 @@
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+         var link = links.SearchOrDefault(source, target);
+-        if (!EqualityComparer<TLinkAddress>.Default.Equals(link, default))
++        if (!EqualityComparer<TLinkAddress>.Default.Equals(link, TLinkAddress.Zero))
+         {
+             links.Delete(link);
+             return link;
+         }
+-        return default;
++        return TLinkAddress.Zero;
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public static void DeleteMany<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? deletedLinks)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
++        deletedLinks ??= Array.Empty<TLinkAddress>();
+         for (int i = 0; i < deletedLinks.Count; i++)
+         {
+             links.Delete(deletedLinks[i]);
+@@ -652,7 +527,9 @@
+     {
+         var queryResult = new List<TLinkAddress>();
+         var queryResultFiller = new ListFiller<TLinkAddress, TLinkAddress>(queryResult, links.Constants.Continue);
+-        links.Each(queryResultFiller.AddFirstAndReturnConstant, query);
++        links.Each(link => queryResultFiller.AddFirstAndReturnConstant(
++                       link ?? throw new InvalidOperationException("Read callback did not provide a link.")),
++                   query);
+         foreach (var link in queryResult)
+         {
+             links.Delete(link);
+@@ -663,7 +540,7 @@
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+         var nullConstant = links.Constants.Null;
+-        var link = links.GetLink(linkIndex);
++        var link = links.GetRequiredLink(linkIndex);
+         for (int i = 1; i < link.Count; i++)
+         {
+             if (link[i] != nullConstant)
+@@ -740,7 +617,7 @@
+             {
+                 continue;
+             }
+-            var restriction = links.GetLink(links.GetIndex(usageAsTarget));
++            var restriction = links.GetRequiredLink(links.GetIndex(usageAsTarget));
+             var substitution = new Link<TLinkAddress>(links.GetTarget(usageAsTarget), newLinkIndex);
+             handlerState.Apply(links.Update(restriction, substitution, handlerState.Handler));
+         }
+@@ -786,14 +663,13 @@
+     public static string Format<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+-        var constants = links.Constants;
+         return $"({links.GetIndex(link)}: {links.GetSource(link)} {links.GetTarget(link)})";
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public static string Format<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)
+         where TLinkAddress : IUnsignedNumber<TLinkAddress>
+     {
+-        return links.Format(links.GetLink(link));
++        return links.Format(links.GetRequiredLink(link));
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public static bool AnyLinkIsAny<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] sequence)
+@@ -859,7 +735,7 @@
+             if (visited.Add(linkIndex))
+             {
+                 sb.Append('(');
+-                var link = new Link<TLinkAddress>(links.GetLink(linkIndex));
++                var link = new Link<TLinkAddress>(links.GetRequiredLink(linkIndex));
+                 if (renderIndex)
+                 {
+                     sb.Append(link.Index);
+@@ -871,7 +747,7 @@
+                 }
+                 else
+                 {
+-                    var source = new Link<TLinkAddress>(links.GetLink(link.Source));
++                    var source = new Link<TLinkAddress>(links.GetRequiredLink(link.Source));
+                     if (isElement(source))
+                     {
+                         appendElement(sb, source);
+@@ -889,7 +765,7 @@
+                 }
+                 else
+                 {
+-                    var target = new Link<TLinkAddress>(links.GetLink(link.Target));
++                    var target = new Link<TLinkAddress>(links.GetRequiredLink(link.Target));
+                     if (isElement(target))
+                     {
+                         appendElement(sb, target);
+@@ -948,7 +824,7 @@
+     {
+         if (isGarbage(link))
+         {
+-            var contents = new Link<TLinkAddress>(links.GetLink(link));
++            var contents = new Link<TLinkAddress>(links.GetRequiredLink(link));
+             links.ResetValues(link);
+             links.Delete(link);
+             links.ClearGarbage(contents.Source, isGarbage);
+--- csharp/Platform.Data.Doublets/Link.cs
++++ csharp/Platform.Data.Doublets/Link.cs
+@@ -71,9 +71,9 @@
+     {
+         if (values == null)
+         {
+-            index = default;
+-            source = default;
+-            target = default;
++            index = TLinkAddress.Zero;
++            source = TLinkAddress.Zero;
++            target = TLinkAddress.Zero;
+             return;
+         }
+         switch (values.Count)
+@@ -86,17 +86,17 @@
+         case 2:
+             index = values[0];
+             source = values[1];
+-            target = default;
++            target = TLinkAddress.Zero;
+             break;
+         case 1:
+             index = values[0];
+-            source = default;
+-            target = default;
++            source = TLinkAddress.Zero;
++            target = TLinkAddress.Zero;
+             break;
+         default:
+-            index = default;
+-            source = default;
+-            target = default;
++            index = TLinkAddress.Zero;
++            source = TLinkAddress.Zero;
++            target = TLinkAddress.Zero;
+             break;
+         }
+     }
+@@ -108,7 +108,7 @@
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public bool IsNull() => Index == _constants.Null && Source == _constants.Null && Target == _constants.Null;
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public override bool Equals(object other)
++    public override bool Equals(object? other)
+     {
+         return other is Link<TLinkAddress> && Equals((Link<TLinkAddress>)other);
+     }
+--- csharp/Platform.Data.Doublets/Memory/LinksHeader.cs
++++ csharp/Platform.Data.Doublets/Memory/LinksHeader.cs
+@@ -19,9 +19,9 @@
+     public TLinkAddress LastFreeLink;
+     public TLinkAddress Reserved8;
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public override bool Equals(object obj)
++    public override bool Equals(object? obj)
+     {
+-        return obj is LinksHeader<TLinkAddress> linksHeader ? Equals(linksHeader) : false;
++        return obj is LinksHeader<TLinkAddress> linksHeader && Equals(linksHeader);
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public bool Equals(LinksHeader<TLinkAddress> other) => AllocatedLinks == other.AllocatedLinks
+--- csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.cs
++++ csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.cs
+@@ -199,7 +199,7 @@
+         }
+         else
+         {
+-            if ((handler(link: GetLinkValues(linkIndex: link)) == @break))
++            if (((handler == null ? Continue : handler(link: GetLinkValues(linkIndex: link))) == @break))
+             {
+                 return @break;
+             }
+--- csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs
++++ csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs
+@@ -198,7 +198,7 @@
+         }
+         else
+         {
+-            if ((handler(link: GetLinkValues(linkIndex: link)) == @break))
++            if (((handler == null ? Continue : handler(link: GetLinkValues(linkIndex: link))) == @break))
+             {
+                 return @break;
+             }
+--- csharp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.cs
++++ csharp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.cs
+@@ -137,7 +137,7 @@
+         {
+             return @break;
+         }
+-        if ((handler(link: GetLinkValues(linkIndex: link)) == @break))
++        if (((handler == null ? Continue : handler(link: GetLinkValues(linkIndex: link))) == @break))
+         {
+             return @break;
+         }
+--- csharp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.cs
++++ csharp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.cs
+@@ -136,7 +136,7 @@
+         {
+             return @break;
+         }
+-        if ((handler(link: GetLinkValues(linkIndex: link)) == @break))
++        if (((handler == null ? Continue : handler(link: GetLinkValues(linkIndex: link))) == @break))
+         {
+             return @break;
+         }
+--- csharp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesLinkedListMethods.cs
++++ csharp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesLinkedListMethods.cs
+@@ -110,7 +110,7 @@
+         var first = current;
+         while (current != TLinkAddress.Zero)
+         {
+-            if ((handler(link: GetLinkValues(linkIndex: current)) == @break))
++            if (((handler == null ? Continue : handler(link: GetLinkValues(linkIndex: current))) == @break))
+             {
+                 return @break;
+             }
+--- csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinks.cs
++++ csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinks.cs
+@@ -52,41 +52,43 @@
+         if (indexTreeType == IndexTreeType.SizeBalancedTree)
+         {
+             _createInternalSourceTreeMethods = () => new InternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>(
+-                constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
++                constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
+                 header: _header);
+             _createExternalSourceTreeMethods = () => new ExternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>(
+-                constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
++                constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
+                 header: _header);
+             _createInternalTargetTreeMethods = () => new InternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>(
+-                constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
++                constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
+                 header: _header);
+             _createExternalTargetTreeMethods = () => new ExternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>(
+-                constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
++                constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
+                 header: _header);
+         }
+         else
+         {
+             _createInternalSourceTreeMethods = () =>
+                 new InternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>(
+-                    constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
++                    constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
+                     header: _header);
+             _createExternalSourceTreeMethods = () =>
+                 new ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>(
+-                    constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
++                    constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
+                     header: _header);
+             _createInternalTargetTreeMethods = () =>
+                 new InternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>(
+-                    constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
++                    constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
+                     header: _header);
+             _createExternalTargetTreeMethods = () =>
+                 new ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>(
+-                    constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
++                    constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts,
+                     header: _header);
+         }
+-        Init(dataMemory: dataMemory, indexMemory: indexMemory);
++        InitializeMemory(dataMemory, indexMemory, () => SetPointersCore(dataMemory, indexMemory));
+     }
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+-    protected override void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
++    protected override void SetPointers(IResizableDirectMemory dataMemory,
++                                        IResizableDirectMemory indexMemory) => SetPointersCore(dataMemory, indexMemory);
++    private void SetPointersCore(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
+     {
+         _linksDataParts = (byte *)dataMemory.Pointer;
+         _linksIndexParts = (byte *)indexMemory.Pointer;
+@@ -94,7 +96,7 @@
+         if (_useLinkedList)
+         {
+             InternalSourcesListMethods = new InternalLinksSourcesLinkedListMethods<TLinkAddress>(
+-                constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts);
++                constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts);
+         }
+         else
+         {
+--- csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs
++++ csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs
+@@ -14,8 +14,8 @@
+     where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
+ {
+     private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;
+-    private static readonly TLinkAddress _zero;
+-    private static readonly TLinkAddress _one = ++_zero;
++    private static readonly TLinkAddress _zero = TLinkAddress.Zero;
++    private static readonly TLinkAddress _one = TLinkAddress.One;
+     public static readonly long LinkDataPartSizeInBytes = RawLinkDataPart<TLinkAddress>.SizeInBytes;
+     public static readonly long LinkIndexPartSizeInBytes = RawLinkIndexPart<TLinkAddress>.SizeInBytes;
+     public static readonly long LinkHeaderSizeInBytes = LinksHeader<TLinkAddress>.SizeInBytes;
+@@ -25,12 +25,27 @@
+     protected readonly IResizableDirectMemory _indexMemory;
+     protected readonly long _indexMemoryReservationStepInBytes;
+     protected readonly bool _useLinkedList;
+-    protected ILinksTreeMethods<TLinkAddress> ExternalSourcesTreeMethods;
+-    protected ILinksTreeMethods<TLinkAddress> ExternalTargetsTreeMethods;
+-    protected InternalLinksSourcesLinkedListMethods<TLinkAddress> InternalSourcesListMethods;
+-    protected ILinksTreeMethods<TLinkAddress> InternalSourcesTreeMethods;
+-    protected ILinksTreeMethods<TLinkAddress> InternalTargetsTreeMethods;
+-    protected ILinksListMethods<TLinkAddress> UnusedLinksListMethods;
++    protected ILinksTreeMethods<TLinkAddress>? ExternalSourcesTreeMethods;
++    private ILinksTreeMethods<TLinkAddress> RequiredExternalSourcesTreeMethods =>
++        ExternalSourcesTreeMethods ?? throw new ObjectDisposedException(GetType().Name);
++    protected ILinksTreeMethods<TLinkAddress>? ExternalTargetsTreeMethods;
++    private ILinksTreeMethods<TLinkAddress> RequiredExternalTargetsTreeMethods =>
++        ExternalTargetsTreeMethods ?? throw new ObjectDisposedException(GetType().Name);
++    private InternalLinksSourcesLinkedListMethods<TLinkAddress>? _internalSourcesListMethods;
++    protected InternalLinksSourcesLinkedListMethods<TLinkAddress> InternalSourcesListMethods
++    {
++        get => _internalSourcesListMethods ?? throw new System.ObjectDisposedException(GetType().Name);
++        set => _internalSourcesListMethods = value;
++    }
++    protected ILinksTreeMethods<TLinkAddress>? InternalSourcesTreeMethods;
++    private ILinksTreeMethods<TLinkAddress> RequiredInternalSourcesTreeMethods =>
++        InternalSourcesTreeMethods ?? throw new ObjectDisposedException(GetType().Name);
++    protected ILinksTreeMethods<TLinkAddress>? InternalTargetsTreeMethods;
++    private ILinksTreeMethods<TLinkAddress> RequiredInternalTargetsTreeMethods =>
++        InternalTargetsTreeMethods ?? throw new ObjectDisposedException(GetType().Name);
++    protected ILinksListMethods<TLinkAddress>? UnusedLinksListMethods;
++    private ILinksListMethods<TLinkAddress> RequiredUnusedLinksListMethods =>
++        UnusedLinksListMethods ?? throw new ObjectDisposedException(GetType().Name);
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     protected SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory,
+                                    long memoryReservationStep, LinksConstants<TLinkAddress> constants,
+@@ -41,7 +56,7 @@
+         _dataMemoryReservationStepInBytes = memoryReservationStep * LinkDataPartSizeInBytes;
+         _indexMemoryReservationStepInBytes = memoryReservationStep * LinkIndexPartSizeInBytes;
+         _useLinkedList = useLinkedList;
+-        Constants = constants;
++        _constants = constants;
+     }
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     protected SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory,
+@@ -59,14 +74,12 @@
+             return (header.AllocatedLinks) - (header.FreeLinks);
+         }
+     }
+-    public virtual LinksConstants<TLinkAddress> Constants
+-    {
+-        [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+-        get;
+-    }
++    protected readonly LinksConstants<TLinkAddress> _constants;
++    public virtual LinksConstants<TLinkAddress> Constants => _constants;
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     public virtual TLinkAddress Count(IList<TLinkAddress>? restriction)
+     {
++        restriction ??= System.Array.Empty<TLinkAddress>();
+         if (restriction is null || restriction.Count == 0)
+         {
+             return Total;
+@@ -94,16 +107,16 @@
+                 var externalReferencesRange = constants.ExternalReferencesRange;
+                 if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: value))
+                 {
+-                    return (ExternalSourcesTreeMethods.CountUsages(root: value) +
+-                            ExternalTargetsTreeMethods.CountUsages(root: value));
++                    return (RequiredExternalSourcesTreeMethods.CountUsages(root: value) +
++                            RequiredExternalTargetsTreeMethods.CountUsages(root: value));
+                 }
+                 if (_useLinkedList)
+                 {
+                     return (InternalSourcesListMethods.CountUsages(head: value) +
+-                            InternalTargetsTreeMethods.CountUsages(root: value));
+-                }
+-                return (InternalSourcesTreeMethods.CountUsages(root: value) +
+-                        InternalTargetsTreeMethods.CountUsages(root: value));
++                            RequiredInternalTargetsTreeMethods.CountUsages(root: value));
++                }
++                return (RequiredInternalSourcesTreeMethods.CountUsages(root: value) +
++                        RequiredInternalTargetsTreeMethods.CountUsages(root: value));
+             }
+             if (!Exists(link: index))
+             {
+@@ -135,21 +148,21 @@
+                 {
+                     if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
+                     {
+-                        return ExternalTargetsTreeMethods.CountUsages(root: target);
+-                    }
+-                    return InternalTargetsTreeMethods.CountUsages(root: target);
++                        return RequiredExternalTargetsTreeMethods.CountUsages(root: target);
++                    }
++                    return RequiredInternalTargetsTreeMethods.CountUsages(root: target);
+                 }
+                 if ((target == any))
+                 {
+                     if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
+                     {
+-                        return ExternalSourcesTreeMethods.CountUsages(root: source);
++                        return RequiredExternalSourcesTreeMethods.CountUsages(root: source);
+                     }
+                     if (_useLinkedList)
+                     {
+                         return InternalSourcesListMethods.CountUsages(head: source);
+                     }
+-                    return InternalSourcesTreeMethods.CountUsages(root: source);
++                    return RequiredInternalSourcesTreeMethods.CountUsages(root: source);
+                 }
+                 TLinkAddress link;
+                 if (externalReferencesRange.HasValue)
+@@ -157,47 +170,32 @@
+                     if (externalReferencesRange.Value.Contains(value: source) &&
+                         externalReferencesRange.Value.Contains(value: target))
+                     {
+-                        link = ExternalSourcesTreeMethods.Search(source: source, target: target);
++                        link = RequiredExternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                     else if (externalReferencesRange.Value.Contains(value: source))
+                     {
+-                        link = InternalTargetsTreeMethods.Search(source: source, target: target);
++                        link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
+                     }
+                     else if (externalReferencesRange.Value.Contains(value: target))
+                     {
+-                        if (_useLinkedList)
+-                        {
+-                            link = ExternalTargetsTreeMethods.Search(source: source, target: target);
+-                        }
+-                        else
+-                        {
+-                            link = InternalSourcesTreeMethods.Search(source: source, target: target);
+-                        }
++                        link = _useLinkedList
++                                   ? RequiredExternalTargetsTreeMethods.Search(source: source, target: target)
++                                   : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                     else
+                     {
+-                        if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) >
+-                                               InternalTargetsTreeMethods.CountUsages(root: target)))
+-                        {
+-                            link = InternalTargetsTreeMethods.Search(source: source, target: target);
+-                        }
+-                        else
+-                        {
+-                            link = InternalSourcesTreeMethods.Search(source: source, target: target);
+-                        }
++                        link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) >
++                                                   RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
++                                   ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
++                                   : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                 }
+                 else
+                 {
+-                    if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) >
+-                                           InternalTargetsTreeMethods.CountUsages(root: target)))
+-                    {
+-                        link = InternalTargetsTreeMethods.Search(source: source, target: target);
+-                    }
+-                    else
+-                    {
+-                        link = InternalSourcesTreeMethods.Search(source: source, target: target);
+-                    }
++                    link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) >
++                                               RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
++                               ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
++                               : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                 }
+                 return (link == constants.Null) ? GetZero() : GetOne();
+             }
+@@ -218,7 +216,7 @@
+                 }
+                 return GetZero();
+             }
+-            var value = default(TLinkAddress);
++            var value = TLinkAddress.Zero;
+             if ((source == any))
+             {
+                 value = target;
+@@ -238,6 +236,9 @@
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     public virtual TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)
+     {
++        restriction ??= System.Array.Empty<TLinkAddress>();
++        handler ??=
++            _ => Constants.Continue;
+         var constants = Constants;
+         var @break = constants.Break;
+         if (restriction is null || restriction.Count == 0)
+@@ -249,7 +250,7 @@
+                     return @break;
+                 }
+             }
+-            return @break;
++            return constants.Continue;
+         }
+         var @continue = constants.Continue;
+         var any = constants.Any;
+@@ -313,21 +314,21 @@
+                 {
+                     if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
+                     {
+-                        return ExternalTargetsTreeMethods.EachUsage(root: target, handler: handler);
+-                    }
+-                    return InternalTargetsTreeMethods.EachUsage(root: target, handler: handler);
++                        return RequiredExternalTargetsTreeMethods.EachUsage(root: target, handler: handler);
++                    }
++                    return RequiredInternalTargetsTreeMethods.EachUsage(root: target, handler: handler);
+                 }
+                 if ((target == any))
+                 {
+                     if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
+                     {
+-                        return ExternalSourcesTreeMethods.EachUsage(root: source, handler: handler);
++                        return RequiredExternalSourcesTreeMethods.EachUsage(root: source, handler: handler);
+                     }
+                     if (_useLinkedList)
+                     {
+                         return InternalSourcesListMethods.EachUsage(source: source, handler: handler);
+                     }
+-                    return InternalSourcesTreeMethods.EachUsage(root: source, handler: handler);
++                    return RequiredInternalSourcesTreeMethods.EachUsage(root: source, handler: handler);
+                 }
+                 TLinkAddress link;
+                 if (externalReferencesRange.HasValue)
+@@ -335,47 +336,32 @@
+                     if (externalReferencesRange.Value.Contains(value: source) &&
+                         externalReferencesRange.Value.Contains(value: target))
+                     {
+-                        link = ExternalSourcesTreeMethods.Search(source: source, target: target);
++                        link = RequiredExternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                     else if (externalReferencesRange.Value.Contains(value: source))
+                     {
+-                        link = InternalTargetsTreeMethods.Search(source: source, target: target);
++                        link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
+                     }
+                     else if (externalReferencesRange.Value.Contains(value: target))
+                     {
+-                        if (_useLinkedList)
+-                        {
+-                            link = ExternalTargetsTreeMethods.Search(source: source, target: target);
+-                        }
+-                        else
+-                        {
+-                            link = InternalSourcesTreeMethods.Search(source: source, target: target);
+-                        }
++                        link = _useLinkedList
++                                   ? RequiredExternalTargetsTreeMethods.Search(source: source, target: target)
++                                   : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                     else
+                     {
+-                        if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) >
+-                                               InternalTargetsTreeMethods.CountUsages(root: target)))
+-                        {
+-                            link = InternalTargetsTreeMethods.Search(source: source, target: target);
+-                        }
+-                        else
+-                        {
+-                            link = InternalSourcesTreeMethods.Search(source: source, target: target);
+-                        }
++                        link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) >
++                                                   RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
++                                   ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
++                                   : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                 }
+                 else
+                 {
+-                    if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) >
+-                                           InternalTargetsTreeMethods.CountUsages(root: target)))
+-                    {
+-                        link = InternalTargetsTreeMethods.Search(source: source, target: target);
+-                    }
+-                    else
+-                    {
+-                        link = InternalSourcesTreeMethods.Search(source: source, target: target);
+-                    }
++                    link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) >
++                                               RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
++                               ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
++                               : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                 }
+                 return (link == constants.Null) ? @continue : handler(link: GetLinkStruct(linkIndex: link));
+             }
+@@ -396,7 +382,7 @@
+                 }
+                 return @continue;
+             }
+-            var value = default(TLinkAddress);
++            var value = TLinkAddress.Zero;
+             if ((source == any))
+             {
+                 value = target;
+@@ -432,7 +418,7 @@
+         {
+             if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
+             {
+-                ExternalSourcesTreeMethods.Detach(root: ref rootAsSource, linkIndex: linkIndex);
++                RequiredExternalSourcesTreeMethods.Detach(root: ref rootAsSource, linkIndex: linkIndex);
+             }
+             else
+             {
+@@ -442,7 +428,7 @@
+                 }
+                 else
+                 {
+-                    InternalSourcesTreeMethods.Detach(
++                    RequiredInternalSourcesTreeMethods.Detach(
+                         root: ref GetLinkIndexPartReference(linkIndex: source).RootAsSource, linkIndex: linkIndex);
+                 }
+             }
+@@ -451,12 +437,12 @@
+         {
+             if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
+             {
+-                ExternalTargetsTreeMethods.Detach(root: ref rootAsTarget, linkIndex: linkIndex);
++                RequiredExternalTargetsTreeMethods.Detach(root: ref rootAsTarget, linkIndex: linkIndex);
+             }
+             else
+             {
+-                InternalTargetsTreeMethods.Detach(root: ref GetLinkIndexPartReference(linkIndex: target).RootAsTarget,
+-                                                  linkIndex: linkIndex);
++                RequiredInternalTargetsTreeMethods.Detach(
++                    root: ref GetLinkIndexPartReference(linkIndex: target).RootAsTarget, linkIndex: linkIndex);
+             }
+         }
+         source = link.Source = this.GetSource(link: substitution);
+@@ -465,7 +451,7 @@
+         {
+             if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
+             {
+-                ExternalSourcesTreeMethods.Attach(root: ref rootAsSource, linkIndex: linkIndex);
++                RequiredExternalSourcesTreeMethods.Attach(root: ref rootAsSource, linkIndex: linkIndex);
+             }
+             else
+             {
+@@ -475,7 +461,7 @@
+                 }
+                 else
+                 {
+-                    InternalSourcesTreeMethods.Attach(
++                    RequiredInternalSourcesTreeMethods.Attach(
+                         root: ref GetLinkIndexPartReference(linkIndex: source).RootAsSource, linkIndex: linkIndex);
+                 }
+             }
+@@ -484,12 +470,12 @@
+         {
+             if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
+             {
+-                ExternalTargetsTreeMethods.Attach(root: ref rootAsTarget, linkIndex: linkIndex);
++                RequiredExternalTargetsTreeMethods.Attach(root: ref rootAsTarget, linkIndex: linkIndex);
+             }
+             else
+             {
+-                InternalTargetsTreeMethods.Attach(root: ref GetLinkIndexPartReference(linkIndex: target).RootAsTarget,
+-                                                  linkIndex: linkIndex);
++                RequiredInternalTargetsTreeMethods.Attach(
++                    root: ref GetLinkIndexPartReference(linkIndex: target).RootAsTarget, linkIndex: linkIndex);
+             }
+         }
+         return handler != null ? handler(before: before, after: new Link<TLinkAddress>(index: linkIndex, source: source,
+@@ -503,7 +489,7 @@
+         var freeLink = header.FirstFreeLink;
+         if ((freeLink != Constants.Null))
+         {
+-            UnusedLinksListMethods.Detach(freeLink: freeLink);
++            RequiredUnusedLinksListMethods.Detach(freeLink: freeLink);
+         }
+         else
+         {
+@@ -530,12 +516,13 @@
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     public virtual TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
+     {
++        System.ArgumentNullException.ThrowIfNull(restriction);
+         ref var header = ref GetHeaderReference();
+         var link = restriction [index:Constants.IndexPart];
+         var before = GetLinkStruct(linkIndex: link);
+         if ((link < header.AllocatedLinks))
+         {
+-            UnusedLinksListMethods.AttachAsFirst(link: link);
++            RequiredUnusedLinksListMethods.AttachAsFirst(link: link);
+         }
+         else if ((link == header.AllocatedLinks))
+         {
+@@ -544,7 +531,7 @@
+             _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
+             while ((header.AllocatedLinks > GetZero()) && IsUnusedLink(linkIndex: header.AllocatedLinks))
+             {
+-                UnusedLinksListMethods.Detach(freeLink: header.AllocatedLinks);
++                RequiredUnusedLinksListMethods.Detach(freeLink: header.AllocatedLinks);
+                 header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;
+                 _dataMemory.UsedCapacity -= LinkDataPartSizeInBytes;
+                 _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
+@@ -553,14 +540,20 @@
+         return handler != null ? handler(before: before, after: null) : Constants.Continue;
+     }
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+-    protected virtual void Init(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
++    protected virtual void Init(IResizableDirectMemory dataMemory,
++                                IResizableDirectMemory indexMemory) => InitializeMemory(dataMemory, indexMemory,
++                                                                                        () => SetPointers(dataMemory,
++                                                                                                          indexMemory));
++    protected unsafe void InitializeMemory(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory,
++                                           Action setPointers)
+     {
+         if (indexMemory.ReservedCapacity < LinkHeaderSizeInBytes)
+         {
+             indexMemory.ReservedCapacity = LinkHeaderSizeInBytes;
+         }
+-        SetPointers(dataMemory: dataMemory, indexMemory: indexMemory);
+-        ref var header = ref GetHeaderReference();
++        setPointers();
++        ref var header =
++            ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void *)indexMemory.Pointer);
+         var allocatedLinks = long.CreateTruncating(value: header.AllocatedLinks);
+         var minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+         if (minimumDataReservedCapacity < dataMemory.UsedCapacity)
+@@ -592,16 +585,17 @@
+                 minimumIndexReservedCapacity / _indexMemoryReservationStepInBytes * _indexMemoryReservationStepInBytes +
+                 _indexMemoryReservationStepInBytes;
+         }
+-        if (dataMemory.ReservedCapacity != minimumDataReservedCapacity)
++        if (dataMemory.ReservedCapacity < minimumDataReservedCapacity)
+         {
+             dataMemory.ReservedCapacity = minimumDataReservedCapacity;
+         }
+-        if (indexMemory.ReservedCapacity != minimumIndexReservedCapacity)
++        if (indexMemory.ReservedCapacity < minimumIndexReservedCapacity)
+         {
+             indexMemory.ReservedCapacity = minimumIndexReservedCapacity;
+         }
+-        SetPointers(dataMemory: dataMemory, indexMemory: indexMemory);
+-        header = ref GetHeaderReference();
++        setPointers();
++        header =
++            ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void *)indexMemory.Pointer);
+         dataMemory.UsedCapacity =
+             ConvertToInt64(value: header.AllocatedLinks) * LinkDataPartSizeInBytes + LinkDataPartSizeInBytes;
+         indexMemory.UsedCapacity =
+@@ -610,7 +604,7 @@
+             value: (dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes);
+     }
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+-    public IList<TLinkAddress>? GetLinkStruct(TLinkAddress linkIndex)
++    public IList<TLinkAddress> GetLinkStruct(TLinkAddress linkIndex)
+     {
+         ref var link = ref GetLinkDataPartReference(linkIndex: linkIndex);
+         return new Link<TLinkAddress>(index: linkIndex, source: link.Source, target: link.Target);
+@@ -620,7 +614,7 @@
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     protected virtual void ResetPointers()
+     {
+-        InternalSourcesListMethods = null;
++        _internalSourcesListMethods = null;
+         InternalSourcesTreeMethods = null;
+         ExternalSourcesTreeMethods = null;
+         InternalTargetsTreeMethods = null;
+@@ -646,7 +640,7 @@
+         {
+             ref var linkDataPart = ref GetLinkDataPartReference(linkIndex: linkIndex);
+             ref var linkIndexPart = ref GetLinkIndexPartReference(linkIndex: linkIndex);
+-            return (linkIndexPart.SizeAsTarget == default) && (linkDataPart.Source != default);
++            return (linkIndexPart.SizeAsTarget == TLinkAddress.Zero) && (linkDataPart.Source != TLinkAddress.Zero);
+         }
+         return true;
+     }
+@@ -658,7 +652,7 @@
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     protected virtual TLinkAddress GetZero()
+     {
+-        return default;
++        return TLinkAddress.Zero;
+     }
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     protected virtual bool AreEqual(TLinkAddress first, TLinkAddress second)
+--- csharp/Platform.Data.Doublets/Memory/Split/RawLinkDataPart.cs
++++ csharp/Platform.Data.Doublets/Memory/Split/RawLinkDataPart.cs
+@@ -12,9 +12,9 @@
+     public TLinkAddress Source;
+     public TLinkAddress Target;
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+-    public override bool Equals(object obj)
++    public override bool Equals(object? obj)
+     {
+-        return obj is RawLinkDataPart<TLinkAddress> link ? Equals(other: link) : false;
++        return obj is RawLinkDataPart<TLinkAddress> link && Equals(other: link);
+     }
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     public bool Equals(RawLinkDataPart<TLinkAddress> other)
+--- csharp/Platform.Data.Doublets/Memory/Split/RawLinkIndexPart.cs
++++ csharp/Platform.Data.Doublets/Memory/Split/RawLinkIndexPart.cs
+@@ -18,9 +18,9 @@
+     public TLinkAddress RightAsTarget;
+     public TLinkAddress SizeAsTarget;
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+-    public override bool Equals(object obj)
++    public override bool Equals(object? obj)
+     {
+-        return obj is RawLinkIndexPart<TLinkAddress> link ? Equals(other: link) : false;
++        return obj is RawLinkIndexPart<TLinkAddress> link && Equals(other: link);
+     }
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     public bool Equals(RawLinkIndexPart<TLinkAddress> other)
+--- csharp/Platform.Data.Doublets/Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.cs
++++ csharp/Platform.Data.Doublets/Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.cs
+@@ -154,7 +154,7 @@
+             current = first;
+             while (true)
+             {
+-                if ((handler(link: GetLinkValues(linkIndex: current)) == Break))
++                if (((handler == null ? Continue : handler(link: GetLinkValues(linkIndex: current))) == Break))
+                 {
+                     return Break;
+                 }
+--- csharp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.cs
++++ csharp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.cs
+@@ -190,7 +190,7 @@
+         }
+         else
+         {
+-            if ((handler(link: GetLinkValues(linkIndex: link)) == @break))
++            if (((handler == null ? Continue : handler(link: GetLinkValues(linkIndex: link))) == @break))
+             {
+                 return @break;
+             }
+--- csharp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.cs
++++ csharp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.cs
+@@ -189,7 +189,7 @@
+         }
+         else
+         {
+-            if ((handler(link: GetLinkValues(linkIndex: link)) == @break))
++            if (((handler == null ? Continue : handler(link: GetLinkValues(linkIndex: link))) == @break))
+             {
+                 return @break;
+             }
+--- csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.cs
++++ csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.cs
+@@ -44,21 +44,22 @@
+         if (indexTreeType == IndexTreeType.SizedAndThreadedAVLBalancedTree)
+         {
+             _createSourceTreeMethods = () =>
+-                new LinksSourcesAvlBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
++                new LinksSourcesAvlBalancedTreeMethods<TLinkAddress>(_constants, _links, _header);
+             _createTargetTreeMethods = () =>
+-                new LinksTargetsAvlBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
++                new LinksTargetsAvlBalancedTreeMethods<TLinkAddress>(_constants, _links, _header);
+         }
+         else
+         {
+             _createSourceTreeMethods = () =>
+-                new LinksSourcesSizeBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
++                new LinksSourcesSizeBalancedTreeMethods<TLinkAddress>(_constants, _links, _header);
+             _createTargetTreeMethods = () =>
+-                new LinksTargetsSizeBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
++                new LinksTargetsSizeBalancedTreeMethods<TLinkAddress>(_constants, _links, _header);
+         }
+-        Init(memory, memoryReservationStep);
++        InitializeMemory(memory, memoryReservationStep, () => SetPointersCore(memory));
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    protected override void SetPointers(IResizableDirectMemory memory)
++    protected override void SetPointers(IResizableDirectMemory memory) => SetPointersCore(memory);
++    private void SetPointersCore(IResizableDirectMemory memory)
+     {
+         _links = (byte *)memory.Pointer;
+         _header = _links;
+--- csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.cs
++++ csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.cs
+@@ -16,16 +16,22 @@
+     where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
+ {
+     private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;
+-    private static readonly TLinkAddress _zero = default;
+-    private static readonly TLinkAddress _one = ++_zero;
++    private static readonly TLinkAddress _zero = TLinkAddress.Zero;
++    private static readonly TLinkAddress _one = TLinkAddress.One;
+     public static readonly long LinkSizeInBytes = RawLink<TLinkAddress>.SizeInBytes;
+     public static readonly long LinkHeaderSizeInBytes = LinksHeader<TLinkAddress>.SizeInBytes;
+     public static readonly long DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
+     protected readonly IResizableDirectMemory _memory;
+     protected readonly long _memoryReservationStep;
+-    protected ILinksTreeMethods<TLinkAddress> TargetsTreeMethods;
+-    protected ILinksTreeMethods<TLinkAddress> SourcesTreeMethods;
+-    protected ILinksListMethods<TLinkAddress> UnusedLinksListMethods;
++    protected ILinksTreeMethods<TLinkAddress>? TargetsTreeMethods;
++    private ILinksTreeMethods<TLinkAddress> RequiredTargetsTreeMethods =>
++        TargetsTreeMethods ?? throw new ObjectDisposedException(GetType().Name);
++    protected ILinksTreeMethods<TLinkAddress>? SourcesTreeMethods;
++    private ILinksTreeMethods<TLinkAddress> RequiredSourcesTreeMethods =>
++        SourcesTreeMethods ?? throw new ObjectDisposedException(GetType().Name);
++    protected ILinksListMethods<TLinkAddress>? UnusedLinksListMethods;
++    private ILinksListMethods<TLinkAddress> RequiredUnusedLinksListMethods =>
++        UnusedLinksListMethods ?? throw new ObjectDisposedException(GetType().Name);
+     protected virtual TLinkAddress Total
+     {
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+@@ -35,18 +41,15 @@
+             return Subtract(header.AllocatedLinks, header.FreeLinks);
+         }
+     }
+-    public virtual LinksConstants<TLinkAddress> Constants
+-    {
+-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-        get;
+-    }
++    protected readonly LinksConstants<TLinkAddress> _constants;
++    public virtual LinksConstants<TLinkAddress> Constants => _constants;
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     protected UnitedMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep,
+                                     LinksConstants<TLinkAddress> constants)
+     {
+         _memory = memory;
+         _memoryReservationStep = memoryReservationStep;
+-        Constants = constants;
++        _constants = constants;
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     protected UnitedMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep)
+@@ -54,14 +57,19 @@
+     {
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    protected virtual void Init(IResizableDirectMemory memory, long memoryReservationStep)
++    protected virtual void Init(IResizableDirectMemory memory,
++                                long memoryReservationStep) => InitializeMemory(memory, memoryReservationStep,
++                                                                                () => SetPointers(memory));
++    protected unsafe void InitializeMemory(IResizableDirectMemory memory, long memoryReservationStep,
++                                           Action setPointers)
+     {
+         if (memory.ReservedCapacity < memoryReservationStep)
+         {
+             memory.ReservedCapacity = memoryReservationStep;
+         }
+-        SetPointers(memory);
+-        ref var header = ref GetHeaderReference();
++        setPointers();
++        ref var header =
++            ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void *)memory.Pointer);
+         memory.UsedCapacity = (long.CreateTruncating(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
+         header.ReservedLinks =
+             TLinkAddress.CreateTruncating((memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
+@@ -69,6 +77,7 @@
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public virtual TLinkAddress Count(IList<TLinkAddress>? restriction)
+     {
++        restriction ??= System.Array.Empty<TLinkAddress>();
+         if (restriction is null || restriction.Count == 0)
+         {
+             return Total;
+@@ -93,7 +102,8 @@
+                 {
+                     return Total;
+                 }
+-                return Add(SourcesTreeMethods.CountUsages(value), TargetsTreeMethods.CountUsages(value));
++                return Add(RequiredSourcesTreeMethods.CountUsages(value),
++                           RequiredTargetsTreeMethods.CountUsages(value));
+             }
+             else
+             {
+@@ -125,15 +135,15 @@
+                 }
+                 else if (source == any)
+                 {
+-                    return TargetsTreeMethods.CountUsages(target);
++                    return RequiredTargetsTreeMethods.CountUsages(target);
+                 }
+                 else if (target == any)
+                 {
+-                    return SourcesTreeMethods.CountUsages(source);
++                    return RequiredSourcesTreeMethods.CountUsages(source);
+                 }
+                 else
+                 {
+-                    var link = SourcesTreeMethods.Search(source, target);
++                    var link = RequiredSourcesTreeMethods.Search(source, target);
+                     return AreEqual(link, constants.Null) ? GetZero() : GetOne();
+                 }
+             }
+@@ -156,7 +166,7 @@
+                     }
+                     return GetZero();
+                 }
+-                var value = default(TLinkAddress);
++                var value = TLinkAddress.Zero;
+                 if (source == any)
+                 {
+                     value = target;
+@@ -177,6 +187,9 @@
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public virtual TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)
+     {
++        restriction ??= System.Array.Empty<TLinkAddress>();
++        handler ??=
++            _ => Constants.Continue;
+         var constants = Constants;
+         var @break = constants.Break;
+         if (restriction is null || restriction.Count == 0)
+@@ -189,7 +202,7 @@
+                     return @break;
+                 }
+             }
+-            return @break;
++            return constants.Continue;
+         }
+         var @continue = constants.Continue;
+         var any = constants.Any;
+@@ -251,15 +264,15 @@
+                 }
+                 else if (source == any)
+                 {
+-                    return TargetsTreeMethods.EachUsage(target, handler);
++                    return RequiredTargetsTreeMethods.EachUsage(target, handler);
+                 }
+                 else if (target == any)
+                 {
+-                    return SourcesTreeMethods.EachUsage(source, handler);
++                    return RequiredSourcesTreeMethods.EachUsage(source, handler);
+                 }
+                 else
+                 {
+-                    var link = SourcesTreeMethods.Search(source, target);
++                    var link = RequiredSourcesTreeMethods.Search(source, target);
+                     return AreEqual(link, constants.Null) ? @continue : handler(GetLinkStruct(link));
+                 }
+             }
+@@ -282,7 +295,7 @@
+                     }
+                     return @continue;
+                 }
+-                var value = default(TLinkAddress);
++                var value = TLinkAddress.Zero;
+                 if (source == any)
+                 {
+                     value = target;
+@@ -314,21 +327,21 @@
+         ref var firstAsTarget = ref header.RootAsTarget;
+         if (!AreEqual(link.Source, @null))
+         {
+-            SourcesTreeMethods.Detach(ref firstAsSource, linkIndex);
++            RequiredSourcesTreeMethods.Detach(ref firstAsSource, linkIndex);
+         }
+         if (!AreEqual(link.Target, @null))
+         {
+-            TargetsTreeMethods.Detach(ref firstAsTarget, linkIndex);
++            RequiredTargetsTreeMethods.Detach(ref firstAsTarget, linkIndex);
+         }
+         link.Source = this.GetSource(substitution);
+         link.Target = this.GetTarget(substitution);
+         if (!AreEqual(link.Source, @null))
+         {
+-            SourcesTreeMethods.Attach(ref firstAsSource, linkIndex);
++            RequiredSourcesTreeMethods.Attach(ref firstAsSource, linkIndex);
+         }
+         if (!AreEqual(link.Target, @null))
+         {
+-            TargetsTreeMethods.Attach(ref firstAsTarget, linkIndex);
++            RequiredTargetsTreeMethods.Attach(ref firstAsTarget, linkIndex);
+         }
+         return handler != null ? handler(before, GetLinkStruct(linkIndex)) : Constants.Continue;
+     }
+@@ -339,7 +352,7 @@
+         var freeLink = header.FirstFreeLink;
+         if (!AreEqual(freeLink, Constants.Null))
+         {
+-            UnusedLinksListMethods.Detach(freeLink);
++            RequiredUnusedLinksListMethods.Detach(freeLink);
+         }
+         else
+         {
+@@ -364,12 +377,13 @@
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public virtual TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
+     {
++        System.ArgumentNullException.ThrowIfNull(restriction);
+         ref var header = ref GetHeaderReference();
+         var link = restriction[Constants.IndexPart];
+         var before = GetLinkStruct(link);
+         if (LessThan(link, header.AllocatedLinks))
+         {
+-            UnusedLinksListMethods.AttachAsFirst(link);
++            RequiredUnusedLinksListMethods.AttachAsFirst(link);
+             return handler != null ? handler(before, null) : Constants.Continue;
+         }
+         else if (AreEqual(link, header.AllocatedLinks))
+@@ -378,7 +392,7 @@
+             _memory.UsedCapacity -= LinkSizeInBytes;
+             while (GreaterThan(header.AllocatedLinks, GetZero()) && IsUnusedLink(header.AllocatedLinks))
+             {
+-                UnusedLinksListMethods.Detach(header.AllocatedLinks);
++                RequiredUnusedLinksListMethods.Detach(header.AllocatedLinks);
+                 header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;
+                 _memory.UsedCapacity -= LinkSizeInBytes;
+             }
+@@ -387,7 +401,7 @@
+         return Constants.Continue;
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public IList<TLinkAddress>? GetLinkStruct(TLinkAddress linkIndex)
++    public IList<TLinkAddress> GetLinkStruct(TLinkAddress linkIndex)
+     {
+         ref var link = ref GetLinkReference(linkIndex);
+         return new Link<TLinkAddress>(linkIndex, link.Source, link.Target);
+@@ -416,7 +430,7 @@
+         if (!AreEqual(GetHeaderReference().FirstFreeLink, linkIndex))
+         {
+             ref var link = ref GetLinkReference(linkIndex);
+-            return AreEqual(link.SizeAsSource, default) && !AreEqual(link.Source, default);
++            return AreEqual(link.SizeAsSource, TLinkAddress.Zero) && !AreEqual(link.Source, TLinkAddress.Zero);
+         }
+         else
+         {
+@@ -426,7 +440,7 @@
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     protected virtual TLinkAddress GetOne() => _one;
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    protected virtual TLinkAddress GetZero() => default;
++    protected virtual TLinkAddress GetZero() => TLinkAddress.Zero;
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     protected virtual bool AreEqual(TLinkAddress first, TLinkAddress second) => first == second;
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+--- csharp/Platform.Data.Doublets/Memory/United/RawLink.cs
++++ csharp/Platform.Data.Doublets/Memory/United/RawLink.cs
+@@ -19,9 +19,9 @@
+     public TLinkAddress RightAsTarget;
+     public TLinkAddress SizeAsTarget;
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public override bool Equals(object obj)
++    public override bool Equals(object? obj)
+     {
+-        return obj is RawLink<TLinkAddress> link ? Equals(link) : false;
++        return obj is RawLink<TLinkAddress> link && Equals(link);
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public bool Equals(RawLink<TLinkAddress> other) => Source == other.Source && Target == other.Target
+--- csharp/Platform.Data.Doublets/NullableLinkHelpers.cs
++++ csharp/Platform.Data.Doublets/NullableLinkHelpers.cs
+@@ -0,0 +1,17 @@
++using System;
++using System.Collections.Generic;
++using System.Numerics;
++namespace Platform.Data.Doublets;
++internal static class NullableLinkHelpers
++{
++    internal static T HandleNullable<T>(this ref WriteHandlerState<T> state, IList<T>? before, IList<T>? after)
++        where T : IUnsignedNumber<T>
++    {
++        if (state.Handler is {} handler)
++        {
++            state.Apply(handler(before, after));
++        }
++        return state.Result;
++    }
++    internal static IList<T> GetRequiredLink<T>(this ILinks<T> links, T link)
++        where T : IUnsignedNumber<T> => links.GetLink(link) ?? throw new KeyNotFoundException($"Link {link} does not exist."); }
+--- csharp/Platform.Data.Doublets/Properties/AssemblyInfo.cs
++++ csharp/Platform.Data.Doublets/Properties/AssemblyInfo.cs
+@@ -0,0 +1,2 @@
++using System.Runtime.CompilerServices;
++[assembly:InternalsVisibleTo("Platform.Data.Doublets.Tests")]
+--- csharp/Platform.Data.Doublets/PropertyOperators/PropertiesOperator.cs
++++ csharp/Platform.Data.Doublets/PropertyOperators/PropertiesOperator.cs
+@@ -18,9 +18,9 @@
+     {
+         var links = _links;
+         var objectProperty = links.SearchOrDefault(@object, property);
+-        if (objectProperty == default)
++        if (objectProperty == TLinkAddress.Zero)
+         {
+-            return default;
++            return TLinkAddress.Zero;
+         }
+         var constants = links.Constants;
+         var any = constants.Any;
+@@ -28,7 +28,7 @@
+         var valueLink = links.SingleOrDefault(query);
+         if (valueLink == null)
+         {
+-            return default;
++            return TLinkAddress.Zero;
+         }
+         return links.GetTarget(links.GetIndex(valueLink));
+     }
+--- csharp/Platform.Data.Doublets/PropertyOperators/PropertyOperator.cs
++++ csharp/Platform.Data.Doublets/PropertyOperators/PropertyOperator.cs
+@@ -26,8 +26,8 @@
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     private TLinkAddress GetContainer(TLinkAddress property)
+     {
+-        var valueContainer = default(TLinkAddress);
+-        if (property == default)
++        var valueContainer = TLinkAddress.Zero;
++        if (property == TLinkAddress.Zero)
+         {
+             return valueContainer;
+         }
+@@ -55,7 +55,7 @@
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     private TLinkAddress GetValue(TLinkAddress container)
+     {
+-        return container == default ? default : _links.GetTarget(container);
++        return container == TLinkAddress.Zero ? TLinkAddress.Zero : _links.GetTarget(container);
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public void Set(TLinkAddress link, TLinkAddress value)
+@@ -63,7 +63,7 @@
+         var links = _links;
+         var property = links.GetOrCreate(link, _propertyMarker);
+         var container = GetContainer(property);
+-        if (container == default)
++        if (container == TLinkAddress.Zero)
+         {
+             links.GetOrCreate(property, value);
+         }
+--- csharp/Platform.Data.Doublets/Tests/ILinksExtensions.cs
++++ csharp/Platform.Data.Doublets/Tests/ILinksExtensions.cs
+@@ -17,13 +17,13 @@
+     {
+         EnsureTrue(boolean, default);
+     }
+-    private static void EnsureTrue(bool boolean, string message)
++    private static void EnsureTrue(bool boolean, string? message)
+     {
+         if (boolean)
+         {
+             return;
+         }
+-        string messageBuilder() => message;
++        string ? messageBuilder() => message;
+         throw new ArgumentException("EnsureTrue Failed. The value is not a true. " + messageBuilder());
+     }
+     private static void EnsureEqual<T>(T expected, T actual)
+@@ -31,19 +31,19 @@
+     {
+         EnsureEqual(expected, actual, default);
+     }
+-    private static void EnsureEqual<T>(T expected, T actual, string message)
++    private static void EnsureEqual<T>(T expected, T actual, string? message)
+         where T : IUnsignedNumber<T>
+     {
+         EnsureEqual(expected, actual, message, EqualityComparer<T>.Default);
+     }
+-    private static void EnsureEqual<T>(T expected, T actual, string message, IEqualityComparer<T> equalityComparer)
++    private static void EnsureEqual<T>(T expected, T actual, string? message, IEqualityComparer<T> equalityComparer)
+         where T : IUnsignedNumber<T>
+     {
+         if (expected == actual)
+         {
+             return;
+         }
+-        string messageBuilder() => message;
++        string ? messageBuilder() => message;
+         throw new ArgumentException("EnsureEqual Failed. The values are not equal. " + messageBuilder());
+     }
+     public static void TestCRUDOperations<T>(this ILinks<T> links)
+@@ -57,7 +57,7 @@
+         links.Each(setter.SetFirstFromNonNullListAndReturnTrue, constants.Any, constants.Any, constants.Any);
+         EnsureTrue(setter.Result == constants.Null);
+         var linkAddress = links.Create();
+-        var link = new Link<T>(links.GetLink(linkAddress));
++        var link = new Link<T>(links.GetRequiredLink(linkAddress));
+         EnsureTrue(link.Count == 3);
+         EnsureTrue(link.Index == linkAddress);
+         EnsureTrue(link.Source == constants.Null);
+@@ -67,12 +67,12 @@
+         links.Each(setter.SetFirstFromNonNullListAndReturnTrue, constants.Any, constants.Any, constants.Any);
+         EnsureTrue(setter.Result == linkAddress);
+         links.Update(linkAddress, linkAddress, linkAddress);
+-        link = new Link<T>(links.GetLink(linkAddress));
++        link = new Link<T>(links.GetRequiredLink(linkAddress));
+         EnsureTrue(link.Source == linkAddress);
+         EnsureTrue(link.Target == linkAddress);
+         var updated = links.Update(linkAddress, constants.Null, constants.Null);
+         EnsureTrue(updated == linkAddress);
+-        link = new Link<T>(links.GetLink(linkAddress));
++        link = new Link<T>(links.GetRequiredLink(linkAddress));
+         EnsureTrue(link.Source == constants.Null);
+         EnsureTrue(link.Target == constants.Null);
+         links.Delete(linkAddress);
+@@ -85,8 +85,7 @@
+         where T : IUnsignedNumber<T>
+     {
+         var constants = links.Constants;
+-        var zero = default(T);
+-        var one = ++zero;
++        var one = T.One;
+         var two = ++one;
+         var h106E = new Hybrid<T>(106L, isExternal: true);
+         var h107E = new Hybrid<T>(-char.ConvertFromUtf32(107)[0]);
+@@ -96,17 +95,17 @@
+         EnsureEqual(T.CreateTruncating(108L), T.CreateTruncating(h108E.AbsoluteValue));
+         var linkAddress1 = links.Create();
+         links.Update(linkAddress1, h106E, h108E);
+-        var link1 = new Link<T>(links.GetLink(linkAddress1));
++        var link1 = new Link<T>(links.GetRequiredLink(linkAddress1));
+         EnsureTrue(link1.Source == h106E.Value);
+         EnsureTrue(link1.Target == h108E.Value);
+         var linkAddress2 = links.Create();
+         links.Update(linkAddress2, linkAddress1, h108E);
+-        var link2 = new Link<T>(links.GetLink(linkAddress2));
++        var link2 = new Link<T>(links.GetRequiredLink(linkAddress2));
+         EnsureTrue(link2.Source == linkAddress1);
+         EnsureTrue(link2.Target == h108E.Value);
+         var linkAddress3 = links.Create();
+         links.Update(linkAddress3, linkAddress1, linkAddress2);
+-        var link3 = new Link<T>(links.GetLink(linkAddress3));
++        var link3 = new Link<T>(links.GetRequiredLink(linkAddress3));
+         EnsureTrue(link3.Source == linkAddress1);
+         EnsureTrue(link3.Target == linkAddress2);
+         var setter1 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
+@@ -117,7 +116,7 @@
+         EnsureTrue(setter2.Result == constants.Null);
+         var updated = links.Update(linkAddress3, constants.Null, constants.Null);
+         EnsureTrue(updated == linkAddress3);
+-        link3 = new Link<T>(links.GetLink(linkAddress3));
++        link3 = new Link<T>(links.GetRequiredLink(linkAddress3));
+         EnsureTrue(link3.Source == constants.Null);
+         EnsureTrue(link3.Target == constants.Null);
+         links.Delete(linkAddress3);
+@@ -163,7 +162,6 @@
+                 }
+             }
+             EnsureTrue((ulong)created == addressToUInt64Converter.Convert(links.Count()));
+-            var allLinks = links.All();
+             var deletedLinksAddressRange = new Range<int>(0, created);
+             for (var i = 0; i < N; i++)
+             {
+--- csharp/Platform.Data.Doublets/UInt64LinksTransactionsLayer.cs
++++ csharp/Platform.Data.Doublets/UInt64LinksTransactionsLayer.cs
+@@ -35,7 +35,7 @@
+             Timestamp = uniqueTimestampFactory.Create();
+         }
+         public Transition(UniqueTimestampFactory uniqueTimestampFactory, TLinkAddress transactionId,
+-                          IList<TLinkAddress> before, IList<TLinkAddress> after)
++                          IList<TLinkAddress>? before, IList<TLinkAddress>? after)
+             : this(uniqueTimestampFactory, transactionId, new Link<TLinkAddress>(before), new Link<TLinkAddress>(after))
+         {
+         }
+@@ -53,7 +53,7 @@
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         public override string ToString() => $"{Timestamp} {TransactionId}: {Before} => {After}";
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-        public override bool Equals(object obj) => obj is Transition transition ? Equals(transition) : false;
++        public override bool Equals(object? obj) => obj is Transition transition && Equals(transition);
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         public override int GetHashCode() => (TransactionId, Before, After, Timestamp).GetHashCode();
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+@@ -144,11 +144,11 @@
+     private readonly FileStream _log;
+     private readonly Queue<Transition> _transitions;
+     private readonly UniqueTimestampFactory _uniqueTimestampFactory;
+-    private Task _transitionsPusher;
++    private Task? _transitionsPusher;
+     private Transition _lastCommitedTransition;
+     private TLinkAddress _currentTransactionId;
+-    private Queue<Transition> _currentTransactionTransitions;
+-    private Transaction _currentTransaction;
++    private Queue<Transition>? _currentTransactionTransitions;
++    private Transaction? _currentTransaction;
+     private TLinkAddress _lastCommitedTransactionId;
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public UInt64LinksTransactionsLayer(ILinks<TLinkAddress> links, string logAddress) : base(links)
+@@ -179,7 +179,7 @@
+         _transitionsPusher.Start();
+     }
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    public IList<TLinkAddress> GetLinkValue(TLinkAddress link) => _links.GetLink(link);
++    public IList<TLinkAddress> GetLinkValue(TLinkAddress link) => _links.GetRequiredLink(link);
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public override TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
+     {
+@@ -208,7 +208,6 @@
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
+     {
+-        var link = this.GetIndex(restriction);
+         return _links.Delete(restriction, (before, after) =>
+                                           {
+                                               CommitTransition(new Transition(_uniqueTimestampFactory,
+@@ -277,24 +276,32 @@
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     public Transaction BeginTransaction() => new Transaction(this);
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-    private void DisposeTransitions()
+-    {
++    private void DisposeTransitions(bool manual)
++    {
++        if (_log == null)
++            return;
+         try
+         {
+-            var pusher = _transitionsPusher;
+-            if (pusher != null)
+-            {
+-                _transitionsPusher = null;
+-                pusher.Wait();
+-            }
+-            if (_transitions != null)
+-            {
+-                PushTransitions();
+-            }
+-            _log.DisposeIfPossible();
++            try
++            {
++                var pusher = _transitionsPusher;
++                if (pusher != null)
++                {
++                    _transitionsPusher = null;
++                    pusher.Wait();
++                }
++                if (_transitions != null)
++                {
++                    PushTransitions();
++                }
++            }
++            finally
++            {
++                _log.DisposeIfPossible();
++            }
+             FileHelpers.WriteFirst(_logAddress, _lastCommitedTransition);
+         }
+-        catch (Exception ex)
++        catch (Exception ex) when (!manual)
+         {
+             ex.Ignore();
+         }
+@@ -303,11 +310,17 @@
+     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+     protected override void Dispose(bool manual, bool wasDisposed)
+     {
+-        if (!wasDisposed)
+-        {
+-            DisposeTransitions();
+-        }
+-        base.Dispose(manual, wasDisposed);
++        try
++        {
++            if (!wasDisposed)
++            {
++                DisposeTransitions(manual);
++            }
++        }
++        finally
++        {
++            base.Dispose(manual, wasDisposed);
++        }
+     }
+ #endregion
+ }

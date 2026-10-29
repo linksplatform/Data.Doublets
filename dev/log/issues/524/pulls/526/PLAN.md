@@ -29,11 +29,10 @@ criteria explicit, preserve history, and do not merge the PR.
 - [ ] Verify clean working tree, all acceptance criteria and latest CI, then mark
   PR ready and native goal complete only if no required work remains.
 
-Third iteration: full-SARIF gating, native heap/ownership/growth repairs,
-C# allocation/constructor/disposal regressions, installed-header native consumer.
-77 C# tests pass; complete warning audit and dependency repairs verified.
-Final native rebuild and fresh CI remain pending.
-
-The clean final native build passes at 955,456 KiB peak RSS, with all 42 tests.
-Pipeline suite: 42 passing regressions. Final native consumer/static recheck
-uses the newly repaired dependency graph; then commit and fresh CI.
+Fourth CI exposed split-buffer capacity accounting in both languages. Its full
+logs and all 1,058 artifacts are preserved. Deterministic native and three C#
+regressions fail before and pass after the shared fix; C# now has 80 passing
+cases, pipeline has 43, and the full native rebuild is running. Final fresh CI,
+complete SARIF, artifact/warning audit and PR readiness remain pending.
+All eight automated inline review comments are implemented; final SARIF must
+verify their resolution. No required child issue or human feedback is pending.
