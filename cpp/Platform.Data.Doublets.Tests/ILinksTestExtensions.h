@@ -142,15 +142,6 @@ namespace Platform::Data::Doublets::Tests
                      });
         auto aaa = GetLink(storage, linkAddress1);
         Expects(linkAddress1 == searchedLinkAddress);
-        // Search for nonexistent link
-        //        typename TStorage::LinkAddressType searchedNonExistentypename TStorage::LinkAddressType {};
-        //        storage.Each(typename TStorage::LinkType{any, h106E.Value, h108E.Value}, [&searchedNonExistentypename
-        //        TStorage::LinkAddressType, _continue](const typename TStorage::LinkType& link) {
-        //            searchedNonExistentypename TStorage::LinkAddressType = link[0];
-        //            return _continue;
-        //        });
-        //        Expects(constants.Null == searchedNonExistentypename TStorage::LinkAddressType);
-        // Update link to reference null (prepare for delete)
         auto updatedLinkAddress{Update(storage, linkAddress3, constants.Null, constants.Null)};
         Expects(linkAddress3 == updatedLinkAddress);
         link3 = {GetLink(storage, linkAddress3)};

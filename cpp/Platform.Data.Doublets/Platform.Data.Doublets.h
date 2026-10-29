@@ -7,6 +7,7 @@
 #include <ostream>
 #include <new>
 #include <map>
+#include <memory>
 #include <ranges>
 #include <unordered_set>
 #include <Platform.Exceptions.h>

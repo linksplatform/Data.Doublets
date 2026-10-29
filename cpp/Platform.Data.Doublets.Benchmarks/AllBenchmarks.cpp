@@ -1,7 +1,6 @@
 #include <benchmark/benchmark.h>
 #include <Platform.Data.Doublets.h>
-// #include "MemoryBenchmarks.cpp"
-#include "CreateMillionPointsBenchmarks.cpp"
-#include "CheckDefaultHandlerOrJustCallBenchmarks.cpp"
+#include "CreateMillionPointsBenchmarks.h"
+#include "CheckDefaultHandlerOrJustCallBenchmarks.h"
 
 BENCHMARK_MAIN();

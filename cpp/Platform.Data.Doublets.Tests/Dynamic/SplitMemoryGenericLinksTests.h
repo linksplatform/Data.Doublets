@@ -1,4 +1,4 @@
-﻿namespace Platform::Data::Doublets::Tests::Dynamic::SplitMemoryGenericLinksTests
+namespace Platform::Data::Doublets::Tests::Dynamic::SplitMemoryGenericLinksTests
 {
     template <typename TStorage>
     static void UsingStorage(auto&& action)
@@ -8,7 +8,6 @@
         TStorage storage{HeapResizableDirectMemory{}, HeapResizableDirectMemory{}};
         Data::ILinks<typename TStorage::LinksOptionsType>& dynamicStorage = storage;
         action(dynamicStorage);
-        //  action(storage);
     }
 
     template <std::integral TLinkAddress>

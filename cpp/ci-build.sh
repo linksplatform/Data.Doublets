@@ -19,8 +19,12 @@ case "$mode" in
     benchmarks) ;;
     *) echo "Usage: $0 {test|benchmarks}" >&2; exit 2 ;;
 esac
-conan install "$cpp_root" --output-folder "$build_dir" --build=missing \
-    -s "build_type=$build_type" -s compiler.cppstd=20 -c "tools.build:jobs=${CMAKE_BUILD_PARALLEL_LEVEL:-1}"
+profile_args=()
+if [[ -n ${CPP_CONAN_PROFILE:-} ]]; then
+    profile_args=(-pr:h "$CPP_CONAN_PROFILE" -pr:b "$CPP_CONAN_PROFILE")
+fi
+conan install "$cpp_root" "${profile_args[@]}" --output-folder "$build_dir" --build=missing \
+    '-cc=core:warnings_as_errors=["*"]' -s "build_type=$build_type" -s compiler.cppstd=20 -c "tools.build:jobs=${CMAKE_BUILD_PARALLEL_LEVEL:-1}"
 cmake -S "$cpp_root" -B "$build_dir" \
     -DCMAKE_TOOLCHAIN_FILE="$build_dir/conan_toolchain.cmake" \
     -DCMAKE_BUILD_TYPE="$build_type" -DLINKS_PLATFORM_TESTS="$test_flag" \

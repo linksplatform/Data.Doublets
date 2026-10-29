@@ -22,7 +22,7 @@ namespace Platform::Data::Doublets::Benchmarks
 
     static void BM_CheckDefaultHandlerAndSumWithoutOptimization(benchmark::State& state)
     {
-        for (auto _ : state)
+        for ([[maybe_unused]] auto _ : state)
         {
             for (auto i = 0; i < state.range(0); ++i)
             {
@@ -34,7 +34,7 @@ namespace Platform::Data::Doublets::Benchmarks
 
     static void BM_JustCallHandlerWithoutOptimization(benchmark::State& state)
     {
-        for (auto _ : state)
+        for ([[maybe_unused]] auto _ : state)
         {
             for (auto i = 0; i < state.range(0); ++i)
             {
@@ -46,7 +46,7 @@ namespace Platform::Data::Doublets::Benchmarks
 
     static void BM_CheckDefaultHandlerAndSum(benchmark::State& state)
     {
-        for (auto _ : state)
+        for ([[maybe_unused]] auto _ : state)
         {
             for (auto i = 0; i < state.range(0); ++i)
             {
@@ -58,7 +58,7 @@ namespace Platform::Data::Doublets::Benchmarks
 
     static void BM_JustCallHandler(benchmark::State& state)
     {
-        for (auto _ : state)
+        for ([[maybe_unused]] auto _ : state)
         {
             for (auto i = 0; i < state.range(0); ++i)
             {

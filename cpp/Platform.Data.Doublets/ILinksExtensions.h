@@ -198,30 +198,6 @@ namespace Platform::Data::Doublets
         return currentLink;
     }
 
-    //    template<typename TStorage>
-    //    static typename TStorage::LinkAddressType GetSquareMatrixSequenceElementByIndex(TStorage& storage, typename
-    //    TStorage::LinkAddressType root, std::uint64_t size, std::uint64_t index)
-    //    {
-    //        using namespace Platform::Numbers;
-    //        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
-    //        auto source = constants.SourcePart;
-    //        auto target = constants.TargetPart;
-    //        if (!Numbers::Math::IsPowerOfTwo(size))
-    //        {
-    //            throw std::invalid_argument("size", "Sequences with sizes other than powers of two are not
-    //            supported.");
-    //        }
-    //        auto path = BitArray(BitConverter.GetBytes(index));
-    //        auto length = Bit.GetLowestPosition(size);
-    //        storage.EnsureLinkExists(root, "root");
-    //        auto currentLink = root;
-    //        for (auto i { length - 1 }; i >= 0; i--)
-    //        {
-    //            currentLink = GetLink(storage, currentLink)[path[i] ? target : source];
-    //        }
-    //        return currentLink;
-    //    }
-
     template <typename TStorage>
     static auto GetIndex(const TStorage& storage, const typename TStorage::LinkType& link)
     {
@@ -428,6 +404,9 @@ namespace Platform::Data::Doublets
         {
             if (!requested.contains(address))
             {
+                Platform::Data::Update(
+                    storage, typename TStorage::LinkType{address},
+                    typename TStorage::LinkType{address, storage.Constants.Null, storage.Constants.Null});
                 Platform::Data::Delete(storage, address);
             }
         }
@@ -447,7 +426,8 @@ namespace Platform::Data::Doublets
     {
         EnsureCreated(storage, std::function<typename TStorage::LinkAddressType()>{[&storage] {
                           auto point = Platform::Data::Create(storage);
-                          return Update(storage, point, point, point);
+                          return Platform::Data::Update(storage, typename TStorage::LinkType{point},
+                                                        typename TStorage::LinkType{point, point, point});
                       }},
                       addresses);
     }
@@ -781,23 +761,6 @@ namespace Platform::Data::Doublets
     {
         DeleteAllUsages(storage, linkIndex, nullptr);
     }
-
-    // Do not translate this
-    //    template<typename TStorage>
-    //    auto DeleteByQuery(TStorage& storage,  CArray<typename TStorage::LinkAddressType> auto&& query)
-    //    {
-    //        auto count = DIRECT_METHOD_CALL(TStorage, storage, Count,query);
-    //        auto toDelete = typename TStorage::LinkType(count);
-    //        DIRECT_METHOD_CALL(TStorage, storage, Each,[&](auto link) {
-    //            toDelete.push_back(link[0]);
-    //            return storage.Constants.Continue;
-    //        }, query);
-    //
-    //        for (auto link : toDelete | std::views::reverse)
-    //        {
-    //            Delete(storage, link);
-    //        }
-    //    }
 
     template <typename TStorage>
     auto DeleteAll(TStorage& storage)

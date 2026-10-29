@@ -1,4 +1,4 @@
-﻿namespace Platform::Data::Doublets::Memory::United::Generic
+namespace Platform::Data::Doublets::Memory::United::Generic
 {
 
     template <typename TSelf, typename TLinkOptions, typename TMemory, typename TSourceTreeMethods,
@@ -31,11 +31,11 @@
 
         const std::size_t _memoryReservationStep;
 
-        TTargetTreeMethods* _TargetsTreeMethods;
+        std::unique_ptr<TTargetTreeMethods> _TargetsTreeMethods;
 
-        TSourceTreeMethods* _SourcesTreeMethods;
+        std::unique_ptr<TSourceTreeMethods> _SourcesTreeMethods;
 
-        TUnusedLinks* _UnusedLinksListMethods;
+        std::unique_ptr<TUnusedLinks> _UnusedLinksListMethods;
 
         LinksHeader<LinkAddressType>& GetHeaderReference()
         {
@@ -374,8 +374,8 @@
       public:
         LinkAddressType Create(const LinkType&, const WriteHandlerType& handler)
         {
-            auto& header = this->GetHeaderReference();
-            auto freeLink = header.FirstFreeLink;
+            auto* header = &this->GetHeaderReference();
+            auto freeLink = header->FirstFreeLink;
             if (freeLink != Constants.Null)
             {
                 _UnusedLinksListMethods->Detach(freeLink);
@@ -383,21 +383,21 @@
             else
             {
                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
-                if (header.AllocatedLinks > maximumPossibleInnerReference)
+                if (header->AllocatedLinks > maximumPossibleInnerReference)
                 {
                     // TODO: !!!!!
                     // throw
                     // std::make_shared<LinksLimitReachedException<LinkAddressType>>(maximumPossibleInnerReference);
                 }
-                if (header.AllocatedLinks >= (header.ReservedLinks - 1))
+                if (header->AllocatedLinks >= (header->ReservedLinks - 1))
                 {
                     _memory.ReservedCapacity(_memory.ReservedCapacity() + _memoryReservationStep);
                     SetPointers(_memory);
-                    header = this->GetHeaderReference();
-                    header.ReservedLinks = _memory.ReservedCapacity() / LinkSizeInBytes;
+                    header = &this->GetHeaderReference();
+                    header->ReservedLinks = _memory.ReservedCapacity() / LinkSizeInBytes;
                 }
-                ++header.AllocatedLinks;
-                freeLink = header.AllocatedLinks;
+                ++header->AllocatedLinks;
+                freeLink = header->AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
             return handler(LinkType{0, 0, 0}, LinkType{freeLink, 0, 0});
@@ -445,9 +445,9 @@
         {
             _links = static_cast<std::byte*>(memory.Pointer());
             _header = _links;
-            _SourcesTreeMethods = new TSourceTreeMethods(_links, _header);
-            _TargetsTreeMethods = new TTargetTreeMethods(_links, _header);
-            _UnusedLinksListMethods = new TUnusedLinks(_links, _header);
+            _SourcesTreeMethods = std::make_unique<TSourceTreeMethods>(_links, _header);
+            _TargetsTreeMethods = std::make_unique<TTargetTreeMethods>(_links, _header);
+            _UnusedLinksListMethods = std::make_unique<TUnusedLinks>(_links, _header);
         }
 
         bool Exists(LinkAddressType linkAddress) const

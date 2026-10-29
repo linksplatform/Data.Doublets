@@ -20,12 +20,12 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         TMemory _indexMemory;
         std::uint64_t _dataMemoryReservationStepInBytes;
         std::uint64_t _indexMemoryReservationStepInBytes;
-        TInternalSourcesTreeMethods* InternalSourcesTreeMethods;
-        TInternalLinksSourcesLinkedListMethods* InternalSourcesListMethods;
-        TInternalTargetsTreeMethods* InternalTargetsTreeMethods;
-        TExternalSourcesTreeMethods* ExternalSourcesTreeMethods;
-        TExternalTargetsTreeMethods* ExternalTargetsTreeMethods;
-        TUnusedLinksListMethods* UnusedLinksListMethods;
+        std::unique_ptr<TInternalSourcesTreeMethods> InternalSourcesTreeMethods;
+        std::unique_ptr<TInternalLinksSourcesLinkedListMethods> InternalSourcesListMethods;
+        std::unique_ptr<TInternalTargetsTreeMethods> InternalTargetsTreeMethods;
+        std::unique_ptr<TExternalSourcesTreeMethods> ExternalSourcesTreeMethods;
+        std::unique_ptr<TExternalTargetsTreeMethods> ExternalTargetsTreeMethods;
+        std::unique_ptr<TUnusedLinksListMethods> UnusedLinksListMethods;
         std::byte* _header;
         std::byte* _linksDataParts;
         std::byte* _linksIndexParts;
@@ -133,11 +133,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                                                 _indexMemoryReservationStepInBytes) +
                                                _indexMemoryReservationStepInBytes;
             }
-            if (dataMemory.ReservedCapacity() != minimumDataReservedCapacity)
+            if (dataMemory.ReservedCapacity() < minimumDataReservedCapacity)
             {
                 dataMemory.ReservedCapacity(minimumDataReservedCapacity);
             }
-            if (indexMemory.ReservedCapacity() != minimumIndexReservedCapacity)
+            if (indexMemory.ReservedCapacity() < minimumIndexReservedCapacity)
             {
                 indexMemory.ReservedCapacity(minimumIndexReservedCapacity);
             }
@@ -354,19 +354,21 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             _header = _linksIndexParts;
             if (UseLinkedList)
             {
-                //                InternalSourcesTreeMethods = new
-                //                TInternalLinksSourcesLinkedTreeMethods(_linksDataParts, _linksIndexParts);
+                InternalSourcesListMethods =
+                    std::make_unique<TInternalLinksSourcesLinkedListMethods>(_linksDataParts, _linksIndexParts);
             }
             else
             {
                 InternalSourcesTreeMethods =
-                    new TInternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
+                    std::make_unique<TInternalSourcesTreeMethods>(_linksDataParts, _linksIndexParts, _header);
             }
-            InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            UnusedLinksListMethods = new TUnusedLinksListMethods(_linksDataParts, _header);
+            InternalTargetsTreeMethods =
+                std::make_unique<TInternalTargetsTreeMethods>(_linksDataParts, _linksIndexParts, _header);
+            ExternalSourcesTreeMethods =
+                std::make_unique<TExternalSourcesTreeMethods>(_linksDataParts, _linksIndexParts, _header);
+            ExternalTargetsTreeMethods =
+                std::make_unique<TExternalTargetsTreeMethods>(_linksDataParts, _linksIndexParts, _header);
+            UnusedLinksListMethods = std::make_unique<TUnusedLinksListMethods>(_linksDataParts, _header);
         }
 
         LinkAddressType Count(const LinkType& restriction)
@@ -863,7 +865,6 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     _dataMemory.ReservedCapacity(_dataMemory.ReservedCapacity() + _dataMemoryReservationStepInBytes);
                     _indexMemory.ReservedCapacity(_indexMemory.ReservedCapacity() + _indexMemoryReservationStepInBytes);
                     SetPointers(_dataMemory, _indexMemory);
-                    this->GetHeaderReference() = this->GetHeaderReference();
                     this->GetHeaderReference().ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
                 }
                 freeLink = ++this->GetHeaderReference().AllocatedLinks;
