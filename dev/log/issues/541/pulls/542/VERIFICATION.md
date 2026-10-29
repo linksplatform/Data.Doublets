@@ -52,7 +52,35 @@ and artifact list: `github/implementation-run-40931698011.json` and
 - Expected skipped jobs: trusted-main credentials and publish on a PR. The
   required aggregate correctly fails because Python CodeQL failed.
 
-Follow-up commit verification will be appended after its complete hosted run.
+## Successful follow-up and final evidence packaging
+
+[Run 40934271519](https://github.com/linksplatform/Data.Doublets/actions/runs/40934271519)
+tested `7136487ec6b91e43b41f40ff0f98345149364382`, started 2026-10-29 18:48:32 UTC,
+completed **successfully at 19:01:02 UTC**. Every applicable job passed, including
+all four CodeQL languages, three native configurations, both C# platforms, audits,
+links, documentation, quality and the terminal required gate. Trusted-main-only
+credentials and publication correctly skip on PRs.
+
+Complete output is retained in `ci-logs/CI-40934271519.log`, with run/job metadata
+in `github/implementation-run-40934271519.json`, all 13 original artifacts under
+`research/followup-run-artifacts/`, and their metadata/digests in
+`github/run-40934271519-artifacts.json`. The complete log has zero warning/error
+annotations, DEP0005 occurrences or matched compiler/Conan warning diagnostics.
+All 13 artifact SHA-256 hashes match the published GitHub metadata and their ZIP
+CRC checks pass (`tests/followup-artifact-integrity.log`). All four unchanged
+CodeQL reports pass the local strict gate (`tests/followup-sarif-verification.log`).
+
+The final packaging commit adds only research and verification evidence under
+`dev/log/**`. `research/validated-executable-tree.txt` records every Git tree entry
+outside that directory; it is unchanged from the successful follow-up run. This
+avoids claiming a new executable implementation merely because evidence was
+appended. The packaging commit's own status is checked on GitHub before ending
+the task; its complete post-commit log is also retained locally in `ci-logs/`.
+The PR description links the final run and records its exact SHA and result.
+
+Default branch `c1a96a1aeb577e57d3e0b459bcf26e5fcc5e3efb` is in branch ancestry,
+confirmed with a fresh fetch. PR title/body are updated, `Fixes #541` is preserved,
+the PR is ready for review, and auto-merge is disabled. It remains unmerged.
 
 ## Criteria that remain unfinished
 
@@ -62,8 +90,9 @@ Follow-up commit verification will be appended after its complete hosted run.
    only authorizes writes to this PR branch. No policy weakening or main write is
    attempted; PR validation cannot exercise this authorization.
 2. Native dependency advisory-service coverage: Conan's provider requires an
-   activated account/token, unavailable here, plus upstream coordinate mapping for
-   local aliases. The bounded failed probe is retained. NuGet/Python audits and
+   activated account/token, unavailable here, plus confirmation of provider catalog
+   coverage for local aliases. All 19 resolved source coordinates and resolved recipe bytes
+   have been inventoried; the bounded failed probe is retained. NuGet/Python audits and
    source CodeQL do not establish a clean Conan advisory verdict.
 
 The PR must remain unmerged while these criteria are unfinished. This record does

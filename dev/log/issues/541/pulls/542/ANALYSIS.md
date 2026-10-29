@@ -25,21 +25,21 @@ and subsequent user instructions produce these acceptance criteria:
 | ID | Requirement | Implementation / verification evidence | State |
 | --- | --- | --- | --- |
 | R1 | Investigate the cited failed main run and both cited successful automation runs | Complete logs and run/job metadata under `ci-logs/` and `github/`; timeline below | Collected and analyzed |
-| R2 | Find false positives, false negatives, warnings and errors throughout CI/CD | Root-cause table; minimal before/after regressions; complete workflow/script review | Code fixes implemented; hosted verification tracked in `VERIFICATION.md` |
+| R2 | Find false positives, false negatives, warnings and errors throughout CI/CD | Root-cause table; minimal before/after regressions; complete workflow/script review | Implemented and verified in hosted run 40934271519; external release refusal remains unfinished |
 | R3 | Compare the **full file tree** of all four named templates, in C#, C++, Python, Rust priority | `research/TEMPLATE-COMPARISON.md`, 620-row hashed manifest, four complete archives; reproducible inventory experiment | Complete inventory and applicable transfer |
 | R4 | Reuse applicable template practices across all workflows/helpers | Full comparison plus 17-principle mapping below; Python quality, full actionlint image, standalone ShellCheck, Git initialization and artifact checks added | Implemented, with dependency ecosystem limit stated below |
 | R5 | Follow the linked hive-mind CI/CD best practices | Frozen full document and principle-by-principle assessment below | Release authorization remains externally blocked |
-| R6 | Fix all occurrences across the codebase | SARIF validation covers every language; Python quality covers all 17 maintained helper modules; raw extraction covers every artifact download; checkout configuration covers every checkout-bearing workflow | Implemented; latest hosted run must verify |
-| R7 | Keep all work in existing PR 542 and prepared branch | Forward commits on `issue-541-ef4751af423d`; default branch included in ancestry; no main writes | In progress until final verification |
-| R8 | Preserve all related logs/data in the requested repository folder | This folder; raw GitHub JSON, logs, dependency advisories, source snapshots, experiments and evidence indexes | Collected; final CI evidence appended after completion |
+| R6 | Fix all occurrences across the codebase | SARIF validation covers every language; Python quality covers all 17 maintained helper modules; raw extraction covers every artifact download; checkout configuration covers every checkout-bearing workflow | Implemented; hosted verification passed |
+| R7 | Keep all work in existing PR 542 and prepared branch | Forward commits on `issue-541-ef4751af423d`; default branch included in ancestry; no main writes | Verified; PR remains unmerged |
+| R8 | Preserve all related logs/data in the requested repository folder | This folder; raw GitHub JSON, logs, dependency advisories, source snapshots, experiments and evidence indexes | Collected, including complete implementation/follow-up CI evidence |
 | R9 | Deep analysis, online research, timeline, root causes, alternative solutions and plans | This document, full sources under `research/`, references below | Complete analysis; external release recovery plan unfinished |
 | R10 | Research existing components/libraries solving similar problems | Component assessment below (actionlint, Ruff, mypy, pip-audit, zipfile, CodeQL, Conan audit) | Complete |
 | R11 | Add default-off verbose diagnostics if evidence cannot establish a cause | All observed causes reproduced; existing `CI_VERBOSE=1` native/C# tracing preserved and Python check tracing added; actual logs retained | No unexplained failure is represented as fixed |
 | R12 | Report shared upstream defects with reproduction, workaround and code suggestions | Existing action issue supplemented; C# template #81, C++ template #15, Python template #125 and Rust template #223 filed; full report text retained | Reported, applicable downstream repairs implemented |
 | R13 | Reproduce bugs before fixing; retain minimal experiments and automated regressions | `tests/reproductions-before.log`, Buffer and missing-tools experiments, baseline Ruff/mypy/audit reports; regression suite | Reproduced and covered |
 | R14 | Test all applicable features, preserve existing functionality, respect memory limit | .NET 298 tests and examples/consumer; documentation; helper tests; native compile deliberately stopped near cgroup cap, hosted native matrix required | See verification record; no local native pass claimed |
-| R15 | Update title/body, preserve closing keyword, mark ready, ensure clean tree and latest-SHA passing checks | PR description and final verification record; `Fixes #541` remains present | Finalization follows hosted checks |
-| R16 | Fully complete every criterion, or identify exact genuine external blockers without claiming completion | GH006 policy evidence and native audit-service limitation below | Release criterion explicitly unfinished; PR must remain unmerged |
+| R15 | Update title/body, preserve closing keyword, mark ready, ensure clean tree and latest-SHA passing checks | PR description and verification record; `Fixes #541` remains present; final evidence-only commit is checked separately through PR statuses | Ready for review, unmerged; implementation run verified |
+| R16 | Fully complete every criterion, or identify exact genuine external blockers without claiming completion | GH006 policy evidence and native audit-service limitation below | Release and native advisory criteria explicitly unfinished; PR must remain unmerged |
 
 ## Timeline (UTC, 2026-10-29 unless specified)
 
@@ -80,6 +80,14 @@ the runs list is a historical snapshot, not proof of the latest commit.
 13. Implementation commit `1de337ed5955a5036475edc4532a85a8cd3494d3` is pushed;
     hosted run `40931698011` starts at 18:31:59. Later evidence and any additional
     repair commits are recorded separately in `VERIFICATION.md`.
+14. 18:48:32–19:01:02: follow-up run `40934271519` at `7136487` passes all
+    applicable jobs. Every CodeQL report has a successful invocation and zero
+    findings. The complete log has no warning/error annotations, deprecated
+    Buffer warnings or matched compiler/Conan warning diagnostics. Trusted-main
+    publishing is skipped as designed; this does not prove release authorization.
+15. PR 542 is marked ready for review with auto-merge disabled. Final evidence
+    packaging changes only `dev/log/**`; its separate hosted checks are available
+    from the PR, while the validated executable tree is unchanged.
 
 ## Root causes, options and solution plans
 
@@ -172,9 +180,22 @@ source snapshots are under `research/` and `github/`.
 - [Conan audit](https://docs.conan.io/2/security/audit.html) requires activated
   provider credentials. No token is available in this task. Its absence is an
   audit coverage limit, not evidence that native dependencies are vulnerability-free.
-  The follow-through plan is to provision the provider, explicitly map original
-  upstream coordinates for local aliases, preserve the resolved graph and fail
-  on findings/unknown package coverage; that service-backed verdict is unfinished.
+  The complete resolved graph and original source coordinates for all 19 native
+  dependencies are retained in `research/native-dependency-graph.json` and
+  `research/native-source-coordinates.json`; resolved recipe bytes are archived.
+  This includes 14 local Platform aliases and five upstream packages. The remaining
+  plan is to provision the provider, validate catalog coverage for these exact
+  coordinates and fail on findings/unknown coverage; that service-backed verdict
+  is unfinished.
+- [OSV-Scanner's supported manifests](https://github.com/google/osv-scanner/blob/main/docs/supported_languages_and_lockfiles.md)
+  include `conan.lock` and commit-based C/C++ scanning. Its
+  [extractor](https://github.com/google/osv-scalibr/blob/main/extractor/filesystem/language/cpp/conanlock/conanlock.go)
+  produces Conan package identities, while the current public
+  [ecosystem inventory](https://osv-vulnerabilities.storage.googleapis.com/ecosystems.txt)
+  has no Conan catalog. These sources are retained. Manifest parsing alone cannot
+  establish advisory coverage for local aliases. Commit-based OSV analysis could
+  supplement the provider after source-to-commit attribution; its documented
+  coverage limits prevent treating it as an exhaustive native all-clear.
 - [GitHub concurrency queue announcement](https://github.blog/changelog/2026-05-07-github-actions-concurrency-groups-now-allow-larger-queues/)
   confirms queue:max syntax; the preexisting narrow actionlint exception is
   preserved with its explicit schema validation, rather than disabling lint.
@@ -202,4 +223,10 @@ App/token), rerun CI on the current merge, and verify NuGet/GitHub assets and pu
 downloads. A dry-run push, successful login, read-only API call, or green PR is
 insufficient evidence. The current task explicitly limits writes to its PR branch,
 so no branch policy is changed and the PR is left unmerged. Native advisory service
-coverage also remains unverified until its credentials/coordinate mapping exist.
+coverage also remains unverified until its credentials and catalog coverage are
+available; the complete source-coordinate inventory has been collected already.
+Read-only secret metadata confirms there is no dedicated release or Conan audit
+credential configured. A historical Dependabot token (last updated in 2021) is
+present but unused by the current workflow; its validity/authorization is unknown
+and it has not been repurposed as a release credential. No secret values were
+retrieved. The protection snapshot was refreshed and remains unchanged.
