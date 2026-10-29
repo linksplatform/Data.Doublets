@@ -1,0 +1,4 @@
+{
+  "summary": "Document caller-selected update validation, raw update preconditions and checked update recipes; verify missing updates preserve store state.",
+  "releases": { "csharp": "patch" }
+}

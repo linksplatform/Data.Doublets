@@ -11,6 +11,29 @@
 
 # Deletion contract investigation
 
+## Update contract investigation
+
+For [issue #517](https://github.com/linksplatform/Data.Doublets/issues/517), see
+the [update recipes](../docs/update-csharp.md) and
+[research decision](../docs/update-investigation.md). Run:
+
+```sh
+dotnet test csharp/Platform.Data.Doublets.Tests -c Release \
+  --filter 'FullyQualifiedName~UpdateContractTests' \
+  --blame-hang-timeout 3m -m:1 -p:UseSharedCompilation=false
+dotnet run --project examples/Update -c Release
+python3 experiments/verify_update_contract_guards.py /path/to/dotnet
+```
+
+The last command temporarily adds compulsory checks to raw updates and omits the
+validator in a terminal-spy test. It requires exactly three failed contract tests
+and restores sources in `finally`. Only valid raw addresses and terminal-spy
+requests run; invalid raw memory is never accessed. Run without concurrent builds
+or source edits, then rebuild to restore current binaries. Logs/TRX stay in
+`artifacts/issue-517/negative/`.
+
+## Deletion probes
+
 These finite probes support [issue #518](https://github.com/linksplatform/Data.Doublets/issues/518)
 and the [architecture review](https://github.com/linksplatform/Data.Doublets/pull/527#issuecomment-6492081425).
 Read the [C# guide](../docs/deletion-csharp.md), [Rust guide](../docs/deletion-rust.md),

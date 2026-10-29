@@ -18,6 +18,8 @@ These guidelines apply to the C# and Rust implementations of Doublets. They
 record the design decision in [PR #527's review](https://github.com/linksplatform/Data.Doublets/pull/527#issuecomment-6492081425).
 See [C# deletion](deletion-csharp.md), [Rust deletion](deletion-rust.md), and the
 [implementation audit](deletion-audit.md) for concrete APIs and current gaps.
+For updates, see [C# update contracts](update-csharp.md) and the
+[update investigation](update-investigation.md).
 
 ## Core vision
 
