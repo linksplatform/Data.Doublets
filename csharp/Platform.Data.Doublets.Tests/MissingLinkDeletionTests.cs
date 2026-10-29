@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using Platform.Data.Doublets.Decorators;
 using Platform.Data.Doublets.Memory.Split.Generic;
 using Platform.Data.Doublets.Memory.United.Generic;
 using Platform.Data.Exceptions;
@@ -22,7 +23,10 @@ namespace Platform.Data.Doublets.Tests
                     {
                         foreach (var scenario in new[] { "never-created", "deleted-middle", "deleted-last", "empty", "null-address", "out-of-range" })
                         {
-                            yield return new object[] { split, decorated, direct, scenario };
+                            foreach (var ignoreMissing in new[] { false, true })
+                            {
+                                yield return new object[] { split, decorated, direct, scenario, ignoreMissing };
+                            }
                         }
                     }
                 }
@@ -31,20 +35,23 @@ namespace Platform.Data.Doublets.Tests
 
         [Theory]
         [MemberData(nameof(MissingDeleteCases))]
-        public static void MissingDeleteThrowsWithoutChangingStore(bool split, bool decorated, bool direct, string scenario)
+        public static void MissingDeleteUsesSelectedPolicyWithoutChangingStore(bool split, bool decorated, bool direct, string scenario, bool ignoreMissing)
         {
-            CheckMissingDelete<byte>(split, decorated, direct, scenario);
-            CheckMissingDelete<ushort>(split, decorated, direct, scenario);
-            CheckMissingDelete<uint>(split, decorated, direct, scenario);
-            CheckMissingDelete<ulong>(split, decorated, direct, scenario);
+            CheckMissingDelete<byte>(split, decorated, direct, scenario, ignoreMissing);
+            CheckMissingDelete<ushort>(split, decorated, direct, scenario, ignoreMissing);
+            CheckMissingDelete<uint>(split, decorated, direct, scenario, ignoreMissing);
+            CheckMissingDelete<ulong>(split, decorated, direct, scenario, ignoreMissing);
         }
 
-        private static void CheckMissingDelete<T>(bool split, bool decorated, bool direct, string scenario)
+        private static void CheckMissingDelete<T>(bool split, bool decorated, bool direct, string scenario, bool ignoreMissing)
             where T : IUnsignedNumber<T>, IShiftOperators<T, int, T>,
                 IBitwiseOperators<T, T, T>, IMinMaxValue<T>, IComparisonOperators<T, T, bool>
         {
-            Using<T>(split, decorated, links =>
+            Using<T>(split, decorated, inner =>
             {
+                ILinks<T> links = ignoreMissing
+                    ? new LinksNonExistentDeletionResolver<T>(inner)
+                    : new LinksInnerReferenceExistenceValidator<T>(inner);
                 var first = links.CreatePoint();
                 var middle = links.CreatePoint();
                 var last = links.CreatePoint();
@@ -85,11 +92,12 @@ namespace Platform.Data.Doublets.Tests
                 // Check both handler paths, repeating the invalid deletion each time.
                 for (var attempt = 0; attempt < 2; attempt++)
                 {
-                    Assert.Throws<ArgumentLinkDoesNotExistsException<T>>(() =>
+                    void DeleteMissing()
                     {
+                        T result;
                         if (direct)
                         {
-                            links.Delete(new[] { missing }, attempt == 0 ? null : (_, _) =>
+                            result = links.Delete(new[] { missing }, attempt == 0 ? null : (_, _) =>
                             {
                                 calls++;
                                 return links.Constants.Continue;
@@ -97,22 +105,43 @@ namespace Platform.Data.Doublets.Tests
                         }
                         else if (attempt == 0)
                         {
-                            links.Delete(missing);
+                            result = links.Delete(missing, null);
                         }
                         else
                         {
-                            links.Delete(missing, (_, _) =>
+                            result = links.Delete(missing, (_, _) =>
                             {
                                 calls++;
                                 return links.Constants.Continue;
                             });
                         }
-                    });
+                        Assert.Equal(links.Constants.Continue, result);
+                    }
+                    if (ignoreMissing)
+                    {
+                        DeleteMissing();
+                    }
+                    else
+                    {
+                        Assert.Throws<ArgumentLinkDoesNotExistsException<T>>(DeleteMissing);
+                    }
                     Assert.Equal(0, calls);
                     Assert.Equal(count, links.Count());
                     AssertSnapshot(links, before);
                     Assert.False(links.Exists(missing));
                 }
+
+                // The no-handler adapter returns an address, rather than a flow constant.
+                if (ignoreMissing)
+                {
+                    Assert.Equal(links.Constants.Null, links.Delete(missing));
+                }
+                else
+                {
+                    Assert.Throws<ArgumentLinkDoesNotExistsException<T>>(() => links.Delete(missing));
+                }
+                Assert.Equal(count, links.Count());
+                AssertSnapshot(links, before);
 
                 // A double free corrupts allocation even when enumeration still looks right.
                 Assert.Equal(next, links.CreatePoint());
@@ -131,24 +160,38 @@ namespace Platform.Data.Doublets.Tests
         }
 
         [Theory]
-        [InlineData(false, false)]
-        [InlineData(false, true)]
-        [InlineData(true, false)]
-        [InlineData(true, true)]
-        public static void ExistingResetLinkCanBeDeletedWithBreakHandler(bool split, bool decorated)
+        [InlineData(false, false, 0)]
+        [InlineData(false, false, 1)]
+        [InlineData(false, false, 2)]
+        [InlineData(false, true, 0)]
+        [InlineData(false, true, 1)]
+        [InlineData(false, true, 2)]
+        [InlineData(true, false, 0)]
+        [InlineData(true, false, 1)]
+        [InlineData(true, false, 2)]
+        [InlineData(true, true, 0)]
+        [InlineData(true, true, 1)]
+        [InlineData(true, true, 2)]
+        public static void ExistingResetLinkCanBeDeletedWithBreakHandler(bool split, bool decorated, int policy)
         {
-            CheckExistingDelete<byte>(split, decorated);
-            CheckExistingDelete<ushort>(split, decorated);
-            CheckExistingDelete<uint>(split, decorated);
-            CheckExistingDelete<ulong>(split, decorated);
+            CheckExistingDelete<byte>(split, decorated, policy);
+            CheckExistingDelete<ushort>(split, decorated, policy);
+            CheckExistingDelete<uint>(split, decorated, policy);
+            CheckExistingDelete<ulong>(split, decorated, policy);
         }
 
-        private static void CheckExistingDelete<T>(bool split, bool decorated)
+        private static void CheckExistingDelete<T>(bool split, bool decorated, int policy)
             where T : IUnsignedNumber<T>, IShiftOperators<T, int, T>,
                 IBitwiseOperators<T, T, T>, IMinMaxValue<T>, IComparisonOperators<T, T, bool>
         {
-            Using<T>(split, decorated, links =>
+            Using<T>(split, decorated, inner =>
             {
+                ILinks<T> links = policy switch
+                {
+                    1 => new LinksInnerReferenceExistenceValidator<T>(inner),
+                    2 => new LinksNonExistentDeletionResolver<T>(inner),
+                    _ => inner
+                };
                 var index = links.CreatePoint();
                 links.Update(index, T.Zero, T.Zero);
                 var calls = 0;

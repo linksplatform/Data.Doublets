@@ -144,6 +144,12 @@ namespace Platform.Data.Doublets
         /// <para>The link to delete.</para>
         /// <para></para>
         /// </param>
+        /// <remarks>
+        /// Resets endpoints for an existing link, then forwards deletion. A missing address is
+        /// still forwarded; choose EnsureLinkExists, an Exists guard, or an outer policy decorator.
+        /// This helper does not resolve incoming usages. The overload without a handler from
+        /// Platform.Data does not perform this reset.
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress Delete<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkToDelete, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -1009,6 +1015,10 @@ namespace Platform.Data.Doublets
         /// <param name="links">Хранилище связей.</param>
         /// <param name="source">Индекс связи, которая является началом удаляемой связи.</param>
         /// <param name="target">Индекс связи, которая является концом удаляемой связи.</param>
+        /// <remarks>
+        /// Skips deletion when the pair is absent. A successful lookup does not supply endpoint
+        /// reset or usage resolution; compose those policies or satisfy their preconditions.
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress DeleteIfExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -1112,6 +1122,7 @@ namespace Platform.Data.Doublets
         /// <para>The bool</para>
         /// <para></para>
         /// </returns>
+        /// <remarks>Requires an existing link; this is not an existence validator.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool AreValuesReset<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {

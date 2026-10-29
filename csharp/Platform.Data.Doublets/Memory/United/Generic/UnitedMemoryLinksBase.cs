@@ -536,7 +536,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Deletes an existing link. Missing links are rejected without changing the store or invoking the handler.
+        /// Deletes a live link whose endpoints have already been reset. The caller owns these preconditions.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -544,15 +544,10 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para>The restriction containing the index of the link to delete.</para>
         /// <para></para>
         /// </param>
-        /// <exception cref="ArgumentLinkDoesNotExistsException{TLinkAddress}">The link does not exist.</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
             var link = restriction[Constants.IndexPart];
-            if (!Exists(link))
-            {
-                throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(link, nameof(link));
-            }
             ref var header = ref GetHeaderReference();
             var before = GetLinkStruct(link);
             if (LessThan(link, header.AllocatedLinks))

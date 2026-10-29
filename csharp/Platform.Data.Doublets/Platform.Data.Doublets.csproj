@@ -25,7 +25,7 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>latest</LangVersion>
-        <PackageReleaseNotes>Reject deletion of missing links with ArgumentLinkDoesNotExistsException in united and split memory stores, including automatic uniqueness and usages resolution, without changing the store or invoking write handlers.</PackageReleaseNotes>
+        <PackageReleaseNotes>Document configurable deletion contracts in C# and Rust, preserve unchecked memory-store deletion, and add opt-in ignoring of missing deletions alongside the existing existence validator.</PackageReleaseNotes>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
