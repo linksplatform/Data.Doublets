@@ -133,22 +133,6 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             link.SizeAsSource = 0;
         }
 
-        // public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
-        // {
-        //     auto& firstLink = this->GetLinkReference(first);
-        //     auto& secondLink = this->GetLinkReference(second);
-        //     return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source,
-        //     secondLink.Target);
-        // }
-
-        // public: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
-        // {
-        //     auto& firstLink = this->GetLinkReference(first);
-        //     auto& secondLink = this->GetLinkReference(second);
-        //     return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source,
-        //     secondLink.Target);
-        // }
-
       public:
         // Intentional CRTP customization of the base tree algorithm.
         // cppcheck-suppress duplInheritedMember

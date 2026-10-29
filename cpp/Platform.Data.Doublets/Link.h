@@ -122,34 +122,38 @@ namespace Platform::Data::Doublets
         auto&& operator[](std::size_t index) const
         {
             using namespace Platform::Ranges; // TODO: EnsureExtensions
-            switch (index)
+            if (index == _constants.IndexPart)
             {
-            case _constants.IndexPart:
                 return Index;
-            case _constants.SourcePart:
-                return Source;
-            case _constants.TargetPart:
-                return Target;
-            default:
-                throw std::out_of_range("Link index out of range");
             }
+            if (index == _constants.SourcePart)
+            {
+                return Source;
+            }
+            if (index == _constants.TargetPart)
+            {
+                return Target;
+            }
+            throw std::out_of_range("Link index out of range");
         }
 
       public:
         auto&& operator[](std::size_t index)
         {
             using namespace Platform::Ranges; // TODO: EnsureExtensions
-            switch (index)
+            if (index == _constants.IndexPart)
             {
-            case _constants.IndexPart:
                 return Index;
-            case _constants.SourcePart:
-                return Source;
-            case _constants.TargetPart:
-                return Target;
-            default:
-                throw std::out_of_range("Link index out of range");
             }
+            if (index == _constants.SourcePart)
+            {
+                return Source;
+            }
+            if (index == _constants.TargetPart)
+            {
+                return Target;
+            }
+            throw std::out_of_range("Link index out of range");
         }
 
       public:

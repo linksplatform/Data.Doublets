@@ -30,7 +30,7 @@
       public:
         auto& GetLinkReference(LinkAddressType linkIndex)
         {
-            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
+            return reinterpret_cast<RawLink<LinkAddressType>*>(_links)[linkIndex];
         }
 
       public:

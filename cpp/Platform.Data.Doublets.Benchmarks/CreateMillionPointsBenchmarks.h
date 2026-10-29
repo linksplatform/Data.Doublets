@@ -7,8 +7,9 @@ namespace Platform::Data::Doublets::Benchmarks
     {
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::United::Generic;
-        for ([[maybe_unused]] auto _ : state)
+        for (auto _ : state)
         {
+            (void)_;
             Tools::TemporaryDirectory temporary;
             std::string memoryFilePath = temporary.File("data.links");
             Expects(!Collections::IsWhiteSpace(memoryFilePath));
@@ -34,8 +35,9 @@ namespace Platform::Data::Doublets::Benchmarks
     {
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::Split::Generic;
-        for ([[maybe_unused]] auto _ : state)
+        for (auto _ : state)
         {
+            (void)_;
             Tools::TemporaryDirectory temporary;
             std::string dataMemoryFilePath = temporary.File("data.links");
             std::string indexMemoryFilePath = temporary.File("index.links");
@@ -59,6 +61,12 @@ namespace Platform::Data::Doublets::Benchmarks
         }
     }
 
-    BENCHMARK(BM_CreateMillionPointsUnitedMemory)->Arg(1000000);
-    BENCHMARK(BM_CreateMillionPointsSplitMemory)->Arg(1000000);
+    auto RegisterCreateMillionPointsBenchmarks()
+    {
+        return std::tuple{
+            benchmark::RegisterBenchmark("BM_CreateMillionPointsUnitedMemory", BM_CreateMillionPointsUnitedMemory)
+                ->Arg(1000000),
+            benchmark::RegisterBenchmark("BM_CreateMillionPointsSplitMemory", BM_CreateMillionPointsSplitMemory)
+                ->Arg(1000000)};
+    }
 } // namespace Platform::Data::Doublets::Benchmarks

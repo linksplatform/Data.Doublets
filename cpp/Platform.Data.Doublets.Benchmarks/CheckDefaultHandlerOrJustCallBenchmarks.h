@@ -22,8 +22,9 @@ namespace Platform::Data::Doublets::Benchmarks
 
     static void BM_CheckDefaultHandlerAndSumWithoutOptimization(benchmark::State& state)
     {
-        for ([[maybe_unused]] auto _ : state)
+        for (auto _ : state)
         {
+            (void)_;
             for (auto i = 0; i < state.range(0); ++i)
             {
                 benchmark::DoNotOptimize(CheckDefaultHandlerAndCallHandler(
@@ -34,8 +35,9 @@ namespace Platform::Data::Doublets::Benchmarks
 
     static void BM_JustCallHandlerWithoutOptimization(benchmark::State& state)
     {
-        for ([[maybe_unused]] auto _ : state)
+        for (auto _ : state)
         {
+            (void)_;
             for (auto i = 0; i < state.range(0); ++i)
             {
                 benchmark::DoNotOptimize(
@@ -46,8 +48,9 @@ namespace Platform::Data::Doublets::Benchmarks
 
     static void BM_CheckDefaultHandlerAndSum(benchmark::State& state)
     {
-        for ([[maybe_unused]] auto _ : state)
+        for (auto _ : state)
         {
+            (void)_;
             for (auto i = 0; i < state.range(0); ++i)
             {
                 CheckDefaultHandlerAndCallHandler(TLinkAddress{10}, TLinkAddress{10},
@@ -58,8 +61,9 @@ namespace Platform::Data::Doublets::Benchmarks
 
     static void BM_JustCallHandler(benchmark::State& state)
     {
-        for ([[maybe_unused]] auto _ : state)
+        for (auto _ : state)
         {
+            (void)_;
             for (auto i = 0; i < state.range(0); ++i)
             {
                 CallHandler(TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress, TLinkAddress) { return 1; });
@@ -67,9 +71,15 @@ namespace Platform::Data::Doublets::Benchmarks
         }
     }
 
-    BENCHMARK(BM_CheckDefaultHandlerAndSumWithoutOptimization)->Arg(1000000);
-    BENCHMARK(BM_JustCallHandlerWithoutOptimization)->Arg(1000000);
-    BENCHMARK(BM_CheckDefaultHandlerAndSum)->Arg(1000000);
-    BENCHMARK(BM_JustCallHandler)->Arg(1000000);
-
+    auto RegisterHandlerBenchmarks()
+    {
+        return std::tuple{
+            benchmark::RegisterBenchmark("BM_CheckDefaultHandlerAndSumWithoutOptimization",
+                                         BM_CheckDefaultHandlerAndSumWithoutOptimization)
+                ->Arg(1000000),
+            benchmark::RegisterBenchmark("BM_JustCallHandlerWithoutOptimization", BM_JustCallHandlerWithoutOptimization)
+                ->Arg(1000000),
+            benchmark::RegisterBenchmark("BM_CheckDefaultHandlerAndSum", BM_CheckDefaultHandlerAndSum)->Arg(1000000),
+            benchmark::RegisterBenchmark("BM_JustCallHandler", BM_JustCallHandler)->Arg(1000000)};
+    }
 } // namespace Platform::Data::Doublets::Benchmarks

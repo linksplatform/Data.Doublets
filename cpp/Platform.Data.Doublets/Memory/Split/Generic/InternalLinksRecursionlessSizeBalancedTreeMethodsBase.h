@@ -90,32 +90,6 @@
             return LinkType{linkIndex, link.Source, link.Target};
         }
 
-        //        public: LinkAddressType operator[](LinkAddressType link, LinkAddressType index)
-        //        {
-        //                auto root = GetTreeRoot(*link);
-        //                if (index >= GetSize(root))
-        //                {
-        //                    return 0;
-        //                }
-        //                while (root != 0)
-        //                {
-        //                    auto left = GetLeftOrDefault(root);
-        //                    auto leftSize = GetSizeOrZero(left);
-        //                    if (index < leftSize)
-        //                    {
-        //                        root = left;
-        //                        Continue;
-        //                    }
-        //                    if (index == leftSize)
-        //                    {
-        //                        return root;
-        //                    }
-        //                    root = GetRightOrDefault(root);
-        //                    index = index - (leftSize + 1));
-        //                }
-        //                return 0;
-        //            }
-
       public:
         LinkAddressType Search(LinkAddressType source, LinkAddressType target)
         {

@@ -32,7 +32,7 @@
       public:
         auto& GetLinkReference(LinkAddressType linkAddress)
         {
-            return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress);
+            return reinterpret_cast<RawLink<LinkAddressType>*>(Links)[linkAddress];
         }
 
       public:

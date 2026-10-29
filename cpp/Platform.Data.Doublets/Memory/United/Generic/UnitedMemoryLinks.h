@@ -20,7 +20,6 @@
         using LinkType = base::LinkType;
         using WriteHandlerType = base::WriteHandlerType;
         using ReadHandlerType = base::ReadHandlerType;
-        //        using base::Constants;
 
       public:
         using base::DefaultLinksSizeStep;
@@ -31,9 +30,6 @@
       public:
         using base::Constants;
 
-        // private: using base::_memory;
-
-        // TODO: implicit constructor for Constants
       public:
         using base::base;
     };

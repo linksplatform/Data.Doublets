@@ -21,7 +21,6 @@
                               LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
                               LinksTargetsSizeBalancedTreeMethods<LinksOptionsType>,
                               UnusedLinksListMethods<LinksOptionsType>, Platform::Data::ILinks<LinksOptionsType>>;
-        StorageType storage{HeapResizableDirectMemory{}};
         UsingStorage<StorageType>(action);
     }
 
@@ -38,7 +37,6 @@
                               LinksTargetsSizeBalancedTreeMethods<LinksOptionsType>,
                               UnusedLinksListMethods<LinksOptionsType>, Platform::Data::ILinks<LinksOptionsType>>;
         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
-        DecoratedStorageType storage{HeapResizableDirectMemory{}};
         UsingStorage<DecoratedStorageType>(action);
     }
 
@@ -53,7 +51,6 @@
                               LinksSourcesRecursionlessSizeBalancedTreeMethods<LinksOptionsType>,
                               LinksTargetsRecursionlessSizeBalancedTreeMethods<LinksOptionsType>,
                               UnusedLinksListMethods<LinksOptionsType>, Platform::Data::ILinks<LinksOptionsType>>;
-        StorageType storage{HeapResizableDirectMemory{}};
         UsingStorage<StorageType>(action);
     }
 
@@ -71,7 +68,6 @@
                               LinksTargetsRecursionlessSizeBalancedTreeMethods<LinksOptionsType>,
                               UnusedLinksListMethods<LinksOptionsType>, Platform::Data::ILinks<LinksOptionsType>>;
         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
-        DecoratedStorageType storage{HeapResizableDirectMemory{}};
         UsingStorage<DecoratedStorageType>(action);
     }
 
@@ -86,7 +82,6 @@
                               LinksSourcesAvlBalancedTreeMethods<LinksOptionsType>,
                               LinksTargetsAvlBalancedTreeMethods<LinksOptionsType>,
                               UnusedLinksListMethods<LinksOptionsType>, Platform::Data::ILinks<LinksOptionsType>>;
-        StorageType storage{HeapResizableDirectMemory{}};
         UsingStorage<StorageType>(action);
     }
 
@@ -103,7 +98,6 @@
                               LinksTargetsAvlBalancedTreeMethods<LinksOptionsType>,
                               UnusedLinksListMethods<LinksOptionsType>, Platform::Data::ILinks<LinksOptionsType>>;
         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
-        DecoratedStorageType storage{HeapResizableDirectMemory{}};
         UsingStorage<DecoratedStorageType>(action);
     }
 
