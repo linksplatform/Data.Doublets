@@ -83,6 +83,23 @@
 }
 -->
 
+<h2 id="update-contract-investigation">Update contract investigation</h2>
+<p>For <a href="https://github.com/linksplatform/Data.Doublets/issues/517">issue #517</a>, see
+the <a href="../update-csharp.html">update recipes</a> and
+<a href="../update-investigation.html">research decision</a>. Run:</p>
+<pre><code class="lang-sh">dotnet test csharp/Platform.Data.Doublets.Tests -c Release \
+  --filter 'FullyQualifiedName~UpdateContractTests' \
+  --blame-hang-timeout 3m -m:1 -p:UseSharedCompilation=false
+dotnet run --project examples/Update -c Release
+python3 experiments/verify_update_contract_guards.py /path/to/dotnet
+</code></pre>
+<p>The last command temporarily adds compulsory checks to raw updates and omits the
+validator in a terminal-spy test. It requires exactly three failed contract tests
+and restores sources in <code>finally</code>. Only valid raw addresses and terminal-spy
+requests run; invalid raw memory is never accessed. Run without concurrent builds
+or source edits, then rebuild to restore current binaries. Logs/TRX stay in
+<code>artifacts/issue-517/negative/</code>.</p>
+<h2 id="deletion-probes">Deletion probes</h2>
 <p>These finite probes support <a href="https://github.com/linksplatform/Data.Doublets/issues/518">issue #518</a>
 and the <a href="https://github.com/linksplatform/Data.Doublets/pull/527#issuecomment-6492081425">architecture review</a>.
 Read the <a href="../deletion-csharp.html">C# guide</a>, <a href="../deletion-rust.html">Rust guide</a>,

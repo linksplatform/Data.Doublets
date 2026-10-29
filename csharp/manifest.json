@@ -1262,6 +1262,26 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "docs/update-csharp.md",
+      "output": {
+        ".html": {
+          "relative_path": "update-csharp.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/update-investigation.md",
+      "output": {
+        ".html": {
+          "relative_path": "update-investigation.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Resource",
       "source_relative_path": "examples/Deletion/Program.cs",
       "output": {
@@ -1277,6 +1297,26 @@
       "output": {
         ".html": {
           "relative_path": "examples/Deletion/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "examples/Update/Program.cs",
+      "output": {
+        "resource": {
+          "relative_path": "examples/Update/Program.cs"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "examples/Update/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "examples/Update/README.html"
         }
       },
       "version": ""
@@ -1317,6 +1357,16 @@
       "output": {
         "resource": {
           "relative_path": "experiments/reproduce_deletion_contract.py"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "experiments/verify_update_contract_guards.py",
+      "output": {
+        "resource": {
+          "relative_path": "experiments/verify_update_contract_guards.py"
         }
       },
       "version": ""

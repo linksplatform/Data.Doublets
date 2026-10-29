@@ -75,7 +75,7 @@
 
 
   <h1 id="Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1" data-uid="Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1" class="text-break">
-Class LinksInnerReferenceExistenceValidator&lt;TLinkAddress&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksInnerReferenceExistenceValidator.cs/#L18"><i class="bi bi-code-slash"></i></a>
+Class LinksInnerReferenceExistenceValidator&lt;TLinkAddress&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksInnerReferenceExistenceValidator.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -391,6 +391,12 @@ Class LinksInnerReferenceExistenceValidator&lt;TLinkAddress&gt;  <a class="heade
 
 
 
+  <h2 id="Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Validates internal references in reads and both update argument lists, and checks
+deleted addresses. Place outside resolver layers to reject missing references
+before searches or mutations. Non-internal values are not validated as update
+addresses; callers must still supply a concrete internal update address.</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -401,7 +407,7 @@ Class LinksInnerReferenceExistenceValidator&lt;TLinkAddress&gt;  <a class="heade
 
   <h3 id="Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1__ctor_Platform_Data_Doublets_ILinks__0__" data-uid="Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.#ctor(Platform.Data.Doublets.ILinks{`0})">
   LinksInnerReferenceExistenceValidator(ILinks&lt;TLinkAddress&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksInnerReferenceExistenceValidator.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksInnerReferenceExistenceValidator.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>
@@ -442,7 +448,7 @@ Class LinksInnerReferenceExistenceValidator&lt;TLinkAddress&gt;  <a class="heade
 
   <h3 id="Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Delete_System_Collections_Generic_IList__0__Platform_Delegates_WriteHandler__0__" data-uid="Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete(System.Collections.Generic.IList{`0},Platform.Delegates.WriteHandler{`0})">
   Delete(IList&lt;TLinkAddress&gt;?, WriteHandler&lt;TLinkAddress&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksInnerReferenceExistenceValidator.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksInnerReferenceExistenceValidator.cs/#L105"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>
@@ -487,7 +493,7 @@ Class LinksInnerReferenceExistenceValidator&lt;TLinkAddress&gt;  <a class="heade
 
   <h3 id="Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Each_System_Collections_Generic_IList__0__Platform_Delegates_ReadHandler__0__" data-uid="Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Each(System.Collections.Generic.IList{`0},Platform.Delegates.ReadHandler{`0})">
   Each(IList&lt;TLinkAddress&gt;?, ReadHandler&lt;TLinkAddress&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksInnerReferenceExistenceValidator.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksInnerReferenceExistenceValidator.cs/#L57"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>
@@ -535,7 +541,7 @@ Class LinksInnerReferenceExistenceValidator&lt;TLinkAddress&gt;  <a class="heade
 
   <h3 id="Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__Platform_Delegates_WriteHandler__0__" data-uid="Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},Platform.Delegates.WriteHandler{`0})">
   Update(IList&lt;TLinkAddress&gt;?, IList&lt;TLinkAddress&gt;?, WriteHandler&lt;TLinkAddress&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksInnerReferenceExistenceValidator.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksInnerReferenceExistenceValidator.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>
@@ -590,7 +596,7 @@ Class LinksInnerReferenceExistenceValidator&lt;TLinkAddress&gt;  <a class="heade
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksInnerReferenceExistenceValidator.cs/#L18" class="edit-link">Edit this page</a>
+          <a href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksInnerReferenceExistenceValidator.cs/#L24" class="edit-link">Edit this page</a>
         </div>
 
 

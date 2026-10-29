@@ -6,7 +6,7 @@ var searchData=
   ['a_20href_20https_3a_20linksplatform_20github_20io_20data_20doublets_20documentation_20a_3',['&lt;a href=&quot;https://linksplatform.github.io/Data.Doublets&quot; &gt;Documentation&lt;/a&gt;',['../index.html#autotoc_md4',1,'']]],
   ['after_4',['after',['../structPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1UniLinks_3_01TLinkAddress_01_4_1_1Transition.html#acd12f1d6f492b9aa400da4582b6e5478',1,'Platform::Data::Doublets::Decorators::UniLinks&lt; TLinkAddress &gt;::Transition::After'],['../UniLinks_8h.html#a99415f839bb677fe04dfcc3806fa715f',1,'After:&#160;UniLinks.h']]],
   ['allocatedlinks_5',['AllocatedLinks',['../structPlatform_1_1Data_1_1Doublets_1_1Memory_1_1LinksHeader.html#a788e195d124381378697208158c0102a',1,'Platform::Data::Doublets::Memory::LinksHeader']]],
-  ['and_20design_6',['Deletion contracts and design',['../index.html#autotoc_md3',1,'']]],
+  ['and_20design_6',['Update/deletion contracts and design',['../index.html#autotoc_md3',1,'']]],
   ['any_7',['any',['../structPlatform_1_1Data_1_1Doublets_1_1Ffi_1_1FfiConstants.html#a21bc6ec43bfd3beed2e3d8f48574e081',1,'Platform::Data::Doublets::Ffi::FfiConstants']]],
   ['anylinkisany_8',['AnyLinkIsAny',['../classPlatform_1_1Data_1_1Doublets_1_1UInt64LinksExtensions.html#a5170133626a8a3a9b3eea7c375aa609b',1,'Platform::Data::Doublets::UInt64LinksExtensions']]],
   ['appendstructure_9',['AppendStructure',['../classPlatform_1_1Data_1_1Doublets_1_1UInt64LinksExtensions.html#ab6ea08e7ac715960d965d2c540ba3bd5',1,'Platform::Data::Doublets::UInt64LinksExtensions']]],

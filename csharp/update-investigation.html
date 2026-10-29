@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Update contract investigation for issue 517 | Platform.Data.Doublets </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Update contract investigation for issue 517 | Platform.Data.Doublets ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linksplatform/Data.Doublets/blob/main/docs/update-investigation.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="update-contract-investigation-for-issue-517">Update contract investigation for issue 517</h1>
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": ["# Update contract investigation for issue 517", "*"]
+  },
+  "MD013": { "tables": false }
+}
+-->
+
+<p>Investigated at main <code>8125301e57357bd7ed50d080eaaeb3f6fd319599</code>, after PR #527.
+Read the complete <a href="https://github.com/linksplatform/Data.Doublets/issues/517">issue</a>,
+its two comments, all PR #537 comment/review endpoints, and the
+<a href="https://github.com/linksplatform/Data.Doublets/pull/527#issuecomment-6492081425">architecture decision</a>.
+No required sub-issues were listed. The later issue comments supersede the
+original suggestion to add mandatory checks to raw updates.</p>
+<h2 id="decision">Decision</h2>
+<p>Keep runtime behavior unchanged. Existing composition already allows users to
+reject missing internal addresses, check one operation, skip missing operations,
+or trust a caller-managed sequence. Adding compulsory backend checks would
+remove an intentional option. A new default or convenience wrapper would not
+add configurability to these cases. The missing pieces were update-specific
+documentation, discoverability, executable examples and regression evidence.</p>
+<p>The existing validator has a broader contract than checking just the address:
+it validates every internal value in restriction and substitution, and also
+participates in reads and deletions. Non-internal values are outside that
+validator's scope. The <a href="update-csharp.html">recipes</a> explain range checking for
+untrusted addresses and how to choose a narrower per-call policy.</p>
+<h2 id="traced-paths">Traced paths</h2>
+<ul>
+<li>Both memory <code>Update</code> implementations obtain the slot and detach/attach indexes
+without first checking liveness. Unallocated and freed addresses are outside
+their caller contract; inserting a check here is deliberately rejected.</li>
+<li>The address overload constructs restriction/substitution lists and forwards
+to the selected store. The Platform.Data 0.16.1 adapter derives an address
+from callbacks; it does not establish liveness.</li>
+<li>The automatic composition adds uniqueness, contents reset and usages handling.
+<code>LinksUniquenessResolver.Update</code> searches for the requested pair before deciding
+whether to update or resolve a conflict. An inner validator is too late for an
+entry-boundary guarantee.</li>
+<li><code>LinksInnerReferenceExistenceValidator.Update</code> validates both argument lists
+before forwarding. <code>EnsureInnerReferenceExists</code> only checks the configured
+internal range. Platform.Data's <code>Exists</code> accepts configured external references,
+so a range guard is needed to establish that an untrusted update id is internal.</li>
+<li>Per-call <code>EnsureLinkExists</code> or an <code>Exists</code> branch selects the same missing-slot
+decision without changing other operations. Endpoint validity remains a separate
+caller choice. Existence does not provide locking or stale-handle detection.</li>
+</ul>
+<h2 id="requirement-and-verification-inventory">Requirement and verification inventory</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement from issue/comments</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Research whether more configurability requires runtime changes</td>
+<td>Traced paths above; all initial 100 contract cases pass before library/documentation changes</td>
+</tr>
+<tr>
+<td>Preserve raw update without compulsory existence validation</td>
+<td>Two valid raw-store tests override existence checking to fail if called; verify callbacks, results and indexes</td>
+</tr>
+<tr>
+<td>Reject never-created and freed addresses by explicit policy</td>
+<td>Both backends, plain/automatic compositions, outer validator and per-call checks</td>
+</tr>
+<tr>
+<td>Validate before resolver searches, resets or merges</td>
+<td>Terminal spy sees no read/update/delete after outer validator rejection, including a missing endpoint</td>
+</tr>
+<tr>
+<td>Do not silently add validation to automatic resolution</td>
+<td>Terminal spy absorbs a missing request safely and records search/update forwarding; raw memory never receives it</td>
+</tr>
+<tr>
+<td>Preserve contents, counts, source/target indexes and allocator</td>
+<td>Snapshot, pair-search, source/target enumeration, absent address, callback and subsequent two-allocation assertions</td>
+</tr>
+<tr>
+<td>Preserve valid checked updates</td>
+<td>Four backend/composition cases check address results, callback data, <code>Break</code>, count and final search</td>
+</tr>
+<tr>
+<td>Explain validator scope and alternatives</td>
+<td>Service-constant test uses a terminal spy; recipes distinguish internal address, endpoint validation, no-op and raw policies</td>
+</tr>
+<tr>
+<td>Make guidance usable and discoverable</td>
+<td>Documentation navigation, README, XML remarks, executable <code>examples/Update</code>, automatic C# CI execution</td>
+</tr>
+</tbody>
+</table>
+<p>The missing-update matrix has 96 cases, each running byte, ushort, uint and ulong:
+two backends × two compositions × three policies × four missing-slot scenarios
+× two pair choices. Each invokes the address adapter, handler overload and primitive
+null-handler form. Existing-pair cases exercise the boundary before a possible
+uniqueness merge; unused-pair cases verify a later <code>CreateAndUpdate</code> is retained
+and searchable. All invalid requests stop at an explicit policy or terminal spy.
+The suite never intentionally corrupts raw memory or relies on a hang to pass.</p>
+<p>The reported raw corruption was not replayed because the issue's architecture
+feedback explicitly excludes invalid raw writes as in-process regression probes.
+Tests establish the selected contract on current main; they are not evidence of
+a newly repaired backend bug. See the PR for final full-suite and hosted results.</p>
+<p>The <a href="experiments/verify_update_contract_guards.py">negative experiment</a>
+temporarily inserts mandatory raw checks and removes the outer validator only
+in the terminal-spy test. Exactly three contract tests fail, then sources are
+restored. This verifies the regression assertions without unsafe raw requests.
+See the <a href="experiments/README.html">experiment commands</a> for reproduction.</p>
+<h2 id="scope-of-related-work">Scope of related work</h2>
+<p>The shared design already covers C# and Rust. PR #527's
+<a href="deletion-audit.html">audit</a> separately tracks mandatory Rust mutation checks,
+index selection and allocation proposals. Those are not dependencies of this
+C# update-contract investigation, and no Rust implementation changes are claimed.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linksplatform/Data.Doublets/blob/main/docs/update-investigation.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

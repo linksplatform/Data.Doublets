@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>C# update contracts | Platform.Data.Doublets </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="C# update contracts | Platform.Data.Doublets ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linksplatform/Data.Doublets/blob/main/docs/update-csharp.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="c-update-contracts">C# update contracts</h1>
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": ["# C# update contracts", "*"]
+  },
+  "MD013": { "tables": false }
+}
+-->
+
+<p><code>UnitedMemoryLinks&lt;T&gt;</code> and <code>SplitMemoryLinks&lt;T&gt;</code> update a live address under
+caller-managed preconditions. Missing-address validation is an optional policy,
+as described in the <a href="design.html">shared design</a>. The automatic uniqueness/usages
+composition does not select that policy. A returned address does not establish
+that an unchecked request was valid.</p>
+<p>For <a href="https://github.com/linksplatform/Data.Doublets/issues/517">issue #517</a>, the
+existing validator and per-call helpers provide the requested checked boundary.
+No new decorator or compulsory backend check is needed. See the
+<a href="update-investigation.html">investigation and evidence</a> and
+<a href="examples/Update/README.html">runnable recipes</a>.</p>
+<h2 id="choose-an-update-contract">Choose an update contract</h2>
+<p>Import <code>Platform.Data</code>, <code>Platform.Data.Doublets</code>, and
+<code>Platform.Data.Doublets.Decorators</code> for these APIs.</p>
+<table>
+<thead>
+<tr>
+<th>Choice</th>
+<th>Missing internal address</th>
+<th>Other responsibilities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raw store or automatic uniqueness/usages composition</td>
+<td>Outside the caller contract; no guaranteed exception or result</td>
+<td>Caller guarantees a live update address and valid endpoints/index state</td>
+</tr>
+<tr>
+<td>Outer <code>LinksInnerReferenceExistenceValidator&lt;T&gt;</code></td>
+<td>Throws <code>ArgumentLinkDoesNotExistsException&lt;T&gt;</code> before forwarding</td>
+<td>Validates every internal reference in both restriction and substitution, and also affects reads/deletion</td>
+</tr>
+<tr>
+<td><code>EnsureLinkExists(id, nameof(id))</code> before updating</td>
+<td>Throws before updating</td>
+<td>Checks one reference; endpoint policy remains separate</td>
+</tr>
+<tr>
+<td><code>if (links.Exists(id))</code> before updating</td>
+<td>Skips the complete update</td>
+<td>Caller chooses how to represent the skipped result</td>
+</tr>
+<tr>
+<td>Application-specific <code>LinksDecoratorBase&lt;T&gt;.Update</code> override</td>
+<td>Whatever the application explicitly selects</td>
+<td>Guard before forwarding; use a focused wrapper when the broader validator contract is unsuitable</td>
+</tr>
+</tbody>
+</table>
+<p>The update <strong>address</strong> must be a live internal link. Null, <code>Any</code>, <code>Itself</code>, other
+service constants and external values cannot identify a raw slot to update.
+<code>EnsureInnerReferenceExists</code> and its validator only check values classified as
+internal references: they do not turn arbitrary numeric inputs into valid update
+addresses. <code>Exists</code> treats configured external references as existing values,
+so <code>EnsureLinkExists</code> alone also does not prove an external value is a live slot.
+For untrusted address input, first require <code>Constants.IsInternalReference(id)</code>:</p>
+<pre><code class="lang-csharp">if (!links.Constants.IsInternalReference(id))
+    throw new ArgumentOutOfRangeException(nameof(id));
+links.EnsureLinkExists(id, nameof(id));
+links.Update(id, source, target);
+</code></pre>
+<p>That range check concerns the update address. Null endpoints can be useful for
+resetting; supported external endpoints depend on the configured backend.
+The inner-reference validator permits such non-internal endpoint values; it
+does not enforce a particular application's external-reference rules.</p>
+<h2 id="store-wide-rejection-before-resolver-work">Store-wide rejection before resolver work</h2>
+<p>Put the validator outside the complete resolver stack:</p>
+<pre><code class="lang-csharp">ILinks&lt;uint&gt; links = new LinksInnerReferenceExistenceValidator&lt;uint&gt;(
+    raw.DecorateWithAutomaticUniquenessAndUsagesResolution());
+links.CreatePoint();
+links.CreatePoint();
+links.Update(10u, 1u, 2u); // Throws before search, reset, merge or memory update.
+</code></pre>
+<p>For a plain store, construct <code>new LinksInnerReferenceExistenceValidator&lt;uint&gt;(raw)</code>.
+The same boundary rejects a freed middle slot before its free-list metadata can
+be interpreted as a live link. It also rejects missing internal source/target
+references and internal references in a low-level substitution. If only address
+validation is wanted, use the per-call recipe or a focused application wrapper.</p>
+<p>Wrapping <code>raw</code> with the validator and then adding resolvers outside it does not
+provide this ordering: uniqueness can search or merge before the check is reached.
+C# decorators propagate the outer <code>Facade</code> for recursive resolver operations;
+validate at the entry boundary, and use that boundary consistently.</p>
+<p><code>DecorateWithAutomaticUniquenessAndUsagesResolution()</code> composes, outermost first,
+<code>LinksCascadeUniquenessAndUsagesResolver</code>, <code>NonNullContentsLinkDeletionResolver</code>,
+and <code>LinksCascadeUsagesResolver</code>. Their names describe resolution policies,
+not existence guarantees. A deletion ignore policy likewise does not guard updates.</p>
+<h2 id="per-call-checks-and-missing-address-no-ops">Per-call checks and missing-address no-ops</h2>
+<p>When <code>id</code> is already known to be an internal address, choose a throwing check:</p>
+<pre><code class="lang-csharp">links.EnsureLinkExists(id, nameof(id));
+links.Update(id, source, target);
+</code></pre>
+<p>Or skip a missing update entirely:</p>
+<pre><code class="lang-csharp">if (links.Constants.IsInternalReference(id) &amp;&amp; links.Exists(id))
+{
+    links.Update(id, source, target);
+}
+</code></pre>
+<p>The skipped branch performs no update, resolver search, mutation or callback.
+Return a separate status or a chosen application value if a result is required.
+Do not fabricate a successful updated address. <code>NoExceptionsDecorator</code> suppresses
+exceptions but does not undo earlier writes or validate unsafe requests.</p>
+<h2 id="caller-managed-updates-and-overload-results">Caller-managed updates and overload results</h2>
+<p>For a valid live link, raw updates retain the route without existence validation:</p>
+<pre><code class="lang-csharp">var first = raw.CreatePoint();
+var second = raw.CreatePoint();
+raw.Update(second, first, second);
+</code></pre>
+<p>The current layout requires coherent index/free-list metadata, a live internal
+update address, and endpoints that the selected indexing strategy supports.
+For split internal indexing, use live internal endpoint links (or null to reset);
+external endpoints require the configured external range. Updating a freed slot
+or an unallocated address violates these preconditions and may corrupt indexes,
+allocation or memory, or hang. The observed outcomes in the issue are not a
+supported missing-address policy. Do not probe invalid raw writes in-process.</p>
+<table>
+<thead>
+<tr>
+<th>Overload</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Update(id, source, target)</code></td>
+<td>Address adapter: derives its result from the write callback</td>
+</tr>
+<tr>
+<td><code>Update(id, source, target, handler)</code></td>
+<td>Inner flow result, such as <code>Continue</code> or <code>Break</code></td>
+</tr>
+<tr>
+<td><code>Update(restriction, substitution, handler)</code></td>
+<td>Primitive flow result; null handler does not invoke a callback</td>
+</tr>
+<tr>
+<td><code>Update(restriction, substitution)</code></td>
+<td>Address adapter around the primitive</td>
+</tr>
+</tbody>
+</table>
+<p>Use a single concrete address in primitive restrictions and keep the substitution
+index consistent with that address. The raw implementation does not implement a
+general query/update language. Convenience <code>Update</code> overloads taking two or four
+values can select compound merge or update/create/get operations; they are not
+missing-address validators. Uniqueness resolution can merge/delete links, so
+the result and callbacks follow the selected stack's behavior.</p>
+<p><code>Break</code> is callback flow after a write; it does not roll the write back. Guarding
+existence is not synchronization. Prevent concurrent deletion/reuse and unexpected
+callback mutation between checking and updating. A reused numeric address names
+its new live link; these checks do not supply generation/version identity.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linksplatform/Data.Doublets/blob/main/docs/update-csharp.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

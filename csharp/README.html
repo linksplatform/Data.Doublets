@@ -116,10 +116,13 @@ links.Delete(link);
 </code></pre>
 <h2 id="sqlite-vs-doublets"><a href="https://github.com/linksplatform/Comparisons.SQLiteVSDoublets">SQLite vs Doublets</a></h2>
 <p><a href="https://github.com/linksplatform/Comparisons.SQLiteVSDoublets"><img src="https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Examples/sqlite_vs_doublets_performance.png" alt="Image with result of performance comparison between SQLite and Doublets." title="Result of performance comparison between SQLite and Doublets"></a></p>
-<h2 id="deletion-contracts-and-design">Deletion contracts and design</h2>
+<h2 id="updatedeletion-contracts-and-design">Update/deletion contracts and design</h2>
 <p>Choose validation and resolution per call or through optional decorators. Raw
-C# deletion requires a live link, reset endpoints and caller-managed usages.</p>
+C# deletion requires a live link, reset endpoints and caller-managed usages.
+Raw updates require a live internal address and valid endpoint/index state.</p>
 <ul>
+<li><a href="https://linksplatform.github.io/Data.Doublets/csharp/update-csharp.html">C# update recipes and checked boundaries</a></li>
+<li><a href="https://linksplatform.github.io/Data.Doublets/csharp/examples/Update/README.html">Runnable update examples</a></li>
 <li><a href="https://linksplatform.github.io/Data.Doublets/csharp/deletion-csharp.html">C# deletion recipes and overload contracts</a></li>
 <li><a href="https://linksplatform.github.io/Data.Doublets/csharp/deletion-rust.html">Rust deletion recipes and current implementation limits</a></li>
 <li><a href="https://linksplatform.github.io/Data.Doublets/csharp/design.html">Shared vision and design guidelines</a></li>
