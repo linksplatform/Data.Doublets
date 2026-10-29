@@ -73,13 +73,18 @@ public class LinksUniquenessResolver<TLinkAddress> : LinksDecoratorBase<TLinkAdd
     ///     <para></para>
     /// </param>
     /// <param name="newLinkAddress">
-    ///     <para>Callback control (Continue or Break).</para>
+    ///     <para>The new link address.</para>
     ///     <para></para>
     /// </param>
     /// <returns>
-    ///     <para>The new link address.</para>
+    ///     <para>Callback control (Continue or Break).</para>
     ///     <para></para>
     /// </returns>
+    /// <remarks>
+    /// Cleanup is followed by a survivor-to-survivor notification that identifies
+    /// the resolved link, including unchanged pairs. Break suppresses later
+    /// notifications while cleanup completes.
+    /// </remarks>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual TLinkAddress ResolveAddressChangeConflict(TLinkAddress oldLinkAddress, TLinkAddress newLinkAddress, WriteHandler<TLinkAddress>? handler)
     {

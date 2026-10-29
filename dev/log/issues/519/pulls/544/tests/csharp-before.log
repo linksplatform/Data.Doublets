@@ -1,0 +1,225 @@
+  Platform.Data.Doublets -> /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets/bin/Release/net8.0/Platform.Data.Doublets.dll
+  Platform.Data.Doublets.Tests -> /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll
+Test run for /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.75]     Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(split: False, policy: "raw") [FAIL]
+[xUnit.net 00:00:00.81]     Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(split: False, policy: "unique") [FAIL]
+[xUnit.net 00:00:00.82]     Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(split: False, policy: "automatic") [FAIL]
+[xUnit.net 00:00:00.83]     Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(split: True, policy: "raw") [FAIL]
+[xUnit.net 00:00:00.84]     Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(split: True, policy: "unique") [FAIL]
+[xUnit.net 00:00:00.85]     Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(split: True, policy: "automatic") [FAIL]
+[xUnit.net 00:00:00.86]     Platform.Data.Doublets.Tests.UniquenessResultTests.CreationReturnsLiveAddresses(split: True, policy: "automatic") [FAIL]
+[xUnit.net 00:00:00.98]     Platform.Data.Doublets.Tests.UniquenessResultTests.CreationReturnsLiveAddresses(split: False, policy: "automatic") [FAIL]
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(split: False, policy: "raw") [94 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   2
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 130
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(split: False, policy: "unique") [21 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   2
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 130
+   at InvokeStub_UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(split: False, policy: "automatic") [2 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   2
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 130
+   at InvokeStub_UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(split: True, policy: "raw") [23 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   2
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 130
+   at InvokeStub_UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(split: True, policy: "unique") [4 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   2
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 130
+   at InvokeStub_UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(split: True, policy: "automatic") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   2
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 130
+   at InvokeStub_UniquenessResultTests.BreakSuppressesLaterCallbacksButCompletesCreation(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.CreationReturnsLiveAddresses(split: True, policy: "automatic") [52 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   3
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.CheckCreation[T](Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 47
+   at Platform.Data.Doublets.Tests.UniquenessResultTests.CreationReturnsLiveAddresses(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 30
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.CreationReturnsLiveAddresses(split: False, policy: "automatic") [15 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   3
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.CheckCreation[T](Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 47
+   at Platform.Data.Doublets.Tests.UniquenessResultTests.CreationReturnsLiveAddresses(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 30
+   at InvokeStub_UniquenessResultTests.CreationReturnsLiveAddresses(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.10]     Platform.Data.Doublets.Tests.UniquenessResultTests.CreationReturnsLiveAddresses(split: False, policy: "unique") [FAIL]
+[xUnit.net 00:00:01.11]     Platform.Data.Doublets.Tests.UniquenessResultTests.CreationReturnsLiveAddresses(split: True, policy: "unique") [FAIL]
+[xUnit.net 00:00:01.13]     Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(split: True, policy: "automatic") [FAIL]
+[xUnit.net 00:00:01.13]     Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(split: False, policy: "automatic") [FAIL]
+[xUnit.net 00:00:01.14]     Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(split: False, policy: "unique") [FAIL]
+[xUnit.net 00:00:01.14]     Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(split: True, policy: "unique") [FAIL]
+[xUnit.net 00:00:01.15]     Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(split: True, policy: "raw") [FAIL]
+[xUnit.net 00:00:01.15]     Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(split: False, policy: "raw") [FAIL]
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.CreationReturnsLiveAddresses(split: False, policy: "unique") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   3
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.CheckCreation[T](Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 47
+   at Platform.Data.Doublets.Tests.UniquenessResultTests.CreationReturnsLiveAddresses(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 30
+   at InvokeStub_UniquenessResultTests.CreationReturnsLiveAddresses(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.CreationReturnsLiveAddresses(split: True, policy: "unique") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   3
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.CheckCreation[T](Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 47
+   at Platform.Data.Doublets.Tests.UniquenessResultTests.CreationReturnsLiveAddresses(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 30
+   at InvokeStub_UniquenessResultTests.CreationReturnsLiveAddresses(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(split: True, policy: "automatic") [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   0
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 74
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(split: False, policy: "automatic") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   0
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 74
+   at InvokeStub_UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(split: False, policy: "unique") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   0
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 74
+   at InvokeStub_UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(split: True, policy: "unique") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   0
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 74
+   at InvokeStub_UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(split: True, policy: "raw") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   0
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 74
+   at InvokeStub_UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(split: False, policy: "raw") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   0
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 74
+   at InvokeStub_UniquenessResultTests.UpdateOrCreateOrGetReturnsAddressForEveryBranch(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.16]     Platform.Data.Doublets.Tests.UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(split: False, policy: "automatic") [FAIL]
+[xUnit.net 00:00:01.17]     Platform.Data.Doublets.Tests.UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(split: True, policy: "unique") [FAIL]
+[xUnit.net 00:00:01.18]     Platform.Data.Doublets.Tests.UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(split: True, policy: "automatic") [FAIL]
+[xUnit.net 00:00:01.18]     Platform.Data.Doublets.Tests.UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(split: False, policy: "unique") [FAIL]
+[xUnit.net 00:00:01.19]     Platform.Data.Doublets.Tests.UniquenessResultTests.CreateAndUpdateRetainsBreakEvenWhenInnerUpdateReturnsContinue [FAIL]
+Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(split: False, policy: "automatic") [26 ms]
+  Error Message:
+   Assert.Equal() Failure: Collections differ
+Expected: uint[] [1, 1, 1]
+Actual:          null
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 102
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(split: True, policy: "unique") [8 ms]
+  Error Message:
+   Assert.Equal() Failure: Collections differ
+Expected: uint[] [1, 1, 1]
+Actual:          null
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 102
+   at InvokeStub_UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(split: True, policy: "automatic") [9 ms]
+  Error Message:
+   Assert.Equal() Failure: Collections differ
+Expected: uint[] [1, 1, 1]
+Actual:          null
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 102
+   at InvokeStub_UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(split: False, policy: "unique") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Collections differ
+Expected: uint[] [1, 1, 1]
+Actual:          null
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(Boolean split, String policy) in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 102
+   at InvokeStub_UniquenessResultTests.MergeReportsSurvivorAfterDeletionCallbacks(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.UniquenessResultTests.CreateAndUpdateRetainsBreakEvenWhenInnerUpdateReturnsContinue [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 4294967294
+Actual:   4294967295
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.UniquenessResultTests.CreateAndUpdateRetainsBreakEvenWhenInnerUpdateReturnsContinue() in /tmp/gh-issue-solver-1793314733832/csharp/Platform.Data.Doublets.Tests/UniquenessResultTests.cs:line 144
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+Results File: /tmp/gh-issue-solver-1793314733832/artifacts/issue-519/issue-519-before.trx
+
+Failed!  - Failed:    21, Passed:     2, Skipped:     0, Total:    23, Duration: 512 ms - Platform.Data.Doublets.Tests.dll (net8.0)
