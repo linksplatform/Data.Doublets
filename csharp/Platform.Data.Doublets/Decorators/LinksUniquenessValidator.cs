@@ -52,7 +52,6 @@ public class LinksUniquenessValidator<TLinkAddress> : LinksDecoratorBase<TLinkAd
     public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
     {
         var links = _links;
-        var constants = _constants;
         links.EnsureDoesNotExists(source: links.GetSource(link: substitution), target: links.GetTarget(link: substitution));
         return links.Update(restriction: restriction, substitution: substitution, handler: handler);
     }

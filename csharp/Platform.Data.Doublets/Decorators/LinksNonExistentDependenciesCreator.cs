@@ -7,6 +7,7 @@ using Platform.Delegates;
 
 namespace Platform.Data.Doublets.Decorators;
 
+/// <summary>Creates missing dependencies before updating links.</summary>
 /// <remarks>
 ///     Not practical if newSource and newTarget are too big.
 ///     To be able to use practical version we should allow to create link at any specific location inside
@@ -51,7 +52,6 @@ public class LinksNonExistentDependenciesCreator<TLinkAddress> : LinksDecoratorB
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
     {
-        var constants = _constants;
         var links = _links;
         links.EnsureCreated(links.GetSource(link: substitution), links.GetTarget(link: substitution));
         return links.Update(restriction: restriction, substitution: substitution, handler: handler);

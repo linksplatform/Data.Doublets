@@ -182,7 +182,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         _dataMemoryReservationStepInBytes = memoryReservationStep * LinkDataPartSizeInBytes;
         _indexMemoryReservationStepInBytes = memoryReservationStep * LinkIndexPartSizeInBytes;
         _useLinkedList = useLinkedList;
-        Constants = constants;
+        _constants = constants;
     }
 
     /// <summary>
@@ -225,11 +225,10 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     ///     </para>
     ///     <para></para>
     /// </summary>
-    public virtual LinksConstants<TLinkAddress> Constants
-    {
-        [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
-        get;
-    }
+    protected readonly LinksConstants<TLinkAddress> _constants;
+
+    /// <summary>Gets the configured constants for the store.</summary>
+    public virtual LinksConstants<TLinkAddress> Constants => _constants;
 
     /// <summary>
     ///     <para>
@@ -350,38 +349,23 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                     }
                     else if (externalReferencesRange.Value.Contains(value: target))
                     {
-                        if (_useLinkedList)
-                        {
-                            // The internal source has a list; the external target has a searchable tree.
-                            link = RequiredExternalTargetsTreeMethods.Search(source: source, target: target);
-                        }
-                        else
-                        {
-                            link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
-                        }
+                        // The internal source has a list; the external target has a searchable tree.
+                        link = _useLinkedList
+                            ? RequiredExternalTargetsTreeMethods.Search(source: source, target: target)
+                            : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
                     }
                     else
                     {
-                        if (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
-                        {
-                            link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
-                        }
-                        else
-                        {
-                            link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
-                        }
+                        link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
+                        ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
+                        : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
                     }
                 }
                 else
                 {
-                    if (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
-                    {
-                        link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
-                    }
-                    else
-                    {
-                        link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
-                    }
+                    link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
+                        ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
+                        : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
                 }
                 return (link == constants.Null) ? GetZero() : GetOne();
             }
@@ -550,38 +534,23 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                     }
                     else if (externalReferencesRange.Value.Contains(value: target))
                     {
-                        if (_useLinkedList)
-                        {
-                            // The internal source has a list; the external target has a searchable tree.
-                            link = RequiredExternalTargetsTreeMethods.Search(source: source, target: target);
-                        }
-                        else
-                        {
-                            link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
-                        }
+                        // The internal source has a list; the external target has a searchable tree.
+                        link = _useLinkedList
+                            ? RequiredExternalTargetsTreeMethods.Search(source: source, target: target)
+                            : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
                     }
                     else
                     {
-                        if (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
-                        {
-                            link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
-                        }
-                        else
-                        {
-                            link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
-                        }
+                        link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
+                        ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
+                        : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
                     }
                 }
                 else
                 {
-                    if (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
-                    {
-                        link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
-                    }
-                    else
-                    {
-                        link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
-                    }
+                    link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
+                        ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
+                        : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
                 }
                 return (link == constants.Null) ? @continue : handler(link: GetLinkStruct(linkIndex: link));
             }
@@ -620,6 +589,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         throw new NotSupportedException(message: "Other restriction sizes and methods are not supported.");
     }
 
+    /// <summary>Updates the link that matches the restriction.</summary>
     /// <remarks>
     ///     TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в
     ///     менеджере памяти, а в логике Links)
@@ -702,6 +672,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         return handler != null ? handler(before: before, after: new Link<TLinkAddress>(index: linkIndex, source: source, target: target)) : Constants.Continue;
     }
 
+    /// <summary>Creates a link and invokes the optional callback.</summary>
     /// <remarks>
     ///     TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
     /// </remarks>
@@ -792,14 +763,18 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     /// </param>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual void Init(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
+        => InitializeMemory(dataMemory, indexMemory, () => SetPointers(dataMemory, indexMemory));
+
+    /// <summary>Initializes memory using a concrete pointer initializer during construction.</summary>
+    protected unsafe void InitializeMemory(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, Action setPointers)
     {
         // Read allocated links from header
         if (indexMemory.ReservedCapacity < LinkHeaderSizeInBytes)
         {
             indexMemory.ReservedCapacity = LinkHeaderSizeInBytes;
         }
-        SetPointers(dataMemory: dataMemory, indexMemory: indexMemory);
-        ref var header = ref GetHeaderReference();
+        setPointers();
+        ref var header = ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void*)indexMemory.Pointer);
         var allocatedLinks = long.CreateTruncating(value: header.AllocatedLinks);
         // Adjust reserved capacity
         var minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
@@ -829,16 +804,16 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         {
             minimumIndexReservedCapacity = minimumIndexReservedCapacity / _indexMemoryReservationStepInBytes * _indexMemoryReservationStepInBytes + _indexMemoryReservationStepInBytes;
         }
-        if (dataMemory.ReservedCapacity != minimumDataReservedCapacity)
+        if (dataMemory.ReservedCapacity < minimumDataReservedCapacity)
         {
             dataMemory.ReservedCapacity = minimumDataReservedCapacity;
         }
-        if (indexMemory.ReservedCapacity != minimumIndexReservedCapacity)
+        if (indexMemory.ReservedCapacity < minimumIndexReservedCapacity)
         {
             indexMemory.ReservedCapacity = minimumIndexReservedCapacity;
         }
-        SetPointers(dataMemory: dataMemory, indexMemory: indexMemory);
-        header = ref GetHeaderReference();
+        setPointers();
+        header = ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void*)indexMemory.Pointer);
         // Ensure correctness _memory.UsedCapacity over _header->AllocatedLinks
         // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
         dataMemory.UsedCapacity = ConvertToInt64(value: header.AllocatedLinks) * LinkDataPartSizeInBytes + LinkDataPartSizeInBytes; // First link is read only zero link.

@@ -141,19 +141,19 @@ public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkA
     {
         if (indexTreeType == IndexTreeType.SizeBalancedTree)
         {
-            _createInternalSourceTreeMethods = () => new InternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
-            _createExternalSourceTreeMethods = () => new ExternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
-            _createInternalTargetTreeMethods = () => new InternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
-            _createExternalTargetTreeMethods = () => new ExternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+            _createInternalSourceTreeMethods = () => new InternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+            _createExternalSourceTreeMethods = () => new ExternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+            _createInternalTargetTreeMethods = () => new InternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+            _createExternalTargetTreeMethods = () => new ExternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
         }
         else
         {
-            _createInternalSourceTreeMethods = () => new InternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
-            _createExternalSourceTreeMethods = () => new ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
-            _createInternalTargetTreeMethods = () => new InternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
-            _createExternalTargetTreeMethods = () => new ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+            _createInternalSourceTreeMethods = () => new InternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+            _createExternalSourceTreeMethods = () => new ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+            _createInternalTargetTreeMethods = () => new InternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+            _createExternalTargetTreeMethods = () => new ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
         }
-        Init(dataMemory: dataMemory, indexMemory: indexMemory);
+        InitializeMemory(dataMemory, indexMemory, () => SetPointersCore(dataMemory, indexMemory));
     }
 
     /// <summary>
@@ -171,14 +171,16 @@ public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkA
     ///     <para></para>
     /// </param>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
-    protected override void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
+    protected override void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory) => SetPointersCore(dataMemory, indexMemory);
+
+    private void SetPointersCore(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
     {
         _linksDataParts = (byte*)dataMemory.Pointer;
         _linksIndexParts = (byte*)indexMemory.Pointer;
         _header = _linksIndexParts;
         if (_useLinkedList)
         {
-            InternalSourcesListMethods = new InternalLinksSourcesLinkedListMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts);
+            InternalSourcesListMethods = new InternalLinksSourcesLinkedListMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts);
         }
         else
         {

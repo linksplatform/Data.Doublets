@@ -132,7 +132,6 @@ namespace Platform.Data.Doublets.Tests
         {
             // Constants
             var constants = links.Constants;
-            var zero = T.Zero;
             var one = T.One;
             var two = ++one;
             var h106E = new Hybrid<T>(106L, isExternal: true);
@@ -241,7 +240,6 @@ namespace Platform.Data.Doublets.Tests
                     }
                 }
                 EnsureTrue((ulong)created == addressToUInt64Converter.Convert(links.Count()));
-                var allLinks = links.All();
                 var deletedLinksAddressRange = new Range<int>(0, created);
                 // Random deletions
                 for (var i = 0; i < N; i++)

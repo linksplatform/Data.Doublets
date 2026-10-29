@@ -101,15 +101,15 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         {
             if (indexTreeType == IndexTreeType.SizedAndThreadedAVLBalancedTree)
             {
-                _createSourceTreeMethods = () => new LinksSourcesAvlBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
-                _createTargetTreeMethods = () => new LinksTargetsAvlBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
+                _createSourceTreeMethods = () => new LinksSourcesAvlBalancedTreeMethods<TLinkAddress>(_constants, _links, _header);
+                _createTargetTreeMethods = () => new LinksTargetsAvlBalancedTreeMethods<TLinkAddress>(_constants, _links, _header);
             }
             else
             {
-                _createSourceTreeMethods = () => new LinksSourcesSizeBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
-                _createTargetTreeMethods = () => new LinksTargetsSizeBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
+                _createSourceTreeMethods = () => new LinksSourcesSizeBalancedTreeMethods<TLinkAddress>(_constants, _links, _header);
+                _createTargetTreeMethods = () => new LinksTargetsSizeBalancedTreeMethods<TLinkAddress>(_constants, _links, _header);
             }
-            Init(memory, memoryReservationStep);
+            InitializeMemory(memory, memoryReservationStep, () => SetPointersCore(memory));
         }
 
         /// <summary>
@@ -123,7 +123,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetPointers(IResizableDirectMemory memory)
+        protected override void SetPointers(IResizableDirectMemory memory) => SetPointersCore(memory);
+
+        private void SetPointersCore(IResizableDirectMemory memory)
         {
             _links = (byte*)memory.Pointer;
             _header = _links;

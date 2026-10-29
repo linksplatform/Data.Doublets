@@ -155,6 +155,7 @@ namespace Platform.Data.Doublets
             return links.Delete(new LinkAddress<TLinkAddress>(linkToDelete), handler);
         }
 
+        /// <summary>Deletes every link in the store.</summary>
         /// <remarks>
         /// TODO: Возможно есть очень простой способ это сделать.
         /// (Например просто удалить файл, или изменить его размер таким образом,
@@ -272,6 +273,7 @@ namespace Platform.Data.Doublets
 
         #region Paths
 
+        /// <summary>Checks whether the specified path exists.</summary>
         /// <remarks>
         /// TODO: Как так? Как то что ниже может быть корректно?
         /// Скорее всего практически не применимо
@@ -288,7 +290,6 @@ namespace Platform.Data.Doublets
             {
                 return false;
             }
-            var constants = links.Constants;
             for (var i = 1; i < path.Length; i++)
             {
                 var next = path[i];
@@ -310,6 +311,7 @@ namespace Platform.Data.Doublets
             return true;
         }
 
+        /// <summary>Gets the link reached by following the specified keys.</summary>
         /// <remarks>
         /// Может потребовать дополнительного стека для PathElement's при использовании SequenceWalker.
         /// </remarks>
@@ -501,6 +503,7 @@ namespace Platform.Data.Doublets
 
 
 
+        /// <summary>Counts links that use the specified link.</summary>
         /// <param name="link">The link.</param>
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -521,11 +524,13 @@ namespace Platform.Data.Doublets
             return usagesAsSource + usagesAsTarget;
         }
 
+        /// <summary>Checks whether another link uses the specified link.</summary>
         /// <param name="link">The link.</param>
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool HasUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link) where TLinkAddress : IUnsignedNumber<TLinkAddress> { return Comparer<TLinkAddress>.Default.Compare(links.CountUsages(link), TLinkAddress.Zero) > 0; }
 
+        /// <summary>Checks whether the link has the specified source and target.</summary>
         /// <param name="link">The link.</param>
         /// <param name="source">The source.</param>
         /// <param name="target">The target.</param>
@@ -533,7 +538,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Equals<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, TLinkAddress source, TLinkAddress target) where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var constants = links.Constants;
             var values = links.GetRequiredLink(link);
             return links.GetSource(values) == source && links.GetTarget(values) == target;
         }
@@ -562,6 +566,7 @@ namespace Platform.Data.Doublets
             return setter.Result;
         }
 
+        /// <summary>Creates a self-referencing point and invokes the optional callback.</summary>
         /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -589,6 +594,7 @@ namespace Platform.Data.Doublets
         }
 
 
+        /// <summary>Creates a link with the specified source, target and callback.</summary>
         /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <param name="source">The source.</param>
         /// <param name="target">The target.</param>
@@ -689,7 +695,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<TLinkAddress>? ResolveConstantAsSelfReference<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress constant, IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution) where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var constants = links.Constants;
             var restrictionIndex = links.GetIndex(restriction);
             var substitutionIndex = links.GetIndex(substitution);
             if (substitutionIndex == TLinkAddress.Zero)
@@ -750,7 +755,6 @@ namespace Platform.Data.Doublets
             }
             if (newSource == source && newTarget == target)
             {
-                var linkStruct = new Link<TLinkAddress>(link, source, target);
                 return link;
             }
             return links.Update(link, newSource, newTarget, handler);
@@ -787,6 +791,7 @@ namespace Platform.Data.Doublets
 
         public static void DeleteAllUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex) where TLinkAddress : IUnsignedNumber<TLinkAddress> { links.DeleteAllUsages(linkIndex, null); }
 
+        /// <summary>Deletes links that use the specified link and invokes the optional callback.</summary>
         /// <remarks>Before execution of this method ensure that deleted link is detached (all values - source and target are reset to null) or it might enter into infinite recursion.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress DeleteAllUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex, WriteHandler<TLinkAddress>? handler) where TLinkAddress : IUnsignedNumber<TLinkAddress>
@@ -1061,7 +1066,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Format<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link) where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var constants = links.Constants;
             return $"({links.GetIndex(link)}: {links.GetSource(link)} {links.GetTarget(link)})";
         }
 

@@ -275,24 +275,24 @@ internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLi
         }
         if (patternOrCondition is not { Count: > 0 }) // Creation
         {
-            ArgumentNullException.ThrowIfNull(substitution);
+            var creation = substitution ?? throw new ArgumentNullException(nameof(substitution));
             var before = Array.Empty<TLinkAddress>();
             // Что должно означать False здесь? Остановиться (перестать идти) или пропустить (пройти мимо) или пустить (взять)?
             if (matchHandler != null && matchHandler(link: before) == constants.Break)
             {
                 return constants.Break;
             }
-            var after = (IList<TLinkAddress>)substitution.ToArray();
+            var after = (IList<TLinkAddress>)creation.ToArray();
             if (after[index: 0] == default)
             {
                 var newLink = _links.Create();
                 after[index: 0] = newLink;
             }
-            if (substitution.Count == 1)
+            if (creation.Count == 1)
             {
-                after = _links.GetRequiredLink(link: substitution[index: 0]);
+                after = _links.GetRequiredLink(link: creation[index: 0]);
             }
-            else if (substitution.Count == 3)
+            else if (creation.Count == 3)
             {
                 //Links.Create(after);
             }
@@ -358,6 +358,7 @@ internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLi
         throw new NotSupportedException();
     }
 
+    /// <summary>Executes the condition and substitution and returns the recorded changes.</summary>
     /// <remarks>
     ///     IList[IList[IList[T]]]
     ///     |     |     |      |||
@@ -394,14 +395,14 @@ internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLi
         ///     </para>
         ///     <para></para>
         /// </summary>
-        public IList<TLinkAddress>? Before;
+        public readonly IList<TLinkAddress>? Before;
         /// <summary>
         ///     <para>
         ///         The after.
         ///     </para>
         ///     <para></para>
         /// </summary>
-        public IList<TLinkAddress>? After;
+        public readonly IList<TLinkAddress>? After;
 
         /// <summary>
         ///     <para>

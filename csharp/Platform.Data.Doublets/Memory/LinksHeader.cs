@@ -97,7 +97,7 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override bool Equals(object? obj) { return obj is LinksHeader<TLinkAddress> linksHeader ? Equals(linksHeader) : false; }
+        public override bool Equals(object? obj) { return obj is LinksHeader<TLinkAddress> linksHeader && Equals(linksHeader); }
 
         /// <summary>
         /// <para>

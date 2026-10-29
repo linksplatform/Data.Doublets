@@ -52,7 +52,6 @@ public class LinksUniquenessResolver<TLinkAddress> : LinksDecoratorBase<TLinkAdd
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
     {
-        var constants = _constants;
         var links = _links;
         var newLinkAddress = links.SearchOrDefault(source: links.GetSource(link: substitution), target: links.GetTarget(link: substitution));
         if (newLinkAddress == default)

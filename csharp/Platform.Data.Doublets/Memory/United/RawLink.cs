@@ -97,7 +97,7 @@ namespace Platform.Data.Doublets.Memory.United
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override bool Equals(object? obj) { return obj is RawLink<TLinkAddress> link ? Equals(link) : false; }
+        public override bool Equals(object? obj) { return obj is RawLink<TLinkAddress> link && Equals(link); }
 
         /// <summary>
         /// <para>

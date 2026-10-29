@@ -7,6 +7,7 @@ using Platform.Delegates;
 
 namespace Platform.Data.Doublets.Decorators;
 
+/// <summary>Deletes links together with their dependent usages.</summary>
 /// <remarks>
 ///     <para>Must be used in conjunction with NonNullContentsLinkDeletionResolver.</para>
 ///     <para>Должен использоваться вместе с NonNullContentsLinkDeletionResolver.</para>

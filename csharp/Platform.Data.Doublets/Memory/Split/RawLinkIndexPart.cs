@@ -99,7 +99,7 @@ public struct RawLinkIndexPart<TLinkAddress> : IEquatable<RawLinkIndexPart<TLink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public override bool Equals(object? obj)
     {
-        return obj is RawLinkIndexPart<TLinkAddress> link ? Equals(other: link) : false;
+        return obj is RawLinkIndexPart<TLinkAddress> link && Equals(other: link);
     }
 
     /// <summary>

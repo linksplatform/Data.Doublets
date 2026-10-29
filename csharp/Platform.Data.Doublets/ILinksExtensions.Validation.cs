@@ -238,6 +238,7 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>Throws when a link with the specified source and target exists.</summary>
         /// <param name="source">The source.</param>
         /// <param name="target">The target.</param>
         /// <param name="links">Хранилище связей.</param>
@@ -250,6 +251,7 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>Throws when another link uses the specified link.</summary>
         /// <param name="link">The link.</param>
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -261,42 +263,45 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>Creates all requested internal link addresses, retaining existing links.</summary>
         /// <param name="addresses">The addresses.</param>
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] addresses) where TLinkAddress : IUnsignedNumber<TLinkAddress> { links.EnsureCreated(links.Create, addresses); }
 
+        /// <summary>Creates all requested internal link addresses, retaining existing links.</summary>
         /// <param name="addresses">The addresses.</param>
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsurePointsCreated<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] addresses) where TLinkAddress : IUnsignedNumber<TLinkAddress> { links.EnsureCreated(links.CreatePoint, addresses); }
 
+        /// <summary>Creates all requested internal link addresses, retaining existing links.</summary>
         /// <param name="addresses">The addresses.</param>
         /// <param name="creator">The creator.</param>
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, Func<TLinkAddress> creator, params TLinkAddress[] addresses) where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var addressToUInt64Converter = CheckedConverter<TLinkAddress, TLinkAddress>.Default;
-            var uInt64ToAddressConverter = CheckedConverter<TLinkAddress, TLinkAddress>.Default;
-            var nonExistentAddresses = new HashSet<TLinkAddress>(addresses.Where(x => !links.Exists(x)));
-            if (nonExistentAddresses.Count > 0)
+            var remaining = new HashSet<TLinkAddress>(addresses.Where(address =>
+                address != links.Constants.Null &&
+                Comparer<TLinkAddress>.Default.Compare(address, links.Constants.InternalReferencesRange.Maximum) <= 0 &&
+                !links.Exists(address)));
+            var requested = new HashSet<TLinkAddress>(remaining);
+            var created = new HashSet<TLinkAddress>();
+            // Keep intermediate allocations until every requested address exists;
+            // deleting one early could make the allocator return it repeatedly.
+            while (remaining.Count > 0)
             {
-                var max = nonExistentAddresses.Aggregate((left, right) => Comparer<TLinkAddress>.Default.Compare(left, right) >= 0 ? left : right);
-                max = uInt64ToAddressConverter.Convert(TLinkAddress.CreateTruncating(System.Math.Min(ulong.CreateTruncating(max), ulong.CreateTruncating(links.Constants.InternalReferencesRange.Maximum))));
-                var createdLinks = new List<TLinkAddress>();
-                TLinkAddress createdLink = creator();
-                while (createdLink != max)
+                var address = creator();
+                if (address == links.Constants.Null || !created.Add(address))
                 {
-                    createdLinks.Add(createdLink);
+                    throw new InvalidOperationException("The creator did not allocate a new link.");
                 }
-                for (var i = 0; i < createdLinks.Count; i++)
-                {
-                    if (!nonExistentAddresses.Contains(createdLinks[i]))
-                    {
-                        links.Delete(createdLinks[i]);
-                    }
-                }
+                remaining.Remove(address);
+            }
+            foreach (var address in created)
+            {
+                if (!requested.Contains(address)) links.Delete(address, null);
             }
         }
 

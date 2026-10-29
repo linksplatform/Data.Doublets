@@ -10,6 +10,7 @@ using Platform.Threading.Synchronization;
 
 namespace Platform.Data.Doublets
 {
+    /// <summary>Synchronizes access to an underlying link store.</summary>
     /// <remarks>
     /// TODO: Autogeneration of synchronized wrapper (decorator).
     /// TODO: Try to unfold code of each method using IL generation for performance improvements.

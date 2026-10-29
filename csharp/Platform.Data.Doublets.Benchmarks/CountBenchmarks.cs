@@ -18,7 +18,7 @@ namespace Platform.Data.Doublets.Benchmarks
         private static ILinks<TLinkAddress>? _storage;
         private static ILinks<TLinkAddress> _links => _storage ?? throw new System.InvalidOperationException("Run GlobalSetup before a benchmark.");
         private static TLinkAddress _any;
-        private static CheckedConverter<TLinkAddress, long> _addressToInt64Converter = CheckedConverter<TLinkAddress, long>.Default;
+        private static readonly CheckedConverter<TLinkAddress, long> _addressToInt64Converter = CheckedConverter<TLinkAddress, long>.Default;
         private static HeapResizableDirectMemory? _dataMemory;
 
         [Params(10, 100, 1000, 10000, 100000)]

@@ -40,7 +40,7 @@ public abstract class LinksDisposableDecoratorBase<TLinkAddress> : LinksDecorato
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected LinksDisposableDecoratorBase(ILinks<TLinkAddress> links) : base(links: links)
     {
-        Disposable = new DisposableWithMultipleCallsAllowed(disposal: Dispose);
+        Disposable = new DisposableWithMultipleCallsAllowed(disposal: (manual, wasDisposed) => Dispose(manual, wasDisposed));
     }
 
     /// <summary>

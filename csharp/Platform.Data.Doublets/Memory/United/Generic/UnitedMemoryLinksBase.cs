@@ -111,11 +111,10 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </para>
         /// <para></para>
         /// </summary>
-        public virtual LinksConstants<TLinkAddress> Constants
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get;
-        }
+        protected readonly LinksConstants<TLinkAddress> _constants;
+
+        /// <summary>Gets the configured constants for the store.</summary>
+        public virtual LinksConstants<TLinkAddress> Constants => _constants;
 
         /// <summary>
         /// <para>
@@ -140,7 +139,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         {
             _memory = memory;
             _memoryReservationStep = memoryReservationStep;
-            Constants = constants;
+            _constants = constants;
         }
 
         /// <summary>
@@ -176,13 +175,17 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual void Init(IResizableDirectMemory memory, long memoryReservationStep)
+            => InitializeMemory(memory, memoryReservationStep, () => SetPointers(memory));
+
+        /// <summary>Initializes memory using a concrete pointer initializer during construction.</summary>
+        protected unsafe void InitializeMemory(IResizableDirectMemory memory, long memoryReservationStep, Action setPointers)
         {
             if (memory.ReservedCapacity < memoryReservationStep)
             {
                 memory.ReservedCapacity = memoryReservationStep;
             }
-            SetPointers(memory);
-            ref var header = ref GetHeaderReference();
+            setPointers();
+            ref var header = ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void*)memory.Pointer);
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
             memory.UsedCapacity = (long.CreateTruncating(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
@@ -472,6 +475,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             throw new NotSupportedException("Other restriction sizes and methods are not supported.");
         }
 
+        /// <summary>Updates the link that matches the restriction.</summary>
         /// <remarks>
         /// TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         /// </remarks>
@@ -508,6 +512,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             return handler != null ? handler(before, GetLinkStruct(linkIndex)) : Constants.Continue;
         }
 
+        /// <summary>Creates a link and invokes the optional callback.</summary>
         /// <remarks>
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
         /// </remarks>

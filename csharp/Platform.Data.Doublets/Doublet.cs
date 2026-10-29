@@ -8,10 +8,10 @@ using System.Runtime.CompilerServices;
 namespace Platform.Data.Doublets
 {
 
-    /// <summury> 
+    /// <summary>
     /// <para>.</para>
     /// <para>.</para>
-    /// </summury>
+    /// </summary>
     /// <typeparam>
     /// <para>.</para>
     /// <para>.</para>
@@ -19,22 +19,22 @@ namespace Platform.Data.Doublets
     public struct Doublet<T> : IEquatable<Doublet<T>> where T : IUnsignedNumber<T>
     {
 
-        /// <summury>
+        /// <summary>
         /// <para>.</para>
         /// <para>.</para>
-        /// </summury>
+        /// </summary>
         public readonly T Source;
 
-        /// <summury>
+        /// <summary>
         /// <para>.</para>
         /// <para>.</para>
-        /// </summury>
+        /// </summary>
         public readonly T Target;
 
-        /// <summury>
+        /// <summary>
         /// <para>.</para>
         /// <para>.</para>
-        /// </summury>
+        /// </summary>
         /// <param name="source">
         /// <para>.</para>
         /// <para>.</para>
@@ -50,10 +50,10 @@ namespace Platform.Data.Doublets
             Target = target;
         }
 
-        /// <summury>
+        /// <summary>
         /// <para>.</para>
         /// <para>.</para>
-        /// </summury>
+        /// </summary>
         /// <returns>
         /// <para>.</para>
         /// <para>.</para>
@@ -61,10 +61,10 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString() { return $"{Source}->{Target}"; }
 
-        /// <summury>
+        /// <summary>
         /// <para>.</para>
         /// <para>.</para>
-        /// </summury>
+        /// </summary>
         /// <typeparam>
         /// <para>.</para>
         /// <para>.</para>
@@ -80,10 +80,10 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(Doublet<T> other) { return Source == other.Source && Target == other.Target; }
 
-        /// <summury>
+        /// <summary>
         /// <para>.</para>
         /// <para>.</para>
-        /// </summury>
+        /// </summary>
         /// <typeparam>
         /// <para>.</para>
         /// <para>.</para>
@@ -97,12 +97,12 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override bool Equals(object? obj) { return obj is Doublet<T> doublet ? base.Equals(doublet) : false; }
+        public override bool Equals(object? obj) { return obj is Doublet<T> doublet && base.Equals(doublet); }
 
-        /// <summury>
+        /// <summary>
         /// <para>.</para>
         /// <para>.</para>
-        /// </summury>
+        /// </summary>
         /// <returns>
         /// <para>.</para>
         /// <para>.</para>
@@ -110,10 +110,10 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode() { return (Source, Target).GetHashCode(); }
 
-        /// <summury>
+        /// <summary>
         /// <para>.</para>
         /// <para>.</para>
-        /// </summury>
+        /// </summary>
         /// <param name="left">
         /// <para>.</para>
         /// <para>.</para>
@@ -129,11 +129,11 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Doublet<T> left, Doublet<T> right) { return left.Equals(right); }
 
-        /// <summury>
+        /// <summary>
         /// <para>.</para>
         /// <para>.</para>
-        /// </summury>
-        /// <param name="left"> 
+        /// </summary>
+        /// <param name="left">
         /// <para>.</para>
         /// <para>.</para>
         /// </param>

@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace Platform.Data.Doublets
 {
+    /// <summary>Compares doublets by their source and target.</summary>
     /// <remarks>
     /// TODO: Может стоит попробовать ref во всех методах (IRefEqualityComparer)
     /// 2x faster with comparer 
