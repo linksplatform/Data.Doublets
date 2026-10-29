@@ -23,7 +23,7 @@ PR 525, which is included without discarding its query-handling changes.
 | R2 | Compare the full C# template file tree, including every workflow and helper | All 81 files at `4cc372ebf2075a0c948b46881143f7d66f0f0e7e` archived and individually mapped in `research/TEMPLATE-COMPARISON.md` |
 | R3 | Compare the full C/C++ template file tree | All 216 files at `7ac75134c697e9468f1242c20f1d229594decbc3` archived and individually mapped; same report, SHA256/size manifest |
 | R4 | Apply all relevant best practices from the linked guide | Seventeen-principle mapping below; executable checks and regressions, not merely recommendations |
-| R5 | Report shared defects to the templates and related projects | Ten reproducible upstream reports, complete bodies/URLs in `upstream/`; Conan issue creation is disabled and the workaround is implemented locally |
+| R5 | Report shared defects to the templates and related projects | Twelve reproducible upstream reports, complete bodies/URLs in `upstream/`; Conan issue creation is disabled and the workaround is implemented locally |
 | R6 | Download logs/data into the requested folder; reconstruct the timeline and diagnose actual causes | This folder contains raw API responses, complete workflow logs, source archives, online primary sources and bounded local experiment logs |
 | R7 | Propose solutions and plans per requirement; research existing components | Root-cause table, completed implementation sequence, component evaluation below; keep existing .NET/GTest/Conan/DocFX frameworks |
 | R8 | Reproduce bugs before changing production code | Baseline failures in `local/*before.log`, helper tests under `experiments/`, language regression tests and C++ compilation reproductions |
@@ -136,7 +136,7 @@ PR 525, which is included without discarding its query-handling changes.
 | Duplicate queued version writer | Same validated metadata landed remotely but second writer treats non-fast-forward as unrelated change | Fetch and compare trees, adopt identical confirmed remote release without a second bump; real two-writer bare-Git regression |
 | Security/link checks independent of release | Successful build could publish before these separate workflows finish | Reusable workflows remain independently scheduled/manual, but CI invokes them as explicit required dependencies; skipped-check regression and full release `needs` graph |
 | CodeQL jobs green with 87 findings | Analysis/upload success is not a findings gate; PR-visible alerts omit findings outside changed lines | Parse every complete SARIF report and reject every result, including notes, plus failed analysis notifications. Five regression tests verify missing/incomplete reports and every severity. Keep complete reports as CI artifacts |
-| Native benchmark unused-static false positives | No-build C++ extraction cannot resolve the Conan-supplied Google Benchmark registration macros | Trace the real dependency-aware build in CodeQL; retain all benchmark functions and registrations. Rename included test/benchmark definition files from .cpp to .h rather than suppress include diagnostics |
+| Native benchmark unused-static false positives | The real build confirms the queries also ignore standard `maybe_unused` and scalar registration initializer side effects; no-build extraction alone was not the complete explanation | Use supported registration API with retained handles and explicit loop-token consumption; all six names/arguments preserved. Report query/model defects upstream. Included definitions use .h rather than .cpp |
 | C# EnsureCreated loops or misses lower free IDs | Creator result never advances; stopping at the maximum requested ID ignores nonmonotonic free-list allocation | Track every missing internal request, allocate unique IDs until all are satisfied, then reset/delete only unrequested intermediates. Both stores cover free-list order, self-point gaps, external/sentinel IDs and a non-progressing creator |
 | C# virtual calls during storage construction | Base Constants and derived Init/SetPointers dispatch before the most-derived fields are initialized | Assign backing constants directly and use concrete nonvirtual construction routines; preserve virtual APIs for later calls. Two derived-probe tests fail before and pass after |
 | Native ASan allocation/deallocation mismatch | Upstream Platform.Memory allocates with malloc/realloc but destroys with delete | Exact pinned-source recipe patch uses std::free; standalone ASan reproduction before/after, upstream Memory #92 |
@@ -229,11 +229,12 @@ the necessary bounded recipe changes are applied before building here.
 
 ## Verification and external-state limits
 
-Local verification includes all C# tests and package consumers, all 42 native
-CTest cases, both native translation units under strict GCC and Clang syntax,
-both C FFI language modes, native ZIP/NuGet byte-content validation, benchmark
-smoke, 42 pipeline regression tests, both API documentation trees and PDF,
-workflow/repository/security analysis. The expanded suite now has 77 C# tests and 42 pipeline tests; see the final run evidence below. Exact commands and output are in `local/`.
+Local verification includes **80 C# tests, 43 native CTest cases and 44 pipeline
+regressions**, real installed-package consumers, both native translation units
+under strict analysis, both C FFI language modes, native ZIP/NuGet byte-content
+validation, bounded benchmark smoke, both API documentation trees and PDF, and
+workflow/repository/security analysis. Exact commands and output are in `local/`;
+CI results tied to the final source SHA are recorded below.
 The first complete CI run and subsequent fixes are preserved separately, so
 passing results cannot be confused with earlier failures or another SHA.
 
@@ -423,3 +424,122 @@ all **43 native tests** pass (`local/native-fifth-build2.log`,
 signed `int` capacities in a brace initializer; the fixture now uses explicit
 unsigned capacity types (`native-fifth-build.log` preserves that diagnostic).
 This was a test-fixture compile error, not a passing test run.
+
+
+Latest-main evidence was refreshed while final CI ran. Main remains
+`799502ce9275edc80d9fbc1953ff8892fe0eca19` and is already merged here. Its run
+[40823615243](https://github.com/linksplatform/Data.Doublets/actions/runs/40823615243)
+at 05:28:39 UTC (after PR 525) has the same three unresolved baseline failures:
+public NuGet 403 (`main-after-525-40823615243.log:1337`), apt NuGet unavailable
+(line 2981), and Python 2 pygments unavailable (line 3235). All 3,258 raw log
+lines and job metadata are now collected. Its 19 compiler/package diagnostic
+families are unchanged; exact first occurrences/counts are in
+`local/main-warning-families-final.json`. Release and GitHub package jobs still
+reported success independently. This confirms the current main failures are
+addressed by this PR's explicit gates and tool replacements, rather than relying
+only on the older issue-linked run. The NuGet account action remains external.
+
+The final review refresh (`github/*final3.json`) still has no issue comments or
+required children and the same eight automated inline findings. Local full-history
+Gitleaks passes across 3,261 commits / 310.80 MB
+(`local/gitleaks-fifth-history.log`). CI quality on the new head actually executes
+all 43 regressions, including the real strict empty-cache Conan export
+(`ci-logs/fifth-quality.log:564,612`), with no test skipped for missing tooling.
+
+
+### Fifth CI: GCC package-consumer output isolation
+
+[Run 40836388311](https://github.com/linksplatform/Data.Doublets/actions/runs/40836388311)
+at implementation `b80b5b325` passes all 43 native tests with GCC, Clang and
+ASan/UBSan, plus 80 C# cases on Linux and Windows. GCC then fails in the installed
+package consumer, not the library tests (`ci-logs/fifth-gcc.log:2096–2110`).
+Its generated CMake link command contains
+`-Wl,--dependency-file=CMakeFiles/Platform.Data.Doublets.Tests.dir/link.d`.
+The consumer retained every `-Wl,` argument while changing working directories,
+so GNU ld attempts to write to a nonexistent build-relative path.
+
+This is a local smoke-test adapter defect, not a CMake or GNU linker defect.
+The [CMake variable documentation](https://cmake.org/cmake/help/latest/variable/CMAKE_LINK_DEPENDS_USE_LINKER.html)
+explains linker-generated dependencies, and [GNU ld documents the output option](https://sourceware.org/binutils/docs/ld/Options.html).
+Raw primary-source pages are saved under `research/cmake-link-depends.html` and
+`research/gnu-ld-options.html`. Suppressing CMake dependency tracking globally or
+creating unrelated build directories inside the consumer would hide the actual
+coupling. The consumer now discards only this build-specific dependency output;
+library paths, archive order and other linker flags remain intact.
+
+`experiments/test_package_consumer.py` compiles and runs a tiny real installed
+header consumer using the exact generated linker flag. Before the fix it fails
+with the identical GNU ld message (`local/gcc-consumer-before.log`); afterward it
+passes as part of all **44 pipeline regressions** (`local/pipeline-sixth.log`).
+The full native NuGet consumer also passes (`local/native-sixth-consumer.log`).
+Repository validation and actionlint pass; a first actionlint invocation used the
+system Python without PyYAML, then the documented tool environment passed.
+
+### Fifth CI: complete native SARIF and sixth local iteration
+
+At **07:47:19 UTC**, the fifth run finished with the expected failing required
+gate: GCC consumer isolation and **39 native CodeQL results**. The real native
+CodeQL build and tests succeeded; the SARIF findings gate correctly failed.
+`github/codeql-native-fifth-findings.json` inventories every location/message;
+`ci-logs/fifth-native-codeql.log:3844–3897` contains the fatal listing. C# and
+Actions SARIF contain zero results. The complete fifth artifacts contain 1,097
+byte-verified files, archived with SHA256/size manifest in `ci-artifacts/fifth*`.
+
+| Diagnostic | Count | Cause and remedy |
+| --- | ---: | --- |
+| comparison-with-wider-type | 1 | A record-field loop uses an address-width counter against size_t; use size_t |
+| suspicious-pointer-scaling | 6 | Intentional record indexing casts std::byte storage before arithmetic; query exempts char/void but omits std::byte. Use equivalent array subscripting throughout |
+| unused-local-variable | 12 | Six annotated benchmark loop tokens ignored by the query; explicitly consume them. Six test helpers construct an unused duplicate store; remove only the duplicate, retaining UsingStorage's actual store |
+| unused-static-variable | 7 | One real variadic All restriction is discarded; pass it to the collection overload. Six benchmark registration bindings are falsely flagged despite standard annotation and initializer side effects; retain handles through the supported registration API |
+| empty-if | 1 | United native allocation silently ignores exhaustion; throw the existing limit exception |
+| commented-out-code | 8 | Remove only inactive commented declarations/algorithms from five headers |
+| integer-used-for-enum | 1 | The public size_t field-index API is indexed, rather than an enum domain; explicit index comparisons preserve reference semantics and range errors |
+| poorly-documented-function | 3 | Explain query-shape, wildcard/index selection, live/free records and callback termination within the long Count/Each implementations |
+
+The exhaustion condition is also off by one in **all four** C#/C++ united/split
+stores: a fresh allocation must reject `AllocatedLinks >= Maximum` before
+incrementing. Reuse from the free list must still work at the limit. Two C# cases
+and two native cases fail before the fix; the native All restriction case also
+fails before its fix (`local/address-limit-csharp-before2.log`,
+`local/native-sixth-before-tests.log`). The initial native fixture used a
+factory-function name as an exception type; that compile error is retained
+separately and is not claimed as evidence for the production bug.
+
+After fixing all four allocation checks and the variadic overload, all **82 C#
+cases**, all **46 native tests**, and all **44 pipeline regressions** pass locally
+with no skips. The full C# locked build/format/example/package/installed consumer
+check passes (`local/csharp-sixth.log`). Native builds use one Clang worker and
+-O0 -g0; the full changed-source build peaks at **956,120 KiB RSS**. All six
+benchmark registrations have identical names/arguments before and after.
+An initial smoke command used the newer benchmark seconds suffix; pinned 1.8.0
+requires a bare numeric duration, matching the existing CI command. The bounded
+smoke and rejection of unknown arguments pass after correcting that invocation.
+
+Calling RegisterBenchmark from main exposed a clang analyzer ownership-model
+false positive inside Google Benchmark's header: registration transfers ownership
+to the external registry, which the analyzer cannot see. Registration handles are
+now returned and retained in a static tuple, preserving startup registration and
+BENCHMARK_MAIN without suppressing either analyzer. The focused benchmark
+clang-tidy check passes (`local/benchmark-sixth-static3.log`).
+
+Exact upstream query sources and the pinned Google Benchmark guide are archived
+under research/. GCC and Clang compile/execute both reduced CodeQL experiments
+with strict warnings. The reduced examples have not been independently run
+through a local CodeQL database: the observed findings are from the complete
+real-build CI SARIF. Existing-issue searches found no matching report. Reports
+[github/codeql#22928](https://github.com/github/codeql/issues/22928) and
+[github/codeql#22929](https://github.com/github/codeql/issues/22929) contain the
+observed diagnostics, reduced examples, source-level suggestions and workarounds.
+The complete native formatting, clang-tidy and exhaustive Cppcheck checks pass
+(`local/native-sixth-final-static.log`), as does the rebuilt native package
+consumer (`local/native-sixth-final-consumer.log`). Full fresh CodeQL,
+matrix/sanitizers and installed GCC consumer remain required
+before readiness; local success is not substituted for those checks.
+
+
+A whole-working-directory credential scan additionally sees five generic-key
+matches in ignored generated DocFX JavaScript source maps. These files are not
+repository source or staged changes; the evidence-directory scan passes without
+an exemption. The authoritative full-history scan remains required after the
+new commits. No generated source map, raw unredacted scanner report, or new
+allowlist is added to the repository.

@@ -29,10 +29,14 @@ criteria explicit, preserve history, and do not merge the PR.
 - [ ] Verify clean working tree, all acceptance criteria and latest CI, then mark
   PR ready and native goal complete only if no required work remains.
 
-Fourth CI exposed split-buffer capacity accounting in both languages. Its full
-logs and all 1,058 artifacts are preserved. Deterministic native and three C#
-regressions fail before and pass after the shared fix; C# now has 80 passing
-cases, pipeline has 43, and the full native rebuild is running. Final fresh CI,
-complete SARIF, artifact/warning audit and PR readiness remain pending.
-All eight automated inline review comments are implemented; final SARIF must
-verify their resolution. No required child issue or human feedback is pending.
+Fifth CI passed 80 C# cases on both platforms and 43 native cases across GCC,
+Clang and ASan/UBSan, then exposed GCC consumer output isolation and 39 native
+CodeQL findings. All locations are inventoried and repaired, including two real
+logic bugs reproduced by new tests. Locally all 82 C# cases, 46 native tests and
+44 pipeline regressions pass. Six benchmark registrations are preserved, and
+both CodeQL false-positive families are reported upstream with reduced examples.
+Full native formatting/clang-tidy/Cppcheck and the rebuilt package consumer
+also pass. Fresh all-green CI, complete artifact/warning audit and PR readiness
+remain pending. All eight earlier automated inline review
+comments are implemented; no required child issue or human feedback is pending.
+Latest main is already an ancestor.

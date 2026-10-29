@@ -1,0 +1,150 @@
+[
+  {
+    "path": "cpp/ql/src/Best Practices/Unused Entities/UnusedLocals.cpp",
+    "sha": "277e753b06b3eecdca6e4e21a5d7270884120b21"
+  },
+  {
+    "path": "cpp/ql/src/Best Practices/Unused Entities/UnusedLocals.qhelp",
+    "sha": "f98f65d684903c495f93cbf79bd624af2891ee94"
+  },
+  {
+    "path": "cpp/ql/src/Best Practices/Unused Entities/UnusedLocals.ql",
+    "sha": "4ba1ad93f56543fc227bd14def2d8d6789987cc7"
+  },
+  {
+    "path": "cpp/ql/src/Best Practices/Unused Entities/UnusedStaticVariables.cpp",
+    "sha": "c5d92cc6eefd345f2df051686f8e78f273d08093"
+  },
+  {
+    "path": "cpp/ql/src/Best Practices/Unused Entities/UnusedStaticVariables.qhelp",
+    "sha": "b8838c26c522378d8e9e7cc928547413cfd32c13"
+  },
+  {
+    "path": "cpp/ql/src/Best Practices/Unused Entities/UnusedStaticVariables.ql",
+    "sha": "03176b8a77914a41f4b67ee87075417b63bd0415"
+  },
+  {
+    "path": "cpp/ql/src/Security/CWE/CWE-468/IncorrectPointerScaling.cpp",
+    "sha": "c0724bc1926ff768710f977718c84a6ed14d5e19"
+  },
+  {
+    "path": "cpp/ql/src/Security/CWE/CWE-468/IncorrectPointerScaling.qhelp",
+    "sha": "16052fc0ed8c43589888316960d58beea1ece7af"
+  },
+  {
+    "path": "cpp/ql/src/Security/CWE/CWE-468/IncorrectPointerScaling.ql",
+    "sha": "a8f71c4e1d0de6df5c7e902deb584d378cb645fa"
+  },
+  {
+    "path": "cpp/ql/src/Security/CWE/CWE-468/IncorrectPointerScalingChar.cpp",
+    "sha": "b7e82e02dfb19737ba38dfc9bf558149163a50c4"
+  },
+  {
+    "path": "cpp/ql/src/Security/CWE/CWE-468/IncorrectPointerScalingChar.qhelp",
+    "sha": "b81174b852208b2ff0eea193c90664da230baccd"
+  },
+  {
+    "path": "cpp/ql/src/Security/CWE/CWE-468/IncorrectPointerScalingChar.ql",
+    "sha": "274fbd298ad8e94017b6348a596feb4fd3c8b18b"
+  },
+  {
+    "path": "cpp/ql/src/Security/CWE/CWE-468/IncorrectPointerScalingCommon.qll",
+    "sha": "87c31fe6324925a17cdc1392490be924cff59607"
+  },
+  {
+    "path": "cpp/ql/src/Security/CWE/CWE-468/IncorrectPointerScalingVoid.cpp",
+    "sha": "321a5f287fe4b10a9a8420863daecc53864590c3"
+  },
+  {
+    "path": "cpp/ql/src/Security/CWE/CWE-468/IncorrectPointerScalingVoid.qhelp",
+    "sha": "358cf538f3c126f18a84834472a1574a16656a15"
+  },
+  {
+    "path": "cpp/ql/src/Security/CWE/CWE-468/IncorrectPointerScalingVoid.ql",
+    "sha": "8aee8c913bf44b3ddf524df12cb1658296cf72d0"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Best Practices/Unused Entities/UnusedLocals",
+    "sha": "ecefe4215a95edac15a362d853a78ed45c9ce7ba"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Best Practices/Unused Entities/UnusedLocals/UnusedLocals.expected",
+    "sha": "8db9fdb3ec644fd2068e3ae3987eb36380a8d311"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Best Practices/Unused Entities/UnusedLocals/UnusedLocals.qlref",
+    "sha": "645e1ecaebd8efa760e9f5c91958c1d8b5a0e3c7"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Best Practices/Unused Entities/UnusedLocals/code.c",
+    "sha": "cb401c72dce912bd1c0b12d20628308faa006e42"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Best Practices/Unused Entities/UnusedLocals/code.cpp",
+    "sha": "7301fec77caa90193800a06b8a59736ca2c3c5df"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Best Practices/Unused Entities/UnusedLocals/code2.cpp",
+    "sha": "b0e00dc8fbe1f8e204d28fe744df1cc7b41f7bcc"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Best Practices/Unused Entities/UnusedLocals/errors.c",
+    "sha": "4c3ad88e6d045e2d7dc12e5b9d4ec607831d7043"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Best Practices/Unused Entities/UnusedStaticVariables",
+    "sha": "26111739f04ee5aabb4353b054e93ead60c9f886"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Best Practices/Unused Entities/UnusedStaticVariables/UnusedStaticVariables.expected",
+    "sha": "45367233424ed9666a67653d45563f08472885aa"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Best Practices/Unused Entities/UnusedStaticVariables/UnusedStaticVariables.qlref",
+    "sha": "1240fc64dc5641b66c544c6103b704e7c9ac5800"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Best Practices/Unused Entities/UnusedStaticVariables/test.cpp",
+    "sha": "3b60a4722d4d6721c68f0ea996a9b5895e6d1fc4"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Security/CWE/CWE-468/semmle/IncorrectPointerScaling",
+    "sha": "6ece99e0e20b056beb59717277d3278faea17d89"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Security/CWE/CWE-468/semmle/IncorrectPointerScaling/IncorrectPointerScaling.expected",
+    "sha": "3ea7d23e53390bfe97a1189b2e3610f28b852d7f"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Security/CWE/CWE-468/semmle/IncorrectPointerScaling/IncorrectPointerScaling.qlref",
+    "sha": "1c96d9e4607e91d9e3e08fd925786177c6c09884"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Security/CWE/CWE-468/semmle/IncorrectPointerScaling/IncorrectPointerScalingChar.expected",
+    "sha": "73a232da354ea15972ecb29937f7dfd2d0f2a515"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Security/CWE/CWE-468/semmle/IncorrectPointerScaling/IncorrectPointerScalingChar.qlref",
+    "sha": "bc325696a76460b69e435de02f77bdc89a337b03"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Security/CWE/CWE-468/semmle/IncorrectPointerScaling/IncorrectPointerScalingVoid.expected",
+    "sha": "c2c88609238d39cb0808e5ee29b36c5ded336b0a"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Security/CWE/CWE-468/semmle/IncorrectPointerScaling/IncorrectPointerScalingVoid.qlref",
+    "sha": "1627ede63028770731692bebaf4c547412ca8bf7"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Security/CWE/CWE-468/semmle/IncorrectPointerScaling/test.cpp",
+    "sha": "9f6b046a90bd4baf6fd09b258aa0941e005601a7"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Security/CWE/CWE-468/semmle/IncorrectPointerScaling/test_large.cpp",
+    "sha": "6431f1ec1fcaae64ab6ff4754ca56c6b28fa3f11"
+  },
+  {
+    "path": "cpp/ql/test/query-tests/Security/CWE/CWE-468/semmle/IncorrectPointerScaling/test_small.cpp",
+    "sha": "4740fd6db2b05a71e85ad8389af9738d4bc841bb"
+  }
+]
