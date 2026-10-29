@@ -7,6 +7,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 import time
@@ -20,7 +21,21 @@ ROOT = Path(__file__).resolve().parents[1]
 PROJECT = ROOT / "csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj"
 NUSPEC = ROOT / "cpp/Platform.Data.Doublets/Platform.Data.Doublets.TemplateLibrary.nuspec"
 NAMESPACE = {"n": "http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd"}
-HINT = "Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing."
+HINT = (
+    "Configure NuGet trusted publishing: set the non-secret Actions variable NUGET_USER "
+    "to the policy creator's actual NuGet profile name (not an email or an inferred GitHub login). "
+    "Verify an active policy for linksplatform/Data.Doublets, workflow filename ci.yml, "
+    "with no environment, owned by the NuGet account/organization owning both "
+    "Platform.Data.Doublets and Platform.Data.Doublets.TemplateLibrary, and package push/version scope "
+    "covering those IDs. Grant id-token: write to the login job. "
+    "See docs/trusted-publishing.md; stored API keys are never selected as a fallback."
+)
+
+
+def check_auth_config():
+    user = os.environ.get("NUGET_USER", "")
+    if not re.fullmatch(r"[A-Za-z0-9_.-]+", user):
+        raise RuntimeError("NUGET_USER must be the actual NuGet policy creator's profile name. " + HINT)
 
 
 def info(language):
@@ -49,37 +64,39 @@ def request(url, *, method="GET", headers=None):
 
 def verify_nuget(key, package):
     package_id = urllib.parse.quote(package["id"], safe="")
-    status, body = request(f"https://www.nuget.org/api/v2/package/create-verification-key/{package_id}", method="POST", headers={"X-NuGet-ApiKey": key})
-    if status != 200:
-        return f"NuGet API key verification for {package['id']} returned HTTP {status or 'unreachable'}. {HINT}"
-    try:
-        verification_key = json.loads(body)["Key"]
-    except (ValueError, KeyError, TypeError):
-        return "NuGet did not return a verification key. " + HINT
-    if not isinstance(verification_key, str) or not verification_key:
-        return "NuGet returned an empty verification key. " + HINT
-    # Verify the actual owner/glob against an existing version, not just key validity.
+    # Verify the original temporary key, preserving its actual owner/glob/actions.
+    # Deriving a symbol verification key can broaden its package selection and
+    # is unnecessary: NuGet's VerifyPackageKey accepts push credentials directly.
     status, body = request(f"https://api.nuget.org/v3-flatcontainer/{package['id'].lower()}/index.json")
     if status == 404:
-        return None  # First publication; push enforces scope.
+        print(f"::notice::NuGet package scope for {package['id']} is unverified: no public version exists; the first push must enforce ownership and scope.")
+        return None
     if status != 200:
         return f"Cannot verify NuGet package scope: package index returned HTTP {status or 'unreachable'}."
     try:
         versions = json.loads(body)["versions"]
-        if not isinstance(versions, list) or not versions:
+        if not isinstance(versions, list) or not versions or not isinstance(versions[-1], str) or not re.fullmatch(r"[0-9A-Za-z.+-]+", versions[-1]):
             raise ValueError("No versions")
     except (ValueError, KeyError, TypeError):
         return "NuGet package index is malformed; refusing to assume publish permissions."
-    status, _ = request(f"https://www.nuget.org/api/v2/verifykey/{package_id}/{versions[-1]}", headers={"X-NuGet-ApiKey": verification_key})
-    return None if status == 200 else f"NuGet owner/glob verification returned HTTP {status or 'unreachable'}. {HINT}"
+    status, _ = request(f"https://www.nuget.org/api/v2/verifykey/{package_id}/{versions[-1]}", headers={"X-NuGet-ApiKey": key})
+    if status != 200:
+        return f"NuGet owner/package scope verification for {package['id']} returned HTTP {status or 'unreachable'}. {HINT}"
+    print(f"NuGet owner/package scope verified for {package['id']} against an existing version; the release push must still succeed.")
+    return None
 
 
 def preflight(mode, languages, credentials_only=False):
     errors = []
+    try:
+        check_auth_config()
+    except RuntimeError as error:
+        errors.append(str(error))
     token = os.environ.get("NUGET_TOKEN", "")
     if not token:
-        errors.append("NUGET_TOKEN is missing. " + HINT)
-    elif mode == "release":
+        errors.append("NuGet/login OIDC exchange has not supplied an ephemeral NUGET_TOKEN. " + HINT)
+    elif mode == "release" and not errors:
+        print("NuGet/login exchange succeeded; checking package scopes with its temporary credential")
         for language in languages:
             error = verify_nuget(token, info(language))
             if error:
@@ -102,7 +119,10 @@ def preflight(mode, languages, credentials_only=False):
         print(f"::{'error' if mode == 'release' else 'notice'}::{error}")
     if errors and mode == "release":
         raise RuntimeError("Release preflight failed; no packages or tags were published.")
-    print("Release preflight passed" if not errors else "PR validation continues without publishing credentials")
+    if mode != "release":
+        print("PR validation continues without publishing credentials; OIDC exchange and package scope are unverified in report mode")
+    else:
+        print("Release preflight passed; publication and public downloads remain unverified until publish succeeds")
 
 
 def pack_cpp(output):
@@ -197,19 +217,23 @@ def publish(language, output):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["preflight", "pack-cpp", "publish"])
+    parser.add_argument("command", choices=["check-auth-config", "auth-error", "preflight", "pack-cpp", "publish"])
     parser.add_argument("--credentials-only", action="store_true")
     parser.add_argument("--mode", choices=["report", "release"], default="report")
-    parser.add_argument("--language", choices=["csharp", "cpp"], default="csharp")
+    parser.add_argument("--language", choices=["csharp", "cpp"])
     parser.add_argument("--output", type=Path, default=ROOT / "artifacts/packages")
     args = parser.parse_args()
     try:
-        if args.command == "preflight":
-            preflight(args.mode, ["csharp", "cpp"] if args.credentials_only else [args.language], args.credentials_only)
+        if args.command == "check-auth-config":
+            check_auth_config()
+        elif args.command == "auth-error":
+            raise RuntimeError("NuGet/login OIDC exchange failed: check username, workflow/environment match, inactive policy and package ownership/scope. " + HINT)
+        elif args.command == "preflight":
+            preflight(args.mode, [args.language] if args.language else ["csharp", "cpp"], args.credentials_only)
         elif args.command == "pack-cpp":
             pack_cpp(args.output)
         else:
-            publish(args.language, args.output)
+            publish(args.language or "csharp", args.output)
     except (RuntimeError, subprocess.CalledProcessError) as error:
         # CalledProcessError includes secret argv; only show the exit code.
         print(f"::error::{error if isinstance(error, RuntimeError) else 'Release command failed (exit ' + str(error.returncode) + ')'}", file=sys.stderr)

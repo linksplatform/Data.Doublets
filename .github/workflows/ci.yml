@@ -100,13 +100,29 @@ jobs:
     needs: [changes, quality]
     runs-on: ubuntu-24.04
     timeout-minutes: 5
+    permissions:
+      contents: read
+      id-token: write # Exchange GitHub OIDC for a temporary NuGet key before builds.
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
+      - name: Check trusted publishing configuration
+        env:
+          NUGET_USER: ${{ vars.NUGET_USER }}
+        run: python3 scripts/release.py check-auth-config
+      - name: Exchange OIDC before building
+        id: nuget-login
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
+        with:
+          user: ${{ vars.NUGET_USER }}
+      - name: Explain rejected trusted publishing policy
+        if: ${{ !cancelled() && steps.nuget-login.outcome == 'failure' }}
+        run: python3 scripts/release.py auth-error
       - name: Check NuGet authentication before building
         env:
-          NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+          NUGET_USER: ${{ vars.NUGET_USER }}
+          NUGET_TOKEN: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/release.py preflight --mode release --credentials-only
   csharp:
@@ -286,7 +302,7 @@ jobs:
   publish:
     name: publish
     if: >-
-      !cancelled() && github.ref == 'refs/heads/main' &&
+      !cancelled() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request' &&
       needs.quality.result == 'success' &&
       !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled') &&
       (needs.csharp.result == 'success' || needs.cpp.result == 'success' || needs.docs.result == 'success')
@@ -294,6 +310,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     permissions:
+      id-token: write # Obtain fresh credentials inside the publishing job.
       contents: write # Commit release metadata, publish release assets and update gh-pages.
       packages: write # Publish the validated artifacts to GitHub Packages.
     concurrency:
@@ -308,14 +325,6 @@ jobs:
       - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
         with:
           global-json-file: global.json
-      - name: Prepare and commit only validated release metadata
-        if: needs.csharp.result == 'success' || needs.cpp.result == 'success'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh auth setup-git
-          python3 scripts/versions.py prepare
-          python3 scripts/versions.py commit
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         if: needs.csharp.result == 'success'
         with:
@@ -326,18 +335,59 @@ jobs:
         with:
           name: cpp-gcc
           path: .
+      - name: Check trusted publishing configuration
+        if: needs.csharp.result == 'success' || needs.cpp.result == 'success'
+        env:
+          NUGET_USER: ${{ vars.NUGET_USER }}
+        run: python3 scripts/release.py check-auth-config
+      - name: Obtain fresh NuGet key before release metadata and publication
+        if: needs.csharp.result == 'success' || needs.cpp.result == 'success'
+        id: nuget-login
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
+        with:
+          user: ${{ vars.NUGET_USER }}
+      - name: Explain rejected trusted publishing policy
+        if: ${{ !cancelled() && steps.nuget-login.outcome == 'failure' }}
+        run: python3 scripts/release.py auth-error
+      - name: Verify both package scopes before committing release metadata
+        if: needs.csharp.result == 'success' || needs.cpp.result == 'success'
+        env:
+          NUGET_USER: ${{ vars.NUGET_USER }}
+          NUGET_TOKEN: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/release.py preflight --mode release
+      - name: Prepare and commit only validated release metadata
+        id: metadata
+        if: needs.csharp.result == 'success' || needs.cpp.result == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh auth setup-git
+          python3 scripts/versions.py prepare
+          python3 scripts/versions.py commit
       - name: Publish validated C# artifacts
         if: needs.csharp.result == 'success'
         env:
-          NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+          NUGET_USER: ${{ vars.NUGET_USER }}
+          NUGET_TOKEN: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
           GH_TOKEN: ${{ github.token }}
         run: |
           python3 scripts/release.py preflight --mode release --language csharp
           python3 scripts/release.py publish --language csharp
+      - name: Refresh NuGet key immediately before C++ publication
+        if: ${{ !cancelled() && needs.cpp.result == 'success' && steps.metadata.outcome == 'success' }}
+        id: nuget-cpp
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
+        with:
+          user: ${{ vars.NUGET_USER }}
+      - name: Explain rejected C++ publishing policy
+        if: ${{ !cancelled() && steps.nuget-cpp.outcome == 'failure' }}
+        run: python3 scripts/release.py auth-error
       - name: Publish validated C++ artifacts
-        if: ${{ !cancelled() && needs.cpp.result == 'success' }}
+        if: ${{ !cancelled() && steps.nuget-cpp.outcome == 'success' }}
         env:
-          NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+          NUGET_USER: ${{ vars.NUGET_USER }}
+          NUGET_TOKEN: ${{ steps.nuget-cpp.outputs.NUGET_API_KEY }}
           GH_TOKEN: ${{ github.token }}
         run: |
           python3 scripts/release.py preflight --mode release --language cpp

@@ -44,7 +44,7 @@ class PipelineHelpersTests(unittest.TestCase):
             capture_output=True, text=True, check=False,
         )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-        self.assertIn("NUGET_TOKEN", result.stdout)
+        self.assertIn("NUGET_USER", result.stdout)
 
     def test_missing_release_credentials_fail_with_actionable_message(self):
         result = subprocess.run(
@@ -53,8 +53,8 @@ class PipelineHelpersTests(unittest.TestCase):
             capture_output=True, text=True, check=False,
         )
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("NUGET_TOKEN", result.stdout + result.stderr)
-        self.assertIn("rotate", (result.stdout + result.stderr).lower())
+        self.assertIn("NUGET_USER", result.stdout + result.stderr)
+        self.assertIn("trusted publishing", (result.stdout + result.stderr).lower())
 
 
 if __name__ == "__main__":
