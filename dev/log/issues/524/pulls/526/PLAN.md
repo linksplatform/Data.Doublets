@@ -22,20 +22,24 @@ criteria explicit, preserve history, and do not merge the PR.
 - [x] Run all local checks sequentially within the 2.92 GiB container; save logs.
   Use single build workers and bounded stress probes; do not repeat OOM builds.
 - [x] Commit useful atomic steps after local checks; push only prepared branch.
-- [ ] Check recent CI runs against latest SHA/time, download all nonpassing logs,
+- [x] Check recent CI runs against latest SHA/time, download all nonpassing logs,
   inspect actual errors with file/line references, fix, and verify fresh results.
-- [ ] Include latest main, review complete PR diff, verify no feature removal,
+- [x] Include latest main, review complete PR diff, verify no feature removal,
   refresh feedback, and update PR title/body with evidence and Fixes #524.
-- [ ] Verify clean working tree, all acceptance criteria and latest CI, then mark
-  PR ready and native goal complete only if no required work remains.
+- [x] Verify all implementation acceptance criteria in full CI and assemble the
+  final evidence, upstream verification updates and PR description.
 
-Sixth CI passes 82 C# cases on both platforms, all 46 native cases across GCC,
-Clang and ASan/UBSan, all installed consumers, 44 pipeline regressions, both API
-documentation trees and the PDF, links and audit. C#/Actions SARIF is empty;
-native SARIF clears 38/39 findings and retains one false positive on the used
-empty parameter pack. Its zero/nonempty overload workaround passes the full
-46-case native suite locally and is reported upstream as github/codeql#22931.
-No finding is waived. Full native static/package checks, fresh all-green CI,
-final evidence/review/feedback and PR readiness remain pending. The complete
-sixth logs, three SARIF reports and 1,097 verified artifact files are preserved.
-No required child issue or human feedback is pending; latest main is included.
+Seventh run 40842727244 at 5cf40c5a338a38978221aab65a8e017005c95303 is
+fully green: 82 C# cases per platform, 46 native cases per configuration, 44
+pipeline regressions without skips, zero findings in three complete CodeQL
+reports, zero compiler/runtime/action warnings, all installed consumers and
+538 HTML / 277 PDF pages. Every artifact is archived and hash-verified.
+Latest main is included; all nine automated inline findings are resolved and
+there are no human requests or required child issues. No implementation is
+left unfinished. Public publication still requires owner-configured credentials;
+main fails explicitly with instructions, while PR checks are secret-free.
+
+Final delivery requires the same green CI on the evidence-only commit, a clean
+working tree, a final feedback/main refresh, and removal of draft status. Those
+operations are recorded by GitHub and the final local run metadata, followed by
+completion of the native goal. Do not merge this PR.

@@ -714,8 +714,20 @@
          for (typename TStorage::LinkAddressType i{1}; i < std::ranges::size(path); ++i)
          {
              auto next = path[i];
-@@ -237,7 +237,7 @@
-                     std::convertible_to<typename TStorage::LinkAddressType> auto... restrictionPack)
+@@ -233,11 +233,17 @@
+         return allLinks;
+     }
+     template <typename TStorage>
+-    static auto All(const TStorage& storage,
+-                    std::convertible_to<typename TStorage::LinkAddressType> auto... restrictionPack)
++    static auto All(const TStorage& storage)
++    {
++        return All(storage, typename TStorage::LinkType{});
++    }
++    template <typename TStorage, typename... TRestrictions>
++        requires(sizeof...(TRestrictions) > 0 &&
++                 (std::convertible_to<TRestrictions, typename TStorage::LinkAddressType> && ...))
++    static auto All(const TStorage& storage, TRestrictions... restrictionPack)
      {
          typename TStorage::LinkType restriction{static_cast<typename TStorage::LinkAddressType>(restrictionPack)...};
 -        return All(storage, typename TStorage::LinkType{});
@@ -723,7 +735,7 @@
      }
      template <typename TStorage>
      static typename TStorage::LinkAddressType AllIndices(TStorage& storage,
-@@ -348,55 +348,64 @@
+@@ -348,55 +354,64 @@
          }
      }
      template <typename TStorage>
@@ -829,7 +841,7 @@
          auto values = GetLink(storage, linkAddress);
          auto usagesAsSource = DIRECT_METHOD_CALL(
              TStorage, storage, Count, typename TStorage::LinkType{constants.Any, storage, linkAddress, constants.Any});
-@@ -421,7 +430,7 @@
+@@ -421,7 +436,7 @@
      typename TStorage::LinkAddressType SearchOrDefault(TStorage& storage, typename TStorage::LinkAddressType source,
                                                         typename TStorage::LinkAddressType target)
      {
@@ -838,7 +850,7 @@
          auto _break = constants.Break;
          typename TStorage::LinkAddressType searchedLinkAddress{};
          DIRECT_METHOD_CALL(TStorage, storage, Each, typename TStorage::LinkType{storage.Constants.Any, source, target},
-@@ -441,7 +450,7 @@
+@@ -441,7 +456,7 @@
      static typename TStorage::LinkAddressType CreatePoint(TStorage& storage,
                                                            const typename TStorage::WriteHandlerType& handler)
      {
@@ -847,7 +859,7 @@
          WriteHandlerState<TStorage> handlerState{constants.Continue, constants.Break, handler};
          typename TStorage::LinkAddressType linkAddress;
          typename TStorage::LinkAddressType HandlerWrapper = [&linkAddress,
-@@ -461,12 +470,12 @@
+@@ -461,12 +476,12 @@
      {
          auto $continue{storage.Constants.Continue};
          typename TStorage::LinkAddressType linkAddress;
@@ -866,7 +878,7 @@
      }
      template <typename TStorage>
      static typename TStorage::LinkAddressType CreateAndUpdate(TStorage& storage,
-@@ -474,7 +483,7 @@
+@@ -474,7 +489,7 @@
                                                                typename TStorage::LinkAddressType target,
                                                                const typename TStorage::WriteHandlerType& handler)
      {
@@ -875,7 +887,7 @@
          typename TStorage::LinkAddressType createdLinkAddress;
          WriteHandlerState<TStorage> handlerState{constants.Continue, constants.Break, handler};
          handlerState.Apply(
-@@ -494,7 +503,7 @@
+@@ -494,7 +509,7 @@
          auto $continue{storage.Constants.Continue};
          typename TStorage::LinkAddressType updatedLinkAddress;
          DIRECT_METHOD_CALL(TStorage, storage, Update, restriction, substitution,
@@ -884,7 +896,7 @@
                                                              const typename TStorage::LinkType& after) {
                                 updatedLinkAddress = after[0];
                                 return $continue;
-@@ -537,7 +546,7 @@
+@@ -537,7 +552,7 @@
          auto $continue{storage.Constants.Continue};
          typename TStorage::LinkAddressType updatedLinkAddress;
          Update(storage, linkAddress, newSource, newTarget,
@@ -893,7 +905,7 @@
                                                  const typename TStorage::LinkType& after) {
                     updatedLinkAddress = after[0];
                     return $continue;
-@@ -550,7 +559,7 @@
+@@ -550,7 +565,7 @@
          auto $continue{storage.Constants.Continue};
          typename TStorage::LinkAddressType updatedLinkAddress;
          return Update(storage, restriction,
@@ -902,7 +914,7 @@
                                                         const typename TStorage::LinkType& after) {
                            updatedLinkAddress = after;
                            return $continue;
-@@ -571,7 +580,7 @@
+@@ -571,7 +586,7 @@
                                                                        const typename TStorage::LinkType& restriction,
                                                                        const typename TStorage::LinkType& substitution)
      {
@@ -911,7 +923,7 @@
          auto restrictionIndex = GetIndex(storage, restriction);
          auto substitutionIndex = GetIndex(storage, substitution);
          if (constants.Null == substitutionIndex)
-@@ -588,7 +597,7 @@
+@@ -588,7 +603,7 @@
      typename TStorage::LinkAddressType GetOrCreate(TStorage& storage, typename TStorage::LinkAddressType source,
                                                     typename TStorage::LinkAddressType target)
      {
@@ -920,7 +932,7 @@
          auto link = SearchOrDefault(storage, source, target);
          if (link == constants.Null)
          {
-@@ -624,19 +633,19 @@
+@@ -624,19 +639,19 @@
      {
          auto $continue = storage.Constants.Continue;
          typename TStorage::LinkAddressType resultLink;
@@ -947,7 +959,7 @@
          auto linkAddress = storage.SearchOrDefault(source, target);
          if (linkAddress != constants.Null)
          {
-@@ -657,7 +666,7 @@
+@@ -657,7 +672,7 @@
                                                                typename TStorage::LinkAddressType linkIndex,
                                                                const typename TStorage::WriteHandlerType& handler)
      {
@@ -956,7 +968,7 @@
          auto any = constants.Any;
          auto $continue = storage.Constants.Continue;
          auto $break = storage.Constants.Break;
-@@ -694,7 +703,7 @@
+@@ -694,7 +709,7 @@
      template <typename TStorage>
      auto DeleteAll(TStorage& storage)
      {
@@ -965,7 +977,7 @@
              return typename TStorage::LinkAddressType{};
          };
          auto any = storage.Constants.Any;
-@@ -708,8 +717,7 @@
+@@ -708,8 +723,7 @@
      {
          auto nullConstant = storage.Constants.Null;
          auto link = GetLink(storage, linkIndex);
@@ -975,7 +987,7 @@
          {
              if (nullConstant != link[i])
              {
-@@ -757,7 +765,7 @@
+@@ -757,7 +771,7 @@
          {
              return newLinkIndex;
          }
@@ -984,7 +996,7 @@
          auto usagesAsSource = All(storage, typename TStorage::LinkType(constants.Any, oldLinkIndex, constants.Any));
          WriteHandlerState<TStorage> handlerState{constants.Continue, constants.Break, handler};
          for (auto i{0}; i < std::ranges::size(usagesAsSource); ++i)
-@@ -810,7 +818,7 @@
+@@ -810,7 +824,7 @@
                                                               typename TStorage::LinkAddressType newLinkIndex,
                                                               const typename TStorage::WriteHandlerType& handler)
      {
@@ -993,7 +1005,7 @@
          WriteHandlerState<TStorage> handlerState{constants.Continue, constants.Break, handler};
          if (newLinkIndex != oldLinkIndex)
          {
-@@ -822,7 +830,7 @@
+@@ -822,7 +836,7 @@
      template <typename TStorage>
      static std::string Format(TStorage& storage, const typename TStorage::LinkType& link)
      {
@@ -1002,7 +1014,7 @@
          return std::string{}
              .append("(")
              .append(std::to_string(GetIndex(storage, link)))
-@@ -850,8 +858,10 @@
+@@ -850,8 +864,10 @@
      {
          typename TStorage::LinkType queryResult;
          DIRECT_METHOD_CALL(TStorage, storage, Each, query,

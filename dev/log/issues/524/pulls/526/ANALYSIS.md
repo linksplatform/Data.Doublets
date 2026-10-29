@@ -7,7 +7,19 @@ Pull request: https://github.com/linksplatform/Data.Doublets/pull/526
 This report distinguishes observed failures from inferred causes. Raw GitHub
 metadata, downloaded logs, upstream source snapshots, local reproductions and
 verification output are retained beside it. No secret value is included.
-Final CI results and feedback are recorded below after the implementation run.
+The implementation is verified by fully green [run 40842727244](https://github.com/linksplatform/Data.Doublets/actions/runs/40842727244)
+at `5cf40c5a338a38978221aab65a8e017005c95303` (08:31:20–08:39:37 UTC).
+Both C# platforms pass **82 tests**, each of three native configurations passes
+**46 tests**, and all **44 pipeline regressions** execute without skips.
+All three complete CodeQL reports contain **zero findings**, all analysis
+invocations succeed, and the complete compiler/runtime/action-warning audit is
+empty. Documentation contains **538 HTML pages and 277 PDF pages**.
+`github/seventh-verified.json` is the machine-checked evidence summary;
+`ci-artifacts/seventh.tar.gz` and its SHA256/size manifest retain all **1,097**
+artifact files. The final section supersedes pending statements in earlier,
+chronological investigation entries. Live registry publication remains an
+owner-controlled operation; the original unusable NuGet credential is explicitly
+diagnosed before main builds, while PR validation requires no publishing secret.
 
 ## Requirements and implementation inventory
 
@@ -31,7 +43,7 @@ PR 525, which is included without discarding its query-handling changes.
 | R10 | Preserve existing features and publishable packages; prepare next releases | Existing NuGet IDs and `csharp_`/`cpp_` release tags retained, both language APIs and source PDF retained, native ZIP layout preserved, independent automatic changeset for both packages |
 | R11 | Add verbose diagnostics when more evidence is needed, default off | `CI_VERBOSE=1` enables shared native/release operation tracing; compiler/static-analysis/test outputs and job artifacts retain failures; no token tracing |
 | R12 | Complete everything in this single PR; preserve history and the prepared branch | Incremental forward commits only on `issue-524-b1512fd1c7a8`; merge latest main, no direct merge, all required work tracked in `PLAN.md` |
-| R13 | Run local checks and fresh CI, inspect actual errors, fix feedback, leave a clean tree | Repeated runs are tied to exact SHAs/timestamps in `github/runs-*.json`; final verification to be appended after the last run |
+| R13 | Run local checks and fresh CI, inspect actual errors, fix feedback, leave a clean tree | Repeated runs are tied to exact SHAs/timestamps in `github/runs-*.json`; green run 40842727244 plus raw-report verification in github/seventh-verified.json |
 | R14 | Update existing PR title/body, retain positive closing references, mark ready at completion | PR 526 is the only implementation PR; body retains `Fixes #524`; no required child issues existed at inventory time |
 
 ## Timeline (UTC)
@@ -589,3 +601,46 @@ its exact guide is archived alongside the previously consulted 1.8.0 guide.
 its real artifact smoke verifies every downloaded file after writing the archive.
 The complete branch workflow inventory and every available completed branch log
 are collected, including the earlier auto-merge and standalone security/link runs.
+
+
+### Seventh CI: every implementation criterion verified
+
+The native parameter-pack workaround clears the final result. Run
+**40842727244**, created **08:31:20 UTC**, completes **08:39:37 UTC** at exact
+HEAD **5cf40c5a338a38978221aab65a8e017005c95303** with all 14 applicable jobs
+successful. Only main-only credentials/publication jobs are deliberately skipped
+on this PR. The required aggregate job succeeds; no diagnostic is suppressed to
+obtain this result. Complete workflow and every executed job log are preserved
+as `ci-logs/seventh-full.log` and `ci-logs/seventh-job-*.log`.
+
+The reusable `experiments/verify_ci_evidence.py` independently checks the exact
+SHA and job outcomes, every complete SARIF result/invocation, both raw TRX
+counters, all three CTest artifact pass counts, all three installed native
+consumers and both installed C# consumers, quality test execution without skips,
+HTML count and PDF page objects. Its output is `github/seventh-verified.json`.
+The existing production SARIF validator separately accepts all three reports
+(`local/seventh-sarif.log`). The whole executed-job warning scan contains zero
+compiler, CMake, runtime, sanitizer or action warnings. All 1,097 artifact files
+are re-read from their saved archive and checked byte-for-byte against their
+SHA256/size manifest (`local/seventh-artifact-archive.log`).
+
+The final feedback refresh has no issue comments, no required sub-issues, one
+informational CodeQL conversation comment, **nine** automated inline comments
+and **five** automated reviews (`github/*-final.json`). The ninth inline comment
+is exactly the sixth-run parameter-pack result, now cleared by complete SARIF;
+there are no new human requests. Latest main is still
+`799502ce9275edc80d9fbc1953ff8892fe0eca19`, confirmed as an ancestor of this
+branch. All branch run metadata and every available completed run log, including
+earlier separate link/security and auto-merge runs, are retained. The refreshed
+normalized code diff contains 4,392 lines; the final overload change was also
+reviewed directly against the previous green runtime implementation. Existing
+zero/scalar/collection calls and every active feature remain covered.
+
+The three CodeQL upstream reports now include this exact successful verification
+and distinguish the production workaround from the reduced compiler-only probes.
+All thirteen upstream report bodies and URLs remain in `upstream/`. No required
+implementation or verification criterion is deferred. The repository owner still
+must rotate/configure publication credentials before a public release; that
+account operation is not represented as completed. The final evidence-only
+commit receives the same full CI before handoff, with its final metadata/logs
+collected locally in this folder; GitHub records the final readiness state.

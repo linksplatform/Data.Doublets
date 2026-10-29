@@ -57,8 +57,12 @@ requires (sizeof...(Values) > 0 &&
 static auto All(const TStorage& storage, Values... values);
 ```
 
-This retains zero-, one-, and collection-argument calls and their behavior without suppressing the query. Full native regressions cover the original calls; fresh CodeQL verification of this workaround is pending.
+This retains zero-, one-, and collection-argument calls and their behavior without suppressing the query. Full native regressions cover the original calls; the complete real-build CodeQL run confirms that the workaround clears the finding without a suppression.
 
 ### Suggested correction
 
 Please inspect the extractor's variable/storage classification and access facts for empty abbreviated parameter-pack instantiations. Function parameters/pack placeholders should not be reported as unused static-storage objects. Add zero/nonzero pack regression cases to `cpp/ql/src/Best Practices/Unused Entities/UnusedStaticVariables.ql`; if extraction retains a placeholder variable, explicitly exclude it or associate expansion accesses correctly.
+
+### Verified workaround in the complete build
+
+[Run 40842727244](https://github.com/linksplatform/Data.Doublets/actions/runs/40842727244) at `5cf40c5a338a38978221aab65a8e017005c95303` finished successfully on 2026-10-29 at 08:39:37 UTC. Its full traced native `security-and-quality` SARIF has **zero results** and a successful analysis invocation. GCC, Clang and ASan/UBSan each pass all **46 native tests**, the benchmark smoke and the real installed-package consumer. The workaround therefore passes both runtime and full-repository CodeQL checks without a query suppression. This verifies the production workaround; it does not claim a separate CodeQL run on the reduced standalone example.

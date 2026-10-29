@@ -51,3 +51,7 @@ Query help itself recommends casting before pointer arithmetic: https://codeql.g
 ### Workaround
 
 Use `reinterpret_cast<Record*>(storage)[recordIndex]`. This follows the query's array-subscript recommendation, preserves address calculations and const-correctness, and avoids suppressing the security query. We applied this to all six matching expressions and run the full native suite and ASan/UBSan in CI.
+
+### Verified workaround in the complete build
+
+[Run 40842727244](https://github.com/linksplatform/Data.Doublets/actions/runs/40842727244) at `5cf40c5a338a38978221aab65a8e017005c95303` finished successfully on 2026-10-29 at 08:39:37 UTC. Its full traced native `security-and-quality` SARIF has **zero results** and a successful analysis invocation. GCC, Clang and ASan/UBSan each pass all **46 native tests**, the benchmark smoke and the real installed-package consumer. The workaround therefore passes both runtime and full-repository CodeQL checks without a query suppression. This verifies the production workaround; it does not claim a separate CodeQL run on the reduced standalone example.
