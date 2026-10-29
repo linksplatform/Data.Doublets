@@ -20,6 +20,8 @@ tests = root / "csharp/Platform.Data.Doublets.Tests/UpdateContractTests.cs"
 original = {path: path.read_bytes() for path in [*backends, tests]}
 results = root / "artifacts/issue-517/negative"
 results.mkdir(parents=True, exist_ok=True)
+report = results / "guards.trx"
+report.unlink(missing_ok=True)
 try:
     for path in backends:
         source = original[path].decode()
@@ -45,7 +47,7 @@ try:
     with (results / "run.log").open("w") as log:
         result = subprocess.run(command, cwd=root, stdout=log, stderr=subprocess.STDOUT, check=False)  # nosec B603
     # The SDK produced this TRX locally; it is not an external XML input.
-    summary = ET.parse(results / "guards.trx").find(".//{*}Counters")  # nosec B314
+    summary = ET.parse(report).find(".//{*}Counters")  # nosec B314
     if result.returncode != 1 or summary is None or summary.get("failed") != "3" or summary.get("total") != "3":
         raise AssertionError(f"Expected exactly three failed contract tests; inspect {results / 'run.log'}")
     print("Verified three expected contract failures; no invalid raw update was executed.")
