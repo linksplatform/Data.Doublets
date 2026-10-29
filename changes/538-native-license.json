@@ -1,4 +1,0 @@
-{
-  "summary": "Include NuGet's required license compatibility URL in native packages and validate embedded license metadata before publication.",
-  "releases": {"cpp": "patch"}
-}

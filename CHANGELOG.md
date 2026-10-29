@@ -1,3 +1,7 @@
+## cpp 0.1.2
+
+- Include NuGet's required license compatibility URL in native packages and validate embedded license metadata before publication.
+
 ## csharp 0.18.4
 
 - Document caller-selected update validation, raw update preconditions and checked update recipes; verify missing updates preserve store state.
