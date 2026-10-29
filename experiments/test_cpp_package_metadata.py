@@ -5,7 +5,7 @@ import io
 import sys
 import tempfile
 import unittest
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # nosec B405 - Only locally generated package fixtures are parsed.
 from zipfile import ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -21,7 +21,7 @@ class NativeLicenseTests(unittest.TestCase):
             release.pack_cpp(output)
             package = release.info('cpp')
             with ZipFile(output / f"{package['id']}.{package['version']}.nupkg") as archive:
-                manifest = ET.fromstring(archive.read(f"{package['id']}.nuspec"))
+                manifest = ET.fromstring(archive.read(f"{package['id']}.nuspec"))  # nosec B314 - Generated locally by pack_cpp above.
                 license_element = manifest.find('n:metadata/n:license', release.NAMESPACE)
                 self.assertIsNotNone(license_element)
                 self.assertEqual(license_element.attrib, {'type': 'expression'})

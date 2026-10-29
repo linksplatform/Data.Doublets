@@ -1,3 +1,11 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": ["# Native package license regression", "*"]
+  }
+}
+-->
+
 # Native package license regression
 
 Issue: <https://github.com/linksplatform/Data.Doublets/issues/538>

@@ -17,7 +17,7 @@ def run(*args, cwd):
 
 
 def validate_native_metadata(contents, package_id):
-    manifest = ET.fromstring(contents.read(f"{package_id}.nuspec"))
+    manifest = ET.fromstring(contents.read(f"{package_id}.nuspec"))  # nosec B314 - Locally generated package metadata, not untrusted XML.
     license_element = manifest.find("n:metadata/n:license", NAMESPACE)
     if (
         license_element is None
