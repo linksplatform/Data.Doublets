@@ -1,6 +1,7 @@
 """Issue 538: policy-incompatible verification and controlled credential retries."""
 import contextlib
 import io
+import json
 import os
 from pathlib import Path
 import sys
@@ -169,6 +170,30 @@ class PushRetryTests(unittest.TestCase):
         self.assertIn('fallback', str(error.exception))
         self.assertNotIn('temporary-private', str(error.exception))
         self.assertNotIn('provided-private', str(error.exception))
+
+
+class GitHubPreflightTests(unittest.TestCase):
+    def test_repository_read_is_not_a_proof_of_token_write_permissions(self):
+        # GitHub's user/repository role is not the Actions installation token's
+        # endpoint permissions. The live token actually pushed gh-pages after
+        # the old repository-role check had rejected it.
+        for permissions in (None, {}, {'push': False}, {'push': True}):
+            payload = b'{"full_name":"linksplatform/Data.Doublets"}'
+            if permissions is not None:
+                payload = json.dumps({'full_name': 'linksplatform/Data.Doublets', 'permissions': permissions}).encode()
+            with self.subTest(permissions=permissions), patch.dict(os.environ, {'GH_TOKEN': 'github-private'}, clear=True), patch.object(release, 'request', return_value=(200, payload)), contextlib.redirect_stdout(io.StringIO()) as output:  # nosec B105 - Mocked credential; no network or real secret.
+                self.assertIsNone(release.verify_github('release'))
+                self.assertIn('unverified', output.getvalue())
+                self.assertNotIn('write permissions verified', output.getvalue())
+
+    def test_repository_errors_remain_fatal_and_preserve_safe_diagnostics(self):
+        for status, body in ((401, b'github-private rejected'), (403, b'forbidden'), (503, b'unavailable'), (0, b''), (200, b'{}'), (200, b'invalid JSON')):
+            with self.subTest(status=status, body=body), patch.dict(os.environ, {'GH_TOKEN': 'github-private'}, clear=True), patch.object(release, 'request', return_value=(status, body)):  # nosec B105 - Mocked credential; no network or real secret.
+                error = release.verify_github('release')
+            self.assertIsNotNone(error)
+            self.assertNotIn('github-private', error)
+            if status != 200:
+                self.assertIn(str(status or 'unreachable'), error)
 
 
 class ReleaseFailureTests(unittest.TestCase):
