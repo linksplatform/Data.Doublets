@@ -78,7 +78,11 @@ rejection fails once with instructions, and never triggers a forced push. Every
 published package comes from successful validation, and an existing version can
 be retried to repair missing release assets. Registry indexing is checked
 anonymously for up to fifteen minutes. GitHub Packages mirror failures remain
-visible while public release assets can still be repaired.
+visible while public release assets can still be repaired. Reruns preserve
+nonempty assets of an existing public release: rebuilding an unchanged version
+can produce different bytes from the immutable published package. Only missing
+or empty public assets are uploaded; draft assets can be replaced before
+promotion. Native ZIP attachments belong only to the matching C++ release.
 
 If publication reports `GH006` or `GH013`, a repository administrator must allow
 the release actor to update `main` under the existing branch policy (or provision

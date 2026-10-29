@@ -405,6 +405,21 @@ def push_nuget(artifact, package, method, token):
     print(f"NuGet publication auth=token-fallback; {reason}; {diagnostic(output, token, fallback)}")
 
 
+def release_state(body):
+    try:
+        data = json.loads(body)
+        draft = data["draft"]
+        assets = {asset["name"]: asset["size"] for asset in data["assets"]}
+        if not isinstance(draft, bool) or not all(
+            isinstance(name, str) and isinstance(size, int) and size >= 0
+            for name, size in assets.items()
+        ):
+            raise ValueError("Invalid release metadata")
+        return draft, assets
+    except (ValueError, KeyError, TypeError):
+        raise RuntimeError("GitHub release lookup returned malformed metadata") from None
+
+
 def publish(language, output):
     package = info(language)
     artifacts = sorted(output.glob(f"{package['id']}.{package['version']}.*nupkg"))
@@ -413,11 +428,18 @@ def publish(language, output):
     tag = f"{language}_{package['version']}"
     repository = os.environ.get("GITHUB_REPOSITORY", "linksplatform/Data.Doublets")
     release_url = f"https://api.github.com/repos/{repository}/releases/tags/{tag}"
-    status, _ = request(release_url, headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"]})
+    status, body = request(
+        release_url, headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"]}
+    )
     if status not in (200, 404):
         raise RuntimeError(
             f"Release lookup returned HTTP {status}; refusing to treat an unknown result as absent"
         )
+    draft, existing = release_state(body) if status == 200 else (True, {})
+    # A same-version rebuild can differ from the immutable registry artifact.
+    # Preserve every nonempty asset of an already public release; drafts and
+    # missing assets can still be repaired without rewriting published files.
+    preserved = {name: size for name, size in existing.items() if size > 0} if not draft else {}
     failures = []
     method, token = select_nuget_auth([language])
     # Each destination can be repaired independently on a rerun. A failed mirror
@@ -461,26 +483,43 @@ def publish(language, output):
             ],
             check=True,
         )
-    attachments = artifacts + sorted(output.glob("*.zip"))
-    subprocess.run(
-        ["gh", "release", "upload", tag, "--repo", repository, "--clobber", *map(str, attachments)],
-        check=True,
+    attachments = artifacts + (
+        sorted(output.glob(f"platform.data.doublets_{package['version']}.zip"))
+        if language == "cpp"
+        else []
     )
-    if nuget_verified:
+    pending = [path for path in attachments if path.name not in preserved]
+    expected = {**preserved, **{path.name: path.stat().st_size for path in pending}}
+    if pending:
+        subprocess.run(
+            [
+                "gh",
+                "release",
+                "upload",
+                tag,
+                "--repo",
+                repository,
+                *(["--clobber"] if draft or any(path.name in existing for path in pending) else []),
+                *map(str, pending),
+            ],
+            check=True,
+        )
+    if preserved:
+        print(f"Preserved {len(preserved)} existing public assets for {tag}")
+    if nuget_verified and draft:
         subprocess.run(
             ["gh", "release", "edit", tag, "--repo", repository, "--draft=false"], check=True
         )
     # Authentication is deliberately omitted to check the reader's actual view.
     status, body = request(release_url)
     try:
-        public = json.loads(body)
-        actual = {asset["name"]: asset["size"] for asset in public["assets"]}
+        draft, actual = release_state(body)
         verified = (
             status == 200
-            and not public["draft"]
-            and all(actual.get(path.name) == path.stat().st_size for path in attachments)
+            and not draft
+            and all(actual.get(name) == size for name, size in expected.items())
         )
-    except (ValueError, KeyError, TypeError):
+    except RuntimeError:
         verified = False
     if not verified:
         failures.append(
@@ -488,7 +527,7 @@ def publish(language, output):
         )
     if failures:
         raise RuntimeError("; ".join(failures))
-    print(f"Published and verified {tag} and all {len(attachments)} release assets")
+    print(f"Published and verified {tag} and all {len(expected)} release assets")
 
 
 if __name__ == "__main__":

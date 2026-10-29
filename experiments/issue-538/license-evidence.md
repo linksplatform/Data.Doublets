@@ -53,9 +53,21 @@ GitHub mirror and must not be overwritten. C# remains at 0.18.4. The modern
 license, OIDC-first policy, bounded authentication retries, existing fallback
 secret, required-job expectations and package consumer execution are retained.
 
+Comparing the original C# release with an unchanged-version local rebuild
+also exposed an idempotence defect: the rebuilt nuspec, assembly and package
+relationship entry differ, but publication unconditionally replaced the public
+release's original package and symbols. Reruns now preserve existing nonempty
+public assets, upload only missing or empty assets, and keep native ZIPs on the
+matching C++ release. Draft repair and independent mirror failure reporting
+remain enforced. Six regression tests cover preservation, partial repair,
+draft replacement, malformed metadata, anonymous asset loss and empty assets.
+`verify-public-consumers.sh` downloads exact anonymous NuGet packages and the
+public native release ZIP, then restores and executes both normal consumers;
+it accepts the released versions explicitly without editing source versions.
+
 ## Verification
 
-Local verification passes 99 Python regressions, Ruff, formatting, mypy,
+Local verification passes 105 Python regressions, Ruff, formatting, mypy,
 repository and version policy, digest-pinned workflow lint with ShellCheck
 and Pyflakes, standalone shell lint, native formatting, report-only preflight,
 and a complete Gitleaks history scan (3,316 commits, no leaks).
