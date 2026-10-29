@@ -8,8 +8,12 @@ permissions:
   contents: read
 jobs:
   codeql:
+    name: codeql
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+    env:
+      # Audit the entire repository, including findings outside this PR's diff.
+      CODEQL_ACTION_DIFF_INFORMED_QUERIES: 'false'
     permissions:
       contents: read
       security-events: write # Upload CodeQL results to code scanning.
@@ -17,6 +21,13 @@ jobs:
       fail-fast: false
       matrix:
         language: [csharp, c-cpp, actions]
+        include:
+          - language: csharp
+            build-mode: none
+          - language: c-cpp
+            build-mode: manual
+          - language: actions
+            build-mode: none
     concurrency:
       group: security-codeql-${{ matrix.language }}-${{ github.ref }}
       cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
@@ -27,12 +38,35 @@ jobs:
       - uses: github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4
         with:
           languages: ${{ matrix.language }}
-          build-mode: none
+          build-mode: ${{ matrix.build-mode }}
           queries: security-extended,security-and-quality
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        if: matrix.language == 'c-cpp'
+        with:
+          python-version: '3.12'
+      - name: Resolve native dependencies for accurate macro and template analysis
+        if: matrix.language == 'c-cpp'
+        run: bash cpp/setup.sh
+      - name: Trace the real native build and execute its tests
+        if: matrix.language == 'c-cpp'
+        env:
+          CMAKE_BUILD_PARALLEL_LEVEL: '1'
+        run: bash cpp/run_tests.sh
       - uses: github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4
         with:
           category: /language:${{ matrix.language }}
+          output: codeql-results
+      - name: Reject all CodeQL findings and incomplete reports
+        run: python3 scripts/check_sarif.py codeql-results
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        if: always()
+        with:
+          name: codeql-${{ matrix.language }}
+          path: codeql-results
+          if-no-files-found: error
+          retention-days: 14
   audit:
+    name: audit
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     concurrency:

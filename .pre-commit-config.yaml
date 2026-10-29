@@ -16,7 +16,7 @@ repos:
         entry: python3 scripts/check-cpp.py
         language: system
         pass_filenames: false
-        files: ^(cpp|c)/.*\.(h|hpp|cpp|c)$
+        files: ^(cpp|c|examples)/.*\.(h|hpp|cpp|c)$
       - id: csharp-format
         name: C# formatting
         entry: dotnet format whitespace csharp/Platform.Data.Doublets.sln --no-restore --verify-no-changes

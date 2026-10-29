@@ -9,6 +9,10 @@ permissions:
   contents: read
 jobs:
   changes:
+    name: changes
+    concurrency:
+      group: changes-${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     outputs:
@@ -24,6 +28,7 @@ jobs:
       - id: detect
         run: python3 scripts/changes.py
   quality:
+    name: quality
     needs: changes
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -72,17 +77,23 @@ jobs:
         if: github.event_name == 'pull_request'
         run: python3 scripts/release.py preflight --mode report
   security:
+    name: security
     needs: quality
     if: "!cancelled() && needs.quality.result == 'success'"
     permissions:
       contents: read
-      security-events: write
+      security-events: write # Allow the reusable CodeQL workflow to upload results.
     uses: ./.github/workflows/security.yml
   links:
+    name: links
     needs: quality
     if: "!cancelled() && needs.quality.result == 'success'"
     uses: ./.github/workflows/links.yml
   credentials:
+    name: credentials
+    concurrency:
+      group: credentials-${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
     if: >-
       github.ref == 'refs/heads/main' && github.event_name != 'pull_request' &&
       (needs.changes.outputs.csharp == 'true' || needs.changes.outputs.cpp == 'true' || needs.changes.outputs.pipeline == 'true')
@@ -99,6 +110,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/release.py preflight --mode release --credentials-only
   csharp:
+    name: csharp
     needs: [changes, quality, credentials]
     if: >-
       !cancelled() && needs.quality.result == 'success' &&
@@ -136,6 +148,7 @@ jobs:
           if-no-files-found: error
           retention-days: 14
   cpp:
+    name: cpp
     needs: [changes, quality, credentials]
     if: >-
       !cancelled() && needs.quality.result == 'success' &&
@@ -228,6 +241,7 @@ jobs:
           if-no-files-found: error
           retention-days: 14
   docs:
+    name: docs
     needs: [changes, quality, credentials]
     if: >-
       !cancelled() && needs.quality.result == 'success' &&
@@ -270,6 +284,7 @@ jobs:
           if-no-files-found: error
           retention-days: 14
   publish:
+    name: publish
     if: >-
       !cancelled() && github.ref == 'refs/heads/main' &&
       needs.quality.result == 'success' &&
@@ -279,8 +294,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     permissions:
-      contents: write
-      packages: write
+      contents: write # Commit release metadata, publish release assets and update gh-pages.
+      packages: write # Publish the validated artifacts to GitHub Packages.
     concurrency:
       group: main-writer-${{ github.repository }}-main
       cancel-in-progress: false
@@ -338,6 +353,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: bash scripts/publish-docs.sh
   required:
+    name: required
+    concurrency:
+      group: required-${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
     if: always()
     needs: [changes, credentials, quality, csharp, cpp, docs, security, links, publish]
     runs-on: ubuntu-24.04

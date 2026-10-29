@@ -77,11 +77,15 @@ failures even when an archive copy exists.
 
 The pinned Conan recipe snapshot needs explicit Conan 2 header-library metadata
 and a Clang-compatible constant-expression workaround in Platform.Data. These
-bounded patches live in `scripts/patch_conan_recipes.py`; upstream reports and
+bounded patches live in `scripts/patch_conan_recipes.py`; they also repair the
+upstream heap allocator destructor and dependency build diagnostics. Explicit
+Conan profiles select the compiler from `CC`/`CXX`; set `CPP_CONAN_PROFILE` to an
+existing reviewed profile for another platform. Internal Conan aliases use
+hyphens; public CMake targets and headers retain their original names. Upstream reports and
 reproduction evidence are under `dev/log/issues/524/pulls/526/upstream/`.
 
 The scheduled security workflow audits transitive NuGet dependencies, runs
-CodeQL, and scans complete Git history for credentials. `.gitleaksignore` contains
+full-repository CodeQL with a fatal gate on every SARIF finding, and scans complete Git history for credentials. `.gitleaksignore` contains
 one exact historical fingerprint: the removed key was independently verified
 revoked (HTTP 401). It does not exempt current files or future credentials.
 

@@ -6,12 +6,16 @@ on:
 permissions: {}
 jobs:
   auto-merge:
+    name: auto-merge
+    concurrency:
+      group: dependabot-auto-merge-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
     if: github.event.pull_request.user.id == 49699333 && github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     permissions:
-      contents: write
-      pull-requests: write
+      contents: write # Enable GitHub-managed auto-merge for reviewed dependency updates.
+      pull-requests: write # Approve eligible official Dependabot updates.
     steps:
       - uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3
         id: metadata

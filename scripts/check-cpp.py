@@ -12,7 +12,7 @@ def run(*args):
 
 
 def sources():
-    names = subprocess.check_output(['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z', 'cpp', 'c'], cwd=ROOT).decode().split('\0')
+    names = subprocess.check_output(['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z', 'cpp', 'c', 'examples'], cwd=ROOT).decode().split('\0')
     return [name for name in names if name and Path(name).suffix in ('.c', '.h', '.cpp', '.hpp') and (ROOT / name).is_file()]
 
 

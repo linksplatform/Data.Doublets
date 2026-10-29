@@ -1,7 +1,9 @@
 """Restore packaged artifacts in isolated consumers; never test project references."""
 import argparse
+import json
 import os
 from pathlib import Path
+import shlex
 import subprocess
 import tempfile
 import xml.etree.ElementTree as ET
@@ -13,7 +15,38 @@ def run(*args, cwd):
     subprocess.run(args, cwd=cwd, check=True)
 
 
-def smoke(language):
+def compile_native_consumer(installed, consumer, build_dir):
+    database = json.loads((build_dir / 'compile_commands.json').read_text())
+    if not database:
+        raise ValueError('A real native compilation database is required for the package consumer')
+    entry = database[0]
+    original = shlex.split(entry['command'])
+    command = [original[0]]
+    replaced = False
+    index = 1
+    while index < len(original):
+        argument = original[index]
+        if argument == '-o':
+            index += 2
+            continue
+        if argument not in ('-c', entry['file']):
+            source_include = str(ROOT / 'cpp/Platform.Data.Doublets')
+            if source_include in argument:
+                argument = argument.replace(source_include, str(installed / 'lib/native/include'))
+                replaced = True
+            command.append(argument)
+        index += 1
+    if not replaced:
+        raise ValueError('Cannot isolate the native package from source-tree headers')
+    linker = shlex.split((build_dir / 'CMakeFiles/Platform.Data.Doublets.Tests.dir/link.txt').read_text())
+    libraries = [arg for arg in linker if (arg.endswith(('.a', '.so')) or arg.startswith(('-l', '-L', '-Wl,'))) and 'gtest' not in arg]
+    binary = consumer / 'native-consumer'
+    command += [str(ROOT / 'examples/CppMemoryLinks.cpp'), *libraries, '-o', str(binary)]
+    run(*command, cwd=consumer)
+    run(str(binary), cwd=consumer)
+
+
+def smoke(language, build_dir=None):
     package = info(language)
     feed = ROOT / 'artifacts/packages'
     archive = feed / f"{package['id']}.{package['version']}.nupkg"
@@ -59,10 +92,13 @@ def smoke(language):
         else:
             installed = consumer / 'packages' / package['id'].lower() / package['version']
             assert (installed / 'lib/native/include/Platform.Data.Doublets.h').is_file()
+            compile_native_consumer(installed, consumer, build_dir or ROOT / 'cpp/build')
     print(f"Validated packaged consumer of {package['id']} {package['version']}")
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('language', choices=['csharp', 'cpp'])
-    smoke(parser.parse_args().language)
+    parser.add_argument('--build-dir', type=Path)
+    args = parser.parse_args()
+    smoke(args.language, args.build_dir)
