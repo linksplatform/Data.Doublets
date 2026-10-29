@@ -85,7 +85,12 @@ def authenticate_fallback(token, package):
     status, body = request(f'https://www.nuget.org/api/v2/package/create-verification-key/{package_id}/{version}',
                            method='POST', headers={'X-NuGet-ApiKey': token})
     if status != 200:
-        category = 'authentication/authorization rejected' if status in (401, 403) else 'authentication probe failed/unsupported'
+        if status in (401, 403):
+            category = 'authentication/authorization rejected'
+        elif status in (0, 408, 429) or status >= 500:
+            category = 'authentication probe transport/transient failure'
+        else:
+            category = 'authentication probe failed/unsupported (not package-scope evidence)'
         raise RuntimeError(f'{category}: HTTP {status or "unreachable"}; {diagnostic(body, token)}')
     try:
         key = json.loads(body)['Key']
@@ -241,7 +246,7 @@ def run_nuget_push(artifact, source, token):
         command.append('--no-symbols')
     # File-backed output also bounds memory for a verbose registry/client failure.
     with tempfile.TemporaryFile() as log:
-        result = subprocess.run(command, stdout=log, stderr=log, check=False)
+        result = subprocess.run(command, stdout=log, stderr=log, check=False)  # nosec B603 - Fixed dotnet command, argument list, no shell.
         log.seek(0, 2)
         log.seek(max(0, log.tell() - 16384))
         output = log.read().decode('utf-8', errors='replace')
@@ -256,7 +261,8 @@ def push_nuget(artifact, package, method, token):
         return
     # Only an actual HTTP authentication/authorization rejection permits retry.
     rejection = re.search(r'(?:HTTP\s+|status code(?: does not indicate success)?:\s*)(401|403)\b', output, re.I)
-    outcome = f'{method} push failed (exit {code}): {diagnostic(output, token)}'
+    category = 'authentication/authorization rejection' if rejection else 'publication/client/transport failure (no credential retry)'
+    outcome = f'{method} push failed (exit {code}; {category}): {diagnostic(output, token)}'
     if method != 'trusted-publishing' or not rejection:
         raise RuntimeError(outcome)
     print(f'::warning::{outcome}; checking the exact version before token fallback')

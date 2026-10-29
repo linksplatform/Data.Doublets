@@ -1,3 +1,14 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# Issue 538 work plan and acceptance evidence",
+      "*"
+    ]
+  }
+}
+-->
+
 # Issue 538 work plan and acceptance evidence
 
 Objective: implement every requirement of issue 538 in PR 539, verify all applicable
@@ -42,8 +53,8 @@ job expectations. Work only on issue-538-06fae78405da; preserve forward history.
   native formatting, secrets scan and appropriate C#/C++/documentation validation.
   Large logs go to files. Native compiler experiments get finite resource caps;
   hosted CI handles builds that exceed this container's 2.92 GiB shared limit.
-- [ ] Commit atomic steps after local checks, push only prepared branch; update PR
-  title/body with reproduction, tests, requirements/evidence and Fixes #538.
+- [x] Commit atomic steps after local checks, push only prepared branch; update
+  PR title/body with reproduction, tests, requirements/evidence and Fixes #538.
 - [ ] Inspect every PR diff for regressions and scope; merge latest main into branch
   if needed, check clean status; download/analyze all failing current-SHA CI logs.
 - [ ] Verify full PR CI: both C# OS legs, GCC/Clang/sanitizers, discovered native
@@ -77,3 +88,9 @@ job expectations. Work only on issue-538-06fae78405da; preserve forward history.
 - Issue step 7 explicitly requires merging the reviewed correction before live
   main verification. Only PR merge after successful required checks is in scope;
   no direct source push to main or branch-protection bypass is authorized.
+
+- First hosted run 40881539681 passes quality and links; full matrix underway.
+  Codacy reported 14 new findings: unused test import, mock credential literals,
+  explicit subprocess review and Markdown format. Preserved its API response in
+  ci-logs/codacy-539.json; fixed unused import/style and documented narrowly scoped
+  fixture/argument-list exceptions without disabling any repository checks.

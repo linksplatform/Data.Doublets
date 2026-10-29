@@ -1,7 +1,6 @@
 """Issue 538: policy-incompatible verification and controlled credential retries."""
 import contextlib
 import io
-import json
 import os
 from pathlib import Path
 import sys
@@ -15,7 +14,7 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 import release
 
 PACKAGE = {'id': 'Example', 'version': '1.0.0', 'notes': ''}
-OIDC = {'NUGET_USER': 'profile-name', 'NUGET_TOKEN': 'temporary-private',
+OIDC = {'NUGET_USER': 'profile-name', 'NUGET_TOKEN': 'temporary-private',  # nosec B105 - Mocked credential; no network or real secret.
         'NUGET_LOGIN_OUTCOME': 'success'}
 AUTHENTICATED = (200, b'{"Key":"derived-private","Expires":"2099-01-01T00:00:00Z"}')
 
@@ -75,7 +74,7 @@ class AuthenticationDecisionTests(unittest.TestCase):
     def test_unavailable_or_failed_oidc_considers_provided_token(self):
         for user, outcome in (('', 'skipped'), ('email@example.org', 'skipped'), ('profile-name', 'failure'), ('profile-name', 'success')):
             with self.subTest(user=user, outcome=outcome), patch.object(release, 'request', return_value=AUTHENTICATED) as request:
-                selected, output = self.select({'NUGET_USER': user, 'NUGET_LOGIN_OUTCOME': outcome, 'NUGET_FALLBACK_TOKEN': 'provided-private'})
+                selected, output = self.select({'NUGET_USER': user, 'NUGET_LOGIN_OUTCOME': outcome, 'NUGET_FALLBACK_TOKEN': 'provided-private'})  # nosec B105 - Mocked credential; no network or real secret.
                 self.assertEqual(selected, ('token-fallback', 'provided-private'))
                 self.assertIn('failed-step=', output)
                 self.assertIn('auth=token-fallback', output)
@@ -91,11 +90,11 @@ class AuthenticationDecisionTests(unittest.TestCase):
         for status in (401, 403):
             with self.subTest(status=status), patch.object(release, 'request', return_value=(status, b'provided-private rejected')):
                 with self.assertRaisesRegex(RuntimeError, f'trusted.*failed.*fallback.*HTTP {status}') as error:
-                    self.select({'NUGET_USER': 'profile-name', 'NUGET_LOGIN_OUTCOME': 'failure', 'NUGET_FALLBACK_TOKEN': 'provided-private'})
+                    self.select({'NUGET_USER': 'profile-name', 'NUGET_LOGIN_OUTCOME': 'failure', 'NUGET_FALLBACK_TOKEN': 'provided-private'})  # nosec B105 - Mocked credential; no network or real secret.
                 self.assertNotIn('provided-private', str(error.exception))
 
     def test_fallback_authentication_is_not_derived_package_scope_proof(self):
-        with patch.dict(os.environ, {'NUGET_FALLBACK_TOKEN': 'provided-private'}, clear=True), patch.object(release, 'request', return_value=AUTHENTICATED) as request, contextlib.redirect_stdout(io.StringIO()) as output:
+        with patch.dict(os.environ, {'NUGET_FALLBACK_TOKEN': 'provided-private'}, clear=True), patch.object(release, 'request', return_value=AUTHENTICATED) as request, contextlib.redirect_stdout(io.StringIO()) as output:  # nosec B105 - Mocked credential; no network or real secret.
             self.assertEqual(release.select_nuget_auth(['cpp'])[0], 'token-fallback')
         self.assertEqual(request.call_count, 1)
         self.assertIn('scope', output.getvalue())
@@ -106,13 +105,13 @@ class AuthenticationDecisionTests(unittest.TestCase):
         for response in ((200, b'{}'), (400, b'unsupported'), (503, b'unavailable'), (0, b'')):
             with self.subTest(response=response), patch.object(release, 'request', return_value=response):
                 with self.assertRaises(RuntimeError) as error:
-                    self.select({'NUGET_FALLBACK_TOKEN': 'provided-private'})
+                    self.select({'NUGET_FALLBACK_TOKEN': 'provided-private'})  # nosec B105 - Mocked credential; no network or real secret.
                 self.assertNotIn('owner/package scope', str(error.exception))
 
 
 class PushRetryTests(unittest.TestCase):
     def push(self, responses, public_status=404, environment=None):
-        environment = {**OIDC, 'NUGET_FALLBACK_TOKEN': 'provided-private', **(environment or {})}
+        environment = {**OIDC, 'NUGET_FALLBACK_TOKEN': 'provided-private', **(environment or {})}  # nosec B105 - Mocked credential; no network or real secret.
         with tempfile.TemporaryDirectory() as directory:
             artifact = Path(directory) / 'Example.1.0.0.nupkg'
             artifact.write_bytes(b'PKfixture')
@@ -140,7 +139,7 @@ class PushRetryTests(unittest.TestCase):
 
     def test_success_never_tests_expired_fallback(self):
         with patch.object(release, 'authenticate_fallback') as fallback:
-            _, calls, checks, output = self.push([(0, 'success')], environment={'NUGET_FALLBACK_TOKEN': 'expired-provided'})
+            _, calls, checks, output = self.push([(0, 'success')], environment={'NUGET_FALLBACK_TOKEN': 'expired-provided'})  # nosec B105 - Mocked credential; no network or real secret.
             fallback.assert_not_called()
         self.assertEqual(len(calls), 1)
         self.assertEqual(checks, [])
@@ -177,7 +176,7 @@ class ReleaseFailureTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory)
             (output / 'Example.1.0.0.nupkg').write_bytes(b'PKfixture')
-            with patch.dict(os.environ, {**OIDC, 'GH_TOKEN': 'github-private'}, clear=True), patch.object(release, 'info', return_value=PACKAGE), patch.object(release, 'request', return_value=(404, b'')), patch.object(release, 'push_nuget', side_effect=RuntimeError('both authentications rejected')), patch.object(release, 'run_nuget_push', return_value=(0, 'mirror success')), patch.object(release.subprocess, 'check_output', return_value='fixture-sha'), patch.object(release.subprocess, 'run') as commands, contextlib.redirect_stdout(io.StringIO()):
+            with patch.dict(os.environ, {**OIDC, 'GH_TOKEN': 'github-private'}, clear=True), patch.object(release, 'info', return_value=PACKAGE), patch.object(release, 'request', return_value=(404, b'')), patch.object(release, 'push_nuget', side_effect=RuntimeError('both authentications rejected')), patch.object(release, 'run_nuget_push', return_value=(0, 'mirror success')), patch.object(release.subprocess, 'check_output', return_value='fixture-sha'), patch.object(release.subprocess, 'run') as commands, contextlib.redirect_stdout(io.StringIO()):  # nosec B105 - Mocked credential; no network or real secret.
                 with self.assertRaisesRegex(RuntimeError, 'both authentications rejected'):
                     release.publish('csharp', output)
             self.assertTrue(any(call.args[0][:3] == ['gh', 'release', 'create'] and '--draft' in call.args[0] for call in commands.call_args_list))
@@ -209,7 +208,7 @@ class RepositoryAuthPolicyTests(unittest.TestCase):
             job = invalid['jobs']['publish']
             caller = next(step for step in job['steps'] if 'publish --language csharp' in step.get('run', ''))
             if change == 'direct-token':
-                caller['env']['NUGET_TOKEN'] = '${{ secrets.NUGET_TOKEN }}'
+                caller['env']['NUGET_TOKEN'] = '${{ secrets.NUGET_TOKEN }}'  # nosec B105 - Mocked credential; no network or real secret.
             elif change == 'ignore-publish':
                 caller['continue-on-error'] = True
             elif change == 'ignore-job':
