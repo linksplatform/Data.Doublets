@@ -1,0 +1,46 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Platform.Data.Doublets -> /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/bin/Release/net8.0/Platform.Data.Doublets.dll
+  Platform.Data.Doublets.Tests -> /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll
+  Platform.Data.Doublets.Benchmarks -> /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net8.0/Platform.Data.Doublets.Benchmarks.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.02
+Test run for /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
+Results File: /tmp/gh-issue-solver-1793248170197/artifacts/test-results/_8f80e2fd61e6_2026-10-29_04_51_34.trx
+
+Passed!  - Failed:     0, Passed:    43, Skipped:     0, Total:    43, Duration: 1 s - Platform.Data.Doublets.Tests.dll (net8.0)
+united: created 2 = (1, 18446744073709551596)
+  Each -> [2], Count -> 1, SearchOrDefault -> 2
+split: created 2 = (1, 18446744073709551596)
+  Each -> [2], Count -> 1, SearchOrDefault -> 2
+  Successfully created package '/tmp/gh-issue-solver-1793248170197/artifacts/packages/Platform.Data.Doublets.0.18.3.nupkg'.
+  Successfully created package '/tmp/gh-issue-solver-1793248170197/artifacts/packages/Platform.Data.Doublets.0.18.3.snupkg'.
+  Determining projects to restore...
+  Restored /tmp/tmp61065pz2/Consumer.csproj (in 2.54 sec).
+/tmp/tmp61065pz2/Program.cs(1,220): error CS7036: There is no argument given that corresponds to the required parameter 'substitution' of 'UnitedMemoryLinksBase<ulong>.Create(IList<ulong>?, WriteHandler<ulong>?)' [/tmp/tmp61065pz2/Consumer.csproj]
+/tmp/tmp61065pz2/Program.cs(1,240): error CS7036: There is no argument given that corresponds to the required parameter 'restriction' of 'UnitedMemoryLinksBase<ulong>.Count(IList<ulong>?)' [/tmp/tmp61065pz2/Consumer.csproj]
+
+The build failed. Fix the build errors and run again.
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/scripts/smoke_packages.py", line 59, in <module>
+    smoke(parser.parse_args().language)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gh-issue-solver-1793248170197/scripts/smoke_packages.py", line 49, in smoke
+    run('dotnet', 'run', '-c', 'Release', '--no-restore', cwd=consumer)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gh-issue-solver-1793248170197/scripts/smoke_packages.py", line 13, in run
+    subprocess.run(args, cwd=cwd, check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.pyenv/versions/3.15.0/lib/python3.15/subprocess.py", line 692, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '('dotnet', 'run', '-c', 'Release', '--no-restore')' returned non-zero exit status 1.

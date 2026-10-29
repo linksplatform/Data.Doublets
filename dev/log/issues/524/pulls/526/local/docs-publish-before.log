@@ -1,0 +1,21 @@
+test_first_deployment_creates_missing_branch_and_is_idempotent (experiments.test_docs_publish.DocsPublishTests.test_first_deployment_creates_missing_branch_and_is_idempotent) ... FAIL
+test_repeated_deployment_preserves_other_language_docs (experiments.test_docs_publish.DocsPublishTests.test_repeated_deployment_preserves_other_language_docs) ... ok
+
+======================================================================
+FAIL: test_first_deployment_creates_missing_branch_and_is_idempotent (experiments.test_docs_publish.DocsPublishTests.test_first_deployment_creates_missing_branch_and_is_idempotent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/experiments/test_docs_publish.py", line 54, in test_first_deployment_creates_missing_branch_and_is_idempotent
+    self.run_publish(False)
+    ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/tmp/gh-issue-solver-1793248170197/experiments/test_docs_publish.py", line 47, in run_publish
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 128 != 0 : Cloning into '/tmp/tmp.2ANKUugOdK'...
+fatal: Remote branch gh-pages not found in upstream origin
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.748s
+
+FAILED (failures=1)

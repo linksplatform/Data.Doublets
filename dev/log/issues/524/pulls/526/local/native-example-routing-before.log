@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_native_package_example_runs_its_compiler_and_package_validation (experiments.test_pipeline_policies.RoutingTests.test_native_package_example_runs_its_compiler_and_package_validation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/experiments/test_pipeline_policies.py", line 36, in test_native_package_example_runs_its_compiler_and_package_validation
+    self.assertTrue(changes.categories(['examples/CppMemoryLinks.cpp'])['cpp'])
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)

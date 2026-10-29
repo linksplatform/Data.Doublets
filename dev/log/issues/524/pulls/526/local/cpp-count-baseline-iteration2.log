@@ -1,0 +1,24 @@
+[ 50%] Building CXX object CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o
+[100%] Linking CXX executable bin/Platform.Data.Doublets.Tests
+[100%] Built target Platform.Data.Doublets.Tests
+Running main() from /home/box/.conan2/p/b/gtest0d5adadc5ba36/b/src/googletest/src/gtest_main.cc
+Note: Google Test filter = ResizableDirectMemoryLinksTests.CountRequiresBothSpecifiedPartsToMatch
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ResizableDirectMemoryLinksTests
+[ RUN      ] ResizableDirectMemoryLinksTests.CountRequiresBothSpecifiedPartsToMatch
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:16: Failure
+Expected equality of these values:
+  1
+  storage.Count(typename decltype(storage)::LinkType{link, 1, 2})
+    Which is: 0
+[  FAILED  ] ResizableDirectMemoryLinksTests.CountRequiresBothSpecifiedPartsToMatch (110 ms)
+[----------] 1 test from ResizableDirectMemoryLinksTests (110 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (110 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] ResizableDirectMemoryLinksTests.CountRequiresBothSpecifiedPartsToMatch
+
+ 1 FAILED TEST

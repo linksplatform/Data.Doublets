@@ -1,0 +1,4 @@
+.github/workflows/ci.yml:240:7: unexpected key "queue" for "concurrency" section. expected one of "cancel-in-progress", "group" [syntax-check]
+    |
+240 |       queue: max
+    |       ^~~~~~

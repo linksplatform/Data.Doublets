@@ -1,0 +1,7 @@
+Two independent regressions in the link-validation helpers can mask errors or hammer an unavailable host:
+
+1. `scripts/recheck_broken_links.py`: in `recheck_unanswered`, the first-round delay is skipped whenever `pending` contains one URL. A single connection-reset URL is retried continuously without calling `time.sleep`. Reproduce with `fetch` returning `OSError('connection reset')` once and HTTP 200 next, `initial_wait_ms=1`, and a mocked `time.sleep`; assert it was called once with 0.001. It is currently called zero times. Multiple URLs can also collapse to the same condition later. Track an explicit `first_round` boolean, then apply bounded backoff on every subsequent round.
+
+2. `scripts/check_web_archive.py`: set `LYCHEE_OUTPUT` to a nonexistent report path and `GITHUB_OUTPUT` to a temporary file, then invoke `main()`. It returns success and writes `all_archived=true`, although no report was examined. Return nonzero and `all_archived=false` when the expected report is absent; distinguish a valid empty-error report from a missing artifact.
+
+The minimal automated regressions and corrected adapted helpers are in [Data.Doublets PR 526](https://github.com/linksplatform/Data.Doublets/pull/526), `experiments/test_link_retries.py`. Workaround: use those corrected helpers, preserve a finite retry budget, and fail live broken links even when an archive copy exists. The reviewed upstream revision is 7ac75134c697e9468f1242c20f1d229594decbc3.

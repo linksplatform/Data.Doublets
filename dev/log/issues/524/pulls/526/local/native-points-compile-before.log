@@ -1,0 +1,34 @@
+/tmp/gh-issue-solver-1793248170197/experiments/native_ensure_points.cpp:7:64: error: reference to 'LinksOptions' is ambiguous
+    7 |     using Storage = Memory::United::Generic::UnitedMemoryLinks<LinksOptions<std::uint64_t>,
+      |                                                                ^
+/home/box/.conan2/p/b/platf6d36e387946f4/p/include/LinksOptions.h:5:12: note: candidate found by name lookup is 'Platform::Data::LinksOptions'
+    5 |     struct LinksOptions
+      |            ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/LinksOptions.h:9:12: note: candidate found by name lookup is 'Platform::Data::Doublets::LinksOptions'
+    9 |     struct LinksOptions : Platform::Data::LinksOptions<TLinkAddress, VConstants, TLink, TReadHandler, TWriteHandler>
+      |            ^
+In file included from /tmp/gh-issue-solver-1793248170197/experiments/native_ensure_points.cpp:1:
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:63:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:426:34: error: call to function 'Update' that is neither visible in the template definition nor found by argument-dependent lookup
+  426 |                           return Update(storage, point, point, point);
+      |                                  ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:424:95: note: while substituting into a lambda expression here
+  424 |         EnsureCreated(storage, std::function<typename TStorage::LinkAddressType()>{[&storage] {
+      |                                                                                               ^
+/tmp/gh-issue-solver-1793248170197/experiments/native_ensure_points.cpp:10:5: note: in instantiation of function template specialization 'Platform::Data::Doublets::EnsurePointsCreated<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::LinksOptions<>>>>' requested here
+   10 |     EnsurePointsCreated(storage, Storage::LinkType{1, 3, 5});
+      |     ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:589:47: note: 'Update' should be declared prior to the call site or in an associated namespace of one of its arguments
+  589 |     static typename TStorage::LinkAddressType Update(TStorage& storage, typename TStorage::LinkAddressType linkAddress,
+      |                                               ^
+2 errors generated.
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/experiments/run_heap_sanitizer.py", line 30, in <module>
+    subprocess.run(['clang++-18', '-std=c++20', '-O0', '-g0', '-fsanitize=address,undefined', *includes,
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    str(args.source.resolve()), *libraries, '-o', binary], check=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.pyenv/versions/3.15.0/lib/python3.15/subprocess.py", line 692, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['clang++-18', '-std=c++20', '-O0', '-g0', '-fsanitize=address,undefined', '-I/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets', '-isystem', '/home/box/.conan2/p/b/gtest0d5adadc5ba36/p/include', '-isystem', '/home/box/.conan2/p/b/platf0f1d0f11c8208/p/include', '-isystem', '/home/box/.conan2/p/b/platfdd46a3ad5b8db/p/include', '-isystem', '/home/box/.conan2/p/b/platfdc64493ee67e9/p/include', '-isystem', '/home/box/.conan2/p/b/platf3e085fac6073f/p/include', '-isystem', '/home/box/.conan2/p/b/platf345a4af257268/p/include', '-isystem', '/home/box/.conan2/p/b/platf3e1f6bedc8515/p/include', '-isystem', '/home/box/.conan2/p/b/platfbb029f56410fa/p/include', '-isystem', '/home/box/.conan2/p/b/platf090e1c6511c8a/p/include', '-isystem', '/home/box/.conan2/p/b/platf292b33c1d0144/p/include', '-isystem', '/home/box/.conan2/p/b/platf4473a94e01144/p/include', '-isystem', '/home/box/.conan2/p/b/cpuinf3a2c7bd9bf2d/p/include', '-isystem', '/home/box/.conan2/p/ms-gs000db09c5aa93/p/include', '-isystem', '/home/box/.conan2/p/b/platf0c661369f1ed0/p/include', '-isystem', '/home/box/.conan2/p/b/platff07d43e08b3a9/p/include', '-isystem', '/home/box/.conan2/p/mio8a34575d137c8/p/include', '-isystem', '/home/box/.conan2/p/b/platf6d36e387946f4/p/include', '-isystem', '/home/box/.conan2/p/b/platf8a4e2763ea15b/p/include', '/tmp/gh-issue-solver-1793248170197/experiments/native_ensure_points.cpp', '-lm', '/home/box/.conan2/p/b/cpuinf3a2c7bd9bf2d/p/lib/libcpuinfo.a', '-lpthread', '/home/box/.conan2/p/b/cpuinf3a2c7bd9bf2d/p/lib/libclog.a', '-ldl', '-o', '/tmp/issue-524-native_ensure_points']' returned non-zero exit status 1.

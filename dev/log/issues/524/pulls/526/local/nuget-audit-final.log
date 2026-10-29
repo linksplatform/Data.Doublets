@@ -1,0 +1,10 @@
+  Determining projects to restore...
+  Restored /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/Platform.Data.Doublets.Tests.csproj (in 802 ms).
+  Restored /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj (in 801 ms).
+  Restored /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Benchmarks/Platform.Data.Doublets.Benchmarks.csproj (in 802 ms).
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/scripts/check_audit.py", line 10, in <module>
+    assert project.get('frameworks'), 'NuGet audit did not inspect a project framework'
+           ~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: NuGet audit did not inspect a project framework
+NuGet audit completed without vulnerabilities

@@ -1,0 +1,527 @@
+diff --git a/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h b/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h
+index 776493ef1..a93f251fc 100644
+--- a/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h
++++ b/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h
+@@ -20,12 +20,12 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+         TMemory _indexMemory;
+         std::uint64_t _dataMemoryReservationStepInBytes;
+         std::uint64_t _indexMemoryReservationStepInBytes;
+-        TInternalSourcesTreeMethods* InternalSourcesTreeMethods;
+-        TInternalLinksSourcesLinkedListMethods* InternalSourcesListMethods;
+-        TInternalTargetsTreeMethods* InternalTargetsTreeMethods;
+-        TExternalSourcesTreeMethods* ExternalSourcesTreeMethods;
+-        TExternalTargetsTreeMethods* ExternalTargetsTreeMethods;
+-        TUnusedLinksListMethods* UnusedLinksListMethods;
++        std::unique_ptr<TInternalSourcesTreeMethods> InternalSourcesTreeMethods;
++        std::unique_ptr<TInternalLinksSourcesLinkedListMethods> InternalSourcesListMethods;
++        std::unique_ptr<TInternalTargetsTreeMethods> InternalTargetsTreeMethods;
++        std::unique_ptr<TExternalSourcesTreeMethods> ExternalSourcesTreeMethods;
++        std::unique_ptr<TExternalTargetsTreeMethods> ExternalTargetsTreeMethods;
++        std::unique_ptr<TUnusedLinksListMethods> UnusedLinksListMethods;
+         std::byte* _header;
+         std::byte* _linksDataParts;
+         std::byte* _linksIndexParts;
+@@ -133,11 +133,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+                                                 _indexMemoryReservationStepInBytes) +
+                                                _indexMemoryReservationStepInBytes;
+             }
+-            if (dataMemory.ReservedCapacity() != minimumDataReservedCapacity)
++            if (dataMemory.ReservedCapacity() < minimumDataReservedCapacity)
+             {
+                 dataMemory.ReservedCapacity(minimumDataReservedCapacity);
+             }
+-            if (indexMemory.ReservedCapacity() != minimumIndexReservedCapacity)
++            if (indexMemory.ReservedCapacity() < minimumIndexReservedCapacity)
+             {
+                 indexMemory.ReservedCapacity(minimumIndexReservedCapacity);
+             }
+@@ -354,19 +354,21 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+             _header = _linksIndexParts;
+             if (UseLinkedList)
+             {
+-                //                InternalSourcesTreeMethods = new
+-                //                TInternalLinksSourcesLinkedTreeMethods(_linksDataParts, _linksIndexParts);
++                InternalSourcesListMethods =
++                    std::make_unique<TInternalLinksSourcesLinkedListMethods>(_linksDataParts, _linksIndexParts);
+             }
+             else
+             {
+                 InternalSourcesTreeMethods =
+-                    new TInternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            }
+-            InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            UnusedLinksListMethods = new TUnusedLinksListMethods(_linksDataParts, _header);
++                    std::make_unique<TInternalSourcesTreeMethods>(_linksDataParts, _linksIndexParts, _header);
++            }
++            InternalTargetsTreeMethods =
++                std::make_unique<TInternalTargetsTreeMethods>(_linksDataParts, _linksIndexParts, _header);
++            ExternalSourcesTreeMethods =
++                std::make_unique<TExternalSourcesTreeMethods>(_linksDataParts, _linksIndexParts, _header);
++            ExternalTargetsTreeMethods =
++                std::make_unique<TExternalTargetsTreeMethods>(_linksDataParts, _linksIndexParts, _header);
++            UnusedLinksListMethods = std::make_unique<TUnusedLinksListMethods>(_linksDataParts, _header);
+         }
+ 
+         LinkAddressType Count(const LinkType& restriction)
+diff --git a/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h b/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h
+index 3aca3e17e..34774dd1b 100644
+--- a/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h
++++ b/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h
+@@ -1,4 +1,4 @@
+-﻿namespace Platform::Data::Doublets::Memory::United::Generic
++namespace Platform::Data::Doublets::Memory::United::Generic
+ {
+ 
+     template <typename TSelf, typename TLinkOptions, typename TMemory, typename TSourceTreeMethods,
+@@ -31,11 +31,11 @@
+ 
+         const std::size_t _memoryReservationStep;
+ 
+-        TTargetTreeMethods* _TargetsTreeMethods;
++        std::unique_ptr<TTargetTreeMethods> _TargetsTreeMethods;
+ 
+-        TSourceTreeMethods* _SourcesTreeMethods;
++        std::unique_ptr<TSourceTreeMethods> _SourcesTreeMethods;
+ 
+-        TUnusedLinks* _UnusedLinksListMethods;
++        std::unique_ptr<TUnusedLinks> _UnusedLinksListMethods;
+ 
+         LinksHeader<LinkAddressType>& GetHeaderReference()
+         {
+@@ -445,9 +445,9 @@
+         {
+             _links = static_cast<std::byte*>(memory.Pointer());
+             _header = _links;
+-            _SourcesTreeMethods = new TSourceTreeMethods(_links, _header);
+-            _TargetsTreeMethods = new TTargetTreeMethods(_links, _header);
+-            _UnusedLinksListMethods = new TUnusedLinks(_links, _header);
++            _SourcesTreeMethods = std::make_unique<TSourceTreeMethods>(_links, _header);
++            _TargetsTreeMethods = std::make_unique<TTargetTreeMethods>(_links, _header);
++            _UnusedLinksListMethods = std::make_unique<TUnusedLinks>(_links, _header);
+         }
+ 
+         bool Exists(LinkAddressType linkAddress) const
+diff --git a/csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs b/csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs
+index e3e051039..03f2faa58 100644
+--- a/csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs
++++ b/csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs
+@@ -238,6 +238,7 @@ namespace Platform.Data.Doublets
+             }
+         }
+ 
++        /// <summary>Throws when a link with the specified source and target exists.</summary>
+         /// <param name="source">The source.</param>
+         /// <param name="target">The target.</param>
+         /// <param name="links">Хранилище связей.</param>
+@@ -250,6 +251,7 @@ namespace Platform.Data.Doublets
+             }
+         }
+ 
++        /// <summary>Throws when another link uses the specified link.</summary>
+         /// <param name="link">The link.</param>
+         /// <param name="links">Хранилище связей.</param>
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+@@ -261,42 +263,45 @@ namespace Platform.Data.Doublets
+             }
+         }
+ 
++        /// <summary>Creates all requested internal link addresses, retaining existing links.</summary>
+         /// <param name="addresses">The addresses.</param>
+         /// <param name="links">Хранилище связей.</param>
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] addresses) where TLinkAddress : IUnsignedNumber<TLinkAddress> { links.EnsureCreated(links.Create, addresses); }
+ 
++        /// <summary>Creates all requested internal link addresses, retaining existing links.</summary>
+         /// <param name="addresses">The addresses.</param>
+         /// <param name="links">Хранилище связей.</param>
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         public static void EnsurePointsCreated<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] addresses) where TLinkAddress : IUnsignedNumber<TLinkAddress> { links.EnsureCreated(links.CreatePoint, addresses); }
+ 
++        /// <summary>Creates all requested internal link addresses, retaining existing links.</summary>
+         /// <param name="addresses">The addresses.</param>
+         /// <param name="creator">The creator.</param>
+         /// <param name="links">Хранилище связей.</param>
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, Func<TLinkAddress> creator, params TLinkAddress[] addresses) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+         {
+-            var addressToUInt64Converter = CheckedConverter<TLinkAddress, TLinkAddress>.Default;
+-            var uInt64ToAddressConverter = CheckedConverter<TLinkAddress, TLinkAddress>.Default;
+-            var nonExistentAddresses = new HashSet<TLinkAddress>(addresses.Where(x => !links.Exists(x)));
+-            if (nonExistentAddresses.Count > 0)
++            var remaining = new HashSet<TLinkAddress>(addresses.Where(address =>
++                address != links.Constants.Null &&
++                Comparer<TLinkAddress>.Default.Compare(address, links.Constants.InternalReferencesRange.Maximum) <= 0 &&
++                !links.Exists(address)));
++            var requested = new HashSet<TLinkAddress>(remaining);
++            var created = new HashSet<TLinkAddress>();
++            // Keep intermediate allocations until every requested address exists;
++            // deleting one early could make the allocator return it repeatedly.
++            while (remaining.Count > 0)
+             {
+-                var max = nonExistentAddresses.Aggregate((left, right) => Comparer<TLinkAddress>.Default.Compare(left, right) >= 0 ? left : right);
+-                max = uInt64ToAddressConverter.Convert(TLinkAddress.CreateTruncating(System.Math.Min(ulong.CreateTruncating(max), ulong.CreateTruncating(links.Constants.InternalReferencesRange.Maximum))));
+-                var createdLinks = new List<TLinkAddress>();
+-                TLinkAddress createdLink = creator();
+-                while (createdLink != max)
++                var address = creator();
++                if (address == links.Constants.Null || !created.Add(address))
+                 {
+-                    createdLinks.Add(createdLink);
+-                }
+-                for (var i = 0; i < createdLinks.Count; i++)
+-                {
+-                    if (!nonExistentAddresses.Contains(createdLinks[i]))
+-                    {
+-                        links.Delete(createdLinks[i]);
+-                    }
++                    throw new InvalidOperationException("The creator did not allocate a new link.");
+                 }
++                remaining.Remove(address);
++            }
++            foreach (var address in created)
++            {
++                if (!requested.Contains(address)) links.Delete(address, null);
+             }
+         }
+ 
+diff --git a/csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinks.cs b/csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinks.cs
+index 6f9214ca3..f036c2578 100644
+--- a/csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinks.cs
++++ b/csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinks.cs
+@@ -141,19 +141,19 @@ public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkA
+     {
+         if (indexTreeType == IndexTreeType.SizeBalancedTree)
+         {
+-            _createInternalSourceTreeMethods = () => new InternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+-            _createExternalSourceTreeMethods = () => new ExternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+-            _createInternalTargetTreeMethods = () => new InternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+-            _createExternalTargetTreeMethods = () => new ExternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
++            _createInternalSourceTreeMethods = () => new InternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
++            _createExternalSourceTreeMethods = () => new ExternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
++            _createInternalTargetTreeMethods = () => new InternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
++            _createExternalTargetTreeMethods = () => new ExternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+         }
+         else
+         {
+-            _createInternalSourceTreeMethods = () => new InternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+-            _createExternalSourceTreeMethods = () => new ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+-            _createInternalTargetTreeMethods = () => new InternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+-            _createExternalTargetTreeMethods = () => new ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
++            _createInternalSourceTreeMethods = () => new InternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
++            _createExternalSourceTreeMethods = () => new ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
++            _createInternalTargetTreeMethods = () => new InternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
++            _createExternalTargetTreeMethods = () => new ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts, header: _header);
+         }
+-        Init(dataMemory: dataMemory, indexMemory: indexMemory);
++        InitializeMemory(dataMemory, indexMemory, () => SetPointersCore(dataMemory, indexMemory));
+     }
+ 
+     /// <summary>
+@@ -171,14 +171,16 @@ public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkA
+     ///     <para></para>
+     /// </param>
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+-    protected override void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
++    protected override void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory) => SetPointersCore(dataMemory, indexMemory);
++
++    private void SetPointersCore(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
+     {
+         _linksDataParts = (byte*)dataMemory.Pointer;
+         _linksIndexParts = (byte*)indexMemory.Pointer;
+         _header = _linksIndexParts;
+         if (_useLinkedList)
+         {
+-            InternalSourcesListMethods = new InternalLinksSourcesLinkedListMethods<TLinkAddress>(constants: Constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts);
++            InternalSourcesListMethods = new InternalLinksSourcesLinkedListMethods<TLinkAddress>(constants: _constants, linksDataParts: _linksDataParts, linksIndexParts: _linksIndexParts);
+         }
+         else
+         {
+diff --git a/csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs b/csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs
+index d04948f65..f6812abd5 100644
+--- a/csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs
++++ b/csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs
+@@ -182,7 +182,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+         _dataMemoryReservationStepInBytes = memoryReservationStep * LinkDataPartSizeInBytes;
+         _indexMemoryReservationStepInBytes = memoryReservationStep * LinkIndexPartSizeInBytes;
+         _useLinkedList = useLinkedList;
+-        Constants = constants;
++        _constants = constants;
+     }
+ 
+     /// <summary>
+@@ -225,11 +225,10 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+     ///     </para>
+     ///     <para></para>
+     /// </summary>
+-    public virtual LinksConstants<TLinkAddress> Constants
+-    {
+-        [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+-        get;
+-    }
++    protected readonly LinksConstants<TLinkAddress> _constants;
++
++    /// <summary>Gets the configured constants for the store.</summary>
++    public virtual LinksConstants<TLinkAddress> Constants => _constants;
+ 
+     /// <summary>
+     ///     <para>
+@@ -350,38 +349,23 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+                     }
+                     else if (externalReferencesRange.Value.Contains(value: target))
+                     {
+-                        if (_useLinkedList)
+-                        {
+-                            // The internal source has a list; the external target has a searchable tree.
+-                            link = RequiredExternalTargetsTreeMethods.Search(source: source, target: target);
+-                        }
+-                        else
+-                        {
+-                            link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+-                        }
++                        // The internal source has a list; the external target has a searchable tree.
++                        link = _useLinkedList
++                            ? RequiredExternalTargetsTreeMethods.Search(source: source, target: target)
++                            : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                     else
+                     {
+-                        if (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
+-                        {
+-                            link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
+-                        }
+-                        else
+-                        {
+-                            link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+-                        }
++                        link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
++                        ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
++                        : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                 }
+                 else
+                 {
+-                    if (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
+-                    {
+-                        link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
+-                    }
+-                    else
+-                    {
+-                        link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+-                    }
++                    link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
++                        ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
++                        : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                 }
+                 return (link == constants.Null) ? GetZero() : GetOne();
+             }
+@@ -550,38 +534,23 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+                     }
+                     else if (externalReferencesRange.Value.Contains(value: target))
+                     {
+-                        if (_useLinkedList)
+-                        {
+-                            // The internal source has a list; the external target has a searchable tree.
+-                            link = RequiredExternalTargetsTreeMethods.Search(source: source, target: target);
+-                        }
+-                        else
+-                        {
+-                            link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+-                        }
++                        // The internal source has a list; the external target has a searchable tree.
++                        link = _useLinkedList
++                            ? RequiredExternalTargetsTreeMethods.Search(source: source, target: target)
++                            : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                     else
+                     {
+-                        if (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
+-                        {
+-                            link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
+-                        }
+-                        else
+-                        {
+-                            link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+-                        }
++                        link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
++                        ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
++                        : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                 }
+                 else
+                 {
+-                    if (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
+-                    {
+-                        link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
+-                    }
+-                    else
+-                    {
+-                        link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+-                    }
++                    link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
++                        ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
++                        : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                 }
+                 return (link == constants.Null) ? @continue : handler(link: GetLinkStruct(linkIndex: link));
+             }
+@@ -620,6 +589,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+         throw new NotSupportedException(message: "Other restriction sizes and methods are not supported.");
+     }
+ 
++    /// <summary>Updates the link that matches the restriction.</summary>
+     /// <remarks>
+     ///     TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в
+     ///     менеджере памяти, а в логике Links)
+@@ -702,6 +672,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+         return handler != null ? handler(before: before, after: new Link<TLinkAddress>(index: linkIndex, source: source, target: target)) : Constants.Continue;
+     }
+ 
++    /// <summary>Creates a link and invokes the optional callback.</summary>
+     /// <remarks>
+     ///     TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
+     /// </remarks>
+@@ -792,14 +763,18 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+     /// </param>
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     protected virtual void Init(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
++        => InitializeMemory(dataMemory, indexMemory, () => SetPointers(dataMemory, indexMemory));
++
++    /// <summary>Initializes memory using a concrete pointer initializer during construction.</summary>
++    protected unsafe void InitializeMemory(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, Action setPointers)
+     {
+         // Read allocated links from header
+         if (indexMemory.ReservedCapacity < LinkHeaderSizeInBytes)
+         {
+             indexMemory.ReservedCapacity = LinkHeaderSizeInBytes;
+         }
+-        SetPointers(dataMemory: dataMemory, indexMemory: indexMemory);
+-        ref var header = ref GetHeaderReference();
++        setPointers();
++        ref var header = ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void*)indexMemory.Pointer);
+         var allocatedLinks = long.CreateTruncating(value: header.AllocatedLinks);
+         // Adjust reserved capacity
+         var minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+@@ -829,16 +804,16 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+         {
+             minimumIndexReservedCapacity = minimumIndexReservedCapacity / _indexMemoryReservationStepInBytes * _indexMemoryReservationStepInBytes + _indexMemoryReservationStepInBytes;
+         }
+-        if (dataMemory.ReservedCapacity != minimumDataReservedCapacity)
++        if (dataMemory.ReservedCapacity < minimumDataReservedCapacity)
+         {
+             dataMemory.ReservedCapacity = minimumDataReservedCapacity;
+         }
+-        if (indexMemory.ReservedCapacity != minimumIndexReservedCapacity)
++        if (indexMemory.ReservedCapacity < minimumIndexReservedCapacity)
+         {
+             indexMemory.ReservedCapacity = minimumIndexReservedCapacity;
+         }
+-        SetPointers(dataMemory: dataMemory, indexMemory: indexMemory);
+-        header = ref GetHeaderReference();
++        setPointers();
++        header = ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void*)indexMemory.Pointer);
+         // Ensure correctness _memory.UsedCapacity over _header->AllocatedLinks
+         // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
+         dataMemory.UsedCapacity = ConvertToInt64(value: header.AllocatedLinks) * LinkDataPartSizeInBytes + LinkDataPartSizeInBytes; // First link is read only zero link.
+diff --git a/csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.cs b/csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.cs
+index 8a5ac5357..230934c7e 100644
+--- a/csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.cs
++++ b/csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.cs
+@@ -101,15 +101,15 @@ namespace Platform.Data.Doublets.Memory.United.Generic
+         {
+             if (indexTreeType == IndexTreeType.SizedAndThreadedAVLBalancedTree)
+             {
+-                _createSourceTreeMethods = () => new LinksSourcesAvlBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
+-                _createTargetTreeMethods = () => new LinksTargetsAvlBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
++                _createSourceTreeMethods = () => new LinksSourcesAvlBalancedTreeMethods<TLinkAddress>(_constants, _links, _header);
++                _createTargetTreeMethods = () => new LinksTargetsAvlBalancedTreeMethods<TLinkAddress>(_constants, _links, _header);
+             }
+             else
+             {
+-                _createSourceTreeMethods = () => new LinksSourcesSizeBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
+-                _createTargetTreeMethods = () => new LinksTargetsSizeBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
++                _createSourceTreeMethods = () => new LinksSourcesSizeBalancedTreeMethods<TLinkAddress>(_constants, _links, _header);
++                _createTargetTreeMethods = () => new LinksTargetsSizeBalancedTreeMethods<TLinkAddress>(_constants, _links, _header);
+             }
+-            Init(memory, memoryReservationStep);
++            InitializeMemory(memory, memoryReservationStep, () => SetPointersCore(memory));
+         }
+ 
+         /// <summary>
+@@ -123,7 +123,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
+         /// <para></para>
+         /// </param>
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-        protected override void SetPointers(IResizableDirectMemory memory)
++        protected override void SetPointers(IResizableDirectMemory memory) => SetPointersCore(memory);
++
++        private void SetPointersCore(IResizableDirectMemory memory)
+         {
+             _links = (byte*)memory.Pointer;
+             _header = _links;
+diff --git a/csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.cs b/csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.cs
+index e9f6153fc..1a7fefbfd 100644
+--- a/csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.cs
++++ b/csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.cs
+@@ -111,11 +111,10 @@ namespace Platform.Data.Doublets.Memory.United.Generic
+         /// </para>
+         /// <para></para>
+         /// </summary>
+-        public virtual LinksConstants<TLinkAddress> Constants
+-        {
+-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-            get;
+-        }
++        protected readonly LinksConstants<TLinkAddress> _constants;
++
++        /// <summary>Gets the configured constants for the store.</summary>
++        public virtual LinksConstants<TLinkAddress> Constants => _constants;
+ 
+         /// <summary>
+         /// <para>
+@@ -140,7 +139,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
+         {
+             _memory = memory;
+             _memoryReservationStep = memoryReservationStep;
+-            Constants = constants;
++            _constants = constants;
+         }
+ 
+         /// <summary>
+@@ -176,13 +175,17 @@ namespace Platform.Data.Doublets.Memory.United.Generic
+         /// </param>
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         protected virtual void Init(IResizableDirectMemory memory, long memoryReservationStep)
++            => InitializeMemory(memory, memoryReservationStep, () => SetPointers(memory));
++
++        /// <summary>Initializes memory using a concrete pointer initializer during construction.</summary>
++        protected unsafe void InitializeMemory(IResizableDirectMemory memory, long memoryReservationStep, Action setPointers)
+         {
+             if (memory.ReservedCapacity < memoryReservationStep)
+             {
+                 memory.ReservedCapacity = memoryReservationStep;
+             }
+-            SetPointers(memory);
+-            ref var header = ref GetHeaderReference();
++            setPointers();
++            ref var header = ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void*)memory.Pointer);
+             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
+             memory.UsedCapacity = (long.CreateTruncating(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
+             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
+@@ -472,6 +475,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
+             throw new NotSupportedException("Other restriction sizes and methods are not supported.");
+         }
+ 
++        /// <summary>Updates the link that matches the restriction.</summary>
+         /// <remarks>
+         /// TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
+         /// </remarks>
+@@ -508,6 +512,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
+             return handler != null ? handler(before, GetLinkStruct(linkIndex)) : Constants.Continue;
+         }
+ 
++        /// <summary>Creates a link and invokes the optional callback.</summary>
+         /// <remarks>
+         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
+         /// </remarks>

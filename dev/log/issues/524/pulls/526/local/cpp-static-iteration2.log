@@ -1,0 +1,217 @@
+[1/2] Processing file /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp.
+11 warnings generated.
+[2/2] Processing file /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp.
+28 warnings and 20 errors generated.
+Error while processing /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp.
+error: too many errors emitted, stopping now [clang-diagnostic-error]
+/home/box/.conan2/p/b/platff90410c64197e/p/include/ILinksExtensions.h:96:24: error: constexpr variable 'constants' must be initialized by a constant expression [clang-diagnostic-error]
+   96 |         constexpr auto constants = storage.Constants;
+      |                        ^           ~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:20:27: note: in instantiation of function template specialization 'Platform::Data::GetLink<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned char>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>>>' requested here
+   20 |             linkStruct = {GetLink(storage, linkAddress)};
+      |                           ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:95:48: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::CrudOperationsTester::TestCreate<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned char>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>>>' requested here
+   95 |         auto linkAddress{CrudOperationsTester::TestCreate(storage)};
+      |                                                ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:96:34: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::TestCrudOperations<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned char>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>>>' requested here
+   96 |             [](auto&& storage) { TestCrudOperations(storage); });
+      |                                  ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:21:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorage<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned char>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>>, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:96:13) &>' requested here
+   21 |         UsingStorage<StorageType>(action);
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:95:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorageWithExternalReferencesWithSizeBalancedTrees<unsigned char, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:96:13)>' requested here
+   95 |         UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint8_t>(
+      |         ^
+/home/box/.conan2/p/b/platff90410c64197e/p/include/ILinksExtensions.h:96:36: note: function parameter 'storage' with unknown value cannot be used in a constant expression
+   96 |         constexpr auto constants = storage.Constants;
+      |                                    ^
+/home/box/.conan2/p/b/platff90410c64197e/p/include/ILinksExtensions.h:94:64: note: declared here
+   94 |     static typename TStorage::LinkType GetLink(const TStorage& storage, typename TStorage::LinkAddressType linkAddress)
+      |                                                                ^
+/home/box/.conan2/p/b/platff90410c64197e/p/include/ILinksExtensions.h:99:13: error: no matching function for call to 'IsExternalReference' [clang-diagnostic-error]
+   99 |         if (IsExternalReference<typename TStorage::LinkAddressType, constants>(linkAddress))
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/box/.conan2/p/b/platff90410c64197e/p/include/LinksConstantsExtensions.h:16:17: note: candidate template ignored: invalid explicitly-specified argument for template parameter 'VLinksConstants'
+   16 |     static bool IsExternalReference(TLinkAddress linkAddress) noexcept
+      |                 ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:110:24: error: constexpr variable 'constants' must be initialized by a constant expression [clang-diagnostic-error]
+  110 |         constexpr auto constants = storage.Constants;
+      |                        ^           ~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:108:34: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::TestRawNumbersCrudOperations<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned char>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>>>' requested here
+  108 |             [](auto&& storage) { TestRawNumbersCrudOperations(storage); });
+      |                                  ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:21:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorage<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned char>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>>, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:108:13) &>' requested here
+   21 |         UsingStorage<StorageType>(action);
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:107:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorageWithExternalReferencesWithSizeBalancedTrees<unsigned char, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:108:13)>' requested here
+  107 |         UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint8_t>(
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:110:36: note: function parameter 'storage' with unknown value cannot be used in a constant expression
+  110 |         constexpr auto constants = storage.Constants;
+      |                                    ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:107:56: note: declared here
+  107 |     static void TestRawNumbersCrudOperations(TStorage& storage)
+      |                                                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:23:24: error: constexpr variable 'constants' must be initialized by a constant expression [clang-diagnostic-error]
+   23 |         constexpr auto constants = storage.Constants;
+      |                        ^           ~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:87:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::TestNonexistentReferences<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>>' requested here
+   87 |         TestNonexistentReferences(storage);
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:23:36: note: function parameter 'storage' with unknown value cannot be used in a constant expression
+   23 |         constexpr auto constants = storage.Constants;
+      |                                    ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:20:53: note: declared here
+   20 |     static void TestNonexistentReferences(TStorage& storage)
+      |                                                     ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:32:56: error: variable 'constants' cannot be implicitly captured in a lambda with no capture-default specified [clang-diagnostic-error]
+   32 |                          resultLinkAddress = foundLink[constants.IndexPart];
+      |                                                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:31:90: note: while substituting into a lambda expression here
+   31 |                      [&resultLinkAddress, $break](typename TStorage::LinkType foundLink) {
+      |                                                                                          ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:87:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::TestNonexistentReferences<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>>' requested here
+   87 |         TestNonexistentReferences(storage);
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:23:24: note: 'constants' declared here
+   23 |         constexpr auto constants = storage.Constants;
+      |                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:31:22: note: lambda expression begins here
+   31 |                      [&resultLinkAddress, $break](typename TStorage::LinkType foundLink) {
+      |                      ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:31:49: note: capture 'constants' by value
+   31 |                      [&resultLinkAddress, $break](typename TStorage::LinkType foundLink) {
+      |                                                 ^
+      |                                                 , constants
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:31:49: note: capture 'constants' by reference
+   31 |                      [&resultLinkAddress, $break](typename TStorage::LinkType foundLink) {
+      |                                                 ^
+      |                                                 , &constants
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:668:24: error: constexpr variable 'constants' must be initialized by a constant expression [clang-diagnostic-error]
+  668 |         constexpr auto constants = storage.Constants;
+      |                        ^           ~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:205:37: note: in instantiation of function template specialization 'Platform::Data::Doublets::GetOrCreate<Platform::Interfaces::Decorated<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned char>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>>, Platform::Data::Doublets::Decorators::LinksCascadeUniquenessAndUsagesResolver, Platform::Data::Doublets::Decorators::NonNullContentsLinkDeletionResolver, Platform::Data::Doublets::Decorators::LinksCascadeUsagesResolver>>' requested here
+  205 |                     auto resultLink{GetOrCreate(storage, source, target)};
+      |                                     ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:120:41: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::TestMultipleRandomCreationsAndDeletions<Platform::Interfaces::Decorated<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned char>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>>, Platform::Data::Doublets::Decorators::LinksCascadeUniquenessAndUsagesResolver, Platform::Data::Doublets::Decorators::NonNullContentsLinkDeletionResolver, Platform::Data::Doublets::Decorators::LinksCascadeUsagesResolver>>' requested here
+  120 |             [](auto&& storage) { return TestMultipleRandomCreationsAndDeletions(storage, 16); });
+      |                                         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:35:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorage<Platform::Interfaces::Decorated<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned char>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>>, Platform::Data::Doublets::Decorators::LinksCascadeUniquenessAndUsagesResolver, Platform::Data::Doublets::Decorators::NonNullContentsLinkDeletionResolver, Platform::Data::Doublets::Decorators::LinksCascadeUsagesResolver>, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:120:13) &>' requested here
+   35 |         UsingStorage<DecoratedStorageType>(action);
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:119:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees<unsigned char, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:120:13)>' requested here
+  119 |         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees<std::uint8_t>(
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:668:36: note: function parameter 'storage' with unknown value cannot be used in a constant expression
+  668 |         constexpr auto constants = storage.Constants;
+      |                                    ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:665:62: note: declared here
+  665 |     typename TStorage::LinkAddressType GetOrCreate(TStorage& storage, typename TStorage::LinkAddressType source,
+      |                                                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:9:31: error: constexpr variable cannot have non-literal type 'const Link<unsigned char>' [clang-diagnostic-error]
+    9 |         static constexpr Link Null{};
+      |                               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:12:54: note: in instantiation of template class 'Platform::Data::Doublets::Link<unsigned char>' requested here
+   12 |             Link<typename TStorage::LinkAddressType> linkStruct;
+      |                                                      ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:95:48: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::CrudOperationsTester::TestCreate<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned char>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>>>' requested here
+   95 |         auto linkAddress{CrudOperationsTester::TestCreate(storage)};
+      |                                                ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:96:34: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::TestCrudOperations<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned char>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>>>' requested here
+   96 |             [](auto&& storage) { TestCrudOperations(storage); });
+      |                                  ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:21:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorage<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned char>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned char>>>, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:96:13) &>' requested here
+   21 |         UsingStorage<StorageType>(action);
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:95:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorageWithExternalReferencesWithSizeBalancedTrees<unsigned char, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:96:13)>' requested here
+   95 |         UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint8_t>(
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:9:31: note: incomplete type 'const Link<unsigned char>' is not a literal type
+    9 |         static constexpr Link Null{};
+      |                               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:4:12: note: definition of 'Platform::Data::Doublets::Link<unsigned char>' is not complete until the closing '}'
+    4 |     struct Link
+      |            ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:9:31: error: constexpr variable cannot have non-literal type 'const Link<unsigned int>' [clang-diagnostic-error]
+    9 |         static constexpr Link Null{};
+      |                               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:12:54: note: in instantiation of template class 'Platform::Data::Doublets::Link<unsigned int>' requested here
+   12 |             Link<typename TStorage::LinkAddressType> linkStruct;
+      |                                                      ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:95:48: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::CrudOperationsTester::TestCreate<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned int>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned int>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned int>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned int>>>>' requested here
+   95 |         auto linkAddress{CrudOperationsTester::TestCreate(storage)};
+      |                                                ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:100:34: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::TestCrudOperations<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned int>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned int>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned int>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned int>>>>' requested here
+  100 |             [](auto&& storage) { TestCrudOperations(storage); });
+      |                                  ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:21:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorage<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned int>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned int>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned int>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned int>>>, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:100:13) &>' requested here
+   21 |         UsingStorage<StorageType>(action);
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:99:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorageWithExternalReferencesWithSizeBalancedTrees<unsigned int, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:100:13)>' requested here
+   99 |         UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint32_t>(
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:9:31: note: incomplete type 'const Link<unsigned int>' is not a literal type
+    9 |         static constexpr Link Null{};
+      |                               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:4:12: note: definition of 'Platform::Data::Doublets::Link<unsigned int>' is not complete until the closing '}'
+    4 |     struct Link
+      |            ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:9:31: error: constexpr variable cannot have non-literal type 'const Link<unsigned long>' [clang-diagnostic-error]
+    9 |         static constexpr Link Null{};
+      |                               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:12:54: note: in instantiation of template class 'Platform::Data::Doublets::Link<unsigned long>' requested here
+   12 |             Link<typename TStorage::LinkAddressType> linkStruct;
+      |                                                      ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:95:48: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::CrudOperationsTester::TestCreate<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>>' requested here
+   95 |         auto linkAddress{CrudOperationsTester::TestCreate(storage)};
+      |                                                ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:102:34: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::TestCrudOperations<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>>' requested here
+  102 |             [](auto&& storage) { TestCrudOperations(storage); });
+      |                                  ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:21:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorage<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:102:13) &>' requested here
+   21 |         UsingStorage<StorageType>(action);
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:101:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorageWithExternalReferencesWithSizeBalancedTrees<unsigned long, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:102:13)>' requested here
+  101 |         UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint64_t>(
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:9:31: note: incomplete type 'const Link<unsigned long>' is not a literal type
+    9 |         static constexpr Link Null{};
+      |                               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:4:12: note: definition of 'Platform::Data::Doublets::Link<unsigned long>' is not complete until the closing '}'
+    4 |     struct Link
+      |            ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:9:31: error: constexpr variable cannot have non-literal type 'const Link<unsigned short>' [clang-diagnostic-error]
+    9 |         static constexpr Link Null{};
+      |                               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:12:54: note: in instantiation of template class 'Platform::Data::Doublets::Link<unsigned short>' requested here
+   12 |             Link<typename TStorage::LinkAddressType> linkStruct;
+      |                                                      ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:95:48: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::CrudOperationsTester::TestCreate<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned short>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned short>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned short>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned short>>>>' requested here
+   95 |         auto linkAddress{CrudOperationsTester::TestCreate(storage)};
+      |                                                ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:98:34: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::TestCrudOperations<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned short>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned short>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned short>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned short>>>>' requested here
+   98 |             [](auto&& storage) { TestCrudOperations(storage); });
+      |                                  ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:21:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorage<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned short>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned short>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<unsigned short>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<unsigned short>>>, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:98:13) &>' requested here
+   21 |         UsingStorage<StorageType>(action);
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:97:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorageWithExternalReferencesWithSizeBalancedTrees<unsigned short, (lambda at /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:98:13)>' requested here
+   97 |         UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint16_t>(
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:9:31: note: incomplete type 'const Link<unsigned short>' is not a literal type
+    9 |         static constexpr Link Null{};
+      |                               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:4:12: note: definition of 'Platform::Data::Doublets::Link<unsigned short>' is not complete until the closing '}'
+    4 |     struct Link
+      |            ^
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/scripts/check-cpp.py", line 29, in <module>
+    run('clang-tidy-18', '-p', str(args.build_dir.resolve()), '--quiet', *units)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gh-issue-solver-1793248170197/scripts/check-cpp.py", line 11, in run
+    subprocess.run(args, cwd=ROOT, check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.pyenv/versions/3.15.0/lib/python3.15/subprocess.py", line 692, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '('clang-tidy-18', '-p', '/tmp/issue-524-cpp-baseline', '--quiet', '/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp', '/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp')' returned non-zero exit status 1.
