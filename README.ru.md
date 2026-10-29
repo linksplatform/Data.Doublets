@@ -51,11 +51,12 @@ links.Delete(link);
 [![Изображение с результатом сравнения производительности SQLite и Дуплетов.](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Examples/sqlite_vs_doublets_performance.png "Результат сравнения производительности SQLite и Дуплетов")](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
 
 ## [Документация](https://linksplatform.github.io/Data.Doublets)
-*   [Обновление связей: выбор проверок и контрактов (англ.)](https://linksplatform.github.io/Data.Doublets/csharp/update-csharp.html).
-*   [Исполняемые примеры обновления (англ.)](https://linksplatform.github.io/Data.Doublets/csharp/examples/Update/README.html).
-*   Интерфейс [ILinks\<TLink, TConstants\>](https://github.com/linksplatform/Data/blob/main/csharp/Platform.Data/ILinks.cs).
-*   Интерфейс [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html).
-*   Класс [UnitedMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html).
+
+* [Обновление связей: выбор проверок и контрактов (англ.)](https://linksplatform.github.io/Data.Doublets/csharp/update-csharp.html).
+* [Исполняемые примеры обновления (англ.)](https://linksplatform.github.io/Data.Doublets/csharp/examples/Update/README.html).
+* Интерфейс [ILinks\<TLink, TConstants\>](https://github.com/linksplatform/Data/blob/main/csharp/Platform.Data/ILinks.cs).
+* Интерфейс [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html).
+* Класс [UnitedMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html).
 
 [PDF файл](https://linksplatform.github.io/Data.Doublets/csharp/Platform.Data.Doublets.pdf) с кодом для электронных книг.
 

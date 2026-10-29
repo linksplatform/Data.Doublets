@@ -1,4 +1,5 @@
-"""Demonstrate three contract failures without submitting invalid raw updates.
+"""
+Demonstrate three contract failures without submitting invalid raw updates.
 
 Run with a local .NET 8 executable as the only argument and no concurrent builds
 or source edits. Sources are restored in finally; rebuild afterward. Artifacts
@@ -9,7 +10,8 @@ from pathlib import Path
 # This bounded local experiment intentionally launches the selected SDK.
 import subprocess  # nosec B404
 import sys
-import xml.etree.ElementTree as ET
+# Only parse the TRX produced by the local SDK invocation below.
+import xml.etree.ElementTree as ET  # nosec B405
 
 
 root = Path(__file__).resolve().parents[1]
@@ -45,7 +47,8 @@ try:
     # The SDK path is explicitly selected by the local experiment's caller.
     with (results / "run.log").open("w") as log:
         result = subprocess.run(command, cwd=root, stdout=log, stderr=subprocess.STDOUT, check=False)  # nosec B603
-    summary = ET.parse(results / "guards.trx").find(".//{*}Counters")
+    # The SDK produced this TRX locally; it is not an external XML input.
+    summary = ET.parse(results / "guards.trx").find(".//{*}Counters")  # nosec B314
     if result.returncode != 1 or summary is None or summary.get("failed") != "3" or summary.get("total") != "3":
         raise AssertionError(f"Expected exactly three failed contract tests; inspect {results / 'run.log'}")
     print("Verified three expected contract failures; no invalid raw update was executed.")

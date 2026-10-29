@@ -17,11 +17,21 @@ namespace Platform.Data.Doublets.Tests
         public static IEnumerable<object[]> MissingUpdateCases()
         {
             foreach (var split in new[] { false, true })
+            {
                 foreach (var automatic in new[] { false, true })
+                {
                     foreach (var policy in new[] { "validator", "per-call", "ignore" })
+                    {
                         foreach (var scenario in new[] { "never-created", "deleted-middle", "deleted-last", "empty" })
+                        {
                             foreach (var collision in new[] { false, true })
+                            {
                                 yield return new object[] { split, automatic, policy, scenario, collision };
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         [Theory]
@@ -78,15 +88,36 @@ namespace Platform.Data.Doublets.Tests
                 var api = shape;
                 void UpdateMissing()
                 {
-                    if (policy == "per-call") links.EnsureLinkExists(missing, nameof(missing));
-                    if (policy == "ignore" && !links.Exists(missing)) return;
+                    if (policy == "per-call")
+                    {
+                        links.EnsureLinkExists(missing, nameof(missing));
+                    }
+                    if (policy == "ignore" && !links.Exists(missing))
+                    {
+                        return;
+                    }
                     WriteHandler<T> handler = (_, _) => { calls++; return links.Constants.Break; };
-                    if (api == 0) links.Update(missing, source, target);
-                    else if (api == 1) links.Update(missing, source, target, handler);
-                    else links.Update(new[] { missing }, new[] { missing, source, target }, null);
+                    if (api == 0)
+                    {
+                        links.Update(missing, source, target);
+                    }
+                    else if (api == 1)
+                    {
+                        links.Update(missing, source, target, handler);
+                    }
+                    else
+                    {
+                        links.Update(new[] { missing }, new[] { missing, source, target }, null);
+                    }
                 }
-                if (policy == "ignore") UpdateMissing();
-                else Assert.Throws<ArgumentLinkDoesNotExistsException<T>>(UpdateMissing);
+                if (policy == "ignore")
+                {
+                    UpdateMissing();
+                }
+                else
+                {
+                    Assert.Throws<ArgumentLinkDoesNotExistsException<T>>(UpdateMissing);
+                }
                 Assert.Equal(0, calls);
                 Assert.Equal(count, raw.Count());
                 AssertRows(before, Snapshot(raw));
@@ -105,12 +136,18 @@ namespace Platform.Data.Doublets.Tests
                 Assert.Equal(next, links.CreateAndUpdate(source, target));
                 Assert.Equal(next, raw.SearchOrDefault(source, target));
             }
-            else Assert.Equal(next, links.CreatePoint());
+            else
+            {
+                Assert.Equal(next, links.CreatePoint());
+            }
             var following = scenario == "deleted-middle" ? last + T.One : next + T.One;
             Assert.Equal(following, links.CreatePoint());
             Assert.Equal(count + T.CreateTruncating(2), raw.Count());
             Assert.Equal(int.CreateTruncating(raw.Count()), Snapshot(raw).Length);
-            foreach (var row in before) Assert.Equal(row, raw.GetLink(row[0]));
+            foreach (var row in before)
+            {
+                Assert.Equal(row, raw.GetLink(row[0]));
+            }
         }
 
         [Theory]
@@ -123,8 +160,14 @@ namespace Platform.Data.Doublets.Tests
             ILinks<uint> links = split ? separated! : united!;
             var first = links.CreatePoint();
             var second = links.CreatePoint();
-            if (split) separated!.RejectChecks = true;
-            else united!.RejectChecks = true;
+            if (split)
+            {
+                separated!.RejectChecks = true;
+            }
+            else
+            {
+                united!.RejectChecks = true;
+            }
             var calls = 0;
             var result = links.Update(new[] { second }, new[] { second, first, second }, (before, after) =>
             {
@@ -133,8 +176,14 @@ namespace Platform.Data.Doublets.Tests
                 Assert.Equal(new[] { second, first, second }, after);
                 return links.Constants.Break;
             });
-            if (split) separated!.RejectChecks = false;
-            else united!.RejectChecks = false;
+            if (split)
+            {
+                separated!.RejectChecks = false;
+            }
+            else
+            {
+                united!.RejectChecks = false;
+            }
             Assert.Equal(links.Constants.Break, result);
             Assert.Equal(1, calls);
             Assert.Equal(2u, links.Count());
@@ -167,6 +216,10 @@ namespace Platform.Data.Doublets.Tests
             // The terminal spy absorbs the request: no invalid raw access is performed.
             Assert.Equal(links.Constants.Continue, links.Update(new[] { 10u }, new[] { 10u, first, first }, null));
             Assert.Equal(2, spy.Operations); // Search, then update; no implicit validator.
+            Assert.Equal(new[] { nameof(ILinks<uint>.Each), nameof(ILinks<uint>.Update) }, spy.Calls.Select(call => call.Operation));
+            Assert.Equal(new[] { 10u }, spy.Calls[1].Restriction);
+            Assert.Equal(new[] { 10u, first, first }, spy.Calls[1].Substitution);
+            Assert.Null(spy.Calls[1].Handler);
             Assert.Equal(1u, raw.Count());
             Assert.Equal(new[] { first, first, first }, raw.GetLink(first));
         }
@@ -224,7 +277,10 @@ namespace Platform.Data.Doublets.Tests
         private static void AssertRows<T>(T[][] expected, T[][] actual)
         {
             Assert.Equal(expected.Length, actual.Length);
-            for (var i = 0; i < expected.Length; i++) Assert.Equal(expected[i], actual[i]);
+            for (var i = 0; i < expected.Length; i++)
+            {
+                Assert.Equal(expected[i], actual[i]);
+            }
         }
 
         private sealed class UnitedWithoutChecks : UnitedMemoryLinks<uint>
@@ -243,11 +299,24 @@ namespace Platform.Data.Doublets.Tests
 
         private sealed class TerminalSpy : LinksDecoratorBase<uint>
         {
-            public int Operations { get; private set; }
+            public List<(string Operation, IList<uint>? Restriction, IList<uint>? Substitution, Delegate? Handler)> Calls { get; } = new();
+            public int Operations => Calls.Count;
             public TerminalSpy(ILinks<uint> links) : base(links) { }
-            public override uint Each(IList<uint>? restriction, ReadHandler<uint>? handler) { Operations++; return Constants.Continue; }
-            public override uint Update(IList<uint>? restriction, IList<uint>? substitution, WriteHandler<uint>? handler) { Operations++; return Constants.Continue; }
-            public override uint Delete(IList<uint>? restriction, WriteHandler<uint>? handler) { Operations++; return Constants.Continue; }
+            public override uint Each(IList<uint>? restriction, ReadHandler<uint>? handler)
+            {
+                Calls.Add((nameof(Each), restriction, null, handler));
+                return Constants.Continue;
+            }
+            public override uint Update(IList<uint>? restriction, IList<uint>? substitution, WriteHandler<uint>? handler)
+            {
+                Calls.Add((nameof(Update), restriction, substitution, handler));
+                return Constants.Continue;
+            }
+            public override uint Delete(IList<uint>? restriction, WriteHandler<uint>? handler)
+            {
+                Calls.Add((nameof(Delete), restriction, null, handler));
+                return Constants.Continue;
+            }
         }
     }
 }

@@ -80,7 +80,10 @@ static void Run(bool split, Action<ILinks<uint>> action)
 
 static void Check(bool condition, string operation)
 {
-    if (!condition) throw new InvalidOperationException($"Failed: {operation}");
+    if (!condition)
+    {
+        throw new InvalidOperationException($"Failed: {operation}");
+    }
 }
 
 static void ExpectMissing(Action action)
