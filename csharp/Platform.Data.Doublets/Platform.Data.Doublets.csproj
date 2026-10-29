@@ -4,7 +4,7 @@
         <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
         <Copyright>konard, FreePhoenix888</Copyright>
         <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-        <VersionPrefix>0.18.2</VersionPrefix>
+        <VersionPrefix>0.18.3</VersionPrefix>
         <Authors>konard, FreePhoenix888</Authors>
         <TargetFramework>net8.0</TargetFramework>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,7 +25,7 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>latest</LangVersion>
-        <PackageReleaseNotes>Validate all CI outputs, modernize documentation and packaging, and correct nullable link API contracts.</PackageReleaseNotes>
+        <PackageReleaseNotes>Validate all CI outputs, modernize documentation and packaging, correct nullable link API contracts, and retain unrestricted null queries with English diagnostics.</PackageReleaseNotes>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
