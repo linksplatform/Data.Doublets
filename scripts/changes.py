@@ -14,7 +14,7 @@ def categories(paths):
         result["docs"] |= path.endswith(".md") or path.startswith("docs/")
         if path.endswith(".md"):
             continue
-        result["csharp"] |= path.startswith(("csharp/", "examples/ExternalReferences/")) or path in ("global.json", "Directory.Build.props")
+        result["csharp"] |= path.startswith(("csharp/", "examples/ExternalReferences/", "examples/Deletion/")) or path in ("global.json", "Directory.Build.props")
         result["cpp"] |= path.startswith(("cpp/", "c/")) or path in ("examples/CppMemoryLinks.cpp", ".clang-format", ".clang-tidy")
         result["pipeline"] |= path.startswith((".github/", "scripts/", ".config/")) or path in (".gitpod.yml", "publish-bin.sh", "docfx.json", ".editorconfig", ".gitattributes", ".lycheeignore", ".gitleaksignore", ".pre-commit-config.yaml")
     return result

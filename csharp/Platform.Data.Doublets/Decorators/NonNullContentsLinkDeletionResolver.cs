@@ -40,6 +40,7 @@ public class NonNullContentsLinkDeletionResolver<TLinkAddress> : LinksDecoratorB
     ///     <para>The restriction.</para>
     ///     <para></para>
     /// </param>
+    /// <remarks>The caller must supply an existing link. Choose an outer existence policy for untrusted addresses.</remarks>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
     {

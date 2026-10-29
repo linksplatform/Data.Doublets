@@ -52,6 +52,17 @@ links.Delete(link);
 
 [![Image with result of performance comparison between SQLite and Doublets.](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Examples/sqlite_vs_doublets_performance.png "Result of performance comparison between SQLite and Doublets")](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
 
+## Deletion contracts and design
+
+Choose validation and resolution per call or through optional decorators. Raw
+C# deletion requires a live link, reset endpoints and caller-managed usages.
+
+* [C# deletion recipes and overload contracts](https://linksplatform.github.io/Data.Doublets/csharp/deletion-csharp.html)
+* [Rust deletion recipes and current implementation limits](https://linksplatform.github.io/Data.Doublets/csharp/deletion-rust.html)
+* [Shared vision and design guidelines](https://linksplatform.github.io/Data.Doublets/csharp/design.html)
+* [Runnable deletion examples](https://linksplatform.github.io/Data.Doublets/csharp/examples/Deletion/README.html)
+* [Architecture audit](https://linksplatform.github.io/Data.Doublets/csharp/deletion-audit.html)
+
 ## [Documentation](https://linksplatform.github.io/Data.Doublets)
 *   Interface [ILinks\<TLink, TConstants\>](https://github.com/linksplatform/Data/blob/main/csharp/Platform.Data/ILinks.cs).
 *   Interface [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html).

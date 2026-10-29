@@ -1,0 +1,4 @@
+{
+  "releases": {"csharp": "patch"},
+  "summary": "Keep memory-store deletion unchecked and provide optional missing-link deletion policies with C# and Rust design guidance."
+}

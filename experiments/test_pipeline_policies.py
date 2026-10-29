@@ -35,6 +35,9 @@ class RoutingTests(unittest.TestCase):
     def test_native_package_example_runs_its_compiler_and_package_validation(self):
         self.assertTrue(changes.categories(['examples/CppMemoryLinks.cpp'])['cpp'])
 
+    def test_deletion_example_runs_csharp_validation(self):
+        self.assertTrue(changes.categories(['examples/Deletion/Program.cs'])['csharp'])
+
     def test_deleted_files_are_included_from_the_actual_push_base(self):
         with patch.object(changes, 'git', return_value=b'cpp/deleted.h\0csharp/deleted.cs\0') as git:
             self.assertEqual(changes.changed_paths({'before': 'base-sha'}, 'push'), ['cpp/deleted.h', 'csharp/deleted.cs'])

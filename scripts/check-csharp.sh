@@ -9,6 +9,7 @@ dotnet format whitespace csharp/Platform.Data.Doublets.sln --no-restore --verify
 dotnet test csharp/Platform.Data.Doublets.sln -c Release --no-build --no-restore \
     --blame-hang-timeout 3m --collect:"XPlat Code Coverage" --logger trx --results-directory artifacts/test-results
 dotnet run --project examples/ExternalReferences -c Release
+dotnet run --project examples/Deletion -c Release
 # --no-build ensures publication uses precisely the assembly that passed tests.
 dotnet pack csharp/Platform.Data.Doublets -c Release --no-build --no-restore -o artifacts/packages -warnaserror
 python3 scripts/smoke_packages.py csharp

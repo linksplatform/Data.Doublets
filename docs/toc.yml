@@ -2,3 +2,11 @@
   href: index.md
 - name: API
   href: api/toc.yml
+- name: Design principles
+  href: design.md
+- name: C# deletion
+  href: deletion-csharp.md
+- name: Rust deletion
+  href: deletion-rust.md
+- name: Deletion audit
+  href: deletion-audit.md

@@ -18,7 +18,7 @@
     "content": [
       {
         "files": [
-          "index.md",
+          "*.md",
           "toc.yml",
           "api/**.yml"
         ],
@@ -30,6 +30,20 @@
           "README.ru.md"
         ],
         "dest": "."
+      },
+      {
+        "files": [
+          "README.md"
+        ],
+        "src": "examples/Deletion",
+        "dest": "examples/Deletion"
+      },
+      {
+        "files": [
+          "README.md"
+        ],
+        "src": "experiments",
+        "dest": "experiments"
       }
     ],
     "dest": "_site/csharp",
@@ -47,6 +61,22 @@
           "Platform.Data.Doublets.pdf"
         ],
         "src": "_site/csharp"
+      },
+      {
+        "files": [
+          "Program.cs"
+        ],
+        "src": "examples/Deletion",
+        "dest": "examples/Deletion"
+      },
+      {
+        "files": [
+          "reproduce_deletion_contract.py",
+          "deletion_policies.rs",
+          "missing_delete.rs"
+        ],
+        "src": "experiments",
+        "dest": "experiments"
       }
     ]
   }

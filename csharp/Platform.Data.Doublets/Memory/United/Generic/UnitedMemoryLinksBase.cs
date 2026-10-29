@@ -548,12 +548,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
-        /// Deletes the substitution.
+        /// Deletes a live link whose endpoints have already been reset. The caller owns these preconditions.
         /// </para>
         /// <para></para>
         /// </summary>
         /// <param name="restriction">
-        /// <para>The substitution.</para>
+        /// <para>The restriction containing the index of the link to delete.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
