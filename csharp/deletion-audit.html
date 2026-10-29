@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Deletion and policy audit for issue 518 | Platform.Data.Doublets </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Deletion and policy audit for issue 518 | Platform.Data.Doublets ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linksplatform/Data.Doublets/blob/main/docs/deletion-audit.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="deletion-and-policy-audit-for-issue-518">Deletion and policy audit for issue 518</h1>
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# Deletion and policy audit for issue 518",
+      "*"
+    ]
+  },
+  "MD013": {
+    "tables": false
+  }
+}
+-->
+
+<p>Scope: all issue #518 and PR #527 comments/reviews, all open and closed issue
+listings in both repositories, and the C#/Rust mutation paths, helpers,
+decorator bases, existence, reset, usages, uniqueness, suppression and builder
+implementations. Initial C# base: <code>799502ce9</code>; merged main: <code>c083793a</code>.
+Previous PR head: <code>136ada5ad</code>.
+Rust main: <code>31b38458efbd277b399e46b22474b85a85bda24b</code> (0.13.0).
+No required sub-issues were listed. Other design findings are explicitly separate
+work per the <a href="https://github.com/linksplatform/Data.Doublets/pull/527#issuecomment-6492081425">review</a>.</p>
+<h2 id="requirement-and-evidence-inventory">Requirement and evidence inventory</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Implementation / verification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keep C# raw delete unchecked</td>
+<td>Removed the previous PR's <code>Exists</code> branches in both memory backends; valid raw calls in <code>DeletionContractTests</code> fail if the core validates existence</td>
+</tr>
+<tr>
+<td>Keep a reset resolver focused on reset</td>
+<td>Removed its added <code>EnsureLinkExists</code>; a stub regression rejects unexpected existence validation</td>
+</tr>
+<tr>
+<td>Configurable missing deletion: error</td>
+<td>Existing <code>LinksInnerReferenceExistenceValidator&lt;T&gt;</code>; outer-policy tests for both backends, plain and automatic stacks</td>
+</tr>
+<tr>
+<td>Configurable missing deletion: no-op</td>
+<td>Optional <code>LinksNonExistentDeletionResolver&lt;T&gt;</code>; no inner mutation or callback when absent</td>
+</tr>
+<tr>
+<td>Preserve store on selected checked failures/no-ops</td>
+<td>96 theory cases × four address widths, three API shapes, missing/repeated/last/empty/zero/extreme addresses; count, full contents, callback, search and allocator reuse assertions</td>
+</tr>
+<tr>
+<td>Preserve valid deletion/results</td>
+<td>12 cases × four widths, bare/throw/ignore policies, both backends and optional automatic stack; <code>Break</code> callback, count and subsequent reuse</td>
+</tr>
+<tr>
+<td>Document C# use cases and overloads</td>
+<td><a href="deletion-csharp.html">C# guide</a>, XML contracts and executable <code>examples/Deletion</code> for both backends</td>
+</tr>
+<tr>
+<td>Document Rust use cases and vision</td>
+<td><a href="deletion-rust.html">Rust guide</a> and <a href="design.html">shared design</a>; actual limitations distinguished from intended architecture</td>
+</tr>
+<tr>
+<td>Check Rust for the original symptom</td>
+<td>Four bounded missing-delete tests: 48 combinations / 96 rejected deletions; no corruption or callbacks</td>
+</tr>
+<tr>
+<td>Audit and report other design errors separately</td>
+<td>Findings below, with existing issue references or new reports; no unrelated code fixes included</td>
+</tr>
+</tbody>
+</table>
+<h2 id="findings-and-separate-reports">Findings and separate reports</h2>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Evidence and disposition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C# mandatory delete validation added by the old PR</td>
+<td>Reproduced by three failing tests at <code>136ada5ad</code>, corrected in this PR; no invalid raw address needed</td>
+</tr>
+<tr>
+<td>C# missing-update issue proposes mandatory base checking</td>
+<td><a href="https://github.com/linksplatform/Data.Doublets/issues/517">#517</a>; added <a href="https://github.com/linksplatform/Data.Doublets/issues/517#issuecomment-6492359137">architecture guidance</a> to use an explicit validator or per-call check instead</td>
+</tr>
+<tr>
+<td>Rust core existence validation cannot be bypassed</td>
+<td><code>mem/unit/store.rs</code> lines 504/554 and <code>mem/split/store.rs</code> lines 796/868; reported as <a href="https://github.com/linksplatform/doublets-rs/issues/80">#80</a></td>
+</tr>
+<tr>
+<td>Rust core deletion resets even without the reset layer</td>
+<td>Same files, lines 555/872; reported separately as <a href="https://github.com/linksplatform/doublets-rs/issues/81">#81</a></td>
+</tr>
+<tr>
+<td>Rust uniqueness issue proposes embedding existence validation in a resolver</td>
+<td><a href="https://github.com/linksplatform/doublets-rs/issues/66">#66</a>; added <a href="https://github.com/linksplatform/doublets-rs/issues/66#issuecomment-6492359643">architecture guidance</a> about an outer validator</td>
+</tr>
+<tr>
+<td>C# indexes are mandatory in the current memory layout</td>
+<td>Already tracked in <a href="https://github.com/linksplatform/Data.Doublets/issues/239">#239</a> and <a href="https://github.com/linksplatform/Data.Doublets/issues/395">#395</a>; no duplicate report</td>
+</tr>
+<tr>
+<td>Rust indexing is also inseparable from the current store/liveness representation</td>
+<td>Tree fields and <code>is_unused</code> metadata inspected in both layouts; reported as <a href="https://github.com/linksplatform/doublets-rs/issues/82">#82</a></td>
+</tr>
+<tr>
+<td>C# reuse of free slots has no append-only selection</td>
+<td>Already tracked in <a href="https://github.com/linksplatform/Data.Doublets/issues/172">#172</a>; no duplicate report</td>
+</tr>
+<tr>
+<td>Earlier C# unchecked-decorator request</td>
+<td><a href="https://github.com/linksplatform/Data.Doublets/issues/51">#51</a> explicitly requested omitting Ensure checks; consistent with this PR, not a new error</td>
+</tr>
+<tr>
+<td>Earlier proposal to make uniqueness checking the default</td>
+<td><a href="https://github.com/linksplatform/Data.Doublets/issues/514">#514</a> was closed after recognizing the optional decorator design; no new default introduced</td>
+</tr>
+<tr>
+<td>Numeric/dangling references are application-dependent</td>
+<td><a href="https://github.com/linksplatform/Data.Doublets/issues/508">#508</a>; no global reference validation added</td>
+</tr>
+</tbody>
+</table>
+<p><code>LinksDecoratorBase</code> forwards calls; the automatic stack does not require a
+validator. Explicit existence/usages/uniqueness validators, exception suppression,
+logging, and transactions are selectable layers, so their named behavior is not
+a compulsory-core-contract violation. Rust <code>try_get_link</code> in an explicitly chosen
+helper is likewise appropriate; the issue is its unavoidable use in root writes.</p>
+<p>Index detachment and split internal/external reclassification are necessary for
+the selected representation. Address-capacity limits are structural bounds.
+They were not removed or misreported as optional application validation. The audit
+does not claim an index-free backend or fully optional allocator is already available.</p>
+<h2 id="verification">Verification</h2>
+<p>The three new contract tests fail against the previous PR implementation and pass
+after removing its mandatory checks. The <a href="experiments/reproduce_deletion_contract.py">baseline runner</a>
+reproduces this safely with valid reset links and restores source files afterward.
+<a href="experiments/README.html">Experiment instructions</a> preserve commands, finite
+inputs and Rust build limits. The example exercises raw, per-call, pair-based,
+throw, ignore, usages-reject, cascade and snapshot bulk deletion in both stores.</p>
+<p>The updated PR records final local and CI results at its final commit. Other
+reports above remain separate and are not acceptance criteria to implement here,
+as explicitly requested by the reviewer.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linksplatform/Data.Doublets/blob/main/docs/deletion-audit.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

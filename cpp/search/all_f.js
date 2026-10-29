@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['peek_0',['Peek',['../classPlatform_1_1Data_1_1Doublets_1_1Stacks_1_1Stack_3_01TLinkAddress_01_4.html#a19bc569e7c3a2ae1cf30024e59116d4c',1,'Platform::Data::Doublets::Stacks::Stack&lt; TLinkAddress &gt;']]],
+  ['platform_1',['Platform',['../namespacePlatform.html',1,'']]],
+  ['platform_20data_20doublets_20c_2',['Platform.Data.Doublets C++',['../index.html',1,'']]],
+  ['platform_2edata_2edoublets_2eh_3',['Platform.Data.Doublets.h',['../Platform_8Data_8Doublets_8h.html',1,'']]],
+  ['platform_3a_3adata_4',['Data',['../namespacePlatform_1_1Data.html',1,'Platform']]],
+  ['platform_3a_3adata_3a_3adoublets_5',['Doublets',['../namespacePlatform_1_1Data_1_1Doublets.html',1,'Platform::Data']]],
+  ['platform_3a_3adata_3a_3adoublets_3a_3acriterionmatchers_6',['CriterionMatchers',['../namespacePlatform_1_1Data_1_1Doublets_1_1CriterionMatchers.html',1,'Platform::Data::Doublets']]],
+  ['platform_3a_3adata_3a_3adoublets_3a_3adecorators_7',['Decorators',['../namespacePlatform_1_1Data_1_1Doublets_1_1Decorators.html',1,'Platform::Data::Doublets']]],
+  ['platform_3a_3adata_3a_3adoublets_3a_3adetails_8',['Details',['../namespacePlatform_1_1Data_1_1Doublets_1_1Details.html',1,'Platform::Data::Doublets']]],
+  ['platform_3a_3adata_3a_3adoublets_3a_3affi_9',['Ffi',['../namespacePlatform_1_1Data_1_1Doublets_1_1Ffi.html',1,'Platform::Data::Doublets']]],
+  ['platform_3a_3adata_3a_3adoublets_3a_3amemory_10',['Memory',['../namespacePlatform_1_1Data_1_1Doublets_1_1Memory.html',1,'Platform::Data::Doublets']]],
+  ['platform_3a_3adata_3a_3adoublets_3a_3amemory_3a_3asplit_11',['Split',['../namespacePlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split.html',1,'Platform::Data::Doublets::Memory']]],
+  ['platform_3a_3adata_3a_3adoublets_3a_3amemory_3a_3asplit_3a_3ageneric_12',['Generic',['../namespacePlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic.html',1,'Platform::Data::Doublets::Memory::Split']]],
+  ['platform_3a_3adata_3a_3adoublets_3a_3amemory_3a_3aunited_13',['United',['../namespacePlatform_1_1Data_1_1Doublets_1_1Memory_1_1United.html',1,'Platform::Data::Doublets::Memory']]],
+  ['platform_3a_3adata_3a_3adoublets_3a_3amemory_3a_3aunited_3a_3ageneric_14',['Generic',['../namespacePlatform_1_1Data_1_1Doublets_1_1Memory_1_1United_1_1Generic.html',1,'Platform::Data::Doublets::Memory::United']]],
+  ['platform_3a_3adata_3a_3adoublets_3a_3apropertyoperators_15',['PropertyOperators',['../namespacePlatform_1_1Data_1_1Doublets_1_1PropertyOperators.html',1,'Platform::Data::Doublets']]],
+  ['platform_3a_3adata_3a_3adoublets_3a_3astacks_16',['Stacks',['../namespacePlatform_1_1Data_1_1Doublets_1_1Stacks.html',1,'Platform::Data::Doublets']]],
+  ['pop_17',['Pop',['../classPlatform_1_1Data_1_1Doublets_1_1Stacks_1_1Stack_3_01TLinkAddress_01_4.html#a2176f3c29e33c73cc230e9e656d2c119',1,'Platform::Data::Doublets::Stacks::Stack&lt; TLinkAddress &gt;']]],
+  ['propertiesoperator_18',['propertiesoperator',['../classPlatform_1_1Data_1_1Doublets_1_1PropertyOperators_1_1PropertiesOperator.html',1,'Platform::Data::Doublets::PropertyOperators::PropertiesOperator&lt;... &gt;'],['../classPlatform_1_1Data_1_1Doublets_1_1PropertyOperators_1_1PropertiesOperator_3_01TLinkAddress_01_4.html#a69ab920df3755383617feb94db50b444',1,'Platform::Data::Doublets::PropertyOperators::PropertiesOperator&lt; TLinkAddress &gt;::PropertiesOperator()']]],
+  ['propertiesoperator_2eh_19',['PropertiesOperator.h',['../PropertiesOperator_8h.html',1,'']]],
+  ['propertiesoperator_3c_20tlinkaddress_20_3e_20',['PropertiesOperator&lt; TLinkAddress &gt;',['../classPlatform_1_1Data_1_1Doublets_1_1PropertyOperators_1_1PropertiesOperator_3_01TLinkAddress_01_4.html',1,'Platform::Data::Doublets::PropertyOperators']]],
+  ['propertyoperator_21',['propertyoperator',['../classPlatform_1_1Data_1_1Doublets_1_1PropertyOperators_1_1PropertyOperator.html',1,'Platform::Data::Doublets::PropertyOperators::PropertyOperator&lt;... &gt;'],['../classPlatform_1_1Data_1_1Doublets_1_1PropertyOperators_1_1PropertyOperator_3_01TLinkAddress_01_4.html#a26b7150b1a061e92fcc2bc024c081d4b',1,'Platform::Data::Doublets::PropertyOperators::PropertyOperator&lt; TLinkAddress &gt;::PropertyOperator()']]],
+  ['propertyoperator_2eh_22',['PropertyOperator.h',['../PropertyOperator_8h.html',1,'']]],
+  ['propertyoperator_3c_20tlinkaddress_20_3e_23',['PropertyOperator&lt; TLinkAddress &gt;',['../classPlatform_1_1Data_1_1Doublets_1_1PropertyOperators_1_1PropertyOperator_3_01TLinkAddress_01_4.html',1,'Platform::Data::Doublets::PropertyOperators']]],
+  ['push_24',['Push',['../classPlatform_1_1Data_1_1Doublets_1_1Stacks_1_1Stack_3_01TLinkAddress_01_4.html#a6f9f04f6584b76bc5609db46c36179bb',1,'Platform::Data::Doublets::Stacks::Stack&lt; TLinkAddress &gt;']]]
+];

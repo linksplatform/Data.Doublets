@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>C# deletion contracts | Platform.Data.Doublets </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="C# deletion contracts | Platform.Data.Doublets ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linksplatform/Data.Doublets/blob/main/docs/deletion-csharp.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="c-deletion-contracts">C# deletion contracts</h1>
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# C# deletion contracts",
+      "*"
+    ]
+  },
+  "MD013": {
+    "tables": false
+  }
+}
+-->
+
+<p>The <a href="design.html">design guidelines</a> keep storage and application policies separate.
+Both <code>UnitedMemoryLinks&lt;T&gt;</code> and <code>SplitMemoryLinks&lt;T&gt;</code> expose unchecked deletion.
+Choose a check per call or an outer decorator when addresses may be missing.
+The <a href="examples/Deletion/Program.cs">runnable example</a> checks the principal
+recipes below with both heap-backed stores:</p>
+<pre><code class="lang-sh">dotnet run --project examples/Deletion -c Release
+</code></pre>
+<h2 id="api-and-overload-contracts">API and overload contracts</h2>
+<p>Import <code>Platform.Data</code>, <code>Platform.Data.Doublets</code>, and
+<code>Platform.Data.Doublets.Decorators</code> for the helpers and decorators.</p>
+<table>
+<thead>
+<tr>
+<th>Call on an undecorated store</th>
+<th>What it does</th>
+<th>Required caller guarantees</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Delete(new[] { id }, handler)</code></td>
+<td>Release the slot; return handler flow or <code>Continue</code></td>
+<td>Live address, endpoints already reset, incoming usages handled</td>
+</tr>
+<tr>
+<td><code>Delete(id)</code></td>
+<td><code>Platform.Data</code> address adapter; return deleted address from callback</td>
+<td>Same preconditions as the inner deletion; no automatic reset or missing check</td>
+</tr>
+<tr>
+<td><code>Delete(id, handler)</code></td>
+<td>Reset endpoints when <code>Exists(id)</code>, then call inner deletion</td>
+<td>Address still must exist; missing addresses are forwarded; incoming usages handled separately</td>
+</tr>
+<tr>
+<td><code>EnsureLinkExists(id, name)</code></td>
+<td>Throw <code>ArgumentLinkDoesNotExistsException&lt;T&gt;</code> if missing</td>
+<td>No deletion; caller chooses the subsequent operation</td>
+</tr>
+<tr>
+<td><code>DeleteIfExists(source, target)</code></td>
+<td>Search by pair; delete only if found; return address or <code>Null</code></td>
+<td>Endpoint reset and incoming-usage policy supplied separately</td>
+</tr>
+</tbody>
+</table>
+<p><code>Delete(id)</code> and <code>Delete(id, null)</code> select different helpers. Do not infer safety
+from the method name alone. A handler overload returns a flow constant, not the
+deleted address. An ignored deletion produces no callback, so the address-returning
+adapter returns <code>Null</code> while the low-level policy returns <code>Continue</code>.</p>
+<h2 id="caller-managed-fast-path">Caller-managed fast path</h2>
+<p>Use a valid live address, detach its endpoints, and resolve incoming usages in
+your application before releasing it. An isolated point has no other users:</p>
+<pre><code class="lang-csharp">var id = raw.CreatePoint();
+raw.Update(id, 0u, 0u);
+raw.Delete(new[] { id }, null);
+</code></pre>
+<p>The memory backend performs no existence validation for this deletion. Never use
+repeated deletion of a raw address as a membership test. Zero, service constants,
+external references, freed slots and unallocated addresses do not satisfy the
+live-link precondition. <code>AreValuesReset</code> and <code>EnforceResetValues</code> also require an
+existing link; they are not missing-link validators.</p>
+<h2 id="checks-for-one-call">Checks for one call</h2>
+<p>For a missing-address exception, validate before resetting or deleting:</p>
+<pre><code class="lang-csharp">raw.EnsureLinkExists(id, nameof(id));
+raw.Delete(id, null); // This helper supplies endpoint reset.
+</code></pre>
+<p>For an address-based no-op, skip the whole operation when absent:</p>
+<pre><code class="lang-csharp">if (raw.Exists(id))
+{
+    raw.Delete(id, null);
+}
+</code></pre>
+<p>The existing pair-based <code>DeleteIfExists(source, target)</code> already skips a failed
+search. Wrap the raw store in <code>NonNullContentsLinkDeletionResolver&lt;T&gt;</code> to supply
+resetting before using that helper on links with non-null contents. A successful
+search alone does not reset endpoints or handle incoming usages.</p>
+<h2 id="store-wide-policies">Store-wide policies</h2>
+<p>Use the existing validator to reject missing deletion requests:</p>
+<pre><code class="lang-csharp">ILinks&lt;uint&gt; links = new LinksInnerReferenceExistenceValidator&lt;uint&gt;(
+    raw.DecorateWithAutomaticUniquenessAndUsagesResolution());
+</code></pre>
+<p>It also validates internal references in <code>Each</code> and <code>Update</code>. If that broader
+contract is unsuitable, choose per-call <code>EnsureLinkExists</code>, or implement a
+focused <code>LinksDecoratorBase&lt;T&gt;.Delete</code> override for your application.</p>
+<p>Use the optional ignore policy for idempotent deletion requests:</p>
+<pre><code class="lang-csharp">ILinks&lt;uint&gt; links = new LinksNonExistentDeletionResolver&lt;uint&gt;(
+    raw.DecorateWithAutomaticUniquenessAndUsagesResolution());
+</code></pre>
+<p>It checks existence, returns <code>Continue</code> without inner writes or callbacks for a
+missing address, and forwards an existing deletion unchanged. It does not add
+resetting, cascading, uniqueness or update validation. To reset without cascading,
+wrap <code>raw</code> in <code>NonNullContentsLinkDeletionResolver&lt;uint&gt;</code> instead of the automatic
+composition in these snippets.</p>
+<p>Place the chosen missing-address policy <strong>outside</strong> reset and cascade layers.
+Otherwise a reset resolver may read a missing link before the guard sees it.
+The automatic composition itself only resolves uniqueness, contents and usages;
+it does not promise missing-address validation. Adding a policy decorator updates
+the C# <code>Facade</code>, so recursive cascade calls re-enter the selected outer layers.
+If you compose both throw and ignore policies, the outer policy decides which
+missing requests reach the inner policy.</p>
+<h2 id="incoming-usages-and-bulk-operations">Incoming usages and bulk operations</h2>
+<p>Existence does not decide what to do with other links referencing the deleted
+link. Choose one of these contracts:</p>
+<ul>
+<li>Manage usages yourself before raw deletion, for example by removing or
+re-pointing references according to your data model.</li>
+<li>Reject incoming usages with <code>LinksUsagesValidator&lt;T&gt;</code>. A checked reset-only
+composition, outermost first, is <code>LinksInnerReferenceExistenceValidator</code> →
+<code>NonNullContentsLinkDeletionResolver</code> → <code>LinksUsagesValidator</code> → raw store.
+Self references are excluded from the usages check.</li>
+<li>Cascade usages with <code>DecorateWithAutomaticUniquenessAndUsagesResolution()</code> or
+the explicit <code>NonNullContentsLinkDeletionResolver(LinksCascadeUsagesResolver(raw))</code>
+stack, and place the missing-address policy outside it. Cascading deletes other
+links too; C# cycle/recursion behavior is not strengthened by this PR.</li>
+</ul>
+<p><code>DeleteMany</code>, <code>DeleteByQuery</code>, <code>DeleteAllUsages</code>, <code>DeleteAll</code>, and <code>MergeAndDelete</code>
+are compound helpers, not universal validators. Apply the chosen contract to
+every inner deletion, and account for links already removed by cascades. For
+bulk deletion with holes, enumerate a snapshot of actual addresses, then delete
+through the ignore policy (or test <code>Exists</code> before each call). The executable
+example demonstrates this. The old <code>DeleteAll</code> count-based loop has a separate
+<a href="https://github.com/linksplatform/Data.Doublets/issues/354">known issue</a>;
+<code>MergeUsages</code> also has a separate <a href="https://github.com/linksplatform/Data.Doublets/issues/515">known issue</a>.</p>
+<p><code>NoExceptionsDecorator</code> suppresses exceptions; it does not undo earlier writes
+and cannot make an invalid unchecked deletion safe. Callback <code>Break</code> affects
+handler flow after mutation; it is not a transaction rollback. Existence checks
+are not synchronization: callers must prevent conflicting concurrent writes
+and must not mutate the store unexpectedly from callbacks between steps.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linksplatform/Data.Doublets/blob/main/docs/deletion-csharp.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

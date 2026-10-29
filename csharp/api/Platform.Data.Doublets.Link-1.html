@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct Link&lt;TLinkAddress&gt; | Platform.Data.Doublets </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct Link&lt;TLinkAddress&gt; | Platform.Data.Doublets ">
+      
+      <meta name="description" content="Структура описывающая уникальную связь.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linksplatform/Data.Doublets/new/main/apiSpec/new?filename=Platform_Data_Doublets_Link_1.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Link%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Platform.Data.Doublets.Link`1">
+
+
+
+  <h1 id="Platform_Data_Doublets_Link_1" data-uid="Platform.Data.Doublets.Link`1" class="text-break">
+Struct Link&lt;TLinkAddress&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">Platform</span>.<span class="xref">Data</span>.<a class="xref" href="Platform.Data.Doublets.html">Doublets</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Platform.Data.Doublets.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Структура описывающая уникальную связь.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct Link&lt;TLinkAddress&gt; : IEquatable&lt;Link&lt;TLinkAddress&gt;&gt;, IReadOnlyList&lt;TLinkAddress&gt;, IReadOnlyCollection&lt;TLinkAddress&gt;, IList&lt;TLinkAddress&gt;, ICollection&lt;TLinkAddress&gt;, IEnumerable&lt;TLinkAddress&gt;, IEnumerable where TLinkAddress : IUnsignedNumber&lt;TLinkAddress&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TLinkAddress</code></dt>
+    <dd></dd>
+  </dl>
+
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Platform.Data.Doublets.Link-1.html">Link</a>&lt;TLinkAddress&gt;&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;TLinkAddress&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection</a>&lt;TLinkAddress&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;TLinkAddress&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;TLinkAddress&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TLinkAddress&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.LinkExtensions.html#Platform_Data_Doublets_LinkExtensions_IsFullPoint__1_Platform_Data_Doublets_Link___0__">LinkExtensions.IsFullPoint&lt;TLinkAddress&gt;(Link&lt;TLinkAddress&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.LinkExtensions.html#Platform_Data_Doublets_LinkExtensions_IsPartialPoint__1_Platform_Data_Doublets_Link___0__">LinkExtensions.IsPartialPoint&lt;TLinkAddress&gt;(Link&lt;TLinkAddress&gt;)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="Platform_Data_Doublets_Link_1__ctor_" data-uid="Platform.Data.Doublets.Link`1.#ctor*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1__ctor_Platform_Data_Doublets_Link__0___" data-uid="Platform.Data.Doublets.Link`1.#ctor(Platform.Data.Doublets.Link{`0}@)">
+  Link(ref Link&lt;TLinkAddress&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Initializes a new <a class="xref" href="Platform.Data.Doublets.Link-1.html">Link&lt;TLinkAddress&gt;</a> instance.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Link(ref Link&lt;TLinkAddress&gt; other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="Platform.Data.Doublets.Link-1.html">Link</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>A other.</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1__ctor_" data-uid="Platform.Data.Doublets.Link`1.#ctor*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1__ctor_System_Collections_Generic_IList__0__" data-uid="Platform.Data.Doublets.Link`1.#ctor(System.Collections.Generic.IList{`0})">
+  Link(IList&lt;TLinkAddress&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Initializes a new <a class="xref" href="Platform.Data.Doublets.Link-1.html">Link&lt;TLinkAddress&gt;</a> instance.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Link(IList&lt;TLinkAddress&gt;? values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>A values.</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1__ctor_" data-uid="Platform.Data.Doublets.Link`1.#ctor*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1__ctor_System_Object_" data-uid="Platform.Data.Doublets.Link`1.#ctor(System.Object)">
+  Link(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Initializes a new <a class="xref" href="Platform.Data.Doublets.Link-1.html">Link&lt;TLinkAddress&gt;</a> instance.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Link(object other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>A other.</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p></p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+  <a id="Platform_Data_Doublets_Link_1__ctor_" data-uid="Platform.Data.Doublets.Link`1.#ctor*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1__ctor__0__0__0_" data-uid="Platform.Data.Doublets.Link`1.#ctor(`0,`0,`0)">
+  Link(TLinkAddress, TLinkAddress, TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Initializes a new <a class="xref" href="Platform.Data.Doublets.Link-1.html">Link&lt;TLinkAddress&gt;</a> instance.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Link(TLinkAddress index, TLinkAddress source, TLinkAddress target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>A index.</p>
+<p></p>
+</dd>
+    <dt><code>source</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>A source.</p>
+<p></p>
+</dd>
+    <dt><code>target</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>A target.</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1__ctor_" data-uid="Platform.Data.Doublets.Link`1.#ctor*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1__ctor__0___" data-uid="Platform.Data.Doublets.Link`1.#ctor(`0[])">
+  Link(params TLinkAddress[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Initializes a new <a class="xref" href="Platform.Data.Doublets.Link-1.html">Link&lt;TLinkAddress&gt;</a> instance.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Link(params TLinkAddress[] values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>values</code> TLinkAddress[]</dt>
+    <dd><p>A values.</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="Platform_Data_Doublets_Link_1_Index" data-uid="Platform.Data.Doublets.Link`1.Index">
+  Index
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+The index.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly TLinkAddress Index</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="Platform_Data_Doublets_Link_1_Null" data-uid="Platform.Data.Doublets.Link`1.Null">
+  Null
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+The link.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Link&lt;TLinkAddress&gt; Null</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Platform.Data.Doublets.Link-1.html">Link</a>&lt;TLinkAddress&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="Platform_Data_Doublets_Link_1_Source" data-uid="Platform.Data.Doublets.Link`1.Source">
+  Source
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+The source.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly TLinkAddress Source</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="Platform_Data_Doublets_Link_1_Target" data-uid="Platform.Data.Doublets.Link`1.Target">
+  Target
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+The target.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly TLinkAddress Target</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="Platform_Data_Doublets_Link_1_Count_" data-uid="Platform.Data.Doublets.Link`1.Count*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_Count" data-uid="Platform.Data.Doublets.Link`1.Count">
+  Count
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L326"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Gets the count value.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_IsReadOnly_" data-uid="Platform.Data.Doublets.Link`1.IsReadOnly*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_IsReadOnly" data-uid="Platform.Data.Doublets.Link`1.IsReadOnly">
+  IsReadOnly
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L338"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Gets the is read only value.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsReadOnly { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_Item_" data-uid="Platform.Data.Doublets.Link`1.Item*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_Item_System_Int32_" data-uid="Platform.Data.Doublets.Link`1.Item(System.Int32)">
+  this[int]
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L350"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+The not supported exception.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TLinkAddress this[int index] { get; set; }</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Platform_Data_Doublets_Link_1_Add_" data-uid="Platform.Data.Doublets.Link`1.Add*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_Add__0_" data-uid="Platform.Data.Doublets.Link`1.Add(`0)">
+  Add(TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L415"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Adds the item.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(TLinkAddress item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The item.</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_Clear_" data-uid="Platform.Data.Doublets.Link`1.Clear*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_Clear" data-uid="Platform.Data.Doublets.Link`1.Clear">
+  Clear()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L424"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Clears this instance.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_Contains_" data-uid="Platform.Data.Doublets.Link`1.Contains*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_Contains__0_" data-uid="Platform.Data.Doublets.Link`1.Contains(`0)">
+  Contains(TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L441"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Determines whether this instance contains.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(TLinkAddress item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The item.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>The bool</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_CopyTo_" data-uid="Platform.Data.Doublets.Link`1.CopyTo*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_CopyTo__0___System_Int32_" data-uid="Platform.Data.Doublets.Link`1.CopyTo(`0[],System.Int32)">
+  CopyTo(TLinkAddress[], int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L462"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Copies the to using the specified array.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyTo(TLinkAddress[] array, int arrayIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>array</code> TLinkAddress[]</dt>
+    <dd><p>The array.</p>
+<p></p>
+</dd>
+    <dt><code>arrayIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The array index.</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p></p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_Equals_" data-uid="Platform.Data.Doublets.Link`1.Equals*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_Equals_Platform_Data_Doublets_Link__0__" data-uid="Platform.Data.Doublets.Link`1.Equals(Platform.Data.Doublets.Link{`0})">
+  Equals(Link&lt;TLinkAddress&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L248"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Determines whether this instance equals.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(Link&lt;TLinkAddress&gt; other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="Platform.Data.Doublets.Link-1.html">Link</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>The other.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>The bool</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_Equals_" data-uid="Platform.Data.Doublets.Link`1.Equals*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_Equals_System_Object_" data-uid="Platform.Data.Doublets.Link`1.Equals(System.Object)">
+  Equals(object?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L231"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Determines whether this instance equals.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object? other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>The other.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>The bool</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_GetEnumerator_" data-uid="Platform.Data.Doublets.Link`1.GetEnumerator*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_GetEnumerator" data-uid="Platform.Data.Doublets.Link`1.GetEnumerator">
+  GetEnumerator()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L397"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Gets the enumerator.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;TLinkAddress&gt; GetEnumerator()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>An enumerator of t link</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_GetHashCode_" data-uid="Platform.Data.Doublets.Link`1.GetHashCode*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_GetHashCode" data-uid="Platform.Data.Doublets.Link`1.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L199"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Gets the hash code.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The int</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_IndexOf_" data-uid="Platform.Data.Doublets.Link`1.IndexOf*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_IndexOf__0_" data-uid="Platform.Data.Doublets.Link`1.IndexOf(`0)">
+  IndexOf(TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L507"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Indexes the of using the specified item.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IndexOf(TLinkAddress item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The item.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The int</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_Insert_" data-uid="Platform.Data.Doublets.Link`1.Insert*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_Insert_System_Int32__0_" data-uid="Platform.Data.Doublets.Link`1.Insert(System.Int32,`0)">
+  Insert(int, TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L539"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Inserts the index.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, TLinkAddress item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index.</p>
+<p></p>
+</dd>
+    <dt><code>item</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The item.</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_IsNull_" data-uid="Platform.Data.Doublets.Link`1.IsNull*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_IsNull" data-uid="Platform.Data.Doublets.Link`1.IsNull">
+  IsNull()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L212"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Determines whether this instance is null.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsNull()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>The bool</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_Remove_" data-uid="Platform.Data.Doublets.Link`1.Remove*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_Remove__0_" data-uid="Platform.Data.Doublets.Link`1.Remove(`0)">
+  Remove(TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L490"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Determines whether this instance remove.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Remove(TLinkAddress item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The item.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>The bool</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_RemoveAt_" data-uid="Platform.Data.Doublets.Link`1.RemoveAt*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_RemoveAt_System_Int32_" data-uid="Platform.Data.Doublets.Link`1.RemoveAt(System.Int32)">
+  RemoveAt(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L552"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Removes the at using the specified index.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveAt(int index)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index.</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_ToString_" data-uid="Platform.Data.Doublets.Link`1.ToString*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_ToString" data-uid="Platform.Data.Doublets.Link`1.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L315"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Returns the string.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_ToString_" data-uid="Platform.Data.Doublets.Link`1.ToString*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_ToString__0__0_" data-uid="Platform.Data.Doublets.Link`1.ToString(`0,`0)">
+  ToString(TLinkAddress, TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L296"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Returns the string using the specified source.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToString(TLinkAddress source, TLinkAddress target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The source.</p>
+<p></p>
+</dd>
+    <dt><code>target</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The target.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_ToString_" data-uid="Platform.Data.Doublets.Link`1.ToString*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_ToString__0__0__0_" data-uid="Platform.Data.Doublets.Link`1.ToString(`0,`0,`0)">
+  ToString(TLinkAddress, TLinkAddress, TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+Returns the string using the specified index.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToString(TLinkAddress index, TLinkAddress source, TLinkAddress target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The index.</p>
+<p></p>
+</dd>
+    <dt><code>source</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The source.</p>
+<p></p>
+</dd>
+    <dt><code>target</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The target.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="Platform_Data_Doublets_Link_1_op_Equality_" data-uid="Platform.Data.Doublets.Link`1.op_Equality*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_op_Equality_Platform_Data_Doublets_Link__0__Platform_Data_Doublets_Link__0__" data-uid="Platform.Data.Doublets.Link`1.op_Equality(Platform.Data.Doublets.Link{`0},Platform.Data.Doublets.Link{`0})">
+  operator ==(Link&lt;TLinkAddress&gt;, Link&lt;TLinkAddress&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L555"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(Link&lt;TLinkAddress&gt; left, Link&lt;TLinkAddress&gt; right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="Platform.Data.Doublets.Link-1.html">Link</a>&lt;TLinkAddress&gt;</dt>
+    <dd></dd>
+    <dt><code>right</code> <a class="xref" href="Platform.Data.Doublets.Link-1.html">Link</a>&lt;TLinkAddress&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_op_Implicit_" data-uid="Platform.Data.Doublets.Link`1.op_Implicit*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_op_Implicit_Platform_Data_Doublets_Link__0____0__" data-uid="Platform.Data.Doublets.Link`1.op_Implicit(Platform.Data.Doublets.Link{`0})~`0[]">
+  implicit operator TLinkAddress[](Link&lt;TLinkAddress&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L299"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator TLinkAddress[](Link&lt;TLinkAddress&gt; link)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>link</code> <a class="xref" href="Platform.Data.Doublets.Link-1.html">Link</a>&lt;TLinkAddress&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>TLinkAddress[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_op_Implicit_" data-uid="Platform.Data.Doublets.Link`1.op_Implicit*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_op_Implicit__0____Platform_Data_Doublets_Link__0_" data-uid="Platform.Data.Doublets.Link`1.op_Implicit(`0[])~Platform.Data.Doublets.Link{`0}">
+  implicit operator Link&lt;TLinkAddress&gt;(TLinkAddress[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L302"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Link&lt;TLinkAddress&gt;(TLinkAddress[] linkArray)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>linkArray</code> TLinkAddress[]</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Platform.Data.Doublets.Link-1.html">Link</a>&lt;TLinkAddress&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Link_1_op_Inequality_" data-uid="Platform.Data.Doublets.Link`1.op_Inequality*"></a>
+
+  <h3 id="Platform_Data_Doublets_Link_1_op_Inequality_Platform_Data_Doublets_Link__0__Platform_Data_Doublets_Link__0__" data-uid="Platform.Data.Doublets.Link`1.op_Inequality(Platform.Data.Doublets.Link{`0},Platform.Data.Doublets.Link{`0})">
+  operator !=(Link&lt;TLinkAddress&gt;, Link&lt;TLinkAddress&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L558"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(Link&lt;TLinkAddress&gt; left, Link&lt;TLinkAddress&gt; right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="Platform.Data.Doublets.Link-1.html">Link</a>&lt;TLinkAddress&gt;</dt>
+    <dd></dd>
+    <dt><code>right</code> <a class="xref" href="Platform.Data.Doublets.Link-1.html">Link</a>&lt;TLinkAddress&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Link.cs/#L18" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

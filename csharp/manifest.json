@@ -1,56 +1,1327 @@
 {
-  "homepages": [],
-  "source_base_path": "/home/runner/work/Data.Doublets/Data.Doublets/csharp",
+  "docfx_version": "2.81.0+ba844df625370a6bd7c1ecab0d0ec4d1d9128ac4",
+  "source_base_path": "/home/runner/work/Data.Doublets/Data.Doublets",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
-      "type": "Toc",
-      "source_relative_path": "toc.yml",
+      "type": "Resource",
       "output": {
-        ".html": {
-          "relative_path": "toc.html",
-          "hash": "W1OZV4Re4LU4vm7PGaivNg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    }
-  ],
-  "incremental_info": [
-    {
-      "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
-        "incrementalPhase": "build",
-        "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "NoAvailableBuildCache"
-      },
-      "processors": {
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build",
-          "total_file_count": 0,
-          "skipped_file_count": 0
+        "resource": {
+          "relative_path": "index.json"
         }
       }
     },
     {
-      "status": {
-        "can_incremental": false,
-        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
-        "incrementalPhase": "postProcessing",
-        "total_file_count": 0,
-        "skipped_file_count": 0
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
       },
-      "processors": {}
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.ru.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.ru.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/csharp/Platform.Data.Doublets.pdf",
+      "output": {
+        "resource": {
+          "relative_path": "Platform.Data.Doublets.pdf"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.CriterionMatchers.TargetMatcher-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.CriterionMatchers.TargetMatcher-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.CriterionMatchers.TargetMatcher<TLinkAddress>",
+      "Summary": "<p>\n    Represents the target matcher.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.CriterionMatchers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.CriterionMatchers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.CriterionMatchers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.CombinedDecorator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.CombinedDecorator-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.CombinedDecorator<TLinkAddress>",
+      "Summary": "<p>Represents a combined decorator that implements the basic logic for interacting with the links storage for links with addresses represented as <xref href=\"System.UInt64\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Представляет комбинированный декоратор, реализующий основную логику по взаимодействии с хранилищем связей, для связей с адресами представленными в виде <xref href=\"System.UInt64\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver<TLinkAddress>",
+      "Summary": "<p>\n    Represents the links cascade uniqueness and usages resolver.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver<TLinkAddress>",
+      "Summary": "<p sourcefile=\"docs/api/Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver-1.yml\" sourcestartlinenumber=\"1\">Deletes links together with their dependent usages.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLinkAddress>",
+      "Summary": "<p>\n    Represents the links decorator base.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.DisposableWithMultipleCallsAllowed.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.DisposableWithMultipleCallsAllowed.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLinkAddress>.DisposableWithMultipleCallsAllowed",
+      "Summary": "<p>\n    Represents the disposable with multiple calls allowed.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLinkAddress>",
+      "Summary": "<p>\n    Represents the links disposable decorator base.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLinkAddress>",
+      "Summary": "<p>\n    Represents the links inner reference existence validator.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLinkAddress>",
+      "Summary": "<p>\n    Represents the links itself constant to self reference resolver.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LinksNonExistentDeletionResolver-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksNonExistentDeletionResolver-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LinksNonExistentDeletionResolver<TLinkAddress>",
+      "Summary": "<p sourcefile=\"docs/api/Platform.Data.Doublets.Decorators.LinksNonExistentDeletionResolver-1.yml\" sourcestartlinenumber=\"1\">Ignores deletion of a missing link without calling the inner store or handler.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator<TLinkAddress>",
+      "Summary": "<p sourcefile=\"docs/api/Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator-1.yml\" sourcestartlinenumber=\"1\">Creates missing dependencies before updating links.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLinkAddress>",
+      "Summary": "<p>\n    Represents the links null constant to self reference resolver.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LinksUniquenessResolver<TLinkAddress>",
+      "Summary": "<p>\n    Represents the links uniqueness resolver.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LinksUniquenessValidator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksUniquenessValidator-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LinksUniquenessValidator<TLinkAddress>",
+      "Summary": "<p>\n    Represents the links uniqueness validator.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LinksUsagesValidator<TLinkAddress>",
+      "Summary": "<p>\n    Represents the links usages validator.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.LoggingDecorator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LoggingDecorator-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.LoggingDecorator<TLinkAddress>",
+      "Summary": "<p sourcefile=\"docs/api/Platform.Data.Doublets.Decorators.LoggingDecorator-1.yml\" sourcestartlinenumber=\"1\">Logs link mutations and forwards optional callbacks.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>",
+      "Summary": "<p sourcefile=\"docs/api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.yml\" sourcestartlinenumber=\"1\">Returns the error constant when an operation throws.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver<TLinkAddress>",
+      "Summary": "<p>\n    Represents the non null contents link deletion resolver.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Decorators.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Decorators",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Doublet-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Doublet-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Doublet<T>",
+      "Summary": "<p>.</p>\n<p>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.DoubletComparer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.DoubletComparer-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.DoubletComparer<T>",
+      "Summary": "<p sourcefile=\"docs/api/Platform.Data.Doublets.DoubletComparer-1.yml\" sourcestartlinenumber=\"1\">Compares doublets by their source and target.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.ILinks-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.ILinks-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.ILinks<TLinkAddress>",
+      "Summary": "<p>\nDefines the links.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.ILinksExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.ILinksExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.ILinksExtensions",
+      "Summary": "<p>\nRepresents the links extensions.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.ISynchronizedLinks-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.ISynchronizedLinks-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.ISynchronizedLinks<TLinkAddress>",
+      "Summary": "<p>\nDefines the synchronized links.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Link-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Link-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Link<TLinkAddress>",
+      "Summary": "<p sourcefile=\"docs/api/Platform.Data.Doublets.Link-1.yml\" sourcestartlinenumber=\"1\">Структура описывающая уникальную связь.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.LinkExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.LinkExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.LinkExtensions",
+      "Summary": "<p>\nRepresents the link extensions.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.LinksOperatorBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.LinksOperatorBase-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.LinksOperatorBase<TLinkAddress>",
+      "Summary": "<p>\nRepresents the links operator base.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.ILinksListMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.ILinksListMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.ILinksListMethods<TLinkAddress>",
+      "Summary": "<p>\nDefines the links list methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.ILinksTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.ILinksTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.ILinksTreeMethods<TLinkAddress>",
+      "Summary": "<p>\nDefines the links tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.IndexTreeType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.IndexTreeType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.IndexTreeType",
+      "Summary": "<p>\nThe index tree type enum.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.LinksHeader-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.LinksHeader-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.LinksHeader<TLinkAddress>",
+      "Summary": "<p>\nThe links header.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLinkAddress>",
+      "Summary": "<p>\n    Represents the external links recursionless size balanced tree methods base.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>",
+      "Summary": "<p>\n    Represents the external links size balanced tree methods base.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\n    Represents the external links sources recursionless size balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSourcesSizeBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSourcesSizeBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\n    Represents the external links sources size balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\n    Represents the external links targets recursionless size balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksTargetsSizeBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksTargetsSizeBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\n    Represents the external links targets size balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLinkAddress>",
+      "Summary": "<p>\n    Represents the internal links recursionless size balanced tree methods base.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>",
+      "Summary": "<p>\n    Represents the internal links size balanced tree methods base.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods<TLinkAddress>",
+      "Summary": "<p>\n    Represents the internal links sources linked list methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesRecursionlessSizeBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesRecursionlessSizeBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\n    Represents the internal links sources recursionless size balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesSizeBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesSizeBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\n    Represents the internal links sources size balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksTargetsRecursionlessSizeBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksTargetsRecursionlessSizeBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.InternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\n    Represents the internal links targets recursionless size balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksTargetsSizeBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksTargetsSizeBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.InternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\n    Represents the internal links targets size balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinks-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinks-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinks<TLinkAddress>",
+      "Summary": "<p>\n    Represents the split memory links.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase<TLinkAddress>",
+      "Summary": "<p>\n    Represents the split memory links base.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.UnusedLinksListMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.UnusedLinksListMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic.UnusedLinksListMethods<TLinkAddress>",
+      "Summary": "<p>\n    Represents the unused links list methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.Generic.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.Generic.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.Generic",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.RawLinkDataPart-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.RawLinkDataPart-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.RawLinkDataPart<TLinkAddress>",
+      "Summary": "<p>\n    The raw link data part.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.RawLinkIndexPart-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.RawLinkIndexPart-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split.RawLinkIndexPart<TLinkAddress>",
+      "Summary": "<p>\n    The raw link index part.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.Split.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.Split.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.Split",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase<TLinkAddress>",
+      "Summary": "<p>\n    Represents the links avl balanced tree methods base.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase<TLinkAddress>",
+      "Summary": "<p>\n    Represents the links recursionless size balanced tree methods base.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase<TLinkAddress>",
+      "Summary": "<p>\n    Represents the links size balanced tree methods base.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.Generic.LinksSourcesAvlBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.Generic.LinksSourcesAvlBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.Generic.LinksSourcesAvlBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\nRepresents the links sources avl balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.Generic.LinksSourcesRecursionlessSizeBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.Generic.LinksSourcesRecursionlessSizeBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.Generic.LinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\nRepresents the links sources recursionless size balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.Generic.LinksSourcesSizeBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.Generic.LinksSourcesSizeBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.Generic.LinksSourcesSizeBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\nRepresents the links sources size balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.Generic.LinksTargetsAvlBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.Generic.LinksTargetsAvlBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.Generic.LinksTargetsAvlBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\nRepresents the links targets avl balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.Generic.LinksTargetsRecursionlessSizeBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.Generic.LinksTargetsRecursionlessSizeBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.Generic.LinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\nRepresents the links targets recursionless size balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.Generic.LinksTargetsSizeBalancedTreeMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.Generic.LinksTargetsSizeBalancedTreeMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.Generic.LinksTargetsSizeBalancedTreeMethods<TLinkAddress>",
+      "Summary": "<p>\nRepresents the links targets size balanced tree methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks<TLinkAddress>",
+      "Summary": "<p>\nRepresents the united memory links.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase<TLinkAddress>",
+      "Summary": "<p>\nRepresents the united memory links base.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.Generic.UnusedLinksListMethods-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.Generic.UnusedLinksListMethods-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.Generic.UnusedLinksListMethods<TLinkAddress>",
+      "Summary": "<p>\nRepresents the unused links list methods.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.Generic.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.Generic.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.Generic",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.RawLink-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.RawLink-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United.RawLink<TLinkAddress>",
+      "Summary": "<p>\nThe raw link.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.United.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.United.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory.United",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Memory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Memory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Memory",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.PropertyOperators.PropertiesOperator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.PropertyOperators.PropertiesOperator-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.PropertyOperators.PropertiesOperator<TLinkAddress>",
+      "Summary": "<p>\nRepresents the properties operator.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.PropertyOperators.PropertyOperator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.PropertyOperators.PropertyOperator-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.PropertyOperators.PropertyOperator<TLinkAddress>",
+      "Summary": "<p>\nRepresents the property operator.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.PropertyOperators.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.PropertyOperators.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.PropertyOperators",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Stacks.Stack-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Stacks.Stack-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Stacks.Stack<TLinkAddress>",
+      "Summary": "<p>\nRepresents the stack.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Stacks.StackExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Stacks.StackExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Stacks.StackExtensions",
+      "Summary": "<p>\nRepresents the stack extensions.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Stacks.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Stacks.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Stacks",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.SynchronizedLinks-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.SynchronizedLinks-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>",
+      "Summary": "<p sourcefile=\"docs/api/Platform.Data.Doublets.SynchronizedLinks-1.yml\" sourcestartlinenumber=\"1\">Synchronizes access to an underlying link store.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Tests.ILinksExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Tests.ILinksExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Tests.ILinksExtensions",
+      "Summary": "<p>\nRepresents the links extensions.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.Tests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Tests.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.Tests",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction",
+      "Summary": "<p sourcefile=\"docs/api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.yml\" sourcestartlinenumber=\"1\">Groups link changes for commit or rollback.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition",
+      "Summary": "<p sourcefile=\"docs/api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.yml\" sourcestartlinenumber=\"1\">Records a transaction transition between two link states.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets.UInt64LinksTransactionsLayer",
+      "Summary": "<p>\nRepresents the int 64 links transactions layer.\n</p>\n<p></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/api/Platform.Data.Doublets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Platform.Data.Doublets",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/api/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "api/toc.json"
+        },
+        ".html": {
+          "relative_path": "api/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/deletion-audit.md",
+      "output": {
+        ".html": {
+          "relative_path": "deletion-audit.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/deletion-csharp.md",
+      "output": {
+        ".html": {
+          "relative_path": "deletion-csharp.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/deletion-rust.md",
+      "output": {
+        ".html": {
+          "relative_path": "deletion-rust.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/design.md",
+      "output": {
+        ".html": {
+          "relative_path": "design.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "toc.json"
+        },
+        ".html": {
+          "relative_path": "toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/trusted-publishing.md",
+      "output": {
+        ".html": {
+          "relative_path": "trusted-publishing.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "examples/Deletion/Program.cs",
+      "output": {
+        "resource": {
+          "relative_path": "examples/Deletion/Program.cs"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "examples/Deletion/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "examples/Deletion/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "experiments/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "experiments/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "experiments/deletion_policies.rs",
+      "output": {
+        "resource": {
+          "relative_path": "experiments/deletion_policies.rs"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "experiments/missing_delete.rs",
+      "output": {
+        "resource": {
+          "relative_path": "experiments/missing_delete.rs"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "experiments/reproduce_deletion_contract.py",
+      "output": {
+        "resource": {
+          "relative_path": "experiments/reproduce_deletion_contract.py"
+        }
+      },
+      "version": ""
     }
   ],
-  "version_info": {},
   "groups": [
     {
       "xrefmap": "xrefmap.yml"

@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['resetvalues_0',['resetvalues',['../namespacePlatform_1_1Data_1_1Doublets.html#a2cfb6031571ef5cd3091a0a75e5ab285',1,'Platform::Data::Doublets::ResetValues(TStorage &amp;storage, typename TStorage::LinkAddressType linkAddress, const typename TStorage::WriteHandlerType &amp;handler)'],['../namespacePlatform_1_1Data_1_1Doublets.html#ab3d825efd8acd30b94be721c0473e187',1,'Platform::Data::Doublets::ResetValues(TStorage &amp;storage, typename TStorage::LinkAddressType linkAddress)']]],
+  ['resolveaddresschangeconflict_1',['resolveaddresschangeconflict',['../structPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksCascadeUniquenessAndUsagesResolver.html#af252d553414e25d0f9182191830cf85d',1,'Platform::Data::Doublets::Decorators::LinksCascadeUniquenessAndUsagesResolver::ResolveAddressChangeConflict()'],['../structPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksUniquenessResolver.html#aa6ad0cd76b779fa70b8d97584ebb8339',1,'Platform::Data::Doublets::Decorators::LinksUniquenessResolver::ResolveAddressChangeConflict()']]]
+];

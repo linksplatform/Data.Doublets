@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>NuGet trusted publishing | Platform.Data.Doublets </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="NuGet trusted publishing | Platform.Data.Doublets ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linksplatform/Data.Doublets/blob/main/docs/trusted-publishing.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="nuget-trusted-publishing">NuGet trusted publishing</h1>
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# NuGet trusted publishing",
+      "*"
+    ]
+  }
+}
+-->
+
+<p>Both <code>Platform.Data.Doublets</code> (C#) and
+<code>Platform.Data.Doublets.TemplateLibrary</code> (C++) publish through GitHub Actions OIDC.
+Trusted publishing is always attempted first. The existing provided
+<code>secrets.NUGET_TOKEN</code> is considered only when that path is unavailable or fails.
+PR validation, including fork PRs, builds and consumes local packages without
+publishing credentials. Only non-PR execution on <code>refs/heads/main</code> can authenticate.</p>
+<h2 id="configure-and-verify-the-account">Configure and verify the account</h2>
+<p>Use package-registry-manager for NuGet policy management and gh-manager for
+generic GitHub settings. Their implementation prerequisites are tracked in
+<a href="https://github.com/link-foundation/package-registry-manager/issues/72">package-registry-manager #72</a>
+and <a href="https://github.com/link-foundation/gh-manager/issues/29">gh-manager #29</a>.
+Those reports do not establish that setup is implemented or a policy exists.
+The related template migration is
+<a href="https://github.com/link-foundation/csharp-ai-driven-development-pipeline-template/issues/80">template #80</a>.</p>
+<ol>
+<li>Authenticate to the NuGet account that creates the policy. Read its actual
+profile name from NuGet; do not infer it from the GitHub username or use an
+email address. For organization-owned policies, login uses the <strong>creator's</strong>
+profile name, while the policy owner is the package-owning organization.</li>
+<li>Prefer official CLI or supported API operations after checking capabilities.
+<code>dotnet nuget trust</code> manages package-signature trust, not publishing policies.
+Current official policy setup uses NuGet's authenticated
+<a href="https://www.nuget.org/account/TrustedPublishing">Trusted Publishing page</a>.
+When policy management is web-only, use browser-commander's authenticated
+profile through package-registry-manager. A sign-in page or a submitted form
+is not proof of a saved policy.</li>
+<li>Inspect existing policies and reuse an equivalent one. The required identity
+is owner <code>linksplatform</code>, repository <code>Data.Doublets</code>, workflow <strong><code>ci.yml</code></strong>
+(filename only). Leave the environment empty: these publishing jobs use none.
+Do not create a GitHub environment or a separate GitHub publisher registration.</li>
+<li>Select the NuGet user/organization that owns <strong>both</strong> package IDs. Limit allowed
+operations to the required package push/new-version operations. Prefer exact
+package selection where supported; if only a single glob is supported, use
+<code>Platform.Data.Doublets*</code>, the narrow shared prefix covering these two IDs,
+after auditing other matching packages. Do not use the unrestricted <code>*</code> glob.</li>
+<li>Re-read saved state: identity, creator, owner, scope and activation status must
+match. An inactive policy cannot authenticate. A temporarily active policy may
+need a successful publication within its activation window; report this state
+explicitly rather than claiming permanent activation.</li>
+<li>Through gh-manager, ensure the non-secret Actions variable <code>NUGET_USER</code> at a
+scope visible to both jobs. Read effective organization/repository precedence,
+preserve existing visibility restrictions, skip an equal value and re-read
+after writing. Do not widen global workflow permissions or rotate a legacy key
+to repair missing OIDC setup.</li>
+</ol>
+<h2 id="what-the-gate-verifies">What the gate verifies</h2>
+<p>The <code>credentials</code> job checks the configured profile and tries the SHA-pinned
+<code>NuGet/login</code> with job-level <code>id-token: write</code>. Missing/invalid profiles are
+reported as trusted-publishing unavailability; failed configuration or exchange
+can consider the provided fallback. A username alone never proves authentication.
+Only those OIDC attempt steps tolerate failure; the final preflight is mandatory.
+No credential passes from this job to any other job.</p>
+<p>Every release caller passes the temporary <code>NUGET_TOKEN</code>, <code>NUGET_LOGIN_OUTCOME</code>
+and the separate <code>NUGET_FALLBACK_TOKEN</code> to an explicit selector. Logs identify
+<code>auth=trusted-publishing|token-fallback|none</code>, the failed step and a sanitized
+reason. A successful exchange selects only the temporary key, even when an expired
+fallback exists. Never select credentials with an empty-output expression.</p>
+<p>The former <code>/api/v2/verifykey/{id}/{version}</code> probe is incompatible with push-only
+credentials under Gallery's <code>RequirePackageVerifyScopePolicy</code>: HTTP 400 can occur
+before owner/package scope evaluation. The baseline discarded the response body,
+so its precise live rejection remains unconfirmed. All preflights now report
+package scope as <strong>unverified/unsupported</strong> instead of calling this symbols
+verification endpoint. Anonymous indexes must still be well formed/reachable;
+first publication explicitly reports that no public version exists. An index is
+not authentication or authorization evidence.</p>
+<p>For a provided fallback, the push-compatible
+<code>POST /api/v2/package/create-verification-key/{id}/{version}</code> authenticates the
+original key for push actions, even before first publication. Its returned key is
+discarded: Gallery replaces the subject with the requested ID, so this is <strong>never
+package-scope proof</strong>, and no derived key is sent to <code>verifykey</code>. A malformed,
+unsupported or unavailable authentication response fails explicitly without being
+called an ownership failure. Real publication enforces original package/owner
+permissions. HTTP error bodies are retained with bounded reads and sanitized,
+flattened diagnostics; credentials, raw headers and exception argv stay out of logs.</p>
+<p>The <code>publish</code> job downloads tested artifacts, obtains a fresh key and checks
+GitHub write permission before preparing/committing release metadata. C# uses that
+login; C++ logs in again immediately before publication, even when C# fails and
+C++ can independently repair its publication. Missing configuration also permits
+fallback here. Metadata failure prevents either package push. NuGet temporary
+keys last one hour and the publishing job is bounded to 40 minutes. Never move
+keys into artifacts, persistent secrets or cross-job outputs. Shell tracing around
+credentials remains forbidden.</p>
+<p>A real NuGet push rejection with HTTP <strong>401/403</strong> can retry <strong>once</strong> with the
+provided token. First inspect the anonymous exact-version download: an already
+public version is reported, a 404 permits retry of the same artifact, and an
+indeterminate result stops the retry. <code>--skip-duplicate</code> repairs partial
+package/symbol publication without rebuilding or changing versions. Authentication
+and both failed push outcomes remain visible. HTTP 400 package validation,
+transport/5xx failures, incompatible verification and build/test/doc defects
+cannot switch credentials. If both authentication methods fail, publication fails.
+Public download, mirror and release-asset failures also remain fatal.</p>
+<h2 id="run-and-recover">Run and recover</h2>
+<p>After the code is reviewed and merged and settings are verified, execute CI on
+the <strong>current main revision</strong>. A rerun of an older SHA cannot load this workflow
+change. For settings-only repairs, restart only the affected failed CI after
+verified changes. Repeated setup with identical saved settings must create no
+duplicate policies and trigger no redundant workflow runs. Do not restart
+unrelated failures.</p>
+<p>Monitor exchange, per-package scope checks, package pushes, anonymous indexing
+checks and consumer smoke checks. Record the run ID, attempt, actual SHA, exact
+C#/C++ versions and final conclusion. The existing smoke jobs restore packages
+into isolated C# and native C++ consumers. After publication, confirm both exact
+versions from the public NuGet feed, then install/consume the public artifacts;
+cached or local artifacts are not evidence of public availability.</p>
+<p>Already-published versions remain recoverable with <code>--skip-duplicate</code> and no
+second version bump. Anonymous package indexing waits are bounded to fifteen
+minutes. Mirror failures remain failures while public GitHub assets can still be
+repaired. Do not claim release success from exchange success, username presence,
+an upstream issue, a package listing or a requested workflow dispatch.</p>
+<p>Retain the intentionally configured fallback after OIDC succeeds. Never delete
+it automatically, mint a replacement long-lived token, widen package permissions
+or weaken NuGet policy settings to make a release pass. The verified policy uses
+owner <code>LinksPlatform</code>, creator <code>konard</code>, owner/repository IDs <code>15116341</code>/<code>199508305</code>,
+workflow <code>ci.yml</code>, no environment and exactly the two package IDs with push-only
+new-version permission. Preserve this setup and <code>NUGET_USER=konard</code>.</p>
+<h2 id="regression-checks-and-references">Regression checks and references</h2>
+<p>Run <code>python3 -m unittest discover -s experiments -p 'test_*.py' -v</code>,
+<code>python3 scripts/check_repository.py</code> and <code>python3 scripts/check-workflows.py</code>.
+<code>experiments/test_trusted_publishing.py</code> and <code>experiments/test_nuget_fallback.py</code>
+cover the live 400-after-exchange regression at all preflight callers, the
+authentication decision table, original/derived scope limits, HTTP diagnostics,
+first publication, expired keys and refresh, same-artifact retry, metadata ordering
+and credential-free PR validation.
+Existing publication regressions cover bounded indexing and release repair.</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/nuget/nuget-org/trusted-publishing">Official NuGet trusted publishing setup and key lifetime</a></li>
+<li><a href="https://github.com/NuGet/login/blob/8d196754b4036150537f80ac539e15c2f1028841/src/index.ts">Reviewed NuGet/login v1.2.0 source</a></li>
+<li><a href="https://github.com/NuGet/NuGetGallery/blob/c25bab040e19d24593fc0c298a0cedb51bf57dcb/src/NuGetGallery/Controllers/ApiController.cs#L352">NuGet direct verification and scope evaluation</a></li>
+<li><a href="https://github.com/NuGet/NuGetGallery/blob/c25bab040e19d24593fc0c298a0cedb51bf57dcb/src/NuGetGallery.Services/Authentication/CredentialBuilder.cs#L79">Derived verification-key scope construction</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linksplatform/Data.Doublets/blob/main/docs/trusted-publishing.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

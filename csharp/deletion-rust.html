@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Choosing a deletion contract in Rust | Platform.Data.Doublets </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Choosing a deletion contract in Rust | Platform.Data.Doublets ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linksplatform/Data.Doublets/blob/main/docs/deletion-rust.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="choosing-a-deletion-contract-in-rust">Choosing a deletion contract in Rust</h1>
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# Choosing a deletion contract in Rust",
+      "*"
+    ]
+  },
+  "MD013": {
+    "tables": false
+  }
+}
+-->
+
+<p>This Rust guide and the <a href="design.html">shared design guidelines</a> live in the same
+PR as the <a href="deletion-csharp.html">C# guide</a>, so the intended architecture is explicit
+for both implementations. Rust source was audited at doublets-rs main
+<a href="https://github.com/linksplatform/doublets-rs/commit/31b38458efbd277b399e46b22474b85a85bda24b"><code>31b38458efbd277b399e46b22474b85a85bda24b</code></a>
+(<code>doublets</code> 0.13.0). Current implementation differences are documented below;
+C# and Rust's raw deletion contracts are not currently identical.</p>
+<h2 id="current-apis">Current APIs</h2>
+<p>Import <code>doublets::{Doublets, Links}</code> for high-level helpers and low-level CRUD,
+and <code>doublets::decorators::DecoratorsExt</code> for compositions.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Current behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>delete_links(&amp;[id], &amp;mut handler)</code></td>
+<td>Both backends verify existence, reset endpoints internally, release the slot, and return <code>Result&lt;Flow, Error&lt;T&gt;&gt;</code></td>
+</tr>
+<tr>
+<td><code>delete_with(id, handler)</code> / <code>delete_by_with([id], handler)</code></td>
+<td>Forward to low-level deletion; callback result is flow</td>
+</tr>
+<tr>
+<td><code>delete(id)</code> / <code>delete_by([id])</code></td>
+<td>Return the former link address on success; propagate errors</td>
+</tr>
+<tr>
+<td><code>try_get_link(id)</code></td>
+<td>Return the link or <code>Error::NotExists(id)</code> without deleting</td>
+</tr>
+<tr>
+<td><code>get_link(id)</code> / <code>exist(id)</code></td>
+<td>Return <code>Option&lt;Link&lt;T&gt;&gt;</code> / membership for a per-call decision</td>
+</tr>
+<tr>
+<td><code>delete_all()</code></td>
+<td>Snapshot actual addresses and skip entries already removed by cascades</td>
+</tr>
+<tr>
+<td><code>delete_query_with</code>, <code>delete_usages_with</code>, <code>rebase_and_delete</code></td>
+<td>Compound helpers; their writes still use the selected inner stack</td>
+</tr>
+</tbody>
+</table>
+<p>Missing addresses currently return <code>Error::NotExists</code> even when all validators
+are omitted. This prevents the C# missing-delete corruption in the original
+report, but does not satisfy the design goal of an optional contract check.
+Do not rely on a backend check as the architectural substitute for a configured
+boundary.</p>
+<h2 id="explicit-error-policy">Explicit error policy</h2>
+<p>For a store-wide checked boundary, use the existing existence validator:</p>
+<pre><code class="lang-rust">use doublets::{decorators::DecoratorsExt, mem::Global, unit, Doublets};
+
+let mut links = unit::Store::&lt;usize, _&gt;::new(Global::new())?
+    .with_automatic_uniqueness_and_usages_resolution()
+    .with_inner_reference_existence_validation();
+let id = links.create_point()?;
+links.delete(id)?;
+assert!(matches!(links.delete(id), Err(doublets::Error::NotExists(x)) if x == id));
+</code></pre>
+<p>It checks deletion before forwarding, and validates internal references in
+updates/reads too. This makes the requested policy visible even though the
+current backend repeats the existence check. For one checked operation, use
+<code>try_get_link(id)?</code> before resetting or deleting instead.</p>
+<h2 id="ignore-only-a-missing-requested-address">Ignore only a missing requested address</h2>
+<p>Rust currently has no dedicated ignore-missing-deletion builder. Use a per-call
+helper, or a custom decorator that guards before any reset or cascade:</p>
+<pre><code class="lang-rust">use doublets::{Doublets, Error};
+
+fn delete_if_exists&lt;L: Doublets&lt;usize&gt;&gt;(
+    links: &amp;mut L,
+    id: usize,
+) -&gt; Result&lt;usize, Error&lt;usize&gt;&gt; {
+    if links.exist(id) {
+        links.delete(id)
+    } else {
+        Ok(0) // No writes or callbacks; zero is the default null address.
+    }
+}
+</code></pre>
+<p>A helper with a handler should return <code>Ok(Flow::Continue)</code> without calling that
+handler when absent. Check before the operation instead of suppressing every
+error afterward: an error from a later cascaded write is different from the
+requested address being absent. <code>with_no_exceptions()</code> maps all mutation errors
+to <code>Flow::Break</code>; it neither selects only missing deletions nor rolls back
+previous writes.</p>
+<p>For deletion by pair, call <code>search(source, target)</code> and delete only its <code>Some(id)</code>
+result. The endpoint-reset and usages policies still apply to the successful
+operation. The existence check and deletion require exclusive operation ordering;
+a check is not a transaction or a concurrency primitive.</p>
+<h2 id="contents-usages-and-decorator-order">Contents, usages and decorator order</h2>
+<p>Use <code>.with_non_null_contents_deletion_resolution()</code> when the selected stack
+should explicitly reset contents. The automatic uniqueness/usages composition
+includes that layer and cascading. Select <code>.with_usages_validation()</code> to reject
+incoming usages, or <code>.with_cascade_usages_resolution()</code> together with the reset
+layer to remove them. A caller-managed sequence can remove or re-point usages
+itself before deletion. Uniqueness is another independent choice.</p>
+<p>Rust's decorators own the layers below them and do not propagate C#'s <code>Facade</code>.
+An outer validator guards the entry operation, but is not automatically re-entered
+by every inner cascade. Policies needed by recursive calls must also be available
+below the cascading layer; inspect the composition's ordering. The automatic
+cascade handles its recursive resets explicitly. A user-supplied ignore wrapper
+should skip a missing entry before handing it to any inner resolver.</p>
+<p>Callbacks occur after the corresponding write. <code>Flow::Break</code> does not reverse
+that write or make a compound operation atomic. For bulk work, use actual
+addresses and account for links already removed by cascades; do not assume that
+<code>count()</code> is the largest live address. A missing-request guard does not repair
+an invalid mutation that has already happened.</p>
+<h2 id="caller-managed-unchecked-route-current-gap">Caller-managed unchecked route: current gap</h2>
+<p>The intended architecture allows a caller to guarantee a live address, detached
+contents and resolved usages, then call a minimal release operation without
+redundant contract verification or automatic resetting. Current Rust stores do
+not expose that route:</p>
+<ul>
+<li>Both <code>update_links</code> and <code>delete_links</code> call <code>try_get_link</code> in the backend.
+The missing bypass is reported in <a href="https://github.com/linksplatform/doublets-rs/issues/80">doublets-rs #80</a>.</li>
+<li>Both backends call <code>self.update(index, 0, 0)</code> during deletion even if contents
+are already reset. Separating that policy is reported in
+<a href="https://github.com/linksplatform/doublets-rs/issues/81">doublets-rs #81</a>.</li>
+</ul>
+<p>Removing a wrapper with <code>into_inner()</code> still reaches those checked/resetting
+backends. There is no supported <code>delete_unchecked</code> recipe to demonstrate at this
+revision. Do not manufacture one using raw pointers or claim that omitting
+<code>InnerReferenceExistenceValidator</code> removes the backend cost. Future unchecked
+primitives must use an appropriate Rust <code>unsafe</code> contract; safe public methods
+must preserve memory safety. These separate implementation reports remain open.
+Optional source/target indexing is also tracked in <a href="https://github.com/linksplatform/doublets-rs/issues/82">#82</a>;
+it does not change the deletion recipes available at this revision.</p>
+<h2 id="reproducible-examples">Reproducible examples</h2>
+<p>The <a href="experiments/deletion_policies.rs">Rust policy probe</a> compiles the address
+helper and explicit validator compositions for both backends and automatic
+stacks. The <a href="experiments/missing_delete.rs">missing-delete probe</a> records the
+current embedded-check behavior. Copy them to a checkout of the audited revision
+and run the <a href="experiments/README.html">bounded commands</a>. The assertions about
+current backend checks are observations, not a recommendation to keep that
+policy in the storage root.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linksplatform/Data.Doublets/blob/main/docs/deletion-rust.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

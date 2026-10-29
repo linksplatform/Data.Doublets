@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ExternalLinksSizeBalancedTreeMethodsBase&lt;TLinkAddress&gt; | Platform.Data.Doublets </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ExternalLinksSizeBalancedTreeMethodsBase&lt;TLinkAddress&gt; | Platform.Data.Doublets ">
+      
+      <meta name="description" content="Represents the external links size balanced tree methods base.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linksplatform/Data.Doublets/new/main/apiSpec/new?filename=Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1">
+
+
+
+  <h1 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1" class="text-break">
+Class ExternalLinksSizeBalancedTreeMethodsBase&lt;TLinkAddress&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">Platform</span>.<span class="xref">Data</span>.<a class="xref" href="Platform.Data.Doublets.html">Doublets</a>.<a class="xref" href="Platform.Data.Doublets.Memory.html">Memory</a>.<a class="xref" href="Platform.Data.Doublets.Memory.Split.html">Split</a>.<a class="xref" href="Platform.Data.Doublets.Memory.Split.Generic.html">Generic</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Platform.Data.Doublets.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>
+    Represents the external links size balanced tree methods base.
+</p>
+<p></p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class ExternalLinksSizeBalancedTreeMethodsBase&lt;TLinkAddress&gt; : SizeBalancedTreeMethods&lt;TLinkAddress&gt;, ILinksTreeMethods&lt;TLinkAddress&gt; where TLinkAddress : IUnsignedNumber&lt;TLinkAddress&gt;, IComparisonOperators&lt;TLinkAddress, TLinkAddress, bool&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TLinkAddress</code></dt>
+    <dd></dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">SizedBinaryTreeMethodsBase</span>&lt;TLinkAddress&gt;</div>
+      <div><span class="xref">SizeBalancedTreeMethods</span>&lt;TLinkAddress&gt;</div>
+      <div><span class="xref">ExternalLinksSizeBalancedTreeMethodsBase&lt;TLinkAddress&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="Platform.Data.Doublets.Memory.ILinksTreeMethods-1.html">ILinksTreeMethods</a>&lt;TLinkAddress&gt;</div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSourcesSizeBalancedTreeMethods-1.html">ExternalLinksSourcesSizeBalancedTreeMethods&lt;TLinkAddress&gt;</a></div>
+      <div><a class="xref" href="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksTargetsSizeBalancedTreeMethods-1.html">ExternalLinksTargetsSizeBalancedTreeMethods&lt;TLinkAddress&gt;</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <span class="xref">SizeBalancedTreeMethods&lt;TLinkAddress&gt;.attachCount</span>
+    </div>
+    <div>
+      <span class="xref">SizeBalancedTreeMethods&lt;TLinkAddress&gt;.BeforeAttach()</span>
+    </div>
+    <div>
+      <span class="xref">SizeBalancedTreeMethods&lt;TLinkAddress&gt;.AttachCore(ref TLinkAddress, TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizeBalancedTreeMethods&lt;TLinkAddress&gt;.AfterAttach()</span>
+    </div>
+    <div>
+      <span class="xref">SizeBalancedTreeMethods&lt;TLinkAddress&gt;.DetachCore(ref TLinkAddress, TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetLeftReference(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetRightReference(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetLeft(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetRight(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetSize(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.SetLeft(TLinkAddress, TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.SetRight(TLinkAddress, TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.SetSize(TLinkAddress, TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetLeftOrDefault(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetRightOrDefault(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.IncrementSize(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.DecrementSize(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetLeftSize(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetRightSize(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetSizeOrZero(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.FixSize(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.LeftRotate(ref TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.LeftRotate(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.RightRotate(ref TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.RightRotate(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetRightest(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetLeftest(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetNext(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.GetPrevious(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.Contains(TLinkAddress, TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.ClearNode(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.Attach(ref TLinkAddress, TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.Detach(ref TLinkAddress, TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.FixSizes(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.ValidateSizes(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.ValidateSize(TLinkAddress)</span>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.PrintNodes(TLinkAddress)</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.PrintNodes(TLinkAddress, StringBuilder)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.PrintNodes(TLinkAddress, StringBuilder, int)</a>
+    </div>
+    <div>
+      <span class="xref">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.PrintNode(TLinkAddress)</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.PrintNode(TLinkAddress, StringBuilder)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">SizedBinaryTreeMethodsBase&lt;TLinkAddress&gt;.PrintNode(TLinkAddress, StringBuilder, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1__ctor_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.#ctor*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1__ctor_Platform_Data_LinksConstants__0__System_Byte__System_Byte__System_Byte__" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.#ctor(Platform.Data.LinksConstants{`0},System.Byte*,System.Byte*,System.Byte*)">
+  ExternalLinksSizeBalancedTreeMethodsBase(LinksConstants&lt;TLinkAddress&gt;, byte*, byte*, byte*)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Initializes a new <a class="xref" href="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase-1.html">ExternalLinksSizeBalancedTreeMethodsBase&lt;TLinkAddress&gt;</a> instance.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ExternalLinksSizeBalancedTreeMethodsBase(LinksConstants&lt;TLinkAddress&gt; constants, byte* linksDataParts, byte* linksIndexParts, byte* header)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>constants</code> <span class="xref">LinksConstants</span>&lt;TLinkAddress&gt;</dt>
+    <dd><p>A constants.</p>
+<p></p>
+</dd>
+    <dt><code>linksDataParts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>*</dt>
+    <dd><p>A links data parts.</p>
+<p></p>
+</dd>
+    <dt><code>linksIndexParts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>*</dt>
+    <dd><p>A links index parts.</p>
+<p></p>
+</dd>
+    <dt><code>header</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>*</dt>
+    <dd><p>A header.</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_Break" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.Break">
+  Break
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    The break.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly TLinkAddress Break</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_Continue" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.Continue">
+  Continue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    The continue.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly TLinkAddress Continue</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_Header" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.Header">
+  Header
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    The header.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly byte* Header</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>*</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_LinksDataParts" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.LinksDataParts">
+  LinksDataParts
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    The links data parts.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly byte* LinksDataParts</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>*</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_LinksIndexParts" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.LinksIndexParts">
+  LinksIndexParts
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    The links index parts.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly byte* LinksIndexParts</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>*</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_Item_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.Item*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_Item__0_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.Item(`0)">
+  this[TLinkAddress]
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    The zero.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TLinkAddress this[TLinkAddress index] { get; }</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <span class="xref">TLinkAddress</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_CountUsages_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.CountUsages*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_CountUsages__0_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.CountUsages(`0)">
+  CountUsages(TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Counts the usages using the specified link.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TLinkAddress CountUsages(TLinkAddress link)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>link</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The link.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd><p>The link</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_EachUsage_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.EachUsage*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_EachUsage__0_Platform_Delegates_ReadHandler__0__" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,Platform.Delegates.ReadHandler{`0})">
+  EachUsage(TLinkAddress, ReadHandler&lt;TLinkAddress&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L229"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Eaches the usage using the specified base.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TLinkAddress EachUsage(TLinkAddress @base, ReadHandler&lt;TLinkAddress&gt;? handler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>base</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The base.</p>
+<p></p>
+</dd>
+    <dt><code>handler</code> <span class="xref">ReadHandler</span>&lt;TLinkAddress&gt;</dt>
+    <dd><p>The handler.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd><p>The link</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond__0__0_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond(`0,`0)">
+  FirstIsToTheLeftOfSecond(TLinkAddress, TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L418"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Determines whether this instance first is to the left of second.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>first</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The first.</p>
+<p></p>
+</dd>
+    <dt><code>second</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The second.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>The bool</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond__0__0__0__0_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond(`0,`0,`0,`0)">
+  FirstIsToTheLeftOfSecond(TLinkAddress, TLinkAddress, TLinkAddress, TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L320"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Determines whether this instance first is to the left of second.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The source.</p>
+<p></p>
+</dd>
+    <dt><code>target</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The target.</p>
+<p></p>
+</dd>
+    <dt><code>rootSource</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The root source.</p>
+<p></p>
+</dd>
+    <dt><code>rootTarget</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The root target.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>The bool</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond__0__0_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond(`0,`0)">
+  FirstIsToTheRightOfSecond(TLinkAddress, TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L444"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Determines whether this instance first is to the right of second.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>first</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The first.</p>
+<p></p>
+</dd>
+    <dt><code>second</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The second.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>The bool</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond__0__0__0__0_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond(`0,`0,`0,`0)">
+  FirstIsToTheRightOfSecond(TLinkAddress, TLinkAddress, TLinkAddress, TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L291"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Determines whether this instance first is to the right of second.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The source.</p>
+<p></p>
+</dd>
+    <dt><code>target</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The target.</p>
+<p></p>
+</dd>
+    <dt><code>rootSource</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The root source.</p>
+<p></p>
+</dd>
+    <dt><code>rootTarget</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The root target.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>The bool</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_GetBasePartValue_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.GetBasePartValue*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_GetBasePartValue__0_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.GetBasePartValue(`0)">
+  GetBasePartValue(TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L262"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Gets the base part value using the specified link.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract TLinkAddress GetBasePartValue(TLinkAddress link)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>link</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The link.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd><p>The link</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_GetHeaderReference_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.GetHeaderReference*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_GetHeaderReference" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.GetHeaderReference">
+  GetHeaderReference()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L333"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Gets the header reference.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ref LinksHeader&lt;TLinkAddress&gt; GetHeaderReference()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Platform.Data.Doublets.Memory.LinksHeader-1.html">LinksHeader</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>A ref links header of t link</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_GetLinkDataPartReference_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.GetLinkDataPartReference*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_GetLinkDataPartReference__0_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.GetLinkDataPartReference(`0)">
+  GetLinkDataPartReference(TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L353"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Gets the link data part reference using the specified link.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ref RawLinkDataPart&lt;TLinkAddress&gt; GetLinkDataPartReference(TLinkAddress link)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>link</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The link.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Platform.Data.Doublets.Memory.Split.RawLinkDataPart-1.html">RawLinkDataPart</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>A ref raw link data part of t link</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_GetLinkIndexPartReference_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.GetLinkIndexPartReference*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_GetLinkIndexPartReference__0_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.GetLinkIndexPartReference(`0)">
+  GetLinkIndexPartReference(TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L373"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Gets the link index part reference using the specified link.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ref RawLinkIndexPart&lt;TLinkAddress&gt; GetLinkIndexPartReference(TLinkAddress link)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>link</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The link.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Platform.Data.Doublets.Memory.Split.RawLinkIndexPart-1.html">RawLinkIndexPart</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>A ref raw link index part of t link</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_GetLinkValues_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.GetLinkValues*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_GetLinkValues__0_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.GetLinkValues(`0)">
+  GetLinkValues(TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L393"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Gets the link values using the specified link index.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual IList&lt;TLinkAddress&gt;? GetLinkValues(TLinkAddress linkIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>linkIndex</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The link index.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>A list of t link</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_GetTreeRoot_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.GetTreeRoot*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_GetTreeRoot" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.GetTreeRoot">
+  GetTreeRoot()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L245"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Gets the tree root.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract TLinkAddress GetTreeRoot()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd><p>The link</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_PrintNodeValue_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.PrintNodeValue*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_PrintNodeValue__0_System_Text_StringBuilder_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.PrintNodeValue(`0,System.Text.StringBuilder)">
+  PrintNodeValue(TLinkAddress, StringBuilder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L509"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Prints the node value using the specified node.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void PrintNodeValue(TLinkAddress node, StringBuilder sb)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>node</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>The node.</p>
+<p></p>
+</dd>
+    <dt><code>sb</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></dt>
+    <dd><p>The sb.</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_Search_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.Search*"></a>
+
+  <h3 id="Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_Search__0__0_" data-uid="Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.Search(`0,`0)">
+  Search(TLinkAddress, TLinkAddress)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Выполняет поиск и возвращает индекс связи с указанными Source (началом) и Target (концом).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TLinkAddress Search(TLinkAddress source, TLinkAddress target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>Индекс связи, которая является началом на искомой связи.</p>
+</dd>
+    <dt><code>target</code> <span class="xref">TLinkAddress</span></dt>
+    <dd><p>Индекс связи, которая является концом на искомой связи.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd><p>Индекс искомой связи.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="seealso">See Also</h2>
+  <div class="seealso">
+      <div><span class="xref">SizeBalancedTreeMethods</span>&lt;TElement&gt;</div>
+      <div><a class="xref" href="Platform.Data.Doublets.Memory.ILinksTreeMethods-1.html">ILinksTreeMethods</a>&lt;TLinkAddress&gt;</div>
+  </div>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs/#L22" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

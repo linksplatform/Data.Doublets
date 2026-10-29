@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class NoExceptionsDecorator&lt;TLinkAddress&gt; | Platform.Data.Doublets </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class NoExceptionsDecorator&lt;TLinkAddress&gt; | Platform.Data.Doublets ">
+      
+      <meta name="description" content="Returns the error constant when an operation throws.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linksplatform/Data.Doublets/new/main/apiSpec/new?filename=Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Decorators.NoExceptionsDecorator%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1">
+
+
+
+  <h1 id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1" class="text-break">
+Class NoExceptionsDecorator&lt;TLinkAddress&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">Platform</span>.<span class="xref">Data</span>.<a class="xref" href="Platform.Data.Doublets.html">Doublets</a>.<a class="xref" href="Platform.Data.Doublets.Decorators.html">Decorators</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Platform.Data.Doublets.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Returns the error constant when an operation throws.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class NoExceptionsDecorator&lt;TLinkAddress&gt; : LinksDecoratorBase&lt;TLinkAddress&gt;, ILinks&lt;TLinkAddress&gt;, ILinks&lt;TLinkAddress, LinksConstants&lt;TLinkAddress&gt;&gt; where TLinkAddress : IUnsignedNumber&lt;TLinkAddress&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TLinkAddress</code></dt>
+    <dd></dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="Platform.Data.Doublets.LinksOperatorBase-1.html">LinksOperatorBase</a>&lt;TLinkAddress&gt;</div>
+      <div><a class="xref" href="Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html">LinksDecoratorBase</a>&lt;TLinkAddress&gt;</div>
+      <div><span class="xref">NoExceptionsDecorator&lt;TLinkAddress&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="Platform.Data.Doublets.ILinks-1.html">ILinks</a>&lt;TLinkAddress&gt;</div>
+      <div><span class="xref">ILinks</span>&lt;TLinkAddress, <span class="xref">LinksConstants</span>&lt;TLinkAddress&gt;&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1__constants">LinksDecoratorBase&lt;TLinkAddress&gt;._constants</a>
+    </div>
+    <div>
+      <a class="xref" href="Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1__facade">LinksDecoratorBase&lt;TLinkAddress&gt;._facade</a>
+    </div>
+    <div>
+      <a class="xref" href="Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Facade">LinksDecoratorBase&lt;TLinkAddress&gt;.Facade</a>
+    </div>
+    <div>
+      <a class="xref" href="Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Constants">LinksDecoratorBase&lt;TLinkAddress&gt;.Constants</a>
+    </div>
+    <div>
+      <a class="xref" href="Platform.Data.Doublets.LinksOperatorBase-1.html#Platform_Data_Doublets_LinksOperatorBase_1__links">LinksOperatorBase&lt;TLinkAddress&gt;._links</a>
+    </div>
+    <div>
+      <a class="xref" href="Platform.Data.Doublets.LinksOperatorBase-1.html#Platform_Data_Doublets_LinksOperatorBase_1_Links">LinksOperatorBase&lt;TLinkAddress&gt;.Links</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_AllIndices__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.AllIndices&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, params TLinkAddress[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_All__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.All&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, params TLinkAddress[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_AnyLinkIsAny__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.AnyLinkIsAny&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, params TLinkAddress[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_AppendStructure__1_Platform_Data_Doublets_ILinks___0__System_Text_StringBuilder_System_Collections_Generic_HashSet___0____0_System_Func_Platform_Data_Doublets_Link___0__System_Boolean__System_Action_System_Text_StringBuilder_Platform_Data_Doublets_Link___0___System_Boolean_System_Boolean_">ILinksExtensions.AppendStructure&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, StringBuilder, HashSet&lt;TLinkAddress&gt;, TLinkAddress, Func&lt;Link&lt;TLinkAddress&gt;, bool&gt;, Action&lt;StringBuilder, Link&lt;TLinkAddress&gt;&gt;, bool, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_AreValuesReset__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.AreValuesReset&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CheckPathExistance__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.CheckPathExistance&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, params TLinkAddress[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CountUsages__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.CountUsages&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CreateAndUpdate__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.CreateAndUpdate&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CreateAndUpdate__1_Platform_Data_Doublets_ILinks___0____0___0_Platform_Delegates_WriteHandler___0__">ILinksExtensions.CreateAndUpdate&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress, WriteHandler&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CreatePoint__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.CreatePoint&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CreatePoint__1_Platform_Data_Doublets_ILinks___0__Platform_Delegates_WriteHandler___0__">ILinksExtensions.CreatePoint&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, WriteHandler&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DecorateWithAutomaticUniquenessAndUsagesResolution__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteAllUsages__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.DeleteAllUsages&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteAllUsages__1_Platform_Data_Doublets_ILinks___0____0_Platform_Delegates_WriteHandler___0__">ILinksExtensions.DeleteAllUsages&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, WriteHandler&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteAll__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.DeleteAll&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteByQuery__1_Platform_Data_Doublets_ILinks___0__Platform_Data_Doublets_Link___0__">ILinksExtensions.DeleteByQuery&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, Link&lt;TLinkAddress&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteIfExists__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.DeleteIfExists&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteMany__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.DeleteMany&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, IList&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Delete__1_Platform_Data_Doublets_ILinks___0____0_Platform_Delegates_WriteHandler___0__">ILinksExtensions.Delete&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, WriteHandler&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnforceResetValues__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.EnforceResetValues&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnforceResetValues__1_Platform_Data_Doublets_ILinks___0____0_Platform_Delegates_WriteHandler___0__">ILinksExtensions.EnforceResetValues&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, WriteHandler&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureCreated__1_Platform_Data_Doublets_ILinks___0__System_Func___0____0___">ILinksExtensions.EnsureCreated&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, Func&lt;TLinkAddress&gt;, params TLinkAddress[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureCreated__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.EnsureCreated&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, params TLinkAddress[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureDoesNotExists__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.EnsureDoesNotExists&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureInnerReferenceExists__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__System_String_">ILinksExtensions.EnsureInnerReferenceExists&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, IList&lt;TLinkAddress&gt;?, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureInnerReferenceExists__1_Platform_Data_Doublets_ILinks___0____0_System_String_">ILinksExtensions.EnsureInnerReferenceExists&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureLinkExists__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.EnsureLinkExists&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, IList&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureLinkIsAnyOrExists__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.EnsureLinkIsAnyOrExists&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, IList&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureLinkIsAnyOrExists__1_Platform_Data_Doublets_ILinks___0____0_System_String_">ILinksExtensions.EnsureLinkIsAnyOrExists&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureLinkIsItselfOrExists__1_Platform_Data_Doublets_ILinks___0____0_System_String_">ILinksExtensions.EnsureLinkIsItselfOrExists&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureNoUsages__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.EnsureNoUsages&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsurePointsCreated__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.EnsurePointsCreated&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, params TLinkAddress[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Equals__1_Platform_Data_Doublets_ILinks___0____0___0___0_">ILinksExtensions.Equals&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Exists__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.Exists&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_First__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.First&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_FormatStructure__1_Platform_Data_Doublets_ILinks___0____0_System_Func_Platform_Data_Doublets_Link___0__System_Boolean__System_Action_System_Text_StringBuilder_Platform_Data_Doublets_Link___0___System_Boolean_System_Boolean_">ILinksExtensions.FormatStructure&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, Func&lt;Link&lt;TLinkAddress&gt;, bool&gt;, Action&lt;StringBuilder, Link&lt;TLinkAddress&gt;&gt;, bool, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_FormatStructure__1_Platform_Data_Doublets_ILinks___0____0_System_Func_Platform_Data_Doublets_Link___0__System_Boolean__System_Boolean_System_Boolean_">ILinksExtensions.FormatStructure&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, Func&lt;Link&lt;TLinkAddress&gt;, bool&gt;, bool, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Format__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.Format&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, IList&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Format__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.Format&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetByKeys__1_Platform_Data_Doublets_ILinks___0____0_System_Int32___">ILinksExtensions.GetByKeys&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, params int[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetIndex__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.GetIndex&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, IList&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetOrCreate__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.GetOrCreate&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetSource__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.GetSource&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, IList&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetSource__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.GetSource&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetTarget__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.GetTarget&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, IList&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetTarget__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.GetTarget&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_HasUsages__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.HasUsages&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeAndDelete__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.MergeAndDelete&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeAndDelete__1_Platform_Data_Doublets_ILinks___0____0___0_Platform_Delegates_WriteHandler___0__">ILinksExtensions.MergeAndDelete&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress, WriteHandler&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeUsages__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.MergeUsages&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeUsages__1_Platform_Data_Doublets_ILinks___0____0___0_Platform_Delegates_WriteHandler___0__">ILinksExtensions.MergeUsages&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress, WriteHandler&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResetValues__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.ResetValues&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResetValues__1_Platform_Data_Doublets_ILinks___0____0_Platform_Delegates_WriteHandler___0__">ILinksExtensions.ResetValues&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, WriteHandler&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResolveConstantAsSelfReference__1_Platform_Data_Doublets_ILinks___0____0_System_Collections_Generic_IList___0__System_Collections_Generic_IList___0__">ILinksExtensions.ResolveConstantAsSelfReference&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, IList&lt;TLinkAddress&gt;?, IList&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_SearchOrDefault__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.SearchOrDefault&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_SingleOrDefault__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.SingleOrDefault&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, IList&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_UpdateOrCreateOrGet__1_Platform_Data_Doublets_ILinks___0____0___0___0___0_">ILinksExtensions.UpdateOrCreateOrGet&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress, TLinkAddress, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_UpdateOrCreateOrGet__1_Platform_Data_Doublets_ILinks___0____0___0___0___0_Platform_Delegates_WriteHandler___0__">ILinksExtensions.UpdateOrCreateOrGet&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress, TLinkAddress, TLinkAddress, WriteHandler&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0__Platform_Delegates_WriteHandler___0____0___">ILinksExtensions.Update&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, WriteHandler&lt;TLinkAddress&gt;?, params TLinkAddress[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.Update&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, IList&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__Platform_Delegates_WriteHandler___0__">ILinksExtensions.Update&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, IList&lt;TLinkAddress&gt;?, WriteHandler&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0____0___0___0_">ILinksExtensions.Update&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0____0___0___0_Platform_Delegates_WriteHandler___0__">ILinksExtensions.Update&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress, TLinkAddress, TLinkAddress, WriteHandler&lt;TLinkAddress&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.Update&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, params TLinkAddress[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.Stacks.StackExtensions.html#Platform_Data_Doublets_Stacks_StackExtensions_CreateStack__1_Platform_Data_Doublets_ILinks___0____0_">StackExtensions.CreateStack&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, TLinkAddress)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.Tests.ILinksExtensions.html#Platform_Data_Doublets_Tests_ILinksExtensions_RunRandomCreations__1_Platform_Data_Doublets_ILinks___0__System_UInt64_">ILinksExtensions.RunRandomCreations&lt;TLink&gt;(ILinks&lt;TLink&gt;, ulong)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.Tests.ILinksExtensions.html#Platform_Data_Doublets_Tests_ILinksExtensions_RunRandomSearches__1_Platform_Data_Doublets_ILinks___0__System_UInt64_">ILinksExtensions.RunRandomSearches&lt;TLink&gt;(ILinks&lt;TLink&gt;, ulong)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.Tests.ILinksExtensions.html#Platform_Data_Doublets_Tests_ILinksExtensions_TestCRUDOperations__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.TestCRUDOperations&lt;T&gt;(ILinks&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.Tests.ILinksExtensions.html#Platform_Data_Doublets_Tests_ILinksExtensions_TestMultipleCreationsAndDeletions__1_Platform_Data_Doublets_ILinks___0__System_Int32_">ILinksExtensions.TestMultipleCreationsAndDeletions&lt;TLinkAddress&gt;(ILinks&lt;TLinkAddress&gt;, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.Tests.ILinksExtensions.html#Platform_Data_Doublets_Tests_ILinksExtensions_TestMultipleRandomCreationsAndDeletions__1_Platform_Data_Doublets_ILinks___0__System_Int32_">ILinksExtensions.TestMultipleRandomCreationsAndDeletions&lt;TLink&gt;(ILinks&lt;TLink&gt;, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.Tests.ILinksExtensions.html#Platform_Data_Doublets_Tests_ILinksExtensions_TestRawNumbersCRUDOperations__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.TestRawNumbersCRUDOperations&lt;T&gt;(ILinks&lt;T&gt;)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1__ctor_" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.#ctor*"></a>
+
+  <h3 id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1__ctor_Platform_Data_Doublets_ILinks__0__" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.#ctor(Platform.Data.Doublets.ILinks{`0})">
+  NoExceptionsDecorator(ILinks&lt;TLinkAddress&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes the decorator with its underlying links.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NoExceptionsDecorator(ILinks&lt;TLinkAddress&gt; storage)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>storage</code> <a class="xref" href="Platform.Data.Doublets.ILinks-1.html">ILinks</a>&lt;TLinkAddress&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_ExceptionFilter_" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.ExceptionFilter*"></a>
+
+  <h3 id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_ExceptionFilter" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.ExceptionFilter">
+  ExceptionFilter
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Optionally selects which exceptions are converted to the error constant. Null accepts all exceptions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;Exception, bool&gt;? ExceptionFilter { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_ExceptionHandler_" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.ExceptionHandler*"></a>
+
+  <h3 id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_ExceptionHandler" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.ExceptionHandler">
+  ExceptionHandler
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Optionally observes converted exceptions for diagnostics. Null disables diagnostic callbacks.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;Exception&gt;? ExceptionHandler { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Count_" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Count*"></a>
+
+  <h3 id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Count_System_Collections_Generic_IList__0__" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Count(System.Collections.Generic.IList{`0})">
+  Count(IList&lt;TLinkAddress&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Counts the restriction.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override TLinkAddress Count(IList&lt;TLinkAddress&gt;? restriction)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>restriction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>The restriction.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd><p>The link</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Create_" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Create*"></a>
+
+  <h3 id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Create_System_Collections_Generic_IList__0__Platform_Delegates_WriteHandler__0__" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Create(System.Collections.Generic.IList{`0},Platform.Delegates.WriteHandler{`0})">
+  Create(IList&lt;TLinkAddress&gt;?, WriteHandler&lt;TLinkAddress&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Creates the restriction.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override TLinkAddress Create(IList&lt;TLinkAddress&gt;? substitution, WriteHandler&lt;TLinkAddress&gt;? handler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>substitution</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>The restriction.</p>
+<p></p>
+</dd>
+    <dt><code>handler</code> <span class="xref">WriteHandler</span>&lt;TLinkAddress&gt;</dt>
+    <dd><p>Optional callback; null continues without invoking a callback.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd><p>The link</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Delete_" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Delete*"></a>
+
+  <h3 id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Delete_System_Collections_Generic_IList__0__Platform_Delegates_WriteHandler__0__" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Delete(System.Collections.Generic.IList{`0},Platform.Delegates.WriteHandler{`0})">
+  Delete(IList&lt;TLinkAddress&gt;?, WriteHandler&lt;TLinkAddress&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Deletes the restriction.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override TLinkAddress Delete(IList&lt;TLinkAddress&gt;? restriction, WriteHandler&lt;TLinkAddress&gt;? handler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>restriction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>The restriction.</p>
+<p></p>
+</dd>
+    <dt><code>handler</code> <span class="xref">WriteHandler</span>&lt;TLinkAddress&gt;</dt>
+    <dd><p>Optional callback; null continues without invoking a callback.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Each_" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Each*"></a>
+
+  <h3 id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Each_System_Collections_Generic_IList__0__Platform_Delegates_ReadHandler__0__" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Each(System.Collections.Generic.IList{`0},Platform.Delegates.ReadHandler{`0})">
+  Each(IList&lt;TLinkAddress&gt;?, ReadHandler&lt;TLinkAddress&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Eaches the handler.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override TLinkAddress Each(IList&lt;TLinkAddress&gt;? restriction, ReadHandler&lt;TLinkAddress&gt;? handler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>restriction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>The restriction.</p>
+<p></p>
+</dd>
+    <dt><code>handler</code> <span class="xref">ReadHandler</span>&lt;TLinkAddress&gt;</dt>
+    <dd><p>The handler.</p>
+<p></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd><p>The link</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Update_" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Update*"></a>
+
+  <h3 id="Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__Platform_Delegates_WriteHandler__0__" data-uid="Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},Platform.Delegates.WriteHandler{`0})">
+  Update(IList&lt;TLinkAddress&gt;?, IList&lt;TLinkAddress&gt;?, WriteHandler&lt;TLinkAddress&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>
+    Updates the restriction.
+</p>
+<p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override TLinkAddress Update(IList&lt;TLinkAddress&gt;? restriction, IList&lt;TLinkAddress&gt;? substitution, WriteHandler&lt;TLinkAddress&gt;? handler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>restriction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>The restriction.</p>
+<p></p>
+</dd>
+    <dt><code>substitution</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;TLinkAddress&gt;</dt>
+    <dd><p>The substitution.</p>
+<p></p>
+</dd>
+    <dt><code>handler</code> <span class="xref">WriteHandler</span>&lt;TLinkAddress&gt;</dt>
+    <dd><p>Optional callback; null continues without invoking a callback.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TLinkAddress</span></dt>
+    <dd><p>The link</p>
+<p></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs/#L10" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

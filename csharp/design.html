@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Design: storage mechanisms and optional policies | Platform.Data.Doublets </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Design: storage mechanisms and optional policies | Platform.Data.Doublets ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linksplatform/Data.Doublets/blob/main/docs/design.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="design-storage-mechanisms-and-optional-policies">Design: storage mechanisms and optional policies</h1>
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# Design: storage mechanisms and optional policies",
+      "*"
+    ]
+  },
+  "MD013": {
+    "tables": false
+  }
+}
+-->
+
+<p>These guidelines apply to the C# and Rust implementations of Doublets. They
+record the design decision in <a href="https://github.com/linksplatform/Data.Doublets/pull/527#issuecomment-6492081425">PR #527's review</a>.
+See <a href="deletion-csharp.html">C# deletion</a>, <a href="deletion-rust.html">Rust deletion</a>, and the
+<a href="deletion-audit.html">implementation audit</a> for concrete APIs and current gaps.</p>
+<h2 id="core-vision">Core vision</h2>
+<p>A user chooses the contract and cost of each layer. The storage core contains
+the minimum machinery necessary to represent, allocate, index and release
+links correctly under its documented preconditions. It does not decide what an
+application should do when a caller violates those preconditions. A caller who
+already guarantees a correct sequence of operations must be able to omit
+redundant contract verification.</p>
+<p>Existence validation, rejecting or ignoring missing deletions, uniqueness,
+usage validation or cascading, logging, and recovery are separate choices.
+Helpers can make those choices per call; decorators can apply them to a store.
+Convenient compositions must remain optional. A reset resolver supplies endpoint
+resetting; it must not silently become an existence validator too.</p>
+<p>The option to bypass validation is intentional. It does not promise correct
+results for invalid inputs. In particular, deleting a freed raw C# address can
+corrupt the free list, and unchecked addresses can access invalid memory. A user
+may take responsibility for operation ordering, or choose a checked boundary.
+A dangling reference or raw numeric endpoint is not automatically invalid for
+all applications; the configured reference and indexing model determines that.</p>
+<h2 id="layer-responsibilities">Layer responsibilities</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Responsibility</th>
+<th>Caller choice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Storage mechanism</td>
+<td>Allocate/release slots and maintain the selected representation under its preconditions</td>
+<td>Select backend and supported indexing strategy</td>
+</tr>
+<tr>
+<td>Contract validator</td>
+<td>Reject invalid addresses, usages, or duplicate values before writes</td>
+<td>Include, omit, or replace</td>
+</tr>
+<tr>
+<td>Resolver</td>
+<td>Apply a named transformation, such as reset, cascade, or ignore missing deletion</td>
+<td>Include, omit, or replace</td>
+</tr>
+<tr>
+<td>Helper</td>
+<td>Perform an explicitly requested sequence or check for one operation</td>
+<td>Choose per call</td>
+</tr>
+<tr>
+<td>Composition</td>
+<td>Offer a convenient ordered set of policies</td>
+<td>Inspect, customize, or build another stack</td>
+</tr>
+</tbody>
+</table>
+<p>Do not remove structural bookkeeping that makes a selected representation work.
+For example, detaching a freed slot from an index and classifying references for
+split internal/external trees are mechanisms. Rejecting a missing slot or deciding
+to cascade to its users are policies. Existing mandatory tree indexes and free-slot
+reuse have separate proposals for making their selection configurable; this PR
+does not claim those proposals are already implemented.</p>
+<h2 id="guidelines-for-changes-in-either-language">Guidelines for changes in either language</h2>
+<ol>
+<li>Write down the operation's preconditions, result, callbacks, and mutation
+boundary. Identify which layer owns each check or transformation.</li>
+<li>Search for existing helpers and decorators before adding checks to a root
+implementation. Preserve a route with no redundant validation.</li>
+<li>Keep independent policies independent. Existence, contents reset, incoming
+usages, uniqueness, error suppression and synchronization are not substitutes
+for one another.</li>
+<li>Put guards before layers that read or write the guarded link. Document order
+and recursive dispatch: C# propagates <code>Facade</code> through a stack; Rust's static
+decorators recurse through the layers they own.</li>
+<li>Test checked failures and no-ops for unchanged contents, allocation, count and
+callbacks. Test valid unchecked calls without deliberately corrupting memory.
+Verify that omitting a policy really omits its work.</li>
+<li>Distinguish memory safety from application validation. Rust's safe APIs must
+uphold Rust's safety rules. An unchecked primitive that needs caller guarantees
+must use an appropriate <code>unsafe</code> API with explicit safety conditions; do not
+remove checks from a safe method and create undefined behavior.</li>
+<li>In Rust, prefer generic wrappers, concrete builder return types, inlinable
+forwarding, and compile-time policies. In C#, keep forwarding simple and
+avoid making every call pay for an optional policy. Measure performance claims.</li>
+<li>Document current behavior separately from the intended architecture. When
+another operation violates this design, report it separately with evidence
+instead of expanding a focused fix into unrelated changes.</li>
+</ol>
+<p>These rules govern update and creation as well as deletion. Passing tests for a
+checked backend does not prove that validation is optional. Conversely, a crash
+from violating a documented unchecked precondition is not by itself a reason to
+make every raw operation checked.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linksplatform/Data.Doublets/blob/main/docs/design.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

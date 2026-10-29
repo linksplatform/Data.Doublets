@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['md_20русская_20версия_0',['&lt;a href=&quot;https://github.com/linksplatform/Data.Doublets&quot; &gt;Data.Doublets&lt;/a&gt; (@ref &quot;/home/runner/work/Data.Doublets/Data.Doublets/README.ru.md&quot; &quot;русская версия&quot;)',['../index.html#autotoc_md0',1,'']]],
+  ['methods_1',['methods',['../structPlatform_1_1Data_1_1Doublets_1_1Memory_1_1United_1_1Generic_1_1LinksAvlBalancedTreeMethodsBase.html#aac675d645446c46301e2184fcb756f21',1,'Platform::Data::Doublets::Memory::United::Generic::LinksAvlBalancedTreeMethodsBase::methods'],['../structPlatform_1_1Data_1_1Doublets_1_1Memory_1_1United_1_1Generic_1_1LinksRecursionlessSizeBalancedTreeMethodsBase.html#ac253542e83196921b07c9eecdf8f7820',1,'Platform::Data::Doublets::Memory::United::Generic::LinksRecursionlessSizeBalancedTreeMethodsBase::methods'],['../structPlatform_1_1Data_1_1Doublets_1_1Memory_1_1United_1_1Generic_1_1LinksSizeBalancedTreeMethodsBase.html#a31f7c8674e48b95186b1d1c91dab5a46',1,'Platform::Data::Doublets::Memory::United::Generic::LinksSizeBalancedTreeMethodsBase::methods']]]
+];
