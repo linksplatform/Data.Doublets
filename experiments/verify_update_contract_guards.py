@@ -1,11 +1,8 @@
-"""
-Demonstrate three contract failures without submitting invalid raw updates.
-
-Run with a local .NET 8 executable as the only argument and no concurrent builds
-or source edits. Sources are restored in finally; rebuild afterward. Artifacts
-stay under artifacts/issue-517/negative/. The three expected failures show that
-the suite detects mandatory core checks and an omitted outer validator.
-"""
+"""Verify three contract failures using valid raw updates and terminal spies."""
+# Run with a local .NET 8 executable as the only argument and no concurrent builds
+# or source edits. Sources are restored in finally; rebuild afterward. Artifacts
+# stay under artifacts/issue-517/negative/. The three expected failures show that
+# the suite detects mandatory core checks and an omitted outer validator.
 from pathlib import Path
 # This bounded local experiment intentionally launches the selected SDK.
 import subprocess  # nosec B404
