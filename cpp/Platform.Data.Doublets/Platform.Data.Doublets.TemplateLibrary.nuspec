@@ -15,6 +15,7 @@
     <icon>images/icon.png</icon>
     <tags>C++ Native Data.Doublets</tags>
     <license type="expression">LGPL-3.0-only</license>
+    <licenseUrl>https://licenses.nuget.org/LGPL-3.0-only</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <dependencies>
       <group targetFramework="native"></group>

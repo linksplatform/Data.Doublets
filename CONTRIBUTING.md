@@ -45,6 +45,13 @@ edit package versions. CI validates the actual merge with current `main`, applie
 the largest requested bump per language, and tests the resulting packages in
 isolated consumers. Documentation and investigation-only changes need no bump.
 
+The native ZIP packer serializes the C++ nuspec directly. Retain its SPDX
+`license` expression, the matching `https://licenses.nuget.org/` compatibility
+`licenseUrl` required by NuGet.org, and the bundled `LICENSE`. The native
+package smoke check validates these fields inside the generated nupkg before
+restoring and compiling its isolated consumer. A registry HTTP 400 metadata
+rejection is a package defect and must not trigger an authentication fallback.
+
 Pull requests build packages and documentation without publishing credentials.
 After merge, the credentials job exchanges GitHub OIDC through the official,
 SHA-pinned `NuGet/login` action before expensive builds. Configure the actual NuGet
