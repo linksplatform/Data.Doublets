@@ -454,7 +454,7 @@ Class LinksUniquenessResolver&lt;TLinkAddress&gt;  <a class="header-action link-
 
   <h3 id="Platform_Data_Doublets_Decorators_LinksUniquenessResolver_1_ResolveAddressChangeConflict__0__0_Platform_Delegates_WriteHandler__0__" data-uid="Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.ResolveAddressChangeConflict(`0,`0,Platform.Delegates.WriteHandler{`0})">
   ResolveAddressChangeConflict(TLinkAddress, TLinkAddress, WriteHandler&lt;TLinkAddress&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksUniquenessResolver.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linksplatform/Data.Doublets/blob/main/csharp/Platform.Data.Doublets/Decorators/LinksUniquenessResolver.cs/#L88"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>
@@ -486,7 +486,7 @@ Class LinksUniquenessResolver&lt;TLinkAddress&gt;  <a class="header-action link-
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><span class="xref">TLinkAddress</span></dt>
-    <dd><p>The new link address.</p>
+    <dd><p>Callback control (Continue or Break).</p>
 <p></p>
 </dd>
   </dl>
@@ -497,6 +497,11 @@ Class LinksUniquenessResolver&lt;TLinkAddress&gt;  <a class="header-action link-
 
 
 
+  <h4 class="section" id="Platform_Data_Doublets_Decorators_LinksUniquenessResolver_1_ResolveAddressChangeConflict__0__0_Platform_Delegates_WriteHandler__0___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Cleanup is followed by a survivor-to-survivor notification that identifies
+the resolved link, including unchanged pairs. Break suppresses later
+notifications while cleanup completes.</p>
+</div>
 
 
 
