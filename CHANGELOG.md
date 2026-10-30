@@ -1,3 +1,11 @@
+## csharp 0.18.6
+
+- Count and enumerate each link once for either-endpoint queries, including equal source and target values
+
+## cpp 0.1.3
+
+- Count and enumerate each link once for either-endpoint queries, including equal source and target values
+
 ## csharp 0.18.5
 
 - Return surviving link addresses after uniqueness resolution, preserve merged usage endpoints and retain creation callback Break state.
