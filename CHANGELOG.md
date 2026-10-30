@@ -1,3 +1,7 @@
+## csharp 0.18.5
+
+- Return surviving link addresses after uniqueness resolution, preserve merged usage endpoints and retain creation callback Break state.
+
 ## cpp 0.1.2
 
 - Include NuGet's required license compatibility URL in native packages and validate embedded license metadata before publication.
