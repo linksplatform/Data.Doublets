@@ -2,6 +2,7 @@
 #include <Platform.Data.Doublets.h>
 #include "ILinksTestExtensions.h"
 #include "ExtensionTests.h"
+#include "EitherEndpointQueryTests.h"
 #include "OwnershipTests.h"
 #include "LinksConstantsTests.h"
 #include "ResizableDirectMemoryLinksTests.h"

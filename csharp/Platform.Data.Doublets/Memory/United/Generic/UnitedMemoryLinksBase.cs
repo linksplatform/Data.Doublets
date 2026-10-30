@@ -239,7 +239,28 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     {
                         return Total; // Any - как отсутствие ограничения
                     }
-                    return Add(RequiredSourcesTreeMethods.CountUsages(value), RequiredTargetsTreeMethods.CountUsages(value));
+                    var count = TLinkAddress.Zero;
+                    if (value == constants.Null)
+                    {
+                        // Null endpoints are absent from the usage indexes.
+                        Each(restriction, _ =>
+                        {
+                            count += TLinkAddress.One;
+                            return constants.Continue;
+                        });
+                        return count;
+                    }
+                    count = RequiredSourcesTreeMethods.CountUsages(value);
+                    // Count the union, including every distinct raw record with equal endpoints.
+                    RequiredTargetsTreeMethods.EachUsage(value, link =>
+                    {
+                        if (this.GetSource(link) != value)
+                        {
+                            count += TLinkAddress.One;
+                        }
+                        return constants.Continue;
+                    });
+                    return count;
                 }
                 else
                 {
@@ -386,11 +407,17 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     {
                         return Each(Array.Empty<TLinkAddress>(), handler);
                     }
+                    if (value == constants.Null)
+                    {
+                        return Each(Array.Empty<TLinkAddress>(), link =>
+                            this.GetSource(link) == value || this.GetTarget(link) == value ? handler(link) : @continue);
+                    }
                     if (AreEqual(Each(new Link<TLinkAddress>(index, value, any), handler), @break))
                     {
                         return @break;
                     }
-                    return Each(new Link<TLinkAddress>(index, any, value), handler);
+                    return Each(new Link<TLinkAddress>(index, any, value), link =>
+                        this.GetSource(link) == value ? @continue : handler(link));
                 }
                 else
                 {
