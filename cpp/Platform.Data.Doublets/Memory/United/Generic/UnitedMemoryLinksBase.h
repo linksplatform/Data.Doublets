@@ -116,7 +116,23 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                     {
                         return GetTotal(); // Any - как отсутствие ограничения
                     }
-                    return _SourcesTreeMethods->CountUsages(value) + _TargetsTreeMethods->CountUsages(value);
+                    LinkAddressType count{};
+                    if (value == Constants.Null)
+                    {
+                        Each(restriction, [&](const auto&) {
+                            ++count;
+                            return Constants.Continue;
+                        });
+                        return count;
+                    }
+                    count = _SourcesTreeMethods->CountUsages(value);
+                    // Add target-only matches, retaining distinct records with equal endpoints.
+                    _TargetsTreeMethods->EachUsage(value, [&](const auto& link) {
+                        if (link[Constants.SourcePart] != value)
+                            ++count;
+                        return Constants.Continue;
+                    });
+                    return count;
                 }
                 else
                 {
@@ -240,11 +256,22 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                     {
                         return Data::Each(*this, handler);
                     }
+                    if (value == Constants.Null)
+                    {
+                        // Null endpoints are absent from the usage indexes.
+                        return Each(LinkType{}, [&](const auto& link) {
+                            return link[Constants.SourcePart] == value || link[Constants.TargetPart] == value
+                                       ? handler(link)
+                                       : _continue;
+                        });
+                    }
                     if (Each(LinkType{index, value, any}, handler) == $break)
                     {
                         return $break;
                     }
-                    return Each(LinkType{index, any, value}, handler);
+                    return Each(LinkType{index, any, value}, [&](const auto& link) {
+                        return link[Constants.SourcePart] == value ? _continue : handler(link);
+                    });
                 }
                 else
                 {

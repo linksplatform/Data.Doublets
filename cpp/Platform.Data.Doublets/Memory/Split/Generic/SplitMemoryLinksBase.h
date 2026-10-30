@@ -405,25 +405,23 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         return Total(); // Any - как отсутствие ограничения
                     }
-                    auto externalReferencesRange = constants.ExternalReferencesRange;
-                    if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(value))
+                    LinkAddressType count{};
+                    if (value == constants.Null)
                     {
-                        return (ExternalSourcesTreeMethods->CountUsages(value) +
-                                ExternalTargetsTreeMethods->CountUsages(value));
+                        Each(restriction, [&](const auto&) {
+                            ++count;
+                            return constants.Continue;
+                        });
+                        return count;
                     }
-                    else
-                    {
-                        if (UseLinkedList)
-                        {
-                            return (InternalSourcesListMethods->CountUsages(value) +
-                                    InternalTargetsTreeMethods->CountUsages(value));
-                        }
-                        else
-                        {
-                            return (InternalSourcesTreeMethods->CountUsages(value) +
-                                    InternalTargetsTreeMethods->CountUsages(value));
-                        }
-                    }
+                    count = Count(LinkType{index, value, any});
+                    // The target pass adds only records absent from the source pass.
+                    Each(LinkType{index, any, value}, [&](const auto& link) {
+                        if (link[constants.SourcePart] != value)
+                            ++count;
+                        return constants.Continue;
+                    });
+                    return count;
                 }
                 else
                 {
@@ -593,7 +591,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         return $break;
                     }
                 }
-                return $break;
+                return constants.Continue;
             }
             auto $continue = constants.Continue;
             auto any = constants.Any;
@@ -620,11 +618,22 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         return Each(LinkType{}, handler);
                     }
+                    if (value == constants.Null)
+                    {
+                        // Null endpoints are absent from the usage indexes.
+                        return Each(LinkType{}, [&](const auto& link) {
+                            return link[constants.SourcePart] == value || link[constants.TargetPart] == value
+                                       ? handler(link)
+                                       : $continue;
+                        });
+                    }
                     if (Each(LinkType{index, value, any}, handler) == $break)
                     {
                         return $break;
                     }
-                    return Each(LinkType{index, any, value}, handler);
+                    return Each(LinkType{index, any, value}, [&](const auto& link) {
+                        return link[constants.SourcePart] == value ? $continue : handler(link);
+                    });
                 }
                 else
                 {

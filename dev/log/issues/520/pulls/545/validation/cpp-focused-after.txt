@@ -1,0 +1,17 @@
+Running main() from /home/box/.conan2/p/b/gtest63c699c2e195a/b/src/googletest/src/gtest_main.cc
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from EitherEndpointQueryTests
+[ RUN      ] EitherEndpointQueryTests.UnitedPlain
+[       OK ] EitherEndpointQueryTests.UnitedPlain (0 ms)
+[ RUN      ] EitherEndpointQueryTests.SplitPlain
+[       OK ] EitherEndpointQueryTests.SplitPlain (3 ms)
+[ RUN      ] EitherEndpointQueryTests.UnitedAutomatic
+[       OK ] EitherEndpointQueryTests.UnitedAutomatic (0 ms)
+[ RUN      ] EitherEndpointQueryTests.SplitAutomatic
+[       OK ] EitherEndpointQueryTests.SplitAutomatic (2 ms)
+[----------] 4 tests from EitherEndpointQueryTests (7 ms total)
+
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (7 ms total)
+[  PASSED  ] 4 tests.

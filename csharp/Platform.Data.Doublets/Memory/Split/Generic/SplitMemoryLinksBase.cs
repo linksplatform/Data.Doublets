@@ -277,16 +277,28 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 {
                     return Total; // Any - как отсутствие ограничения
                 }
-                var externalReferencesRange = constants.ExternalReferencesRange;
-                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: value))
+                var count = TLinkAddress.Zero;
+                if (value == constants.Null)
                 {
-                    return (RequiredExternalSourcesTreeMethods.CountUsages(root: value) + RequiredExternalTargetsTreeMethods.CountUsages(root: value));
+                    // Null endpoints are not indexed as internal usages.
+                    Each(restriction, _ =>
+                    {
+                        count += TLinkAddress.One;
+                        return constants.Continue;
+                    });
+                    return count;
                 }
-                if (_useLinkedList)
+                count = Count(new Link<TLinkAddress>(index, value, any));
+                // The target pass adds only records absent from the source pass.
+                Each(new Link<TLinkAddress>(index, any, value), link =>
                 {
-                    return (InternalSourcesListMethods.CountUsages(head: value) + RequiredInternalTargetsTreeMethods.CountUsages(root: value));
-                }
-                return (RequiredInternalSourcesTreeMethods.CountUsages(root: value) + RequiredInternalTargetsTreeMethods.CountUsages(root: value));
+                    if (this.GetSource(link) != value)
+                    {
+                        count += TLinkAddress.One;
+                    }
+                    return constants.Continue;
+                });
+                return count;
             }
             if (!Exists(link: index))
             {
@@ -468,11 +480,17 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 {
                     return Each(restriction: Array.Empty<TLinkAddress>(), handler: handler);
                 }
+                if (value == constants.Null)
+                {
+                    return Each(Array.Empty<TLinkAddress>(), link =>
+                        this.GetSource(link) == value || this.GetTarget(link) == value ? handler(link) : @continue);
+                }
                 if ((Each(restriction: new Link<TLinkAddress>(index: index, source: value, target: any), handler: handler) == @break))
                 {
                     return @break;
                 }
-                return Each(restriction: new Link<TLinkAddress>(index: index, source: any, target: value), handler: handler);
+                return Each(restriction: new Link<TLinkAddress>(index: index, source: any, target: value), handler: link =>
+                    this.GetSource(link) == value ? @continue : handler(link));
             }
             if (!Exists(link: index))
             {

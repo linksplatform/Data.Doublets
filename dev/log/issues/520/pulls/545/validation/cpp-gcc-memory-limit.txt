@@ -1,0 +1,5 @@
+[ 25%] Building CXX object CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o
+virtual memory exhausted: Cannot allocate memory
+gmake[2]: *** [CMakeFiles/Platform.Data.Doublets.Tests.dir/build.make:76: CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:85: CMakeFiles/Platform.Data.Doublets.Tests.dir/all] Error 2
+gmake: *** [Makefile:101: all] Error 2

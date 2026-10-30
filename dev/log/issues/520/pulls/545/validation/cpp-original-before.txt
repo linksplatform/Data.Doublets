@@ -1,0 +1,16 @@
+Running main() from /home/box/.conan2/p/b/gtest63c699c2e195a/b/src/googletest/src/gtest_main.cc
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from EitherEndpointQueryTests
+[ RUN      ] EitherEndpointQueryTests.UnitedPlain
+/tmp/gh-issue-solver-1793371013001/experiments/issue-520/../../cpp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.h:12: Failure
+Expected equality of these values:
+  2
+  storage.Count(query)
+    Which is: 3
+/tmp/gh-issue-solver-1793371013001/experiments/issue-520/../../cpp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.h:18: Failure
+Expected equality of these values:
+  (Link{a, b})
+    Which is: { 1, 2 }
+  visited
+    Which is: { 1, 2, 1 }
