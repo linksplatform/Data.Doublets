@@ -17,10 +17,16 @@ public class EitherEndpointQueryTests
         foreach (var decorated in new[] { false, true })
         {
             foreach (var tree in new[] { IndexTreeType.Default, IndexTreeType.SizedAndThreadedAVLBalancedTree })
+            {
                 yield return new object[] { false, tree, true, decorated };
+            }
             foreach (var tree in new[] { IndexTreeType.Default, IndexTreeType.SizeBalancedTree, IndexTreeType.RecursionlessSizeBalancedTree })
+            {
                 foreach (var linkedList in new[] { false, true })
+                {
                     yield return new object[] { true, tree, linkedList, decorated };
+                }
+            }
         }
     }
 
@@ -43,9 +49,13 @@ public class EitherEndpointQueryTests
             links.Update(2u, 1u, 2u);
             var query = new[] { links.Constants.Any, 1u };
             if (count)
+            {
                 Assert.Equal(2u, links.Count(query));
+            }
             else
+            {
                 Assert.Equal(new[] { 1u, 2u }, Find(links, query));
+            }
         });
     }
 
@@ -59,7 +69,7 @@ public class EitherEndpointQueryTests
             var b = links.CreatePoint();
             links.Update(b, a, b);
             var matches = Find(links, new[] { links.Constants.Any, a });
-            foreach (var index in matches.Reverse())
+            foreach (var index in Enumerable.Reverse(matches))
             {
                 Assert.True(links.Exists(index));
                 links.Update(index, 0u, 0u);
@@ -103,7 +113,9 @@ public class EitherEndpointQueryTests
                 values.Add(external);
             }
             foreach (var value in values)
+            {
                 AssertUnion(links, value);
+            }
             var empty = links.Create();
             AssertUnion(links, T.Zero);
             links.Delete(empty);
@@ -118,7 +130,9 @@ public class EitherEndpointQueryTests
             links.Delete(targetOnly);
             links.CreateAndUpdate(b, a);
             foreach (var value in values)
+            {
                 AssertUnion(links, value);
+            }
             Assert.True(links.Exists(overlap));
 
             // AVL indexes reject duplicate keys even on raw stores.
@@ -127,9 +141,13 @@ public class EitherEndpointQueryTests
                 links.CreateAndUpdate(a, a);
                 links.CreateAndUpdate(a, a);
                 if (split)
+                {
                     links.CreateAndUpdate(external, external);
+                }
                 foreach (var value in values)
+                {
                     AssertUnion(links, value);
+                }
             }
         });
     }
@@ -168,7 +186,9 @@ public class EitherEndpointQueryTests
         links.Each(Array.Empty<T>(), link =>
         {
             if (link![1] == value || link[2] == value)
+            {
                 expected.Add(link[0]);
+            }
             return links.Constants.Continue;
         });
         var query = new[] { links.Constants.Any, value };

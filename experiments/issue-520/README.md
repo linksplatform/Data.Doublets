@@ -1,3 +1,11 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": ["# Either-endpoint query regression", "*"]
+  }
+}
+-->
+
 # Either-endpoint query regression
 
 Issue: <https://github.com/linksplatform/Data.Doublets/issues/520>
@@ -19,15 +27,19 @@ Null endpoints are unindexed, so `[Any, Null]` filters the full record scan.
 
 | Requirement | Regression evidence |
 | --- | --- |
-| Original count and visit order | Separate C# Count/Each reproductions; C++ original reproduction |
-| United and split, plain and decorated | All four combinations in both languages |
-| Supported C# index implementations | United default/AVL; split default/size-balanced/recursionless, with both source-index modes |
-| Endpoint union and distinct records | Scan oracle, internal/external/null/missing endpoints, raw duplicate pairs |
+| Original reproduction | Separate Count and Each checks in both languages |
+| Store stacks | United/split, plain/automatic, both languages |
+| C# indexes | Every supported tree and source-index mode |
+| Endpoint union | Scan oracle: internal/external/null/missing values |
+| Equal pairs | Distinct raw records remain distinct matches |
 | Address widths | C# byte, ushort, uint, ulong |
-| Callback flow | Early Break in source and target passes; Continue after completion |
-| Existing query forms | Wildcard and concrete-index assertions; complete existing suites |
-| Deletion callers | Snapshot deletion checks that each address still exists before deleting it |
-| Index maintenance | Update, deletion and free-slot reuse before repeating the scan oracle |
+| Callback flow | Break in either pass; Continue on completion |
+| Query forms | Wildcards and concrete indices; existing suites |
+| Deletion | Every address in a matching snapshot is deleted once |
+| Index changes | Update, delete, free-slot reuse, then scan oracle |
+
+C# configurations include united default/AVL trees and split default,
+size-balanced and recursionless trees with both source-index modes.
 
 The C# regression class has 80 cases. Run it with:
 
@@ -36,8 +48,8 @@ dotnet test csharp/Platform.Data.Doublets.Tests -c Release \
   --filter FullyQualifiedName~EitherEndpointQueryTests
 ```
 
-The four C++ cases are included in the normal CMake/CTest suite. After installing
-the pinned dependencies with `bash cpp/setup.sh`, run `bash cpp/run_tests.sh`.
+The four C++ cases are included in the normal CMake/CTest suite. Install the
+pinned dependencies with `bash cpp/setup.sh`, then run `bash cpp/run_tests.sh`.
 `focused-native.cpp` is a smaller translation unit containing just these cases;
 it can reuse the include flags and libraries in the generated
 `cpp/build/compile_commands.json` and test target's `link.txt`.

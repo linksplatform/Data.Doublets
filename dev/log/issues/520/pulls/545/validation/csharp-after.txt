@@ -5,9 +5,8 @@
 + cd /tmp/gh-issue-solver-1793371013001
 + dotnet restore csharp/Platform.Data.Doublets.sln --locked-mode
   Determining projects to restore...
-  Restored /tmp/gh-issue-solver-1793371013001/csharp/Platform.Data.Doublets.Tests/Platform.Data.Doublets.Tests.csproj (in 621 ms).
-  Restored /tmp/gh-issue-solver-1793371013001/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj (in 619 ms).
-  Restored /tmp/gh-issue-solver-1793371013001/csharp/Platform.Data.Doublets.Benchmarks/Platform.Data.Doublets.Benchmarks.csproj (in 4.88 sec).
+  Restored /tmp/gh-issue-solver-1793371013001/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj (in 608 ms).
+  2 of 3 projects are up-to-date for restore.
 + dotnet build csharp/Platform.Data.Doublets.sln -c Release --no-restore -m:1 -warnaserror
   Platform.Data.Doublets -> /tmp/gh-issue-solver-1793371013001/csharp/Platform.Data.Doublets/bin/Release/net8.0/Platform.Data.Doublets.dll
   Platform.Data.Doublets.Tests -> /tmp/gh-issue-solver-1793371013001/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll
@@ -17,7 +16,7 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:06.26
+Time Elapsed 00:00:08.74
 + dotnet format whitespace csharp/Platform.Data.Doublets.sln --no-restore --verify-no-changes
 + dotnet test csharp/Platform.Data.Doublets.sln -c Release --no-build --no-restore --blame-hang-timeout 3m '--collect:XPlat Code Coverage' --logger trx --results-directory artifacts/test-results
 Test run for /tmp/gh-issue-solver-1793371013001/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v8.0)
@@ -26,12 +25,12 @@ VSTest version 17.11.1 (x64)
 Starting test execution, please wait...
 A total of 1 test files matched the specified pattern.
 Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
-Results File: /tmp/gh-issue-solver-1793371013001/artifacts/test-results/_458381e429e5_2026-10-30_14_52_03.trx
+Results File: /tmp/gh-issue-solver-1793371013001/artifacts/test-results/_458381e429e5_2026-10-30_15_22_09.trx
 
 Passed!  - Failed:     0, Passed:   403, Skipped:     0, Total:   403, Duration: 3 s - Platform.Data.Doublets.Tests.dll (net8.0)
 
 Attachments:
-  /tmp/gh-issue-solver-1793371013001/artifacts/test-results/445f6080-2eae-4511-8a9a-8529f3143814/coverage.cobertura.xml
+  /tmp/gh-issue-solver-1793371013001/artifacts/test-results/98a8e452-bb9e-4bd2-93c7-59cdad0bd9fc/coverage.cobertura.xml
 + dotnet run --project examples/ExternalReferences -c Release
 united: created 2 = (1, 18446744073709551596)
   Each -> [2], Count -> 1, SearchOrDefault -> 2
@@ -44,9 +43,7 @@ Split: all deletion examples passed.
 United: all update examples passed.
 Split: all update examples passed.
 + dotnet pack csharp/Platform.Data.Doublets -c Release --no-build --no-restore -o artifacts/packages -warnaserror
-  Successfully created package '/tmp/gh-issue-solver-1793371013001/artifacts/packages/Platform.Data.Doublets.0.18.5.nupkg'.
-  Successfully created package '/tmp/gh-issue-solver-1793371013001/artifacts/packages/Platform.Data.Doublets.0.18.5.snupkg'.
 + python3 scripts/smoke_packages.py csharp
   Determining projects to restore...
-  Restored /tmp/tmpeymm284g/Consumer.csproj (in 2.47 sec).
+  Restored /tmp/tmpbvqajuso/Consumer.csproj (in 2.33 sec).
 Validated packaged consumer of Platform.Data.Doublets 0.18.5

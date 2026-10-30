@@ -1,0 +1,147 @@
+{
+  "run": "https://github.com/linksplatform/Data.Doublets/actions/runs/41078567587",
+  "commit": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+  "results": [
+    {
+      "ruleId": "cs/useless-assignment-to-local",
+      "rule": {
+        "id": "cs/useless-assignment-to-local",
+        "index": 120,
+        "toolComponent": {
+          "index": 0
+        }
+      },
+      "message": {
+        "text": "This assignment to [index](1) is useless, since its value is never read."
+      },
+      "locations": [
+        {
+          "physicalLocation": {
+            "artifactLocation": {
+              "uri": "csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs",
+              "uriBaseId": "%SRCROOT%",
+              "index": 30
+            },
+            "region": {
+              "startLine": 62,
+              "startColumn": 26,
+              "endColumn": 31
+            }
+          }
+        }
+      ],
+      "partialFingerprints": {
+        "primaryLocationLineHash": "84bb9f7c20c3818c:1",
+        "primaryLocationStartColumnFingerprint": "13"
+      },
+      "relatedLocations": [
+        {
+          "id": 1,
+          "physicalLocation": {
+            "artifactLocation": {
+              "uri": "csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs",
+              "uriBaseId": "%SRCROOT%",
+              "index": 30
+            },
+            "region": {
+              "startLine": 62,
+              "startColumn": 26,
+              "endColumn": 31
+            }
+          },
+          "message": {
+            "text": "index"
+          }
+        }
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "locations": [
+        {
+          "physicalLocation": {
+            "artifactLocation": {
+              "uri": "csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs",
+              "uriBaseId": "%SRCROOT%",
+              "index": 30
+            },
+            "region": {
+              "startLine": 62,
+              "startColumn": 35,
+              "endColumn": 52
+            }
+          }
+        }
+      ],
+      "message": {
+        "text": "Error CS1579 foreach statement cannot operate on variables of type 'void' because 'void' does not contain a public instance or extension definition for 'GetEnumerator'"
+      },
+      "level": "none",
+      "descriptor": {
+        "id": "cs/compilation-message",
+        "index": 0,
+        "toolComponent": {
+          "index": 0
+        }
+      },
+      "properties": {
+        "formattedMessage": {
+          "text": "Error CS1579 foreach statement cannot operate on variables of type 'void' because 'void' does not contain a public instance or extension definition for 'GetEnumerator'"
+        }
+      }
+    },
+    {
+      "message": {
+        "text": "Compiler error in /home/runner/work/Data.Doublets/Data.Doublets/csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs: "
+      },
+      "level": "error",
+      "descriptor": {
+        "id": "cs/diagnostics/extraction-errors",
+        "index": 2,
+        "toolComponent": {
+          "index": 0
+        }
+      },
+      "properties": {
+        "formattedMessage": {
+          "text": "Compiler error in /home/runner/work/Data.Doublets/Data.Doublets/csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs: "
+        }
+      }
+    },
+    {
+      "locations": [
+        {
+          "physicalLocation": {
+            "artifactLocation": {
+              "uri": "csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs",
+              "uriBaseId": "%SRCROOT%",
+              "index": 30
+            },
+            "region": {
+              "startLine": 62,
+              "startColumn": 35,
+              "endColumn": 52
+            }
+          }
+        }
+      ],
+      "message": {
+        "text": "Error CS1579 foreach statement cannot operate on variables of type 'void' because 'void' does not contain a public instance or extension definition for 'GetEnumerator'"
+      },
+      "level": "none",
+      "descriptor": {
+        "id": "cs/compilation-error",
+        "index": 3,
+        "toolComponent": {
+          "index": 0
+        }
+      },
+      "properties": {
+        "formattedMessage": {
+          "text": "Error CS1579 foreach statement cannot operate on variables of type 'void' because 'void' does not contain a public instance or extension definition for 'GetEnumerator'"
+        }
+      }
+    }
+  ]
+}
