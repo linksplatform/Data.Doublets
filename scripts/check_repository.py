@@ -11,6 +11,44 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 
 
+# Issue 515: a two-value link is (index, source) in both ports, never (source, target).
+LINK_CONSTRUCTIONS = {
+    "csharp/Platform.Data.Doublets/": re.compile(r"\bnew\s+Link<[^<>()]+>\s*\("),
+    "cpp/Platform.Data.Doublets/": re.compile(
+        r"\bLinkType(?:\s*\(|(?:\s+\w+)?\s*\{|\s+\w+\s*=\s*[({])"
+    ),
+}
+
+
+def top_level_arguments(source, start):
+    """Count comma-separated arguments from an opening bracket at start - 1."""
+    depth, commas, index = 1, 0, start
+    while depth and index < len(source):
+        char = source[index]
+        if char in "([{":
+            depth += 1
+        elif char in ")]}":
+            depth -= 1
+        elif char == "," and depth == 1:
+            commas += 1
+        index += 1
+    return 0 if not source[start : index - 1].strip() else commas + 1
+
+
+def two_value_link_errors(name, source):
+    """Reject Link/LinkType constructions with two values in library sources."""
+    pattern = next((p for prefix, p in LINK_CONSTRUCTIONS.items() if name.startswith(prefix)), None)
+    if pattern is None:
+        return []
+    code = re.sub(r"//[^\n]*", lambda m: " " * len(m.group()), source)
+    return [
+        f"{name}:{code.count(chr(10), 0, match.start()) + 1}: two-value link is (index, source); "
+        "pass index, source and target"
+        for match in pattern.finditer(code)
+        if top_level_arguments(code, match.end()) == 2
+    ]
+
+
 def trusted_publishing_errors(workflow):
     """Keep publishing credentials confined to trusted jobs and step outputs."""
     errors = []
@@ -105,6 +143,7 @@ def main():
         source = path.read_text(encoding="utf-8-sig")
         if len(source.splitlines()) > 1500:
             errors.append(f"{name}: exceeds 1500 lines; split this source file")
+        errors.extend(two_value_link_errors(name, source))
         if path.suffix == ".py":
             ast.parse(source, filename=name)
         elif path.suffix == ".json":
