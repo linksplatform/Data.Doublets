@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -87,6 +88,8 @@ public class MergeUsagesTests
             case Merge.AndDeleteWithHandler:
                 Assert.Equal(continueResult, links.MergeAndDelete(one, two, (_, _) => continueResult));
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(merge), merge, null);
         }
         var deleted = merge is Merge.AndDelete or Merge.AndDeleteWithHandler;
         Assert.Equal(!deleted, links.Exists(one));

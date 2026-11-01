@@ -28,12 +28,14 @@ the address being merged away, when it should have kept the source.
 
 ## Requirement inventory
 
-| Requirement | Change | Evidence |
-| --- | --- | --- |
-| Rewrite only the source endpoint | Both ports name index, new source, old target | C# and C++ tests |
-| Rewrite only the target endpoint | Both ports name index, old source, new target | C# and C++ tests |
-| `MergeAndDelete` inherits the fix | Covered with and without handlers | C# and C++ tests |
-| Grep other two-value constructions | Only the two `MergeUsages` sites per port | `check_repository.py` guard |
+- Rewrite only the source endpoint: both ports pass the index, the new
+  source and the old target. Verified by the C# and C++ tests.
+- Rewrite only the target endpoint: both ports pass the index, the old
+  source and the new target. Verified by the C# and C++ tests.
+- `MergeAndDelete` inherits the fix: covered with and without handlers in
+  both test suites.
+- Grep other two-value constructions: only the two `MergeUsages` sites per
+  port. The `check_repository.py` guard now rejects new ones.
 
 The C# substitutions were already corrected on `main` by 77e2b6934 (released
 in C# 0.18.5 for issue #519), but nothing pinned the issue's results. This
@@ -73,10 +75,11 @@ dotnet test csharp/Platform.Data.Doublets.Tests -c Release \
 python3 -m unittest experiments/test_issue_515.py
 ```
 
-The two native cases are part of the normal CMake/CTest suite (`bash cpp/setup.sh`,
-then `bash cpp/run_tests.sh`). `focused-native.cpp` is a smaller translation unit
-containing just these cases. It can reuse the include flags and libraries in
-the generated `cpp/build/compile_commands.json` and the test target's `link.txt`.
+The two native cases are part of the normal CMake/CTest suite
+(`bash cpp/setup.sh`, then `bash cpp/run_tests.sh`). `focused-native.cpp` is a
+smaller translation unit containing just these cases. It can reuse the include
+flags and libraries in the generated `cpp/build/compile_commands.json` and the
+test target's `link.txt`.
 
 No comments, required sub-issues or review feedback were present during
 implementation.

@@ -1,6 +1,7 @@
 """Issue 515: two-value Link constructions mean (index, source), not (source, target)."""
 from pathlib import Path
-import subprocess
+import shutil
+import subprocess  # nosec B404 - Read fixed historical revisions from the local repository.
 import sys
 import unittest
 
@@ -21,7 +22,8 @@ class TwoValueLinkGuardTests(unittest.TestCase):
         # 77e2b6934 fixed C#; the C++ port kept the same defect until issue 515.
         for name, revision, expected in ((CSHARP, '77e2b6934^', [989, 1001]), (CPP, '2ecf56fe9', [854, 866])):
             with self.subTest(name=name):
-                source = subprocess.check_output(['git', 'show', f'{revision}:{name}'], cwd=ROOT, text=True)
+                git = shutil.which('git') or 'git'
+                source = subprocess.check_output([git, 'show', f'{revision}:{name}'], cwd=ROOT, text=True)  # nosec B603 B607 - Fixed local arguments.
                 self.assertEqual(expected, lines(name, source))
 
     def test_csharp_constructions(self):
