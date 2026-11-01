@@ -108,7 +108,8 @@ namespace Platform::Data::Doublets
         {
             EnforceResetValues(storage, linkToDelete, handler);
         }
-        return Delete(storage, linkToDelete, handler);
+        // Call the store directly: calling this overload again would recurse forever.
+        return DIRECT_METHOD_CALL(TStorage, storage, Delete, typename TStorage::LinkType{linkToDelete}, handler);
     }
 
     template <typename TStorage>
@@ -841,31 +842,37 @@ namespace Platform::Data::Doublets
             return newLinkIndex;
         }
         constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
-        auto usagesAsSource = All(storage, typename TStorage::LinkType(constants.Any, oldLinkIndex, constants.Any));
+        using LinkType = typename TStorage::LinkType;
         WriteHandlerState<TStorage> handlerState{constants.Continue, constants.Break, handler};
-        for (auto i{0}; i < std::ranges::size(usagesAsSource); ++i)
+        // Stores invoke handlers unchecked; Handle skips a null or already broken handler.
+        auto handle = [&handlerState](const LinkType& before, const LinkType& after) {
+            return handlerState.Handle(before, after);
+        };
+        // Name all three parts: a two-value link is (index, source), not (source, target).
+        auto usagesAsSource = All(storage, LinkType{constants.Any, oldLinkIndex, constants.Any});
+        for (const auto& usageAsSource : usagesAsSource)
         {
-            auto usageAsSource = usagesAsSource[i];
-            if (oldLinkIndex == GetIndex(storage, usageAsSource))
+            auto index = GetIndex(storage, usageAsSource);
+            if (oldLinkIndex == index)
             {
                 continue;
             }
-            typename TStorage::LinkType restriction{GetIndex(storage, usageAsSource)};
-            typename TStorage::LinkType substitution = (newLinkIndex, GetTarget(storage, usageAsSource));
-            handlerState.Apply(
-                DIRECT_METHOD_CALL(TStorage, storage, Update, restriction, substitution, handlerState.Handler));
+            LinkType restriction{index};
+            LinkType substitution{index, newLinkIndex, GetTarget(storage, usageAsSource)};
+            handlerState.Apply(DIRECT_METHOD_CALL(TStorage, storage, Update, restriction, substitution, handle));
         }
-        auto usagesAsTarget = All(storage, typename TStorage::LinkType(constants.Any, constants.Any, oldLinkIndex));
-        for (auto i{0}; i < std::ranges::size(usagesAsTarget); ++i)
+        // Re-read usages as target: links using the old link on both ends now have the new source.
+        auto usagesAsTarget = All(storage, LinkType{constants.Any, constants.Any, oldLinkIndex});
+        for (const auto& usageAsTarget : usagesAsTarget)
         {
-            auto usageAsTarget = usagesAsTarget[i];
-            if (oldLinkIndex == GetIndex(storage, usageAsTarget))
+            auto index = GetIndex(storage, usageAsTarget);
+            if (oldLinkIndex == index)
             {
                 continue;
             }
-            auto substitution = typename TStorage::LinkType(GetTarget(storage, usageAsTarget), newLinkIndex);
-            handlerState.Apply(
-                DIRECT_METHOD_CALL(TStorage, storage, Update, usageAsTarget, substitution, handlerState.Handler));
+            LinkType restriction{index};
+            LinkType substitution{index, GetSource(storage, usageAsTarget), newLinkIndex};
+            handlerState.Apply(DIRECT_METHOD_CALL(TStorage, storage, Update, restriction, substitution, handle));
         }
         return handlerState.Result;
     }
@@ -898,10 +905,14 @@ namespace Platform::Data::Doublets
     {
         constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
         WriteHandlerState<TStorage> handlerState{constants.Continue, constants.Break, handler};
+        auto handle = [&handlerState](const typename TStorage::LinkType& before,
+                                      const typename TStorage::LinkType& after) {
+            return handlerState.Handle(before, after);
+        };
         if (newLinkIndex != oldLinkIndex)
         {
-            handlerState.Apply(MergeUsages(storage, oldLinkIndex, newLinkIndex, handlerState.Handler));
-            handlerState.Apply(Delete(storage, oldLinkIndex, handlerState.Handler));
+            handlerState.Apply(MergeUsages(storage, oldLinkIndex, newLinkIndex, handle));
+            handlerState.Apply(Delete(storage, oldLinkIndex, handle));
         }
         return handlerState.Result;
     }
