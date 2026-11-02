@@ -1,1 +1,0 @@
-{"summary":"MergeUsages and MergeAndDelete rewrite only the merged endpoint of each usage; the native handler-taking Delete no longer recurses","releases":{"csharp":"patch","cpp":"patch"}}

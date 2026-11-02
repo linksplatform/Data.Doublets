@@ -1,3 +1,11 @@
+## csharp 0.18.7
+
+- MergeUsages and MergeAndDelete rewrite only the merged endpoint of each usage; the native handler-taking Delete no longer recurses
+
+## cpp 0.1.4
+
+- MergeUsages and MergeAndDelete rewrite only the merged endpoint of each usage; the native handler-taking Delete no longer recurses
+
 ## csharp 0.18.6
 
 - Count and enumerate each link once for either-endpoint queries, including equal source and target values
