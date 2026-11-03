@@ -1,0 +1,120 @@
+main (original)   | raw         | 3 points        | united | count=1 remaining=[(2: 2 2)] reuse=BROKEN a=1 b=1 c=1 count=3 [(1: 1 1) (2: 2 2)]
+main (original)   | raw         | 3 points        | split  | count=1 remaining=[(2: 2 2)] reuse=BROKEN a=1 b=3 c=4 count=4 [(1: 1 1) (2: 2 2) (3: 3 3) (4: 1 3)]
+main (original)   | raw         | 2 points + link | united | count=1 remaining=[(2: 2 2)] reuse=BROKEN a=1 b=2 c=3 count=3 [(1: 1 1) (2: 2 2)]
+main (original)   | raw         | 2 points + link | split  | count=1 remaining=[(2: 2 2)] reuse=BROKEN a=1 b=3 c=4 count=4 [(1: 1 1) (2: 2 2) (3: 3 3) (4: 1 3)]
+main (original)   | raw         | hole at 2 of 3  | united | count=1 remaining=[(1: 1 1) (3: 3 3)] reuse=BROKEN a=2 b=4 c=5 count=4 [(1: 1 1) (2: 2 2) (3: 3 3) (4: 4 4) (5: 2 4)]
+main (original)   | raw         | hole at 2 of 3  | split  | count=1 remaining=[(1: 1 1) (3: 3 3)] reuse=BROKEN a=2 b=4 c=5 count=4 [(1: 1 1) (2: 2 2) (3: 3 3) (4: 4 4) (5: 2 4)]
+main (original)   | raw         | link to higher  | united | CRASH exit=134 Stack overflow.
+main (original)   | raw         | link to higher  | split  | count=1 remaining=[(2: 2 2)] reuse=BROKEN a=1 b=3 c=1 count=3 [(1: 1 1) (2: 2 2) (3: 3 3)]
+main (original)   | cascade     | 3 points        | united | count=1 remaining=[(2: 2 2)] reuse=BROKEN a=1 b=3 c=4 count=4 [(1: 1 1) (2: 2 2) (3: 3 3) (4: 1 3)]
+main (original)   | cascade     | 3 points        | split  | count=1 remaining=[(2: 2 2)] reuse=BROKEN a=1 b=3 c=4 count=4 [(1: 1 1) (2: 2 2) (3: 3 3) (4: 1 3)]
+main (original)   | cascade     | 2 points + link | united | count=1 remaining=[(2: 2 2)] reuse=BROKEN a=1 b=3 c=4 count=4 [(1: 1 1) (2: 2 2) (3: 3 3) (4: 1 3)]
+main (original)   | cascade     | 2 points + link | split  | count=1 remaining=[(2: 2 2)] reuse=BROKEN a=1 b=3 c=4 count=4 [(1: 1 1) (2: 2 2) (3: 3 3) (4: 1 3)]
+main (original)   | cascade     | hole at 2 of 3  | united | KeyNotFoundException: Link 2 does not exist.
+main (original)   | cascade     | hole at 2 of 3  | split  | KeyNotFoundException: Link 2 does not exist.
+main (original)   | cascade     | link to higher  | united | count=1 remaining=[(2: 2 2)] reuse=BROKEN a=1 b=3 c=4 count=4 [(1: 1 1) (2: 2 2) (3: 3 3) (4: 1 3)]
+main (original)   | cascade     | link to higher  | split  | count=1 remaining=[(2: 2 2)] reuse=BROKEN a=1 b=3 c=4 count=4 [(1: 1 1) (2: 2 2) (3: 3 3) (4: 1 3)]
+main (original)   | usages-check| 3 points        | united | ArgumentLinkHasDependenciesException`1: У связи [1] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+main (original)   | usages-check| 3 points        | split  | ArgumentLinkHasDependenciesException`1: У связи [1] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+main (original)   | usages-check| 2 points + link | united | ArgumentLinkHasDependenciesException`1: У связи [1] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+main (original)   | usages-check| 2 points + link | split  | ArgumentLinkHasDependenciesException`1: У связи [1] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+main (original)   | usages-check| hole at 2 of 3  | united | KeyNotFoundException: Link 2 does not exist.
+main (original)   | usages-check| hole at 2 of 3  | split  | KeyNotFoundException: Link 2 does not exist.
+main (original)   | usages-check| link to higher  | united | ArgumentLinkHasDependenciesException`1: У связи [3] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+main (original)   | usages-check| link to higher  | split  | ArgumentLinkHasDependenciesException`1: У связи [3] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+issue proposal    | raw         | 3 points        | united | count=0 remaining=[] reuse=ok
+issue proposal    | raw         | 3 points        | split  | count=0 remaining=[] reuse=ok
+issue proposal    | raw         | 2 points + link | united | count=0 remaining=[] reuse=BROKEN a=1 b=2 c=3 count=2 [(1: 1 1) (2: 2 2)]
+issue proposal    | raw         | 2 points + link | split  | count=0 remaining=[] reuse=BROKEN a=1 b=2 c=3 count=2 [(1: 1 1) (2: 2 2)]
+issue proposal    | raw         | hole at 2 of 3  | united | count=0 remaining=[(3: 3 3)] reuse=BROKEN a=1 b=1 c=1 count=2 [(1: 1 1) (3: 3 3)]
+issue proposal    | raw         | hole at 2 of 3  | split  | count=0 remaining=[(3: 3 3)] reuse=BROKEN a=1 b=2 c=4 count=3 [(1: 1 1) (2: 2 2) (3: 3 3) (4: 1 2)]
+issue proposal    | raw         | link to higher  | united | count=0 remaining=[] reuse=ok
+issue proposal    | raw         | link to higher  | split  | count=0 remaining=[] reuse=ok
+issue proposal    | cascade     | 3 points        | united | count=0 remaining=[] reuse=ok
+issue proposal    | cascade     | 3 points        | split  | count=0 remaining=[] reuse=ok
+issue proposal    | cascade     | 2 points + link | united | count=0 remaining=[] reuse=ok
+issue proposal    | cascade     | 2 points + link | split  | count=0 remaining=[] reuse=ok
+issue proposal    | cascade     | hole at 2 of 3  | united | KeyNotFoundException: Link 2 does not exist.
+issue proposal    | cascade     | hole at 2 of 3  | split  | KeyNotFoundException: Link 2 does not exist.
+issue proposal    | cascade     | link to higher  | united | KeyNotFoundException: Link 1 does not exist.
+issue proposal    | cascade     | link to higher  | split  | KeyNotFoundException: Link 1 does not exist.
+issue proposal    | usages-check| 3 points        | united | count=0 remaining=[] reuse=ok
+issue proposal    | usages-check| 3 points        | split  | count=0 remaining=[] reuse=ok
+issue proposal    | usages-check| 2 points + link | united | ArgumentLinkHasDependenciesException`1: У связи [2] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+issue proposal    | usages-check| 2 points + link | split  | ArgumentLinkHasDependenciesException`1: У связи [2] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+issue proposal    | usages-check| hole at 2 of 3  | united | KeyNotFoundException: Link 2 does not exist.
+issue proposal    | usages-check| hole at 2 of 3  | split  | KeyNotFoundException: Link 2 does not exist.
+issue proposal    | usages-check| link to higher  | united | ArgumentLinkHasDependenciesException`1: У связи [3] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+issue proposal    | usages-check| link to higher  | split  | ArgumentLinkHasDependenciesException`1: У связи [3] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+ascending+exists  | raw         | 3 points        | united | count=0 remaining=[] reuse=ok
+ascending+exists  | raw         | 3 points        | split  | count=0 remaining=[] reuse=ok
+ascending+exists  | raw         | 2 points + link | united | count=0 remaining=[] reuse=ok
+ascending+exists  | raw         | 2 points + link | split  | count=0 remaining=[] reuse=ok
+ascending+exists  | raw         | hole at 2 of 3  | united | count=0 remaining=[] reuse=ok
+ascending+exists  | raw         | hole at 2 of 3  | split  | count=0 remaining=[] reuse=ok
+ascending+exists  | raw         | link to higher  | united | count=0 remaining=[] reuse=ok
+ascending+exists  | raw         | link to higher  | split  | count=0 remaining=[] reuse=ok
+ascending+exists  | cascade     | 3 points        | united | count=0 remaining=[] reuse=ok
+ascending+exists  | cascade     | 3 points        | split  | count=0 remaining=[] reuse=ok
+ascending+exists  | cascade     | 2 points + link | united | count=0 remaining=[] reuse=ok
+ascending+exists  | cascade     | 2 points + link | split  | count=0 remaining=[] reuse=ok
+ascending+exists  | cascade     | hole at 2 of 3  | united | count=0 remaining=[] reuse=ok
+ascending+exists  | cascade     | hole at 2 of 3  | split  | count=0 remaining=[] reuse=ok
+ascending+exists  | cascade     | link to higher  | united | count=0 remaining=[] reuse=ok
+ascending+exists  | cascade     | link to higher  | split  | count=0 remaining=[] reuse=ok
+ascending+exists  | usages-check| 3 points        | united | count=0 remaining=[] reuse=ok
+ascending+exists  | usages-check| 3 points        | split  | count=0 remaining=[] reuse=ok
+ascending+exists  | usages-check| 2 points + link | united | ArgumentLinkHasDependenciesException`1: У связи [1] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+ascending+exists  | usages-check| 2 points + link | split  | ArgumentLinkHasDependenciesException`1: У связи [1] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+ascending+exists  | usages-check| hole at 2 of 3  | united | count=0 remaining=[] reuse=ok
+ascending+exists  | usages-check| hole at 2 of 3  | split  | count=0 remaining=[] reuse=ok
+ascending+exists  | usages-check| link to higher  | united | count=0 remaining=[] reuse=ok
+ascending+exists  | usages-check| link to higher  | split  | count=0 remaining=[] reuse=ok
+descending+exists | raw         | 3 points        | united | count=0 remaining=[] reuse=ok
+descending+exists | raw         | 3 points        | split  | count=0 remaining=[] reuse=ok
+descending+exists | raw         | 2 points + link | united | count=0 remaining=[] reuse=ok
+descending+exists | raw         | 2 points + link | split  | count=0 remaining=[] reuse=ok
+descending+exists | raw         | hole at 2 of 3  | united | count=0 remaining=[] reuse=ok
+descending+exists | raw         | hole at 2 of 3  | split  | count=0 remaining=[] reuse=ok
+descending+exists | raw         | link to higher  | united | count=0 remaining=[] reuse=ok
+descending+exists | raw         | link to higher  | split  | count=0 remaining=[] reuse=ok
+descending+exists | cascade     | 3 points        | united | count=0 remaining=[] reuse=ok
+descending+exists | cascade     | 3 points        | split  | count=0 remaining=[] reuse=ok
+descending+exists | cascade     | 2 points + link | united | count=0 remaining=[] reuse=ok
+descending+exists | cascade     | 2 points + link | split  | count=0 remaining=[] reuse=ok
+descending+exists | cascade     | hole at 2 of 3  | united | count=0 remaining=[] reuse=ok
+descending+exists | cascade     | hole at 2 of 3  | split  | count=0 remaining=[] reuse=ok
+descending+exists | cascade     | link to higher  | united | count=0 remaining=[] reuse=ok
+descending+exists | cascade     | link to higher  | split  | count=0 remaining=[] reuse=ok
+descending+exists | usages-check| 3 points        | united | count=0 remaining=[] reuse=ok
+descending+exists | usages-check| 3 points        | split  | count=0 remaining=[] reuse=ok
+descending+exists | usages-check| 2 points + link | united | count=0 remaining=[] reuse=ok
+descending+exists | usages-check| 2 points + link | split  | count=0 remaining=[] reuse=ok
+descending+exists | usages-check| hole at 2 of 3  | united | count=0 remaining=[] reuse=ok
+descending+exists | usages-check| hole at 2 of 3  | split  | count=0 remaining=[] reuse=ok
+descending+exists | usages-check| link to higher  | united | ArgumentLinkHasDependenciesException`1: У связи [3] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+descending+exists | usages-check| link to higher  | split  | ArgumentLinkHasDependenciesException`1: У связи [3] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+library DeleteAll | raw         | 3 points        | united | count=0 remaining=[] reuse=ok
+library DeleteAll | raw         | 3 points        | split  | count=0 remaining=[] reuse=ok
+library DeleteAll | raw         | 2 points + link | united | count=0 remaining=[] reuse=ok
+library DeleteAll | raw         | 2 points + link | split  | count=0 remaining=[] reuse=ok
+library DeleteAll | raw         | hole at 2 of 3  | united | count=0 remaining=[] reuse=ok
+library DeleteAll | raw         | hole at 2 of 3  | split  | count=0 remaining=[] reuse=ok
+library DeleteAll | raw         | link to higher  | united | count=0 remaining=[] reuse=ok
+library DeleteAll | raw         | link to higher  | split  | count=0 remaining=[] reuse=ok
+library DeleteAll | cascade     | 3 points        | united | count=0 remaining=[] reuse=ok
+library DeleteAll | cascade     | 3 points        | split  | count=0 remaining=[] reuse=ok
+library DeleteAll | cascade     | 2 points + link | united | count=0 remaining=[] reuse=ok
+library DeleteAll | cascade     | 2 points + link | split  | count=0 remaining=[] reuse=ok
+library DeleteAll | cascade     | hole at 2 of 3  | united | count=0 remaining=[] reuse=ok
+library DeleteAll | cascade     | hole at 2 of 3  | split  | count=0 remaining=[] reuse=ok
+library DeleteAll | cascade     | link to higher  | united | count=0 remaining=[] reuse=ok
+library DeleteAll | cascade     | link to higher  | split  | count=0 remaining=[] reuse=ok
+library DeleteAll | usages-check| 3 points        | united | count=0 remaining=[] reuse=ok
+library DeleteAll | usages-check| 3 points        | split  | count=0 remaining=[] reuse=ok
+library DeleteAll | usages-check| 2 points + link | united | count=0 remaining=[] reuse=ok
+library DeleteAll | usages-check| 2 points + link | split  | count=0 remaining=[] reuse=ok
+library DeleteAll | usages-check| hole at 2 of 3  | united | count=0 remaining=[] reuse=ok
+library DeleteAll | usages-check| hole at 2 of 3  | split  | count=0 remaining=[] reuse=ok
+library DeleteAll | usages-check| link to higher  | united | ArgumentLinkHasDependenciesException`1: У связи [3] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.
+library DeleteAll | usages-check| link to higher  | split  | ArgumentLinkHasDependenciesException`1: У связи [3] переданной в качестве аргумента присутствуют зависимости, которые препятствуют изменению её внутренней структуры.

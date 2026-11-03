@@ -512,13 +512,15 @@ namespace Platform::Data::Doublets
                                                        typename TStorage::LinkAddressType target)
     {
         auto $continue{storage.Constants.Continue};
-        typename TStorage::LinkAddressType linkAddress;
-        return CreateAndUpdate(
+        typename TStorage::LinkAddressType linkAddress{};
+        // The handler-taking overload returns the handler state, so return the recorded address instead.
+        CreateAndUpdate(
             storage, source, target,
             [&linkAddress, $continue](const typename TStorage::LinkType&, const typename TStorage::LinkType& after) {
                 linkAddress = after[0];
                 return $continue;
             });
+        return linkAddress;
     }
 
     template <typename TStorage>
@@ -770,16 +772,33 @@ namespace Platform::Data::Doublets
         DeleteAllUsages(storage, linkIndex, nullptr);
     }
 
+    // Count is the number of links, not the highest address: deleted links leave freed addresses
+    // behind. Find the highest existing address, then delete existing links from it down. The
+    // handler-taking Delete resets endpoints first, which keeps the endpoint indexes consistent.
     template <typename TStorage>
-    auto DeleteAll(TStorage& storage)
+    static void DeleteAll(TStorage& storage)
     {
-        auto handler = [](typename TStorage::LinkType, typename TStorage::LinkType) {
-            return typename TStorage::LinkAddressType{};
-        };
-        auto any = storage.Constants.Any;
-        for (auto count = Count(storage); count != storage.Constants.Null; count = Count(storage))
+        using Address = typename TStorage::LinkAddressType;
+        auto $continue = storage.Constants.Continue;
+        // Native stores call the handler unchecked, so pass one that only continues.
+        auto handler = [$continue](const auto&, const auto&) { return $continue; };
+        // The scan stops at the last existing link, so it ends on the highest address.
+        Address last{0};
+        auto remaining = Count(storage);
+        while (remaining != 0)
         {
-            DIRECT_METHOD_CALL(TStorage, storage, Delete, {count, any, any}, handler);
+            ++last;
+            if (Exists(storage, last))
+            {
+                --remaining;
+            }
+        }
+        for (auto address = last; address != 0; --address)
+        {
+            if (Exists(storage, address))
+            {
+                Delete(storage, address, handler);
+            }
         }
     }
 

@@ -163,21 +163,39 @@ namespace Platform.Data.Doublets
 
         /// <summary>Deletes every link in the store.</summary>
         /// <remarks>
+        /// <para>
+        /// <c>Count()</c> is the number of links, not the highest address: deleted links leave
+        /// freed addresses behind. The first loop therefore finds the highest existing address,
+        /// and the second deletes existing links from that address down, so links usually go
+        /// before the links they use. Each deletion resets the endpoints first, which keeps the
+        /// source and target indexes consistent.
+        /// </para>
+        /// <para>
         /// TODO: Возможно есть очень простой способ это сделать.
         /// (Например просто удалить файл, или изменить его размер таким образом,
         /// чтобы удалился весь контент)
         /// Например через _header->AllocatedLinks в ResizableDirectMemoryLinks
+        /// </para>
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteAll<TLinkAddress>(this ILinks<TLinkAddress> links) where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var comparer = Comparer<TLinkAddress>.Default;
-            for (var i = links.Count(); comparer.Compare(i, TLinkAddress.Zero) > 0; i = --i)
+            // The scan stops at the last existing link, so it ends on the highest address.
+            var last = TLinkAddress.Zero;
+            var remaining = links.Count();
+            while (remaining != TLinkAddress.Zero)
             {
-                links.Delete(i);
-                if (links.Count() != --i)
+                ++last;
+                if (links.Exists(last))
                 {
-                    i = links.Count();
+                    --remaining;
+                }
+            }
+            for (var address = last; address != TLinkAddress.Zero; --address)
+            {
+                if (links.Exists(address))
+                {
+                    links.Delete(address, null);
                 }
             }
         }

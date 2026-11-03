@@ -1,0 +1,58 @@
+# Original native DeleteAll (main) restored temporarily; CreateAndUpdate fix kept so only DeleteAll is under test.
+# Command: Platform.Data.Doublets.Tests --gtest_filter='DeleteAll*' (united run ends in a segmentation fault, exit 139)
+Running main() from /home/box/.conan2/p/b/gtest2e2cc50c72a7b/b/src/googletest/src/gtest_main.cc
+Note: Google Test filter = DeleteAll*
+[==========] Running 2 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 2 tests from DeleteAllTests
+[ RUN      ] DeleteAllTests.UnitedDeletesEveryLink
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:20: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  Count(storage)
+    Which is: 2
+timeout: the monitored command dumped core
+Segmentation fault (exit 139)
+
+# Command: Platform.Data.Doublets.Tests --gtest_filter='DeleteAllTests.Split*'
+Running main() from /home/box/.conan2/p/b/gtest2e2cc50c72a7b/b/src/googletest/src/gtest_main.cc
+Note: Google Test filter = DeleteAllTests.Split*
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from DeleteAllTests
+[ RUN      ] DeleteAllTests.SplitDeletesEveryLink
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:20: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  Count(storage)
+    Which is: 2
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:19: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  link
+    Which is: 4
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:20: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  Count(storage)
+    Which is: 6
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:22: Failure
+Expected equality of these values:
+  Address{2}
+    Which is: 2
+  storage.Count(Link{any, first, any})
+    Which is: 8
+[  FAILED  ] DeleteAllTests.SplitDeletesEveryLink (208 ms)
+[----------] 1 test from DeleteAllTests (208 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (208 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] DeleteAllTests.SplitDeletesEveryLink
+
+ 1 FAILED TEST

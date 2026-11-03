@@ -1,0 +1,170 @@
+# New DeleteAll with the original handler-less native CreateAndUpdate.
+# GetOrCreate creates link 3 (SearchOrDefault finds it) but returns Continue (2^63 - 1 for uint64, 2^31 - 1 for uint32).
+# Only the GetOrCreate result assertions (DeleteAllTests.h:19 and :21) fail; every DeleteAll assertion passes.
+# Command: ctest --test-dir build --output-on-failure --no-tests=error --timeout 180 (excerpt)
+      Start 13: DeleteAllTests.UnitedDeletesEveryLink
+13/54 Test #13: DeleteAllTests.UnitedDeletesEveryLink ...........................................................................***Failed    0.49 sec
+Running main() from /home/box/.conan2/p/b/gtest2e2cc50c72a7b/b/src/googletest/src/gtest_main.cc
+Note: Google Test filter = DeleteAllTests.UnitedDeletesEveryLink
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from DeleteAllTests
+[ RUN      ] DeleteAllTests.UnitedDeletesEveryLink
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:19: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  link
+    Which is: 9223372036854775807
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:21: Failure
+Expected equality of these values:
+  link
+    Which is: 9223372036854775807
+  SearchOrDefault(storage, first, second)
+    Which is: 3
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:19: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  link
+    Which is: 9223372036854775807
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:21: Failure
+Expected equality of these values:
+  link
+    Which is: 9223372036854775807
+  SearchOrDefault(storage, first, second)
+    Which is: 3
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:19: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  link
+    Which is: 9223372036854775807
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:21: Failure
+Expected equality of these values:
+  link
+    Which is: 9223372036854775807
+  SearchOrDefault(storage, first, second)
+    Which is: 3
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:19: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  link
+    Which is: 9223372036854775807
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:21: Failure
+Expected equality of these values:
+  link
+    Which is: 9223372036854775807
+  SearchOrDefault(storage, first, second)
+    Which is: 3
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:19: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  link
+    Which is: 9223372036854775807
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:21: Failure
+Expected equality of these values:
+  link
+    Which is: 9223372036854775807
+  SearchOrDefault(storage, first, second)
+    Which is: 3
+[  FAILED  ] DeleteAllTests.UnitedDeletesEveryLink (480 ms)
+[----------] 1 test from DeleteAllTests (480 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (480 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] DeleteAllTests.UnitedDeletesEveryLink
+
+ 1 FAILED TEST
+
+      Start 14: DeleteAllTests.SplitDeletesEveryLink
+14/54 Test #14: DeleteAllTests.SplitDeletesEveryLink ............................................................................***Failed    0.26 sec
+Running main() from /home/box/.conan2/p/b/gtest2e2cc50c72a7b/b/src/googletest/src/gtest_main.cc
+Note: Google Test filter = DeleteAllTests.SplitDeletesEveryLink
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from DeleteAllTests
+[ RUN      ] DeleteAllTests.SplitDeletesEveryLink
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:19: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  link
+    Which is: 2147483647
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:21: Failure
+Expected equality of these values:
+  link
+    Which is: 2147483647
+  SearchOrDefault(storage, first, second)
+    Which is: 3
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:19: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  link
+    Which is: 2147483647
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:21: Failure
+Expected equality of these values:
+  link
+    Which is: 2147483647
+  SearchOrDefault(storage, first, second)
+    Which is: 3
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:19: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  link
+    Which is: 2147483647
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:21: Failure
+Expected equality of these values:
+  link
+    Which is: 2147483647
+  SearchOrDefault(storage, first, second)
+    Which is: 3
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:19: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  link
+    Which is: 2147483647
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:21: Failure
+Expected equality of these values:
+  link
+    Which is: 2147483647
+  SearchOrDefault(storage, first, second)
+    Which is: 3
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:19: Failure
+Expected equality of these values:
+  Address{3}
+    Which is: 3
+  link
+    Which is: 2147483647
+./cpp/Platform.Data.Doublets.Tests/DeleteAllTests.h:21: Failure
+Expected equality of these values:
+  link
+    Which is: 2147483647
+  SearchOrDefault(storage, first, second)
+    Which is: 3
+[  FAILED  ] DeleteAllTests.SplitDeletesEveryLink (248 ms)
+[----------] 1 test from DeleteAllTests (248 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (248 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] DeleteAllTests.SplitDeletesEveryLink
+
+ 1 FAILED TEST
+
+      Start 15: OwnershipTests.UnitedHelpersAreReleasedOnGrowthAndDestruction
+96% tests passed, 2 tests failed out of 54
+
+Total Test time (real) =   9.38 sec
+
+The following tests FAILED:
+	 13 - DeleteAllTests.UnitedDeletesEveryLink (Failed)
+	 14 - DeleteAllTests.SplitDeletesEveryLink (Failed)
