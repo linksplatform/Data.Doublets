@@ -14,7 +14,7 @@ var variants = new (string Name, Action<ILinks<uint>> DeleteAll)[]
 {
     ("main (original)", links =>
     {
-        // The original `for (var i = links.Count(); i > 0; i = --i)` loop, written as a while loop.
+        // The original loop from main, which decrements i in both the condition and the iterator.
         var steps = 0;
         var i = links.Count();
         while (i > 0)
