@@ -15,7 +15,8 @@ var variants = new (string Name, Action<ILinks<uint>> DeleteAll)[]
     ("main (original)", links =>
     {
         var steps = 0;
-        for (var i = links.Count(); i > 0; i = --i)
+        // The original iterator was `i = --i`, which is the same as `--i`.
+        for (var i = links.Count(); i > 0; --i)
         {
             Step(ref steps);
             links.Delete(i);
@@ -110,7 +111,8 @@ if (args.Length == 4)
         deleteAll(links);
         outcome = $"count={links.Count()} remaining=[{Dump(links)}] reuse={Reuse(links)}";
     }
-    catch (Exception exception)
+    // Expected failures only: anything else crashes the child, which the parent reports.
+    catch (Exception exception) when (exception is ArgumentException or KeyNotFoundException or InvalidOperationException)
     {
         outcome = $"{exception.GetType().Name}: {exception.Message}";
     }
@@ -120,10 +122,13 @@ if (args.Length == 4)
 
 var self = Environment.ProcessPath!;
 var dll = System.Reflection.Assembly.GetEntryAssembly()!.Location;
-for (var v = 0; v < variants.Length; v++)
-for (var d = 0; d < decorators.Length; d++)
-for (var s = 0; s < scenarios.Length; s++)
-foreach (var kind in new[] { "united", "split" })
+var cases =
+    from v in Enumerable.Range(0, variants.Length)
+    from d in Enumerable.Range(0, decorators.Length)
+    from s in Enumerable.Range(0, scenarios.Length)
+    from kind in new[] { "united", "split" }
+    select (v, d, s, kind);
+foreach (var (v, d, s, kind) in cases)
 {
     var info = new System.Diagnostics.ProcessStartInfo(self) { RedirectStandardOutput = true, RedirectStandardError = true };
     if (Path.GetFileNameWithoutExtension(self) == "dotnet")
