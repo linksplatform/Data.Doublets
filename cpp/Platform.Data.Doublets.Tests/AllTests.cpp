@@ -4,6 +4,7 @@
 #include "ExtensionTests.h"
 #include "EitherEndpointQueryTests.h"
 #include "MergeUsagesTests.h"
+#include "DeleteAllTests.h"
 #include "OwnershipTests.h"
 #include "LinksConstantsTests.h"
 #include "ResizableDirectMemoryLinksTests.h"
