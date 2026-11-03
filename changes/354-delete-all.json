@@ -1,0 +1,1 @@
+{"summary":"DeleteAll deletes every link, including links above Count() after deletions, and resets endpoints before each deletion so the store can be reused","releases":{"csharp":"patch","cpp":"patch"}}
