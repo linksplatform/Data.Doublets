@@ -782,13 +782,14 @@ namespace Platform::Data::Doublets
         auto $continue = storage.Constants.Continue;
         // Native stores call the handler unchecked, so pass one that only continues.
         auto handler = [$continue](const auto&, const auto&) { return $continue; };
+        // The scan stops at the last existing link, so it ends on the highest address.
         Address last{0};
         auto remaining = Count(storage);
-        for (Address address{1}; remaining != 0; ++address)
+        while (remaining != 0)
         {
-            if (Exists(storage, address))
+            ++last;
+            if (Exists(storage, last))
             {
-                last = address;
                 --remaining;
             }
         }

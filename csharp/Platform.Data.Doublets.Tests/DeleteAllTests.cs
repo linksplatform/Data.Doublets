@@ -100,10 +100,21 @@ public class DeleteAllTests
     {
         using var sources = new HeapResizableDirectMemory();
         using var targets = new HeapResizableDirectMemory();
-        using var store = split
-            ? (IDisposable)new SplitMemoryLinks<TLinkAddress>(sources, targets, 4096)
-            : new UnitedMemoryLinks<TLinkAddress>(sources, 4096);
-        var raw = (ILinks<TLinkAddress>)store;
+        if (split)
+        {
+            using var store = new SplitMemoryLinks<TLinkAddress>(sources, targets, 4096);
+            DeleteAllAndReuse(store, fill, decorate);
+        }
+        else
+        {
+            using var store = new UnitedMemoryLinks<TLinkAddress>(sources, 4096);
+            DeleteAllAndReuse(store, fill, decorate);
+        }
+    }
+
+    private static void DeleteAllAndReuse<TLinkAddress>(ILinks<TLinkAddress> raw, Action<ILinks<TLinkAddress>> fill, Func<ILinks<TLinkAddress>, ILinks<TLinkAddress>>? decorate)
+        where TLinkAddress : IUnsignedNumber<TLinkAddress>
+    {
         fill(raw);
         var links = decorate?.Invoke(raw) ?? raw;
         links.DeleteAll();

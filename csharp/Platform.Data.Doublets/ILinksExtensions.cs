@@ -180,13 +180,14 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteAll<TLinkAddress>(this ILinks<TLinkAddress> links) where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
+            // The scan stops at the last existing link, so it ends on the highest address.
             var last = TLinkAddress.Zero;
             var remaining = links.Count();
-            for (var address = TLinkAddress.One; remaining != TLinkAddress.Zero; ++address)
+            while (remaining != TLinkAddress.Zero)
             {
-                if (links.Exists(address))
+                ++last;
+                if (links.Exists(last))
                 {
-                    last = address;
                     --remaining;
                 }
             }

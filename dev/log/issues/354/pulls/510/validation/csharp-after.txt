@@ -7,6 +7,5 @@ VSTest version 17.11.1 (x64)
 
 Starting test execution, please wait...
 A total of 1 test files matched the specified pattern.
-Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
 
 Passed!  - Failed:     0, Passed:    14, Skipped:     0, Total:    14, Duration: 543 ms - Platform.Data.Doublets.Tests.dll (net8.0)

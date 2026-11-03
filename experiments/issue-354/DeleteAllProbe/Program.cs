@@ -14,9 +14,10 @@ var variants = new (string Name, Action<ILinks<uint>> DeleteAll)[]
 {
     ("main (original)", links =>
     {
+        // The original `for (var i = links.Count(); i > 0; i = --i)` loop, written as a while loop.
         var steps = 0;
-        // The original iterator was `i = --i`, which is the same as `--i`.
-        for (var i = links.Count(); i > 0; --i)
+        var i = links.Count();
+        while (i > 0)
         {
             Step(ref steps);
             links.Delete(i);
@@ -24,6 +25,7 @@ var variants = new (string Name, Action<ILinks<uint>> DeleteAll)[]
             {
                 i = links.Count();
             }
+            --i;
         }
     }),
     ("issue proposal", links =>
@@ -48,11 +50,12 @@ var variants = new (string Name, Action<ILinks<uint>> DeleteAll)[]
     ("descending+exists", links =>
     {
         var last = 0u;
-        for (var (i, remaining) = (1u, links.Count()); remaining > 0 && i < Budget; ++i)
+        var remaining = links.Count();
+        while (remaining > 0 && last < Budget)
         {
-            if (links.Exists(i))
+            ++last;
+            if (links.Exists(last))
             {
-                last = i;
                 --remaining;
             }
         }
