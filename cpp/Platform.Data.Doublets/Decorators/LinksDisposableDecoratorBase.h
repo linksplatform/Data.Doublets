@@ -1,27 +1,44 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
-    template <typename ...> class LinksDisposableDecoratorBase;
-    template <std::integral TLinkAddress> class LinksDisposableDecoratorBase<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>, ILinks<TLinkAddress>, System::IDisposable
+    template <typename...>
+    class LinksDisposableDecoratorBase;
+    template <std::integral TLinkAddress>
+    class LinksDisposableDecoratorBase<TLinkAddress>
+        : public DecoratorBase<TFacade, TDecorated>, ILinks<TLinkAddress>, System::IDisposable
     {
         class DisposableWithMultipleCallsAllowed : public Disposable
         {
-            public: DisposableWithMultipleCallsAllowed(std::function<Disposal> disposal) : base(disposal) { }
+          public:
+            DisposableWithMultipleCallsAllowed(std::function<Disposal> disposal) : base(disposal) {}
 
-            public: bool AllowMultipleDisposeCalls
+          public:
+            bool AllowMultipleDisposeCalls
             {
-                get => true;
+                get = > true;
             }
         }
 
-        public: DisposableWithMultipleCallsAllowed Disposable = 0;
+        public : DisposableWithMultipleCallsAllowed Disposable = 0;
 
-        public: LinksDisposableDecoratorBase(ILinks<TLinkAddress> &storage) : base(storage) { return Disposable = DisposableWithMultipleCallsAllowed(Dispose); }
+      public:
+        LinksDisposableDecoratorBase(ILinks<TLinkAddress>& storage) : base(storage)
+        {
+            return Disposable = DisposableWithMultipleCallsAllowed(Dispose);
+        }
 
-        ~LinksDisposableDecoratorBase() { Disposable.Destruct(); }
+        ~LinksDisposableDecoratorBase()
+        {
+            Disposable.Destruct();
+        }
 
-        public: void Dispose() { Disposable.Dispose(); }
+      public:
+        void Dispose()
+        {
+            Disposable.Dispose();
+        }
 
-        public: virtual void Dispose(bool manual, bool wasDisposed)
+      public:
+        virtual void Dispose(bool manual, bool wasDisposed)
         {
             if (!wasDisposed)
             {
@@ -29,4 +46,4 @@
             }
         }
     };
-}
+} // namespace Platform::Data::Doublets::Decorators

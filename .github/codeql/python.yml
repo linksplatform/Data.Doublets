@@ -1,0 +1,4 @@
+name: Maintained Python helpers and experiments
+paths-ignore:
+  # Immutable copies of obsolete upstream code are evidence, not executable helpers.
+  - dev/log/**

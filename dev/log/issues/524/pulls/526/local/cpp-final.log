@@ -1,0 +1,85 @@
+-- Using Conan toolchain: /tmp/issue-524-cpp-baseline/conan_toolchain.cmake
+-- Conan toolchain: Defining architecture flag: -m64
+-- Conan toolchain: C++ Standard 20 with extensions OFF
+-- Conan: Target declared 'Platform.Interfaces::Platform.Interfaces'
+-- Conan: Target declared 'Platform.Collections.Methods::Platform.Collections.Methods'
+-- Conan: Target declared 'Platform.Collections::Platform.Collections'
+-- Conan: Target declared 'Platform.Equality::Platform.Equality'
+-- Conan: Target declared 'Platform.Random::Platform.Random'
+-- Conan: Target declared 'Platform.Ranges::Platform.Ranges'
+-- Conan: Target declared 'Platform.Exceptions::Platform.Exceptions'
+-- Conan: Target declared 'Platform.Delegates::Platform.Delegates'
+-- Conan: Target declared 'Platform.Converters::Platform.Converters'
+-- Conan: Target declared 'Platform.Hashing::Platform.Hashing'
+-- Conan: Component target declared 'clog'
+-- Conan: Component target declared 'cpuinfo::cpuinfo'
+-- Conan: Component target declared 'Microsoft.GSL::GSL'
+-- Conan: Target declared 'Platform.Numbers::Platform.Numbers'
+-- Conan: Target declared 'Platform.Memory::Platform.Memory'
+-- Conan: Component target declared 'mio::mio-headers'
+-- Conan: Target declared 'mio::mio'
+-- Conan: Target declared 'Platform.Data::Platform.Data'
+-- Conan: Target declared 'Platform.Setters::Platform.Setters'
+-- Conan: Component target declared 'GTest::gtest'
+-- Conan: Component target declared 'GTest::gtest_main'
+-- Conan: Component target declared 'GTest::gmock'
+-- Conan: Component target declared 'GTest::gmock_main'
+-- Conan: Target declared 'gtest::gtest'
+-- Conan: Component target declared 'benchmark::benchmark'
+-- Conan: Component target declared 'benchmark::benchmark_main'
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/issue-524-cpp-baseline
+[ 25%] Building CXX object CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o
+[ 50%] Linking CXX executable bin/Platform.Data.Doublets.Tests
+[ 50%] Built target Platform.Data.Doublets.Tests
+[ 75%] Building CXX object CMakeFiles/Platform.Data.Doublets.Benchmarks.dir/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp.o
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp:4:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.cpp: In function ‘void Platform::Data::Doublets::Benchmarks::BM_CreateMillionPointsUnitedMemory(benchmark::State&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.cpp:45:43: error: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘int64_t’ {aka ‘long int’} [-Werror=sign-compare]
+   45 |                 for (std::size_t i = 0; i < state.range(0); ++i)
+      |                                         ~~^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.cpp: In function ‘void Platform::Data::Doublets::Benchmarks::BM_CreateMillionPointsSplitMemory(benchmark::State&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.cpp:74:43: error: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘int64_t’ {aka ‘long int’} [-Werror=sign-compare]
+   74 |                 for (std::size_t i = 0; i < state.range(0); ++i)
+      |                                         ~~^~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp:5:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp: In lambda function:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:4:53: error: unused parameter ‘source’ [-Werror=unused-parameter]
+    4 |     constexpr auto DefaultHandler = [](TLinkAddress source, TLinkAddress target) { return 1; };
+      |                                        ~~~~~~~~~~~~~^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:4:74: error: unused parameter ‘target’ [-Werror=unused-parameter]
+    4 |     constexpr auto DefaultHandler = [](TLinkAddress source, TLinkAddress target) { return 1; };
+      |                                                             ~~~~~~~~~~~~~^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp: In lambda function:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:30:73: error: unused parameter ‘source’ [-Werror=unused-parameter]
+   30 |                     TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress source, TLinkAddress target) { return 1; }));
+      |                                                            ~~~~~~~~~~~~~^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:30:94: error: unused parameter ‘target’ [-Werror=unused-parameter]
+   30 |                     TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress source, TLinkAddress target) { return 1; }));
+      |                                                                                 ~~~~~~~~~~~~~^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp: In lambda function:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:42:70: error: unused parameter ‘source’ [-Werror=unused-parameter]
+   42 |                                                      [](TLinkAddress source, TLinkAddress target) { return 1; }));
+      |                                                         ~~~~~~~~~~~~~^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:42:91: error: unused parameter ‘target’ [-Werror=unused-parameter]
+   42 |                                                      [](TLinkAddress source, TLinkAddress target) { return 1; }));
+      |                                                                              ~~~~~~~~~~~~~^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp: In lambda function:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:54:67: error: unused parameter ‘source’ [-Werror=unused-parameter]
+   54 |                                                   [](TLinkAddress source, TLinkAddress target) { return 1; });
+      |                                                      ~~~~~~~~~~~~~^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:54:88: error: unused parameter ‘target’ [-Werror=unused-parameter]
+   54 |                                                   [](TLinkAddress source, TLinkAddress target) { return 1; });
+      |                                                                           ~~~~~~~~~~~~~^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp: In lambda function:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:66:45: error: unused parameter ‘source’ [-Werror=unused-parameter]
+   66 |                             [](TLinkAddress source, TLinkAddress target) { return 1; });
+      |                                ~~~~~~~~~~~~~^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:66:66: error: unused parameter ‘target’ [-Werror=unused-parameter]
+   66 |                             [](TLinkAddress source, TLinkAddress target) { return 1; });
+      |                                                     ~~~~~~~~~~~~~^~~~~~
+cc1plus: all warnings being treated as errors
+gmake[2]: *** [CMakeFiles/Platform.Data.Doublets.Benchmarks.dir/build.make:76: CMakeFiles/Platform.Data.Doublets.Benchmarks.dir/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:111: CMakeFiles/Platform.Data.Doublets.Benchmarks.dir/all] Error 2
+gmake: *** [Makefile:101: all] Error 2

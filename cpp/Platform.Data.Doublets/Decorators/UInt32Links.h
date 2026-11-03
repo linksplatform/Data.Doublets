@@ -6,11 +6,17 @@ namespace Platform::Data::Doublets::Decorators
 {
     class UInt32Links : public LinksDisposableDecoratorBase<TLinkAddress>
     {
-        public: UInt32Links(ILinks<TLinkAddress> &storage) : base(storage) { }
+      public:
+        UInt32Links(ILinks<TLinkAddress>& storage) : base(storage) {}
 
-        public: TLinkAddress Create(const  LinkType& restriction) { return this->decorated().TDecorated::CreatePoint(); }
+      public:
+        TLinkAddress Create(const LinkType& restriction)
+        {
+            return this->decorated().TDecorated::CreatePoint();
+        }
 
-        public: TLinkAddress Update(const  LinkType& restriction, const LinkType& substitution)
+      public:
+        TLinkAddress Update(const LinkType& restriction, const LinkType& substitution)
         {
             auto constants = _constants;
             auto indexPartConstant = constants.IndexPart;
@@ -32,7 +38,7 @@ namespace Platform::Data::Doublets::Decorators
                 if (before[sourcePartConstant] != newSource || before[targetPartConstant] != newTarget)
                 {
                     storage.Update(updatedLink, newSource == itselfConstant ? updatedLink : newSource,
-                                              newTarget == itselfConstant ? updatedLink : newTarget);
+                                   newTarget == itselfConstant ? updatedLink : newTarget);
                 }
                 return updatedLink;
             }
@@ -42,7 +48,8 @@ namespace Platform::Data::Doublets::Decorators
             }
         }
 
-        public: void Delete(const  LinkType& restriction)
+      public:
+        void Delete(const LinkType& restriction)
         {
             auto linkIndex = restriction[_constants.IndexPart];
             storage.EnforceResetValues(linkIndex);
@@ -50,4 +57,4 @@ namespace Platform::Data::Doublets::Decorators
             storage.Delete(linkIndex);
         }
     };
-}
+} // namespace Platform::Data::Doublets::Decorators

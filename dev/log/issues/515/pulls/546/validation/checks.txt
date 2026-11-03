@@ -1,0 +1,27 @@
+$ ruff check scripts
+All checks passed!
+exit=0
+$ ruff format --check scripts
+17 files already formatted
+exit=0
+$ mypy scripts
+Success: no issues found in 17 source files
+exit=0
+$ python3 scripts/check_repository.py
+Repository configuration, source sizes, scripts and action pins passed
+exit=0
+$ python3 -m unittest experiments/test_issue_515.py -v
+test_cpp_constructions_and_comma_operator (experiments.test_issue_515.TwoValueLinkGuardTests.test_cpp_constructions_and_comma_operator) ... ok
+test_csharp_constructions (experiments.test_issue_515.TwoValueLinkGuardTests.test_csharp_constructions) ... ok
+test_original_merge_usages_sites_are_rejected (experiments.test_issue_515.TwoValueLinkGuardTests.test_original_merge_usages_sites_are_rejected) ... ok
+test_tests_and_other_sources_may_build_two_value_queries (experiments.test_issue_515.TwoValueLinkGuardTests.test_tests_and_other_sources_may_build_two_value_queries) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.031s
+
+OK
+exit=0
+$ clang-format --dry-run --Werror <125 native sources from scripts/check-cpp.py plus experiments/issue-515; clang-format 18.1.8>
+exit=0
+$ dotnet format whitespace csharp/Platform.Data.Doublets.Tests/Platform.Data.Doublets.Tests.csproj --include csharp/Platform.Data.Doublets.Tests/MergeUsagesTests.cs --verify-no-changes
+exit=0

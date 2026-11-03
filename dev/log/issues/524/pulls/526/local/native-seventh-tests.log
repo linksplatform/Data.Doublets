@@ -1,0 +1,98 @@
+Internal ctest changing into directory: /tmp/issue-524-cpp-clang
+Test project /tmp/issue-524-cpp-clang
+      Start  1: ExtensionTests.EnsureCreatedPreservesOnlyRequestedNewAddresses
+ 1/46 Test  #1: ExtensionTests.EnsureCreatedPreservesOnlyRequestedNewAddresses ..................................................   Passed    0.33 sec
+      Start  2: ExtensionTests.EnsurePointsCreatedMakesSelfReferences
+ 2/46 Test  #2: ExtensionTests.EnsurePointsCreatedMakesSelfReferences ...........................................................   Passed    0.34 sec
+      Start  3: ExtensionTests.DeleteByQueryRemovesOnlyMatches
+ 3/46 Test  #3: ExtensionTests.DeleteByQueryRemovesOnlyMatches ..................................................................   Passed    0.32 sec
+      Start  4: ExtensionTests.AllVariadicArgumentsRestrictTheResult
+ 4/46 Test  #4: ExtensionTests.AllVariadicArgumentsRestrictTheResult ............................................................   Passed    0.30 sec
+      Start  5: ExtensionTests.UnitedRejectsExhaustedAddressesButReusesFreeLinks
+ 5/46 Test  #5: ExtensionTests.UnitedRejectsExhaustedAddressesButReusesFreeLinks ................................................   Passed    0.06 sec
+      Start  6: ExtensionTests.SplitRejectsExhaustedAddressesButReusesFreeLinks
+ 6/46 Test  #6: ExtensionTests.SplitRejectsExhaustedAddressesButReusesFreeLinks .................................................   Passed    0.06 sec
+      Start  7: OwnershipTests.UnitedHelpersAreReleasedOnGrowthAndDestruction
+ 7/46 Test  #7: OwnershipTests.UnitedHelpersAreReleasedOnGrowthAndDestruction ...................................................   Passed    0.01 sec
+      Start  8: OwnershipTests.SplitHelpersAreReleasedOnGrowthAndDestruction
+ 8/46 Test  #8: OwnershipTests.SplitHelpersAreReleasedOnGrowthAndDestruction ....................................................   Passed    0.01 sec
+      Start  9: OwnershipTests.SplitGrowthRespectsBothBufferCapacities
+ 9/46 Test  #9: OwnershipTests.SplitGrowthRespectsBothBufferCapacities ..........................................................   Passed    0.01 sec
+      Start 10: LinksConstantsTests.NullLinkIsAConstantExpression
+10/46 Test #10: LinksConstantsTests.NullLinkIsAConstantExpression ...............................................................   Passed    0.01 sec
+      Start 11: LinksConstantsTests.ExternalReferencesTest
+11/46 Test #11: LinksConstantsTests.ExternalReferencesTest ......................................................................   Passed    0.01 sec
+      Start 12: ResizableDirectMemoryLinksTests.CountRequiresBothSpecifiedPartsToMatch
+12/46 Test #12: ResizableDirectMemoryLinksTests.CountRequiresBothSpecifiedPartsToMatch ..........................................   Passed    0.32 sec
+      Start 13: ResizableDirectMemoryLinksTests.BasicFileMappedMemoryTest
+13/46 Test #13: ResizableDirectMemoryLinksTests.BasicFileMappedMemoryTest .......................................................   Passed    0.02 sec
+      Start 14: ResizableDirectMemoryLinksTests.BasicHeapMemoryTest
+14/46 Test #14: ResizableDirectMemoryLinksTests.BasicHeapMemoryTest .............................................................   Passed    0.69 sec
+      Start 15: ResizableDirectMemoryLinksTests.NonexistentReferencesHeapMemoryTest
+15/46 Test #15: ResizableDirectMemoryLinksTests.NonexistentReferencesHeapMemoryTest .............................................   Passed    0.74 sec
+      Start 16: StaticGenericLinksTests.CrudTestWithSizeBalancedTrees
+16/46 Test #16: StaticGenericLinksTests.CrudTestWithSizeBalancedTrees ...........................................................   Passed    0.64 sec
+      Start 17: StaticGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees
+17/46 Test #17: StaticGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees .................................................   Passed    0.65 sec
+      Start 18: StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees
+18/46 Test #18: StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees ............................   Passed    1.30 sec
+      Start 19: StaticGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees
+19/46 Test #19: StaticGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees ..............................................   Passed    0.69 sec
+      Start 20: StaticGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees
+20/46 Test #20: StaticGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees ....................................   Passed    0.60 sec
+      Start 21: StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees
+21/46 Test #21: StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees ...............   Passed    1.30 sec
+      Start 22: StaticGenericLinksTests.CrudTestWithAvlBalancedTrees
+22/46 Test #22: StaticGenericLinksTests.CrudTestWithAvlBalancedTrees ............................................................   Passed    0.64 sec
+      Start 23: StaticGenericLinksTests.RawNumbersCrudTestWithAvlBalancedTrees
+23/46 Test #23: StaticGenericLinksTests.RawNumbersCrudTestWithAvlBalancedTrees ..................................................   Passed    0.64 sec
+      Start 24: StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees
+24/46 Test #24: StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees .............................   Passed    1.32 sec
+      Start 25: StaticSplitMemoryGenericLinksTests.CrudTestWithSizeBalancedTrees
+25/46 Test #25: StaticSplitMemoryGenericLinksTests.CrudTestWithSizeBalancedTrees ................................................   Passed    0.83 sec
+      Start 26: StaticSplitMemoryGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees
+26/46 Test #26: StaticSplitMemoryGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees ......................................   Passed    0.81 sec
+      Start 27: StaticSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees
+27/46 Test #27: StaticSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees .................   Passed    1.50 sec
+      Start 28: StaticSplitMemoryGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees
+28/46 Test #28: StaticSplitMemoryGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees ...................................   Passed    0.82 sec
+      Start 29: StaticSplitMemoryGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees
+29/46 Test #29: StaticSplitMemoryGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees .........................   Passed    0.79 sec
+      Start 30: StaticSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees
+30/46 Test #30: StaticSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees ....   Passed    1.47 sec
+      Start 31: TemporaryDirectoryTests.OwnsDistinctDirectoryAndCleansItUp
+31/46 Test #31: TemporaryDirectoryTests.OwnsDistinctDirectoryAndCleansItUp ......................................................   Passed    0.02 sec
+      Start 32: DynamicGenericLinksTests.CrudTestWithSizeBalancedTrees
+32/46 Test #32: DynamicGenericLinksTests.CrudTestWithSizeBalancedTrees ..........................................................   Passed    0.69 sec
+      Start 33: DynamicGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees
+33/46 Test #33: DynamicGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees ................................................   Passed    0.62 sec
+      Start 34: DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees
+34/46 Test #34: DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees ...........................   Passed    1.27 sec
+      Start 35: DynamicGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees
+35/46 Test #35: DynamicGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees .............................................   Passed    0.65 sec
+      Start 36: DynamicGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees
+36/46 Test #36: DynamicGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees ...................................   Passed    0.59 sec
+      Start 37: DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees
+37/46 Test #37: DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees ..............   Passed    1.49 sec
+      Start 38: DynamicGenericLinksTests.CrudTestWithAvlTrees
+38/46 Test #38: DynamicGenericLinksTests.CrudTestWithAvlTrees ...................................................................   Passed    0.62 sec
+      Start 39: DynamicGenericLinksTests.RawNumbersCrudTestWithAvlTrees
+39/46 Test #39: DynamicGenericLinksTests.RawNumbersCrudTestWithAvlTrees .........................................................   Passed    0.71 sec
+      Start 40: DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees
+40/46 Test #40: DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees ............................   Passed    1.26 sec
+      Start 41: DynamicSplitMemoryGenericLinksTests.CrudTestWithSizeBalancedTrees
+41/46 Test #41: DynamicSplitMemoryGenericLinksTests.CrudTestWithSizeBalancedTrees ...............................................   Passed    0.78 sec
+      Start 42: DynamicSplitMemoryGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees
+42/46 Test #42: DynamicSplitMemoryGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees .....................................   Passed    0.76 sec
+      Start 43: DynamicSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees
+43/46 Test #43: DynamicSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees ................   Passed    1.32 sec
+      Start 44: DynamicSplitMemoryGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees
+44/46 Test #44: DynamicSplitMemoryGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees ..................................   Passed    0.79 sec
+      Start 45: DynamicSplitMemoryGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees
+45/46 Test #45: DynamicSplitMemoryGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees ........................   Passed    0.77 sec
+      Start 46: DynamicSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees
+46/46 Test #46: DynamicSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees ...   Passed    1.37 sec
+
+100% tests passed, 0 tests failed out of 46
+
+Total Test time (real) =  30.99 sec

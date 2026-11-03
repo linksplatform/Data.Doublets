@@ -1,0 +1,10 @@
+   Compiling issue-519-rust-audit v0.0.0 (/tmp/gh-issue-solver-1793314733832/experiments/issue-519)
+    Finished `dev` profile [unoptimized] target(s) in 1.24s
+     Running `experiments/issue-519/target/debug/issue-519-rust-audit --logging-break`
+logging create_link_with: Continue; callback calls: 2; expected Break
+
+thread 'main' (8344) panicked at src/main.rs:63:9:
+assertion `left == right` failed
+  left: Continue
+ right: Break
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

@@ -1,0 +1,6 @@
+# Local development examples are not public documentation endpoints.
+^https?://localhost([:/]|$)
+^https?://127\.0\.0\.1([:/]|$)
+# Deployment routes are checked against the exact generated artifact by
+# scripts/check_docs.py. A PR must not depend on its own future deployment.
+^https://linksplatform\.github\.io/Data\.Doublets/(csharp|cpp)(/|$)

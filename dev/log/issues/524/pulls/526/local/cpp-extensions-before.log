@@ -1,0 +1,35 @@
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:62,
+                 from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:2:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h: In instantiation of ‘void Platform::Data::Doublets::EnsureCreated(TStorage&, const typename TStorage::LinkType&) [with TStorage = Memory::United::Generic::UnitedMemoryLinks<LinksOptions<>, Platform::Memory::HeapResizableDirectMemory>; typename TStorage::LinkType = std::vector<long unsigned int>]’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ExtensionTests.cpp:10:22:   required from here
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:403:17: error: ‘struct Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory>’ has no member named ‘EnsureCreated’
+  403 |         storage.EnsureCreated(storage.Create, addresses);
+      |         ~~~~~~~~^~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h: In instantiation of ‘void Platform::Data::Doublets::EnsurePointsCreated(TStorage&, const typename TStorage::LinkType&) [with TStorage = Memory::United::Generic::UnitedMemoryLinks<LinksOptions<>, Platform::Memory::HeapResizableDirectMemory>; typename TStorage::LinkType = std::vector<long unsigned int>]’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ExtensionTests.cpp:22:28:   required from here
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:409:17: error: ‘struct Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory>’ has no member named ‘EnsureCreated’
+  409 |         storage.EnsureCreated(storage.CreatePoint, addresses);
+      |         ~~~~~~~~^~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:409:39: error: ‘struct Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory>’ has no member named ‘CreatePoint’
+  409 |         storage.EnsureCreated(storage.CreatePoint, addresses);
+      |                               ~~~~~~~~^~~~~~~~~~~
+In file included from /home/box/.conan2/p/b/platf0f1d0f11c8208/p/include/Polymorph.h:3,
+                 from /home/box/.conan2/p/b/platfdd46a3ad5b8db/p/include/Platform.Collections.Methods.h:6,
+                 from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:13:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h: In instantiation of ‘void Platform::Data::Doublets::DeleteByQuery(TStorage&, typename TStorage::LinkType) [with TStorage = Memory::United::Generic::UnitedMemoryLinks<LinksOptions<>, Platform::Memory::HeapResizableDirectMemory>; typename TStorage::LinkType = std::vector<long unsigned int>]’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ExtensionTests.cpp:36:22:   required from here
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:967:60: error: unused parameter ‘vec’ [-Werror=unused-parameter]
+  967 |                            [&](typename TStorage::LinkType vec) ->
+      |                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:967:60: error: unused parameter ‘vec’ [-Werror=unused-parameter]
+  967 |                            [&](typename TStorage::LinkType vec) ->
+      |                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+cc1plus: all warnings being treated as errors
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/experiments/check_native_syntax.py", line 23, in <module>
+    subprocess.run(filtered, cwd=entry['directory'], check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.pyenv/versions/3.15.0/lib/python3.15/subprocess.py", line 692, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['g++', '-fsyntax-only', '-I/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets', '-isystem', '/home/box/.conan2/p/b/gtest0d5adadc5ba36/p/include', '-isystem', '/home/box/.conan2/p/b/platf0f1d0f11c8208/p/include', '-isystem', '/home/box/.conan2/p/b/platfdd46a3ad5b8db/p/include', '-isystem', '/home/box/.conan2/p/b/platfdc64493ee67e9/p/include', '-isystem', '/home/box/.conan2/p/b/platf3e085fac6073f/p/include', '-isystem', '/home/box/.conan2/p/b/platf345a4af257268/p/include', '-isystem', '/home/box/.conan2/p/b/platf3e1f6bedc8515/p/include', '-isystem', '/home/box/.conan2/p/b/platfbb029f56410fa/p/include', '-isystem', '/home/box/.conan2/p/b/platf090e1c6511c8a/p/include', '-isystem', '/home/box/.conan2/p/b/platf292b33c1d0144/p/include', '-isystem', '/home/box/.conan2/p/b/platf4473a94e01144/p/include', '-isystem', '/home/box/.conan2/p/b/cpuinf3a2c7bd9bf2d/p/include', '-isystem', '/home/box/.conan2/p/ms-gs000db09c5aa93/p/include', '-isystem', '/home/box/.conan2/p/b/platf0c661369f1ed0/p/include', '-isystem', '/home/box/.conan2/p/b/platffe8d9813de80c/p/include', '-isystem', '/home/box/.conan2/p/mio8a34575d137c8/p/include', '-isystem', '/home/box/.conan2/p/b/platff90410c64197e/p/include', '-isystem', '/home/box/.conan2/p/b/platf8a4e2763ea15b/p/include', '-O1', '-g0', '-DNDEBUG', '-march=x86-64-v2', '-std=c++20', '-UNDEBUG', '-Wall', '-Wextra', '-Werror', '/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp']' returned non-zero exit status 1.

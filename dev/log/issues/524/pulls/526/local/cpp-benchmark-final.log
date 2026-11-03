@@ -1,0 +1,14 @@
+2026-10-29T05:19:52+00:00
+Running /tmp/issue-524-cpp-baseline/bin/Platform.Data.Doublets.Benchmarks
+Run on (6 X 2794.75 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x6)
+  L1 Instruction 64 KiB (x6)
+  L2 Unified 512 KiB (x6)
+  L3 Unified 8192 KiB (x1)
+Load Average: 1.88, 2.01, 2.00
+----------------------------------------------------------------------------------------
+Benchmark                                              Time             CPU   Iterations
+----------------------------------------------------------------------------------------
+BM_JustCallHandlerWithoutOptimization/1000000    1342174 ns      1342672 ns           10
+BM_JustCallHandler/1000000                        610775 ns       611011 ns           18

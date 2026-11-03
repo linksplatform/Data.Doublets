@@ -35,7 +35,7 @@ namespace Platform.Data.Doublets
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="LinksOperatorBase"/> instance.
+        /// Initializes a new <see cref="LinksOperatorBase{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>

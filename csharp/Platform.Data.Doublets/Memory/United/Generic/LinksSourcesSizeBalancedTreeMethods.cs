@@ -16,7 +16,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     {
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="LinksSourcesSizeBalancedTreeMethods"/> instance.
+        /// Initializes a new <see cref="LinksSourcesSizeBalancedTreeMethods{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>

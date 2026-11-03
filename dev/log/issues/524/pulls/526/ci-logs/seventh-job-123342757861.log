@@ -1,0 +1,408 @@
+changes	Set up job	﻿2026-10-29T08:31:25.2807711Z Current runner version: '2.338.0'
+changes	Set up job	2026-10-29T08:31:25.2831180Z ##[group]Runner Image Provisioner
+changes	Set up job	2026-10-29T08:31:25.2832114Z Hosted Compute Agent
+changes	Set up job	2026-10-29T08:31:25.2832625Z Version: 20261021.618
+changes	Set up job	2026-10-29T08:31:25.2833156Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+changes	Set up job	2026-10-29T08:31:25.2833792Z Build Date: 2026-10-21T00:45:21Z
+changes	Set up job	2026-10-29T08:31:25.2834368Z Worker ID: {168f240d-c1bd-4810-bff1-0e2ffd6e43f9}
+changes	Set up job	2026-10-29T08:31:25.2834975Z Region: centralus
+changes	Set up job	2026-10-29T08:31:25.2835494Z Cloud: Azure
+changes	Set up job	2026-10-29T08:31:25.2835995Z ##[endgroup]
+changes	Set up job	2026-10-29T08:31:25.2837157Z ##[group]Operating System
+changes	Set up job	2026-10-29T08:31:25.2837681Z Ubuntu
+changes	Set up job	2026-10-29T08:31:25.2838280Z 24.04.5
+changes	Set up job	2026-10-29T08:31:25.2838773Z LTS
+changes	Set up job	2026-10-29T08:31:25.2839216Z ##[endgroup]
+changes	Set up job	2026-10-29T08:31:25.2839707Z ##[group]Runner Image
+changes	Set up job	2026-10-29T08:31:25.2840235Z Image: ubuntu-24.04
+changes	Set up job	2026-10-29T08:31:25.2840745Z Version: 20261025.353.1
+changes	Set up job	2026-10-29T08:31:25.2841671Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+changes	Set up job	2026-10-29T08:31:25.2843156Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+changes	Set up job	2026-10-29T08:31:25.2843965Z ##[endgroup]
+changes	Set up job	2026-10-29T08:31:25.2844967Z ##[group]GITHUB_TOKEN Permissions
+changes	Set up job	2026-10-29T08:31:25.2846779Z Contents: read
+changes	Set up job	2026-10-29T08:31:25.2847322Z Metadata: read
+changes	Set up job	2026-10-29T08:31:25.2848096Z ##[endgroup]
+changes	Set up job	2026-10-29T08:31:25.2849993Z Secret source: Actions
+changes	Set up job	2026-10-29T08:31:25.2850868Z Cache mode: write
+changes	Set up job	2026-10-29T08:31:25.2851732Z Prepare workflow directory
+changes	Set up job	2026-10-29T08:31:25.3128387Z Prepare all required actions
+changes	Set up job	2026-10-29T08:31:25.3168811Z Getting action download info
+changes	Set up job	2026-10-29T08:31:25.5924163Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+changes	Set up job	2026-10-29T08:31:25.8070690Z Complete job name: changes
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-29T08:31:25.8765888Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8766722Z with:
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8767184Z   fetch-depth: 0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8767612Z   persist-credentials: false
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8768318Z   repository: linksplatform/Data.Doublets
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8771418Z   token: ***
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8771771Z   ssh-strict: true
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8772131Z   ssh-user: git
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8772469Z   clean: true
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8772835Z   sparse-checkout-cone-mode: true
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8773262Z   fetch-tags: false
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8773618Z   show-progress: true
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8773977Z   lfs: false
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8774309Z   submodules: false
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8774664Z   set-safe-directory: true
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8775065Z   allow-unsafe-pr-checkout: false
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:25.8775706Z ##[endgroup]
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1304472Z Syncing repository: linksplatform/Data.Doublets
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1305969Z ##[group]Getting Git version info
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1306656Z Working directory is '/home/runner/work/Data.Doublets/Data.Doublets'
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1307492Z [command]/usr/bin/git version
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1393966Z git version 2.56.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1412425Z ##[endgroup]
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1423772Z Temporarily overriding HOME='/home/runner/work/_temp/a38272bd-1571-40ee-a4fc-28ce8560dd9d' before making global git config changes
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1425739Z Adding repository directory to the temporary git global config as a safe directory
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1429886Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1474513Z Deleting the contents of '/home/runner/work/Data.Doublets/Data.Doublets'
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1477791Z ##[group]Determining repository object format
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1479343Z ##[endgroup]
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1480262Z ##[group]Initializing the repository
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1483778Z [command]/usr/bin/git init /home/runner/work/Data.Doublets/Data.Doublets
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1574202Z hint: Using 'master' as the name for the initial branch. This default branch name
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1575721Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1576611Z hint: to use in all of your new repositories, which will suppress this warning,
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1577337Z hint: call:
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1577775Z hint:
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1578819Z hint: 	git config --global init.defaultBranch <name>
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1579674Z hint:
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1580440Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1581638Z hint: 'development'. The just-created branch can be renamed via this command:
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1582599Z hint:
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1583184Z hint: 	git branch -m <name>
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1583845Z hint:
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1584676Z hint: Disable this message with "git config set advice.defaultBranchName false"
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1586002Z Initialized empty Git repository in /home/runner/work/Data.Doublets/Data.Doublets/.git/
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1591956Z [command]/usr/bin/git remote add origin https://github.com/linksplatform/Data.Doublets
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1637003Z ##[endgroup]
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1638268Z ##[group]Disabling automatic garbage collection
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1640803Z [command]/usr/bin/git config --local gc.auto 0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1675453Z ##[endgroup]
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1676798Z ##[group]Setting up auth
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1677496Z Removing SSH command configuration
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1679328Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.1714232Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2007640Z Removing HTTP extra header
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2014010Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2057754Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2272801Z Removing includeIf entries pointing to credentials config files
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2277358Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2317266Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2534832Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-5143f511-38ac-44c7-8c34-ce58eb5a3b9f.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2586376Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path /home/runner/work/_temp/git-credentials-5143f511-38ac-44c7-8c34-ce58eb5a3b9f.config
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2630502Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-5143f511-38ac-44c7-8c34-ce58eb5a3b9f.config
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2670963Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-5143f511-38ac-44c7-8c34-ce58eb5a3b9f.config
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2710393Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-5143f511-38ac-44c7-8c34-ce58eb5a3b9f.config
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2747440Z ##[endgroup]
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2748599Z ##[group]Fetching the repository
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:26.2755377Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c:refs/remotes/pull/526/merge
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7503316Z From https://github.com/linksplatform/Data.Doublets
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7505592Z  * [new branch]          (storage)_rust_write.sequences           -> origin/(storage)_rust_write.sequences
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7507213Z  * [new branch]          1000203-v2                               -> origin/1000203-v2
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7508640Z  * [new branch]          100203                                   -> origin/100203
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7510143Z  * [new branch]          Sequence.Experiments_fix                 -> origin/Sequence.Experiments_fix
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7512781Z  * [new branch]          async-main                               -> origin/async-main
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7513917Z  * [new branch]          beta.6                                   -> origin/beta.6
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7515031Z  * [new branch]          binaries                                 -> origin/binaries
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7516228Z  * [new branch]          c/feature/add_ffi_links                  -> origin/c/feature/add_ffi_links
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7517521Z  * [new branch]          constexpr-issue-348                      -> origin/constexpr-issue-348
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7519206Z  * [new branch]          cpp/feature/add_clinks_concept           -> origin/cpp/feature/add_clinks_concept
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7520971Z  * [new branch]          cpp/feature/add_handlers_to_united_memory_links -> origin/cpp/feature/add_handlers_to_united_memory_links
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7524348Z  * [new branch]          cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links -> origin/cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7527556Z  * [new branch]          cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links -> origin/cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7530826Z  * [new branch]          cpp/feature/add_wrapper_around_rust_ffi  -> origin/cpp/feature/add_wrapper_around_rust_ffi
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7533490Z  * [new branch]          cpp/feature/translate_all_trees          -> origin/cpp/feature/translate_all_trees
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7535872Z  * [new branch]          cpp/feature/translate_ilinks_extensions  -> origin/cpp/feature/translate_ilinks_extensions
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7538424Z  * [new branch]          cpp/feature/translate_split_memory_links -> origin/cpp/feature/translate_split_memory_links
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7540564Z  * [new branch]          cpp/feature/translate_tests              -> origin/cpp/feature/translate_tests
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7542654Z  * [new branch]          cpp/feature/translate_united_memory_links -> origin/cpp/feature/translate_united_memory_links
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7544974Z  * [new branch]          cpp/feature/use_united_memory_links_in_tests -> origin/cpp/feature/use_united_memory_links_in_tests
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7546963Z  * [new branch]          cpp/release/0.0.1                        -> origin/cpp/release/0.0.1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7548692Z  * [new branch]          cppwrite                                 -> origin/cppwrite
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7550710Z  * [new branch]          cs/feature/add_no_exceptions_decorator   -> origin/cs/feature/add_no_exceptions_decorator
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7553026Z  * [new branch]          csharp/feature/add_manual_garbage_collection -> origin/csharp/feature/add_manual_garbage_collection
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7555178Z  * [new branch]          csharp/feature/use_generic_math          -> origin/csharp/feature/use_generic_math
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7556933Z  * [new branch]          daulet_trees                             -> origin/daulet_trees
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7558790Z  * [new branch]          dependabot/add-v2-config-file            -> origin/dependabot/add-v2-config-file
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7561561Z  * [new branch]          dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41 -> origin/dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7564409Z  * [new branch]          feature/add_logging_decorator            -> origin/feature/add_logging_decorator
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7567244Z  * [new branch]          feature/add_update_or_create_or_get_overload_with_index -> origin/feature/add_update_or_create_or_get_overload_with_index
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7569831Z  * [new branch]          feature/ilinks/delete/change_return_value -> origin/feature/ilinks/delete/change_return_value
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7572426Z  * [new branch]          feature_move_testextensions_to_tests.ilinksextensions-v2 -> origin/feature_move_testextensions_to_tests.ilinksextensions-v2
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7575283Z  * [new branch]          feature_move_testextensions_to_tests/ilinksextensions -> origin/feature_move_testextensions_to_tests/ilinksextensions
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7577545Z  * [new branch]          fix_deleteall                            -> origin/fix_deleteall
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7579208Z  * [new branch]          gh-pages                                 -> origin/gh-pages
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7580587Z  * [new branch]          ilinks_bug                               -> origin/ilinks_bug
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7582073Z  * [new branch]          issue-10-dc9e2253                        -> origin/issue-10-dc9e2253
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7583644Z  * [new branch]          issue-100-2f9bb17f                       -> origin/issue-100-2f9bb17f
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7585192Z  * [new branch]          issue-122-372622af                       -> origin/issue-122-372622af
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7586746Z  * [new branch]          issue-122-e05a5713                       -> origin/issue-122-e05a5713
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7588762Z  * [new branch]          issue-123-90f092d3                       -> origin/issue-123-90f092d3
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7590559Z  * [new branch]          issue-125-7f224c52                       -> origin/issue-125-7f224c52
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7592057Z  * [new branch]          issue-131-173bd186                       -> origin/issue-131-173bd186
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7593564Z  * [new branch]          issue-132-b9a43709                       -> origin/issue-132-b9a43709
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7595285Z  * [new branch]          issue-14-65c21b2c                        -> origin/issue-14-65c21b2c
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7596803Z  * [new branch]          issue-145-e1924d96                       -> origin/issue-145-e1924d96
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7598485Z  * [new branch]          issue-150-8aba0d16                       -> origin/issue-150-8aba0d16
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7600229Z  * [new branch]          issue-152-380a75dd                       -> origin/issue-152-380a75dd
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7601729Z  * [new branch]          issue-153-a5aacf2d                       -> origin/issue-153-a5aacf2d
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7603234Z  * [new branch]          issue-155-6f3abe86                       -> origin/issue-155-6f3abe86
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7604750Z  * [new branch]          issue-157-f18f507d                       -> origin/issue-157-f18f507d
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7606286Z  * [new branch]          issue-158-d4b2d751                       -> origin/issue-158-d4b2d751
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7607985Z  * [new branch]          issue-159-4c473b2f                       -> origin/issue-159-4c473b2f
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7609566Z  * [new branch]          issue-166-5f7770d0                       -> origin/issue-166-5f7770d0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7611068Z  * [new branch]          issue-167-6697c32c                       -> origin/issue-167-6697c32c
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7612571Z  * [new branch]          issue-172-3a6bb3a5                       -> origin/issue-172-3a6bb3a5
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7614023Z  * [new branch]          issue-173-52414a06                       -> origin/issue-173-52414a06
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7615520Z  * [new branch]          issue-174-38feee43                       -> origin/issue-174-38feee43
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7617049Z  * [new branch]          issue-179-c20097fb                       -> origin/issue-179-c20097fb
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7618755Z  * [new branch]          issue-180-4c858df1                       -> origin/issue-180-4c858df1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7620252Z  * [new branch]          issue-182-68621777                       -> origin/issue-182-68621777
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7621976Z  * [new branch]          issue-183-65fb60df                       -> origin/issue-183-65fb60df
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7623451Z  * [new branch]          issue-184-50380e1c                       -> origin/issue-184-50380e1c
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7625014Z  * [new branch]          issue-185-8b06ec42                       -> origin/issue-185-8b06ec42
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7626710Z  * [new branch]          issue-191-d711698e                       -> origin/issue-191-d711698e
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7628661Z  * [new branch]          issue-192-f5bd0637                       -> origin/issue-192-f5bd0637
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7630392Z  * [new branch]          issue-195-87e1a7d9                       -> origin/issue-195-87e1a7d9
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7634472Z  * [new branch]          issue-197-9699ae6f                       -> origin/issue-197-9699ae6f
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7636108Z  * [new branch]          issue-201-23d35853                       -> origin/issue-201-23d35853
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7637680Z  * [new branch]          issue-202-f9973a4e                       -> origin/issue-202-f9973a4e
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7639425Z  * [new branch]          issue-204-ee98b556                       -> origin/issue-204-ee98b556
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7641023Z  * [new branch]          issue-205-6c1a8373                       -> origin/issue-205-6c1a8373
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7642818Z  * [new branch]          issue-206-cfb6909c                       -> origin/issue-206-cfb6909c
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7644391Z  * [new branch]          issue-207-68d68fb5                       -> origin/issue-207-68d68fb5
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7645950Z  * [new branch]          issue-208-33ea9e2e                       -> origin/issue-208-33ea9e2e
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7647509Z  * [new branch]          issue-209-37cc5160                       -> origin/issue-209-37cc5160
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7649265Z  * [new branch]          issue-210-b20f751b                       -> origin/issue-210-b20f751b
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7651170Z  * [new branch]          issue-212-fb245296                       -> origin/issue-212-fb245296
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7652910Z  * [new branch]          issue-213-00756f69                       -> origin/issue-213-00756f69
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7654705Z  * [new branch]          issue-216-5c9f8771                       -> origin/issue-216-5c9f8771
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7656435Z  * [new branch]          issue-217-c738a90c                       -> origin/issue-217-c738a90c
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7658286Z  * [new branch]          issue-218-b64a64c5                       -> origin/issue-218-b64a64c5
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7659933Z  * [new branch]          issue-230-559672a0                       -> origin/issue-230-559672a0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7661664Z  * [new branch]          issue-237-3d81523b                       -> origin/issue-237-3d81523b
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7663398Z  * [new branch]          issue-238-4d05c862                       -> origin/issue-238-4d05c862
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7665162Z  * [new branch]          issue-239-fbcda755                       -> origin/issue-239-fbcda755
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7666971Z  * [new branch]          issue-240-a4e43a46                       -> origin/issue-240-a4e43a46
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7668837Z  * [new branch]          issue-241-b58c00a6                       -> origin/issue-241-b58c00a6
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7670567Z  * [new branch]          issue-242-bcb83cac                       -> origin/issue-242-bcb83cac
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7672295Z  * [new branch]          issue-243-74d0a614                       -> origin/issue-243-74d0a614
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7673996Z  * [new branch]          issue-245-55a50dd3                       -> origin/issue-245-55a50dd3
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7675698Z  * [new branch]          issue-249-f1500da9                       -> origin/issue-249-f1500da9
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7677384Z  * [new branch]          issue-250-42c9d850                       -> origin/issue-250-42c9d850
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7679276Z  * [new branch]          issue-254-e7a5d9f7                       -> origin/issue-254-e7a5d9f7
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7681206Z  * [new branch]          issue-258-c8b7530f                       -> origin/issue-258-c8b7530f
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7682928Z  * [new branch]          issue-263-0617cbc6                       -> origin/issue-263-0617cbc6
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7684655Z  * [new branch]          issue-264-48a30829                       -> origin/issue-264-48a30829
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7686380Z  * [new branch]          issue-269-5c78f79f                       -> origin/issue-269-5c78f79f
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7688215Z  * [new branch]          issue-28-86d6809c                        -> origin/issue-28-86d6809c
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7689920Z  * [new branch]          issue-287-43a044c6                       -> origin/issue-287-43a044c6
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7691498Z  * [new branch]          issue-288-7363fdd4                       -> origin/issue-288-7363fdd4
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7693207Z  * [new branch]          issue-289-a32521da                       -> origin/issue-289-a32521da
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7694941Z  * [new branch]          issue-290-46a8add1                       -> origin/issue-290-46a8add1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7696663Z  * [new branch]          issue-295-51e2cc11                       -> origin/issue-295-51e2cc11
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7698579Z  * [new branch]          issue-309-7c8629c7                       -> origin/issue-309-7c8629c7
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7700316Z  * [new branch]          issue-310-5de3d1dc                       -> origin/issue-310-5de3d1dc
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7702073Z  * [new branch]          issue-319-1f8bc024                       -> origin/issue-319-1f8bc024
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7703806Z  * [new branch]          issue-323-9f4031b8                       -> origin/issue-323-9f4031b8
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7705499Z  * [new branch]          issue-324-55e5be19                       -> origin/issue-324-55e5be19
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7707196Z  * [new branch]          issue-331-f53fc679                       -> origin/issue-331-f53fc679
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7709194Z  * [new branch]          issue-332-7a6ff77a                       -> origin/issue-332-7a6ff77a
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7710991Z  * [new branch]          issue-334-b21a4d38                       -> origin/issue-334-b21a4d38
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7712691Z  * [new branch]          issue-338-627b1af9                       -> origin/issue-338-627b1af9
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7714449Z  * [new branch]          issue-346-2629ee00                       -> origin/issue-346-2629ee00
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7716237Z  * [new branch]          issue-347-bc055938                       -> origin/issue-347-bc055938
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7718225Z  * [new branch]          issue-349-847bd9da                       -> origin/issue-349-847bd9da
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7720026Z  * [new branch]          issue-350-31002bc3                       -> origin/issue-350-31002bc3
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7721786Z  * [new branch]          issue-354-69429f3d                       -> origin/issue-354-69429f3d
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7723554Z  * [new branch]          issue-354-90a219e1                       -> origin/issue-354-90a219e1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7725496Z  * [new branch]          issue-354-a5f63605                       -> origin/issue-354-a5f63605
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7727340Z  * [new branch]          issue-355-16463e62                       -> origin/issue-355-16463e62
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7729063Z  * [new branch]          issue-356-08228300                       -> origin/issue-356-08228300
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7730263Z  * [new branch]          issue-359-e5a050cc                       -> origin/issue-359-e5a050cc
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7731430Z  * [new branch]          issue-360-0e8cd1e0                       -> origin/issue-360-0e8cd1e0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7732711Z  * [new branch]          issue-361-575582dd                       -> origin/issue-361-575582dd
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7734091Z  * [new branch]          issue-372-aea7e0f1                       -> origin/issue-372-aea7e0f1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7735527Z  * [new branch]          issue-375-e585215d                       -> origin/issue-375-e585215d
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7737127Z  * [new branch]          issue-382-6eb8af26                       -> origin/issue-382-6eb8af26
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7738739Z  * [new branch]          issue-383-81b4bf92                       -> origin/issue-383-81b4bf92
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7740122Z  * [new branch]          issue-384-58b26c76                       -> origin/issue-384-58b26c76
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7741623Z  * [new branch]          issue-386-3e27d460                       -> origin/issue-386-3e27d460
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7743095Z  * [new branch]          issue-389-a58bf26c                       -> origin/issue-389-a58bf26c
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7744549Z  * [new branch]          issue-390-5e4626de                       -> origin/issue-390-5e4626de
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7746038Z  * [new branch]          issue-394-309114ec                       -> origin/issue-394-309114ec
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7747545Z  * [new branch]          issue-395-10b110d3                       -> origin/issue-395-10b110d3
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7749396Z  * [new branch]          issue-396-244bd1fe                       -> origin/issue-396-244bd1fe
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7751071Z  * [new branch]          issue-398-451b7b82                       -> origin/issue-398-451b7b82
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7752722Z  * [new branch]          issue-40-e633e9f6                        -> origin/issue-40-e633e9f6
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7754337Z  * [new branch]          issue-508-5a1549d7                       -> origin/issue-508-5a1549d7
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7756025Z  * [new branch]          issue-512-557a0a3ca78d                   -> origin/issue-512-557a0a3ca78d
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7757770Z  * [new branch]          issue-518-e28aadb8d563                   -> origin/issue-518-e28aadb8d563
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7759599Z  * [new branch]          issue-52-3f2f1389                        -> origin/issue-52-3f2f1389
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7761196Z  * [new branch]          issue-521-1ac9a60c43a0                   -> origin/issue-521-1ac9a60c43a0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7763025Z  * [new branch]          issue-522-2819acda0f21                   -> origin/issue-522-2819acda0f21
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7764709Z  * [new branch]          issue-524-b1512fd1c7a8                   -> origin/issue-524-b1512fd1c7a8
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7766281Z  * [new branch]          issue-6-2f2360da                         -> origin/issue-6-2f2360da
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7767767Z  * [new branch]          issue-62-a49bc29e                        -> origin/issue-62-a49bc29e
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7769350Z  * [new branch]          issue-68-4e596e00                        -> origin/issue-68-4e596e00
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7770838Z  * [new branch]          issue-85-856b1b45                        -> origin/issue-85-856b1b45
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7772309Z  * [new branch]          issue-86-6c31fd91                        -> origin/issue-86-6c31fd91
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7773756Z  * [new branch]          issue-89-a56a0167                        -> origin/issue-89-a56a0167
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7775212Z  * [new branch]          issue-90-5c6486ed                        -> origin/issue-90-5c6486ed
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7776667Z  * [new branch]          issue-96-7c16f737                        -> origin/issue-96-7c16f737
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7778261Z  * [new branch]          issue-97-8b13f48a                        -> origin/issue-97-8b13f48a
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7779700Z  * [new branch]          issue-98-61dd56ef                        -> origin/issue-98-61dd56ef
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7781090Z  * [new branch]          lazy-fixes                               -> origin/lazy-fixes
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7782285Z  * [new branch]          main                                     -> origin/main
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7783424Z  * [new branch]          master                                   -> origin/master
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7784677Z  * [new branch]          move_sequences                           -> origin/move_sequences
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7786106Z  * [new branch]          nassipkali-patch-1                       -> origin/nassipkali-patch-1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7787723Z  * [new branch]          nassipkali-patch-2                       -> origin/nassipkali-patch-2
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7789273Z  * [new branch]          nassipkali-patch-3                       -> origin/nassipkali-patch-3
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7790737Z  * [new branch]          nassipkali-patch-4                       -> origin/nassipkali-patch-4
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7792178Z  * [new branch]          nassipkali-patch-5                       -> origin/nassipkali-patch-5
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7793631Z  * [new branch]          nassipkali-patch-6                       -> origin/nassipkali-patch-6
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7795078Z  * [new branch]          nassipkali-patch-7                       -> origin/nassipkali-patch-7
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7796517Z  * [new branch]          nassipkali-patch-8                       -> origin/nassipkali-patch-8
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7798040Z  * [new branch]          nassipkali-patch-9                       -> origin/nassipkali-patch-9
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7799387Z  * [new branch]          origin-ffi                               -> origin/origin-ffi
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7800686Z  * [new branch]          rational_numbers                         -> origin/rational_numbers
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7802086Z  * [new branch]          revert-259-master                        -> origin/revert-259-master
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7803380Z  * [new branch]          rust-ci                                  -> origin/rust-ci
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7804610Z  * [new branch]          rust.criterion                           -> origin/rust.criterion
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7805938Z  * [new branch]          rust.with_query                          -> origin/rust.with_query
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7807283Z  * [new branch]          rust.with_result                         -> origin/rust.with_result
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7808726Z  * [new branch]          rust_write.unwrap                        -> origin/rust_write.unwrap
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7810458Z  * [new branch]          rust_write.unwrap.optimized.wasm         -> origin/rust_write.unwrap.optimized.wasm
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7812174Z  * [new branch]          rust_write.unwrap_unchecked              -> origin/rust_write.unwrap_unchecked
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7813761Z  * [new branch]          split-data-n-doublets                    -> origin/split-data-n-doublets
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7815080Z  * [new branch]          tests                                    -> origin/tests
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7816272Z  * [new branch]          update_package                           -> origin/update_package
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7817392Z  * [new tag]             0.0.1                                    -> 0.0.1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7818536Z  * [new tag]             0.1.0                                    -> 0.1.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7819501Z  * [new tag]             0.1.1                                    -> 0.1.1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7820454Z  * [new tag]             0.10.0                                   -> 0.10.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7821419Z  * [new tag]             0.10.1                                   -> 0.10.1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7822378Z  * [new tag]             0.11.0                                   -> 0.11.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7823331Z  * [new tag]             0.11.1                                   -> 0.11.1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7824277Z  * [new tag]             0.12.0                                   -> 0.12.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7825235Z  * [new tag]             0.13.0                                   -> 0.13.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7826174Z  * [new tag]             0.13.1                                   -> 0.13.1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7903695Z  * [new tag]             0.13.2                                   -> 0.13.2
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7905412Z  * [new tag]             0.2.0                                    -> 0.2.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7906754Z  * [new tag]             0.2.1                                    -> 0.2.1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7908324Z  * [new tag]             0.3.0                                    -> 0.3.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7909774Z  * [new tag]             0.4.0                                    -> 0.4.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7911459Z  * [new tag]             0.5.0                                    -> 0.5.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7912921Z  * [new tag]             0.6.0                                    -> 0.6.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7914373Z  * [new tag]             0.6.1                                    -> 0.6.1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7915852Z  * [new tag]             0.6.10                                   -> 0.6.10
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7917275Z  * [new tag]             0.6.11                                   -> 0.6.11
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7918636Z  * [new tag]             0.6.2                                    -> 0.6.2
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7919599Z  * [new tag]             0.6.3                                    -> 0.6.3
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7920537Z  * [new tag]             0.6.4                                    -> 0.6.4
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7921471Z  * [new tag]             0.6.5                                    -> 0.6.5
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7922435Z  * [new tag]             0.6.6                                    -> 0.6.6
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7923372Z  * [new tag]             0.6.7                                    -> 0.6.7
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7924319Z  * [new tag]             0.6.8                                    -> 0.6.8
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7925258Z  * [new tag]             0.6.9                                    -> 0.6.9
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7926193Z  * [new tag]             0.7.0                                    -> 0.7.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7927122Z  * [new tag]             0.8.0                                    -> 0.8.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7928280Z  * [new tag]             0.9.0                                    -> 0.9.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7929247Z  * [new tag]             cpp_0.1.0                                -> cpp_0.1.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7930304Z  * [new tag]             csharp_0.15.0                            -> csharp_0.15.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7931583Z  * [new tag]             csharp_0.16.0                            -> csharp_0.16.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7932685Z  * [new tag]             csharp_0.17.0                            -> csharp_0.17.0
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7933765Z  * [new tag]             csharp_0.17.1                            -> csharp_0.17.1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7934844Z  * [new tag]             csharp_0.17.2                            -> csharp_0.17.2
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7935913Z  * [new tag]             csharp_0.18.1                            -> csharp_0.18.1
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7936996Z  * [new tag]             csharp_0.18.2                            -> csharp_0.18.2
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7938162Z  * [new tag]             csharp_0.18.3                            -> csharp_0.18.3
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7939321Z  * [new ref]             fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c -> pull/526/merge
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7941451Z ##[endgroup]
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7942179Z ##[group]Determining the checkout info
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7943039Z ##[endgroup]
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7943537Z [command]/usr/bin/git sparse-checkout disable
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7945234Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7947112Z ##[group]Checking out the ref
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:35.7948087Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/526/merge
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0444820Z Note: switching to 'refs/remotes/pull/526/merge'.
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0445788Z 
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0446182Z You are in 'detached HEAD' state. You can look around, make experimental
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0446934Z changes and commit them, and you can discard any commits you make in this
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0447672Z state without impacting any branches by switching back to a branch.
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0448289Z 
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0448624Z If you want to create a new branch to retain commits you create, you may
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0449342Z do so (now or later) by using -c with the switch command. Example:
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0449799Z 
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0450069Z   git switch -c <new-branch-name>
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0450385Z 
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0450884Z Or undo this operation with:
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0451202Z 
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0451436Z   git switch -
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0451712Z 
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0452124Z Turn off this advice by setting config variable advice.detachedHead to false
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0452549Z 
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0453016Z HEAD is now at fd79f966a Merge 5cf40c5a338a38978221aab65a8e017005c95303 into 799502ce9275edc80d9fbc1953ff8892fe0eca19
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0487047Z ##[endgroup]
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0537153Z [command]/usr/bin/git log -1 --format=%H
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0570378Z fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0578333Z ##[group]Removing auth
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0579028Z Removing SSH command configuration
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0581504Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0617424Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0822899Z Removing HTTP extra header
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0825475Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.0862232Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1066240Z Removing includeIf entries pointing to credentials config files
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1068543Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1100421Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1102186Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1103989Z includeif.gitdir:/github/workspace/.git.path
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1105334Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1108840Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1139472Z /home/runner/work/_temp/git-credentials-5143f511-38ac-44c7-8c34-ce58eb5a3b9f.config
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1148757Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-5143f511\-38ac\-44c7\-8c34\-ce58eb5a3b9f\.config
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1196951Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1225766Z /home/runner/work/_temp/git-credentials-5143f511-38ac-44c7-8c34-ce58eb5a3b9f.config
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1232792Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-5143f511\-38ac\-44c7\-8c34\-ce58eb5a3b9f\.config
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1274215Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1303284Z /github/runner_temp/git-credentials-5143f511-38ac-44c7-8c34-ce58eb5a3b9f.config
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1309682Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-5143f511\-38ac\-44c7\-8c34\-ce58eb5a3b9f\.config
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1349899Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1379632Z /github/runner_temp/git-credentials-5143f511-38ac-44c7-8c34-ce58eb5a3b9f.config
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1385818Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-5143f511\-38ac\-44c7\-8c34\-ce58eb5a3b9f\.config
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1423899Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1625609Z Removing credentials config '/home/runner/work/_temp/git-credentials-5143f511-38ac-44c7-8c34-ce58eb5a3b9f.config'
+changes	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.1634113Z ##[endgroup]
+changes	Run python3 scripts/changes.py	﻿2026-10-29T08:31:36.1831670Z ##[group]Run python3 scripts/changes.py
+changes	Run python3 scripts/changes.py	2026-10-29T08:31:36.1832481Z ^[[36;1mpython3 scripts/changes.py^[[0m
+changes	Run python3 scripts/changes.py	2026-10-29T08:31:36.1854145Z shell: /usr/bin/bash -e {0}
+changes	Run python3 scripts/changes.py	2026-10-29T08:31:36.1854797Z ##[endgroup]
+changes	Run python3 scripts/changes.py	2026-10-29T08:31:36.2169497Z csharp=true
+changes	Run python3 scripts/changes.py	2026-10-29T08:31:36.2170221Z cpp=true
+changes	Run python3 scripts/changes.py	2026-10-29T08:31:36.2170871Z docs=true
+changes	Run python3 scripts/changes.py	2026-10-29T08:31:36.2171512Z pipeline=true
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-29T08:31:36.2420216Z Post job cleanup.
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3121191Z [command]/usr/bin/git version
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3158909Z git version 2.56.0
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3189654Z Temporarily overriding HOME='/home/runner/work/_temp/83b284ec-b827-4381-a1f0-dc5b5a1cae97' before making global git config changes
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3191050Z Adding repository directory to the temporary git global config as a safe directory
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3193584Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3232046Z Removing SSH command configuration
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3237612Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3269494Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3549933Z Removing HTTP extra header
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3554951Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3589498Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3928055Z Removing includeIf entries pointing to credentials config files
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3933772Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+changes	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:36.3974101Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+changes	Complete job	﻿2026-10-29T08:31:36.4321052Z Evaluate and set job outputs
+changes	Complete job	2026-10-29T08:31:36.4330396Z Set output 'csharp'
+changes	Complete job	2026-10-29T08:31:36.4332264Z Set output 'cpp'
+changes	Complete job	2026-10-29T08:31:36.4333420Z Set output 'docs'
+changes	Complete job	2026-10-29T08:31:36.4334312Z Set output 'pipeline'
+changes	Complete job	2026-10-29T08:31:36.4335512Z Cleaning up orphan processes

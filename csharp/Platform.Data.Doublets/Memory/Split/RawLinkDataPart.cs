@@ -55,9 +55,9 @@ public struct RawLinkDataPart<TLinkAddress> : IEquatable<RawLinkDataPart<TLinkAd
     ///     <para></para>
     /// </returns>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
-        return obj is RawLinkDataPart<TLinkAddress> link ? Equals(other: link) : false;
+        return obj is RawLinkDataPart<TLinkAddress> link && Equals(other: link);
     }
 
     /// <summary>
@@ -77,7 +77,7 @@ public struct RawLinkDataPart<TLinkAddress> : IEquatable<RawLinkDataPart<TLinkAd
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public bool Equals(RawLinkDataPart<TLinkAddress> other)
     {
-        return Source ==  other.Source && Target ==  other.Target;
+        return Source == other.Source && Target == other.Target;
     }
 
     /// <summary>

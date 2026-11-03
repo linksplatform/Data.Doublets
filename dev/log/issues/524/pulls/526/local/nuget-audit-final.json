@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "parameters": "--vulnerable --include-transitive",
+  "sources": [
+    "https://api.nuget.org/v3/index.json"
+  ],
+  "projects": [
+    {
+      "path": "/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj"
+    },
+    {
+      "path": "/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/Platform.Data.Doublets.Tests.csproj"
+    },
+    {
+      "path": "/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Benchmarks/Platform.Data.Doublets.Benchmarks.csproj"
+    }
+  ]
+}

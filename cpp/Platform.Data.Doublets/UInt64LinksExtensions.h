@@ -1,16 +1,18 @@
-﻿namespace Platform::Data::Doublets
+namespace Platform::Data::Doublets
 {
     class UInt64LinksExtensions
     {
-        public: static LinksConstants<std::uint64_t> Constants = Default<LinksConstants<std::uint64_t>>.Instance;
+      public:
+        static LinksConstants<std::uint64_t> Constants = Default<LinksConstants<std::uint64_t>>.Instance;
 
-        public: static bool AnyLinkIsAny(ILinks<std::uint64_t> &storage, params std::uint64_t sequence[])
+      public:
+        static bool AnyLinkIsAny(ILinks<std::uint64_t>& storage, params std::uint64_t sequence[])
         {
             if (sequence == nullptr)
             {
                 return false;
             }
-            constexpr auto constants = storage.Constants;
+            constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
             for (auto i = 0; i < sequence.Length; i++)
             {
                 if (sequence[i] == constants.Any)
@@ -21,7 +23,10 @@
             return false;
         }
 
-        public: static std::string FormatStructure(ILinks<std::uint64_t> &storage, std::uint64_t linkIndex, Func<Link<std::uint64_t>, bool> isElement, bool renderIndex = false, bool renderDebug = false)
+      public:
+        static std::string FormatStructure(ILinks<std::uint64_t>& storage, std::uint64_t linkIndex,
+                                           Func<Link<std::uint64_t>, bool> isElement, bool renderIndex = false,
+                                           bool renderDebug = false)
         {
             std::string sb;
             auto visited = HashSet<std::uint64_t>();
@@ -29,7 +34,11 @@
             return sb;
         }
 
-        public: static std::string FormatStructure(ILinks<std::uint64_t> &storage, std::uint64_t linkIndex, Func<Link<std::uint64_t>, bool> isElement, Action<StringBuilder, Link<std::uint64_t>> appendElement, bool renderIndex = false, bool renderDebug = false)
+      public:
+        static std::string FormatStructure(ILinks<std::uint64_t>& storage, std::uint64_t linkIndex,
+                                           Func<Link<std::uint64_t>, bool> isElement,
+                                           Action<StringBuilder, Link<std::uint64_t>> appendElement,
+                                           bool renderIndex = false, bool renderDebug = false)
         {
             std::string sb;
             auto visited = HashSet<std::uint64_t>();
@@ -37,7 +46,11 @@
             return sb;
         }
 
-        public: static void AppendStructure(ILinks<std::uint64_t> &storage, std::string& sb, HashSet<std::uint64_t> visited, std::uint64_t linkIndex, Func<Link<std::uint64_t>, bool> isElement, Action<StringBuilder, Link<std::uint64_t>> appendElement, bool renderIndex = false, bool renderDebug = false)
+      public:
+        static void AppendStructure(ILinks<std::uint64_t>& storage, std::string& sb, HashSet<std::uint64_t> visited,
+                                    std::uint64_t linkIndex, Func<Link<std::uint64_t>, bool> isElement,
+                                    Action<StringBuilder, Link<std::uint64_t>> appendElement, bool renderIndex = false,
+                                    bool renderDebug = false)
         {
             if (sb == nullptr)
             {
@@ -112,4 +125,4 @@
             }
         }
     };
-}
+} // namespace Platform::Data::Doublets

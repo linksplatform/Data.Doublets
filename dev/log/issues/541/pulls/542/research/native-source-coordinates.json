@@ -1,0 +1,173 @@
+[
+  {
+    "resolved_reference": "gtest/1.13.0#4c577fdfa801eab853721ffe1fc30348",
+    "context": "host",
+    "homepage": "https://github.com/google/googletest",
+    "source_url": "https://github.com/google/googletest/archive/refs/tags/v1.13.0.tar.gz",
+    "source_sha256": "ad7fdba11ea011c1d925b3289cf4af2c66a352e18d4c7264392fead75e919363",
+    "original_recipe_name": "gtest",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "benchmark/1.6.0#cf8a91c3cadcd79de5acb4c28b7fc642",
+    "context": "host",
+    "homepage": "https://github.com/google/benchmark",
+    "source_url": "https://github.com/google/benchmark/archive/v1.6.0.tar.gz",
+    "source_sha256": "1f71c72ce08d2c1310011ea6436b31e39ccab8c2db94186d26657d41747c85d6",
+    "original_recipe_name": "benchmark",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Exceptions",
+    "source_url": "https://github.com/linksplatform/Exceptions/releases/download/cpp_0.3.2/platform.exceptions_0.3.2.zip",
+    "source_sha256": "62BE3FC1AAA735D8BB7D4BB31329A2703AFA5A337FF4CD2D3A33CA12F1B4FC65",
+    "original_recipe_name": "platform.exceptions",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Delegates",
+    "source_url": "https://github.com/linksplatform/Delegates/archive/refs/tags/cpp_0.3.7.zip",
+    "source_sha256": "368C3316359151EDCDE8AC8DBC9DBACF11B011F7BDEA97B97C6F116EF802104E",
+    "original_recipe_name": "platform.delegates",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Collections.Methods",
+    "source_url": "https://github.com/linksplatform/Collections.Methods/releases/download/cpp_0.3.0/platform.collections.methods_0.3.0.zip",
+    "source_sha256": "79086e5d951f72f42acccd380554592f2bcae2b778fbb4b5637d055de0388422",
+    "original_recipe_name": "platform.collections.methods",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Interfaces",
+    "source_url": "https://github.com/linksplatform/Interfaces/releases/download/cpp_0.3.41/platform.interfaces_0.3.41.zip",
+    "source_sha256": "26bfb96f8918db86390cf326eba5c76cfc29f06a785d30c789445fe59371bab4",
+    "original_recipe_name": "platform.interfaces",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Collections",
+    "source_url": "https://github.com/linksplatform/Collections/releases/download/cpp_0.2.1/platform.collections_0.2.1.zip",
+    "source_sha256": "0da58fc45ab70295e6fffc041379a6d46a091609294f2fa5892b8acc2975b815",
+    "original_recipe_name": "platform.collections",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-equality/0.0.1#4c269c237c780cf97734b306fef30799",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Equality",
+    "source_url": "https://github.com/linksplatform/Equality/archive/refs/tags/0.0.1.zip",
+    "source_sha256": "84c363152ab7eef69a9d72a1aebcfabcd63fc889efce591350ec56ddec544981",
+    "original_recipe_name": "platform.equality",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Hashing",
+    "source_url": "https://github.com/linksplatform/Hashing/releases/download/cpp_0.5.6/platform.hashing_0.5.6.zip",
+    "source_sha256": "875866da000eafe9d3caabb00007213d9fba8f39f41bd4985d10ace3ac8354bc",
+    "original_recipe_name": "platform.hashing",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "cpuinfo/cci.20220228#3ff3fc81cbd5eecdf212dbc8868ec621",
+    "context": "host",
+    "homepage": "https://github.com/pytorch/cpuinfo",
+    "source_url": "https://github.com/pytorch/cpuinfo/archive/6288930068efc8dff4f3c0b95f062fc5ddceba04.tar.gz",
+    "source_sha256": "9e9e937b3569320d23d8b1c8c26ed3603affe55c3e4a3e49622e8a2c6d6e1696",
+    "original_recipe_name": "cpuinfo",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-random/0.2.0#596375061030beacc935a1ac82ef6e46",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Random",
+    "source_url": "https://github.com/linksplatform/Random/releases/download/cpp_0.2.0/platform.random_0.2.0.zip",
+    "source_sha256": "BDAD51D2ACC030C97C8588DB29E6E2354A9BC5EFE23491B0E39B148265BD31F7",
+    "original_recipe_name": "platform.random",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Ranges",
+    "source_url": "https://github.com/linksplatform/Ranges/releases/download/cpp_0.2.0/platform.ranges_0.2.0.zip",
+    "source_sha256": "84576CDC59A460A3F132A7E6E87D2F52131D6A3B53B97BCB1D335252F65267B7",
+    "original_recipe_name": "platform.ranges",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Converters",
+    "source_url": "https://github.com/linksplatform/Converters/releases/download/cpp_0.2.0/platform.converters_0.2.0.zip",
+    "source_sha256": "DCCB042CFE36343ED8061D48FC0176DA12590BA7328D908317211A902DF81321",
+    "original_recipe_name": "platform.converters",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "ms-gsl/4.0.0#0abc4521c5ad2fe035f53054cd73b4ad",
+    "context": "host",
+    "homepage": "https://github.com/microsoft/GSL",
+    "source_url": "https://github.com/microsoft/GSL/archive/v4.0.0.tar.gz",
+    "source_sha256": "f0e32cb10654fea91ad56bde89170d78cfbf4363ee0b01d8f097de2ba49f6ce9",
+    "original_recipe_name": "ms-gsl",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Memory",
+    "source_url": "https://github.com/linksplatform/Memory/releases/download/cpp_0.1.0/platform.memory_0.1.0.zip",
+    "source_sha256": "8cc7b6228cb6eeb27666b78c370c2daa3605892878f50849ff03add2cafe6a9d",
+    "original_recipe_name": "platform.memory",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "mio/cci.20201220#35d8e4791152cb59bb37212cd9c295d2",
+    "context": "host",
+    "homepage": "https://github.com/mandreyel/mio",
+    "source_url": "https://github.com/mandreyel/mio/archive/3f86a95c0784d73ce6815237ec33ed25f233b643.tar.gz",
+    "source_sha256": "056ae59d63c5d7f34dd90510adf2996ef1c4c17ec2b26ba9c9cb9974025b2c2c",
+    "original_recipe_name": "mio",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-data/0.1.1#049284bd2691fcdd21308ff118193883",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Data",
+    "source_url": "https://github.com/linksplatform/Data/releases/download/cpp_0.1.1/platform.data_0.1.1.zip",
+    "source_sha256": "7f5b03605f0c35c147262d5d325816d5ceb0f15e222c43e69c6507fbdb38159e",
+    "original_recipe_name": "platform.data",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Setters",
+    "source_url": "https://github.com/linksplatform/Setters/releases/download/cpp_0.1.0/platform.setters_0.1.0.zip",
+    "source_sha256": "932b4e9fb76c69c32775d58b7ae3dc819901261a95f3be2e9fa0c0b0295da105",
+    "original_recipe_name": "platform.setters",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  },
+  {
+    "resolved_reference": "platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7",
+    "context": "host",
+    "homepage": "https://github.com/linksplatform/Numbers",
+    "source_url": "https://github.com/linksplatform/Numbers/releases/download/cpp_0.1.0/platform.numbers_0.1.0.zip",
+    "source_sha256": "442fc978490a9221085182b2e7a6e5cddec2ea04d5baf58dab5534a74640c603",
+    "original_recipe_name": "platform.numbers",
+    "provider_coverage": "unverified; no authenticated advisory response"
+  }
+]

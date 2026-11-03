@@ -1,0 +1,68 @@
+
+======== Input profiles ========
+Profile host:
+[settings]
+arch=x86_64
+build_type=Release
+compiler=gcc
+compiler.cppstd=20
+compiler.libcxx=libstdc++11
+compiler.version=13
+os=Linux
+
+Profile build:
+[settings]
+arch=x86_64
+build_type=Release
+compiler=gcc
+compiler.cppstd=20
+compiler.libcxx=libstdc++11
+compiler.version=13
+os=Linux
+
+
+======== Computing dependency graph ========
+Graph root
+    conanfile.txt: /tmp/gh-issue-solver-1793297431979/cpp/conanfile.txt
+Requirements
+    benchmark/1.6.0#cf8a91c3cadcd79de5acb4c28b7fc642 - Cache
+    cpuinfo/cci.20220228#3ff3fc81cbd5eecdf212dbc8868ec621 - Cache
+    gtest/1.13.0#4c577fdfa801eab853721ffe1fc30348 - Cache
+    mio/cci.20201220#35d8e4791152cb59bb37212cd9c295d2 - Cache
+    ms-gsl/4.0.0#0abc4521c5ad2fe035f53054cd73b4ad - Cache
+    platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60 - Cache
+    platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202 - Cache
+    platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be - Cache
+    platform-data/0.1.1#049284bd2691fcdd21308ff118193883 - Cache
+    platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0 - Cache
+    platform-equality/0.0.1#4c269c237c780cf97734b306fef30799 - Cache
+    platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a - Cache
+    platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29 - Cache
+    platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93 - Cache
+    platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa - Cache
+    platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7 - Cache
+    platform-random/0.2.0#596375061030beacc935a1ac82ef6e46 - Cache
+    platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288 - Cache
+    platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a - Cache
+
+======== Computing necessary packages ========
+Requirements
+    benchmark/1.6.0#cf8a91c3cadcd79de5acb4c28b7fc642:45c50a2141506585e351c9cec87e3f8b70ab72aa#23b348c47254aadc95da0f17f4678f0c - Cache
+    cpuinfo/cci.20220228#3ff3fc81cbd5eecdf212dbc8868ec621:4d9e6a210329116850cff601cc4db23e561d9a71#9e8f8521bf0eb0828441f374b74b0701 - Cache
+    gtest/1.13.0#4c577fdfa801eab853721ffe1fc30348:c961d8c62795395aeeebf1696bec18f00505c7ea#2d5dfcf4f826436ee733886658b373ef - Cache
+    mio/cci.20201220#35d8e4791152cb59bb37212cd9c295d2:da39a3ee5e6b4b0d3255bfef95601890afd80709#1db8db72c0b6f33280a30253cc7c2f27 - Cache
+    ms-gsl/4.0.0#0abc4521c5ad2fe035f53054cd73b4ad:da39a3ee5e6b4b0d3255bfef95601890afd80709#b598077be9be7a01e859da8eca72dee0 - Cache
+    platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202:da39a3ee5e6b4b0d3255bfef95601890afd80709#805323c60df80a61563931fcfb9b5823 - Cache
+    platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60:da39a3ee5e6b4b0d3255bfef95601890afd80709#45e0a5351397729f623902347fdf0072 - Cache
+    platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be:da39a3ee5e6b4b0d3255bfef95601890afd80709#adf5a6a6a0d890617af517db1cc3bbc5 - Cache
+    platform-data/0.1.1#049284bd2691fcdd21308ff118193883:da39a3ee5e6b4b0d3255bfef95601890afd80709#0241816b818ea9c75939d2925cf838f8 - Cache
+    platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0:da39a3ee5e6b4b0d3255bfef95601890afd80709#e51ebaea1ce5334ac62fb7ecaaf705bf - Cache
+    platform-equality/0.0.1#4c269c237c780cf97734b306fef30799:da39a3ee5e6b4b0d3255bfef95601890afd80709#3a5ac2fd4b138217270bcbfc0d560603 - Cache
+    platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a:da39a3ee5e6b4b0d3255bfef95601890afd80709#95f257de01c9f578ae93a77a93a5950e - Cache
+    platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29:da39a3ee5e6b4b0d3255bfef95601890afd80709#a6036d56e42b1b976b5769d839b117e0 - Cache
+    platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93:da39a3ee5e6b4b0d3255bfef95601890afd80709#89402c1ce8c65d2b3bff73d1fad91950 - Cache
+    platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa:da39a3ee5e6b4b0d3255bfef95601890afd80709#8b2048ec0988e4a6096a572799df9a5c - Cache
+    platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7:da39a3ee5e6b4b0d3255bfef95601890afd80709#010b41966b0ff8d92bea24d7491eee11 - Cache
+    platform-random/0.2.0#596375061030beacc935a1ac82ef6e46:da39a3ee5e6b4b0d3255bfef95601890afd80709#7368fa153a09f12eddea710548981718 - Cache
+    platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288:da39a3ee5e6b4b0d3255bfef95601890afd80709#81a558cde0554f2a22f31692b29c9020 - Cache
+    platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a:da39a3ee5e6b4b0d3255bfef95601890afd80709#93ba0987edf1adbbf9b7b8b979f9a2e2 - Cache

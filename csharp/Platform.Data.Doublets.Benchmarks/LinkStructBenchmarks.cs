@@ -27,13 +27,13 @@ namespace Platform.Data.Doublets.Benchmarks
         [Benchmark]
         public IList<TLinkAddress>? Array()
         {
-            return new TLinkAddress[] {1UL, 1UL, 1UL};
+            return new TLinkAddress[] { 1UL, 1UL, 1UL };
         }
 
         [Benchmark]
         public IList<TLinkAddress>? List()
         {
-            return new List<TLinkAddress>{1UL, 1UL, 1UL};
+            return new List<TLinkAddress> { 1UL, 1UL, 1UL };
         }
     }
 }

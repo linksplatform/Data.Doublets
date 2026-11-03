@@ -51,7 +51,7 @@ namespace Platform.Data.Doublets
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="Link"/> instance.
+        /// Initializes a new <see cref="Link{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -60,11 +60,11 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Link(params TLinkAddress[] values)  { SetValues(values, out Index, out Source, out Target);}
+        public Link(params TLinkAddress[] values) { SetValues(values, out Index, out Source, out Target); }
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="Link"/> instance.
+        /// Initializes a new <see cref="Link{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -73,11 +73,11 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Link(IList<TLinkAddress>? values)  { SetValues(values, out Index, out Source, out Target);}
+        public Link(IList<TLinkAddress>? values) { SetValues(values, out Index, out Source, out Target); }
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="Link"/> instance.
+        /// Initializes a new <see cref="Link{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -96,7 +96,7 @@ namespace Platform.Data.Doublets
             {
                 SetValues(ref otherLink, out Index, out Source, out Target);
             }
-            else if(other is IList<TLinkAddress> otherList)
+            else if (other is IList<TLinkAddress> otherList)
             {
                 SetValues(otherList, out Index, out Source, out Target);
             }
@@ -108,7 +108,7 @@ namespace Platform.Data.Doublets
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="Link"/> instance.
+        /// Initializes a new <see cref="Link{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -117,11 +117,11 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Link(ref Link<TLinkAddress> other)  { SetValues(ref other, out Index, out Source, out Target);}
+        public Link(ref Link<TLinkAddress> other) { SetValues(ref other, out Index, out Source, out Target); }
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="Link"/> instance.
+        /// Initializes a new <see cref="Link{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -156,9 +156,9 @@ namespace Platform.Data.Doublets
         {
             if (values == null)
             {
-                index = default;
-                source = default;
-                target = default;
+                index = TLinkAddress.Zero;
+                source = TLinkAddress.Zero;
+                target = TLinkAddress.Zero;
                 return;
             }
             switch (values.Count)
@@ -171,17 +171,17 @@ namespace Platform.Data.Doublets
                 case 2:
                     index = values[0];
                     source = values[1];
-                    target = default;
+                    target = TLinkAddress.Zero;
                     break;
                 case 1:
                     index = values[0];
-                    source = default;
-                    target = default;
+                    source = TLinkAddress.Zero;
+                    target = TLinkAddress.Zero;
                     break;
                 default:
-                    index = default;
-                    source = default;
-                    target = default;
+                    index = TLinkAddress.Zero;
+                    source = TLinkAddress.Zero;
+                    target = TLinkAddress.Zero;
                     break;
             }
         }
@@ -197,7 +197,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override int GetHashCode()  { return (Index, Source, Target).GetHashCode();}
+        public override int GetHashCode() { return (Index, Source, Target).GetHashCode(); }
 
         /// <summary>
         /// <para>
@@ -210,9 +210,9 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool IsNull() => Index ==  _constants.Null
-                             && Source ==  _constants.Null
-                             && Target ==  _constants.Null;
+        public bool IsNull() => Index == _constants.Null
+                             && Source == _constants.Null
+                             && Target == _constants.Null;
 
         /// <summary>
         /// <para>
@@ -229,7 +229,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override bool Equals(object other)  { return other is Link<TLinkAddress> && Equals((Link<TLinkAddress>)other);}
+        public override bool Equals(object? other) { return other is Link<TLinkAddress> && Equals((Link<TLinkAddress>)other); }
 
         /// <summary>
         /// <para>
@@ -246,9 +246,9 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(Link<TLinkAddress> other) => Index ==  other.Index
-                                              && Source ==  other.Source
-                                              && Target ==  other.Target;
+        public bool Equals(Link<TLinkAddress> other) => Index == other.Index
+                                              && Source == other.Source
+                                              && Target == other.Target;
 
         /// <summary>
         /// <para>
@@ -273,7 +273,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string ToString(TLinkAddress index, TLinkAddress source, TLinkAddress target)  { return $"({index}: {source}->{target})";}
+        public static string ToString(TLinkAddress index, TLinkAddress source, TLinkAddress target) { return $"({index}: {source}->{target})"; }
 
         /// <summary>
         /// <para>
@@ -294,13 +294,13 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string ToString(TLinkAddress source, TLinkAddress target)  { return $"({source}->{target})";}
+        public static string ToString(TLinkAddress source, TLinkAddress target) { return $"({source}->{target})"; }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator TLinkAddress[](Link<TLinkAddress> link)  { return link.ToArray();}
+        public static implicit operator TLinkAddress[](Link<TLinkAddress> link) { return link.ToArray(); }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator Link<TLinkAddress>(TLinkAddress[] linkArray)  { return new Link<TLinkAddress>(linkArray);}
+        public static implicit operator Link<TLinkAddress>(TLinkAddress[] linkArray) { return new Link<TLinkAddress>(linkArray); }
 
         /// <summary>
         /// <para>
@@ -313,7 +313,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override string ToString()  { return Index ==  _constants.Null ? ToString(Source, Target) : ToString(Index, Source, Target);}
+        public override string ToString() { return Index == _constants.Null ? ToString(Source, Target) : ToString(Index, Source, Target); }
 
         #region IList
 
@@ -413,7 +413,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Add(TLinkAddress item)  { throw new NotSupportedException();}
+        public void Add(TLinkAddress item) { throw new NotSupportedException(); }
 
         /// <summary>
         /// <para>
@@ -422,7 +422,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Clear()  { throw new NotSupportedException();}
+        public void Clear() { throw new NotSupportedException(); }
 
         /// <summary>
         /// <para>
@@ -439,7 +439,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Contains(TLinkAddress item)  { return IndexOf(item) >= 0;}
+        public bool Contains(TLinkAddress item) { return IndexOf(item) >= 0; }
 
         /// <summary>
         /// <para>
@@ -488,7 +488,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Remove(TLinkAddress item)  { return Throw.A.NotSupportedExceptionAndReturn<bool>();}
+        public bool Remove(TLinkAddress item) { return Throw.A.NotSupportedExceptionAndReturn<bool>(); }
 
         /// <summary>
         /// <para>
@@ -507,15 +507,15 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public int IndexOf(TLinkAddress item)
         {
-            if (Index ==  item)
+            if (Index == item)
             {
                 return _constants.IndexPart;
             }
-            if (Source ==  item)
+            if (Source == item)
             {
                 return _constants.SourcePart;
             }
-            if (Target ==  item)
+            if (Target == item)
             {
                 return _constants.TargetPart;
             }
@@ -537,7 +537,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Insert(int index, TLinkAddress item)  { throw new NotSupportedException();}
+        public void Insert(int index, TLinkAddress item) { throw new NotSupportedException(); }
 
         /// <summary>
         /// <para>
@@ -550,13 +550,13 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void RemoveAt(int index)  { throw new NotSupportedException();}
+        public void RemoveAt(int index) { throw new NotSupportedException(); }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(Link<TLinkAddress> left, Link<TLinkAddress> right)  { return left.Equals(right);}
+        public static bool operator ==(Link<TLinkAddress> left, Link<TLinkAddress> right) { return left.Equals(right); }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(Link<TLinkAddress> left, Link<TLinkAddress> right)  { return !(left == right);}
+        public static bool operator !=(Link<TLinkAddress> left, Link<TLinkAddress> right) { return !(left == right); }
 
         #endregion
     }

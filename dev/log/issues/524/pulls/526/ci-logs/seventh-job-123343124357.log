@@ -1,0 +1,487 @@
+csharp (ubuntu-24.04)	Set up job	﻿2026-10-29T08:32:20.9482075Z Current runner version: '2.338.0'
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9501126Z ##[group]Runner Image Provisioner
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9501736Z Hosted Compute Agent
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9502111Z Version: 20261021.618
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9502586Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9503038Z Build Date: 2026-10-21T00:45:21Z
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9503472Z Worker ID: {7b11e1d5-1a0f-4c07-9969-4f50e6ea0036}
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9503959Z Region: westus3
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9504346Z Cloud: Azure
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9504772Z ##[endgroup]
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9505569Z ##[group]Operating System
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9505955Z Ubuntu
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9506353Z 24.04.5
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9506689Z LTS
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9507077Z ##[endgroup]
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9507444Z ##[group]Runner Image
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9507821Z Image: ubuntu-24.04
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9508221Z Version: 20261025.353.1
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9509090Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9510212Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9510803Z ##[endgroup]
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9511550Z ##[group]GITHUB_TOKEN Permissions
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9512972Z Contents: read
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9513431Z Metadata: read
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9513788Z ##[endgroup]
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9515187Z Secret source: Actions
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9515764Z Cache mode: write
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9516289Z Prepare workflow directory
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9727511Z Prepare all required actions
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:20.9760071Z Getting action download info
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:21.2566599Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:21.3556667Z Download action repository 'actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1' (SHA:26b0ec14cb23fa6904739307f278c14f94c95bf1)
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:21.9983914Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+csharp (ubuntu-24.04)	Set up job	2026-10-29T08:32:22.1496907Z Complete job name: csharp (ubuntu-24.04)
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-29T08:32:22.2138624Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2139407Z with:
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2139675Z   fetch-depth: 0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2139965Z   persist-credentials: false
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2140303Z   repository: linksplatform/Data.Doublets
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2142624Z   token: ***
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2142897Z   ssh-strict: true
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2143169Z   ssh-user: git
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2143434Z   clean: true
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2143711Z   sparse-checkout-cone-mode: true
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2144038Z   fetch-tags: false
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2144318Z   show-progress: true
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2144605Z   lfs: false
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2144876Z   submodules: false
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2145155Z   set-safe-directory: true
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2145498Z   allow-unsafe-pr-checkout: false
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.2145893Z ##[endgroup]
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.4943179Z Syncing repository: linksplatform/Data.Doublets
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.4944554Z ##[group]Getting Git version info
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.4945111Z Working directory is '/home/runner/work/Data.Doublets/Data.Doublets'
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.4945809Z [command]/usr/bin/git version
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5021093Z git version 2.56.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5039307Z ##[endgroup]
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5045210Z Temporarily overriding HOME='/home/runner/work/_temp/6d1d82bc-e9f7-4f08-af8f-a8dc12f222e6' before making global git config changes
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5046609Z Adding repository directory to the temporary git global config as a safe directory
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5048299Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5096248Z Deleting the contents of '/home/runner/work/Data.Doublets/Data.Doublets'
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5099065Z ##[group]Determining repository object format
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5100736Z ##[endgroup]
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5101644Z ##[group]Initializing the repository
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5111869Z [command]/usr/bin/git init /home/runner/work/Data.Doublets/Data.Doublets
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5217873Z hint: Using 'master' as the name for the initial branch. This default branch name
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5219098Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5220059Z hint: to use in all of your new repositories, which will suppress this warning,
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5220778Z hint: call:
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5221161Z hint:
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5221667Z hint: 	git config --global init.defaultBranch <name>
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5222299Z hint:
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5222883Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5223801Z hint: 'development'. The just-created branch can be renamed via this command:
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5224527Z hint:
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5224964Z hint: 	git branch -m <name>
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5225434Z hint:
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5226078Z hint: Disable this message with "git config set advice.defaultBranchName false"
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5238437Z Initialized empty Git repository in /home/runner/work/Data.Doublets/Data.Doublets/.git/
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5247548Z [command]/usr/bin/git remote add origin https://github.com/linksplatform/Data.Doublets
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5291967Z ##[endgroup]
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5292732Z ##[group]Disabling automatic garbage collection
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5295044Z [command]/usr/bin/git config --local gc.auto 0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5339082Z ##[endgroup]
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5340336Z ##[group]Setting up auth
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5340956Z Removing SSH command configuration
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5344844Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5382891Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5705371Z Removing HTTP extra header
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5709869Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5752804Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5949539Z Removing includeIf entries pointing to credentials config files
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5954444Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.5994823Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.6200211Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-2a3d944f-976d-4369-8eb5-d43324769178.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.6245328Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path /home/runner/work/_temp/git-credentials-2a3d944f-976d-4369-8eb5-d43324769178.config
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.6284778Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-2a3d944f-976d-4369-8eb5-d43324769178.config
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.6324595Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-2a3d944f-976d-4369-8eb5-d43324769178.config
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.6364540Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-2a3d944f-976d-4369-8eb5-d43324769178.config
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.6403390Z ##[endgroup]
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.6403897Z ##[group]Fetching the repository
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.6409099Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c:refs/remotes/pull/526/merge
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1409483Z From https://github.com/linksplatform/Data.Doublets
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1410336Z  * [new branch]          (storage)_rust_write.sequences           -> origin/(storage)_rust_write.sequences
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1410931Z  * [new branch]          1000203-v2                               -> origin/1000203-v2
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1411432Z  * [new branch]          100203                                   -> origin/100203
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1411973Z  * [new branch]          Sequence.Experiments_fix                 -> origin/Sequence.Experiments_fix
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1412569Z  * [new branch]          async-main                               -> origin/async-main
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1413056Z  * [new branch]          beta.6                                   -> origin/beta.6
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1413605Z  * [new branch]          binaries                                 -> origin/binaries
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1414125Z  * [new branch]          c/feature/add_ffi_links                  -> origin/c/feature/add_ffi_links
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1414664Z  * [new branch]          constexpr-issue-348                      -> origin/constexpr-issue-348
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1415068Z  * [new branch]          cpp/feature/add_clinks_concept           -> origin/cpp/feature/add_clinks_concept
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1415613Z  * [new branch]          cpp/feature/add_handlers_to_united_memory_links -> origin/cpp/feature/add_handlers_to_united_memory_links
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1416276Z  * [new branch]          cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links -> origin/cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1417050Z  * [new branch]          cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links -> origin/cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1417731Z  * [new branch]          cpp/feature/add_wrapper_around_rust_ffi  -> origin/cpp/feature/add_wrapper_around_rust_ffi
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1418516Z  * [new branch]          cpp/feature/translate_all_trees          -> origin/cpp/feature/translate_all_trees
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1419248Z  * [new branch]          cpp/feature/translate_ilinks_extensions  -> origin/cpp/feature/translate_ilinks_extensions
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1419988Z  * [new branch]          cpp/feature/translate_split_memory_links -> origin/cpp/feature/translate_split_memory_links
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1420572Z  * [new branch]          cpp/feature/translate_tests              -> origin/cpp/feature/translate_tests
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1421005Z  * [new branch]          cpp/feature/translate_united_memory_links -> origin/cpp/feature/translate_united_memory_links
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1421488Z  * [new branch]          cpp/feature/use_united_memory_links_in_tests -> origin/cpp/feature/use_united_memory_links_in_tests
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1422065Z  * [new branch]          cpp/release/0.0.1                        -> origin/cpp/release/0.0.1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1422628Z  * [new branch]          cppwrite                                 -> origin/cppwrite
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1423183Z  * [new branch]          cs/feature/add_no_exceptions_decorator   -> origin/cs/feature/add_no_exceptions_decorator
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1423706Z  * [new branch]          csharp/feature/add_manual_garbage_collection -> origin/csharp/feature/add_manual_garbage_collection
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1424408Z  * [new branch]          csharp/feature/use_generic_math          -> origin/csharp/feature/use_generic_math
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1425053Z  * [new branch]          daulet_trees                             -> origin/daulet_trees
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1498047Z  * [new branch]          dependabot/add-v2-config-file            -> origin/dependabot/add-v2-config-file
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1499388Z  * [new branch]          dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41 -> origin/dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1500330Z  * [new branch]          feature/add_logging_decorator            -> origin/feature/add_logging_decorator
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1500924Z  * [new branch]          feature/add_update_or_create_or_get_overload_with_index -> origin/feature/add_update_or_create_or_get_overload_with_index
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1501452Z  * [new branch]          feature/ilinks/delete/change_return_value -> origin/feature/ilinks/delete/change_return_value
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1502010Z  * [new branch]          feature_move_testextensions_to_tests.ilinksextensions-v2 -> origin/feature_move_testextensions_to_tests.ilinksextensions-v2
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1502606Z  * [new branch]          feature_move_testextensions_to_tests/ilinksextensions -> origin/feature_move_testextensions_to_tests/ilinksextensions
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1503060Z  * [new branch]          fix_deleteall                            -> origin/fix_deleteall
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1503409Z  * [new branch]          gh-pages                                 -> origin/gh-pages
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1503787Z  * [new branch]          ilinks_bug                               -> origin/ilinks_bug
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1504250Z  * [new branch]          issue-10-dc9e2253                        -> origin/issue-10-dc9e2253
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1504634Z  * [new branch]          issue-100-2f9bb17f                       -> origin/issue-100-2f9bb17f
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1504999Z  * [new branch]          issue-122-372622af                       -> origin/issue-122-372622af
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1505371Z  * [new branch]          issue-122-e05a5713                       -> origin/issue-122-e05a5713
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1505732Z  * [new branch]          issue-123-90f092d3                       -> origin/issue-123-90f092d3
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1506126Z  * [new branch]          issue-125-7f224c52                       -> origin/issue-125-7f224c52
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1506533Z  * [new branch]          issue-131-173bd186                       -> origin/issue-131-173bd186
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1506923Z  * [new branch]          issue-132-b9a43709                       -> origin/issue-132-b9a43709
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1507397Z  * [new branch]          issue-14-65c21b2c                        -> origin/issue-14-65c21b2c
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1507757Z  * [new branch]          issue-145-e1924d96                       -> origin/issue-145-e1924d96
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1508115Z  * [new branch]          issue-150-8aba0d16                       -> origin/issue-150-8aba0d16
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1508472Z  * [new branch]          issue-152-380a75dd                       -> origin/issue-152-380a75dd
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1508987Z  * [new branch]          issue-153-a5aacf2d                       -> origin/issue-153-a5aacf2d
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1509361Z  * [new branch]          issue-155-6f3abe86                       -> origin/issue-155-6f3abe86
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1509736Z  * [new branch]          issue-157-f18f507d                       -> origin/issue-157-f18f507d
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1510118Z  * [new branch]          issue-158-d4b2d751                       -> origin/issue-158-d4b2d751
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1510494Z  * [new branch]          issue-159-4c473b2f                       -> origin/issue-159-4c473b2f
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1510859Z  * [new branch]          issue-166-5f7770d0                       -> origin/issue-166-5f7770d0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1511226Z  * [new branch]          issue-167-6697c32c                       -> origin/issue-167-6697c32c
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1511592Z  * [new branch]          issue-172-3a6bb3a5                       -> origin/issue-172-3a6bb3a5
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1511956Z  * [new branch]          issue-173-52414a06                       -> origin/issue-173-52414a06
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1512320Z  * [new branch]          issue-174-38feee43                       -> origin/issue-174-38feee43
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1512792Z  * [new branch]          issue-179-c20097fb                       -> origin/issue-179-c20097fb
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1513159Z  * [new branch]          issue-180-4c858df1                       -> origin/issue-180-4c858df1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1513527Z  * [new branch]          issue-182-68621777                       -> origin/issue-182-68621777
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1513895Z  * [new branch]          issue-183-65fb60df                       -> origin/issue-183-65fb60df
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1514259Z  * [new branch]          issue-184-50380e1c                       -> origin/issue-184-50380e1c
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1514623Z  * [new branch]          issue-185-8b06ec42                       -> origin/issue-185-8b06ec42
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1515021Z  * [new branch]          issue-191-d711698e                       -> origin/issue-191-d711698e
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1515441Z  * [new branch]          issue-192-f5bd0637                       -> origin/issue-192-f5bd0637
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1515809Z  * [new branch]          issue-195-87e1a7d9                       -> origin/issue-195-87e1a7d9
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1516182Z  * [new branch]          issue-197-9699ae6f                       -> origin/issue-197-9699ae6f
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1516552Z  * [new branch]          issue-201-23d35853                       -> origin/issue-201-23d35853
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1516923Z  * [new branch]          issue-202-f9973a4e                       -> origin/issue-202-f9973a4e
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1517303Z  * [new branch]          issue-204-ee98b556                       -> origin/issue-204-ee98b556
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1517685Z  * [new branch]          issue-205-6c1a8373                       -> origin/issue-205-6c1a8373
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1518077Z  * [new branch]          issue-206-cfb6909c                       -> origin/issue-206-cfb6909c
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1518442Z  * [new branch]          issue-207-68d68fb5                       -> origin/issue-207-68d68fb5
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1518934Z  * [new branch]          issue-208-33ea9e2e                       -> origin/issue-208-33ea9e2e
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1519401Z  * [new branch]          issue-209-37cc5160                       -> origin/issue-209-37cc5160
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1519768Z  * [new branch]          issue-210-b20f751b                       -> origin/issue-210-b20f751b
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1520233Z  * [new branch]          issue-212-fb245296                       -> origin/issue-212-fb245296
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1520613Z  * [new branch]          issue-213-00756f69                       -> origin/issue-213-00756f69
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1520979Z  * [new branch]          issue-216-5c9f8771                       -> origin/issue-216-5c9f8771
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1521352Z  * [new branch]          issue-217-c738a90c                       -> origin/issue-217-c738a90c
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1521713Z  * [new branch]          issue-218-b64a64c5                       -> origin/issue-218-b64a64c5
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1522065Z  * [new branch]          issue-230-559672a0                       -> origin/issue-230-559672a0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1522421Z  * [new branch]          issue-237-3d81523b                       -> origin/issue-237-3d81523b
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1522775Z  * [new branch]          issue-238-4d05c862                       -> origin/issue-238-4d05c862
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1523135Z  * [new branch]          issue-239-fbcda755                       -> origin/issue-239-fbcda755
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1523488Z  * [new branch]          issue-240-a4e43a46                       -> origin/issue-240-a4e43a46
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1523839Z  * [new branch]          issue-241-b58c00a6                       -> origin/issue-241-b58c00a6
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1524194Z  * [new branch]          issue-242-bcb83cac                       -> origin/issue-242-bcb83cac
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1524547Z  * [new branch]          issue-243-74d0a614                       -> origin/issue-243-74d0a614
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1524899Z  * [new branch]          issue-245-55a50dd3                       -> origin/issue-245-55a50dd3
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1525340Z  * [new branch]          issue-249-f1500da9                       -> origin/issue-249-f1500da9
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1525690Z  * [new branch]          issue-250-42c9d850                       -> origin/issue-250-42c9d850
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1526045Z  * [new branch]          issue-254-e7a5d9f7                       -> origin/issue-254-e7a5d9f7
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1526400Z  * [new branch]          issue-258-c8b7530f                       -> origin/issue-258-c8b7530f
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1526749Z  * [new branch]          issue-263-0617cbc6                       -> origin/issue-263-0617cbc6
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1527101Z  * [new branch]          issue-264-48a30829                       -> origin/issue-264-48a30829
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1527453Z  * [new branch]          issue-269-5c78f79f                       -> origin/issue-269-5c78f79f
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1527810Z  * [new branch]          issue-28-86d6809c                        -> origin/issue-28-86d6809c
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1528167Z  * [new branch]          issue-287-43a044c6                       -> origin/issue-287-43a044c6
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1528525Z  * [new branch]          issue-288-7363fdd4                       -> origin/issue-288-7363fdd4
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1529040Z  * [new branch]          issue-289-a32521da                       -> origin/issue-289-a32521da
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1529466Z  * [new branch]          issue-290-46a8add1                       -> origin/issue-290-46a8add1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1529815Z  * [new branch]          issue-295-51e2cc11                       -> origin/issue-295-51e2cc11
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1530162Z  * [new branch]          issue-309-7c8629c7                       -> origin/issue-309-7c8629c7
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1530511Z  * [new branch]          issue-310-5de3d1dc                       -> origin/issue-310-5de3d1dc
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1530866Z  * [new branch]          issue-319-1f8bc024                       -> origin/issue-319-1f8bc024
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1531224Z  * [new branch]          issue-323-9f4031b8                       -> origin/issue-323-9f4031b8
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1531583Z  * [new branch]          issue-324-55e5be19                       -> origin/issue-324-55e5be19
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1531938Z  * [new branch]          issue-331-f53fc679                       -> origin/issue-331-f53fc679
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1532395Z  * [new branch]          issue-332-7a6ff77a                       -> origin/issue-332-7a6ff77a
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1532749Z  * [new branch]          issue-334-b21a4d38                       -> origin/issue-334-b21a4d38
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1533103Z  * [new branch]          issue-338-627b1af9                       -> origin/issue-338-627b1af9
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1533455Z  * [new branch]          issue-346-2629ee00                       -> origin/issue-346-2629ee00
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1533819Z  * [new branch]          issue-347-bc055938                       -> origin/issue-347-bc055938
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1534172Z  * [new branch]          issue-349-847bd9da                       -> origin/issue-349-847bd9da
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1534543Z  * [new branch]          issue-350-31002bc3                       -> origin/issue-350-31002bc3
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1534905Z  * [new branch]          issue-354-69429f3d                       -> origin/issue-354-69429f3d
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1535269Z  * [new branch]          issue-354-90a219e1                       -> origin/issue-354-90a219e1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1535828Z  * [new branch]          issue-354-a5f63605                       -> origin/issue-354-a5f63605
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1536423Z  * [new branch]          issue-355-16463e62                       -> origin/issue-355-16463e62
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1536854Z  * [new branch]          issue-356-08228300                       -> origin/issue-356-08228300
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1537248Z  * [new branch]          issue-359-e5a050cc                       -> origin/issue-359-e5a050cc
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1537633Z  * [new branch]          issue-360-0e8cd1e0                       -> origin/issue-360-0e8cd1e0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1538119Z  * [new branch]          issue-361-575582dd                       -> origin/issue-361-575582dd
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1538610Z  * [new branch]          issue-372-aea7e0f1                       -> origin/issue-372-aea7e0f1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1539198Z  * [new branch]          issue-375-e585215d                       -> origin/issue-375-e585215d
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1539693Z  * [new branch]          issue-382-6eb8af26                       -> origin/issue-382-6eb8af26
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1540355Z  * [new branch]          issue-383-81b4bf92                       -> origin/issue-383-81b4bf92
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1541001Z  * [new branch]          issue-384-58b26c76                       -> origin/issue-384-58b26c76
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1541580Z  * [new branch]          issue-386-3e27d460                       -> origin/issue-386-3e27d460
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1542124Z  * [new branch]          issue-389-a58bf26c                       -> origin/issue-389-a58bf26c
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1542674Z  * [new branch]          issue-390-5e4626de                       -> origin/issue-390-5e4626de
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1543072Z  * [new branch]          issue-394-309114ec                       -> origin/issue-394-309114ec
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1543427Z  * [new branch]          issue-395-10b110d3                       -> origin/issue-395-10b110d3
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1543774Z  * [new branch]          issue-396-244bd1fe                       -> origin/issue-396-244bd1fe
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1544123Z  * [new branch]          issue-398-451b7b82                       -> origin/issue-398-451b7b82
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1544473Z  * [new branch]          issue-40-e633e9f6                        -> origin/issue-40-e633e9f6
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1544824Z  * [new branch]          issue-508-5a1549d7                       -> origin/issue-508-5a1549d7
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1545191Z  * [new branch]          issue-512-557a0a3ca78d                   -> origin/issue-512-557a0a3ca78d
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1545568Z  * [new branch]          issue-518-e28aadb8d563                   -> origin/issue-518-e28aadb8d563
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1545937Z  * [new branch]          issue-52-3f2f1389                        -> origin/issue-52-3f2f1389
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1546296Z  * [new branch]          issue-521-1ac9a60c43a0                   -> origin/issue-521-1ac9a60c43a0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1546808Z  * [new branch]          issue-522-2819acda0f21                   -> origin/issue-522-2819acda0f21
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1547179Z  * [new branch]          issue-524-b1512fd1c7a8                   -> origin/issue-524-b1512fd1c7a8
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1547534Z  * [new branch]          issue-6-2f2360da                         -> origin/issue-6-2f2360da
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1547885Z  * [new branch]          issue-62-a49bc29e                        -> origin/issue-62-a49bc29e
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1548234Z  * [new branch]          issue-68-4e596e00                        -> origin/issue-68-4e596e00
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1548581Z  * [new branch]          issue-85-856b1b45                        -> origin/issue-85-856b1b45
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1549096Z  * [new branch]          issue-86-6c31fd91                        -> origin/issue-86-6c31fd91
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1549437Z  * [new branch]          issue-89-a56a0167                        -> origin/issue-89-a56a0167
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1549785Z  * [new branch]          issue-90-5c6486ed                        -> origin/issue-90-5c6486ed
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1550127Z  * [new branch]          issue-96-7c16f737                        -> origin/issue-96-7c16f737
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1550474Z  * [new branch]          issue-97-8b13f48a                        -> origin/issue-97-8b13f48a
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1550820Z  * [new branch]          issue-98-61dd56ef                        -> origin/issue-98-61dd56ef
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1551164Z  * [new branch]          lazy-fixes                               -> origin/lazy-fixes
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1551501Z  * [new branch]          main                                     -> origin/main
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1552022Z  * [new branch]          master                                   -> origin/master
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1552342Z  * [new branch]          move_sequences                           -> origin/move_sequences
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1552709Z  * [new branch]          nassipkali-patch-1                       -> origin/nassipkali-patch-1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1553104Z  * [new branch]          nassipkali-patch-2                       -> origin/nassipkali-patch-2
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1553466Z  * [new branch]          nassipkali-patch-3                       -> origin/nassipkali-patch-3
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1553826Z  * [new branch]          nassipkali-patch-4                       -> origin/nassipkali-patch-4
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1554182Z  * [new branch]          nassipkali-patch-5                       -> origin/nassipkali-patch-5
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1554540Z  * [new branch]          nassipkali-patch-6                       -> origin/nassipkali-patch-6
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1554897Z  * [new branch]          nassipkali-patch-7                       -> origin/nassipkali-patch-7
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1555258Z  * [new branch]          nassipkali-patch-8                       -> origin/nassipkali-patch-8
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1555613Z  * [new branch]          nassipkali-patch-9                       -> origin/nassipkali-patch-9
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1555960Z  * [new branch]          origin-ffi                               -> origin/origin-ffi
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1556315Z  * [new branch]          rational_numbers                         -> origin/rational_numbers
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1556672Z  * [new branch]          revert-259-master                        -> origin/revert-259-master
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1556999Z  * [new branch]          rust-ci                                  -> origin/rust-ci
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1557321Z  * [new branch]          rust.criterion                           -> origin/rust.criterion
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1557661Z  * [new branch]          rust.with_query                          -> origin/rust.with_query
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1558003Z  * [new branch]          rust.with_result                         -> origin/rust.with_result
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1558347Z  * [new branch]          rust_write.unwrap                        -> origin/rust_write.unwrap
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1558971Z  * [new branch]          rust_write.unwrap.optimized.wasm         -> origin/rust_write.unwrap.optimized.wasm
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1559468Z  * [new branch]          rust_write.unwrap_unchecked              -> origin/rust_write.unwrap_unchecked
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1559858Z  * [new branch]          split-data-n-doublets                    -> origin/split-data-n-doublets
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1560195Z  * [new branch]          tests                                    -> origin/tests
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1560508Z  * [new branch]          update_package                           -> origin/update_package
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1560804Z  * [new tag]             0.0.1                                    -> 0.0.1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1561064Z  * [new tag]             0.1.0                                    -> 0.1.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1561325Z  * [new tag]             0.1.1                                    -> 0.1.1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1561583Z  * [new tag]             0.10.0                                   -> 0.10.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1561852Z  * [new tag]             0.10.1                                   -> 0.10.1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1562111Z  * [new tag]             0.11.0                                   -> 0.11.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1562372Z  * [new tag]             0.11.1                                   -> 0.11.1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1562629Z  * [new tag]             0.12.0                                   -> 0.12.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1562882Z  * [new tag]             0.13.0                                   -> 0.13.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1563137Z  * [new tag]             0.13.1                                   -> 0.13.1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1563389Z  * [new tag]             0.13.2                                   -> 0.13.2
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1563657Z  * [new tag]             0.2.0                                    -> 0.2.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1564015Z  * [new tag]             0.2.1                                    -> 0.2.1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1564267Z  * [new tag]             0.3.0                                    -> 0.3.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1564521Z  * [new tag]             0.4.0                                    -> 0.4.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1564777Z  * [new tag]             0.5.0                                    -> 0.5.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1565085Z  * [new tag]             0.6.0                                    -> 0.6.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1565391Z  * [new tag]             0.6.1                                    -> 0.6.1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1565647Z  * [new tag]             0.6.10                                   -> 0.6.10
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1566008Z  * [new tag]             0.6.11                                   -> 0.6.11
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1566391Z  * [new tag]             0.6.2                                    -> 0.6.2
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1566775Z  * [new tag]             0.6.3                                    -> 0.6.3
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1567164Z  * [new tag]             0.6.4                                    -> 0.6.4
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1567537Z  * [new tag]             0.6.5                                    -> 0.6.5
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1567920Z  * [new tag]             0.6.6                                    -> 0.6.6
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1568302Z  * [new tag]             0.6.7                                    -> 0.6.7
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1568690Z  * [new tag]             0.6.8                                    -> 0.6.8
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1569204Z  * [new tag]             0.6.9                                    -> 0.6.9
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1569460Z  * [new tag]             0.7.0                                    -> 0.7.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1569712Z  * [new tag]             0.8.0                                    -> 0.8.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1569964Z  * [new tag]             0.9.0                                    -> 0.9.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1570241Z  * [new tag]             cpp_0.1.0                                -> cpp_0.1.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1570532Z  * [new tag]             csharp_0.15.0                            -> csharp_0.15.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1570959Z  * [new tag]             csharp_0.16.0                            -> csharp_0.16.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1571248Z  * [new tag]             csharp_0.17.0                            -> csharp_0.17.0
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1571535Z  * [new tag]             csharp_0.17.1                            -> csharp_0.17.1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1571823Z  * [new tag]             csharp_0.17.2                            -> csharp_0.17.2
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1572108Z  * [new tag]             csharp_0.18.1                            -> csharp_0.18.1
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1572394Z  * [new tag]             csharp_0.18.2                            -> csharp_0.18.2
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1572677Z  * [new tag]             csharp_0.18.3                            -> csharp_0.18.3
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1572991Z  * [new ref]             fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c -> pull/526/merge
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1574085Z ##[endgroup]
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1574477Z ##[group]Determining the checkout info
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1574917Z ##[endgroup]
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1575129Z [command]/usr/bin/git sparse-checkout disable
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1575624Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1576259Z ##[group]Checking out the ref
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.1576525Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/526/merge
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4148405Z Note: switching to 'refs/remotes/pull/526/merge'.
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4148640Z 
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4149036Z You are in 'detached HEAD' state. You can look around, make experimental
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4149484Z changes and commit them, and you can discard any commits you make in this
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4149768Z state without impacting any branches by switching back to a branch.
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4150156Z 
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4150268Z If you want to create a new branch to retain commits you create, you may
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4150530Z do so (now or later) by using -c with the switch command. Example:
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4150685Z 
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4150755Z   git switch -c <new-branch-name>
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4150862Z 
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4150943Z Or undo this operation with:
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4151039Z 
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4151090Z   git switch -
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4151163Z 
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4151295Z Turn off this advice by setting config variable advice.detachedHead to false
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4151475Z 
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4198345Z HEAD is now at fd79f966a Merge 5cf40c5a338a38978221aab65a8e017005c95303 into 799502ce9275edc80d9fbc1953ff8892fe0eca19
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4199812Z ##[endgroup]
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4254127Z [command]/usr/bin/git log -1 --format=%H
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4291323Z fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4298996Z ##[group]Removing auth
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4299304Z Removing SSH command configuration
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4302139Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4342011Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4546591Z Removing HTTP extra header
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4549200Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4587702Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4787601Z Removing includeIf entries pointing to credentials config files
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4790417Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4826837Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4827332Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4828039Z includeif.gitdir:/github/workspace/.git.path
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4828448Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4833468Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4865876Z /home/runner/work/_temp/git-credentials-2a3d944f-976d-4369-8eb5-d43324769178.config
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4873749Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-2a3d944f\-976d\-4369\-8eb5\-d43324769178\.config
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4923308Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4954917Z /home/runner/work/_temp/git-credentials-2a3d944f-976d-4369-8eb5-d43324769178.config
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.4962067Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-2a3d944f\-976d\-4369\-8eb5\-d43324769178\.config
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.5004369Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.5036645Z /github/runner_temp/git-credentials-2a3d944f-976d-4369-8eb5-d43324769178.config
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.5042747Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-2a3d944f\-976d\-4369\-8eb5\-d43324769178\.config
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.5087152Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.5120185Z /github/runner_temp/git-credentials-2a3d944f-976d-4369-8eb5-d43324769178.config
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.5126422Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-2a3d944f\-976d\-4369\-8eb5\-d43324769178\.config
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.5179741Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.5386540Z Removing credentials config '/home/runner/work/_temp/git-credentials-2a3d944f-976d-4369-8eb5-d43324769178.config'
+csharp (ubuntu-24.04)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:31.5395762Z ##[endgroup]
+csharp (ubuntu-24.04)	Prepare current merge and automatic release versions	﻿2026-10-29T08:32:31.5570955Z ##[group]Run bash scripts/prepare-checkout.sh
+csharp (ubuntu-24.04)	Prepare current merge and automatic release versions	2026-10-29T08:32:31.5571210Z ^[[36;1mbash scripts/prepare-checkout.sh^[[0m
+csharp (ubuntu-24.04)	Prepare current merge and automatic release versions	2026-10-29T08:32:31.5591335Z shell: /usr/bin/bash -e {0}
+csharp (ubuntu-24.04)	Prepare current merge and automatic release versions	2026-10-29T08:32:31.5591498Z ##[endgroup]
+csharp (ubuntu-24.04)	Prepare current merge and automatic release versions	2026-10-29T08:32:31.8636913Z Already up to date.
+csharp (ubuntu-24.04)	Prepare current merge and automatic release versions	2026-10-29T08:32:31.8883512Z csharp: 0.18.3 -> 0.18.4 (patch)
+csharp (ubuntu-24.04)	Prepare current merge and automatic release versions	2026-10-29T08:32:31.8883819Z cpp: 0.1.0 -> 0.1.1 (patch)
+csharp (ubuntu-24.04)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	﻿2026-10-29T08:32:31.8977502Z ##[group]Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+csharp (ubuntu-24.04)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:31.8977733Z with:
+csharp (ubuntu-24.04)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:31.8977864Z   global-json-file: global.json
+csharp (ubuntu-24.04)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:31.8978008Z   cache: false
+csharp (ubuntu-24.04)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:31.8978123Z ##[endgroup]
+csharp (ubuntu-24.04)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:31.9909705Z [command]/home/runner/work/_actions/actions/setup-dotnet/26b0ec14cb23fa6904739307f278c14f94c95bf1/externals/install-dotnet.sh --skip-non-versioned-files --runtime dotnet --channel LTS
+csharp (ubuntu-24.04)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:32.2699678Z dotnet-install: .NET Core Runtime with version '10.0.14' is already installed.
+csharp (ubuntu-24.04)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:32.2718486Z [command]/home/runner/work/_actions/actions/setup-dotnet/26b0ec14cb23fa6904739307f278c14f94c95bf1/externals/install-dotnet.sh --skip-non-versioned-files --channel 8.0.4xx
+csharp (ubuntu-24.04)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:32.5066776Z dotnet-install: .NET Core SDK with version '8.0.427' is already installed.
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	﻿2026-10-29T08:32:32.5190813Z ##[group]Run bash scripts/check-csharp.sh
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:32.5191028Z ^[[36;1mbash scripts/check-csharp.sh^[[0m
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:32.5210280Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:32.5210481Z env:
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:32.5210604Z   DOTNET_ROOT: /usr/share/dotnet
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:32.5210751Z ##[endgroup]
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:38.1495120Z   Determining projects to restore...
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:42.1126072Z   Restored /home/runner/work/Data.Doublets/Data.Doublets/csharp/Platform.Data.Doublets.Tests/Platform.Data.Doublets.Tests.csproj (in 2.99 sec).
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:42.1127343Z   Restored /home/runner/work/Data.Doublets/Data.Doublets/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj (in 2.99 sec).
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:42.1786907Z   Restored /home/runner/work/Data.Doublets/Data.Doublets/csharp/Platform.Data.Doublets.Benchmarks/Platform.Data.Doublets.Benchmarks.csproj (in 3.06 sec).
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:48.7679691Z   Platform.Data.Doublets -> /home/runner/work/Data.Doublets/Data.Doublets/csharp/Platform.Data.Doublets/bin/Release/net8.0/Platform.Data.Doublets.dll
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:49.2970385Z   Platform.Data.Doublets.Tests -> /home/runner/work/Data.Doublets/Data.Doublets/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:49.9480501Z   Platform.Data.Doublets.Benchmarks -> /home/runner/work/Data.Doublets/Data.Doublets/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net8.0/Platform.Data.Doublets.Benchmarks.dll
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:49.9565378Z 
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:49.9571620Z Build succeeded.
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:49.9571957Z     0 Warning(s)
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:49.9572145Z     0 Error(s)
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:49.9584603Z 
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:49.9585264Z Time Elapsed 00:00:07.56
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:57.8735397Z Test run for /home/runner/work/Data.Doublets/Data.Doublets/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v8.0)
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:58.0704714Z VSTest version 17.11.1 (x64)
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:58.0743532Z 
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:58.5118184Z Starting test execution, please wait...
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:32:58.5689137Z A total of 1 test files matched the specified pattern.
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:00.5759714Z Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:00.6940957Z Results File: /home/runner/work/Data.Doublets/Data.Doublets/artifacts/test-results/_runnervm48cm3_2026-10-29_08_32_59.trx
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:00.6944291Z 
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:00.6975400Z Passed!  - Failed:     0, Passed:    82, Skipped:     0, Total:    82, Duration: 843 ms - Platform.Data.Doublets.Tests.dll (net8.0)
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:00.8590584Z 
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:00.8594507Z Attachments:
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:00.8595774Z   /home/runner/work/Data.Doublets/Data.Doublets/artifacts/test-results/413d3f62-43f5-45cf-835e-3ed7dec98241/coverage.cobertura.xml
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:02.8917187Z united: created 2 = (1, 18446744073709551596)
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:02.8918549Z   Each -> [2], Count -> 1, SearchOrDefault -> 2
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:02.8994498Z split: created 2 = (1, 18446744073709551596)
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:02.8994907Z   Each -> [2], Count -> 1, SearchOrDefault -> 2
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:04.3506103Z   Successfully created package '/home/runner/work/Data.Doublets/Data.Doublets/artifacts/packages/Platform.Data.Doublets.0.18.4.nupkg'.
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:04.3541439Z   Successfully created package '/home/runner/work/Data.Doublets/Data.Doublets/artifacts/packages/Platform.Data.Doublets.0.18.4.snupkg'.
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:06.3984193Z   Determining projects to restore...
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:08.1855366Z   Restored /tmp/tmps47uwltm/Consumer.csproj (in 1.13 sec).
+csharp (ubuntu-24.04)	Restore, build, test, package and consume	2026-10-29T08:33:12.0615531Z Validated packaged consumer of Platform.Data.Doublets 0.18.4
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	﻿2026-10-29T08:33:12.0767678Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.0767923Z with:
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.0768047Z   name: csharp-ubuntu-24.04
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.0768219Z   path: artifacts/packages/*
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	artifacts/test-results/*
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.0768409Z   if-no-files-found: error
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.0768548Z   retention-days: 14
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.0768685Z   compression-level: 6
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.0769249Z   overwrite: false
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.0769379Z   include-hidden-files: false
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.0769518Z   archive: true
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.0769635Z env:
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.0769752Z   DOTNET_ROOT: /usr/share/dotnet
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.0769894Z ##[endgroup]
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.1822900Z Multiple search paths detected. Calculating the least common ancestor of all paths
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.1824839Z The least common ancestor is /home/runner/work/Data.Doublets/Data.Doublets/artifacts. This will be the root directory of the artifact
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.1825568Z With the provided path, there will be 5 files uploaded
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.1828247Z Artifact name is valid!
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.1828771Z Root directory input is valid!
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.5323175Z Uploading artifact: csharp-ubuntu-24.04.zip
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.5349544Z Beginning upload of artifact content to blob storage
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:12.9581060Z Uploaded bytes 198672
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:13.0209290Z Finished uploading artifact content to blob storage!
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:13.0209827Z SHA256 digest of uploaded artifact is 048fc0d1734a0566f6ce84d6399182088bf02e7741e420f5f55b2cccc16adda8
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:13.0210144Z Finalizing artifact upload
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:13.6395719Z Artifact csharp-ubuntu-24.04 successfully finalized. Artifact ID 12882969002
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:13.6396647Z Artifact csharp-ubuntu-24.04 has been successfully uploaded! Final size is 198672 bytes. Artifact ID is 12882969002
+csharp (ubuntu-24.04)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:33:13.6399367Z Artifact download URL: https://github.com/linksplatform/Data.Doublets/actions/runs/40842727244/artifacts/12882969002
+csharp (ubuntu-24.04)	Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	﻿2026-10-29T08:33:13.6858934Z Post job cleanup.
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-29T08:33:13.8053740Z Post job cleanup.
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.8667652Z [command]/usr/bin/git version
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.8735501Z git version 2.56.0
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.8762135Z Temporarily overriding HOME='/home/runner/work/_temp/c00af33c-f733-4ea9-a887-e0018a4fe76b' before making global git config changes
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.8763345Z Adding repository directory to the temporary git global config as a safe directory
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.8765193Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.8847223Z Removing SSH command configuration
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.8852807Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.8902096Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.9126918Z Removing HTTP extra header
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.9132951Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.9175075Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.9406984Z Removing includeIf entries pointing to credentials config files
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.9413150Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+csharp (ubuntu-24.04)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:33:13.9458308Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+csharp (ubuntu-24.04)	Complete job	﻿2026-10-29T08:33:13.9798467Z Cleaning up orphan processes
+csharp (ubuntu-24.04)	Complete job	2026-10-29T08:33:14.0041899Z Terminate orphan process: pid (2406) (dotnet)
+csharp (ubuntu-24.04)	Complete job	2026-10-29T08:33:14.0067158Z Terminate orphan process: pid (2407) (dotnet)
+csharp (ubuntu-24.04)	Complete job	2026-10-29T08:33:14.0086449Z Terminate orphan process: pid (2507) (dotnet)
+csharp (ubuntu-24.04)	Complete job	2026-10-29T08:33:14.0105879Z Terminate orphan process: pid (2868) (VBCSCompiler)

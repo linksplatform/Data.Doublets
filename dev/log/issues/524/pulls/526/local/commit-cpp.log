@@ -1,0 +1,12 @@
+[issue-524-b1512fd1c7a8 2b95c7b3b] Make native builds fail fast and fix compiler and storage regressions
+ 103 files changed, 5001 insertions(+), 2696 deletions(-)
+ create mode 100644 .clang-format
+ create mode 100644 .clang-tidy
+ create mode 100644 cpp/Doxyfile
+ create mode 100644 cpp/Platform.Data.Doublets.Tests/TemporaryDirectoryTests.cpp
+ create mode 100644 cpp/Tools/TemporaryDirectory.h
+ create mode 100644 cpp/ci-build.sh
+ create mode 100644 experiments/annotate_crtp_overrides.py
+ create mode 100644 experiments/test_ffi_header.py
+ create mode 100644 scripts/check-cpp.py
+ create mode 100644 scripts/patch_conan_recipes.py

@@ -1,0 +1,23 @@
+=================================================================
+==29132==ERROR: AddressSanitizer: alloc-dealloc-mismatch (malloc vs operator delete) on 0x521000000100
+    #0 0x5a2d7d94d251 in operator delete(void*) (/tmp/issue-524-heap-sanitizer+0x16a251) (BuildId: 7900331bf7b4a75f6d3f2295dd08b26b62aa58b3)
+    #1 0x5a2d7d987b3f in Platform::Memory::HeapResizableDirectMemory::~HeapResizableDirectMemory() (/tmp/issue-524-heap-sanitizer+0x1a4b3f) (BuildId: 7900331bf7b4a75f6d3f2295dd08b26b62aa58b3)
+    #2 0x5a2d7d958093 in main (/tmp/issue-524-heap-sanitizer+0x175093) (BuildId: 7900331bf7b4a75f6d3f2295dd08b26b62aa58b3)
+    #3 0x7988cc8e11c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: a4a7992a8e66555c8141ab2a08a8465ff6e0ea65)
+    #4 0x7988cc8e128a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: a4a7992a8e66555c8141ab2a08a8465ff6e0ea65)
+    #5 0x5a2d7d873564 in _start (/tmp/issue-524-heap-sanitizer+0x90564) (BuildId: 7900331bf7b4a75f6d3f2295dd08b26b62aa58b3)
+
+0x521000000100 is located 0 bytes inside of 4096-byte region [0x521000000100,0x521000001100)
+allocated by thread T0 here:
+    #0 0x5a2d7d90e3b3 in malloc (/tmp/issue-524-heap-sanitizer+0x12b3b3) (BuildId: 7900331bf7b4a75f6d3f2295dd08b26b62aa58b3)
+    #1 0x5a2d7d9c9e05 in Platform::Memory::HeapResizableDirectMemory::OnReservedCapacityChanged(unsigned long, unsigned long) (/tmp/issue-524-heap-sanitizer+0x1e6e05) (BuildId: 7900331bf7b4a75f6d3f2295dd08b26b62aa58b3)
+    #2 0x5a2d7d9c961d in Platform::Memory::ResizableDirectMemoryBase::ReservedCapacity(unsigned long) (/tmp/issue-524-heap-sanitizer+0x1e661d) (BuildId: 7900331bf7b4a75f6d3f2295dd08b26b62aa58b3)
+    #3 0x5a2d7d98725f in Platform::Memory::HeapResizableDirectMemory::HeapResizableDirectMemory(unsigned long) (/tmp/issue-524-heap-sanitizer+0x1a425f) (BuildId: 7900331bf7b4a75f6d3f2295dd08b26b62aa58b3)
+    #4 0x5a2d7d957ea5 in main (/tmp/issue-524-heap-sanitizer+0x174ea5) (BuildId: 7900331bf7b4a75f6d3f2295dd08b26b62aa58b3)
+    #5 0x7988cc8e11c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: a4a7992a8e66555c8141ab2a08a8465ff6e0ea65)
+    #6 0x7988cc8e128a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: a4a7992a8e66555c8141ab2a08a8465ff6e0ea65)
+    #7 0x5a2d7d873564 in _start (/tmp/issue-524-heap-sanitizer+0x90564) (BuildId: 7900331bf7b4a75f6d3f2295dd08b26b62aa58b3)
+
+SUMMARY: AddressSanitizer: alloc-dealloc-mismatch (/tmp/issue-524-heap-sanitizer+0x16a251) (BuildId: 7900331bf7b4a75f6d3f2295dd08b26b62aa58b3) in operator delete(void*)
+==29132==HINT: if you don't care about these errors you may set ASAN_OPTIONS=alloc_dealloc_mismatch=0
+==29132==ABORTING

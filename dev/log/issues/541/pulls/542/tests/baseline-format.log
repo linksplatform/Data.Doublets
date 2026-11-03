@@ -1,0 +1,17 @@
+Would reformat: scripts/changes.py
+Would reformat: scripts/check-cpp.py
+Would reformat: scripts/check-workflows.py
+Would reformat: scripts/check_audit.py
+Would reformat: scripts/check_docs.py
+Would reformat: scripts/check_repository.py
+Would reformat: scripts/check_required.py
+Would reformat: scripts/check_sarif.py
+Would reformat: scripts/check_web_archive.py
+Would reformat: scripts/conan_profile.py
+Would reformat: scripts/patch_conan_recipes.py
+Would reformat: scripts/recheck_broken_links.py
+Would reformat: scripts/release.py
+Would reformat: scripts/smoke_packages.py
+Would reformat: scripts/source_pdf.py
+Would reformat: scripts/versions.py
+16 files would be reformatted

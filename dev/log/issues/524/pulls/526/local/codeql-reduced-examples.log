@@ -1,0 +1,8 @@
+Compile: g++ -std=c++20 -Wall -Wextra -Werror -pedantic experiments/codeql_maybe_unused.cpp -o /tmp/issue-524-codeql_maybe_unused
+Compile and execution passed.
+Compile: g++ -std=c++20 -Wall -Wextra -Werror -pedantic experiments/codeql_byte_scaling.cpp -o /tmp/issue-524-codeql_byte_scaling
+Compile and execution passed.
+Compile: clang++-18 -std=c++20 -Wall -Wextra -Werror -pedantic experiments/codeql_maybe_unused.cpp -o /tmp/issue-524-codeql_maybe_unused
+Compile and execution passed.
+Compile: clang++-18 -std=c++20 -Wall -Wextra -Werror -pedantic experiments/codeql_byte_scaling.cpp -o /tmp/issue-524-codeql_byte_scaling
+Compile and execution passed.
