@@ -1,3 +1,11 @@
+## csharp 0.18.8
+
+- DeleteAll deletes every link, including links above Count() after deletions, and resets endpoints before each deletion so the store can be reused; native GetOrCreate and CreateAndUpdate return the created link address
+
+## cpp 0.1.5
+
+- DeleteAll deletes every link, including links above Count() after deletions, and resets endpoints before each deletion so the store can be reused; native GetOrCreate and CreateAndUpdate return the created link address
+
 ## csharp 0.18.7
 
 - MergeUsages and MergeAndDelete rewrite only the merged endpoint of each usage; the native handler-taking Delete no longer recurses
