@@ -163,6 +163,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a445509df5d9736ec0a2e5a2d14c3b753" id="r_a445509df5d9736ec0a2e5a2d14c3b753"><td class="memTemplParams" colspan="2">template&lt;typename TStorage &gt; </td></tr>
 <tr class="memitem:a445509df5d9736ec0a2e5a2d14c3b753"><td class="memTemplItemLeft" align="right" valign="top">TStorage::LinkAddressType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePlatform_1_1Data_1_1Doublets.html#a445509df5d9736ec0a2e5a2d14c3b753">HasUsages</a> (TStorage &amp;storage, typename TStorage::LinkAddressType linkAddress)</td></tr>
 <tr class="separator:a445509df5d9736ec0a2e5a2d14c3b753"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28e61478ed3f3160da43a030981c6e7a" id="r_a28e61478ed3f3160da43a030981c6e7a"><td class="memTemplParams" colspan="2">template&lt;typename TStorage , typename TIsElement , typename TAppendElement &gt; </td></tr>
+<tr class="memitem:a28e61478ed3f3160da43a030981c6e7a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePlatform_1_1Data_1_1Doublets.html#a28e61478ed3f3160da43a030981c6e7a">AppendStructure</a> (TStorage &amp;storage, std::ostream &amp;output, std::unordered_set&lt; typename TStorage::LinkAddressType &gt; &amp;visited, typename TStorage::LinkAddressType address, const TIsElement &amp;isElement, const TAppendElement &amp;appendElement, bool renderIndex=false, bool renderDebug=false)</td></tr>
+<tr class="separator:a28e61478ed3f3160da43a030981c6e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23174a4928051991e359976d2637ce87" id="r_a23174a4928051991e359976d2637ce87"><td class="memTemplParams" colspan="2">template&lt;typename TStorage , typename TIsElement , typename TAppendElement &gt; <br />
+requires std::invocable&lt;const TAppendElement&amp;, std::ostream&amp;, const <a class="el" href="structPlatform_1_1Data_1_1Doublets_1_1Link.html">Link</a>&lt;typename TStorage::LinkAddressType&gt;&amp;&gt;</td></tr>
+<tr class="memitem:a23174a4928051991e359976d2637ce87"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePlatform_1_1Data_1_1Doublets.html#a23174a4928051991e359976d2637ce87">FormatStructure</a> (TStorage &amp;storage, typename TStorage::LinkAddressType address, const TIsElement &amp;isElement, const TAppendElement &amp;appendElement, bool renderIndex=false, bool renderDebug=false)</td></tr>
+<tr class="memdesc:a23174a4928051991e359976d2637ce87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formats a structure with custom rendering for links accepted by isElement.  <br /></td></tr>
+<tr class="separator:a23174a4928051991e359976d2637ce87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ba523c2a12c96026cbe8a8affd62c08" id="r_a5ba523c2a12c96026cbe8a8affd62c08"><td class="memTemplParams" colspan="2">template&lt;typename TStorage , typename TIsElement &gt; </td></tr>
+<tr class="memitem:a5ba523c2a12c96026cbe8a8affd62c08"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePlatform_1_1Data_1_1Doublets.html#a5ba523c2a12c96026cbe8a8affd62c08">FormatStructure</a> (TStorage &amp;storage, typename TStorage::LinkAddressType address, const TIsElement &amp;isElement, bool renderIndex=false, bool renderDebug=false)</td></tr>
+<tr class="memdesc:a5ba523c2a12c96026cbe8a8affd62c08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formats a structure as parenthesized source/target pairs, matching the C# formatter.  <br /></td></tr>
+<tr class="separator:a5ba523c2a12c96026cbe8a8affd62c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af35f6a995d6b59ffa8dfb1ecd9f3b215" id="r_af35f6a995d6b59ffa8dfb1ecd9f3b215"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:af35f6a995d6b59ffa8dfb1ecd9f3b215"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePlatform_1_1Data_1_1Doublets.html#af35f6a995d6b59ffa8dfb1ecd9f3b215">Link</a> (Args...) -&gt; <a class="el" href="structPlatform_1_1Data_1_1Doublets_1_1Link.html">Link</a>&lt; std::common_type_t&lt; Args... &gt; &gt;</td></tr>
 <tr class="separator:af35f6a995d6b59ffa8dfb1ecd9f3b215"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,6 +183,73 @@ Functions</h2></td></tr>
 <tr class="separator:abf19d178ff2da8e34c206d3183e489a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a28e61478ed3f3160da43a030981c6e7a" name="a28e61478ed3f3160da43a030981c6e7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28e61478ed3f3160da43a030981c6e7a">&#9670;&#160;</a></span>AppendStructure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TStorage , typename TIsElement , typename TAppendElement &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Platform::Data::Doublets::AppendStructure </td>
+          <td>(</td>
+          <td class="paramtype">TStorage &amp;&#160;</td>
+          <td class="paramname"><em>storage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unordered_set&lt; typename TStorage::LinkAddressType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>visited</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename TStorage::LinkAddressType&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TIsElement &amp;&#160;</td>
+          <td class="paramname"><em>isElement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TAppendElement &amp;&#160;</td>
+          <td class="paramname"><em>appendElement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>renderIndex</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>renderDebug</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Appends a structure, sharing visited addresses across calls. Callbacks receive available endpoint links. Self references are numeric leaves; repeated links use '*' and missing links use '~' in debug mode. </p>
+
+</div>
+</div>
 <a id="a66516491566a329e53cff96f7a640179" name="a66516491566a329e53cff96f7a640179"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a66516491566a329e53cff96f7a640179">&#9670;&#160;</a></span>CreateAndUpdate()</h2>
 
@@ -310,6 +389,113 @@ template&lt;typename TStorage &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5ba523c2a12c96026cbe8a8affd62c08" name="a5ba523c2a12c96026cbe8a8affd62c08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ba523c2a12c96026cbe8a8affd62c08">&#9670;&#160;</a></span>FormatStructure() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TStorage , typename TIsElement &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Platform::Data::Doublets::FormatStructure </td>
+          <td>(</td>
+          <td class="paramtype">TStorage &amp;&#160;</td>
+          <td class="paramname"><em>storage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename TStorage::LinkAddressType&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TIsElement &amp;&#160;</td>
+          <td class="paramname"><em>isElement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>renderIndex</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>renderDebug</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Formats a structure as parenthesized source/target pairs, matching the C# formatter. </p>
+
+</div>
+</div>
+<a id="a23174a4928051991e359976d2637ce87" name="a23174a4928051991e359976d2637ce87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23174a4928051991e359976d2637ce87">&#9670;&#160;</a></span>FormatStructure() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TStorage , typename TIsElement , typename TAppendElement &gt; <br />
+requires std::invocable&lt;const TAppendElement&amp;, std::ostream&amp;, const <a class="el" href="structPlatform_1_1Data_1_1Doublets_1_1Link.html">Link</a>&lt;typename TStorage::LinkAddressType&gt;&amp;&gt;</div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Platform::Data::Doublets::FormatStructure </td>
+          <td>(</td>
+          <td class="paramtype">TStorage &amp;&#160;</td>
+          <td class="paramname"><em>storage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename TStorage::LinkAddressType&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TIsElement &amp;&#160;</td>
+          <td class="paramname"><em>isElement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TAppendElement &amp;&#160;</td>
+          <td class="paramname"><em>appendElement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>renderIndex</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>renderDebug</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Formats a structure with custom rendering for links accepted by isElement. </p>
 
 </div>
 </div>

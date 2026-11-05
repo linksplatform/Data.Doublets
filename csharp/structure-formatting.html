@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Structure formatting in C# and C++ | Platform.Data.Doublets </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Structure formatting in C# and C++ | Platform.Data.Doublets ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linksplatform/Data.Doublets/blob/main/docs/structure-formatting.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="structure-formatting-in-c-and-c">Structure formatting in C# and C++</h1>
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": ["# Structure formatting in C# and C++", "*"]
+  }
+}
+-->
+
+<p><code>FormatStructure</code> renders a reachable link structure as parenthesized source
+and target pairs. <code>renderIndex</code> adds the index before each expanded pair;
+<code>renderDebug</code> adds <code>*</code> before an already expanded link and <code>~</code> before an address
+with no stored link. Both options default to false and apply at every depth.
+Formatting reads the store without allocating or creating links in it.</p>
+<p>For a fresh C# store, a link with raw endpoints can be formatted directly:</p>
+<pre><code class="lang-csharp">using var links = new UnitedMemoryLinks&lt;ulong&gt;(
+    new HeapResizableDirectMemory(), 4096);
+var root = links.CreateAndUpdate(100UL, 101UL);
+Console.WriteLine(links.FormatStructure(root, _ =&gt; false, true, true));
+// (1:~100 ~101)
+</code></pre>
+<p>The C++ API uses the same argument order and notation:</p>
+<pre><code class="lang-cpp">#include &lt;Platform.Data.Doublets.h&gt;
+using namespace Platform::Data::Doublets;
+using Storage = Memory::United::Generic::UnitedMemoryLinks&lt;
+    LinksOptions&lt;std::uint64_t&gt;, Platform::Memory::HeapResizableDirectMemory&gt;;
+Storage links{Platform::Memory::HeapResizableDirectMemory{}};
+auto root = Create(links);
+Update(links, root, std::uint64_t{100}, std::uint64_t{101});
+auto notation = FormatStructure(
+    links, root, [](const auto&amp;) { return false; }, true, true);
+// (1:~100 ~101)
+</code></pre>
+<p>The element predicate receives available endpoint links. When it returns true,
+that endpoint is rendered as its index, or with the custom element callback
+supplied to the overload. C# callbacks receive <code>(StringBuilder, Link&lt;T&gt;)</code>;
+C++ callbacks receive <code>(std::ostream&amp;, const Link&lt;T&gt;&amp;)</code>. Missing internal
+references are rendered numerically without invoking either callback. A raw
+value whose address happens to name a stored link is expanded normally: use
+distinct external references or actual element links when encoding text for
+long-lived data.</p>
+<p>With external-reference support enabled, the storage APIs expose external
+addresses as virtual points. The formatter retains that behavior: they can be
+recognized as elements, and otherwise expand like self-referencing points.</p>
+<p>Self references are numeric leaves, so a point at address 1 renders as
+<code>(1:1 1)</code> even in debug mode. General cycles and shared subtrees are expanded
+once per formatting operation. For <code>(1: 2 2)</code> and <code>(2: 1 1)</code>, debug output is
+<code>(1:(2:*1 *1) *2)</code>. Without debug markers it is <code>(1:(2:1 1) 2)</code>.
+Null, Any and Itself constants are skipped at roots and endpoints, preserving
+the C# API's existing convention. Deleted endpoints are missing references.</p>
+<p><code>AppendStructure</code> accepts the caller's output builder/stream and visited set,
+which can be reused across calls. A later reference to an already visited
+address uses the same repeated-link notation. The traversal remains recursive;
+the visited set prevents cycles but does not bound acyclic graph depth.</p>
+<h2 id="issue-242-reproduction">Issue 242 reproduction</h2>
+<p>The issue's <code>BalancedVariantConverter&lt;ulong&gt;</code> pairs the character codes of
+<code>&quot;super_name&quot;</code> into nine links. Those raw values (for example <code>115</code> for <code>s</code>)
+need not exist as stored links. Before this fix, C# dereferenced each endpoint
+before checking whether it existed and threw while formatting this sequence.
+On current main before this fix, the exception is
+<code>KeyNotFoundException: Link 115 does not exist.</code> Older versions used a different
+missing-link path; the original report did not specify an exception type.</p>
+<p>The missing recursive <code>renderDebug</code> argument separately suppressed nested debug
+markers. It did not cause infinite recursion: the visited set was already shared
+by recursive calls. The C++ port had no <code>FormatStructure</code> or <code>AppendStructure</code>
+API; the new native implementation follows the corrected C# behavior.</p>
+<p>Run the standalone C# reproduction with
+<code>dotnet run --project examples/Structure -c Release</code>. It builds the converter's
+same adjacent-pair layers without requiring the separate Sequences package and
+checks this output:</p>
+<pre><code class="lang-text">(9:(8:(6:(1:~115 ~117) (2:~112 ~101)) (7:(3:~114 ~95) (4:~110 ~97))) (5:~109 ~101))
+</code></pre>
+<p>The exact issue snippet with the published Sequences 0.6.5 converter is also
+available in <code>experiments/issue-242/OriginalReport</code>.
+Run <code>dotnet run --project experiments/issue-242/OriginalReport -c Release</code>.
+It asserts the same output. The normal unit suites use the equivalent pair
+layers to keep their dependencies limited to this repository.</p>
+<p><code>FormatStructureTests</code> covers this structure, both source and target leaves,
+deleted and external addresses, reserved constants, self references, cycles,
+shared subtrees and custom callbacks in the normal C# and C++ test suites.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linksplatform/Data.Doublets/blob/main/docs/structure-formatting.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
