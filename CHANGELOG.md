@@ -1,3 +1,11 @@
+## csharp 0.18.9
+
+- Match source and target restrictions in their own positions for concrete-index Count and Each queries in united and split stores.
+
+## cpp 0.1.6
+
+- Match source and target restrictions in their own positions for concrete-index Count and Each queries in united and split stores.
+
 ## csharp 0.18.8
 
 - DeleteAll deletes every link, including links above Count() after deletions, and resets endpoints before each deletion so the store can be reused; native GetOrCreate and CreateAndUpdate return the created link address
