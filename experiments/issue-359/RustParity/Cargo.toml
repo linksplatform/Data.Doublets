@@ -1,0 +1,8 @@
+[package]
+name = "issue-359-rust-parity"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+doublets = { git = "https://github.com/linksplatform/doublets-rs", rev = "e58169a34f02d506d006c4399535ba1a097e7db2" }

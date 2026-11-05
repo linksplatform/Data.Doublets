@@ -1,0 +1,5 @@
+   Compiling issue-359-rust-parity v0.1.0 (/tmp/gh-issue-solver-1793908007442/experiments/issue-359/RustParity)
+    Finished `dev` profile [unoptimized] target(s) in 0.61s
+     Running `experiments/issue-359/RustParity/target/debug/issue-359-rust-parity`
+united: 1116 positional queries pass Count, Each and callback-flow checks
+split: 1116 positional queries pass Count, Each and callback-flow checks

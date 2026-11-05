@@ -1,0 +1,15 @@
+Compiler peak RSS: 563504 KiB
+Running main() from /home/box/.conan2/p/b/gtest296144450da96/b/src/googletest/src/gtest_main.cc
+Note: Google Test filter = PositionalQueries.Count
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from PositionalQueries
+[ RUN      ] PositionalQueries.Count
+/tmp/gh-issue-solver-1793908007442/experiments/issue-359/../../cpp/Platform.Data.Doublets.Tests/PositionalQueryTests.h:68: Failure
+Expected equality of these values:
+  matches ? Address{1} : Address{0}
+    Which is: 0
+  storage.Count(query)
+    Which is: 1
+Google Test trace:
+/tmp/gh-issue-solver-1793908007442/experiments/issue-359/../../cpp/Platform.Data.Doublets.Tests/PositionalQueryTests.h:61: query [3, 2147483644, 1]
