@@ -1,1 +1,0 @@
-{"summary":"Format raw sequence leaves safely, preserve nested debug markers, and add equivalent C++ structure formatting.","releases":{"csharp":"patch","cpp":"minor"}}
