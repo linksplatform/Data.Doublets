@@ -42,13 +42,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--build-dir", type=Path)
     args = parser.parse_args()
-    run("clang-format-18", "--dry-run", "--Werror", *sources())
+    run("clang-format", "--dry-run", "--Werror", *sources())
     if args.build_dir:
         database = args.build_dir.resolve() / "compile_commands.json"
         units = sorted({entry["file"] for entry in json.loads(database.read_text())})
         if not units:
             raise SystemExit("No native translation units found for static analysis")
-        run("clang-tidy-18", "-p", str(args.build_dir.resolve()), "--quiet", *units)
+        run("clang-tidy-23", "-p", str(args.build_dir.resolve()), "--quiet", *units)
         run(
             "cppcheck",
             "--library=googletest",

@@ -1,4 +1,4 @@
-image: gitpod/workspace-dotnet
+image: gitpod/workspace-dotnet:2026-02-12-23-06-03@sha256:253772ffe6d042a39b7802e3101ace08b6b21914e8116d9bf6d9f84332b78e11
 
 tasks:
   - name: Setup and test

@@ -1,0 +1,6 @@
+# Ubuntu 26.04 is GA; actionlint 1.7.12 predates its hosted-runner label.
+# Use actionlint's supported additional-label configuration, retaining all checks.
+# https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Readme.md
+self-hosted-runner:
+  labels:
+    - ubuntu-26.04

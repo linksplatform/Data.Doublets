@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 4.4.5)
 
 set(LINKS_PLATFORM_TESTS OFF CACHE BOOL "Whether to compile tests")
 set(LINKS_PLATFORM_BENCHMARKS OFF CACHE BOOL "Whether to compile benchmarks")

@@ -1,7 +1,8 @@
 # Contributing
 
 Use a pull request against `main`. Install the .NET SDK selected by `global.json`,
-Python 3.12+, CMake, a C++20 compiler, clang-format/clang-tidy 18, Cppcheck and
+Python 3.15.2, CMake 4.4.5, a C++20 compiler, clang-format 23.1.5,
+clang-tidy 23.1.5, Cppcheck 2.22.0 and
 ShellCheck. Install Python tools with
 `python3 -m pip install -r scripts/requirements-ci.txt -r scripts/requirements-quality.txt`.
 

@@ -1,0 +1,29 @@
+{
+    "version": "0.5",
+    "requires": [
+        "platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a%1793922669.666312",
+        "platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288%1793922667.3893554",
+        "platform-random/0.2.0#596375061030beacc935a1ac82ef6e46%1793922667.913255",
+        "platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7%1793922670.7921603",
+        "platform-memory/0.1.0#806c161978dc578042a643687ce673e3%1793922671.3982034",
+        "platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93%1793922664.297159",
+        "platform-hashing/0.5.6#53a24358f1c1ee4c7082413929d67e80%1793922666.788326",
+        "platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a%1793922665.5414052",
+        "platform-equality/0.0.1#4c269c237c780cf97734b306fef30799%1793922668.4751217",
+        "platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0%1793922664.9083471",
+        "platform-data/0.1.1#049284bd2691fcdd21308ff118193883%1793922670.221528",
+        "platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be%1793922666.2365792",
+        "platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202%1793922671.9289205",
+        "platform-collections/0.2.1#4fc02982a3b2cbb22574ee47d8627d4f%1793922669.0970383",
+        "ms-gsl/5.0.1#1978e4265615a57adce9bb225b5e574b%1793922672.9518492",
+        "mio/cci.20230303#5282b6d56ac5f9601e17186dbd763db1%1701388788.407",
+        "gtest/1.18.0#e2507fc4efe2ec9e2db9e5c91eefab9f%1786446847.733",
+        "cpuinfo/cci.20260612#1b16cf0bcf6fbf386954c8d145705d98%1793922673.8851342",
+        "benchmark/1.10.0#7fcf1950d0dfaeb2456561a379daa894%1793610279.35"
+    ],
+    "build_requires": [
+        "cmake/4.4.5#platform"
+    ],
+    "python_requires": [],
+    "config_requires": []
+}
