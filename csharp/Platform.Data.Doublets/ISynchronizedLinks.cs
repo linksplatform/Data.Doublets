@@ -10,7 +10,7 @@ namespace Platform.Data.Doublets
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="ISynchronizedLinks{TLinkAddress, ILinks{TLinkAddress}, LinksConstants{TLinkAddress}}"/>
+    /// <seealso cref="Platform.Data.ISynchronizedLinks{TLinkAddress, TLinks, TConstants}"/>
     /// <seealso cref="ILinks{TLinkAddress}"/>
     public interface ISynchronizedLinks<TLinkAddress> : ISynchronizedLinks<TLinkAddress, ILinks<TLinkAddress>, LinksConstants<TLinkAddress>>, ILinks<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {

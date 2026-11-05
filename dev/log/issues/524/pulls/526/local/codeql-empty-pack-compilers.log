@@ -1,0 +1,4 @@
+g++ -std=c++20 -Wall -Wextra -Werror -pedantic experiments/codeql_empty_pack.cpp -o /tmp/issue-524-codeql-empty-pack
+Compilation and execution passed.
+clang++-18 -std=c++20 -Wall -Wextra -Werror -pedantic experiments/codeql_empty_pack.cpp -o /tmp/issue-524-codeql-empty-pack
+Compilation and execution passed.

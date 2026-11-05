@@ -1,0 +1,8 @@
+test_concurrent_deployment_reapplies_only_our_pages (experiments.test_docs_publish.DocsPublishTests.test_concurrent_deployment_reapplies_only_our_pages) ... ok
+test_first_deployment_creates_missing_branch_and_is_idempotent (experiments.test_docs_publish.DocsPublishTests.test_first_deployment_creates_missing_branch_and_is_idempotent) ... ok
+test_repeated_deployment_preserves_other_language_docs (experiments.test_docs_publish.DocsPublishTests.test_repeated_deployment_preserves_other_language_docs) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 4.117s
+
+OK

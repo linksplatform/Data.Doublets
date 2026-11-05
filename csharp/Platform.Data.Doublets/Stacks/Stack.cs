@@ -16,7 +16,7 @@ namespace Platform.Data.Doublets.Stacks
     /// </summary>
     /// <seealso cref="LinksOperatorBase{TLinkAddress}"/>
     /// <seealso cref="IStack{TLinkAddress}"/>
-    public class Stack<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IStack<TLinkAddress>  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+    public class Stack<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IStack<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
         private readonly TLinkAddress _stack;
 
@@ -29,7 +29,7 @@ namespace Platform.Data.Doublets.Stacks
         public bool IsEmpty
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => Peek() ==  _stack;
+            get => Peek() == _stack;
         }
 
         /// <summary>
@@ -47,11 +47,11 @@ namespace Platform.Data.Doublets.Stacks
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Stack(ILinks<TLinkAddress> links, TLinkAddress stack) : base(links)  { _stack = stack;}
+        public Stack(ILinks<TLinkAddress> links, TLinkAddress stack) : base(links) { _stack = stack; }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLinkAddress GetStackMarker()  { return _links.GetSource(_stack);}
+        private TLinkAddress GetStackMarker() { return _links.GetSource(_stack); }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLinkAddress GetTop()  { return _links.GetTarget(_stack);}
+        private TLinkAddress GetTop() { return _links.GetTarget(_stack); }
 
         /// <summary>
         /// <para>
@@ -64,7 +64,7 @@ namespace Platform.Data.Doublets.Stacks
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Peek()  { return _links.GetTarget(GetTop());}
+        public TLinkAddress Peek() { return _links.GetTarget(GetTop()); }
 
         /// <summary>
         /// <para>
@@ -80,7 +80,7 @@ namespace Platform.Data.Doublets.Stacks
         public TLinkAddress Pop()
         {
             var element = Peek();
-            if (element !=  _stack)
+            if (element != _stack)
             {
                 var top = GetTop();
                 var previousTop = _links.GetSource(top);
@@ -101,6 +101,6 @@ namespace Platform.Data.Doublets.Stacks
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Push(TLinkAddress element)  { _links.Update(_stack, GetStackMarker(), _links.GetOrCreate(GetTop(), element));}
+        public void Push(TLinkAddress element) { _links.Update(_stack, GetStackMarker(), _links.GetOrCreate(GetTop(), element)); }
     }
 }

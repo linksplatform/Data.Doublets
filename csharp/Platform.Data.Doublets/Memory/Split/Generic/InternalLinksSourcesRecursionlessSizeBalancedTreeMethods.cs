@@ -16,7 +16,7 @@ public unsafe class InternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLi
 {
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="InternalLinksSourcesRecursionlessSizeBalancedTreeMethods" /> instance.
+    ///         Initializes a new <see cref="InternalLinksSourcesRecursionlessSizeBalancedTreeMethods{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>

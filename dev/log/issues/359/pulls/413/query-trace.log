@@ -1,0 +1,10 @@
+Stored record: (3: 1 2); Any = 4294967292
+[3, 4294967292, 1]: Count=0, visits=[]
+[3, 2, 4294967292]: Count=0, visits=[]
+[3, 4294967292, 2]: Count=1, visits=[3]
+[3, 1, 4294967292]: Count=1, visits=[3]
+[3, 4294967292, 4294967292]: Count=1, visits=[3]
+[3, 1, 2]: Count=1, visits=[3]
+[3, 2, 1]: Count=0, visits=[]
+[3, 1]: Count=1, visits=[3]
+[3, 2]: Count=1, visits=[3]

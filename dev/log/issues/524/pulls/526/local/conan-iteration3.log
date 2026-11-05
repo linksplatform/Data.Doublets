@@ -1,0 +1,159 @@
+From https://github.com/linksplatform/conan-center-index
+ * branch                435ad91f44d2fd40c4e4be366163f97333013d65 -> FETCH_HEAD
+HEAD is now at 435ad91f4 Merge pull request #34 from nassipkali/master
+M	recipes/platform.collections.methods/all/conanfile.py
+M	recipes/platform.collections/all/conanfile.py
+M	recipes/platform.converters/all/conanfile.py
+M	recipes/platform.data.doublets/all/conanfile.py
+M	recipes/platform.data/all/conanfile.py
+M	recipes/platform.delegates/all/conanfile.py
+M	recipes/platform.equality/all/conanfile.py
+M	recipes/platform.exceptions/all/conanfile.py
+M	recipes/platform.hashing/all/conanfile.py
+M	recipes/platform.interfaces/all/conanfile.py
+M	recipes/platform.memory/all/conanfile.py
+M	recipes/platform.numbers/all/conanfile.py
+M	recipes/platform.random/all/conanfile.py
+M	recipes/platform.ranges/all/conanfile.py
+M	recipes/platform.setters/all/conanfile.py
+M	recipes/platform.timestamps/all/conanfile.py
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.interfaces'
+platform.interfaces/0.3.41 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.interfaces/all/conanfile.py
+platform.interfaces/0.3.41: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf759368e9068e7/e
+Exported: platform.interfaces/0.3.41#395bf12118315a5eb37181e874e8ee1e (2026-10-29 06:18:38 UTC)
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.delegates'
+platform.delegates/0.3.7 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.delegates/all/conanfile.py
+platform.delegates/0.3.7: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf818afcda9ca66/e
+Exported: platform.delegates/0.3.7#8e941f96ebba487d8aa91056a962c9f0 (2026-10-29 06:18:39 UTC)
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.exceptions'
+platform.exceptions/0.3.2 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.exceptions/all/conanfile.py
+platform.exceptions/0.3.2: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf95245d0d39df8/e
+Exported: platform.exceptions/0.3.2#642960ec348465743ebff980eafccb66 (2026-10-29 06:18:40 UTC)
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.converters'
+platform.converters/0.2.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.converters/all/conanfile.py
+platform.converters/0.2.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfb039519e91b50/e
+Exported: platform.converters/0.2.0#9c698f40d092e389518a35b69ce691ac (2026-10-29 06:18:41 UTC)
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.hashing'
+platform.hashing/0.5.6 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.hashing/all/conanfile.py
+platform.hashing/0.5.6: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfe9c6f412c23de/e
+Exported: platform.hashing/0.5.6#5c1c1f25709c6dff5fe7f252fe740907 (2026-10-29 06:18:42 UTC)
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.ranges'
+platform.ranges/0.2.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.ranges/all/conanfile.py
+platform.ranges/0.2.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfb930bc0e1bcaa/e
+Exported: platform.ranges/0.2.0#cb7abc9bfbd816a109eccc2543892a24 (2026-10-29 06:18:42 UTC)
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.random'
+platform.random/0.2.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.random/all/conanfile.py
+platform.random/0.2.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platff675e2b86faa2/e
+Exported: platform.random/0.2.0#b3c4d76fd094d5d26ccf0d730df64e4c (2026-10-29 06:18:43 UTC)
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.equality'
+platform.equality/0.0.1 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.equality/all/conanfile.py
+platform.equality/0.0.1: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfc4c32804a8212/e
+Exported: platform.equality/0.0.1#3c93fc7e0851b18238a4c165b7eda591 (2026-10-29 06:18:44 UTC)
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.collections'
+platform.collections/0.2.1 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.collections/all/conanfile.py
+platform.collections/0.2.1: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platff1c80274580cd/e
+Exported: platform.collections/0.2.1#45c89f7347a98cb075d3bd667fc96253 (2026-10-29 06:18:45 UTC)
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.setters'
+platform.setters/0.1.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.setters/all/conanfile.py
+platform.setters/0.1.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf35ada010a8a9e/e
+Exported: platform.setters/0.1.0#ec9206e40ee0831cf734ec7c1cd4b3c1 (2026-10-29 06:18:46 UTC)
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.data'
+platform.data/0.1.1 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.data/all/conanfile.py
+platform.data/0.1.1: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf90397647ce815/e
+Exported: platform.data/0.1.1#2a37c630c9e61f0da60a9c86ffbeb5ea (2026-10-29 06:18:47 UTC)
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.numbers'
+platform.numbers/0.1.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.numbers/all/conanfile.py
+platform.numbers/0.1.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfd1b0a1f5fa3e3/e
+Exported: platform.numbers/0.1.0#0ba2e37374abb7c70dcacaed43baa9bb (2026-10-29 06:18:47 UTC)
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.memory'
+platform.memory/0.1.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.memory/all/conanfile.py
+platform.memory/0.1.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfd6599de556d5c/e
+Exported: platform.memory/0.1.0#3f4f4d4ecd2a0906b91efa90d0cfc40c (2026-10-29 06:18:48 UTC)
+
+======== Exporting recipe to the cache ========
+WARN: Name containing special chars is discouraged 'platform.collections.methods'
+platform.collections.methods/0.3.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.collections.methods/all/conanfile.py
+platform.collections.methods/0.3.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf8ed046522b30a/e
+Exported: platform.collections.methods/0.3.0#eadd03f206e81a149c73400b2ed54660 (2026-10-29 06:18:49 UTC)

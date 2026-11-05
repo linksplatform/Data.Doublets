@@ -1,0 +1,8 @@
+Extracted binary, tools absent: exit 0
+
+Complete pinned container: exit 1
+probe/probe.yml:7:9: shellcheck reported issue in this script: SC2086:info:1:6: Double quote to prevent globbing and word splitting [shellcheck]
+  |
+7 |       - run: echo $UNTRUSTED_VALUE
+  |         ^~~~
+

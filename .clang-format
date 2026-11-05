@@ -1,0 +1,32 @@
+# Formatting of the C++ sources, checked by the lint job
+# (clang-format --dry-run --Werror). Close to the linksplatform settings
+# (NamespaceIndentation: All, left-aligned pointers and references) with
+# Allman braces and a column limit that keeps diffs reviewable.
+---
+Language: Cpp
+BasedOnStyle: Microsoft
+Standard: c++20
+ColumnLimit: 120
+IndentWidth: 4
+NamespaceIndentation: All
+FixNamespaceComments: true
+DerivePointerAlignment: false
+PointerAlignment: Left
+ReferenceAlignment: Left
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortLambdasOnASingleLine: All
+AlwaysBreakTemplateDeclarations: Yes
+BreakBeforeConceptDeclarations: Always
+RequiresClausePosition: OwnLine
+IncludeBlocks: Preserve
+IncludeCategories:
+  - Regex: '^<my_package/'
+    Priority: 1
+  - Regex: '^<[a-z_]+>$'
+    Priority: 3
+  - Regex: '.*'
+    Priority: 2
+SortIncludes: Never
+SpaceAfterTemplateKeyword: true
+InsertNewlineAtEOF: true
+...

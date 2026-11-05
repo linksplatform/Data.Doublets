@@ -1,10 +1,16 @@
 #include <gtest/gtest.h>
 #include <Platform.Data.Doublets.h>
 #include "ILinksTestExtensions.h"
-
-#include "LinksConstantsTests.cpp"
-#include "ResizableDirectMemoryLinksTests.cpp"
-#include "Static/GenericLinksTests.cpp"
-#include "Static/SplitMemoryGenericLinksTests.cpp"
-#include "Dynamic/GenericLinksTests.cpp"
-#include "Dynamic/SplitMemoryGenericLinksTests.cpp"
+#include "ExtensionTests.h"
+#include "EitherEndpointQueryTests.h"
+#include "PositionalQueryTests.h"
+#include "MergeUsagesTests.h"
+#include "DeleteAllTests.h"
+#include "OwnershipTests.h"
+#include "LinksConstantsTests.h"
+#include "ResizableDirectMemoryLinksTests.h"
+#include "Static/GenericLinksTests.h"
+#include "Static/SplitMemoryGenericLinksTests.h"
+#include "TemporaryDirectoryTests.h"
+#include "Dynamic/GenericLinksTests.h"
+#include "Dynamic/SplitMemoryGenericLinksTests.h"

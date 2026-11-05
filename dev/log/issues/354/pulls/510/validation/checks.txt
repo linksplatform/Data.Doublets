@@ -1,0 +1,9 @@
+# dotnet format whitespace csharp/Platform.Data.Doublets.sln --verify-no-changes
+exit 0
+
+# python3 scripts/check_repository.py
+Repository configuration, source sizes, scripts and action pins passed
+exit 0
+
+# python3 scripts/check-cpp.py (clang-format 18.1.8 --dry-run --Werror)
+exit 0

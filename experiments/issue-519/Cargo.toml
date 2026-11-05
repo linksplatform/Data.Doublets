@@ -1,0 +1,8 @@
+[package]
+name = "issue-519-rust-audit"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+doublets = { git = "https://github.com/linksplatform/doublets-rs", rev = "645dd2b8e5c9bff1e38335da42e3c008b5d2769e" }

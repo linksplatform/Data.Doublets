@@ -1,0 +1,10 @@
+
+======== Exporting recipe to the cache ========
+gtest/1.13.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/gtest/all/conanfile.py
+gtest/1.13.0: exports: File 'conandata.yml' found. Exporting it...
+gtest/1.13.0: Calling export_sources()
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/gtest3f6b03ed44e0b/e
+Exported: gtest/1.13.0#e560968072ffd87fbd396e4cabff9127 (2026-10-29 06:59:22 UTC)

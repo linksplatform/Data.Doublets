@@ -1,0 +1,31 @@
+/home/box/.conan2/p/cpuin6a4103cb5f540/s/src/deps/clog/src/clog.c: In function ‘clog_vlog_fatal’:
+experiments/clog_partial_write.c:2:15: error: ignoring return value of ‘issue524_write’ declared with attribute ‘warn_unused_result’ [-Werror=unused-result]
+    2 | #define write issue524_write
+/home/box/.conan2/p/cpuin6a4103cb5f540/s/src/deps/clog/src/clog.c:112:25: note: in expansion of macro ‘write’
+  112 |                         write(STDERR_FILENO, out_buffer, prefix_chars + format_chars + CLOG_SUFFIX_LENGTH);
+      |                         ^~~~~
+/home/box/.conan2/p/cpuin6a4103cb5f540/s/src/deps/clog/src/clog.c: In function ‘clog_vlog_error’:
+experiments/clog_partial_write.c:2:15: error: ignoring return value of ‘issue524_write’ declared with attribute ‘warn_unused_result’ [-Werror=unused-result]
+    2 | #define write issue524_write
+/home/box/.conan2/p/cpuin6a4103cb5f540/s/src/deps/clog/src/clog.c:188:25: note: in expansion of macro ‘write’
+  188 |                         write(STDERR_FILENO, out_buffer, prefix_chars + format_chars + CLOG_SUFFIX_LENGTH);
+      |                         ^~~~~
+/home/box/.conan2/p/cpuin6a4103cb5f540/s/src/deps/clog/src/clog.c: In function ‘clog_vlog_warning’:
+experiments/clog_partial_write.c:2:15: error: ignoring return value of ‘issue524_write’ declared with attribute ‘warn_unused_result’ [-Werror=unused-result]
+    2 | #define write issue524_write
+/home/box/.conan2/p/cpuin6a4103cb5f540/s/src/deps/clog/src/clog.c:264:25: note: in expansion of macro ‘write’
+  264 |                         write(STDERR_FILENO, out_buffer, prefix_chars + format_chars + CLOG_SUFFIX_LENGTH);
+      |                         ^~~~~
+/home/box/.conan2/p/cpuin6a4103cb5f540/s/src/deps/clog/src/clog.c: In function ‘clog_vlog_info’:
+experiments/clog_partial_write.c:2:15: error: ignoring return value of ‘issue524_write’ declared with attribute ‘warn_unused_result’ [-Werror=unused-result]
+    2 | #define write issue524_write
+/home/box/.conan2/p/cpuin6a4103cb5f540/s/src/deps/clog/src/clog.c:340:25: note: in expansion of macro ‘write’
+  340 |                         write(STDOUT_FILENO, out_buffer, prefix_chars + format_chars + CLOG_SUFFIX_LENGTH);
+      |                         ^~~~~
+/home/box/.conan2/p/cpuin6a4103cb5f540/s/src/deps/clog/src/clog.c: In function ‘clog_vlog_debug’:
+experiments/clog_partial_write.c:2:15: error: ignoring return value of ‘issue524_write’ declared with attribute ‘warn_unused_result’ [-Werror=unused-result]
+    2 | #define write issue524_write
+/home/box/.conan2/p/cpuin6a4103cb5f540/s/src/deps/clog/src/clog.c:416:25: note: in expansion of macro ‘write’
+  416 |                         write(STDOUT_FILENO, out_buffer, prefix_chars + format_chars + CLOG_SUFFIX_LENGTH);
+      |                         ^~~~~
+cc1: some warnings being treated as errors

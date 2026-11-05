@@ -1,0 +1,2 @@
+/tmp/issue-524-cpp-clang/bin/Platform.Data.Doublets.Benchmarks: error: unrecognized command-line flag: --unknown-argument
+Verified: unknown argument rejected with exit 1.

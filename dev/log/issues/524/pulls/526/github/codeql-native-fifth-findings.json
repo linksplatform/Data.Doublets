@@ -1,0 +1,236 @@
+[
+  {
+    "rule": "cpp/comparison-with-wider-type",
+    "file": "cpp/Platform.Data.Doublets/ILinksExtensions.h",
+    "line": 783,
+    "message": "Comparison between [i](1) of type LinkAddressType and [call to operator()](2) of wider type size_type."
+  },
+  {
+    "rule": "cpp/suspicious-pointer-scaling",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h",
+    "line": 57,
+    "message": "This pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned long> * (size 64).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned char> * (size 8).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned short> * (size 16).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned int> * (size 32)."
+  },
+  {
+    "rule": "cpp/suspicious-pointer-scaling",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h",
+    "line": 52,
+    "message": "This pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned long> * (size 64).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned short> * (size 16).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned char> * (size 8).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned int> * (size 32)."
+  },
+  {
+    "rule": "cpp/suspicious-pointer-scaling",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.h",
+    "line": 176,
+    "message": "This pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned char> * (size 8).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned short> * (size 16).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned int> * (size 32).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned long> * (size 64)."
+  },
+  {
+    "rule": "cpp/suspicious-pointer-scaling",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h",
+    "line": 35,
+    "message": "This pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned char> * (size 8).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned short> * (size 16).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned int> * (size 32).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned long> * (size 64)."
+  },
+  {
+    "rule": "cpp/suspicious-pointer-scaling",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h",
+    "line": 66,
+    "message": "This pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned char> * (size 8).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned short> * (size 16).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned int> * (size 32).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned long> * (size 64)."
+  },
+  {
+    "rule": "cpp/suspicious-pointer-scaling",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/UnusedLinksListMethods.h",
+    "line": 33,
+    "message": "This pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned long> * (size 64).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned int> * (size 32).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned short> * (size 16).\nThis pointer might have type [byte](1) (size 1), but this pointer arithmetic is done with type RawLink<unsigned char> * (size 8)."
+  },
+  {
+    "rule": "cpp/unused-local-variable",
+    "file": "cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.h",
+    "line": 37,
+    "message": "Variable _ is not used."
+  },
+  {
+    "rule": "cpp/unused-local-variable",
+    "file": "cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.h",
+    "line": 10,
+    "message": "Variable _ is not used."
+  },
+  {
+    "rule": "cpp/unused-local-variable",
+    "file": "cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h",
+    "line": 61,
+    "message": "Variable _ is not used."
+  },
+  {
+    "rule": "cpp/unused-local-variable",
+    "file": "cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h",
+    "line": 49,
+    "message": "Variable _ is not used."
+  },
+  {
+    "rule": "cpp/unused-local-variable",
+    "file": "cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h",
+    "line": 37,
+    "message": "Variable _ is not used."
+  },
+  {
+    "rule": "cpp/unused-local-variable",
+    "file": "cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h",
+    "line": 25,
+    "message": "Variable _ is not used."
+  },
+  {
+    "rule": "cpp/unused-local-variable",
+    "file": "cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.h",
+    "line": 106,
+    "message": "Variable storage is not used."
+  },
+  {
+    "rule": "cpp/unused-local-variable",
+    "file": "cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.h",
+    "line": 89,
+    "message": "Variable storage is not used."
+  },
+  {
+    "rule": "cpp/unused-local-variable",
+    "file": "cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.h",
+    "line": 74,
+    "message": "Variable storage is not used."
+  },
+  {
+    "rule": "cpp/unused-local-variable",
+    "file": "cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.h",
+    "line": 56,
+    "message": "Variable storage is not used."
+  },
+  {
+    "rule": "cpp/unused-local-variable",
+    "file": "cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.h",
+    "line": 41,
+    "message": "Variable storage is not used."
+  },
+  {
+    "rule": "cpp/unused-local-variable",
+    "file": "cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.h",
+    "line": 24,
+    "message": "Variable storage is not used."
+  },
+  {
+    "rule": "cpp/unused-static-variable",
+    "file": "cpp/Platform.Data.Doublets/ILinksExtensions.h",
+    "line": 252,
+    "message": "Static variable restrictionPack is never read."
+  },
+  {
+    "rule": "cpp/unused-static-variable",
+    "file": "cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.h",
+    "line": 63,
+    "message": "Static variable benchmark_uniq_3BM_CreateMillionPointsSplitMemory is never read."
+  },
+  {
+    "rule": "cpp/unused-static-variable",
+    "file": "cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.h",
+    "line": 62,
+    "message": "Static variable benchmark_uniq_2BM_CreateMillionPointsUnitedMemory is never read."
+  },
+  {
+    "rule": "cpp/unused-static-variable",
+    "file": "cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h",
+    "line": 73,
+    "message": "Static variable benchmark_uniq_7BM_JustCallHandler is never read."
+  },
+  {
+    "rule": "cpp/unused-static-variable",
+    "file": "cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h",
+    "line": 72,
+    "message": "Static variable benchmark_uniq_6BM_CheckDefaultHandlerAndSum is never read."
+  },
+  {
+    "rule": "cpp/unused-static-variable",
+    "file": "cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h",
+    "line": 71,
+    "message": "Static variable benchmark_uniq_5BM_JustCallHandlerWithoutOptimization is never read."
+  },
+  {
+    "rule": "cpp/unused-static-variable",
+    "file": "cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h",
+    "line": 70,
+    "message": "Static variable benchmark_uniq_4BM_CheckDefaultHandlerAndSumWithoutOptimization is never read."
+  },
+  {
+    "rule": "cpp/empty-if",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h",
+    "line": 386,
+    "message": "If-statement with an empty then-branch and no else-branch."
+  },
+  {
+    "rule": "cpp/commented-out-code",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h",
+    "line": 144,
+    "message": "This comment appears to contain commented-out code."
+  },
+  {
+    "rule": "cpp/commented-out-code",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h",
+    "line": 136,
+    "message": "This comment appears to contain commented-out code."
+  },
+  {
+    "rule": "cpp/commented-out-code",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesAvlBalancedTreeMethods.h",
+    "line": 144,
+    "message": "This comment appears to contain commented-out code."
+  },
+  {
+    "rule": "cpp/commented-out-code",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesAvlBalancedTreeMethods.h",
+    "line": 136,
+    "message": "This comment appears to contain commented-out code."
+  },
+  {
+    "rule": "cpp/commented-out-code",
+    "file": "cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h",
+    "line": 93,
+    "message": "This comment appears to contain commented-out code."
+  },
+  {
+    "rule": "cpp/commented-out-code",
+    "file": "cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h",
+    "line": 106,
+    "message": "This comment appears to contain commented-out code."
+  },
+  {
+    "rule": "cpp/commented-out-code",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.h",
+    "line": 34,
+    "message": "This comment appears to contain commented-out code."
+  },
+  {
+    "rule": "cpp/commented-out-code",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.h",
+    "line": 23,
+    "message": "This comment appears to contain commented-out code."
+  },
+  {
+    "rule": "cpp/integer-used-for-enum",
+    "file": "cpp/Platform.Data.Doublets/Link.h",
+    "line": 142,
+    "message": "Enumeration types should be used instead of integers to select from a limited series of choices."
+  },
+  {
+    "rule": "cpp/poorly-documented-function",
+    "file": "cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h",
+    "line": 91,
+    "message": "Poorly documented function: fewer than 2% comments for a function of 106 lines."
+  },
+  {
+    "rule": "cpp/poorly-documented-function",
+    "file": "cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h",
+    "line": 572,
+    "message": "Poorly documented function: fewer than 2% comments for a function of 195 lines."
+  },
+  {
+    "rule": "cpp/poorly-documented-function",
+    "file": "cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h",
+    "line": 156,
+    "message": "Poorly documented function: fewer than 2% comments for a function of 193 lines."
+  }
+]

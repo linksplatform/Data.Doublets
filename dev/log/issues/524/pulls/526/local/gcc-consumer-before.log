@@ -1,0 +1,26 @@
+test_cmake_link_dependencies_do_not_escape_the_isolated_consumer (experiments.test_package_consumer.NativeConsumerTests.test_cmake_link_dependencies_do_not_escape_the_isolated_consumer) ... /usr/bin/ld: cannot open dependency file CMakeFiles/Platform.Data.Doublets.Tests.dir/link.d: no error
+collect2: error: ld returned 1 exit status
+ERROR
+
+======================================================================
+ERROR: test_cmake_link_dependencies_do_not_escape_the_isolated_consumer (experiments.test_package_consumer.NativeConsumerTests.test_cmake_link_dependencies_do_not_escape_the_isolated_consumer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/experiments/test_package_consumer.py", line 41, in test_cmake_link_dependencies_do_not_escape_the_isolated_consumer
+    smoke_packages.compile_native_consumer(installed, consumer, build)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gh-issue-solver-1793248170197/scripts/smoke_packages.py", line 45, in compile_native_consumer
+    run(*command, cwd=consumer)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gh-issue-solver-1793248170197/scripts/smoke_packages.py", line 15, in run
+    subprocess.run(args, cwd=cwd, check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.pyenv/versions/3.15.0/lib/python3.15/subprocess.py", line 692, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '('c++', '-I/tmp/tmpguwln4tx/installed/lib/native/include', '-std=c++20', '/tmp/tmpguwln4tx/examples/CppMemoryLinks.cpp', '-Wl,--dependency-file=CMakeFiles/Platform.Data.Doublets.Tests.dir/link.d', '-Wl,--as-needed', '-lm', '-o', '/tmp/tmpguwln4tx/consumer/native-consumer')' returned non-zero exit status 1.
+
+----------------------------------------------------------------------
+Ran 1 test in 0.186s
+
+FAILED (errors=1)

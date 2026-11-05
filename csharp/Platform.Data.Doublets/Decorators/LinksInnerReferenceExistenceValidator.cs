@@ -14,12 +14,18 @@ namespace Platform.Data.Doublets.Decorators;
 ///     </para>
 ///     <para></para>
 /// </summary>
+/// <remarks>
+/// Validates internal references in reads and both update argument lists, and checks
+/// deleted addresses. Place outside resolver layers to reject missing references
+/// before searches or mutations. Non-internal values are not validated as update
+/// addresses; callers must still supply a concrete internal update address.
+/// </remarks>
 /// <seealso cref="LinksDecoratorBase{TLinkAddress}" />
 public class LinksInnerReferenceExistenceValidator<TLinkAddress> : LinksDecoratorBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
 {
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksInnerReferenceExistenceValidator" /> instance.
+    ///         Initializes a new <see cref="LinksInnerReferenceExistenceValidator{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -56,6 +62,7 @@ public class LinksInnerReferenceExistenceValidator<TLinkAddress> : LinksDecorato
         return links.Each(restriction: restriction, handler: handler);
     }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Updates the restriction.
@@ -84,6 +91,7 @@ public class LinksInnerReferenceExistenceValidator<TLinkAddress> : LinksDecorato
         return links.Update(restriction: restriction, substitution: substitution, handler: handler);
     }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Deletes the restriction.

@@ -1,0 +1,95 @@
+66:changes	UNKNOWN STEP	2026-10-29T17:03:41.1200698Z hint: to use in all of your new repositories, which will suppress this warning,
+473:credentials	UNKNOWN STEP	2026-10-29T17:04:52.8255772Z hint: to use in all of your new repositories, which will suppress this warning,
+664:csharp (ubuntu-24.04)	UNKNOWN STEP	2026-10-29T17:05:14.2563274Z hint: to use in all of your new repositories, which will suppress this warning,
+1006:csharp (ubuntu-24.04)	UNKNOWN STEP	2026-10-29T17:05:48.3696913Z     0 Warning(s)
+1152:publish	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T17:18:10.2769170Z hint: to use in all of your new repositories, which will suppress this warning,
+1490:publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-29T17:18:21.7315319Z (node:2361) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+1491:publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-29T17:18:21.7316131Z (Use `node --trace-deprecation ...` to show where the warning was created)
+1513:publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-29T17:18:22.6663324Z (node:2375) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+1514:publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-29T17:18:22.6664099Z (Use `node --trace-deprecation ...` to show where the warning was created)
+1562:publish	Prepare and commit only validated release metadata	2026-10-29T17:18:31.1195993Z ##[error]Repository rules reject the release commit. Allow github-actions to push release metadata; do not force-push.
+1570:publish	Prepare and commit only validated release metadata	2026-10-29T17:18:31.1246821Z ##[error]Process completed with exit code 1.
+1588:publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-29T17:18:31.9676685Z (node:2460) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+1589:publish	Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333	2026-10-29T17:18:31.9677800Z (Use `node --trace-deprecation ...` to show where the warning was created)
+1696:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:04:53.6976354Z hint: to use in all of your new repositories, which will suppress this warning,
+1847:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:06.7645479Z     "suppressesMissingFileBaselineWarning": true,
+1914:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:08.3572175Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+1916:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:08.3575537Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+1964:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:08.3639341Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+1966:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:08.3641714Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+1994:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:08.3658620Z                 "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+1996:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:08.3661175Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+2367:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:09.4385891Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+2369:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:09.4387336Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+2452:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:09.4412441Z                 "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+2454:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:09.4414667Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+2530:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:09.4445704Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+2532:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:09.4447169Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+2682:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:19.4975451Z   CODEQL_VERBOSITY: warnings
+2732:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:19.7129475Z   CODEQL_VERBOSITY: warnings
+2858:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:27.9400652Z hint: to use in all of your new repositories, which will suppress this warning,
+3056:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:05:39.8744309Z   CODEQL_VERBOSITY: warnings
+4235:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:11:26.8811375Z   CODEQL_VERBOSITY: warnings
+4382:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:12:44.4925850Z [85/183] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/cpp-queries/1.9.2/Diagnostics/ExtractionWarnings.qlx.
+4538:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:13:16.5091729Z Starting evaluation of codeql/cpp-queries/Diagnostics/ExtractionWarnings.ql.
+4546:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:13:16.9434354Z [28/183 eval 433ms] Evaluation done; writing results to codeql/cpp-queries/Diagnostics/ExtractionWarnings.bqrs.
+5026:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:15:44.2266704Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/cpp-queries/1.9.2/Diagnostics/ExtractionWarnings.ql...
+5027:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:15:44.2336132Z  ... found results file at /home/runner/work/_temp/codeql_databases/cpp/results/codeql/cpp-queries/Diagnostics/ExtractionWarnings.bqrs.
+5305:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:15:44.7927237Z Interpreted diagnostic query "Extraction warnings" (cpp/diagnostics/extraction-warnings) at path /home/runner/work/_temp/codeql_databases/cpp/results/codeql/cpp-queries/Diagnostics/ExtractionWarnings.bqrs.
+5458:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:16:02.8618062Z   CODEQL_VERBOSITY: warnings
+5522:security / codeql (c-cpp)	UNKNOWN STEP	2026-10-29T17:16:02.9099497Z   CODEQL_VERBOSITY: warnings
+5661:docs	UNKNOWN STEP	2026-10-29T17:05:14.3176080Z hint: to use in all of your new repositories, which will suppress this warning,
+6011:docs	UNKNOWN STEP	2026-10-29T17:05:27.0816156Z ^[[36;1mdotnet docfx docfx.json --warningsAsErrors^[[0m
+6217:docs	UNKNOWN STEP	2026-10-29T17:06:27.3610303Z ^[[38;5;15m    0 warning(s)^[[0m
+6345:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:04:53.3902707Z hint: to use in all of your new repositories, which will suppress this warning,
+6496:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:05:02.6668684Z     "suppressesMissingFileBaselineWarning": true,
+6563:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:05:04.1468427Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+6565:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:05:04.1470320Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+6613:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:05:04.1515495Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+6615:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:05:04.1516950Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+6643:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:05:04.1536208Z                 "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+6645:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:05:04.1538721Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+7016:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:05:05.2138251Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+7018:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:05:05.2139885Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+7101:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:05:05.2164927Z                 "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+7103:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:05:05.2166563Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+7179:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:05:05.2198407Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+7181:security / codeql (actions)	UNKNOWN STEP	2026-10-29T17:05:05.2200271Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+7733:security / audit	UNKNOWN STEP	2026-10-29T17:04:52.7115146Z hint: to use in all of your new repositories, which will suppress this warning,
+8164:cpp (gcc)	UNKNOWN STEP	2026-10-29T17:05:14.0575771Z hint: to use in all of your new repositories, which will suppress this warning,
+8645:cpp (gcc)	UNKNOWN STEP	2026-10-29T17:05:37.2760937Z hint: to use in all of your new repositories, which will suppress this warning,
+10328:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:04:53.7528069Z hint: to use in all of your new repositories, which will suppress this warning,
+10479:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:09.3848629Z     "suppressesMissingFileBaselineWarning": true,
+10546:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:11.0150012Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+10548:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:11.0153160Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+10596:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:11.0218953Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+10598:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:11.0220591Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+10626:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:11.0232139Z                 "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+10628:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:11.0233970Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+10999:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:12.0380647Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+11001:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:12.0382099Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+11084:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:12.0415536Z                 "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+11086:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:12.0418176Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+11162:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:12.0470335Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+11164:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:12.0472780Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+11307:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:20.4042464Z   CODEQL_VERBOSITY: warnings
+11355:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:05:21.1209502Z   CODEQL_VERBOSITY: warnings
+11388:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:06:06.1057383Z     0 Warning(s)
+11399:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:06:17.2963841Z     0 Warning(s)
+11408:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:06:21.6812197Z     0 Warning(s)
+11419:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:06:30.7426204Z     0 Warning(s)
+11430:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:06:39.3242679Z     0 Warning(s)
+11441:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:06:47.8114353Z     0 Warning(s)
+11476:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:06:47.8635845Z   CODEQL_VERBOSITY: warnings
+12611:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:07:46.7303931Z   CODEQL_VERBOSITY: warnings
+12667:security / codeql (csharp)	UNKNOWN STEP	2026-10-29T17:07:46.7834526Z   CODEQL_VERBOSITY: warnings
+12799:links / links	UNKNOWN STEP	2026-10-29T17:04:52.6566594Z hint: to use in all of your new repositories, which will suppress this warning,
+13145:cpp (clang-sanitized)	UNKNOWN STEP	2026-10-29T17:05:15.4193294Z hint: to use in all of your new repositories, which will suppress this warning,
+13628:cpp (clang-sanitized)	UNKNOWN STEP	2026-10-29T17:05:40.8697180Z hint: to use in all of your new repositories, which will suppress this warning,
+15647:csharp (windows-2025)	UNKNOWN STEP	2026-10-29T17:07:14.1434242Z     0 Warning(s)
+15795:cpp (clang)	UNKNOWN STEP	2026-10-29T17:05:15.6304276Z hint: to use in all of your new repositories, which will suppress this warning,
+16275:cpp (clang)	UNKNOWN STEP	2026-10-29T17:05:38.2181252Z hint: to use in all of your new repositories, which will suppress this warning,
+18032:quality	UNKNOWN STEP	2026-10-29T17:04:06.6377410Z hint: to use in all of your new repositories, which will suppress this warning,
+18589:quality	UNKNOWN STEP	2026-10-29T17:04:33.5724500Z test_notes_warnings_and_errors_fail_even_after_successful_analysis (test_sarif_gate.SarifGateTests.test_notes_warnings_and_errors_fail_even_after_successful_analysis) ... ok
+18751:required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T17:18:46.7251696Z hint: to use in all of your new repositories, which will suppress this warning,
+18886:required	Require every applicable validation	2026-10-29T17:18:52.5189329Z ##[error]Process completed with exit code 1.

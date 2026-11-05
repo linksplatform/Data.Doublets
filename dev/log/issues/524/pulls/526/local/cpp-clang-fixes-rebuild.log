@@ -1,0 +1,38 @@
+-- Using Conan toolchain: /tmp/issue-524-cpp-baseline/conan_toolchain.cmake
+-- Conan toolchain: Defining architecture flag: -m64
+-- Conan toolchain: C++ Standard 20 with extensions OFF
+-- Conan: Target declared 'Platform.Interfaces::Platform.Interfaces'
+-- Conan: Target declared 'Platform.Collections.Methods::Platform.Collections.Methods'
+-- Conan: Target declared 'Platform.Collections::Platform.Collections'
+-- Conan: Target declared 'Platform.Equality::Platform.Equality'
+-- Conan: Target declared 'Platform.Random::Platform.Random'
+-- Conan: Target declared 'Platform.Ranges::Platform.Ranges'
+-- Conan: Target declared 'Platform.Exceptions::Platform.Exceptions'
+-- Conan: Target declared 'Platform.Delegates::Platform.Delegates'
+-- Conan: Target declared 'Platform.Converters::Platform.Converters'
+-- Conan: Target declared 'Platform.Hashing::Platform.Hashing'
+-- Conan: Component target declared 'clog'
+-- Conan: Component target declared 'cpuinfo::cpuinfo'
+-- Conan: Component target declared 'Microsoft.GSL::GSL'
+-- Conan: Target declared 'Platform.Numbers::Platform.Numbers'
+-- Conan: Target declared 'Platform.Memory::Platform.Memory'
+-- Conan: Component target declared 'mio::mio-headers'
+-- Conan: Target declared 'mio::mio'
+-- Conan: Target declared 'Platform.Data::Platform.Data'
+-- Conan: Target declared 'Platform.Setters::Platform.Setters'
+-- Conan: Component target declared 'GTest::gtest'
+-- Conan: Component target declared 'GTest::gtest_main'
+-- Conan: Component target declared 'GTest::gmock'
+-- Conan: Component target declared 'GTest::gmock_main'
+-- Conan: Target declared 'gtest::gtest'
+-- Conan: Component target declared 'benchmark::benchmark'
+-- Conan: Component target declared 'benchmark::benchmark_main'
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/issue-524-cpp-baseline
+[ 25%] Building CXX object CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o
+[ 50%] Linking CXX executable bin/Platform.Data.Doublets.Tests
+[ 50%] Built target Platform.Data.Doublets.Tests
+[ 75%] Building CXX object CMakeFiles/Platform.Data.Doublets.Benchmarks.dir/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp.o
+[100%] Linking CXX executable bin/Platform.Data.Doublets.Benchmarks
+[100%] Built target Platform.Data.Doublets.Benchmarks

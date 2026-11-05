@@ -1,0 +1,6 @@
+PyYAML==6.0.3
+conan==2.33.0
+ruff==0.14.3
+mypy==1.18.2
+types-PyYAML==6.0.12.20260906
+pyflakes==3.4.0

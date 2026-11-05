@@ -1,0 +1,30 @@
+[1/2] Processing file /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp.
+1 warning generated.
+[2/2] Processing file /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp.
+1 warning generated.
+/home/box/.conan2/p/b/benchbf013b053b8de/p/include/benchmark/benchmark.h:1095:3: error: Potential memory leak [clang-analyzer-cplusplus.NewDeleteLeaks,-warnings-as-errors]
+ 1095 |   return internal::RegisterBenchmarkInternal(
+      |   ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp:8:5: note: Calling 'RegisterCreateMillionPointsBenchmarks'
+    8 |     Platform::Data::Doublets::Benchmarks::RegisterCreateMillionPointsBenchmarks();
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.h:66:9: note: Calling 'RegisterBenchmark'
+   66 |         benchmark::RegisterBenchmark("BM_CreateMillionPointsUnitedMemory", BM_CreateMillionPointsUnitedMemory)
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/box/.conan2/p/b/benchbf013b053b8de/p/include/benchmark/benchmark.h:1096:7: note: Memory is allocated
+ 1096 |       ::new internal::FunctionBenchmark(name, fn));
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/box/.conan2/p/b/benchbf013b053b8de/p/include/benchmark/benchmark.h:1095:3: note: Potential memory leak
+ 1095 |   return internal::RegisterBenchmarkInternal(
+      |   ^
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/scripts/check-cpp.py", line 29, in <module>
+    run('clang-tidy-18', '-p', str(args.build_dir.resolve()), '--quiet', *units)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gh-issue-solver-1793248170197/scripts/check-cpp.py", line 11, in run
+    subprocess.run(args, cwd=ROOT, check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.pyenv/versions/3.15.0/lib/python3.15/subprocess.py", line 692, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '('clang-tidy-18', '-p', '/tmp/issue-524-cpp-clang', '--quiet', '/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp', '/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp')' returned non-zero exit status 1.

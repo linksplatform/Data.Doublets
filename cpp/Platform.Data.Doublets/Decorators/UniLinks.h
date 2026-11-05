@@ -1,28 +1,42 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
-    template <typename ...> class UniLinks;
-    template <std::integral TLinkAddress> class UniLinks<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>, IUniLinks<TLinkAddress>
+    template <typename...>
+    class UniLinks;
+    template <std::integral TLinkAddress>
+    class UniLinks<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>, IUniLinks<TLinkAddress>
     {
-        public: UniLinks(ILinks<TLinkAddress> &storage) : base(storage) { }
+      public:
+        UniLinks(ILinks<TLinkAddress>& storage) : base(storage) {}
 
         struct Transition
         {
-            public: IList<TLinkAddress> *Before;
-            public: IList<TLinkAddress> *After;
+          public:
+            IList<TLinkAddress>* Before;
 
-            public: Transition( const LinkType& before,  const LinkType& after)
+          public:
+            IList<TLinkAddress>* After;
+
+          public:
+            Transition(const LinkType& before, const LinkType& after)
             {
                 Before = before;
                 After = after;
             }
         }
 
-        public: TLinkAddress Trigger(const  LinkType& restriction, Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> matchedHandler, const LinkType& substitution, Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> substitutedHandler)
+        public : TLinkAddress
+                 Trigger(const LinkType& restriction,
+                         Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> matchedHandler,
+                         const LinkType& substitution,
+                         Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> substitutedHandler)
         {
             return _constants.Continue;
         }
 
-        public: TLinkAddress Trigger( const LinkType& patternOrCondition, Func<IList<TLinkAddress>, TLinkAddress> matchHandler, const LinkType& substitution, Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> substitutionHandler)
+      public:
+        TLinkAddress Trigger(const LinkType& patternOrCondition, Func<IList<TLinkAddress>, TLinkAddress> matchHandler,
+                             const LinkType& substitution,
+                             Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> substitutionHandler)
         {
             auto constants = _constants;
             if (patternOrCondition.IsNullOrEmpty() && substitution.IsNullOrEmpty())
@@ -131,19 +145,24 @@
             }
         }
 
-        public: IList<IList<IList<TLinkAddress>>> Trigger( const LinkType& condition, const LinkType& substitution)
+      public:
+        IList<IList<IList<TLinkAddress>>> Trigger(const LinkType& condition, const LinkType& substitution)
         {
             auto changes = List<IList<IList<TLinkAddress>>>();
             auto continue = _constants.Continue;
-            Trigger(condition, AlwaysContinue, substitution, (before, after) =>
-            {
-                auto change = new[] { before, after };
-                changes.Add(change);
-                return continue;
-            });
+            Trigger(
+                condition, AlwaysContinue, substitution, (before, after) = > {
+                    auto change = new[]{before, after};
+                    changes.Add(change);
+                    return continue;
+                });
             return changes;
         }
 
-        private: TLinkAddress AlwaysContinue( const LinkType& linkToMatch) { return _constants.Continue; }
+      private:
+        TLinkAddress AlwaysContinue(const LinkType& linkToMatch)
+        {
+            return _constants.Continue;
+        }
     };
-}
+} // namespace Platform::Data::Doublets::Decorators

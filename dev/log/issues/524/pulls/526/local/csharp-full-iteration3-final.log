@@ -1,0 +1,33 @@
+  Determining projects to restore...
+  Restored /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj (in 1.23 sec).
+  2 of 3 projects are up-to-date for restore.
+  Platform.Data.Doublets -> /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/bin/Release/net8.0/Platform.Data.Doublets.dll
+  Platform.Data.Doublets.Tests -> /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll
+  Platform.Data.Doublets.Benchmarks -> /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net8.0/Platform.Data.Doublets.Benchmarks.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.92
+Test run for /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
+Results File: /tmp/gh-issue-solver-1793248170197/artifacts/test-results/_8f80e2fd61e6_2026-10-29_06_38_57.trx
+
+Passed!  - Failed:     0, Passed:    76, Skipped:     0, Total:    76, Duration: 2 s - Platform.Data.Doublets.Tests.dll (net8.0)
+
+Attachments:
+  /tmp/gh-issue-solver-1793248170197/artifacts/test-results/601aca16-afa6-48ac-98f8-a3c3777f6068/coverage.cobertura.xml
+united: created 2 = (1, 18446744073709551596)
+  Each -> [2], Count -> 1, SearchOrDefault -> 2
+split: created 2 = (1, 18446744073709551596)
+  Each -> [2], Count -> 1, SearchOrDefault -> 2
+  Successfully created package '/tmp/gh-issue-solver-1793248170197/artifacts/packages/Platform.Data.Doublets.0.18.3.nupkg'.
+  Successfully created package '/tmp/gh-issue-solver-1793248170197/artifacts/packages/Platform.Data.Doublets.0.18.3.snupkg'.
+  Determining projects to restore...
+  Restored /tmp/tmphq_fw_b3/Consumer.csproj (in 2.16 sec).
+Validated packaged consumer of Platform.Data.Doublets 0.18.3

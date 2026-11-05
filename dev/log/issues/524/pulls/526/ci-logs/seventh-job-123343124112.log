@@ -1,0 +1,1389 @@
+security / codeql (actions)	UNKNOWN STEP	﻿2026-10-29T08:32:20.5905288Z Current runner version: '2.338.0'
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5932313Z ##[group]Runner Image Provisioner
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5933259Z Hosted Compute Agent
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5934175Z Version: 20261021.618
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5935023Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5935781Z Build Date: 2026-10-21T00:45:21Z
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5936453Z Worker ID: {195cb261-9664-4599-b761-717405a1f4a1}
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5937238Z Region: centralus
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5937824Z Cloud: Azure
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5938448Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5940054Z ##[group]Operating System
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5940705Z Ubuntu
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5941336Z 24.04.5
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5941904Z LTS
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5942504Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5943097Z ##[group]Runner Image
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5943936Z Image: ubuntu-24.04
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5944604Z Version: 20261025.353.1
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5945929Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5947577Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5948584Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5949941Z ##[group]GITHUB_TOKEN Permissions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5951867Z Contents: read
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5952567Z Metadata: read
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5953155Z SecurityEvents: write
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5954010Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5956583Z Secret source: Actions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5957589Z Cache mode: write
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.5960933Z Prepare workflow directory
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.6610163Z Prepare all required actions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.6681647Z Getting action download info
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:20.9687006Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:21.0646272Z Download action repository 'github/codeql-action@9b3254085494b55a0f7c4c2b3d2d52cc712ce370' (SHA:9b3254085494b55a0f7c4c2b3d2d52cc712ce370)
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:21.6220832Z Download action repository 'actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0' (SHA:6d4fd22b20465ccc0f7354476588e8df7c9ca0e0)
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.0902328Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.3211624Z Uses: linksplatform/Data.Doublets/.github/workflows/security.yml@refs/pull/526/merge (fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c)
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.3218847Z Complete job name: security / codeql (actions)
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4371932Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4373982Z with:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4374897Z   persist-credentials: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4376034Z   repository: linksplatform/Data.Doublets
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4386819Z   token: ***
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4387751Z   ssh-strict: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4388679Z   ssh-user: git
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4389540Z   clean: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4390472Z   sparse-checkout-cone-mode: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4391554Z   fetch-depth: 1
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4392468Z   fetch-tags: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4393383Z   show-progress: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4394590Z   lfs: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4395455Z   submodules: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4396367Z   set-safe-directory: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4397400Z   allow-unsafe-pr-checkout: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4398845Z env:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4399758Z   CODEQL_ACTION_DIFF_INFORMED_QUERIES: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4401018Z   CODEQL_ACTION_OVERLAY_ANALYSIS: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.4402123Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7442568Z Syncing repository: linksplatform/Data.Doublets
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7447112Z ##[group]Getting Git version info
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7448623Z Working directory is '/home/runner/work/Data.Doublets/Data.Doublets'
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7451704Z [command]/usr/bin/git version
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7529664Z git version 2.56.0
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7556219Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7568123Z Temporarily overriding HOME='/home/runner/work/_temp/9bffb71e-fee1-4086-89dc-5dc4b704e12c' before making global git config changes
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7573372Z Adding repository directory to the temporary git global config as a safe directory
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7578241Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7633983Z Deleting the contents of '/home/runner/work/Data.Doublets/Data.Doublets'
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7645288Z ##[group]Determining repository object format
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7648534Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7657567Z ##[group]Initializing the repository
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7659910Z [command]/usr/bin/git init /home/runner/work/Data.Doublets/Data.Doublets
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7753165Z hint: Using 'master' as the name for the initial branch. This default branch name
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7755858Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7757972Z hint: to use in all of your new repositories, which will suppress this warning,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7759501Z hint: call:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7760332Z hint:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7761899Z hint: 	git config --global init.defaultBranch <name>
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7764221Z hint:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7766196Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7769633Z hint: 'development'. The just-created branch can be renamed via this command:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7771639Z hint:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7772573Z hint: 	git branch -m <name>
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7773542Z hint:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7776717Z hint: Disable this message with "git config set advice.defaultBranchName false"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7781488Z Initialized empty Git repository in /home/runner/work/Data.Doublets/Data.Doublets/.git/
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7787464Z [command]/usr/bin/git remote add origin https://github.com/linksplatform/Data.Doublets
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7841078Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7843591Z ##[group]Disabling automatic garbage collection
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7846216Z [command]/usr/bin/git config --local gc.auto 0
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7886593Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7888867Z ##[group]Setting up auth
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7890365Z Removing SSH command configuration
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7892489Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.7948253Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.8404581Z Removing HTTP extra header
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.8408799Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.8479547Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.8761663Z Removing includeIf entries pointing to credentials config files
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.8767865Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.8814027Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.9066475Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-e083e178-87b5-4b85-81c1-966ac4d0f5a1.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.9118534Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path /home/runner/work/_temp/git-credentials-e083e178-87b5-4b85-81c1-966ac4d0f5a1.config
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.9163397Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-e083e178-87b5-4b85-81c1-966ac4d0f5a1.config
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.9208628Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-e083e178-87b5-4b85-81c1-966ac4d0f5a1.config
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.9252177Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-e083e178-87b5-4b85-81c1-966ac4d0f5a1.config
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.9293290Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.9295114Z ##[group]Fetching the repository
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:22.9300436Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c:refs/remotes/pull/526/merge
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.0116159Z From https://github.com/linksplatform/Data.Doublets
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.0118030Z  * [new ref]         fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c -> pull/526/merge
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.0121215Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.0121758Z ##[group]Determining the checkout info
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.0122401Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.0128048Z [command]/usr/bin/git sparse-checkout disable
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.0190962Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.0233299Z ##[group]Checking out the ref
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.0237926Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/526/merge
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3444844Z Note: switching to 'refs/remotes/pull/526/merge'.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3445312Z 
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3445669Z You are in 'detached HEAD' state. You can look around, make experimental
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3446469Z changes and commit them, and you can discard any commits you make in this
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3447246Z state without impacting any branches by switching back to a branch.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3447711Z 
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3448069Z If you want to create a new branch to retain commits you create, you may
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3448803Z do so (now or later) by using -c with the switch command. Example:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3449233Z 
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3449417Z   git switch -c <new-branch-name>
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3449705Z 
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3449894Z Or undo this operation with:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3450162Z 
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3450318Z   git switch -
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3450559Z 
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3450907Z Turn off this advice by setting config variable advice.detachedHead to false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3451420Z 
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3452161Z HEAD is now at fd79f96 Merge 5cf40c5a338a38978221aab65a8e017005c95303 into 799502ce9275edc80d9fbc1953ff8892fe0eca19
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3496626Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3558919Z [command]/usr/bin/git log -1 --format=%H
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3596229Z fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3606048Z ##[group]Removing auth
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3606578Z Removing SSH command configuration
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3609888Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3654115Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3903208Z Removing HTTP extra header
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3908534Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.3952966Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4197182Z Removing includeIf entries pointing to credentials config files
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4201422Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4242007Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4242968Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4244260Z includeif.gitdir:/github/workspace/.git.path
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4244728Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4253239Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4288105Z /home/runner/work/_temp/git-credentials-e083e178-87b5-4b85-81c1-966ac4d0f5a1.config
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4306132Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-e083e178\-87b5\-4b85\-81c1\-966ac4d0f5a1\.config
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4352847Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4392990Z /home/runner/work/_temp/git-credentials-e083e178-87b5-4b85-81c1-966ac4d0f5a1.config
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4402118Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-e083e178\-87b5\-4b85\-81c1\-966ac4d0f5a1\.config
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4449765Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4488107Z /github/runner_temp/git-credentials-e083e178-87b5-4b85-81c1-966ac4d0f5a1.config
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4498249Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-e083e178\-87b5\-4b85\-81c1\-966ac4d0f5a1\.config
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4544632Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4595053Z /github/runner_temp/git-credentials-e083e178-87b5-4b85-81c1-966ac4d0f5a1.config
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4640400Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-e083e178\-87b5\-4b85\-81c1\-966ac4d0f5a1\.config
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4645681Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4912078Z Removing credentials config '/home/runner/work/_temp/git-credentials-e083e178-87b5-4b85-81c1-966ac4d0f5a1.config'
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.4922117Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5251926Z ##[group]Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5252364Z with:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5252566Z   languages: actions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5252787Z   build-mode: none
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5253044Z   queries: security-extended,security-and-quality
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5253371Z   analysis-kinds: code-scanning
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5255966Z   token: ***
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5256259Z   matrix: {
+security / codeql (actions)	UNKNOWN STEP	  "language": "actions",
+security / codeql (actions)	UNKNOWN STEP	  "build-mode": "none"
+security / codeql (actions)	UNKNOWN STEP	}
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5256588Z   debug: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5256798Z   check-run-id: 123343124112
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5257058Z   job-status: success
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5257267Z env:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5257478Z   CODEQL_ACTION_DIFF_INFORMED_QUERIES: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5257782Z   CODEQL_ACTION_OVERLAY_ANALYSIS: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.5258047Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:26.8381567Z Job run UUID is fcbce055-bda3-4209-94c3-eccdde3d69d0.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:28.3463530Z ##[group]Setup CodeQL tools
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:28.3595214Z [command]/usr/bin/tar --version
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:28.3695035Z tar (GNU tar) 1.35
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:28.3695907Z Copyright (C) 2023 Free Software Foundation, Inc.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:28.3696812Z License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:28.3697727Z This is free software: you are free to change and redistribute it.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:28.3698689Z There is NO WARRANTY, to the extent permitted by law.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:28.3699148Z 
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:28.3699358Z Written by John Gilmore and Jay Fenlason.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:28.3701929Z Found gnu tar version 1.35.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:28.5022080Z No overlay-base databases found in Actions cache.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:28.5037341Z Found CodeQL tools version 2.27.3 in the toolcache.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:28.5038146Z Using CodeQL CLI version 2.27.3 from toolcache at /opt/hostedtoolcache/CodeQL/2.27.3/x64
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5628689Z {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5629098Z   "productName": "CodeQL",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5629577Z   "vendor": "GitHub",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5629963Z   "version": "2.27.3",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5630384Z   "sha": "d7421f46364160506f767a928cbe5297a02d0bb0",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5630716Z   "branches": [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5630960Z     "codeql-cli-2.27.3"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5631196Z   ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5631464Z   "copyright": "Copyright (C) 2019-2026 GitHub, Inc.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5631920Z   "unpackedLocation": "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5632434Z   "configFileLocation": "/home/runner/.config/codeql/config",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5632822Z   "configFileFound": false,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5633103Z   "overlayVersion": 4,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5633337Z   "features": {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5633579Z     "analysisSummaryV2Default": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5634387Z     "buildModeOption": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5634825Z     "bundleSupportsIncludeDiagnostics": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5635388Z     "bundleSupportsIncludeLogs": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5635880Z     "bundleSupportsOverlay": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5636517Z     "databaseInterpretResultsSupportsSarifRunProperty": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5637238Z     "featuresInVersionResult": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5637886Z     "indirectTracingSupportsStaticBinaries": false,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5638585Z     "informsAboutUnsupportedPathFilters": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5639164Z     "supportsPython312": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5639634Z     "mrvaPackCreate": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5640102Z     "threatModelOption": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5640643Z     "traceCommandUseBuildMode": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5641201Z     "v2ramSizing": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5641764Z     "mrvaPackCreateMultipleQueries": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5642345Z     "setsCodeqlRunnerEnvVar": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5642857Z     "sarifMergeRunsFromEqualCategory": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5643356Z     "forceOverwrite": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5644055Z     "generateSummarySymbolMap": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5644896Z     "pythonDefaultIsToNotExtractStdlib": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5645451Z     "queryServerRunQueries": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5645930Z     "queryServerTrimCacheWithMode": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5646528Z     "builtinExtractorsSpecifyDefaultQueries": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5647093Z     "bqrsDiffResultSets": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5647549Z     "bundleSupportsIncludeOption": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5648121Z     "suppressesMissingFileBaselineWarning": true,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5648671Z     "jsonDataExtensions": true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5649051Z   }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5649334Z }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5650601Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.5651246Z ##[group]Validating workflow
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.9032454Z Detected no issues with the code scanning workflow.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.9033390Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.9034660Z ##[group]Load language configuration
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:29.9102162Z [command]/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/codeql resolve languages --format=betterjson --extractor-options-verbosity=4 --extractor-include-aliases --filter-to-languages-with-queries
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9822327Z {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9845041Z   "aliases" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9847197Z     "c" : "cpp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9848024Z     "c++" : "cpp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9848708Z     "c-c++" : "cpp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9849343Z     "c-cpp" : "cpp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9849937Z     "c#" : "csharp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9850327Z     "java-kotlin" : "java",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9850700Z     "kotlin" : "java",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9851083Z     "javascript-typescript" : "javascript",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9851913Z     "typescript" : "javascript"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9852300Z   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9852614Z   "extractors" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9852949Z     "rust" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9853267Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9854061Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/rust",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9854957Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9855667Z           "trap" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9856274Z             "title" : "Options pertaining to TRAP.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9857144Z             "description" : "Options pertaining to TRAP.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9857912Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9858336Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9858746Z               "compression" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9859310Z                 "title" : "Controls compression for the TRAP files written by the extractor.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9861022Z                 "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'gzip' (to write gzip-compressed TRAP) 'zstd' (the default, to write Zstandard-compressed TRAP) and 'none' (to write uncompressed TRAP).\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9862670Z                 "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9863108Z                 "pattern" : "^(none|gzip|zstd)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9863762Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9864067Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9864388Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9864921Z           "cargo_target_dir" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9865451Z             "title" : "Directory to use for cargo output files.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9868163Z             "description" : "This value is an optional path to use as `CARGO_TARGET_DIR` for the internal cargo commands the extractor uses. Pointing it to a persistent directory may reduce execution time of consecutive extractor runs. By default, a new scratch directory is used for each extraction, while qltests use the test's `target` directory so artifacts can be reused across runs.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9870773Z             "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9871178Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9871520Z           "cargo_target" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9871957Z             "title" : "Target architecture",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9873059Z             "description" : "Target architecture to use for analysis, analogous to `cargo --target`. By default the host architecture is used.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9874663Z             "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9875091Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9875435Z           "cargo_features" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9875895Z             "title" : "Cargo features to turn on",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9877862Z             "description" : "Comma-separated list of features to turn on. By default all features are enabled. If any features are specified, then only those features are enabled. The `default` feature must be explicitly specified if only default features are desired. Can be repeated.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9879795Z             "type" : "array"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9880178Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9880517Z           "cargo_cfg_overrides" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9880989Z             "title" : "Cargo cfg overrides",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9881977Z             "description" : "Comma-separated list of cfg settings to enable, or disable if prefixed with `-`. Can be repeated.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9882927Z             "type" : "array"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9883320Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9883632Z           "logging" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9884520Z             "title" : "Options pertaining to logging.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9885118Z             "description" : "Options pertaining to logging.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9885652Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9886054Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9886456Z               "verbosity" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9886913Z                 "title" : "Extractor logging verbosity level.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9887978Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9889163Z                 "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9889655Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9890145Z               },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9890346Z               "flamegraph" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9890666Z                 "title" : "[Experimental] File path for write flame graph log",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9891573Z                 "description" : "Collect flame graph data using the `tracing-flame` crate. To render a flame graph or chart, run the `inferno-flamegraph` command. See also: https://crates.io/crates/tracing-flame\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9892364Z                 "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9892685Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9892897Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9893083Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9893291Z           "extract_dependencies_as_source" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9893618Z             "title" : "Extract dependencies as source code",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9894464Z             "description" : "Extract the full source code of dependencies instead of only extracting signatures.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9894955Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9895195Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9895444Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9895618Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9895786Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9895960Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9896134Z     "csharp" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9896324Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9896618Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/csharp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9897422Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9897840Z           "trap" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9898259Z             "title" : "Options pertaining to TRAP.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9898868Z             "description" : "Options pertaining to TRAP.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9899346Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9899583Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9899814Z               "compression" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9900181Z                 "title" : "Controls compression for the TRAP files written by the extractor.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9901355Z                 "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'brotli' (the default, to write brotli-compressed TRAP), 'gzip', and 'none' (to write uncompressed TRAP).\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9902197Z                 "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9902463Z                 "pattern" : "^(none|gzip|brotli)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9902730Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9902914Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9903152Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9903339Z           "buildless" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9903959Z             "title" : "DEPRECATED - Whether to use buildless (standalone) extraction.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9905838Z             "description" : "DEPRECATED: Use `--build-mode none` instead.\nA value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9907517Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9907758Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9908004Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9908190Z           "logging" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9908601Z             "title" : "Options pertaining to logging.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9908977Z             "description" : "Options pertaining to logging.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9910143Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9910392Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9910629Z               "verbosity" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9910906Z                 "title" : "Extractor logging verbosity level.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9946717Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9948526Z                 "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9949408Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9950299Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9950604Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9950896Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9951199Z           "binlog" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9951543Z             "title" : "Binlog",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9952777Z             "description" : "[EXPERIMENTAL] The value is a path to the MsBuild binary log file that should be extracted. This option only works when `--build-mode none` is also specified.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9954235Z             "type" : "array"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9954614Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9954955Z           "buildless_dependency_dir" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9955692Z             "title" : "The path where buildless (standalone) extraction should keep dependencies.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9956866Z             "description" : "If set, the buildless (standalone) extractor will store dependencies in this directory.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9957707Z             "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9958066Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9958340Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9958603Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9958878Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9959174Z     "python" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9959492Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9959991Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/python",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9960658Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9961061Z           "logging" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9961484Z             "title" : "Options pertaining to logging.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9962074Z             "description" : "Options pertaining to logging.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9962604Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9963253Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9963830Z               "verbosity" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9964326Z                 "title" : "Python extractor logging verbosity level.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9966201Z                 "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9967951Z                 "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9968792Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9969642Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9969970Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9970276Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9970618Z           "python_executable_name" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9971316Z             "title" : "Controls the name of the Python executable used by the Python extractor.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9974086Z             "description" : "The Python extractor uses platform-dependent heuristics to determine the name of the Python executable to use. Specifying a value for this option overrides the name of the Python executable used by the extractor. Accepted values are py, python and python3. Use this setting with caution, the Python extractor requires Python 3 to run.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9976387Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9976813Z             "pattern" : "^(py|python|python3)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9977262Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9977744Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9978031Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9978313Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9978596Z     "cpp" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9978897Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9979385Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/cpp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9980032Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9980429Z           "trap" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9980785Z             "title" : "TRAP options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9981382Z             "description" : "Options about how the extractor handles TRAP files",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9982009Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9982408Z             "visibility" : 3,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9982790Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9983174Z               "cache" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9983576Z                 "title" : "TRAP cache options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9984441Z                 "description" : "Options about how the extractor handles its TRAP cache",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9985127Z                 "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9985539Z                 "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9985936Z                   "dir" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9986356Z                     "title" : "TRAP cache directory",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9986977Z                     "description" : "The directory of the TRAP cache to use",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9987580Z                     "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9987993Z                   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9988326Z                   "bound" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9988733Z                     "title" : "TRAP cache bound",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9989433Z                     "description" : "A soft limit (in MB) on the size of the TRAP cache",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9990086Z                     "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9990519Z                     "pattern" : "[0-9]+"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9990937Z                   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9991268Z                   "write" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9991700Z                     "title" : "TRAP cache writeable",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9992422Z                     "description" : "Whether to write to the TRAP cache as well as reading it",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9993129Z                     "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9993601Z                     "pattern" : "(true|TRUE|false|FALSE)"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9994239Z                   }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9994742Z                 }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9995056Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9995360Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9995658Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9995982Z           "scale_timeouts" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9996537Z             "title" : "Value to scale compiler introspection timeouts with",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:30.9999106Z             "description" : "The extractor attempts to determine what compiler the source code being extracted is compiled with. To this end the extractor makes additional calls to the compiler, some of which are expected to return within a certain fixed time (either 10s or 15s). On some systems that are under high load this time might be too short, and can be scaled up using this option.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0001574Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0001975Z             "pattern" : "[0-9]+"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0002404Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0002728Z           "log_verbosity" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0003348Z             "title" : "Verbosity of the extractor logging",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0004592Z             "description" : "Set the verbosity of the extractor logging to 'quiet' (0), 'normal' (1), 'chatty' (2), or 'noisy' (3). The default is 'normal'.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0005585Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0005950Z             "pattern" : "[0-3]"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0006325Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0006651Z           "frontend_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0007120Z             "title" : "C/C++ extractor frontend options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0007993Z             "description" : "Set additional options that should be passed to the C/C++ extractor frontend.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0009085Z             "type" : "array",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0009479Z             "visibility" : 3
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0009848Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0010142Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0010414Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0010691Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0010965Z     "java" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0011263Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0011757Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/java",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0012417Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0012828Z           "exclude" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0013265Z             "title" : "A glob excluding files from analysis.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0014744Z             "description" : "A glob indicating what files to exclude from the analysis. This accepts glob patterns that are supported by Java's 'getPathMatcher' implementation.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0015937Z             "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0016306Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0016642Z           "add_prefer_source" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0017213Z             "title" : "Whether to always prefer source files over class files.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0019277Z             "description" : "A value indicating whether source files should be preferred over class files. If set to 'true', the extraction adds '-Xprefer:source' to the javac command line. If set to 'false', the extraction uses the default javac behavior ('-Xprefer:newer'). The default is 'true'.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0021174Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0021584Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0022012Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0022330Z           "buildless" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0022914Z             "title" : "Whether to use buildless (standalone) extraction (experimental).",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0026092Z             "description" : "A value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0028729Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0029352Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0029755Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0030092Z           "buildless_dependency_dir" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0030775Z             "title" : "The path where buildless (standalone) extraction should keep dependencies.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0031625Z             "description" : "If set, the buildless (standalone) extractor will store dependencies in this directory.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0032124Z             "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0032349Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0032567Z           "minimize_dependency_jars" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0033018Z             "title" : "Whether to rewrite and minimize downloaded JAR dependencies (experimental).",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0034149Z             "description" : "If 'true', JAR dependencies downloaded during extraction will be rewritten to remove unneeded data, such as method bodies. The default is 'false'.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0035176Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0035445Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0035783Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0036071Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0036370Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0036580Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0036759Z     "go" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0036943Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0037240Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/go",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0037616Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0037870Z           "extract_tests" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0038254Z             "title" : "Whether to include Go test files in the CodeQL database.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0039106Z             "description" : "A value indicating whether Go test files should be included in the CodeQL database. The default is 'false'.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0039662Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0039909Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0040160Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0040358Z           "extract_vendor_dirs" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0040736Z             "title" : "Whether to include Go vendor directories in the CodeQL database.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0041457Z             "description" : "A value indicating whether Go vendor directories should be included in the CodeQL database. The default is 'false'.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0042042Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0042285Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0042529Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0042704Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0042873Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0043045Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0043224Z     "actions" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0043417Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0043990Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/actions",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0044396Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0044633Z           "trap" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0044851Z             "title" : "TRAP options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0045216Z             "description" : "Options about how the extractor handles TRAP files",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0045580Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0045812Z             "visibility" : 3,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0046043Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0046270Z               "cache" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0046511Z                 "title" : "TRAP cache options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0046911Z                 "description" : "Options about how the extractor handles its TRAP cache",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0047297Z                 "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0047545Z                 "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0047785Z                   "dir" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0048040Z                     "title" : "TRAP cache directory",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0048400Z                     "description" : "The directory of the TRAP cache to use",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0048746Z                     "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0049023Z                   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0049286Z                   "bound" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0049946Z                     "title" : "TRAP cache bound",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0050560Z                     "description" : "A soft limit (in MB) on the size of the TRAP cache",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0051173Z                     "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0051602Z                     "pattern" : "[0-9]+"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0052033Z                   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0052396Z                   "write" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0052849Z                     "title" : "TRAP cache writeable",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0053583Z                     "description" : "Whether to write to the TRAP cache as well as reading it",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0054547Z                     "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0055015Z                     "pattern" : "(true|TRUE|false|FALSE)"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0055471Z                   }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0055786Z                 }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0056100Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0056412Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0056712Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0057015Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0057310Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0057595Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0057898Z     "javascript" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0058235Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0058773Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/javascript",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0059473Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0059859Z           "trap" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0060199Z             "title" : "TRAP options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0060818Z             "description" : "Options about how the extractor handles TRAP files",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0061761Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0062167Z             "visibility" : 3,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0062594Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0062995Z               "cache" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0063412Z                 "title" : "TRAP cache options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0064475Z                 "description" : "Options about how the extractor handles its TRAP cache",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0065227Z                 "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0065682Z                 "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0066100Z                   "dir" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0066533Z                     "title" : "TRAP cache directory",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0067174Z                     "description" : "The directory of the TRAP cache to use",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0067790Z                     "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0068192Z                   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0068555Z                   "bound" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0068963Z                     "title" : "TRAP cache bound",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0069643Z                     "description" : "A soft limit (in MB) on the size of the TRAP cache",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0070365Z                     "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0070916Z                     "pattern" : "[0-9]+"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0071390Z                   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0071766Z                   "write" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0072258Z                     "title" : "TRAP cache writeable",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0073048Z                     "description" : "Whether to write to the TRAP cache as well as reading it",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0074066Z                     "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0074607Z                     "pattern" : "(true|TRUE|false|FALSE)"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0075142Z                   }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0075498Z                 }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0075835Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0076176Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0076510Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0076860Z           "skip_types" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0077390Z             "title" : "Skip type extraction for TypeScript",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0078284Z             "description" : "Whether to skip the extraction of types in a TypeScript application",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0079090Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0079532Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0079941Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0080454Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0080760Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0081058Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0081347Z     "swift" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0081660Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0082164Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/swift"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0082786Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0083071Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0083366Z     "ruby" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0083981Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0084463Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/ruby",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0085115Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0085522Z           "trap" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0085924Z             "title" : "Options pertaining to TRAP.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0086514Z             "description" : "Options pertaining to TRAP.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0087028Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0087430Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0087827Z               "compression" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0088447Z                 "title" : "Controls compression for the TRAP files written by the extractor.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0090247Z                 "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'gzip' (the default, to write gzip-compressed TRAP) 'zstd' (to write Zstandard-compressed TRAP) and 'none' (to write uncompressed TRAP).\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0091822Z                 "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0092269Z                 "pattern" : "^(none|gzip|zstd)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0092707Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0093226Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0093512Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0094048Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0094330Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0094610Z     ]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0094896Z   }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0095171Z }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0095831Z Languages from configuration: actions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0126212Z Using Git version 2.56.0
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0130371Z Using overlay database mode: none without caching.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:31.0140453Z [command]/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/codeql resolve languages --format=betterjson --extractor-options-verbosity=4 --extractor-include-aliases
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0467181Z {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0468054Z   "aliases" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0473428Z     "c" : "cpp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0474321Z     "c++" : "cpp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0474899Z     "c-c++" : "cpp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0475475Z     "c-cpp" : "cpp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0476019Z     "c#" : "csharp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0476588Z     "java-kotlin" : "java",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0477243Z     "kotlin" : "java",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0477895Z     "javascript-typescript" : "javascript",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0478664Z     "typescript" : "javascript"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0479626Z   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0480167Z   "extractors" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0480740Z     "actions" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0481303Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0482073Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/actions",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0482965Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0483567Z           "trap" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0484696Z             "title" : "TRAP options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0485641Z             "description" : "Options about how the extractor handles TRAP files",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0486573Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0487186Z             "visibility" : 3,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0487824Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0488506Z               "cache" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0489146Z                 "title" : "TRAP cache options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0490150Z                 "description" : "Options about how the extractor handles its TRAP cache",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0491084Z                 "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0491816Z                 "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0492616Z                   "dir" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0493243Z                     "title" : "TRAP cache directory",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0495920Z                     "description" : "The directory of the TRAP cache to use",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0496923Z                     "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0497600Z                   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0498177Z                   "bound" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0498840Z                     "title" : "TRAP cache bound",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0499884Z                     "description" : "A soft limit (in MB) on the size of the TRAP cache",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0500720Z                     "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0501344Z                     "pattern" : "[0-9]+"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0502076Z                   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0502683Z                   "write" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0503406Z                     "title" : "TRAP cache writeable",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0504756Z                     "description" : "Whether to write to the TRAP cache as well as reading it",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0505767Z                     "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0506503Z                     "pattern" : "(true|TRUE|false|FALSE)"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0507209Z                   }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0507685Z                 }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0508186Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0508676Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0509201Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0509742Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0510283Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0510854Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0511360Z     "java" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0511872Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0512514Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/java",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0513959Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0514671Z           "exclude" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0515398Z             "title" : "A glob excluding files from analysis.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0517050Z             "description" : "A glob indicating what files to exclude from the analysis. This accepts glob patterns that are supported by Java's 'getPathMatcher' implementation.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0518647Z             "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0519336Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0519945Z           "add_prefer_source" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0520887Z             "title" : "Whether to always prefer source files over class files.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0523252Z             "description" : "A value indicating whether source files should be preferred over class files. If set to 'true', the extraction adds '-Xprefer:source' to the javac command line. If set to 'false', the extraction uses the default javac behavior ('-Xprefer:newer'). The default is 'true'.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0525854Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0526787Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0527533Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0527911Z           "buildless" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0528557Z             "title" : "Whether to use buildless (standalone) extraction (experimental).",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0531689Z             "description" : "A value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0534750Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0535185Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0535612Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0535954Z           "buildless_dependency_dir" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0536700Z             "title" : "The path where buildless (standalone) extraction should keep dependencies.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0537864Z             "description" : "If set, the buildless (standalone) extractor will store dependencies in this directory.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0538739Z             "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0539118Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0539706Z           "minimize_dependency_jars" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0540461Z             "title" : "Whether to rewrite and minimize downloaded JAR dependencies (experimental).",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0541977Z             "description" : "If 'true', JAR dependencies downloaded during extraction will be rewritten to remove unneeded data, such as method bodies. The default is 'false'.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0543192Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0543599Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0544294Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0544610Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0544959Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0545250Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0545556Z     "csv" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0545936Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0546432Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/csv"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0547066Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0547350Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0547633Z     "swift" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0547942Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0548435Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/swift"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0549070Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0549353Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0549652Z     "properties" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0550010Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0550571Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/properties"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0551263Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0551555Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0551858Z     "csharp" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0552183Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0552737Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/csharp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0553561Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0554356Z           "trap" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0554771Z             "title" : "Options pertaining to TRAP.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0555319Z             "description" : "Options pertaining to TRAP.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0555837Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0556265Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0556529Z               "compression" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0556903Z                 "title" : "Controls compression for the TRAP files written by the extractor.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0558112Z                 "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'brotli' (the default, to write brotli-compressed TRAP), 'gzip', and 'none' (to write uncompressed TRAP).\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0558949Z                 "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0559215Z                 "pattern" : "^(none|gzip|brotli)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0559487Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0559671Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0559855Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0560039Z           "buildless" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0560391Z             "title" : "DEPRECATED - Whether to use buildless (standalone) extraction.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0562327Z             "description" : "DEPRECATED: Use `--build-mode none` instead.\nA value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0564469Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0564860Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0565279Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0565599Z           "logging" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0566036Z             "title" : "Options pertaining to logging.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0566639Z             "description" : "Options pertaining to logging.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0567092Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0567335Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0567568Z               "verbosity" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0568036Z                 "title" : "Extractor logging verbosity level.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0569043Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0569970Z                 "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0570455Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0570945Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0571133Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0571308Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0571487Z           "binlog" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0571700Z             "title" : "Binlog",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0572396Z             "description" : "[EXPERIMENTAL] The value is a path to the MsBuild binary log file that should be extracted. This option only works when `--build-mode none` is also specified.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0573109Z             "type" : "array"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0573326Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0573527Z           "buildless_dependency_dir" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0574280Z             "title" : "The path where buildless (standalone) extraction should keep dependencies.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0574937Z             "description" : "If set, the buildless (standalone) extractor will store dependencies in this directory.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0575427Z             "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0575648Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0575826Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0576156Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0576331Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0576505Z     "html" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0576689Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0576973Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/html"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0577322Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0577492Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0577677Z     "javascript" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0577876Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0578182Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/javascript",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0578575Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0578805Z           "trap" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0579025Z             "title" : "TRAP options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0579380Z             "description" : "Options about how the extractor handles TRAP files",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0579748Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0579982Z             "visibility" : 3,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0580220Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0580451Z               "cache" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0580687Z                 "title" : "TRAP cache options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0581083Z                 "description" : "Options about how the extractor handles its TRAP cache",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0581467Z                 "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0581711Z                 "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0581954Z                   "dir" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0582207Z                     "title" : "TRAP cache directory",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0582560Z                     "description" : "The directory of the TRAP cache to use",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0582899Z                     "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0583134Z                   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0583331Z                   "bound" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0583569Z                     "title" : "TRAP cache bound",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0584211Z                     "description" : "A soft limit (in MB) on the size of the TRAP cache",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0584589Z                     "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0584849Z                     "pattern" : "[0-9]+"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0585096Z                   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0585295Z                   "write" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0585554Z                     "title" : "TRAP cache writeable",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0585958Z                     "description" : "Whether to write to the TRAP cache as well as reading it",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0586481Z                     "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0586761Z                     "pattern" : "(true|TRUE|false|FALSE)"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0587030Z                   }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0587216Z                 }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0587402Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0587582Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0587758Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0587956Z           "skip_types" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0588227Z             "title" : "Skip type extraction for TypeScript",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0588677Z             "description" : "Whether to skip the extraction of types in a TypeScript application",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0589101Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0589340Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0589583Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0589753Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0589927Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0590096Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0590271Z     "yaml" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0590453Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0590783Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/yaml"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0591160Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0591330Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0591507Z     "python" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0591702Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0591990Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/python",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0592370Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0592607Z           "logging" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0592855Z             "title" : "Options pertaining to logging.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0593194Z             "description" : "Options pertaining to logging.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0593855Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0594115Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0594347Z               "verbosity" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0594643Z                 "title" : "Python extractor logging verbosity level.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0595718Z                 "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0596730Z                 "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0597213Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0597702Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0597900Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0598081Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0598282Z           "python_executable_name" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0598694Z             "title" : "Controls the name of the Python executable used by the Python extractor.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0600143Z             "description" : "The Python extractor uses platform-dependent heuristics to determine the name of the Python executable to use. Specifying a value for this option overrides the name of the Python executable used by the extractor. Accepted values are py, python and python3. Use this setting with caution, the Python extractor requires Python 3 to run.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0601424Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0601681Z             "pattern" : "^(py|python|python3)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0601945Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0602130Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0602301Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0602475Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0602648Z     "go" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0602823Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0603106Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/go",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0603484Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0603934Z           "extract_tests" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0604272Z             "title" : "Whether to include Go test files in the CodeQL database.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0604932Z             "description" : "A value indicating whether Go test files should be included in the CodeQL database. The default is 'false'.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0605683Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0605934Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0606173Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0606367Z           "extract_vendor_dirs" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0606734Z             "title" : "Whether to include Go vendor directories in the CodeQL database.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0607431Z             "description" : "A value indicating whether Go vendor directories should be included in the CodeQL database. The default is 'false'.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0608007Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0608247Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0608489Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0608658Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0608831Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0608996Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0609167Z     "rust" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0609347Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0609629Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/rust",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0610002Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0610227Z           "trap" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0610457Z             "title" : "Options pertaining to TRAP.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0610821Z             "description" : "Options pertaining to TRAP.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0611115Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0611343Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0611576Z               "compression" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0611937Z                 "title" : "Controls compression for the TRAP files written by the extractor.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0613001Z                 "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'gzip' (to write gzip-compressed TRAP) 'zstd' (the default, to write Zstandard-compressed TRAP) and 'none' (to write uncompressed TRAP).\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0614277Z                 "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0614536Z                 "pattern" : "^(none|gzip|zstd)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0614801Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0614982Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0615160Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0615349Z           "cargo_target_dir" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0615640Z             "title" : "Directory to use for cargo output files.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0617038Z             "description" : "This value is an optional path to use as `CARGO_TARGET_DIR` for the internal cargo commands the extractor uses. Pointing it to a persistent directory may reduce execution time of consecutive extractor runs. By default, a new scratch directory is used for each extraction, while qltests use the test's `target` directory so artifacts can be reused across runs.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0618370Z             "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0618585Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0618769Z           "cargo_target" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0619011Z             "title" : "Target architecture",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0619598Z             "description" : "Target architecture to use for analysis, analogous to `cargo --target`. By default the host architecture is used.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0620172Z             "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0620384Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0620571Z           "cargo_features" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0620824Z             "title" : "Cargo features to turn on",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0621863Z             "description" : "Comma-separated list of features to turn on. By default all features are enabled. If any features are specified, then only those features are enabled. The `default` feature must be explicitly specified if only default features are desired. Can be repeated.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0622878Z             "type" : "array"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0623092Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0623286Z           "cargo_cfg_overrides" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0623548Z             "title" : "Cargo cfg overrides",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0624515Z             "description" : "Comma-separated list of cfg settings to enable, or disable if prefixed with `-`. Can be repeated.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0625222Z             "type" : "array"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0625519Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0625702Z           "logging" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0625943Z             "title" : "Options pertaining to logging.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0626278Z             "description" : "Options pertaining to logging.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0626583Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0626811Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0627035Z               "verbosity" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0627306Z                 "title" : "Extractor logging verbosity level.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0628282Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0629203Z                 "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0629690Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0630176Z               },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0630374Z               "flamegraph" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0630686Z                 "title" : "[Experimental] File path for write flame graph log",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0631584Z                 "description" : "Collect flame graph data using the `tracing-flame` crate. To render a flame graph or chart, run the `inferno-flamegraph` command. See also: https://crates.io/crates/tracing-flame\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0632439Z                 "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0632779Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0632958Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0633131Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0633337Z           "extract_dependencies_as_source" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0633897Z             "title" : "Extract dependencies as source code",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0634443Z             "description" : "Extract the full source code of dependencies instead of only extracting signatures.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0634918Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0635155Z             "pattern" : "^(false|true)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0635403Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0635573Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0635745Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0635909Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0636078Z     "ruby" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0636258Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0636541Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/ruby",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0636907Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0637133Z           "trap" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0637368Z             "title" : "Options pertaining to TRAP.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0637694Z             "description" : "Options pertaining to TRAP.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0637999Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0638228Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0638455Z               "compression" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0638823Z                 "title" : "Controls compression for the TRAP files written by the extractor.",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0639892Z                 "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'gzip' (the default, to write gzip-compressed TRAP) 'zstd' (to write Zstandard-compressed TRAP) and 'none' (to write uncompressed TRAP).\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0640810Z                 "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0641067Z                 "pattern" : "^(none|gzip|zstd)$"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0641328Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0641512Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0641702Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0641871Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0642036Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0642205Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0642379Z     "cpp" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0642555Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0642833Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/cpp",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0643195Z         "extractor_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0643544Z           "trap" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0643990Z             "title" : "TRAP options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0644346Z             "description" : "Options about how the extractor handles TRAP files",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0644712Z             "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0644934Z             "visibility" : 3,
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0645160Z             "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0645384Z               "cache" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0645615Z                 "title" : "TRAP cache options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0645997Z                 "description" : "Options about how the extractor handles its TRAP cache",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0646381Z                 "type" : "object",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0646619Z                 "properties" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0646848Z                   "dir" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0647092Z                     "title" : "TRAP cache directory",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0647445Z                     "description" : "The directory of the TRAP cache to use",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0647781Z                     "type" : "string"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0648018Z                   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0648216Z                   "bound" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0648460Z                     "title" : "TRAP cache bound",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0648826Z                     "description" : "A soft limit (in MB) on the size of the TRAP cache",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0649193Z                     "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0649445Z                     "pattern" : "[0-9]+"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0649723Z                   },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0649917Z                   "write" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0650300Z                     "title" : "TRAP cache writeable",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0650700Z                     "description" : "Whether to write to the TRAP cache as well as reading it",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0651090Z                     "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0651357Z                     "pattern" : "(true|TRUE|false|FALSE)"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0651627Z                   }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0651817Z                 }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0661928Z               }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0662156Z             }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0662348Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0662549Z           "scale_timeouts" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0662899Z             "title" : "Value to scale compiler introspection timeouts with",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0664842Z             "description" : "The extractor attempts to determine what compiler the source code being extracted is compiled with. To this end the extractor makes additional calls to the compiler, some of which are expected to return within a certain fixed time (either 10s or 15s). On some systems that are under high load this time might be too short, and can be scaled up using this option.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0666225Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0666468Z             "pattern" : "[0-9]+"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0666694Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0666889Z           "log_verbosity" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0667190Z             "title" : "Verbosity of the extractor logging",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0667807Z             "description" : "Set the verbosity of the extractor logging to 'quiet' (0), 'normal' (1), 'chatty' (2), or 'noisy' (3). The default is 'normal'.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0668382Z             "type" : "string",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0668610Z             "pattern" : "[0-3]"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0668834Z           },
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0669030Z           "frontend_options" : {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0669304Z             "title" : "C/C++ extractor frontend options",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0669798Z             "description" : "Set additional options that should be passed to the C/C++ extractor frontend.\n",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0670268Z             "type" : "array",
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0670498Z             "visibility" : 3
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0670715Z           }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0670893Z         }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0671065Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0671243Z     ],
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0671416Z     "xml" : [
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0671874Z       {
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0672174Z         "extractor_root" : "/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/xml"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0672527Z       }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0672691Z     ]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0672897Z   }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0673066Z }
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0679348Z Found 1 languages that support TRAP caching
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.0743023Z Looking in Actions cache for TRAP cache with key codeql-trap-1-2.27.3-actions-799502ce9275edc80d9fbc1953ff8892fe0eca19
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.2350154Z No TRAP cache found in Actions cache for actions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.2351467Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.2363522Z While resolving threads, found a cgroup CPUs file with 4 CPUs in /sys/fs/cgroup/cpuset.cpus.effective.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.2375944Z Writing augmented user configuration file to /home/runner/work/_temp/user-config.yaml
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.2377406Z ##[group]Augmented user configuration file contents
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.2398770Z queries:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.2399336Z   - uses: security-extended
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.2399990Z   - uses: security-and-quality
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.2400410Z 
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.2400906Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:32.2406195Z [command]/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/codeql database init --force-overwrite --db-cluster /home/runner/work/_temp/codeql_databases --source-root=/home/runner/work/Data.Doublets/Data.Doublets --no-calculate-baseline --extractor-include-aliases --language=actions --codescanning-config=/home/runner/work/_temp/user-config.yaml --build-mode=none
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:33.6555270Z Package install location: /home/runner/.codeql/packages
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:33.6556910Z Nothing downloaded.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:34.4158946Z Resolving extractor actions.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:34.4206594Z Successfully loaded extractor GitHub Actions (actions) from /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/actions.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:34.4555776Z Created skeleton CodeQL database at /home/runner/work/_temp/codeql_databases/actions. This in-progress database is ready to be populated by an extractor.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0552955Z ##[group]Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0553392Z with:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0553600Z   category: /language:actions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0554208Z   output: codeql-results
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0554440Z   upload: always
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0554649Z   skip-queries: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0554950Z   checkout_path: /home/runner/work/Data.Doublets/Data.Doublets
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0555299Z   upload-database: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0555532Z   wait-for-processing: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0557854Z   token: ***
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0558144Z   matrix: {
+security / codeql (actions)	UNKNOWN STEP	  "language": "actions",
+security / codeql (actions)	UNKNOWN STEP	  "build-mode": "none"
+security / codeql (actions)	UNKNOWN STEP	}
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0558469Z   expect-error: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0558683Z env:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0558893Z   CODEQL_ACTION_DIFF_INFORMED_QUERIES: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0559185Z   CODEQL_ACTION_OVERLAY_ANALYSIS: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0559534Z   CODEQL_ACTION_JOB_RUN_UUID: fcbce055-bda3-4209-94c3-eccdde3d69d0
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0559936Z   CODEQL_ACTION_FEATURE_MULTI_LANGUAGE: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0560231Z   CODEQL_ACTION_FEATURE_SANDWICH: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0560511Z   CODEQL_ACTION_FEATURE_SARIF_COMBINE: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0560800Z   CODEQL_ACTION_FEATURE_WILL_UPLOAD: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0561083Z   CODEQL_ACTION_VERSION: 4.39.1
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0561333Z   CODEQL_ACTION_INIT_HAS_RUN: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0561655Z   CODEQL_ACTION_ANALYSIS_KEY: .github/workflows/ci.yml:codeql
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0562020Z   CODEQL_WORKFLOW_STARTED_AT: 2026-10-29T08:32:26.837Z
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0562337Z   CODEQL_ACTION_HAS_SET_UP_CODEQL: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0562592Z   CODEQL_RAM: 14570
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0562798Z   CODEQL_THREADS: 4
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.0563003Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.3651442Z Existing job run UUID is fcbce055-bda3-4209-94c3-eccdde3d69d0.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.9349248Z While resolving threads, found a cgroup CPUs file with 4 CPUs in /sys/fs/cgroup/cpuset.cpus.effective.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.9504994Z ##[group]Generating diff range extension pack
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.9506771Z No precomputed diff ranges found; skipping diff-informed analysis stage.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.9507878Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.9619626Z ##[group]Extracting actions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:35.9624873Z [command]/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/codeql database trace-command --use-build-mode --working-dir /home/runner/work/Data.Doublets/Data.Doublets /home/runner/work/_temp/codeql_databases/actions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:36.8677248Z Running command in /home/runner/work/Data.Doublets/Data.Doublets: [/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/actions/tools/autobuild.sh]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:36.8841905Z [2026-10-29 08:32:36] [build-stdout] LGTM_INDEX_FILTERS not set. Using the default filters, and passing through to the JavaScript extractor.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:37.8865761Z [2026-10-29 08:32:37] [build-stdout] Found JavaScript extractor at '/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/javascript'.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:37.8867557Z [2026-10-29 08:32:37] [build-stdout] Running JavaScript autobuilder at '/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/javascript/tools/autobuild.sh'.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:38.1392075Z [2026-10-29 08:32:38] [build-stdout] Parallel extraction with 4 threads.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:38.2755201Z [2026-10-29 08:32:38] [build-stdout] Extracting /home/runner/work/Data.Doublets/Data.Doublets/.github/workflows/AutoMerge.yml
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:38.2757299Z [2026-10-29 08:32:38] [build-stdout] Extracting /home/runner/work/Data.Doublets/Data.Doublets/.github/workflows/ci.yml
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:38.2766144Z [2026-10-29 08:32:38] [build-stdout] Extracting /home/runner/work/Data.Doublets/Data.Doublets/.github/workflows/links.yml
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:38.2768201Z [2026-10-29 08:32:38] [build-stdout] Extracting /home/runner/work/Data.Doublets/Data.Doublets/.github/workflows/security.yml
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:38.3716603Z [2026-10-29 08:32:38] [build-stdout] Done extracting /home/runner/work/Data.Doublets/Data.Doublets/.github/workflows/links.yml (89 ms)
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:38.3785120Z [2026-10-29 08:32:38] [build-stdout] Done extracting /home/runner/work/Data.Doublets/Data.Doublets/.github/workflows/AutoMerge.yml (93 ms)
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:38.3854963Z [2026-10-29 08:32:38] [build-stdout] Done extracting /home/runner/work/Data.Doublets/Data.Doublets/.github/workflows/security.yml (108 ms)
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:38.4205393Z [2026-10-29 08:32:38] [build-stdout] Done extracting /home/runner/work/Data.Doublets/Data.Doublets/.github/workflows/ci.yml (142 ms)
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:38.4504811Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:38.4512015Z ##[group]Finalizing actions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:38.4514307Z [command]/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/codeql database finalize --finalize-dataset --threads=4 --ram=14570 /home/runner/work/_temp/codeql_databases/actions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:39.3176415Z Running TRAP import for CodeQL database at /home/runner/work/_temp/codeql_databases/actions...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:40.2190167Z Importing TRAP files
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:40.5777668Z Merging relations
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:40.7361682Z Finished writing database (relations: 17.60 KiB; string pool: 2.05 MiB).
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:40.7657391Z TRAP import complete (1.4s).
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:40.9682756Z Finished zipping source archive (7.01 KiB).
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:40.9815820Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:40.9821519Z ##[group]Running queries for actions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:40.9823593Z [command]/opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/codeql database run-queries --ram=14570 --threads=4 --expect-discarded-cache /home/runner/work/_temp/codeql_databases/actions --min-disk-free=1024 -v
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:41.7883977Z Writing logs to /home/runner/work/_temp/codeql_databases/actions/log/database-run-queries-20261029.083241.785.log.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:42.4548259Z Writing logs to /home/runner/work/_temp/codeql_databases/actions/log/execute-queries-20261029.083242.451.log.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:42.8171815Z Recording pack reference codeql/actions-queries at /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:43.0236521Z Resolving data extensions.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:44.1246385Z Finished resolving data extensions.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:44.2099150Z Merging data extensions.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:44.2246435Z Finished merging data extensions.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:44.7802921Z [1/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-1395/UseOfKnownVulnerableAction.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.2458367Z [2/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-367/UntrustedCheckoutTOCTOUHigh.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.2725593Z [3/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-367/UntrustedCheckoutTOCTOUCritical.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.2815220Z [4/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-829/ArtifactPoisoningCritical.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.3285417Z [5/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-829/UntrustedCheckoutHigh.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.3360892Z [6/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-275/MissingActionsPermissions.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.5510092Z [7/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-829/UntrustedCheckoutCritical.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.5988070Z [8/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-312/SecretsInArtifacts.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.6046257Z [9/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-285/ImproperAccessControl.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.6277877Z [10/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-312/ExcessiveSecretsExposure.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.6347404Z [11/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-312/UnmaskedSecretExposure.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.6770802Z [12/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-077/EnvPathInjectionCritical.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.7245646Z [13/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-077/EnvVarInjectionCritical.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.7768097Z [14/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-349/CachePoisoningViaCodeInjection.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.8048020Z [15/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-349/CachePoisoningViaPoisonableStep.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.8085076Z [16/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-829/UnpinnedActionsTag.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.8647958Z [17/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-094/CodeInjectionCritical.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:45.9261054Z [18/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-349/CachePoisoningViaDirectCache.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.0285575Z [19/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-829/ArtifactPoisoningMedium.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.0505299Z [20/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-829/UntrustedCheckoutMedium.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.0586754Z [21/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Diagnostics/SuccessfullyExtractedFiles.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.0975646Z [22/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Violations Of Best Practice/CodeQL/UnnecessaryUseOfAdvancedConfig.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.1545475Z [23/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-571/ExpressionIsAlwaysTrueHigh.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.1795428Z [24/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-077/EnvPathInjectionMedium.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.1855068Z [25/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-094/CodeInjectionMedium.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.1955668Z [26/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Debug/SyntaxError.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.2081743Z [27/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-571/ExpressionIsAlwaysTrueCritical.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.2487733Z [28/28] Loaded /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-077/EnvVarInjectionMedium.qlx.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.5499173Z Starting evaluation of codeql/actions-queries/Debug/SyntaxError.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.5502497Z Starting evaluation of codeql/actions-queries/Diagnostics/SuccessfullyExtractedFiles.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.5551967Z Starting evaluation of codeql/actions-queries/Security/CWE-077/EnvPathInjectionCritical.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.5604908Z Starting evaluation of codeql/actions-queries/Security/CWE-077/EnvPathInjectionMedium.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.5660716Z Starting evaluation of codeql/actions-queries/Security/CWE-077/EnvVarInjectionCritical.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.6921275Z Starting evaluation of codeql/actions-queries/Security/CWE-077/EnvVarInjectionMedium.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.7015058Z [1/28 eval 144ms] Evaluation done; writing results to codeql/actions-queries/Debug/SyntaxError.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.7185709Z Starting evaluation of codeql/actions-queries/Security/CWE-094/CodeInjectionCritical.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8038329Z Starting evaluation of codeql/actions-queries/Security/CWE-094/CodeInjectionMedium.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8072607Z [2/28 eval 254ms] Evaluation done; writing results to codeql/actions-queries/Diagnostics/SuccessfullyExtractedFiles.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8434883Z Starting evaluation of codeql/actions-queries/Security/CWE-1395/UseOfKnownVulnerableAction.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8657814Z Starting evaluation of codeql/actions-queries/Security/CWE-275/MissingActionsPermissions.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8694895Z Starting evaluation of codeql/actions-queries/Security/CWE-285/ImproperAccessControl.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8747515Z Starting evaluation of codeql/actions-queries/Security/CWE-312/ExcessiveSecretsExposure.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8757725Z Starting evaluation of codeql/actions-queries/Security/CWE-312/SecretsInArtifacts.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8759154Z Starting evaluation of codeql/actions-queries/Security/CWE-312/UnmaskedSecretExposure.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8760600Z Starting evaluation of codeql/actions-queries/Security/CWE-349/CachePoisoningViaCodeInjection.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8762125Z Starting evaluation of codeql/actions-queries/Security/CWE-349/CachePoisoningViaDirectCache.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8763601Z Starting evaluation of codeql/actions-queries/Security/CWE-349/CachePoisoningViaPoisonableStep.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8824744Z Starting evaluation of codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUCritical.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8826729Z Starting evaluation of codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUHigh.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8828675Z Starting evaluation of codeql/actions-queries/Security/CWE-571/ExpressionIsAlwaysTrueCritical.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8830328Z Starting evaluation of codeql/actions-queries/Security/CWE-571/ExpressionIsAlwaysTrueHigh.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8831886Z Starting evaluation of codeql/actions-queries/Security/CWE-829/ArtifactPoisoningCritical.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.8965332Z Starting evaluation of codeql/actions-queries/Security/CWE-829/ArtifactPoisoningMedium.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:46.9247801Z Starting evaluation of codeql/actions-queries/Security/CWE-829/UnpinnedActionsTag.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:47.9699746Z [3/28 eval 1.1s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-312/UnmaskedSecretExposure.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:47.9741242Z [4/28 eval 1.1s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-312/ExcessiveSecretsExposure.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.3657159Z [5/28 eval 1.5s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-349/CachePoisoningViaDirectCache.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.4525367Z [6/28 eval 1.6s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-1395/UseOfKnownVulnerableAction.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.5226118Z [7/28 eval 1.7s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-312/SecretsInArtifacts.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.7635453Z [8/28 eval 1.8s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-829/UnpinnedActionsTag.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.7665084Z Starting evaluation of codeql/actions-queries/Security/CWE-829/UntrustedCheckoutCritical.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.7770524Z [9/28 eval 1.9s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-571/ExpressionIsAlwaysTrueCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.7825045Z [10/28 eval 1.9s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-571/ExpressionIsAlwaysTrueHigh.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.7854599Z Starting evaluation of codeql/actions-queries/Security/CWE-829/UntrustedCheckoutHigh.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.7862083Z Starting evaluation of codeql/actions-queries/Security/CWE-829/UntrustedCheckoutMedium.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.7895074Z Starting evaluation of codeql/actions-queries/Violations Of Best Practice/CodeQL/UnnecessaryUseOfAdvancedConfig.ql.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.8637044Z [11/28 eval 78ms] Evaluation done; writing results to codeql/actions-queries/Security/CWE-829/UntrustedCheckoutMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.8725519Z [12/28 eval 91ms] Evaluation done; writing results to codeql/actions-queries/Security/CWE-829/UntrustedCheckoutHigh.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.8894715Z [13/28 eval 2s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-285/ImproperAccessControl.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:48.8955074Z [14/28 eval 2s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUHigh.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.1355398Z [15/28 eval 370ms] Evaluation done; writing results to codeql/actions-queries/Security/CWE-829/UntrustedCheckoutCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.1445401Z [16/28 eval 2.6s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-077/EnvPathInjectionCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.1943158Z [17/28 eval 2.6s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-077/EnvVarInjectionCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.2040550Z [18/28 eval 2.7s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-077/EnvPathInjectionMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.2310490Z [19/28 eval 2.4s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-094/CodeInjectionMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.2385398Z [20/28 eval 2.5s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-094/CodeInjectionCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.2415200Z [21/28 eval 2.4s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-349/CachePoisoningViaCodeInjection.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.2577407Z [22/28 eval 2.4s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.2606909Z [23/28 eval 2.6s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-077/EnvVarInjectionMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.2885351Z [24/28 eval 2.4s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-275/MissingActionsPermissions.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.2915778Z [25/28 eval 2.4s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-349/CachePoisoningViaPoisonableStep.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.3008245Z [26/28 eval 512ms] Evaluation done; writing results to codeql/actions-queries/Violations Of Best Practice/CodeQL/UnnecessaryUseOfAdvancedConfig.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.3128253Z [27/28 eval 2.4s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-829/ArtifactPoisoningMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.3305432Z [28/28 eval 2.4s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-829/ArtifactPoisoningCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.3307143Z Shutting down query evaluator.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:49.4332655Z Interpreting code scanning results for actions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:50.2285367Z Writing logs to /home/runner/work/_temp/codeql_databases/actions/log/database-interpret-results-20261029.083250.224.log.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:50.3868163Z Recording pack reference codeql/actions-queries at /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:50.4147226Z Resolving extensions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.3345650Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-1395/UseOfKnownVulnerableAction.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.3694981Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-1395/UseOfKnownVulnerableAction.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.3873048Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-367/UntrustedCheckoutTOCTOUHigh.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4028726Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUHigh.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4031180Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-367/UntrustedCheckoutTOCTOUCritical.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4165520Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4214992Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-829/ArtifactPoisoningCritical.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4287657Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/ArtifactPoisoningCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4305158Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-829/UntrustedCheckoutHigh.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4410489Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/UntrustedCheckoutHigh.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4445150Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-829/UntrustedCheckoutCritical.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4530400Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/UntrustedCheckoutCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4534439Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-275/MissingActionsPermissions.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4640409Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-275/MissingActionsPermissions.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4646910Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-077/EnvPathInjectionCritical.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4765309Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-077/EnvPathInjectionCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4784306Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-077/EnvVarInjectionCritical.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4852933Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-077/EnvVarInjectionCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4875266Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-285/ImproperAccessControl.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4975284Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-285/ImproperAccessControl.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.4977507Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-312/SecretsInArtifacts.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5048787Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-312/SecretsInArtifacts.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5085045Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-312/UnmaskedSecretExposure.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5149722Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-312/UnmaskedSecretExposure.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5151635Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-312/ExcessiveSecretsExposure.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5245391Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-312/ExcessiveSecretsExposure.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5251156Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-349/CachePoisoningViaPoisonableStep.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5350469Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-349/CachePoisoningViaPoisonableStep.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5359006Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-349/CachePoisoningViaCodeInjection.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5435360Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-349/CachePoisoningViaCodeInjection.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5438361Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-349/CachePoisoningViaDirectCache.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5521034Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-349/CachePoisoningViaDirectCache.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5535188Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-094/CodeInjectionCritical.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5619854Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-094/CodeInjectionCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5675219Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-829/UnpinnedActionsTag.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5715076Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/UnpinnedActionsTag.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5730355Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-829/UntrustedCheckoutMedium.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5805186Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/UntrustedCheckoutMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5817046Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-829/ArtifactPoisoningMedium.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5866709Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/ArtifactPoisoningMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5875544Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-077/EnvPathInjectionMedium.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5944745Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-077/EnvPathInjectionMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.5951754Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-077/EnvVarInjectionMedium.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.6025127Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-077/EnvVarInjectionMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.6065430Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-094/CodeInjectionMedium.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.6093191Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-094/CodeInjectionMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.6105461Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Diagnostics/SuccessfullyExtractedFiles.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.6166839Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Diagnostics/SuccessfullyExtractedFiles.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.6194706Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Violations Of Best Practice/CodeQL/UnnecessaryUseOfAdvancedConfig.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.6291704Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Violations Of Best Practice/CodeQL/UnnecessaryUseOfAdvancedConfig.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.6316338Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-571/ExpressionIsAlwaysTrueHigh.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.6371817Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-571/ExpressionIsAlwaysTrueHigh.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.6385196Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Security/CWE-571/ExpressionIsAlwaysTrueCritical.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.6435393Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-571/ExpressionIsAlwaysTrueCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.6436630Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.3/x64/codeql/qlpacks/codeql/actions-queries/0.6.38/Debug/SyntaxError.ql...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.6485109Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Debug/SyntaxError.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7555870Z Interpreted problem query "Use of a known vulnerable action" (actions/vulnerable-action) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-1395/UseOfKnownVulnerableAction.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7561945Z Interpreted problem query "Untrusted Checkout TOCTOU" (actions/untrusted-checkout-toctou/high) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUHigh.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7586035Z Interpreted pathproblem query "Untrusted Checkout TOCTOU" (actions/untrusted-checkout-toctou/critical) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7589319Z Interpreted pathproblem query "Artifact poisoning" (actions/artifact-poisoning/critical) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/ArtifactPoisoningCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7592562Z Interpreted problem query "Checkout of untrusted code in a privileged context" (actions/untrusted-checkout/high) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/UntrustedCheckoutHigh.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7596143Z Interpreted pathproblem query "Checkout of untrusted code in a privileged context" (actions/untrusted-checkout/critical) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/UntrustedCheckoutCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7599432Z Interpreted problem query "Workflow does not contain permissions" (actions/missing-workflow-permissions) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-275/MissingActionsPermissions.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7603394Z Interpreted pathproblem query "PATH environment variable built from user-controlled sources" (actions/envpath-injection/critical) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-077/EnvPathInjectionCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7609847Z Interpreted pathproblem query "Environment variable built from user-controlled sources" (actions/envvar-injection/critical) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-077/EnvVarInjectionCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7614358Z Interpreted problem query "Improper Access Control" (actions/improper-access-control) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-285/ImproperAccessControl.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7619026Z Interpreted problem query "Storage of sensitive information in GitHub Actions artifact" (actions/secrets-in-artifacts) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-312/SecretsInArtifacts.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7634290Z Interpreted problem query "Unmasked Secret Exposure" (actions/unmasked-secret-exposure) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-312/UnmaskedSecretExposure.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7637975Z Interpreted problem query "Excessive Secrets Exposure" (actions/excessive-secrets-exposure) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-312/ExcessiveSecretsExposure.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7641670Z Interpreted pathproblem query "Cache Poisoning via execution of untrusted code" (actions/cache-poisoning/poisonable-step) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-349/CachePoisoningViaPoisonableStep.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7649045Z Interpreted pathproblem query "Cache Poisoning via code injection" (actions/cache-poisoning/code-injection) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-349/CachePoisoningViaCodeInjection.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7656355Z Interpreted pathproblem query "Cache Poisoning via caching of untrusted files" (actions/cache-poisoning/direct-cache) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-349/CachePoisoningViaDirectCache.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7661516Z Interpreted pathproblem query "Code injection" (actions/code-injection/critical) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-094/CodeInjectionCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7666014Z Interpreted problem query "Unpinned tag for a non-immutable Action or reusable workflow" (actions/unpinned-tag) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/UnpinnedActionsTag.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7670647Z Interpreted problem query "Checkout of untrusted code in a non-privileged context" (actions/untrusted-checkout/medium) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/UntrustedCheckoutMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7675152Z Interpreted pathproblem query "Artifact poisoning" (actions/artifact-poisoning/medium) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/ArtifactPoisoningMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7679892Z Interpreted pathproblem query "PATH environment variable built from user-controlled sources" (actions/envpath-injection/medium) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-077/EnvPathInjectionMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7685202Z Interpreted pathproblem query "Environment variable built from user-controlled sources" (actions/envvar-injection/medium) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-077/EnvVarInjectionMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7689187Z Interpreted pathproblem query "Code injection" (actions/code-injection/medium) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-094/CodeInjectionMedium.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7707111Z Interpreted diagnostic query "Extracted files" (actions/diagnostics/successfully-extracted-files) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Diagnostics/SuccessfullyExtractedFiles.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7711462Z Interpreted problem query "Workflow Should Use Default Setup" (actions/unnecessary-use-of-advanced-config) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Violations Of Best Practice/CodeQL/UnnecessaryUseOfAdvancedConfig.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7716877Z Interpreted problem query "If expression always true" (actions/if-expression-always-true/high) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-571/ExpressionIsAlwaysTrueHigh.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7724622Z Interpreted problem query "If expression always true" (actions/if-expression-always-true/critical) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-571/ExpressionIsAlwaysTrueCritical.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7727692Z Interpreted problem query "Syntax error" (actions/syntax-error) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Debug/SyntaxError.bqrs.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.7729449Z Reading source archive /home/runner/work/_temp/codeql_databases/actions/src.zip
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.8390297Z Interpreting diagnostic messages...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.8636416Z Found 1 raw diagnostic messages.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.8729329Z Processed diagnostic messages (removed 0 due to limits, created 0 summary diagnostics for status page).
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:51.8750770Z Interpreted diagnostic messages (33ms).
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:52.0316209Z Exporting results to SARIF...
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:52.1686766Z Exported results to SARIF (136ms).
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:52.1989145Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:52.1989843Z To speed up pull request analysis, file coverage information is only enabled when analyzing the default branch and protected branches.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:52.2001489Z Post-processing sarif files: ["/home/runner/work/Data.Doublets/Data.Doublets/codeql-results/actions.sarif"]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:52.2021739Z Adding fingerprints to SARIF file. See https://docs.github.com/en/code-security/reference/code-scanning/sarif-support-for-code-scanning#data-for-preventing-duplicated-alerts for more information.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:52.2024956Z ##[group]Uploading code scanning results
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:52.2271135Z Uploading results
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:53.2203451Z Successfully uploaded results
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:53.2204275Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:53.2326819Z ##[group]Waiting for processing to finish
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.5110862Z Analysis upload status is complete.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.5111829Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9947658Z ##[group]Run python3 scripts/check_sarif.py codeql-results
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9948174Z ^[[36;1mpython3 scripts/check_sarif.py codeql-results^[[0m
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9971767Z shell: /usr/bin/bash -e {0}
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9972018Z env:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9972243Z   CODEQL_ACTION_DIFF_INFORMED_QUERIES: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9972559Z   CODEQL_ACTION_OVERLAY_ANALYSIS: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9972927Z   CODEQL_ACTION_JOB_RUN_UUID: fcbce055-bda3-4209-94c3-eccdde3d69d0
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9973315Z   CODEQL_ACTION_FEATURE_MULTI_LANGUAGE: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9973622Z   CODEQL_ACTION_FEATURE_SANDWICH: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9974239Z   CODEQL_ACTION_FEATURE_SARIF_COMBINE: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9974542Z   CODEQL_ACTION_FEATURE_WILL_UPLOAD: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9974828Z   CODEQL_ACTION_VERSION: 4.39.1
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9975081Z   CODEQL_ACTION_INIT_HAS_RUN: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9975406Z   CODEQL_ACTION_ANALYSIS_KEY: .github/workflows/ci.yml:codeql
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9975831Z   CODEQL_WORKFLOW_STARTED_AT: 2026-10-29T08:32:26.837Z
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9976154Z   CODEQL_ACTION_HAS_SET_UP_CODEQL: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9976423Z   CODEQL_RAM: 14570
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9976624Z   CODEQL_THREADS: 4
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9976886Z   CODEQL_ACTION_SARIF_RESULTS_OUTPUT_DIR: codeql-results
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9977387Z   CODEQL_UPLOAD_SARIF__LANGUAGE_ACTIONS__CODEQL: CODEQL_UPLOAD_SARIF__LANGUAGE_ACTIONS__CODEQL
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9977904Z   CODEQL_ACTION_ANALYZE_DID_COMPLETE_SUCCESSFULLY: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:58.9978221Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0296178Z CodeQL: 1 complete report(s), no findings
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0397839Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0398266Z with:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0398473Z   name: codeql-actions
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0398709Z   path: codeql-results
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0398938Z   if-no-files-found: error
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0399363Z   retention-days: 14
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0399582Z   compression-level: 6
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0399800Z   overwrite: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0400019Z   include-hidden-files: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0400259Z   archive: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0400450Z env:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0400661Z   CODEQL_ACTION_DIFF_INFORMED_QUERIES: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0400960Z   CODEQL_ACTION_OVERLAY_ANALYSIS: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0401319Z   CODEQL_ACTION_JOB_RUN_UUID: fcbce055-bda3-4209-94c3-eccdde3d69d0
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0401696Z   CODEQL_ACTION_FEATURE_MULTI_LANGUAGE: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0401989Z   CODEQL_ACTION_FEATURE_SANDWICH: false
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0402305Z   CODEQL_ACTION_FEATURE_SARIF_COMBINE: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0402599Z   CODEQL_ACTION_FEATURE_WILL_UPLOAD: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0402874Z   CODEQL_ACTION_VERSION: 4.39.1
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0403127Z   CODEQL_ACTION_INIT_HAS_RUN: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0403447Z   CODEQL_ACTION_ANALYSIS_KEY: .github/workflows/ci.yml:codeql
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0404135Z   CODEQL_WORKFLOW_STARTED_AT: 2026-10-29T08:32:26.837Z
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0404446Z   CODEQL_ACTION_HAS_SET_UP_CODEQL: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0404704Z   CODEQL_RAM: 14570
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0404909Z   CODEQL_THREADS: 4
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0405179Z   CODEQL_ACTION_SARIF_RESULTS_OUTPUT_DIR: codeql-results
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0405657Z   CODEQL_UPLOAD_SARIF__LANGUAGE_ACTIONS__CODEQL: CODEQL_UPLOAD_SARIF__LANGUAGE_ACTIONS__CODEQL
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0406147Z   CODEQL_ACTION_ANALYZE_DID_COMPLETE_SUCCESSFULLY: true
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.0406452Z ##[endgroup]
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.2013807Z With the provided path, there will be 1 file uploaded
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.2022088Z Artifact name is valid!
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.2022890Z Root directory input is valid!
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.5172551Z Uploading artifact: codeql-actions.zip
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.5216721Z Beginning upload of artifact content to blob storage
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.7688482Z Uploaded bytes 20480
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.8203408Z Finished uploading artifact content to blob storage!
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.8205150Z SHA256 digest of uploaded artifact is c33eee6bf4027fc08116d11322104818ac28001611f5fc7e6cc755a840cd11c9
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:32:59.8206360Z Finalizing artifact upload
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:00.3800506Z Artifact codeql-actions successfully finalized. Artifact ID 12884155471
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:00.3801480Z Artifact codeql-actions has been successfully uploaded! Final size is 20480 bytes. Artifact ID is 12884155471
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:00.3805918Z Artifact download URL: https://github.com/linksplatform/Data.Doublets/actions/runs/40842727244/artifacts/12884155471
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:00.4004853Z Post job cleanup.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:00.7324738Z Post job cleanup.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.0451982Z Existing job run UUID is fcbce055-bda3-4209-94c3-eccdde3d69d0.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.0616350Z CodeQL job status was success.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.0693056Z Sending status report for init-post step.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.6053602Z Status report sent for init-post step.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.6586436Z Post job cleanup.
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.7500977Z [command]/usr/bin/git version
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.7551045Z git version 2.56.0
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.7593083Z Temporarily overriding HOME='/home/runner/work/_temp/5fe4bfd5-6e2f-4d9f-b9a5-3e2a03529e61' before making global git config changes
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.7595230Z Adding repository directory to the temporary git global config as a safe directory
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.7600264Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.7640708Z Removing SSH command configuration
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.7648443Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.7690730Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.7960796Z Removing HTTP extra header
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.7968822Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.8015803Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.8304958Z Removing includeIf entries pointing to credentials config files
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.8314532Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.8363411Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+security / codeql (actions)	UNKNOWN STEP	2026-10-29T08:33:01.8840626Z Cleaning up orphan processes

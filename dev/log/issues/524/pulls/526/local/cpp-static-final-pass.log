@@ -1,0 +1,35 @@
+[1/2] Processing file /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp.
+11 warnings generated.
+[2/2] Processing file /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp.
+438 warnings and 2 errors generated.
+Error while processing /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp.
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/LinksConstantsTests.cpp:6:24: error: constexpr variable 'value' must be initialized by a constant expression [clang-diagnostic-error]
+    6 |         constexpr auto value = Link<TLinkAddress>::Null;
+      |                        ^       ~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/LinksConstantsTests.cpp:6:32: note: read of non-constexpr variable 'Null' is not allowed in a constant expression
+    6 |         constexpr auto value = Link<TLinkAddress>::Null;
+      |                                ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/LinksConstantsTests.cpp:6:32: note: in call to 'Link(Null)'
+    6 |         constexpr auto value = Link<TLinkAddress>::Null;
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:9:27: note: declared here
+    9 |         static const Link Null;
+      |                           ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/LinksConstantsTests.cpp:7:23: error: static assertion expression is not an integral constant expression [clang-diagnostic-error]
+    7 |         static_assert(value.Index == 0 && value.Source == 0 && value.Target == 0);
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/LinksConstantsTests.cpp:7:23: note: initializer of 'value' is not a constant expression
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/LinksConstantsTests.cpp:6:24: note: declared here
+    6 |         constexpr auto value = Link<TLinkAddress>::Null;
+      |                        ^
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/scripts/check-cpp.py", line 29, in <module>
+    run('clang-tidy-18', '-p', str(args.build_dir.resolve()), '--quiet', *units)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gh-issue-solver-1793248170197/scripts/check-cpp.py", line 11, in run
+    subprocess.run(args, cwd=ROOT, check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.pyenv/versions/3.15.0/lib/python3.15/subprocess.py", line 692, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '('clang-tidy-18', '-p', '/tmp/issue-524-cpp-baseline', '--quiet', '/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp', '/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp')' returned non-zero exit status 1.

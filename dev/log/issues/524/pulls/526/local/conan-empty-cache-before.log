@@ -1,0 +1,20 @@
+F
+======================================================================
+FAIL: test_date_version_exports_strictly_from_an_empty_cache (experiments.test_conan_compatibility.CompatibilityTests.test_date_version_exports_strictly_from_an_empty_cache)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/experiments/test_conan_compatibility.py", line 32, in test_date_version_exports_strictly_from_an_empty_cache
+    self.assertEqual(after.returncode, 0, after.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : 
+======== Exporting recipe to the cache ========
+cpuinfo/cci.20220228 export
+ERROR: risk: Version 'cci.20220228' contains an alphanumeric major alongside a minor version, without correct 'package_id_xxx_mode' attributes.
+This is highly discouraged due to unexpected package ID calculation risks. Either a different version scheme should be used (e.g., semantic versioning), or the 'package_id_xxx_mode' attributes should be set (to something other than major, minor, patch or semver modes).
+Refer to the documentation for more details: https://docs.conan.io/2/knowledge/guidelines.html#guidelines-bad-alphanumeric-majors
+
+
+----------------------------------------------------------------------
+Ran 1 test in 1.671s
+
+FAILED (failures=1)

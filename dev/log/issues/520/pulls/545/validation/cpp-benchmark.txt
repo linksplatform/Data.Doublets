@@ -1,0 +1,15 @@
+2026-10-30T15:03:18+00:00
+Running ci-logs/benchmark-native
+Run on (6 X 2794.75 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x6)
+  L1 Instruction 64 KiB (x6)
+  L2 Unified 512 KiB (x6)
+  L3 Unified 8192 KiB (x1)
+Load Average: 5.95, 4.50, 3.78
+***WARNING*** Library was built as DEBUG. Timings may be affected.
+----------------------------------------------------------------------------------------
+Benchmark                                              Time             CPU   Iterations
+----------------------------------------------------------------------------------------
+BM_JustCallHandlerWithoutOptimization/1000000   11641246 ns     11636924 ns            1
+BM_JustCallHandler/1000000                      10568906 ns     10538965 ns            1

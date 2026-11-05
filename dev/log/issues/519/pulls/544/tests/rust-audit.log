@@ -1,0 +1,6 @@
+    Finished `dev` profile [unoptimized] target(s) in 0.11s
+     Running `experiments/issue-519/target/debug/issue-519-rust-audit`
+unit/raw: live addresses and Break propagation passed
+split/raw: live addresses and Break propagation passed
+unit/automatic: live addresses, merge, no-op and Break propagation passed
+split/automatic: live addresses, merge, no-op and Break propagation passed

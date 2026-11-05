@@ -24,7 +24,7 @@ public struct RawLinkIndexPart<TLinkAddress> : IEquatable<RawLinkIndexPart<TLink
     ///     <para></para>
     /// </summary>
     public static readonly long SizeInBytes = Structure<RawLinkIndexPart<TLinkAddress>>.Size;
-    
+
     /// <summary>
     ///     <para>
     ///         The root as source.
@@ -97,9 +97,9 @@ public struct RawLinkIndexPart<TLinkAddress> : IEquatable<RawLinkIndexPart<TLink
     ///     <para></para>
     /// </returns>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
-        return obj is RawLinkIndexPart<TLinkAddress> link ? Equals(other: link) : false;
+        return obj is RawLinkIndexPart<TLinkAddress> link && Equals(other: link);
     }
 
     /// <summary>
@@ -119,7 +119,7 @@ public struct RawLinkIndexPart<TLinkAddress> : IEquatable<RawLinkIndexPart<TLink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public bool Equals(RawLinkIndexPart<TLinkAddress> other)
     {
-        return RootAsSource ==  other.RootAsSource && LeftAsSource ==  other.LeftAsSource && RightAsSource ==  other.RightAsSource && SizeAsSource ==  other.SizeAsSource && RootAsTarget ==  other.RootAsTarget && LeftAsTarget ==  other.LeftAsTarget && RightAsTarget ==  other.RightAsTarget && SizeAsTarget ==  other.SizeAsTarget;
+        return RootAsSource == other.RootAsSource && LeftAsSource == other.LeftAsSource && RightAsSource == other.RightAsSource && SizeAsSource == other.SizeAsSource && RootAsTarget == other.RootAsTarget && LeftAsTarget == other.LeftAsTarget && RightAsTarget == other.RightAsTarget && SizeAsTarget == other.SizeAsTarget;
     }
 
     /// <summary>

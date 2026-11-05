@@ -1,0 +1,39 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [ "**/*.sln" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": ""
+        }
+      ],
+      "dest": "obj/api",
+      "filter": "filter.yml",
+      "properties": { "TargetFramework": "netstandard2.0" }
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [ "**/*.yml" ],
+        "src": "obj/api",
+        "dest": "api"
+      },
+      {
+        "files": [ "*.md", "toc.yml" ]
+      }
+    ],
+    "globalMetadata": {
+      "_appTitle": "LinksPlatform's Platform.$REPOSITORY_NAME Library",
+      "_enableSearch": true,
+      "_gitContribute": {
+        "branch": "master"
+      },
+      "_gitUrlPattern": "github"
+    },
+    "markdownEngineName": "markdig",
+    "dest": "_site",
+    "xrefService": [ "https://xref.docs.microsoft.com/query?uid={uid}" ]
+  }
+}

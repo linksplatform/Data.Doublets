@@ -1,0 +1,378 @@
+  Platform.Data.Doublets -> /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets/bin/Release/net8.0/Platform.Data.Doublets.dll
+  Platform.Data.Doublets.Tests -> /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll
+Test run for /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:01.26]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: Default, linkedList: False, decorated: True) [FAIL]
+[xUnit.net 00:00:01.33]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: Default, linkedList: True, decorated: True) [FAIL]
+[xUnit.net 00:00:01.34]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: False, tree: SizedAndThreadedAVLBalancedTree, linkedList: True, decorated: False) [FAIL]
+[xUnit.net 00:00:01.35]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: False, tree: Default, linkedList: True, decorated: False) [FAIL]
+[xUnit.net 00:00:01.35]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: False, decorated: True) [FAIL]
+[xUnit.net 00:00:01.36]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: False, tree: SizedAndThreadedAVLBalancedTree, linkedList: True, decorated: True) [FAIL]
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: Default, linkedList: False, decorated: True) [214 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: Default, linkedList: True, decorated: True) [6 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: False, tree: SizedAndThreadedAVLBalancedTree, linkedList: True, decorated: False) [50 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: False, tree: Default, linkedList: True, decorated: False) [9 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: False, decorated: True) [9 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.44]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: Default, linkedList: False, decorated: False) [FAIL]
+[xUnit.net 00:00:01.45]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: True, decorated: True) [FAIL]
+[xUnit.net 00:00:01.46]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: True, decorated: False) [FAIL]
+[xUnit.net 00:00:01.50]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: True, decorated: True) [FAIL]
+[xUnit.net 00:00:01.50]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: False, decorated: False) [FAIL]
+[xUnit.net 00:00:01.51]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: Default, linkedList: True, decorated: False) [FAIL]
+[xUnit.net 00:00:01.52]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: False, decorated: True) [FAIL]
+[xUnit.net 00:00:01.52]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: False, decorated: False) [FAIL]
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: False, tree: SizedAndThreadedAVLBalancedTree, linkedList: True, decorated: True) [2 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: Default, linkedList: False, decorated: False) [< 1 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: True, decorated: True) [< 1 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: True, decorated: False) [< 1 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: True, decorated: True) [< 1 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: False, decorated: False) [< 1 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: Default, linkedList: True, decorated: False) [< 1 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: False, decorated: True) [< 1 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: False, decorated: False) [< 1 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.55]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: True, decorated: False) [FAIL]
+[xUnit.net 00:00:01.56]     Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: False, tree: Default, linkedList: True, decorated: True) [FAIL]
+[xUnit.net 00:00:01.57]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: True, decorated: True) [FAIL]
+[xUnit.net 00:00:01.58]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: Default, linkedList: True, decorated: False) [FAIL]
+[xUnit.net 00:00:01.59]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: False, tree: Default, linkedList: True, decorated: False) [FAIL]
+[xUnit.net 00:00:01.61]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: True, decorated: True) [FAIL]
+[xUnit.net 00:00:01.61]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: False, decorated: True) [FAIL]
+[xUnit.net 00:00:01.62]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: Default, linkedList: False, decorated: False) [FAIL]
+[xUnit.net 00:00:01.63]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: False, decorated: False) [FAIL]
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: True, decorated: False) [< 1 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(split: False, tree: Default, linkedList: True, decorated: True) [2 ms]
+  Error Message:
+   Count [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 88
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CountMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 18
+   at InvokeStub_PositionalQueryTests.CountMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: True, decorated: True) [24 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: Default, linkedList: True, decorated: False) [1 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: False, tree: Default, linkedList: True, decorated: False) [7 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: True, decorated: True) [7 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: False, decorated: True) [1 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: Default, linkedList: False, decorated: False) [1 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: False, decorated: False) [1 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.64]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: False, decorated: False) [FAIL]
+[xUnit.net 00:00:01.65]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: False, tree: SizedAndThreadedAVLBalancedTree, linkedList: True, decorated: False) [FAIL]
+[xUnit.net 00:00:01.66]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: True, decorated: False) [FAIL]
+[xUnit.net 00:00:01.66]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: True, decorated: False) [FAIL]
+[xUnit.net 00:00:01.68]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: False, tree: Default, linkedList: True, decorated: True) [FAIL]
+[xUnit.net 00:00:01.71]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: Default, linkedList: True, decorated: True) [FAIL]
+[xUnit.net 00:00:01.73]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: False, tree: SizedAndThreadedAVLBalancedTree, linkedList: True, decorated: True) [FAIL]
+[xUnit.net 00:00:01.74]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: Default, linkedList: False, decorated: True) [FAIL]
+[xUnit.net 00:00:01.76]     Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: False, decorated: True) [FAIL]
+Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: False, decorated: False) [4 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: False, tree: SizedAndThreadedAVLBalancedTree, linkedList: True, decorated: False) [3 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: True, decorated: False) [1 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: RecursionlessSizeBalancedTree, linkedList: True, decorated: False) [1 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: False, tree: Default, linkedList: True, decorated: True) [1 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: Default, linkedList: True, decorated: True) [< 1 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: False, tree: SizedAndThreadedAVLBalancedTree, linkedList: True, decorated: True) [1 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: Default, linkedList: False, decorated: True) [1 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(split: True, tree: SizeBalancedTree, linkedList: False, decorated: True) [1 ms]
+  Error Message:
+   Each [3, 124, 1] should match False
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertEach[T](ILinks`1 links, T[] query, T[] expected, Boolean matches) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 123
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.AssertQueries[T](ILinks`1 links, T[] values, T deleted, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 93
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.Check[T](Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 59
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.CheckAllWidths(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated, Boolean count) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 27
+   at Platform.Data.Doublets.Tests.PositionalQueryTests.EachMatchesEndpointPositions(Boolean split, IndexTreeType tree, Boolean linkedList, Boolean decorated) in /tmp/gh-issue-solver-1793908007442/csharp/Platform.Data.Doublets.Tests/PositionalQueryTests.cs:line 23
+   at InvokeStub_PositionalQueryTests.EachMatchesEndpointPositions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+
+Failed!  - Failed:    32, Passed:     0, Skipped:     0, Total:    32, Duration: 663 ms - Platform.Data.Doublets.Tests.dll (net8.0)

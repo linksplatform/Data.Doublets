@@ -1,0 +1,7 @@
+[ 25%] Building CXX object CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o
+[ 50%] Linking CXX executable bin/Platform.Data.Doublets.Tests
+[ 50%] Built target Platform.Data.Doublets.Tests
+[ 75%] Building CXX object CMakeFiles/Platform.Data.Doublets.Benchmarks.dir/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp.o
+[100%] Linking CXX executable bin/Platform.Data.Doublets.Benchmarks
+[100%] Built target Platform.Data.Doublets.Benchmarks
+Child peak RSS: 955860 KiB

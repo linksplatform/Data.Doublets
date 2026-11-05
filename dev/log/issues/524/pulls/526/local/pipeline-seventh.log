@@ -1,0 +1,71 @@
+test_failed_build_cannot_be_hidden_by_stale_passing_binary (test_ci_regressions.CppRunnerTests.test_failed_build_cannot_be_hidden_by_stale_passing_binary) ... ok
+test_missing_release_credentials_fail_with_actionable_message (test_ci_regressions.PipelineHelpersTests.test_missing_release_credentials_fail_with_actionable_message) ... ok
+test_release_credentials_are_not_required_on_pull_requests (test_ci_regressions.PipelineHelpersTests.test_release_credentials_are_not_required_on_pull_requests) ... ok
+test_clog_short_writes_and_interruption_preserve_the_whole_message (test_conan_compatibility.CompatibilityTests.test_clog_short_writes_and_interruption_preserve_the_whole_message) ... ok
+test_cmake_minimum_repair_preserves_newer_requirements (test_conan_compatibility.CompatibilityTests.test_cmake_minimum_repair_preserves_newer_requirements) ... ok
+test_cmake_version_range_preserves_its_upper_policy_version (test_conan_compatibility.CompatibilityTests.test_cmake_version_range_preserves_its_upper_policy_version) ... ok
+test_date_version_exports_strictly_from_an_empty_cache (test_conan_compatibility.CompatibilityTests.test_date_version_exports_strictly_from_an_empty_cache) ... ok
+test_legacy_metadata_without_final_newline_is_removed (test_conan_compatibility.CompatibilityTests.test_legacy_metadata_without_final_newline_is_removed) ... ok
+test_modern_targets_are_preserved (test_conan_compatibility.CompatibilityTests.test_modern_targets_are_preserved) ... ok
+test_unexpected_clog_source_fails_closed (test_conan_compatibility.CompatibilityTests.test_unexpected_clog_source_fails_closed) ... ok
+test_concurrent_deployment_reapplies_only_our_pages (test_docs_publish.DocsPublishTests.test_concurrent_deployment_reapplies_only_our_pages) ... ok
+test_first_deployment_creates_missing_branch_and_is_idempotent (test_docs_publish.DocsPublishTests.test_first_deployment_creates_missing_branch_and_is_idempotent) ... ok
+test_repeated_deployment_preserves_other_language_docs (test_docs_publish.DocsPublishTests.test_repeated_deployment_preserves_other_language_docs) ... ok
+test_standalone_c_and_cpp (test_ffi_header.FfiHeaderTests.test_standalone_c_and_cpp) ... ok
+test_existing_future_page_passes_without_network (test_generated_docs.GeneratedDocsTests.test_existing_future_page_passes_without_network) ... ok
+test_removed_deployment_page_fails_even_if_still_live (test_generated_docs.GeneratedDocsTests.test_removed_deployment_page_fails_even_if_still_live) ... ok
+test_connection_reset_gets_a_delayed_retry (test_link_retries.LinkRetryTests.test_connection_reset_gets_a_delayed_retry) ... ok
+test_missing_report_never_claims_archive_success (test_link_retries.LinkRetryTests.test_missing_report_never_claims_archive_success) ... ok
+test_permanent_404_is_not_retried (test_link_retries.LinkRetryTests.test_permanent_404_is_not_retried) ... ok
+test_cmake_link_dependencies_do_not_escape_the_isolated_consumer (test_package_consumer.NativeConsumerTests.test_cmake_link_dependencies_do_not_escape_the_isolated_consumer) ... ok
+test_applicable_skipped_validation_fails (test_pipeline_policies.GateTests.test_applicable_skipped_validation_fails) ... ok
+test_cancelled_tests_never_pass (test_pipeline_policies.GateTests.test_cancelled_tests_never_pass) ... ok
+test_main_requires_credentials_and_publication (test_pipeline_policies.GateTests.test_main_requires_credentials_and_publication) ... ok
+test_pull_requests_allow_skipped_publication (test_pipeline_policies.GateTests.test_pull_requests_allow_skipped_publication) ... ok
+test_security_and_links_cannot_silently_skip (test_pipeline_policies.GateTests.test_security_and_links_cannot_silently_skip) ... ok
+test_indexing_retry_is_bounded_and_anonymous (test_pipeline_policies.PublicationTests.test_indexing_retry_is_bounded_and_anonymous) ... Validated 2 HTML pages, local links and source PDF
+::notice::credentials skipped: event/change prerequisites did not require this job
+::notice::csharp skipped: event/change prerequisites did not require this job
+::notice::publish skipped: event/change prerequisites did not require this job
+Waiting for public NuGet indexing (1/3, HTTP 404)
+Waiting for public NuGet indexing (2/3, HTTP 404)
+ok
+test_malformed_github_permission_response_fails_cleanly (test_pipeline_policies.PublicationTests.test_malformed_github_permission_response_fails_cleanly) ... ok
+test_mirror_failure_does_not_prevent_release_asset_repair (test_pipeline_policies.PublicationTests.test_mirror_failure_does_not_prevent_release_asset_repair) ... ok
+test_unknown_nuget_response_fails_closed (test_pipeline_policies.PublicationTests.test_unknown_nuget_response_fails_closed) ... ok
+test_unknown_release_lookup_cannot_publish (test_pipeline_policies.PublicationTests.test_unknown_release_lookup_cannot_publish) ... ok
+test_deleted_files_are_included_from_the_actual_push_base (test_pipeline_policies.RoutingTests.test_deleted_files_are_included_from_the_actual_push_base) ... ok
+test_evidence_and_experiments_do_not_trigger_releases (test_pipeline_policies.RoutingTests.test_evidence_and_experiments_do_not_trigger_releases) ... ok
+test_native_configuration_runs_native_validation (test_pipeline_policies.RoutingTests.test_native_configuration_runs_native_validation) ... ok
+test_native_package_example_runs_its_compiler_and_package_validation (test_pipeline_policies.RoutingTests.test_native_package_example_runs_its_compiler_and_package_validation) ... ok
+test_pull_request_base_is_not_last_commit (test_pipeline_policies.RoutingTests.test_pull_request_base_is_not_last_commit) ... ok
+test_prepare_is_idempotent_and_uses_largest_bump (test_pipeline_policies.VersionTests.test_prepare_is_idempotent_and_uses_largest_bump) ... ok
+test_release_cannot_commit_pre_staged_source (test_pipeline_policies.VersionTests.test_release_cannot_commit_pre_staged_source) ... ok
+test_queue_policy (test_pipeline_policies.WorkflowSchemaTests.test_queue_policy) ... ok
+test_identical_remote_release_is_repaired_without_a_second_bump (test_release_race.ReleaseRaceTests.test_identical_remote_release_is_repaired_without_a_second_bump) ... From /tmp/tmpek5n59zh/remote
+ * branch            main       -> FETCH_HEAD
+   e8cedfa..5c9d821  main       -> origin/main
+ok
+test_analysis_failure_and_diagnostics_fail (test_sarif_gate.SarifGateTests.test_analysis_failure_and_diagnostics_fail) ... ok
+test_clean_complete_report_passes (test_sarif_gate.SarifGateTests.test_clean_complete_report_passes) ... ok
+test_incomplete_report_fails (test_sarif_gate.SarifGateTests.test_incomplete_report_fails) ... ok
+test_missing_report_fails (test_sarif_gate.SarifGateTests.test_missing_report_fails) ... ok
+test_notes_warnings_and_errors_fail_even_after_successful_analysis (test_sarif_gate.SarifGateTests.test_notes_warnings_and_errors_fail_even_after_successful_analysis) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 7.957s
+
+OK
+csharp: 1.2.3 -> 1.3.0 (minor)
+cpp: 1.2.3 -> 1.3.0 (minor)
+To /tmp/tmpek5n59zh/remote.git
+ ! [rejected]        HEAD -> main (fetch first)
+error: failed to push some refs to '/tmp/tmpek5n59zh/remote.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+Identical release metadata already landed; repairing its publication
+CodeQL: 1 complete report(s), no findings

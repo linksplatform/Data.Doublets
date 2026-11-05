@@ -1,0 +1,83 @@
+
+Welcome to .NET 8.0!
+---------------------
+SDK Version: 8.0.427
+
+Telemetry
+---------
+The .NET tools collect usage data in order to help us improve your experience. It is collected by Microsoft and shared with the community. You can opt-out of telemetry by setting the DOTNET_CLI_TELEMETRY_OPTOUT environment variable to '1' or 'true' using your favorite shell.
+
+Read more about .NET CLI Tools telemetry: https://aka.ms/dotnet-cli-telemetry
+
+----------------
+Installed an ASP.NET Core HTTPS development certificate.
+To trust the certificate, view the instructions: https://aka.ms/dotnet-https-linux
+
+----------------
+Write your first app: https://aka.ms/dotnet-hello-world
+Find out what's new: https://aka.ms/dotnet-whats-new
+Explore documentation: https://aka.ms/dotnet-docs
+Report issues and find source on GitHub: https://github.com/dotnet/core
+Use 'dotnet --help' to see available commands or visit: https://aka.ms/dotnet-cli
+--------------------------------------------------------------------------------------
+  Determining projects to restore...
+  Restored /tmp/gh-issue-solver-1793297431979/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj (in 14.23 sec).
+  Restored /tmp/gh-issue-solver-1793297431979/csharp/Platform.Data.Doublets.Tests/Platform.Data.Doublets.Tests.csproj (in 14.24 sec).
+  Restored /tmp/gh-issue-solver-1793297431979/csharp/Platform.Data.Doublets.Benchmarks/Platform.Data.Doublets.Benchmarks.csproj (in 14.33 sec).
+  Platform.Data.Doublets -> /tmp/gh-issue-solver-1793297431979/csharp/Platform.Data.Doublets/bin/Release/net8.0/Platform.Data.Doublets.dll
+  Platform.Data.Doublets.Tests -> /tmp/gh-issue-solver-1793297431979/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll
+  Platform.Data.Doublets.Benchmarks -> /tmp/gh-issue-solver-1793297431979/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net8.0/Platform.Data.Doublets.Benchmarks.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:23.48
+Test run for /tmp/gh-issue-solver-1793297431979/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
+Results File: /tmp/gh-issue-solver-1793297431979/artifacts/test-results/_75b58a2a7ae9_2026-10-29_18_21_23.trx
+
+Passed!  - Failed:     0, Passed:   298, Skipped:     0, Total:   298, Duration: 5 s - Platform.Data.Doublets.Tests.dll (net8.0)
+
+Attachments:
+  /tmp/gh-issue-solver-1793297431979/artifacts/test-results/a9d71a47-b324-4ce9-8bb6-e742ae5a2c63/coverage.cobertura.xml
+united: created 2 = (1, 18446744073709551596)
+  Each -> [2], Count -> 1, SearchOrDefault -> 2
+split: created 2 = (1, 18446744073709551596)
+  Each -> [2], Count -> 1, SearchOrDefault -> 2
+United: all deletion examples passed.
+Split: all deletion examples passed.
+United: all update examples passed.
+Split: all update examples passed.
+  Successfully created package '/tmp/gh-issue-solver-1793297431979/artifacts/packages/Platform.Data.Doublets.0.18.3.nupkg'.
+  Successfully created package '/tmp/gh-issue-solver-1793297431979/artifacts/packages/Platform.Data.Doublets.0.18.3.snupkg'.
+  Determining projects to restore...
+  Restored /tmp/tmpmljaj90s/Consumer.csproj (in 4.03 sec).
+Validated packaged consumer of Platform.Data.Doublets 0.18.3
+	Command being timed: "bash scripts/check-csharp.sh"
+	User time (seconds): 76.32
+	System time (seconds): 21.57
+	Percent of CPU this job got: 80%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:01.56
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 425260
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 633
+	Minor (reclaiming a frame) page faults: 1053574
+	Voluntary context switches: 53800
+	Involuntary context switches: 227778
+	Swaps: 0
+	File system inputs: 160928
+	File system outputs: 1869248
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
