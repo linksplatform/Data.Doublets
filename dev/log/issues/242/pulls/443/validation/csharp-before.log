@@ -1,0 +1,178 @@
+  Platform.Data.Doublets -> /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets/bin/Release/net8.0/Platform.Data.Doublets.dll
+  Platform.Data.Doublets.Tests -> /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll
+Test run for /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.79]     Platform.Data.Doublets.Tests.FormatStructureTests.ExternalReferencesKeepTheirVirtualPointBehavior(split: False) [FAIL]
+[xUnit.net 00:00:00.87]     Platform.Data.Doublets.Tests.FormatStructureTests.ExternalReferencesKeepTheirVirtualPointBehavior(split: True) [FAIL]
+[xUnit.net 00:00:00.92]     Platform.Data.Doublets.Tests.FormatStructureTests.MissingEndpointsAndRootsAreNumericLeaves(split: True) [FAIL]
+[xUnit.net 00:00:00.94]     Platform.Data.Doublets.Tests.FormatStructureTests.MissingEndpointsAndRootsAreNumericLeaves(split: False) [FAIL]
+[xUnit.net 00:00:00.96]     Platform.Data.Doublets.Tests.FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(split: False, renderIndex: False, renderDebug: True, expected: "((*1 *1) *2)") [FAIL]
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.ExternalReferencesKeepTheirVirtualPointBehavior(split: False) [87 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+                                  ↓ (pos 68)
+Expected: ···"446744073709551596) *18446744073709551596"···
+Actual:   ···"446744073709551596) 18446744073709551596)"
+                                  ↑ (pos 68)
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.FormatStructureTests.ExternalReferencesKeepTheirVirtualPointBehavior(Boolean split) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 150
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.ExternalReferencesKeepTheirVirtualPointBehavior(split: True) [38 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+                                  ↓ (pos 68)
+Expected: ···"446744073709551596) *18446744073709551596"···
+Actual:   ···"446744073709551596) 18446744073709551596)"
+                                  ↑ (pos 68)
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.FormatStructureTests.ExternalReferencesKeepTheirVirtualPointBehavior(Boolean split) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 150
+   at InvokeStub_FormatStructureTests.ExternalReferencesKeepTheirVirtualPointBehavior(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.MissingEndpointsAndRootsAreNumericLeaves(split: True) [1 ms]
+  Error Message:
+   System.Collections.Generic.KeyNotFoundException : Link 100 does not exist.
+  Stack Trace:
+     at Platform.Data.Doublets.NullableLinkHelpers.GetRequiredLink[T](ILinks`1 links, T link) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets/NullableLinkHelpers.cs:line 22
+   at Platform.Data.Doublets.Tests.FormatStructureTests.MissingEndpointsAndRootsAreNumericLeaves(Boolean split) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 57
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.MissingEndpointsAndRootsAreNumericLeaves(split: False) [1 ms]
+  Error Message:
+   System.Collections.Generic.KeyNotFoundException : Link 100 does not exist.
+  Stack Trace:
+     at Platform.Data.Doublets.NullableLinkHelpers.GetRequiredLink[T](ILinks`1 links, T link) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets/NullableLinkHelpers.cs:line 22
+   at Platform.Data.Doublets.Tests.FormatStructureTests.MissingEndpointsAndRootsAreNumericLeaves(Boolean split) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 57
+   at InvokeStub_FormatStructureTests.MissingEndpointsAndRootsAreNumericLeaves(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(split: False, renderIndex: False, renderDebug: True, expected: "((*1 *1) *2)") [2 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+             ↓ (pos 2)
+Expected: "((*1 *1) *2)"
+Actual:   "((1 1) 2)"
+             ↑ (pos 2)
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(Boolean split, Boolean renderIndex, Boolean renderDebug, String expected) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 101
+   at InvokeStub_FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.04]     Platform.Data.Doublets.Tests.FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(split: False, renderIndex: True, renderDebug: True, expected: "(1:(2:*1 *1) *2)") [FAIL]
+[xUnit.net 00:00:01.05]     Platform.Data.Doublets.Tests.FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(split: True, renderIndex: True, renderDebug: True, expected: "(1:(2:*1 *1) *2)") [FAIL]
+[xUnit.net 00:00:01.06]     Platform.Data.Doublets.Tests.FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(split: True, renderIndex: False, renderDebug: True, expected: "((*1 *1) *2)") [FAIL]
+[xUnit.net 00:00:01.07]     Platform.Data.Doublets.Tests.FormatStructureTests.FormatsReportedSuperNameSequence(split: True) [FAIL]
+[xUnit.net 00:00:01.08]     Platform.Data.Doublets.Tests.FormatStructureTests.FormatsReportedSuperNameSequence(split: False) [FAIL]
+[xUnit.net 00:00:01.09]     Platform.Data.Doublets.Tests.FormatStructureTests.SharedSubtreesExpandOnceAndElementCallbacksStaySupported(split: False) [FAIL]
+[xUnit.net 00:00:01.09]     Platform.Data.Doublets.Tests.FormatStructureTests.SharedSubtreesExpandOnceAndElementCallbacksStaySupported(split: True) [FAIL]
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(split: False, renderIndex: True, renderDebug: True, expected: "(1:(2:*1 *1) *2)") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+                 ↓ (pos 6)
+Expected: "(1:(2:*1 *1) *2)"
+Actual:   "(1:(2:1 1) 2)"
+                 ↑ (pos 6)
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(Boolean split, Boolean renderIndex, Boolean renderDebug, String expected) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 101
+   at InvokeStub_FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(split: True, renderIndex: True, renderDebug: True, expected: "(1:(2:*1 *1) *2)") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+                 ↓ (pos 6)
+Expected: "(1:(2:*1 *1) *2)"
+Actual:   "(1:(2:1 1) 2)"
+                 ↑ (pos 6)
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(Boolean split, Boolean renderIndex, Boolean renderDebug, String expected) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 101
+   at InvokeStub_FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(split: True, renderIndex: False, renderDebug: True, expected: "((*1 *1) *2)") [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+             ↓ (pos 2)
+Expected: "((*1 *1) *2)"
+Actual:   "((1 1) 2)"
+             ↑ (pos 2)
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(Boolean split, Boolean renderIndex, Boolean renderDebug, String expected) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 101
+   at InvokeStub_FormatStructureTests.CyclesTerminateAndPreserveNestedDebugOptions(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.FormatsReportedSuperNameSequence(split: True) [18 ms]
+  Error Message:
+   System.Collections.Generic.KeyNotFoundException : Link 115 does not exist.
+  Stack Trace:
+     at Platform.Data.Doublets.NullableLinkHelpers.GetRequiredLink[T](ILinks`1 links, T link) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets/NullableLinkHelpers.cs:line 22
+   at Platform.Data.Doublets.Tests.FormatStructureTests.FormatsReportedSuperNameSequence(Boolean split) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 41
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.FormatsReportedSuperNameSequence(split: False) [3 ms]
+  Error Message:
+   System.Collections.Generic.KeyNotFoundException : Link 115 does not exist.
+  Stack Trace:
+     at Platform.Data.Doublets.NullableLinkHelpers.GetRequiredLink[T](ILinks`1 links, T link) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets/NullableLinkHelpers.cs:line 22
+   at Platform.Data.Doublets.Tests.FormatStructureTests.FormatsReportedSuperNameSequence(Boolean split) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 41
+   at InvokeStub_FormatStructureTests.FormatsReportedSuperNameSequence(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.SharedSubtreesExpandOnceAndElementCallbacksStaySupported(split: False) [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+                      ↓ (pos 11)
+Expected: "(2:(1:1 1) *1)"
+Actual:   "(2:(1:1 1) 1)"
+                      ↑ (pos 11)
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.FormatStructureTests.SharedSubtreesExpandOnceAndElementCallbacksStaySupported(Boolean split) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 112
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.SharedSubtreesExpandOnceAndElementCallbacksStaySupported(split: True) [7 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+                      ↓ (pos 11)
+Expected: "(2:(1:1 1) *1)"
+Actual:   "(2:(1:1 1) 1)"
+                      ↑ (pos 11)
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.FormatStructureTests.SharedSubtreesExpandOnceAndElementCallbacksStaySupported(Boolean split) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 112
+   at InvokeStub_FormatStructureTests.SharedSubtreesExpandOnceAndElementCallbacksStaySupported(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.11]     Platform.Data.Doublets.Tests.FormatStructureTests.ReservedAddressesAreSkippedAtRootsAndEndpoints(split: True) [FAIL]
+[xUnit.net 00:00:01.13]     Platform.Data.Doublets.Tests.FormatStructureTests.ReservedAddressesAreSkippedAtRootsAndEndpoints(split: False) [FAIL]
+[xUnit.net 00:00:01.13]     Platform.Data.Doublets.Tests.FormatStructureTests.DeletedEndpointsAreRenderedWithoutDereferencing(split: True) [FAIL]
+[xUnit.net 00:00:01.14]     Platform.Data.Doublets.Tests.FormatStructureTests.DeletedEndpointsAreRenderedWithoutDereferencing(split: False) [FAIL]
+Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.ReservedAddressesAreSkippedAtRootsAndEndpoints(split: True) [3 ms]
+  Error Message:
+   System.Collections.Generic.KeyNotFoundException : Link 0 does not exist.
+  Stack Trace:
+     at Platform.Data.Doublets.NullableLinkHelpers.GetRequiredLink[T](ILinks`1 links, T link) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets/NullableLinkHelpers.cs:line 22
+   at Platform.Data.Doublets.Tests.FormatStructureTests.ReservedAddressesAreSkippedAtRootsAndEndpoints(Boolean split) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 135
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.ReservedAddressesAreSkippedAtRootsAndEndpoints(split: False) [< 1 ms]
+  Error Message:
+   System.Collections.Generic.KeyNotFoundException : Link 0 does not exist.
+  Stack Trace:
+     at Platform.Data.Doublets.NullableLinkHelpers.GetRequiredLink[T](ILinks`1 links, T link) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets/NullableLinkHelpers.cs:line 22
+   at Platform.Data.Doublets.Tests.FormatStructureTests.ReservedAddressesAreSkippedAtRootsAndEndpoints(Boolean split) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 135
+   at InvokeStub_FormatStructureTests.ReservedAddressesAreSkippedAtRootsAndEndpoints(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.DeletedEndpointsAreRenderedWithoutDereferencing(split: True) [3 ms]
+  Error Message:
+   System.Collections.Generic.KeyNotFoundException : Link 1 does not exist.
+  Stack Trace:
+     at Platform.Data.Doublets.NullableLinkHelpers.GetRequiredLink[T](ILinks`1 links, T link) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets/NullableLinkHelpers.cs:line 22
+   at Platform.Data.Doublets.Tests.FormatStructureTests.DeletedEndpointsAreRenderedWithoutDereferencing(Boolean split) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 72
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.FormatStructureTests.DeletedEndpointsAreRenderedWithoutDereferencing(split: False) [8 ms]
+  Error Message:
+   System.Collections.Generic.KeyNotFoundException : Link 1 does not exist.
+  Stack Trace:
+     at Platform.Data.Doublets.NullableLinkHelpers.GetRequiredLink[T](ILinks`1 links, T link) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets/NullableLinkHelpers.cs:line 22
+   at Platform.Data.Doublets.Tests.FormatStructureTests.DeletedEndpointsAreRenderedWithoutDereferencing(Boolean split) in /tmp/gh-issue-solver-1793910316518/csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs:line 72
+   at InvokeStub_FormatStructureTests.DeletedEndpointsAreRenderedWithoutDereferencing(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+
+Failed!  - Failed:    16, Passed:     7, Skipped:     0, Total:    23, Duration: 418 ms - Platform.Data.Doublets.Tests.dll (net8.0)

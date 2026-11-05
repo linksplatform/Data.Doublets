@@ -61,6 +61,7 @@
 #include "Memory/Split/Generic/SplitMemoryLinksBase.h"
 #include "Memory/Split/Generic/SplitMemoryLinks.h"
 #include "ILinksExtensions.h"
+#include "ILinksExtensions.Structure.h"
 #include "Decorators/LinksUniquenessResolver.h"
 #include "Decorators/LinksCascadeUniquenessAndUsagesResolver.h"
 #include "Decorators/LinksCascadeUsagesResolver.h"

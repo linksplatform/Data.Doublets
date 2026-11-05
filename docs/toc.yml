@@ -4,6 +4,8 @@
   href: api/toc.yml
 - name: Design principles
   href: design.md
+- name: Structure formatting
+  href: structure-formatting.md
 - name: C# update
   href: update-csharp.md
 - name: Update investigation
