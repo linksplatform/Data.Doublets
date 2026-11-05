@@ -1,3 +1,11 @@
+## csharp 0.18.10
+
+- Format raw sequence leaves safely, preserve nested debug markers, and add equivalent C++ structure formatting.
+
+## cpp 0.2.0
+
+- Format raw sequence leaves safely, preserve nested debug markers, and add equivalent C++ structure formatting.
+
 ## csharp 0.18.9
 
 - Match source and target restrictions in their own positions for concrete-index Count and Each queries in united and split stores.
