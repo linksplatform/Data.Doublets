@@ -28,10 +28,12 @@ Pull request: <https://github.com/linksplatform/Data.Doublets/pull/413>
   self references, internal/external endpoints and slot reuse.
 - [x] Compare the same cases with pinned current Rust united/split implementations.
 - [x] Replace the misleading mock example and overwrite explanation with evidence.
-- [ ] Add a patch changeset for both packages; run focused local verification and
-  current-commit CI; investigate and archive any non-passing runs.
-- [ ] Review the final diff and description, push all work, confirm a clean tree,
-  and mark PR #413 ready with `Fixes #359` retained.
+- [x] Add a patch changeset for both packages and run focused local verification.
+- [x] Review the implementation diff and replace the PR's explanation and tests.
+
+Final gates are tracked on PR #413: passing current-commit CI, archived findings
+for any non-passing runs, current `main` merged, a clean working tree and the PR
+marked ready with `Fixes #359` retained. The PR description records the final run.
 
 ## Initial finding
 
@@ -73,7 +75,8 @@ Run the focused checks with:
 
 ```sh
 dotnet test csharp/Platform.Data.Doublets.Tests -c Release -m:1 \
-  -p:UseSharedCompilation=false --filter FullyQualifiedName~PositionalQueryTests \
+  -p:UseSharedCompilation=false \
+  --filter FullyQualifiedName~PositionalQueryTests \
   --blame-hang-timeout 3m
 dotnet run --project examples/Queries -c Release
 # After normal cpp/setup.sh and CMake configuration with compile_commands.json:
@@ -138,6 +141,14 @@ The first run on `b60b11901`, created after that commit at 19:58:34 UTC on
 The pinned action commit is actually release **v4.39.1**, verified through the
 upstream tag object. Correcting the two comments retains the exact action code
 and all security checks. This inherited main failure is addressed in this PR.
+
+On `36f263bfb`, quality and the Linux C# suite passed. Codacy found eight issues
+in the new experiment helpers: one long Markdown command, six generic Bandit
+subprocess warnings and one unresolved Git path. The findings are preserved in
+`codacy-36f263b.tsv`. The command is wrapped, Git is resolved to an absolute path,
+and the local command runners document their trusted inputs beside targeted
+Bandit annotations. Their subprocesses use argument lists without a shell.
+A focused Bandit scan then reports no issues.
 
 Before/after test logs and the complete failed CI log are retained under
 `dev/log/issues/359/pulls/413/`.

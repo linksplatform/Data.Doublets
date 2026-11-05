@@ -1,0 +1,8 @@
+experiments/issue-359/README.md	76	markdownlint_MD013	Expected: 80; Actual: 82
+experiments/issue-359/reproduce-before.py	18	Bandit_B603	subprocess call - check for execution of untrusted input.
+experiments/issue-359/reproduce-before.py	20	Bandit_B603	subprocess call - check for execution of untrusted input.
+experiments/issue-359/focused-native.py	6	Bandit_B404	Consider possible security implications associated with the subprocess module.
+experiments/issue-359/reproduce-before.py	3	Bandit_B404	Consider possible security implications associated with the subprocess module.
+experiments/issue-359/focused-native.py	22	Bandit_B603	subprocess call - check for execution of untrusted input.
+experiments/issue-359/reproduce-before.py	18	Bandit_B607	Starting a process with a partial executable path
+experiments/issue-359/focused-native.py	28	Bandit_B603	subprocess call - check for execution of untrusted input.
