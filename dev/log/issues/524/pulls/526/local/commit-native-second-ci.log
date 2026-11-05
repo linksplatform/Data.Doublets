@@ -1,0 +1,9 @@
+[issue-524-b1512fd1c7a8 13e3bbc5e] Fix Clang portability and instantiate native creation and deletion helpers
+ 16 files changed, 265 insertions(+), 64 deletions(-)
+ create mode 100644 cpp/Platform.Data.Doublets.Tests/ExtensionTests.cpp
+ create mode 100644 dev/log/issues/524/pulls/526/local/clang-third-ci.log
+ create mode 100644 dev/log/issues/524/pulls/526/local/cpp-extensions-after.log
+ create mode 100644 dev/log/issues/524/pulls/526/local/cpp-extensions-before.log
+ create mode 100644 dev/log/issues/524/pulls/526/local/native-build-memory.log
+ create mode 100644 dev/log/issues/524/pulls/526/local/native-static-third-ci.log
+ create mode 100644 dev/log/issues/524/pulls/526/local/native-tests-memory.log

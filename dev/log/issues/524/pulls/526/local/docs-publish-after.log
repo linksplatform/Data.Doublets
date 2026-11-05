@@ -1,0 +1,7 @@
+test_first_deployment_creates_missing_branch_and_is_idempotent (experiments.test_docs_publish.DocsPublishTests.test_first_deployment_creates_missing_branch_and_is_idempotent) ... ok
+test_repeated_deployment_preserves_other_language_docs (experiments.test_docs_publish.DocsPublishTests.test_repeated_deployment_preserves_other_language_docs) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.993s
+
+OK

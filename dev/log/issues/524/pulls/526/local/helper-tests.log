@@ -1,0 +1,8 @@
+test_failed_build_cannot_be_hidden_by_stale_passing_binary (test_ci_regressions.CppRunnerTests.test_failed_build_cannot_be_hidden_by_stale_passing_binary) ... ok
+test_missing_release_credentials_fail_with_actionable_message (test_ci_regressions.PipelineHelpersTests.test_missing_release_credentials_fail_with_actionable_message) ... ok
+test_release_credentials_are_not_required_on_pull_requests (test_ci_regressions.PipelineHelpersTests.test_release_credentials_are_not_required_on_pull_requests) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.500s
+
+OK

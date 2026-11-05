@@ -1,0 +1,136 @@
+Running main() from /home/box/.conan2/p/b/gtest63c699c2e195a/b/src/googletest/src/gtest_main.cc
+[==========] Running 50 tests from 10 test suites.
+[----------] Global test environment set-up.
+[----------] 6 tests from ExtensionTests
+[ RUN      ] ExtensionTests.EnsureCreatedPreservesOnlyRequestedNewAddresses
+[       OK ] ExtensionTests.EnsureCreatedPreservesOnlyRequestedNewAddresses (393 ms)
+[ RUN      ] ExtensionTests.EnsurePointsCreatedMakesSelfReferences
+[       OK ] ExtensionTests.EnsurePointsCreatedMakesSelfReferences (483 ms)
+[ RUN      ] ExtensionTests.DeleteByQueryRemovesOnlyMatches
+[       OK ] ExtensionTests.DeleteByQueryRemovesOnlyMatches (380 ms)
+[ RUN      ] ExtensionTests.AllVariadicArgumentsRestrictTheResult
+[       OK ] ExtensionTests.AllVariadicArgumentsRestrictTheResult (418 ms)
+[ RUN      ] ExtensionTests.UnitedRejectsExhaustedAddressesButReusesFreeLinks
+[       OK ] ExtensionTests.UnitedRejectsExhaustedAddressesButReusesFreeLinks (58 ms)
+[ RUN      ] ExtensionTests.SplitRejectsExhaustedAddressesButReusesFreeLinks
+[       OK ] ExtensionTests.SplitRejectsExhaustedAddressesButReusesFreeLinks (106 ms)
+[----------] 6 tests from ExtensionTests (1840 ms total)
+
+[----------] 4 tests from EitherEndpointQueryTests
+[ RUN      ] EitherEndpointQueryTests.UnitedPlain
+[       OK ] EitherEndpointQueryTests.UnitedPlain (0 ms)
+[ RUN      ] EitherEndpointQueryTests.SplitPlain
+[       OK ] EitherEndpointQueryTests.SplitPlain (3 ms)
+[ RUN      ] EitherEndpointQueryTests.UnitedAutomatic
+[       OK ] EitherEndpointQueryTests.UnitedAutomatic (0 ms)
+[ RUN      ] EitherEndpointQueryTests.SplitAutomatic
+[       OK ] EitherEndpointQueryTests.SplitAutomatic (3 ms)
+[----------] 4 tests from EitherEndpointQueryTests (8 ms total)
+
+[----------] 3 tests from OwnershipTests
+[ RUN      ] OwnershipTests.UnitedHelpersAreReleasedOnGrowthAndDestruction
+[       OK ] OwnershipTests.UnitedHelpersAreReleasedOnGrowthAndDestruction (0 ms)
+[ RUN      ] OwnershipTests.SplitHelpersAreReleasedOnGrowthAndDestruction
+[       OK ] OwnershipTests.SplitHelpersAreReleasedOnGrowthAndDestruction (0 ms)
+[ RUN      ] OwnershipTests.SplitGrowthRespectsBothBufferCapacities
+[       OK ] OwnershipTests.SplitGrowthRespectsBothBufferCapacities (0 ms)
+[----------] 3 tests from OwnershipTests (1 ms total)
+
+[----------] 2 tests from LinksConstantsTests
+[ RUN      ] LinksConstantsTests.NullLinkIsAConstantExpression
+[       OK ] LinksConstantsTests.NullLinkIsAConstantExpression (0 ms)
+[ RUN      ] LinksConstantsTests.ExternalReferencesTest
+[       OK ] LinksConstantsTests.ExternalReferencesTest (0 ms)
+[----------] 2 tests from LinksConstantsTests (0 ms total)
+
+[----------] 4 tests from ResizableDirectMemoryLinksTests
+[ RUN      ] ResizableDirectMemoryLinksTests.CountRequiresBothSpecifiedPartsToMatch
+[       OK ] ResizableDirectMemoryLinksTests.CountRequiresBothSpecifiedPartsToMatch (430 ms)
+[ RUN      ] ResizableDirectMemoryLinksTests.BasicFileMappedMemoryTest
+[       OK ] ResizableDirectMemoryLinksTests.BasicFileMappedMemoryTest (76 ms)
+[ RUN      ] ResizableDirectMemoryLinksTests.BasicHeapMemoryTest
+[       OK ] ResizableDirectMemoryLinksTests.BasicHeapMemoryTest (816 ms)
+[ RUN      ] ResizableDirectMemoryLinksTests.NonexistentReferencesHeapMemoryTest
+[       OK ] ResizableDirectMemoryLinksTests.NonexistentReferencesHeapMemoryTest (733 ms)
+[----------] 4 tests from ResizableDirectMemoryLinksTests (2057 ms total)
+
+[----------] 9 tests from StaticGenericLinksTests
+[ RUN      ] StaticGenericLinksTests.CrudTestWithSizeBalancedTrees
+[       OK ] StaticGenericLinksTests.CrudTestWithSizeBalancedTrees (792 ms)
+[ RUN      ] StaticGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees
+[       OK ] StaticGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees (664 ms)
+[ RUN      ] StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees
+[       OK ] StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees (1309 ms)
+[ RUN      ] StaticGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees
+[       OK ] StaticGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees (664 ms)
+[ RUN      ] StaticGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees
+[       OK ] StaticGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees (700 ms)
+[ RUN      ] StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees
+[       OK ] StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees (1462 ms)
+[ RUN      ] StaticGenericLinksTests.CrudTestWithAvlBalancedTrees
+[       OK ] StaticGenericLinksTests.CrudTestWithAvlBalancedTrees (788 ms)
+[ RUN      ] StaticGenericLinksTests.RawNumbersCrudTestWithAvlBalancedTrees
+[       OK ] StaticGenericLinksTests.RawNumbersCrudTestWithAvlBalancedTrees (669 ms)
+[ RUN      ] StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees
+[       OK ] StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees (1370 ms)
+[----------] 9 tests from StaticGenericLinksTests (8425 ms total)
+
+[----------] 6 tests from StaticSplitMemoryGenericLinksTests
+[ RUN      ] StaticSplitMemoryGenericLinksTests.CrudTestWithSizeBalancedTrees
+[       OK ] StaticSplitMemoryGenericLinksTests.CrudTestWithSizeBalancedTrees (777 ms)
+[ RUN      ] StaticSplitMemoryGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees
+[       OK ] StaticSplitMemoryGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees (777 ms)
+[ RUN      ] StaticSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees
+[       OK ] StaticSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees (1390 ms)
+[ RUN      ] StaticSplitMemoryGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees
+[       OK ] StaticSplitMemoryGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees (784 ms)
+[ RUN      ] StaticSplitMemoryGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees
+[       OK ] StaticSplitMemoryGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees (804 ms)
+[ RUN      ] StaticSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees
+[       OK ] StaticSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees (1489 ms)
+[----------] 6 tests from StaticSplitMemoryGenericLinksTests (6025 ms total)
+
+[----------] 1 test from TemporaryDirectoryTests
+[ RUN      ] TemporaryDirectoryTests.OwnsDistinctDirectoryAndCleansItUp
+[       OK ] TemporaryDirectoryTests.OwnsDistinctDirectoryAndCleansItUp (2 ms)
+[----------] 1 test from TemporaryDirectoryTests (2 ms total)
+
+[----------] 9 tests from DynamicGenericLinksTests
+[ RUN      ] DynamicGenericLinksTests.CrudTestWithSizeBalancedTrees
+[       OK ] DynamicGenericLinksTests.CrudTestWithSizeBalancedTrees (634 ms)
+[ RUN      ] DynamicGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees
+[       OK ] DynamicGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees (719 ms)
+[ RUN      ] DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees
+[       OK ] DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees (1300 ms)
+[ RUN      ] DynamicGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees
+[       OK ] DynamicGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees (653 ms)
+[ RUN      ] DynamicGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees
+[       OK ] DynamicGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees (630 ms)
+[ RUN      ] DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees
+[       OK ] DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees (1281 ms)
+[ RUN      ] DynamicGenericLinksTests.CrudTestWithAvlTrees
+[       OK ] DynamicGenericLinksTests.CrudTestWithAvlTrees (602 ms)
+[ RUN      ] DynamicGenericLinksTests.RawNumbersCrudTestWithAvlTrees
+[       OK ] DynamicGenericLinksTests.RawNumbersCrudTestWithAvlTrees (657 ms)
+[ RUN      ] DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees
+[       OK ] DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees (1279 ms)
+[----------] 9 tests from DynamicGenericLinksTests (7759 ms total)
+
+[----------] 6 tests from DynamicSplitMemoryGenericLinksTests
+[ RUN      ] DynamicSplitMemoryGenericLinksTests.CrudTestWithSizeBalancedTrees
+[       OK ] DynamicSplitMemoryGenericLinksTests.CrudTestWithSizeBalancedTrees (805 ms)
+[ RUN      ] DynamicSplitMemoryGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees
+[       OK ] DynamicSplitMemoryGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees (812 ms)
+[ RUN      ] DynamicSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees
+[       OK ] DynamicSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees (1390 ms)
+[ RUN      ] DynamicSplitMemoryGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees
+[       OK ] DynamicSplitMemoryGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees (763 ms)
+[ RUN      ] DynamicSplitMemoryGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees
+[       OK ] DynamicSplitMemoryGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees (773 ms)
+[ RUN      ] DynamicSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees
+[       OK ] DynamicSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees (1502 ms)
+[----------] 6 tests from DynamicSplitMemoryGenericLinksTests (6047 ms total)
+
+[----------] Global test environment tear-down
+[==========] 50 tests from 10 test suites ran. (32168 ms total)
+[  PASSED  ] 50 tests.

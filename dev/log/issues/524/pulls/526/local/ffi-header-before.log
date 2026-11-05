@@ -1,0 +1,34 @@
+test_standalone_c_and_cpp (test_ffi_header.FfiHeaderTests.test_standalone_c_and_cpp) ... 
+  test_standalone_c_and_cpp (test_ffi_header.FfiHeaderTests.test_standalone_c_and_cpp) (language='c') ... FAIL
+  test_standalone_c_and_cpp (test_ffi_header.FfiHeaderTests.test_standalone_c_and_cpp) (language='c++') ... FAIL
+
+======================================================================
+FAIL: test_standalone_c_and_cpp (test_ffi_header.FfiHeaderTests.test_standalone_c_and_cpp) (language='c')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/experiments/test_ffi_header.py", line 17, in test_standalone_c_and_cpp
+    self.assertEqual(result.returncode, 0, result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : In file included from <stdin>:1:
+c/ffi.h:54:29: error: unknown type name ‘Record’
+   54 |     void (*formatter)(const Record*);
+      |                             ^~~~~~
+
+
+======================================================================
+FAIL: test_standalone_c_and_cpp (test_ffi_header.FfiHeaderTests.test_standalone_c_and_cpp) (language='c++')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/experiments/test_ffi_header.py", line 17, in test_standalone_c_and_cpp
+    self.assertEqual(result.returncode, 0, result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : In file included from <stdin>:1:
+c/ffi.h:54:29: error: ‘Record’ does not name a type
+   54 |     void (*formatter)(const Record*);
+      |                             ^~~~~~
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.128s
+
+FAILED (failures=2)

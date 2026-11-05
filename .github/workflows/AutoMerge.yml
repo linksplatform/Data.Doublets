@@ -1,14 +1,30 @@
 name: auto-merge
-
 on:
-  pull_request_target:
-
+  # No PR code is checked out or executed; only official Dependabot metadata is read.
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
+    types: [opened, synchronize, reopened]
+permissions: {}
 jobs:
   auto-merge:
-    runs-on: ubuntu-latest
+    name: auto-merge
+    concurrency:
+      group: dependabot-auto-merge-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    if: github.event.pull_request.user.id == 49699333 && github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write # Enable GitHub-managed auto-merge for reviewed dependency updates.
+      pull-requests: write # Approve eligible official Dependabot updates.
     steps:
-      - uses: actions/checkout@v2
-      - uses: ahmadnassri/action-dependabot-auto-merge@v2
+      - uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3
+        id: metadata
         with:
-          target: minor
-          github-token: ${{ secrets.DEPENDABOT_AUTO_MERGE_TOKEN }}
+          github-token: ${{ github.token }}
+      - name: Enable automatic merge for patch and minor updates
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: gh pr merge "$PR_URL" --auto --squash --match-head-commit "$HEAD_SHA"

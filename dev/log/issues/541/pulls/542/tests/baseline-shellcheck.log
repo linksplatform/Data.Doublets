@@ -1,0 +1,19 @@
+
+In dev/log/issues/524/pulls/526/research/upstream-scripts/format-csharp-document.sh line 13:
+printf """
+       ^-- SC2059 (info): Don't use variables in the printf format string. Use printf '..%s..' "$foo".
+
+
+In dev/log/issues/524/pulls/526/research/upstream-scripts/publish-csharp-docs.sh line 19:
+mono $(echo ./*docfx.console.*)/tools/docfx.exe docfx.json
+     ^------------------------^ SC2046 (warning): Quote this to prevent word splitting.
+
+
+In dev/log/issues/524/pulls/526/research/upstream-scripts/push-csharp-nuget.sh line 11:
+StatusContents=( $NuGetPageStatus )
+                 ^--------------^ SC2206 (warning): Quote to prevent word splitting/globbing, or split robustly with mapfile or read -a.
+
+For more information:
+  https://www.shellcheck.net/wiki/SC2046 -- Quote this to prevent word splitt...
+  https://www.shellcheck.net/wiki/SC2206 -- Quote to prevent word splitting/g...
+  https://www.shellcheck.net/wiki/SC2059 -- Don't use variables in the printf...

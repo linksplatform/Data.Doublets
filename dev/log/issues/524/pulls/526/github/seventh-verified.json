@@ -1,0 +1,85 @@
+{
+  "sha": "5cf40c5a338a38978221aab65a8e017005c95303",
+  "run": "https://github.com/linksplatform/Data.Doublets/actions/runs/40842727244",
+  "jobs": {
+    "changes": "success",
+    "quality": "success",
+    "links / links": "success",
+    "security / audit": "success",
+    "security / codeql (c-cpp)": "success",
+    "security / codeql (actions)": "success",
+    "security / codeql (csharp)": "success",
+    "csharp (ubuntu-24.04)": "success",
+    "csharp (windows-2025)": "success",
+    "docs": "success",
+    "cpp (clang-sanitized)": "success",
+    "cpp (clang)": "success",
+    "cpp (gcc)": "success",
+    "credentials": "skipped",
+    "required": "success",
+    "publish": "skipped"
+  },
+  "sarif": {
+    "codeql-actions/actions.sarif": {
+      "findings": 0,
+      "successful": true
+    },
+    "codeql-c-cpp/cpp.sarif": {
+      "findings": 0,
+      "successful": true
+    },
+    "codeql-csharp/csharp.sarif": {
+      "findings": 0,
+      "successful": true
+    }
+  },
+  "csharp": {
+    "csharp-ubuntu-24.04/test-results/_runnervm48cm3_2026-10-29_08_32_59.trx": {
+      "total": 82,
+      "executed": 82,
+      "passed": 82,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    },
+    "csharp-windows-2025/test-results/runneradmin_runnervmdaln5_2026-10-29_08_33_53.trx": {
+      "total": 82,
+      "executed": 82,
+      "passed": 82,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    }
+  },
+  "native": {
+    "cpp-clang-sanitized/cpp/build/Testing/Temporary/LastTest.log": 46,
+    "cpp-clang/cpp/build/Testing/Temporary/LastTest.log": 46,
+    "cpp-gcc/cpp/build/Testing/Temporary/LastTest.log": 46
+  },
+  "compiler_runtime_action_warnings": [],
+  "pipeline_regressions": 44,
+  "documentation": {
+    "html_pages": 538,
+    "pdf_pages": 277
+  }
+}

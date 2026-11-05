@@ -1,0 +1,12 @@
+2829: cpp/Platform.Data.Doublets/ILinksExtensions.h:414:66: error: unused parameter 'addresses' [-Werror,-Wunused-parameter]
+2832: cpp/Platform.Data.Doublets/ILinksExtensions.h:798:55: error: unused parameter 'before' [-Werror,-Wunused-parameter]
+2835: cpp/Platform.Data.Doublets/ILinksExtensions.h:798:91: error: unused parameter 'substitution' [-Werror,-Wunused-parameter]
+2838: cpp/Platform.Data.Doublets/ILinksExtensions.h:967:60: error: unused parameter 'vec' [-Werror,-Wunused-parameter]
+2843: cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:195:18: error: variable 'deleted' set but not used [-Werror,-Wunused-but-set-variable]
+2847: cpp/Platform.Data.Doublets.Tests/LinksConstantsTests.cpp:6:24: error: constexpr variable 'value' must be initialized by a constant expression
+2860: cpp/Platform.Data.Doublets.Tests/LinksConstantsTests.cpp:7:23: error: static assertion expression is not an integral constant expression
+2869: cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h:417:35: error: equality comparison with extraneous parentheses [-Werror,-Wparentheses-equality]
+2908: cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:50:18: error: unused variable 'constants' [-Werror,-Wunused-variable]
+3062: cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:220:23: error: unused variable 'link' [-Werror,-Wunused-variable]
+3075: cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:234:31: error: unused variable 'link' [-Werror,-Wunused-variable]
+3078: fatal error: too many errors emitted, stopping now [-ferror-limit=]

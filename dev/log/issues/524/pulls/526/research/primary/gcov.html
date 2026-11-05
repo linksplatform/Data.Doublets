@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.0dev, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This file documents the use of the GNU compilers.
+
+Copyright © 1988-2026 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being "Funding Free Software", the Front-Cover
+Texts being (a) (see below), and with the Back-Cover Texts being (b)
+(see below).  A copy of the license is included in the section entitled
+"GNU Free Documentation License".
+
+(a) The FSF's Front-Cover Text is:
+
+A GNU Manual
+
+(b) The FSF's Back-Cover Text is:
+
+You have freedom to copy and modify this GNU Manual, like GNU
+     software.  Copies published by the Free Software Foundation raise
+     funds for GNU development. -->
+<title>Invoking Gcov (Using the GNU Compiler Collection (GCC))</title>
+
+<meta name="description" content="Invoking Gcov (Using the GNU Compiler Collection (GCC))">
+<meta name="keywords" content="Invoking Gcov (Using the GNU Compiler Collection (GCC))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Indices.html" rel="index" title="Indices">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Gcov.html" rel="up" title="Gcov">
+<link href="Gcov-and-Optimization.html" rel="next" title="Gcov and Optimization">
+<link href="Gcov-Intro.html" rel="prev" title="Gcov Intro">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+kbd.key {font-style: normal}
+span.r {font-family: initial; font-weight: normal; font-style: normal}
+span:hover a.copiable-link {visibility: visible}
+ul.mark-bullet {list-style-type: disc}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/texinfo-manuals.css">
+
+
+</head>
+
+<body lang="en_US">
+<div class="section-level-extent" id="Invoking-Gcov">
+<div class="nav-panel">
+<p>
+Next: <a href="Gcov-and-Optimization.html" accesskey="n" rel="next">Using <code class="command">gcov</code> with GCC Optimization</a>, Previous: <a href="Gcov-Intro.html" accesskey="p" rel="prev">Introduction to <code class="command">gcov</code></a>, Up: <a href="Gcov.html" accesskey="u" rel="up"><code class="command">gcov</code>&mdash;a Test Coverage Program</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Indices.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Invoking-gcov"><span>11.2 Invoking <code class="command">gcov</code><a class="copiable-link" href="#Invoking-gcov"> &para;</a></span></h3>
+
+<div class="example smallexample">
+<pre class="example-preformatted">gcov <span class="r">[</span><var class="var">options</var><span class="r">]</span> <var class="var">files</var>
+</pre></div>
+
+<p><code class="command">gcov</code> accepts the following options:
+</p>
+
+<dl class="table">
+<dt><code class="code">-a</code></dt>
+<dt><code class="code">--all-blocks</code></dt>
+<dd><p>Write individual execution counts for every basic block.  Normally gcov
+outputs execution counts only for the main blocks of a line.  With this
+option you can determine if blocks within a single line are not being
+executed.
+</p>
+</dd>
+<dt><code class="code">-b</code></dt>
+<dt><code class="code">--branch-probabilities</code></dt>
+<dd><p>Write branch frequencies to the output file, and write branch summary
+info to the standard output.  This option allows you to see how often
+each branch in your program was taken.  Unconditional branches will not
+be shown, unless the <samp class="option">-u</samp> option is given.
+</p>
+</dd>
+<dt><code class="code">-c</code></dt>
+<dt><code class="code">--branch-counts</code></dt>
+<dd><p>Write branch frequencies as the number of branches taken, rather than
+the percentage of branches taken.
+</p>
+</dd>
+<dt><code class="code">-g</code></dt>
+<dt><code class="code">--conditions</code></dt>
+<dd><p>Write condition coverage to the output file, and write condition summary info
+to the standard output.  This option allows you to see if the conditions in
+your program at least once had an independent effect on the outcome of the
+boolean expression (modified condition/decision coverage).  This requires you
+to compile the source with <samp class="option">-fcondition-coverage</samp>.
+</p>
+</dd>
+<dt><code class="code">-e</code></dt>
+<dt><code class="code">--prime-paths</code></dt>
+<dd><p>Write path coverage to the output file, and write path summary info to
+the standard output.  This option allows you to see how many prime paths
+were taken at least once.  A path is a sequence of basic blocks.  A path
+is simple if it has no repeated blocks (no loops) except maybe the first
+and last block, and prime if it is a simple path of maximal length.  For
+the regular output this option only includes the number of paths
+covered.  For more fine grained information on paths you can use
+<samp class="option">--prime-paths-lines</samp> or <samp class="option">--prime-paths-source</samp>.  With
+<samp class="option">--json-format</samp> all path details are included in the output.
+This requires you to compile the
+source with <samp class="option">-fpath-coverage</samp>.
+</p>
+</dd>
+<dt><code class="code">--prime-paths-lines [=<var class="var">type</var>]</code></dt>
+<dd><p>Write path coverage to the output file, and write path summary info to
+the standard output.  This option allows you to see how many prime paths
+were taken at least once, and dense report on the covered or uncovered
+paths and how to cover them.  This mode is useful for automated
+reporting and progress tracking. <var class="var">type</var> may be omitted, or one of:
+</p><ul class="itemize mark-bullet">
+<li><var class="var">uncovered</var>
+- Include the uncovered (not taken) paths.  This is the default.
+</li><li><var class="var">covered</var>
+- Include the covered (taken) paths.
+</li><li><var class="var">both</var>
+- Include all paths.  This is equivalent to using both <var class="var">covered</var> and
+<var class="var">uncovered</var>.
+</li></ul>
+
+<p>This is an example of <samp class="option">--prime-paths-lines</samp> output:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">paths covered 12 of 15
+path  2 not covered: lines 8 8(false) 11(true) 11 13(true) 13(true) 14 17
+path  3 not covered: lines 8 8(false) 11(true) 11 13(true) 13(false) 16 17
+path  4 not covered: lines 8 8(false) 11(true) 11 13(false) 16 17
+</pre></div>
+
+<p>This means to cover path 2 you must run lines 8, 11, 13, 14, and 17,
+evaluating the decision at 8 false and the decisions at 11 and 13 to
+<code class="code">false</code>.  <code class="code">&lt;line&gt;(suppress)</code> means that <code class="code">&lt;line&gt;</code> is the
+last line before a sequence of suppressed statements.
+</p>
+</dd>
+<dt><code class="code">--prime-paths-source [=<var class="var">type</var>]</code></dt>
+<dd><p>Write path coverage to the output file, and write path summary info to
+the standard output.  This option allows you to see how many prime paths
+were taken at least once, and detailed report on the uncovered paths an
+how to cover them.  This mode is useful for understanding paths and
+interactions between sections of your program. <var class="var">type</var> may be
+omitted, or one of:
+</p><ul class="itemize mark-bullet">
+<li><var class="var">uncovered</var>
+- Include the uncovered (not taken) paths.  This is the default.
+</li><li><var class="var">covered</var>
+- Include the covered (taken) paths.
+</li><li><var class="var">both</var>
+- Include all paths.  This is equivalent to using both <var class="var">covered</var> and
+<var class="var">uncovered</var>.
+</li></ul>
+
+<p>This is an example of <samp class="option">--prime-paths-source</samp> output:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">path 10 not covered:
+BB  3:           8:  for (i = 0; i &lt; 10; i++)
+BB  3:           9:    total += i;
+BB  4: (false)   8:  for (i = 0; i &lt; 10; i++)
+BB  5: (true)   11:  int v = total &gt; 100 ? 1 : 2;
+BB  6:          11:  int v = total &gt; 100 ? 1 : 2;
+BB  8: (false)  13:  if (total != 45 &amp;&amp; v == 1)
+BB 11:          16:    printf (&quot;Success\n&quot;);
+BB 12:          17:  return 0;
+</pre></div>
+
+<p>The first (BB) column is the sequence of basic blocks (see <samp class="option">-w</samp>).
+The middle column (true/false) is the decision for that line.  The third
+column is the line number.  The fourth column is the line itself.  These
+lines must be run in this order to cover path 10.
+</p>
+</dd>
+<dt><code class="code">-d</code></dt>
+<dt><code class="code">--display-progress</code></dt>
+<dd><p>Display the progress on the standard output.
+</p>
+</dd>
+<dt><code class="code">-f</code></dt>
+<dt><code class="code">--function-summaries</code></dt>
+<dd><p>Output summaries for each function in addition to the file level summary.
+</p>
+</dd>
+<dt><code class="code">--include <var class="var">regex</var></code></dt>
+<dd><p>Include functions matching <var class="var">regex</var>.  This option makes
+<code class="command">gcov</code> only report on functions that match the extended
+regular expression <var class="var">regex</var>.  This flag can be combined with
+<samp class="option">--exclude</samp>.  If a function matches both includes and excludes,
+the last include/exclude applies.  By default <code class="command">gcov</code> reports
+on all functions, but if a <code class="command">--include</code> is used then only
+functions matching the include will be reported.
+</p>
+</dd>
+<dt><code class="code">--exclude <var class="var">regex</var></code></dt>
+<dd><p>Exclude functions matching <var class="var">regex</var>.  This option makes
+<code class="command">gcov</code> not report on functions that match the extended regular
+expression <var class="var">regex</var>.  This flag can be combined with
+<samp class="option">--include</samp>.  If a function matches both includes and excludes,
+the last include/exclude applies.  By default <code class="command">gcov</code> reports
+on all functions, and if <samp class="option">--exclude</samp> is used then functions
+matching it will be omitted.
+</p>
+</dd>
+<dt><code class="code">-h</code></dt>
+<dt><code class="code">--help</code></dt>
+<dd><p>Display help about using <code class="command">gcov</code> (on the standard output), and
+exit without doing any further processing.
+</p>
+</dd>
+<dt><code class="code">-j</code></dt>
+<dt><code class="code">--json-format</code></dt>
+<dd><p>Output gcov file in an easy-to-parse JSON intermediate format
+which does not require source code for generation.  The JSON
+file is compressed with gzip compression algorithm
+and the files have <samp class="file">.gcov.json.gz</samp> extension.
+</p>
+<p>Structure of the JSON is following:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">{
+  &quot;current_working_directory&quot;: &quot;foo/bar&quot;,
+  &quot;data_file&quot;: &quot;a.out&quot;,
+  &quot;format_version&quot;: &quot;2&quot;,
+  &quot;gcc_version&quot;: &quot;11.1.1 20210510&quot;
+  &quot;files&quot;: [&quot;$file&quot;]
+}
+</pre></div>
+
+<p>Fields of the root element have following semantics:
+</p>
+<ul class="itemize mark-bullet">
+<li><var class="var">current_working_directory</var>: working directory where
+a compilation unit was compiled
+
+</li><li><var class="var">data_file</var>: name of the data file (GCDA)
+
+</li><li><var class="var">format_version</var>: semantic version of the format
+
+<p>Changes in version <em class="emph">2</em>:
+</p><ul class="itemize mark-bullet">
+<li><var class="var">calls</var>: information about function calls is added
+</li></ul>
+
+</li><li><var class="var">gcc_version</var>: version of the GCC compiler
+</li></ul>
+
+<p>Each <var class="var">file</var> has the following form:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">{
+  &quot;file&quot;: &quot;a.c&quot;,
+  &quot;functions&quot;: [&quot;$function&quot;],
+  &quot;lines&quot;: [&quot;$line&quot;]
+}
+</pre></div>
+
+<p>Fields of the <var class="var">file</var> element have following semantics:
+</p>
+<ul class="itemize mark-bullet">
+<li><var class="var">file_name</var>: name of the source file
+</li></ul>
+
+<p>Each <var class="var">function</var> has the following form:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">{
+  &quot;blocks&quot;: 2,
+  &quot;blocks_executed&quot;: 2,
+  &quot;demangled_name&quot;: &quot;foo&quot;,
+  &quot;end_column&quot;: 1,
+  &quot;end_line&quot;: 4,
+  &quot;execution_count&quot;: 1,
+  &quot;name&quot;: &quot;foo&quot;,
+  &quot;start_column&quot;: 5,
+  &quot;start_line&quot;: 1
+}
+</pre></div>
+
+<p>Fields of the <var class="var">function</var> element have following semantics:
+</p>
+<ul class="itemize mark-bullet">
+<li><var class="var">blocks</var>: number of blocks that are in the function
+
+</li><li><var class="var">blocks_executed</var>: number of executed blocks of the function
+
+</li><li><var class="var">demangled_name</var>: demangled name of the function
+
+</li><li><var class="var">end_column</var>: column in the source file where the function ends
+
+</li><li><var class="var">end_line</var>: line in the source file where the function ends
+
+</li><li><var class="var">execution_count</var>: number of executions of the function
+
+</li><li><var class="var">name</var>: name of the function
+
+</li><li><var class="var">start_column</var>: column in the source file where the function begins
+
+</li><li><var class="var">start_line</var>: line in the source file where the function begins
+</li></ul>
+
+<p>Note that line numbers and column numbers number from 1.  In the current
+implementation, <var class="var">start_line</var> and <var class="var">start_column</var> do not include
+any template parameters and the leading return type but that
+this is likely to be fixed in the future.
+</p>
+<p>Each <var class="var">line</var> has the following form:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">{
+  &quot;block_ids&quot;: [&quot;$block_id&quot;],
+  &quot;branches&quot;: [&quot;$branch&quot;],
+  &quot;calls&quot;: [&quot;$call&quot;],
+  &quot;count&quot;: 2,
+  &quot;conditions&quot;: [&quot;$condition&quot;],
+  &quot;line_number&quot;: 15,
+  &quot;unexecuted_block&quot;: false,
+  &quot;function_name&quot;: &quot;foo&quot;,
+}
+</pre></div>
+
+<p>Branches and calls are present only with <var class="var">-b</var> option.
+Fields of the <var class="var">line</var> element have following semantics:
+</p>
+<ul class="itemize mark-bullet">
+<li><var class="var">block_ids</var>: IDs of basic blocks that belong to the line
+
+</li><li><var class="var">count</var>: number of executions of the line
+
+</li><li><var class="var">line_number</var>: line number
+
+</li><li><var class="var">unexecuted_block</var>: flag whether the line contains an unexecuted block
+(not all statements on the line are executed)
+
+</li><li><var class="var">function_name</var>: a name of a function this <var class="var">line</var> belongs to
+(for a line with an inlined statements can be not set)
+</li></ul>
+
+<p>Each <var class="var">branch</var> has the following form:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">{
+  &quot;count&quot;: 11,
+  &quot;destination_block_id&quot;: 17,
+  &quot;fallthrough&quot;: true,
+  &quot;source_block_id&quot;: 13,
+  &quot;throw&quot;: false
+}
+</pre></div>
+
+<p>Fields of the <var class="var">branch</var> element have following semantics:
+</p>
+<ul class="itemize mark-bullet">
+<li><var class="var">count</var>: number of executions of the branch
+
+</li><li><var class="var">fallthrough</var>: true when the branch is a fall through branch
+
+</li><li><var class="var">throw</var>: true when the branch is an exceptional branch
+
+</li><li><var class="var">isource_block_id</var>: ID of the basic block where this branch happens
+
+</li><li><var class="var">destination_block_id</var>: ID of the basic block this branch jumps to
+</li></ul>
+
+<p>Each <var class="var">call</var> has the following form:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">{
+  &quot;destination_block_id&quot;: 1,
+  &quot;returned&quot;: 11,
+  &quot;source_block_id&quot;: 13
+}
+</pre></div>
+
+<p>Fields of the <var class="var">call</var> element have following semantics:
+</p>
+<ul class="itemize mark-bullet">
+<li><var class="var">returned</var>: number of times a function call returned (call count is equal
+to <var class="var">line::count</var>)
+
+</li><li><var class="var">isource_block_id</var>: ID of the basic block where this call happens
+
+</li><li><var class="var">destination_block_id</var>: ID of the basic block this calls continues after return
+</li></ul>
+
+<p>Each <var class="var">condition</var> has the following form:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">{
+  &quot;count&quot;: 4,
+  &quot;covered&quot;: 2,
+  &quot;not_covered_false&quot;: [],
+  &quot;not_covered_true&quot;: [0, 1],
+}
+
+</pre></div>
+
+<p>Fields of the <var class="var">condition</var> element have following semantics:
+</p>
+<ul class="itemize mark-bullet">
+<li><var class="var">count</var>: number of condition outcomes in this expression
+
+</li><li><var class="var">covered</var>: number of covered condition outcomes in this expression
+
+</li><li><var class="var">not_covered_true</var>: terms, by index, not seen as true in this expression
+
+</li><li><var class="var">not_covered_false</var>: terms, by index, not seen as false in this expression
+</li></ul>
+
+</dd>
+<dt><code class="code">-H</code></dt>
+<dt><code class="code">--human-readable</code></dt>
+<dd><p>Write counts in human readable format (like 24.6k).
+</p>
+</dd>
+<dt><code class="code">-k</code></dt>
+<dt><code class="code">--use-colors</code></dt>
+<dd>
+<p>Use colors for lines of code that have zero coverage.  We use red color for
+non-exceptional lines and cyan for exceptional.  Same colors are used for
+basic blocks with <samp class="option">-a</samp> option.
+</p>
+</dd>
+<dt><code class="code">-l</code></dt>
+<dt><code class="code">--long-file-names</code></dt>
+<dd><p>Create long file names for included source files.  For example, if the
+header file <samp class="file">x.h</samp> contains code, and was included in the file
+<samp class="file">a.c</samp>, then running <code class="command">gcov</code> on the file <samp class="file">a.c</samp> will
+produce an output file called <samp class="file">a.c##x.h.gcov</samp> instead of
+<samp class="file">x.h.gcov</samp>.  This can be useful if <samp class="file">x.h</samp> is included in
+multiple source files and you want to see the individual
+contributions.  If you use the &lsquo;<samp class="samp">-p</samp>&rsquo; option, both the including
+and included file names will be complete path names.
+</p>
+</dd>
+<dt><code class="code">-m</code></dt>
+<dt><code class="code">--demangled-names</code></dt>
+<dd><p>Display demangled function names in output. The default is to show
+mangled function names.
+</p>
+</dd>
+<dt><code class="code">-M</code></dt>
+<dt><code class="code">--filter-on-demangled</code></dt>
+<dd><p>Make <samp class="option">--include</samp> and <samp class="option">--exclude</samp> match demangled names.
+This does only affects the matching and does not imply
+<samp class="option">--demangled-names</samp>, but it can safely be combined with it.
+</p>
+</dd>
+<dt><code class="code">-n</code></dt>
+<dt><code class="code">--no-output</code></dt>
+<dd><p>Do not create the <code class="command">gcov</code> output file.
+</p>
+</dd>
+<dt><code class="code">-o <var class="var">directory|file</var></code></dt>
+<dt><code class="code">--object-directory <var class="var">directory</var></code></dt>
+<dt><code class="code">--object-file <var class="var">file</var></code></dt>
+<dd><p>Specify either the directory containing the gcov data files, or the
+object path name.  The <samp class="file">.gcno</samp>, and
+<samp class="file">.gcda</samp> data files are searched for using this option.  If a directory
+is specified, the data files are in that directory and named after the
+input file name, without its extension.  If a file is specified here,
+the data files are named after that file, without its extension.
+</p>
+</dd>
+<dt><code class="code">-p</code></dt>
+<dt><code class="code">--preserve-paths</code></dt>
+<dd><p>Preserve complete path information in the names of generated
+<samp class="file">.gcov</samp> files.  Without this option, just the filename component is
+used.  With this option, all directories are used, with &lsquo;<samp class="samp">/</samp>&rsquo; characters
+translated to &lsquo;<samp class="samp">#</samp>&rsquo; characters, <samp class="file">.</samp> directory components
+removed and unremoveable <samp class="file">..</samp>
+components renamed to &lsquo;<samp class="samp">^</samp>&rsquo;.  This is useful if sourcefiles are in several
+different directories.
+</p>
+</dd>
+<dt><code class="code">-q</code></dt>
+<dt><code class="code">--use-hotness-colors</code></dt>
+<dd>
+<p>Emit perf-like colored output for hot lines.  Legend of the color scale
+is printed at the very beginning of the output file.
+</p>
+</dd>
+<dt><code class="code">-r</code></dt>
+<dt><code class="code">--relative-only</code></dt>
+<dd><p>Only output information about source files with a relative pathname
+(after source prefix elision).  Absolute paths are usually system
+header files and coverage of any inline functions therein is normally
+uninteresting.
+</p>
+</dd>
+<dt><code class="code">-s <var class="var">directory</var></code></dt>
+<dt><code class="code">--source-prefix <var class="var">directory</var></code></dt>
+<dd><p>A prefix for source file names to remove when generating the output
+coverage files.  This option is useful when building in a separate
+directory, and the pathname to the source directory is not wanted when
+determining the output file names.  Note that this prefix detection is
+applied before determining whether the source file is absolute.
+</p>
+</dd>
+<dt><code class="code">-t</code></dt>
+<dt><code class="code">--stdout</code></dt>
+<dd><p>Output to standard output instead of output files.
+</p>
+</dd>
+<dt><code class="code">-u</code></dt>
+<dt><code class="code">--unconditional-branches</code></dt>
+<dd><p>When branch probabilities are given, include those of unconditional branches.
+Unconditional branches are normally not interesting.
+</p>
+</dd>
+<dt><code class="code">-v</code></dt>
+<dt><code class="code">--version</code></dt>
+<dd><p>Display the <code class="command">gcov</code> version number (on the standard output),
+and exit without doing any further processing.
+</p>
+</dd>
+<dt><code class="code">-w</code></dt>
+<dt><code class="code">--verbose</code></dt>
+<dd><p>Print verbose information related to basic blocks and arcs.
+</p>
+</dd>
+<dt><code class="code">-x</code></dt>
+<dt><code class="code">--hash-filenames</code></dt>
+<dd><p>When using <var class="var">&ndash;preserve-paths</var>,
+gcov uses the full pathname of the source files to create
+an output filename.  This can lead to long filenames that can overflow
+filesystem limits.  This option creates names of the form
+<samp class="file"><var class="var">source-file</var>##<var class="var">md5</var>.gcov</samp>,
+where the <var class="var">source-file</var> component is the final filename part and
+the <var class="var">md5</var> component is calculated from the full mangled name that
+would have been used otherwise.  The option is an alternative
+to the <var class="var">&ndash;preserve-paths</var> on systems which have a filesystem limit.
+</p>
+</dd>
+</dl>
+
+<p><code class="command">gcov</code> should be run with the current directory the same as that
+when you invoked the compiler.  Otherwise it will not be able to locate
+the source files.  <code class="command">gcov</code> produces files called
+<samp class="file"><var class="var">mangledname</var>.gcov</samp> in the current directory.  These contain
+the coverage information of the source file they correspond to.
+One <samp class="file">.gcov</samp> file is produced for each source (or header) file
+containing code,
+which was compiled to produce the data files.  The <var class="var">mangledname</var> part
+of the output file name is usually simply the source file name, but can
+be something more complicated if the &lsquo;<samp class="samp">-l</samp>&rsquo; or &lsquo;<samp class="samp">-p</samp>&rsquo; options are
+given.  Refer to those options for details.
+</p>
+<p>If you invoke <code class="command">gcov</code> with multiple input files, the
+contributions from each input file are summed.  Typically you would
+invoke it with the same list of files as the final link of your executable.
+</p>
+<p>The <samp class="file">.gcov</samp> files contain the &lsquo;<samp class="samp">:</samp>&rsquo; separated fields along with
+program source code.  The format is
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted"><var class="var">execution_count</var>:<var class="var">line_number</var>:<var class="var">source line text</var>
+</pre></div>
+
+<p>Additional block information may succeed each line, when requested by
+a command-line option.  The <var class="var">execution_count</var> is &lsquo;<samp class="samp">-</samp>&rsquo; for lines
+containing no code.  Unexecuted lines are marked &lsquo;<samp class="samp">#####</samp>&rsquo; or
+&lsquo;<samp class="samp">=====</samp>&rsquo;, depending on whether they are reachable by
+non-exceptional paths or only exceptional paths such as C++ exception
+handlers, respectively. Given the &lsquo;<samp class="samp">-a</samp>&rsquo; option, unexecuted blocks are
+marked &lsquo;<samp class="samp">$$$$$</samp>&rsquo; or &lsquo;<samp class="samp">%%%%%</samp>&rsquo;, depending on whether a basic block
+is reachable via non-exceptional or exceptional paths.  Suppressed lines
+are marked with &lsquo;<samp class="samp">#</samp>&rsquo;.
+Executed basic blocks having a statement with zero <var class="var">execution_count</var>
+end with &lsquo;<samp class="samp">*</samp>&rsquo; character and are colored with magenta color with
+the <samp class="option">-k</samp> option.  This functionality is not supported in Ada.
+</p>
+<p>Note that GCC can completely remove the bodies of functions that are
+not needed &ndash; for instance if they are inlined everywhere.  Such functions
+are marked with &lsquo;<samp class="samp">-</samp>&rsquo;, which can be confusing.
+Use the <samp class="option">-fkeep-inline-functions</samp> and <samp class="option">-fkeep-static-functions</samp>
+options to retain these functions and
+allow gcov to properly show their <var class="var">execution_count</var>.
+</p>
+<p>Some lines of information at the start have <var class="var">line_number</var> of zero.
+These preamble lines are of the form
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">-:0:<var class="var">tag</var>:<var class="var">value</var>
+</pre></div>
+
+<p>The ordering and number of these preamble lines will be augmented as
+<code class="command">gcov</code> development progresses &mdash; do not rely on them remaining
+unchanged.  Use <var class="var">tag</var> to locate a particular preamble line.
+</p>
+<p>The additional block information is of the form
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted"><var class="var">tag</var> <var class="var">information</var>
+</pre></div>
+
+<p>The <var class="var">information</var> is human readable, but designed to be simple
+enough for machine parsing too.
+</p>
+<p>When printing percentages, 0% and 100% are only printed when the values
+are <em class="emph">exactly</em> 0% and 100% respectively.  Other values which would
+conventionally be rounded to 0% or 100% are instead printed as the
+nearest non-boundary value.
+</p>
+<p>When using <code class="command">gcov</code>, you must first compile your program
+with a special GCC option &lsquo;<samp class="samp">--coverage</samp>&rsquo;.
+This tells the compiler to generate additional information needed by
+gcov (basically a flow graph of the program) and also includes
+additional code in the object files for generating the extra profiling
+information needed by gcov.  These additional files are placed in the
+directory where the object file is located.
+</p>
+<p>Running the program will cause profile output to be generated.  For each
+source file compiled with <samp class="option">-fprofile-arcs</samp>, an accompanying
+<samp class="file">.gcda</samp> file will be placed in the object file directory.
+</p>
+<p>Running <code class="command">gcov</code> with your program&rsquo;s source file names as arguments
+will now produce a listing of the code along with frequency of execution
+for each line.  For example, if your program is called <samp class="file">tmp.cpp</samp>, this
+is what you see when you use the basic <code class="command">gcov</code> facility:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">$ g++ --coverage tmp.cpp -c
+$ g++ --coverage tmp.o
+$ a.out
+$ gcov tmp.cpp -m
+File 'tmp.cpp'
+Lines executed:92.86% of 14
+Creating 'tmp.cpp.gcov'
+</pre></div>
+
+<p>The file <samp class="file">tmp.cpp.gcov</samp> contains output from <code class="command">gcov</code>.
+Here is a sample:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">        -:    0:Source:tmp.cpp
+        -:    0:Working directory:/home/gcc/testcase
+        -:    0:Graph:tmp.gcno
+        -:    0:Data:tmp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include &lt;stdio.h&gt;
+        -:    2:
+        -:    3:template&lt;class T&gt;
+        -:    4:class Foo
+        -:    5:{
+        -:    6:  public:
+       1*:    7:  Foo(): b (1000) {}
+------------------
+Foo&lt;char&gt;::Foo():
+    #####:    7:  Foo(): b (1000) {}
+------------------
+Foo&lt;int&gt;::Foo():
+        1:    7:  Foo(): b (1000) {}
+------------------
+       2*:    8:  void inc () { b++; }
+------------------
+Foo&lt;char&gt;::inc():
+    #####:    8:  void inc () { b++; }
+------------------
+Foo&lt;int&gt;::inc():
+        2:    8:  void inc () { b++; }
+------------------
+        -:    9:
+        -:   10:  private:
+        -:   11:  int b;
+        -:   12:};
+        -:   13:
+        -:   14:template class Foo&lt;int&gt;;
+        -:   15:template class Foo&lt;char&gt;;
+        -:   16:
+        -:   17:int
+        1:   18:main (void)
+        -:   19:{
+        -:   20:  int i, total;
+        1:   21:  Foo&lt;int&gt; counter;
+        -:   22:
+        1:   23:  counter.inc();
+        1:   24:  counter.inc();
+        1:   25:  total = 0;
+        -:   26:
+       11:   27:  for (i = 0; i &lt; 10; i++)
+       10:   28:    total += i;
+        -:   29:
+       1*:   30:  int v = total &gt; 100 ? 1 : 2;
+        -:   31:
+        1:   32:  if (total != 45)
+    #####:   33:    printf (&quot;Failure\n&quot;);
+        -:   34:  else
+        1:   35:    printf (&quot;Success\n&quot;);
+        1:   36:  return 0;
+        -:   37:}
+</pre></div>
+
+<p>Note that line 7 is shown in the report multiple times.  First occurrence
+presents total number of execution of the line and the next two belong
+to instances of class Foo constructors.  As you can also see, line 30 contains
+some unexecuted basic blocks and thus execution count has asterisk symbol.
+</p>
+<p>When you use the <samp class="option">-a</samp> option, you will get individual block
+counts, and the output looks like this:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">        -:    0:Source:tmp.cpp
+        -:    0:Working directory:/home/gcc/testcase
+        -:    0:Graph:tmp.gcno
+        -:    0:Data:tmp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include &lt;stdio.h&gt;
+        -:    2:
+        -:    3:template&lt;class T&gt;
+        -:    4:class Foo
+        -:    5:{
+        -:    6:  public:
+       1*:    7:  Foo(): b (1000) {}
+------------------
+Foo&lt;char&gt;::Foo():
+    #####:    7:  Foo(): b (1000) {}
+------------------
+Foo&lt;int&gt;::Foo():
+        1:    7:  Foo(): b (1000) {}
+------------------
+       2*:    8:  void inc () { b++; }
+------------------
+Foo&lt;char&gt;::inc():
+    #####:    8:  void inc () { b++; }
+------------------
+Foo&lt;int&gt;::inc():
+        2:    8:  void inc () { b++; }
+------------------
+        -:    9:
+        -:   10:  private:
+        -:   11:  int b;
+        -:   12:};
+        -:   13:
+        -:   14:template class Foo&lt;int&gt;;
+        -:   15:template class Foo&lt;char&gt;;
+        -:   16:
+        -:   17:int
+        1:   18:main (void)
+        -:   19:{
+        -:   20:  int i, total;
+        1:   21:  Foo&lt;int&gt; counter;
+        1:   21-block  0
+        -:   22:
+        1:   23:  counter.inc();
+        1:   23-block  0
+        1:   24:  counter.inc();
+        1:   24-block  0
+        1:   25:  total = 0;
+        -:   26:
+       11:   27:  for (i = 0; i &lt; 10; i++)
+        1:   27-block  0
+       11:   27-block  1
+       10:   28:    total += i;
+       10:   28-block  0
+        -:   29:
+       1*:   30:  int v = total &gt; 100 ? 1 : 2;
+        1:   30-block  0
+    %%%%%:   30-block  1
+        1:   30-block  2
+        -:   31:
+        1:   32:  if (total != 45)
+        1:   32-block  0
+    #####:   33:    printf (&quot;Failure\n&quot;);
+    %%%%%:   33-block  0
+        -:   34:  else
+        1:   35:    printf (&quot;Success\n&quot;);
+        1:   35-block  0
+        1:   36:  return 0;
+        1:   36-block  0
+        -:   37:}
+</pre></div>
+
+<p>In this mode, each basic block is only shown on one line &ndash; the last
+line of the block.  A multi-line block will only contribute to the
+execution count of that last line, and other lines will not be shown
+to contain code, unless previous blocks end on those lines.
+The total execution count of a line is shown and subsequent lines show
+the execution counts for individual blocks that end on that line.  After each
+block, the branch and call counts of the block will be shown, if the
+<samp class="option">-b</samp> option is given.
+</p>
+<p>Because of the way GCC instruments calls, a call count can be shown
+after a line with no individual blocks.
+As you can see, line 33 contains a basic block that was not executed.
+</p>
+<p>When you use the <samp class="option">-b</samp> option, your output looks like this:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">        -:    0:Source:tmp.cpp
+        -:    0:Working directory:/home/gcc/testcase
+        -:    0:Graph:tmp.gcno
+        -:    0:Data:tmp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include &lt;stdio.h&gt;
+        -:    2:
+        -:    3:template&lt;class T&gt;
+        -:    4:class Foo
+        -:    5:{
+        -:    6:  public:
+       1*:    7:  Foo(): b (1000) {}
+------------------
+Foo&lt;char&gt;::Foo():
+function Foo&lt;char&gt;::Foo() called 0 returned 0% blocks executed 0%
+    #####:    7:  Foo(): b (1000) {}
+------------------
+Foo&lt;int&gt;::Foo():
+function Foo&lt;int&gt;::Foo() called 1 returned 100% blocks executed 100%
+        1:    7:  Foo(): b (1000) {}
+------------------
+       2*:    8:  void inc () { b++; }
+------------------
+Foo&lt;char&gt;::inc():
+function Foo&lt;char&gt;::inc() called 0 returned 0% blocks executed 0%
+    #####:    8:  void inc () { b++; }
+------------------
+Foo&lt;int&gt;::inc():
+function Foo&lt;int&gt;::inc() called 2 returned 100% blocks executed 100%
+        2:    8:  void inc () { b++; }
+------------------
+        -:    9:
+        -:   10:  private:
+        -:   11:  int b;
+        -:   12:};
+        -:   13:
+        -:   14:template class Foo&lt;int&gt;;
+        -:   15:template class Foo&lt;char&gt;;
+        -:   16:
+        -:   17:int
+function main called 1 returned 100% blocks executed 81%
+        1:   18:main (void)
+        -:   19:{
+        -:   20:  int i, total;
+        1:   21:  Foo&lt;int&gt; counter;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:   22:
+        1:   23:  counter.inc();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        1:   24:  counter.inc();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        1:   25:  total = 0;
+        -:   26:
+       11:   27:  for (i = 0; i &lt; 10; i++)
+branch  0 taken 91% (fallthrough)
+branch  1 taken 9%
+       10:   28:    total += i;
+        -:   29:
+       1*:   30:  int v = total &gt; 100 ? 1 : 2;
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:   31:
+        1:   32:  if (total != 45)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   33:    printf (&quot;Failure\n&quot;);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   34:  else
+        1:   35:    printf (&quot;Success\n&quot;);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        1:   36:  return 0;
+        -:   37:}
+</pre></div>
+
+<p>For each function, a line is printed showing how many times the function
+is called, how many times it returns and what percentage of the
+function&rsquo;s blocks were executed.
+</p>
+<p>For each basic block, a line is printed after the last line of the basic
+block describing the branch or call that ends the basic block.  There can
+be multiple branches and calls listed for a single source line if there
+are multiple basic blocks that end on that line.  In this case, the
+branches and calls are each given a number.  There is no simple way to map
+these branches and calls back to source constructs.  In general, though,
+the lowest numbered branch or call will correspond to the leftmost construct
+on the source line.
+</p>
+<p>For a branch, if it was executed at least once, then a percentage
+indicating the number of times the branch was taken divided by the
+number of times the branch was executed will be printed.  Otherwise, the
+message &ldquo;never executed&rdquo; is printed.
+</p>
+<p>For a call, if it was executed at least once, then a percentage
+indicating the number of times the call returned divided by the number
+of times the call was executed will be printed.  This will usually be
+100%, but may be less for functions that call <code class="code">exit</code> or <code class="code">longjmp</code>,
+and thus may not return every time they are called.
+</p>
+<p>When you use the <samp class="option">-g</samp> option, your output looks like this:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">$ gcov -t -m -g tmp
+        -:    0:Source:tmp.cpp
+        -:    0:Graph:tmp.gcno
+        -:    0:Data:tmp.gcda
+        -:    0:Runs:1
+        -:    1:#include &lt;stdio.h&gt;
+        -:    2:
+        -:    3:int
+        1:    4:main (void)
+        -:    5:{
+        -:    6:  int i, total;
+        1:    7:  total = 0;
+        -:    8:
+       11:    9:  for (i = 0; i &lt; 10; i++)
+condition outcomes covered 2/2
+       10:   10:    total += i;
+        -:   11:
+       1*:   12:  int v = total &gt; 100 ? 1 : 2;
+condition outcomes covered 1/2
+condition  0 not covered (true)
+        -:   13:
+       1*:   14:  if (total != 45 &amp;&amp; v == 1)
+condition outcomes covered 1/4
+condition  0 not covered (true)
+condition  1 not covered (true false)
+    #####:   15:    printf (&quot;Failure\n&quot;);
+        -:   16:  else
+        1:   17:    printf (&quot;Success\n&quot;);
+        1:   18:  return 0;
+        -:   19:}
+</pre></div>
+
+<p>For every condition the number of taken and total outcomes are
+printed, and if there are uncovered outcomes a line will be printed
+for each condition showing the uncovered outcome in parentheses.
+Conditions are identified by their index &ndash; index 0 is the left-most
+condition.  In <code class="code">a || (b &amp;&amp; c)</code>, <var class="var">a</var> is condition 0, <var class="var">b</var>
+condition 1, and <var class="var">c</var> condition 2.
+</p>
+<p>An outcome is considered covered if it has an independent effect on
+the decision, also known as masking MC/DC (Modified Condition/Decision
+Coverage).  In this example the decision evaluates to true and <var class="var">a</var>
+is evaluated, but not covered.  This is because <var class="var">a</var> cannot affect
+the decision independently &ndash; both <var class="var">a</var> and <var class="var">b</var> must change
+value for the decision to change.
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">$ gcov -t -m -g tmp
+        -:    0:Source:tmp.c
+        -:    0:Graph:tmp.gcno
+        -:    0:Data:tmp.gcda
+        -:    0:Runs:1
+        -:    1:#include &lt;stdio.h&gt;
+        -:    2:
+        1:    3:int main()
+        -:    4:{
+        1:    5:  int a = 1;
+        1:    6:  int b = 0;
+        -:    7:
+        1:    8:  if (a &amp;&amp; b)
+condition outcomes covered 1/4
+condition  0 not covered (true false)
+condition  1 not covered (true)
+    #####:    9:    printf (&quot;Success!\n&quot;);
+        -:   10:  else
+        1:   11:    printf (&quot;Failure!\n&quot;);
+        -:   12:}
+</pre></div>
+
+<a class="anchor" id="gcov-prime-paths-example"></a><p>When you compile with <samp class="option">--coverage -fpath-coverage</samp> and use the
+option <samp class="option">-e</samp> your output looks like this:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">$ gcov -t -e tmp
+        -:    0:Source:tmp.cpp
+        -:    0:Graph:tmp.gcno
+        -:    0:Data:tmp.gcda
+        -:    0:Runs:1
+        -:    1:#include &lt;stdio.h&gt;
+        -:    2:
+paths covered 4 of 15
+        1:    3:int main ()
+        -:    4:{
+        -:    5:  int i, total;
+        1:    6:  total = 0;
+        -:    7:
+       11:    8:  for (i = 0; i &lt; 10; i++)
+       10:    9:    total += i;
+        -:   10:
+       1*:   11:  int v = total &gt; 100 ? 1 : 2;
+        -:   12:
+       1*:   13:  if (total != 45 &amp;&amp; v == 1)
+    #####:   14:    printf (&quot;Failure\n&quot;);
+        -:   15:  else
+        1:   16:    printf (&quot;Success\n&quot;);
+        1:   17:  return 0;
+        -:   18:}
+</pre></div>
+
+<p>This output is useful to figure out roughly where coverage is missing
+and testing how different inputs change the coverage.  The
+<samp class="option">--prime-paths-source</samp> is a useful tool for understanding paths.
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">$ gcov -t --prime-paths-source tmp
+        -:    0:Source:tmp.cpp
+        -:    0:Graph:tmp.gcno
+        -:    0:Data:tmp.gcda
+        -:    0:Runs:1
+        -:    1:#include &lt;stdio.h&gt;
+        -:    2:
+paths covered 4 of 15
+path 1:
+BB  2:           3:int main ()
+BB  2:           6:  total = 0;
+BB  2:           8:  for (i = 0; i &lt; 10; i++)
+BB  4: (false)   8:  for (i = 0; i &lt; 10; i++)
+BB  5: (true)   11:  int v = total &gt; 100 ? 1 : 2;
+BB  6:          11:  int v = total &gt; 100 ? 1 : 2;
+BB  8: (true)   13:  if (total != 45 &amp;&amp; v == 1)
+BB  9: (true)   13:  if (total != 45 &amp;&amp; v == 1)
+BB 10:          14:    printf (&quot;Failure\n&quot;);
+BB 12:          17:  return 0;
+</pre></div>
+
+<p>In this mode, gcov will print details on the missing paths.  The first
+column lists the sequence of basic blocks (BB).  The second column is
+the decision to take at that line if there is one.  The final columns
+are the line number and the line itself.  This is useful for
+understanding the paths, in particular those that are hard to cover or
+even unreachable.  Lines may be repeated, for example the <code class="code">for</code>
+loop, if the same line is a part of multiple basic blocks.  This mode is
+intended for humans and good at understanding what code is exercised
+under testing or for given inputs.  This output is quite verbose, and
+for focusing on specific functions it can be combined with the filters
+<samp class="option">--include</samp> and <samp class="option">--exclude</samp>.
+</p>
+<p>A denser output is available with <samp class="option">--prime-paths-lines</samp>, which
+looks like this:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">        -:    0:Source:tmp.cpp
+        -:    0:Graph:tmp.gcno
+        -:    0:Data:tmp.gcda
+        -:    0:Runs:1
+        -:    1:#include &lt;stdio.h&gt;
+        -:    2:
+paths covered 4 of 15
+path  1 not covered: lines 8 8(false) 11(true) 11 13(true) 13(true) 14 17
+path  2 not covered: lines 8 8(false) 11(true) 11 13(true) 13(false) 16 17
+path  3 not covered: lines 8 8(false) 11(true) 11 13(false) 16 17
+path  4 not covered: lines 8 8(false) 11(false) 11 13(true) 13(true) 14 17
+path  5 not covered: lines 8 8(false) 11(false) 11 13(true) 13(false) 16 17
+path  6 not covered: lines 8 8(false) 11(false) 11 13(false) 16 17
+path  8 not covered: lines 9 8(false) 11(true) 11 13(true) 13(true) 14 17
+path  9 not covered: lines 9 8(false) 11(true) 11 13(true) 13(false) 16 17
+path 10 not covered: lines 9 8(false) 11(true) 11 13(false) 16 17
+path 11 not covered: lines 9 8(false) 11(false) 11 13(true) 13(true) 14 17
+path 12 not covered: lines 9 8(false) 11(false) 11 13(true) 13(false) 16 17
+        1:    3:int main ()
+        -:    4:{
+</pre></div>
+
+<p>In this mode, every missing path is expanded using the lines and
+decisions like <samp class="option">--prime-paths-source</samp> but printed on a single
+line.  This mode provides a good overview over the paths and for
+tracking how different tests and inputs exercises the code.
+</p>
+<p>Coverage can be suppressed by using
+<code class="code">#pragma GCC suppress_coverage</code>.  The code within <code class="code">begin</code> and
+<code class="code">end</code> will not contribute to coverage totals.  This is very useful
+for unreachable or hard-to-reach code, precondition asserts/contracts,
+or other code that is noise in the coverage report.  Suppressed lines
+are annotated with &lsquo;<samp class="samp">#</samp>&rsquo; in the <var class="var">execution_count</var> column.
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">$ gcov -t tmp
+        -:    0:Source:tmp.c
+        -:    0:Graph:tmp.gcno
+        -:    0:Data:tmp.gcda
+        -:    0:Runs:1
+        -:    1:#include &lt;stdio.h&gt;
+        -:    2:#include &lt;stdlib.h&gt;
+        -:    3:
+        -:    4:int
+        1:    5:main (void)
+        -:    6:{
+        -:    7:  int i, total;
+        1:    8:  total = 0;
+        -:    9:
+       11:   10:  for (i = 0; i &lt; 10; i++)
+       10:   11:    total += i;
+        -:   12:
+        -:   13:#pragma GCC suppress_coverage begin
+        #:   14:  if (i &lt; 0)
+        #:   15:    abort ();
+        -:   16:#pragma GCC suppress_coverage end
+        -:   17:
+       1*:   18:  int v = total &gt; 100 ? 1 : 2;
+        -:   19:
+       1*:   20:  if (total != 45 &amp;&amp; v == 1)
+    #####:   21:    printf (&quot;Failure\n&quot;);
+        -:   22:  else
+        1:   23:    printf (&quot;Success\n&quot;);
+        1:   24:  return 0;
+        -:   25:}
+</pre></div>
+
+<p>New prime paths are computed when code is suppressed by merging the
+suppressed code into a superblocks, and considering any path through the
+superblock as coverage.  This is an example where a full if-then-else is
+suppressed.  Path 4 is <code class="code">total &gt; 100</code> is followed by any path
+through the &lsquo;<samp class="samp">(suppressed)</samp>&rsquo; segment to the <code class="code">return 0</code>.
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">$ gcov -t --prime-paths-source tmp
+path 4 not covered:
+BB  3:             10:  for (i = 0; i &lt; 10; i++)
+BB  3:             11:    total += i;
+BB  4: (false)     10:  for (i = 0; i &lt; 10; i++)
+BB  5: (true)      13:  int v = total &gt; 100 ? 1 : 2;
+BB  6: (suppress)  13:  int v = total &gt; 100 ? 1 : 2;
+BB 12:             21:  return 0;
+
+        1:    5:main (void)
+        -:    6:{
+        -:    7:  int i, total;
+        1:    8:  total = 0;
+        -:    9:
+       11:   10:  for (i = 0; i &lt; 10; i++)
+       10:   11:    total += i;
+        -:   12:
+       1*:   13:  int v = total &gt; 100 ? 1 : 2;
+        -:   14:
+        -:   15:#pragma GCC suppress_coverage begin
+        #:   16:  if (total != 45 &amp;&amp; v == 1)
+        #:   17:    printf (&quot;Failure\n&quot;);
+        -:   18:  else
+        #:   19:    printf (&quot;Success\n&quot;);
+        -:   20:#pragma GCC suppress_coverage end
+        1:   21:  return 0;
+        -:   22:}
+</pre></div>
+
+<p>The execution counts are cumulative.  If the example program were
+executed again without removing the <samp class="file">.gcda</samp> file, the count for the
+number of times each line in the source was executed would be added to
+the results of the previous run(s).  This is potentially useful in
+several ways.  For example, it could be used to accumulate data over a
+number of program runs as part of a test verification suite, or to
+provide more accurate long-term information over a large number of
+program runs.
+</p>
+<p>The data in the <samp class="file">.gcda</samp> files is saved immediately before the program
+exits.  For each source file compiled with <samp class="option">-fprofile-arcs</samp>, the
+profiling code first attempts to read in an existing <samp class="file">.gcda</samp> file; if
+the file doesn&rsquo;t match the executable (differing number of basic block
+counts) it will ignore the contents of the file.  It then adds in the
+new execution counts and finally writes the data to the file.
+</p>
+<p>You can report on a subset of functions by using <samp class="option">--include</samp>
+and <samp class="option">--exclude</samp>.  This is very useful when combined with
+<samp class="option">--stdout</samp> trying to understand behavior and coverage for a
+particular function by running a test, looking at <code class="command">gcov</code>
+output, testing another input, and running <code class="command">gcov</code> again.
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">$ gcov -m --stdout --include inc tmp
+        -:    0:Source:tmp.cpp
+        -:    0:Graph:tmp.gcno
+        -:    0:Data:tmp.gcda
+        -:    0:Runs:1
+       2*:    8:  void inc () { b++; }
+------------------
+Foo&lt;char&gt;::inc():
+    #####:    8:  void inc () { b++; }
+------------------
+Foo&lt;int&gt;::inc():
+        2:    8:  void inc () { b++; }
+------------------
+</pre></div>
+
+<p><code class="command">gcov</code> will match on mangled names by default, which you can
+control with the <samp class="option">-M</samp> flag.  Note that matching and reporting
+are independent, so you can match on mangled names while printing
+demangled names, and vice versa.  To report on the <code class="code">int</code>
+instantiation of <code class="code">Foo</code> matching on mangled and demangled names:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">$ gcov -t -m -M tmp --include 'Foo&lt;int&gt;'
+        -:    0:Source:tmp.cpp
+        -:    0:Graph:tmp.gcno
+        -:    0:Data:tmp.gcda
+        -:    0:Runs:1
+        1:    7:  Foo(): b (1000) {}
+        2:    8:  void inc () { b++; }
+</pre></div>
+
+<div class="example smallexample">
+<pre class="example-preformatted">$ gcov -t -m tmp --include 'FooIi'
+        -:    0:Source:tmp.cpp
+        -:    0:Graph:tmp.gcno
+        -:    0:Data:tmp.gcda
+        -:    0:Runs:1
+        1:    7:  Foo(): b (1000) {}
+        2:    8:  void inc () { b++; }
+</pre></div>
+
+<p>The arguments to <samp class="option">--include</samp> and <samp class="option">--exclude</samp> are
+extended regular expressions (like <code class="command">grep -E</code>), so the pattern
+<code class="code">in.?</code> matches both <code class="code">inc</code> and <code class="code">main</code>.  If used with
+<samp class="option">-M</samp> then all <code class="code">int</code> instantiations of <code class="code">Foo</code> would
+match too.  <samp class="option">--include</samp> and <samp class="option">--exclude</samp> can be used
+multiple times, and if a name matches multiple filters it is the last
+one to match which takes preference.  For example, to match
+<code class="code">main</code> and the <code class="code">int</code> instantiation of <code class="code">inc</code>, while
+omitting the <code class="code">Foo</code> constructor:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">$ gcov -t -m -M --include in --exclude Foo --include '&lt;int&gt;::inc' tmp
+        -:    0:Source:tmp.cpp
+        -:    0:Graph:tmp.gcno
+        -:    0:Data:tmp.gcda
+        -:    0:Runs:1
+        2:    8:  void inc () { b++; }
+        1:   18:main (void)
+        -:   19:{
+        -:   20:  int i, total;
+        1:   21:  Foo&lt;int&gt; counter;
+        -:   22:
+        1:   23:  counter.inc();
+        1:   24:  counter.inc();
+        1:   25:  total = 0;
+        -:   26:
+       11:   27:  for (i = 0; i &lt; 10; i++)
+       10:   28:    total += i;
+        -:   29:
+       1*:   30:  int v = total &gt; 100 ? 1 : 2;
+        -:   31:
+        1:   32:  if (total != 45)
+    #####:   33:    printf (&quot;Failure\n&quot;);
+        -:   34:  else
+        1:   35:    printf (&quot;Success\n&quot;);
+        1:   36:  return 0;
+</pre></div>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="Gcov-and-Optimization.html">Using <code class="command">gcov</code> with GCC Optimization</a>, Previous: <a href="Gcov-Intro.html">Introduction to <code class="command">gcov</code></a>, Up: <a href="Gcov.html"><code class="command">gcov</code>&mdash;a Test Coverage Program</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Indices.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

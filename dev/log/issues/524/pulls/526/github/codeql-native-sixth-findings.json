@@ -1,0 +1,8 @@
+[
+  {
+    "rule": "cpp/unused-static-variable",
+    "file": "cpp/Platform.Data.Doublets/ILinksExtensions.h",
+    "line": 252,
+    "message": "Static variable restrictionPack is never read."
+  }
+]

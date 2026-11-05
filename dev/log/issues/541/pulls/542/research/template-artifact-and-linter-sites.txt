@@ -1,0 +1,52 @@
+/tmp/issue-541-templates/csharp/.github/workflows/workflows.yml:28:  actionlint:
+/tmp/issue-541-templates/csharp/.github/workflows/workflows.yml:34:      group: check-${{ github.workflow }}-${{ github.ref }}-actionlint
+/tmp/issue-541-templates/csharp/.github/workflows/workflows.yml:43:      # The Docker image bundles shellcheck and pyflakes, so this also lints
+/tmp/issue-541-templates/csharp/.github/workflows/workflows.yml:46:      # A *native* actionlint binary without shellcheck on PATH silently skips
+/tmp/issue-541-templates/csharp/.github/workflows/workflows.yml:55:      #   docker pull rhysd/actionlint:<tag> &&
+/tmp/issue-541-templates/csharp/.github/workflows/workflows.yml:56:      #   docker inspect --format='{{index .RepoDigests 0}}' rhysd/actionlint:<tag>
+/tmp/issue-541-templates/csharp/.github/workflows/workflows.yml:58:        uses: docker://rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 # v1.7.12
+/tmp/issue-541-templates/rust/.github/workflows/desktop-release.yml:153:      - uses: actions/download-artifact@v8
+/tmp/issue-541-templates/rust/.github/workflows/desktop-release.yml:159:      - uses: actions/download-artifact@v8
+/tmp/issue-541-templates/rust/.github/workflows/release.yml:1103:        # The `$/` self-repository form zizmor prefers is rejected by actionlint
+/tmp/issue-541-templates/rust/.github/workflows/release.yml:1105:        # actionlint understands the July 2026 syntax.
+/tmp/issue-541-templates/rust/.github/workflows/release.yml:1157:        uses: actions/download-artifact@v8
+/tmp/issue-541-templates/rust/.github/workflows/workflows.yml:21:  actionlint:
+/tmp/issue-541-templates/rust/.github/workflows/workflows.yml:26:      group: check-${{ github.workflow }}-${{ github.ref }}-actionlint
+/tmp/issue-541-templates/rust/.github/workflows/workflows.yml:33:      # The Docker image bundles shellcheck and pyflakes, so this also lints
+/tmp/issue-541-templates/rust/.github/workflows/workflows.yml:34:      # every `run:` block. A *native* actionlint binary without shellcheck on
+/tmp/issue-541-templates/rust/.github/workflows/workflows.yml:39:      # windows-11-arm), so the old .github/actionlint.yaml false-positive
+/tmp/issue-541-templates/rust/.github/workflows/workflows.yml:46:      #   docker pull rhysd/actionlint:<tag> &&
+/tmp/issue-541-templates/rust/.github/workflows/workflows.yml:47:      #   docker inspect --format='{{index .RepoDigests 0}}' rhysd/actionlint:<tag>
+/tmp/issue-541-templates/rust/.github/workflows/workflows.yml:48:      - uses: docker://rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 # v1.7.12
+/tmp/issue-541-templates/rust/.github/workflows/workflows.yml:50:          # Remove this narrow schema exception once rhysd/actionlint#654 ships.
+/tmp/issue-541-templates/rust/.github/workflows/workflows.yml:67:      # actionlint cannot see workflow *security* defects: unpinned third-party
+/tmp/issue-541-templates/rust/.github/workflows/workflows.yml:100:      # importing the noise. Measured: after the digest pin of the actionlint
+/tmp/issue-541-templates/rust/.github/workflows/workflows.yml:112:  # actionlint checks inline run blocks; this covers standalone scripts too.
+/tmp/issue-541-templates/rust/.github/workflows/workflows.yml:156:      - actionlint
+/tmp/issue-541-templates/cpp/.github/workflows/workflows.yml:7:# (python template issue #62). actionlint validates the schema and, through shellcheck, every
+/tmp/issue-541-templates/cpp/.github/workflows/workflows.yml:31:  actionlint:
+/tmp/issue-541-templates/cpp/.github/workflows/workflows.yml:36:      group: check-${{ github.workflow }}-${{ github.ref }}-actionlint
+/tmp/issue-541-templates/cpp/.github/workflows/workflows.yml:45:      # The Docker image bundles shellcheck and pyflakes, so this lints every
+/tmp/issue-541-templates/cpp/.github/workflows/workflows.yml:46:      # `run:` block too. A native actionlint binary without shellcheck on
+/tmp/issue-541-templates/cpp/.github/workflows/workflows.yml:61:      #   docker pull rhysd/actionlint:<tag> &&
+/tmp/issue-541-templates/cpp/.github/workflows/workflows.yml:62:      #   docker inspect --format='{{index .RepoDigests 0}}' rhysd/actionlint:<tag>
+/tmp/issue-541-templates/cpp/.github/workflows/workflows.yml:64:        uses: docker://rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 # v1.7.12
+/tmp/issue-541-templates/cpp/.github/workflows/workflows.yml:68:  # actionlint validates workflow schema and shell; it does not detect
+/tmp/issue-541-templates/cpp/.github/workflows/workflows.yml:115:      # actionlint image above it reports nothing, and stays silent until
+/tmp/issue-541-templates/cpp/.github/workflows/workflows.yml:131:      - actionlint
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:3:# actionlint validates workflow schema and shellchecks inline run blocks.
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:4:# Documented queue: max syntax is temporarily exempted in .github/actionlint.yaml
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:5:# until rhysd/actionlint#654 ships; all other unknown keys remain errors.
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:32:  actionlint:
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:37:      group: check-${{ github.workflow }}-${{ github.ref }}-actionlint
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:46:      # The Docker image bundles shellcheck and pyflakes, so this lints every
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:47:      # `run:` block too. A native actionlint binary without shellcheck on
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:62:      #   docker pull rhysd/actionlint:<tag> &&
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:63:      #   docker inspect --format='{{index .RepoDigests 0}}' rhysd/actionlint:<tag>
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:65:        uses: docker://rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 # v1.7.12
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:69:  # actionlint validates workflow schema and shell; it does not detect
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:112:      # actionlint image above it reports nothing, and stays silent until
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:123:  # actionlint checks inline workflow shells; standalone scripts need this pass.
+/tmp/issue-541-templates/python/.github/workflows/workflows.yml:146:      - actionlint
+/tmp/issue-541-templates/python/.github/workflows/release.yml:615:        uses: actions/download-artifact@v8
+/tmp/issue-541-templates/python/.github/workflows/release.yml:932:        uses: actions/download-artifact@v8

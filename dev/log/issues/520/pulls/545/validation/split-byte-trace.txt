@@ -1,0 +1,134 @@
+initial: value=1
+Count=4
+  1: 1, 1
+  3: 1, 2
+  4: 2, 1
+  5: 236, 1
+initial: value=2
+Count=4
+  4: 2, 1
+  2: 2, 2
+  6: 2, 236
+  3: 1, 2
+initial: value=0
+Count=0
+initial: value=50
+Count=0
+initial: value=236
+Count=2
+  5: 236, 1
+  6: 2, 236
+created empty: value=1
+Count=4
+  1: 1, 1
+  3: 1, 2
+  4: 2, 1
+  5: 236, 1
+created empty: value=2
+Count=4
+  4: 2, 1
+  2: 2, 2
+  6: 2, 236
+  3: 1, 2
+created empty: value=0
+Count=1
+  7: 0, 0
+created empty: value=50
+Count=0
+created empty: value=236
+Count=2
+  5: 236, 1
+  6: 2, 236
+deleted empty: value=1
+Count=4
+  1: 1, 1
+  3: 1, 2
+  4: 2, 1
+  5: 236, 1
+deleted empty: value=2
+Count=4
+  4: 2, 1
+  2: 2, 2
+  6: 2, 236
+  3: 1, 2
+deleted empty: value=0
+Count=0
+deleted empty: value=50
+Count=0
+deleted empty: value=236
+Count=2
+  5: 236, 1
+  6: 2, 236
+updated sourceOnly: value=1
+Count=3
+  1: 1, 1
+  4: 2, 1
+  5: 236, 1
+updated sourceOnly: value=2
+Count=4
+  4: 2, 1
+  2: 2, 2
+  3: 2, 3
+  6: 2, 236
+updated sourceOnly: value=0
+Count=0
+updated sourceOnly: value=50
+Count=0
+updated sourceOnly: value=236
+Count=2
+  5: 236, 1
+  6: 2, 236
+reset targetOnly: value=1
+Count=2
+  1: 1, 1
+  5: 236, 1
+reset targetOnly: value=2
+Count=3
+  2: 2, 2
+  3: 2, 3
+  6: 2, 236
+reset targetOnly: value=0
+Count=1
+  4: 0, 0
+reset targetOnly: value=50
+Count=0
+reset targetOnly: value=236
+Count=2
+  5: 236, 1
+  6: 2, 236
+deleted targetOnly: value=1
+Count=2
+  1: 1, 1
+  5: 236, 1
+deleted targetOnly: value=2
+Count=3
+  2: 2, 2
+  3: 2, 3
+  6: 2, 236
+deleted targetOnly: value=0
+Count=0
+deleted targetOnly: value=50
+Count=0
+deleted targetOnly: value=236
+Count=2
+  5: 236, 1
+  6: 2, 236
+reused targetOnly: value=1
+Count=3
+  1: 1, 1
+  4: 2, 1
+  5: 236, 1
+reused targetOnly: value=2
+Count=4
+  4: 2, 1
+  2: 2, 2
+  3: 2, 3
+  6: 2, 236
+reused targetOnly: value=0
+Count=0
+reused targetOnly: value=50
+Count=0
+reused targetOnly: value=236
+Count=2
+  5: 236, 1
+  6: 2, 236

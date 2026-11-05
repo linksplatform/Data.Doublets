@@ -1,0 +1,3251 @@
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 1 minute ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* links / links (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  * Check maintained Markdown links
+  * Recheck unanswered requests with bounded backoff
+  * Suggest archived replacements
+  * Require valid live links
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* security / audit (ID 123343123988)
+  ✓ Set up job
+  * Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  * Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Audit all NuGet dependencies, including transitive packages
+  * Scan repository history for credentials
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  * Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Resolve native dependencies for accurate macro and template analysis
+  * Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* security / codeql (actions) (ID 123343124112)
+  ✓ Set up job
+  * Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  * Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Resolve native dependencies for accurate macro and template analysis
+  * Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* security / codeql (csharp) (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  * Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Resolve native dependencies for accurate macro and template analysis
+  * Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* csharp (ubuntu-24.04) (ID 123343124357)
+  ✓ Set up job
+  * Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  * Prepare current merge and automatic release versions
+  * Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Restore, build, test, package and consume
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* csharp (windows-2025) (ID 123343124385)
+  ✓ Set up job
+  * Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  * Prepare current merge and automatic release versions
+  * Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Restore, build, test, package and consume
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* docs (ID 123343124477)
+  ✓ Set up job
+  * Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  * Prepare current merge and automatic release versions
+  * Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Build API documentation and Unicode source PDF
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (clang-sanitized) (ID 123343124478)
+  ✓ Set up job
+  * Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  * Prepare current merge and automatic release versions
+  * Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Set compiler
+  * Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (clang) (ID 123343124489)
+  ✓ Set up job
+  * Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  * Prepare current merge and automatic release versions
+  * Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Set compiler
+  * Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (gcc) (ID 123343124528)
+  ✓ Set up job
+  * Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  * Prepare current merge and automatic release versions
+  * Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Set compiler
+  * Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 1 minute ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / audit (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  * Scan repository history for credentials
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  * Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* security / codeql (actions) (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* security / codeql (csharp) (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* csharp (ubuntu-24.04) (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Restore, build, test, package and consume
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* csharp (windows-2025) (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  * Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Restore, build, test, package and consume
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* docs (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Build API documentation and Unicode source PDF
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (clang-sanitized) (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (clang) (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  * Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (gcc) (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 2 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / audit (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  * Scan repository history for credentials
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  * Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (csharp) (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* csharp (windows-2025) (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Restore, build, test, package and consume
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* docs (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Build API documentation and Unicode source PDF
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (clang-sanitized) (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (clang) (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (gcc) (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 2 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  * Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (csharp) (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* csharp (windows-2025) (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Restore, build, test, package and consume
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* docs (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (clang-sanitized) (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (clang) (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (gcc) (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 3 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  * Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (csharp) (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* csharp (windows-2025) (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Restore, build, test, package and consume
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ docs in 1m34s (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* cpp (clang-sanitized) (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (clang) (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (gcc) (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 3 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  * Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (csharp) in 2m3s (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (windows-2025) in 2m15s (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ docs in 1m34s (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* cpp (clang-sanitized) (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (clang) (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (gcc) (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 3 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  * Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (csharp) in 2m3s (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (windows-2025) in 2m15s (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ docs in 1m34s (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* cpp (clang-sanitized) (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (clang) (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (gcc) (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 4 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  * Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (csharp) in 2m3s (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (windows-2025) in 2m15s (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ docs in 1m34s (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* cpp (clang-sanitized) (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (clang) (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (gcc) (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  ✓ Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 4 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  * Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (csharp) in 2m3s (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (windows-2025) in 2m15s (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ docs in 1m34s (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* cpp (clang-sanitized) (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+* cpp (clang) (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ cpp (gcc) in 3m29s (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  ✓ Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 5 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  ✓ Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (csharp) in 2m3s (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (windows-2025) in 2m15s (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ docs in 1m34s (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* cpp (clang-sanitized) (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ cpp (clang) in 4m11s (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  ✓ Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (gcc) in 3m29s (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  ✓ Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 5 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  ✓ Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (csharp) in 2m3s (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (windows-2025) in 2m15s (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ docs in 1m34s (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* cpp (clang-sanitized) (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ cpp (clang) in 4m11s (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  ✓ Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (gcc) in 3m29s (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  ✓ Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 6 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  ✓ Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (csharp) in 2m3s (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (windows-2025) in 2m15s (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ docs in 1m34s (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* cpp (clang-sanitized) (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  * Build and execute discovered tests
+  * Collect native coverage
+  * Compile benchmarks and run a bounded smoke test
+  * Static analysis with the native compilation database
+  * Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ cpp (clang) in 4m11s (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  ✓ Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (gcc) in 3m29s (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  ✓ Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 6 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  ✓ Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (csharp) in 2m3s (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (windows-2025) in 2m15s (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ docs in 1m34s (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* cpp (clang-sanitized) (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  * Package C++ headers and validate native NuGet consumer
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ cpp (clang) in 4m11s (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  ✓ Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (gcc) in 3m29s (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  ✓ Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 7 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  ✓ Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (csharp) in 2m3s (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (windows-2025) in 2m15s (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ docs in 1m34s (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (clang-sanitized) in 5m48s (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (clang) in 4m11s (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  ✓ Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (gcc) in 3m29s (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  ✓ Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 7 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  ✓ Trace the real native build and execute its tests
+  * Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Reject all CodeQL findings and incomplete reports
+  * Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  * Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (csharp) in 2m3s (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (windows-2025) in 2m15s (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ docs in 1m34s (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (clang-sanitized) in 5m48s (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (clang) in 4m11s (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  ✓ Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (gcc) in 3m29s (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  ✓ Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+Refreshing run status every 25 seconds. Press Ctrl+C to quit.
+
+* issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 7 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+* security / codeql (c-cpp) (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  ✓ Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  * Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  * Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (csharp) in 2m3s (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (windows-2025) in 2m15s (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ docs in 1m34s (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (clang-sanitized) in 5m48s (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (clang) in 4m11s (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  ✓ Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (gcc) in 3m29s (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  ✓ Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+- credentials in 0s (ID 123343125306)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+✓ issue-524-b1512fd1c7a8 CI linksplatform/Data.Doublets#526 · 40842727244
+Triggered via pull_request about 8 minutes ago
+
+JOBS
+✓ changes in 14s (ID 123342757861)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run python3 scripts/changes.py
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ quality in 35s (ID 123342876773)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Validate current merge with main
+  ✓ Check workflow syntax and shell commands
+  ✓ Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Run pipeline regression tests
+  ✓ Install native formatting tool
+  ✓ Check native formatting
+  ✓ Validate changesets and prohibit manual version edits
+  ✓ Validate repository configuration
+  ✓ Explain publishing requirements on pull requests
+  ✓ Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ links / links in 14s (ID 123343123953)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Check maintained Markdown links
+  - Recheck unanswered requests with bounded backoff
+  - Suggest archived replacements
+  - Require valid live links
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / audit in 1m8s (ID 123343123988)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Audit all NuGet dependencies, including transitive packages
+  ✓ Scan repository history for credentials
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (c-cpp) in 7m3s (ID 123343124044)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Resolve native dependencies for accurate macro and template analysis
+  ✓ Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (actions) in 44s (ID 123343124112)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ security / codeql (csharp) in 2m3s (ID 123343124161)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  - Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  - Resolve native dependencies for accurate macro and template analysis
+  - Trace the real native build and execute its tests
+  ✓ Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Reject all CodeQL findings and incomplete reports
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (ubuntu-24.04) in 56s (ID 123343124357)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ csharp (windows-2025) in 2m15s (ID 123343124385)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Restore, build, test, package and consume
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ docs in 1m34s (ID 123343124477)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Build API documentation and Unicode source PDF
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (clang-sanitized) in 5m48s (ID 123343124478)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (clang) in 4m11s (ID 123343124489)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  - Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  ✓ Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+✓ cpp (gcc) in 3m29s (ID 123343124528)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Prepare current merge and automatic release versions
+  ✓ Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Set compiler
+  ✓ Install pinned dependencies
+  ✓ Build and execute discovered tests
+  ✓ Collect native coverage
+  ✓ Compile benchmarks and run a bounded smoke test
+  - Static analysis with the native compilation database
+  ✓ Compile C and C++ FFI declarations
+  ✓ Package C++ headers and validate native NuGet consumer
+  ✓ Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+  ✓ Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+  ✓ Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+- credentials in 0s (ID 123343125306)
+✓ required in 10s (ID 123345978712)
+  ✓ Set up job
+  ✓ Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Require every applicable validation
+  ✓ Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+  ✓ Complete job
+- publish in 0s (ID 123345979238)
+
+ANNOTATIONS
+- GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality: .github#6
+
+- NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality: .github#5
+
+- publish skipped: event/change prerequisites did not require this job
+quality: .github#33
+
+- csharp skipped: event/change prerequisites did not require this job
+quality: .github#32
+
+- credentials skipped: event/change prerequisites did not require this job
+quality: .github#31
+
+- publish skipped: event/change prerequisites did not require this job
+required: .github#50
+
+- credentials skipped: event/change prerequisites did not require this job
+required: .github#49
+

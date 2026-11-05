@@ -1,0 +1,15 @@
+14534:                search = new Buffer(search);
+14674:            search = new Buffer(search);
+16637:            //var buf = new Buffer(orig.length - howMany);
+16638:            var buf0 = new Buffer(start);
+16643:            var buf1 = new Buffer(orig.length - start - howMany);
+16708:    var target = new Buffer(j - i);
+16755:        needle = new Buffer(needle);
+27540: * _.isBuffer(new Buffer(2));
+39922:        new Buffer(connectOptions.proxyAuth).toString('base64');
+67532:    this.data = new Buffer('');
+67575:        this.data = new Buffer('');
+67720:    this.data = new Buffer('');
+67982:        var pattern = new Buffer(4);
+68338:                this.data = new Buffer('');
+68351:            this.data = new Buffer('');

@@ -1,0 +1,13 @@
+
+Authentication required for the CVE provider: 'conancenter'
+
+To resolve, please:
+  1. Visit: https://conan.io/audit/register
+  2. Register to obtain the access token and activate it.
+  3. Use the command below to authenticate:
+
+     conan audit provider auth conancenter --token=<your_token>
+
+Once authenticated, re-run the command.
+
+ERROR: Missing authentication token. Please authenticate and retry.

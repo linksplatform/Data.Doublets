@@ -16,7 +16,7 @@ public unsafe class InternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress> : 
 {
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="InternalLinksTargetsSizeBalancedTreeMethods" /> instance.
+    ///         Initializes a new <see cref="InternalLinksTargetsSizeBalancedTreeMethods{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -298,6 +298,6 @@ public unsafe class InternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress> : 
     /// </returns>
     public override TLinkAddress Search(TLinkAddress source, TLinkAddress target)
     {
-        return  SearchCore(root: GetTreeRoot(link: target), key: source);
+        return SearchCore(root: GetTreeRoot(link: target), key: source);
     }
 }

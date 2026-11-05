@@ -18,7 +18,7 @@ public class LinksUniquenessValidator<TLinkAddress> : LinksDecoratorBase<TLinkAd
 {
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksUniquenessValidator" /> instance.
+    ///         Initializes a new <see cref="LinksUniquenessValidator{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -29,6 +29,7 @@ public class LinksUniquenessValidator<TLinkAddress> : LinksDecoratorBase<TLinkAd
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public LinksUniquenessValidator(ILinks<TLinkAddress> links) : base(links: links) { }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Updates the restriction.
@@ -51,7 +52,6 @@ public class LinksUniquenessValidator<TLinkAddress> : LinksDecoratorBase<TLinkAd
     public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
     {
         var links = _links;
-        var constants = _constants;
         links.EnsureDoesNotExists(source: links.GetSource(link: substitution), target: links.GetTarget(link: substitution));
         return links.Update(restriction: restriction, substitution: substitution, handler: handler);
     }

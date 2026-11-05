@@ -1,0 +1,38 @@
+6 warnings generated.
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h:25:19: error: Value stored to '_' during its initialization is never read [clang-analyzer-deadcode.DeadStores,-warnings-as-errors]
+   25 |         for (auto _ : state)
+      |                   ^ ~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h:25:19: note: Value stored to '_' during its initialization is never read
+   25 |         for (auto _ : state)
+      |                   ^ ~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h:37:19: error: Value stored to '_' during its initialization is never read [clang-analyzer-deadcode.DeadStores,-warnings-as-errors]
+   37 |         for (auto _ : state)
+      |                   ^ ~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h:37:19: note: Value stored to '_' during its initialization is never read
+   37 |         for (auto _ : state)
+      |                   ^ ~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h:49:19: error: Value stored to '_' during its initialization is never read [clang-analyzer-deadcode.DeadStores,-warnings-as-errors]
+   49 |         for (auto _ : state)
+      |                   ^ ~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h:49:19: note: Value stored to '_' during its initialization is never read
+   49 |         for (auto _ : state)
+      |                   ^ ~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h:61:19: error: Value stored to '_' during its initialization is never read [clang-analyzer-deadcode.DeadStores,-warnings-as-errors]
+   61 |         for (auto _ : state)
+      |                   ^ ~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h:61:19: note: Value stored to '_' during its initialization is never read
+   61 |         for (auto _ : state)
+      |                   ^ ~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.h:10:19: error: Value stored to '_' during its initialization is never read [clang-analyzer-deadcode.DeadStores,-warnings-as-errors]
+   10 |         for (auto _ : state)
+      |                   ^ ~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.h:10:19: note: Value stored to '_' during its initialization is never read
+   10 |         for (auto _ : state)
+      |                   ^ ~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.h:37:19: error: Value stored to '_' during its initialization is never read [clang-analyzer-deadcode.DeadStores,-warnings-as-errors]
+   37 |         for (auto _ : state)
+      |                   ^ ~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.h:37:19: note: Value stored to '_' during its initialization is never read
+   37 |         for (auto _ : state)
+      |                   ^ ~
+6 warnings treated as errors

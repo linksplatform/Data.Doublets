@@ -1,0 +1,549 @@
+{
+  "analyzed": true,
+  "data": [
+    {
+      "commitIssue": {
+        "issueId": "1d5894b7524b99a48103ecc87622a0b7",
+        "resultDataId": 131557766090,
+        "filePath": "experiments/issue-520/README.md",
+        "fileId": 242550021598,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 27,
+        "message": "Expected: 80; Actual: 86",
+        "language": "Markdown",
+        "lineText": "| Callback flow | Early Break in source and target passes; Continue after completion |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "44e0d9ab0311a8c679ad72919df08e6a",
+        "resultDataId": 131557766092,
+        "filePath": "experiments/issue-520/README.md",
+        "fileId": 242550021598,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 23,
+        "message": "Expected: 80; Actual: 83",
+        "language": "Markdown",
+        "lineText": "| United and split, plain and decorated | All four combinations in both languages |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "ba9b0d9ac1230d0a1417959c0c3a8da6",
+        "resultDataId": 131557766096,
+        "filePath": "experiments/issue-520/README.md",
+        "fileId": 242550021598,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 30,
+        "message": "Expected: 80; Actual: 93",
+        "language": "Markdown",
+        "lineText": "| Index maintenance | Update, deletion and free-slot reuse before repeating the scan oracle |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "e477bac4f61c91d15ac45933a4bc73a7",
+        "resultDataId": 131557766091,
+        "filePath": "experiments/issue-520/README.md",
+        "fileId": 242550021598,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 29,
+        "message": "Expected: 80; Actual: 97",
+        "language": "Markdown",
+        "lineText": "| Deletion callers | Snapshot deletion checks that each address still exists before deleting it |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "d4099cd3c80e2797d8ecebe993da7def",
+        "resultDataId": 131557766087,
+        "filePath": "experiments/issue-520/README.md",
+        "fileId": 242550021598,
+        "patternInfo": {
+          "id": "markdownlint_MD043",
+          "category": "BestPractice",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 1,
+        "message": "Expected: [None]; Actual: # Either-endpoint query regression",
+        "language": "Markdown",
+        "lineText": "# Either-endpoint query regression",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "52740135d3eedb95d7cdc5b859ba2128",
+        "resultDataId": 131557766093,
+        "filePath": "experiments/issue-520/README.md",
+        "fileId": 242550021598,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 25,
+        "message": "Expected: 80; Actual: 116",
+        "language": "Markdown",
+        "lineText": "| Endpoint union and distinct records | Scan oracle, internal/external/null/missing endpoints, raw duplicate pairs |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "f256cb7b3d30e31201ceff00a7f07212",
+        "resultDataId": 131557766094,
+        "filePath": "experiments/issue-520/README.md",
+        "fileId": 242550021598,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 24,
+        "message": "Expected: 80; Actual: 132",
+        "language": "Markdown",
+        "lineText": "| Supported C# index implementations | United default/AVL; split default/size-balanced/recursionless, with both source-index modes |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "b9f5d9c1e3cec3e77264499fdd81c7d8",
+        "resultDataId": 131557766095,
+        "filePath": "experiments/issue-520/README.md",
+        "fileId": 242550021598,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 28,
+        "message": "Expected: 80; Actual: 91",
+        "language": "Markdown",
+        "lineText": "| Existing query forms | Wildcard and concrete-index assertions; complete existing suites |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "2ca102caecaf4215795fac5ada191fe",
+        "resultDataId": 131557766089,
+        "filePath": "dev/log/issues/520/pulls/545/README.md",
+        "fileId": 242550021267,
+        "patternInfo": {
+          "id": "markdownlint_MD043",
+          "category": "BestPractice",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 1,
+        "message": "Expected: [None]; Actual: # Issue 520 verification",
+        "language": "Markdown",
+        "lineText": "# Issue 520 verification",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "dd4eeb2bb2715582f6c7dec0f85ca351",
+        "resultDataId": 131557766088,
+        "filePath": "experiments/issue-520/README.md",
+        "fileId": 242550021598,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 22,
+        "message": "Expected: 80; Actual: 100",
+        "language": "Markdown",
+        "lineText": "| Original count and visit order | Separate C# Count/Each reproductions; C++ original reproduction |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "1f7adbe39bacf6bc933939bd2495148f",
+        "resultDataId": 131557766131,
+        "filePath": "csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs",
+        "fileId": 242550021538,
+        "patternInfo": {
+          "id": "SonarCSharp_S121",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "8954dff3-f19c-429c-ac76-c45fa5e73b62",
+          "name": "SonarC#"
+        },
+        "lineNumber": 19,
+        "message": "Add curly braces around the nested statement(s) in this 'foreach' block.",
+        "language": "CSharp",
+        "lineText": "            foreach (var tree in new[] { IndexTreeType.Default, IndexTreeType.SizedAndThreadedAVLBalancedTree })",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "36ef324509d416253f7ffdf66bd2baf8",
+        "resultDataId": 131557766130,
+        "filePath": "csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs",
+        "fileId": 242550021538,
+        "patternInfo": {
+          "id": "SonarCSharp_S121",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "8954dff3-f19c-429c-ac76-c45fa5e73b62",
+          "name": "SonarC#"
+        },
+        "lineNumber": 47,
+        "message": "Add curly braces around the nested statement(s) in this 'else' block.",
+        "language": "CSharp",
+        "lineText": "            else",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "a5b082c941c5f433df25d2f76e2b0894",
+        "resultDataId": 131557766135,
+        "filePath": "csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs",
+        "fileId": 242550021538,
+        "patternInfo": {
+          "id": "SonarCSharp_S121",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "8954dff3-f19c-429c-ac76-c45fa5e73b62",
+          "name": "SonarC#"
+        },
+        "lineNumber": 21,
+        "message": "Add curly braces around the nested statement(s) in this 'foreach' block.",
+        "language": "CSharp",
+        "lineText": "            foreach (var tree in new[] { IndexTreeType.Default, IndexTreeType.SizeBalancedTree, IndexTreeType.RecursionlessSizeBalancedTree })",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "84cd50f17670432fc6159e115eecb4ab",
+        "resultDataId": 131557766134,
+        "filePath": "csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs",
+        "fileId": 242550021538,
+        "patternInfo": {
+          "id": "SonarCSharp_S121",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "8954dff3-f19c-429c-ac76-c45fa5e73b62",
+          "name": "SonarC#"
+        },
+        "lineNumber": 45,
+        "message": "Add curly braces around the nested statement(s) in this 'if' block.",
+        "language": "CSharp",
+        "lineText": "            if (count)",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "28a17d42d2f1ad31021f333893a3e404",
+        "resultDataId": 131557766137,
+        "filePath": "csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs",
+        "fileId": 242550021538,
+        "patternInfo": {
+          "id": "SonarCSharp_S121",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "8954dff3-f19c-429c-ac76-c45fa5e73b62",
+          "name": "SonarC#"
+        },
+        "lineNumber": 22,
+        "message": "Add curly braces around the nested statement(s) in this 'foreach' block.",
+        "language": "CSharp",
+        "lineText": "                foreach (var linkedList in new[] { false, true })",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "907306c317b4bee28a27863c8e268af7",
+        "resultDataId": 131557766132,
+        "filePath": "csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs",
+        "fileId": 242550021538,
+        "patternInfo": {
+          "id": "SonarCSharp_S121",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "8954dff3-f19c-429c-ac76-c45fa5e73b62",
+          "name": "SonarC#"
+        },
+        "lineNumber": 105,
+        "message": "Add curly braces around the nested statement(s) in this 'foreach' block.",
+        "language": "CSharp",
+        "lineText": "            foreach (var value in values)",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "332f439d62ae2509e392df8f780f5af4",
+        "resultDataId": 131557766133,
+        "filePath": "csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs",
+        "fileId": 242550021538,
+        "patternInfo": {
+          "id": "SonarCSharp_S121",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "8954dff3-f19c-429c-ac76-c45fa5e73b62",
+          "name": "SonarC#"
+        },
+        "lineNumber": 170,
+        "message": "Add curly braces around the nested statement(s) in this 'if' block.",
+        "language": "CSharp",
+        "lineText": "            if (link![1] == value || link[2] == value)",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "910e43cbd038cdf39a79faf1e5dd523e",
+        "resultDataId": 131557766136,
+        "filePath": "csharp/Platform.Data.Doublets.Tests/EitherEndpointQueryTests.cs",
+        "fileId": 242550021538,
+        "patternInfo": {
+          "id": "SonarCSharp_S121",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "8954dff3-f19c-429c-ac76-c45fa5e73b62",
+          "name": "SonarC#"
+        },
+        "lineNumber": 129,
+        "message": "Add curly braces around the nested statement(s) in this 'if' block.",
+        "language": "CSharp",
+        "lineText": "                if (split)",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "74ccee41e966c6823b900b86a75f2fdf6ea9e527",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-10-30T15:09:41Z"
+        }
+      },
+      "deltaType": "Added"
+    }
+  ],
+  "pagination": {
+    "limit": 100,
+    "total": 18
+  }
+}

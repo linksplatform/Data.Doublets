@@ -1,0 +1,19 @@
+  Platform.Data.Doublets -> /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/bin/Release/net8.0/Platform.Data.Doublets.dll
+  Platform.Data.Doublets.Tests -> /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll
+Test run for /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:01.28]     Platform.Data.Doublets.Tests.NullableContractTests.UniversalUpdateUsesTheExistingLinkInsteadOfCreatingAnother [FAIL]
+  Failed Platform.Data.Doublets.Tests.NullableContractTests.UniversalUpdateUsesTheExistingLinkInsteadOfCreatingAnother [45 ms]
+  Error Message:
+   Assert.Equal() Failure
+Expected: 1
+Actual:   2
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.NullableContractTests.UniversalUpdateUsesTheExistingLinkInsteadOfCreatingAnother() in /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/NullableContractTests.cs:line 71
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+
+Failed!  - Failed:     1, Passed:     4, Skipped:     0, Total:     5, Duration: 261 ms - Platform.Data.Doublets.Tests.dll (net8.0)

@@ -1,4 +1,4 @@
-﻿
+
 using System.IO;
 using Platform.Data.Doublets.Memory.United.Generic;
 using Platform.Memory;

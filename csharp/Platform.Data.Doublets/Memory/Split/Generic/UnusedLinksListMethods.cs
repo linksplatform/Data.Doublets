@@ -23,7 +23,7 @@ public unsafe class UnusedLinksListMethods<TLinkAddress> : AbsoluteCircularDoubl
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="UnusedLinksListMethods" /> instance.
+    ///         Initializes a new <see cref="UnusedLinksListMethods{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>

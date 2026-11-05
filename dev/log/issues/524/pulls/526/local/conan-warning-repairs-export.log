@@ -1,0 +1,192 @@
+From https://github.com/linksplatform/conan-center-index
+ * branch                435ad91f44d2fd40c4e4be366163f97333013d65 -> FETCH_HEAD
+HEAD is now at 435ad91f4 Merge pull request #34 from nassipkali/master
+M	recipes/benchmark/all/conanfile.py
+M	recipes/cpuinfo/all/conanfile.py
+M	recipes/gtest/all/conanfile.py
+M	recipes/ms-gsl/all/conanfile.py
+M	recipes/platform.collections.methods/all/conanfile.py
+M	recipes/platform.collections/all/conanfile.py
+M	recipes/platform.converters/all/conanfile.py
+M	recipes/platform.data.doublets/all/conanfile.py
+M	recipes/platform.data/all/conanfile.py
+M	recipes/platform.delegates/all/conanfile.py
+M	recipes/platform.equality/all/conanfile.py
+M	recipes/platform.exceptions/all/conanfile.py
+M	recipes/platform.hashing/all/conanfile.py
+M	recipes/platform.interfaces/all/conanfile.py
+M	recipes/platform.memory/all/conanfile.py
+M	recipes/platform.numbers/all/conanfile.py
+M	recipes/platform.random/all/conanfile.py
+M	recipes/platform.ranges/all/conanfile.py
+M	recipes/platform.setters/all/conanfile.py
+M	recipes/platform.timestamps/all/conanfile.py
+
+======== Exporting recipe to the cache ========
+platform-interfaces/0.3.41 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.interfaces/all/conanfile.py
+platform-interfaces/0.3.41: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf07908f02326eb/e
+Exported: platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93 (2026-10-29 06:56:15 UTC)
+
+======== Exporting recipe to the cache ========
+platform-delegates/0.3.7 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.delegates/all/conanfile.py
+platform-delegates/0.3.7: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platff04892e2dfb10/e
+Exported: platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0 (2026-10-29 06:56:16 UTC)
+
+======== Exporting recipe to the cache ========
+platform-exceptions/0.3.2 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.exceptions/all/conanfile.py
+platform-exceptions/0.3.2: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfee8cb09287d88/e
+Exported: platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a (2026-10-29 06:56:16 UTC)
+
+======== Exporting recipe to the cache ========
+platform-converters/0.2.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.converters/all/conanfile.py
+platform-converters/0.2.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf07f1970403490/e
+Exported: platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be (2026-10-29 06:56:17 UTC)
+
+======== Exporting recipe to the cache ========
+platform-hashing/0.5.6 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.hashing/all/conanfile.py
+platform-hashing/0.5.6: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf4427f72b19be9/e
+Exported: platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29 (2026-10-29 06:56:18 UTC)
+
+======== Exporting recipe to the cache ========
+platform-ranges/0.2.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.ranges/all/conanfile.py
+platform-ranges/0.2.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf2e261b468060d/e
+Exported: platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288 (2026-10-29 06:56:19 UTC)
+
+======== Exporting recipe to the cache ========
+platform-random/0.2.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.random/all/conanfile.py
+platform-random/0.2.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf49909db6bc31d/e
+Exported: platform-random/0.2.0#596375061030beacc935a1ac82ef6e46 (2026-10-29 06:56:19 UTC)
+
+======== Exporting recipe to the cache ========
+platform-equality/0.0.1 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.equality/all/conanfile.py
+platform-equality/0.0.1: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfbf8c1581d4676/e
+Exported: platform-equality/0.0.1#4c269c237c780cf97734b306fef30799 (2026-10-29 06:56:20 UTC)
+
+======== Exporting recipe to the cache ========
+platform-collections/0.2.1 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.collections/all/conanfile.py
+platform-collections/0.2.1: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf4b6acddddf01c/e
+Exported: platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60 (2026-10-29 06:56:21 UTC)
+
+======== Exporting recipe to the cache ========
+platform-setters/0.1.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.setters/all/conanfile.py
+platform-setters/0.1.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfea0cb3e0e6873/e
+Exported: platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a (2026-10-29 06:56:22 UTC)
+
+======== Exporting recipe to the cache ========
+platform-data/0.1.1 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.data/all/conanfile.py
+platform-data/0.1.1: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf6097b0a9e7303/e
+Exported: platform-data/0.1.1#049284bd2691fcdd21308ff118193883 (2026-10-29 06:56:22 UTC)
+
+======== Exporting recipe to the cache ========
+platform-numbers/0.1.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.numbers/all/conanfile.py
+platform-numbers/0.1.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf4e4a40c6d8bf5/e
+Exported: platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7 (2026-10-29 06:56:23 UTC)
+
+======== Exporting recipe to the cache ========
+platform-memory/0.1.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.memory/all/conanfile.py
+platform-memory/0.1.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf232aaabe3d0da/e
+Exported: platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa (2026-10-29 06:56:24 UTC)
+
+======== Exporting recipe to the cache ========
+platform-collections-methods/0.3.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.collections.methods/all/conanfile.py
+platform-collections-methods/0.3.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfaa5f0f1339589/e
+Exported: platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202 (2026-10-29 06:56:25 UTC)
+
+======== Exporting recipe to the cache ========
+benchmark/1.6.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/benchmark/all/conanfile.py
+benchmark/1.6.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/bench9c76564e74aaf/e
+Exported: benchmark/1.6.0#c7ef1499d3f4d019801919985986b77d (2026-10-29 06:56:25 UTC)
+
+======== Exporting recipe to the cache ========
+cpuinfo/cci.20220228 export
+WARN: risk: Version 'cci.20220228' contains an alphanumeric major alongside a minor version, without correct 'package_id_xxx_mode' attributes.
+This is highly discouraged due to unexpected package ID calculation risks. Either a different version scheme should be used (e.g., semantic versioning), or the 'package_id_xxx_mode' attributes should be set (to something other than major, minor, patch or semver modes).
+Refer to the documentation for more details: https://docs.conan.io/2/knowledge/guidelines.html#guidelines-bad-alphanumeric-majors
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/cpuinfo/all/conanfile.py
+cpuinfo/cci.20220228: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/cpuinfbb81f122b53b/e
+Exported: cpuinfo/cci.20220228#afc5a0dba98c55fc65c379dc6f8bab8d (2026-10-29 06:56:26 UTC)
+
+======== Exporting recipe to the cache ========
+gtest/cci.20210126 export
+WARN: risk: Version 'cci.20210126' contains an alphanumeric major alongside a minor version, without correct 'package_id_xxx_mode' attributes.
+This is highly discouraged due to unexpected package ID calculation risks. Either a different version scheme should be used (e.g., semantic versioning), or the 'package_id_xxx_mode' attributes should be set (to something other than major, minor, patch or semver modes).
+Refer to the documentation for more details: https://docs.conan.io/2/knowledge/guidelines.html#guidelines-bad-alphanumeric-majors
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/gtest/all/conanfile.py
+gtest/cci.20210126: exports: File 'conandata.yml' found. Exporting it...
+gtest/cci.20210126: Calling export_sources()
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/gtest047808ad6118b/e
+Exported: gtest/cci.20210126#e560968072ffd87fbd396e4cabff9127 (2026-10-29 06:56:27 UTC)
+
+======== Exporting recipe to the cache ========
+ms-gsl/4.0.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/ms-gsl/all/conanfile.py
+ms-gsl/4.0.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/ms-gs6c6a25f826d5b/e
+Exported: ms-gsl/4.0.0#b39ff866e01586bb98ab4d9f46004c31 (2026-10-29 06:56:28 UTC)

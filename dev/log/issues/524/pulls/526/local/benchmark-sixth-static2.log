@@ -1,0 +1,16 @@
+1 warning generated.
+/home/box/.conan2/p/b/benchbf013b053b8de/p/include/benchmark/benchmark.h:1095:3: error: Potential memory leak [clang-analyzer-cplusplus.NewDeleteLeaks,-warnings-as-errors]
+ 1095 |   return internal::RegisterBenchmarkInternal(
+      |   ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp:12:13: note: Calling 'RegisterCreateMillionPointsBenchmarks'
+   12 |             Platform::Data::Doublets::Benchmarks::RegisterCreateMillionPointsBenchmarks();
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.h:66:9: note: Calling 'RegisterBenchmark'
+   66 |         benchmark::RegisterBenchmark("BM_CreateMillionPointsUnitedMemory", BM_CreateMillionPointsUnitedMemory)
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/box/.conan2/p/b/benchbf013b053b8de/p/include/benchmark/benchmark.h:1096:7: note: Memory is allocated
+ 1096 |       ::new internal::FunctionBenchmark(name, fn));
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/box/.conan2/p/b/benchbf013b053b8de/p/include/benchmark/benchmark.h:1095:3: note: Potential memory leak
+ 1095 |   return internal::RegisterBenchmarkInternal(
+      |   ^

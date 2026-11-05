@@ -1,0 +1,471 @@
+diff --git a/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs b/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs
+index fcec13f77..7786cefdb 100644
+--- a/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs
++++ b/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs
+@@ -9,6 +9,12 @@ namespace Platform.Data.Doublets.Decorators;
+ /// <summary>Returns the error constant when an operation throws.</summary>
+ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
+ {
++    /// <summary>Optionally selects which exceptions are converted to the error constant. Null accepts all exceptions.</summary>
++    public Func<Exception, bool>? ExceptionFilter { get; set; }
++
++    /// <summary>Optionally observes converted exceptions for diagnostics. Null disables diagnostic callbacks.</summary>
++    public Action<Exception>? ExceptionHandler { get; set; }
++
+     /// <summary>Initializes the decorator with its underlying links.</summary>
+     public NoExceptionsDecorator(ILinks<TLinkAddress> storage) : base(links: storage) { }
+ 
+@@ -19,8 +25,9 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
+         {
+             return base.Count(restriction: restriction);
+         }
+-        catch (Exception exception)
++        catch (Exception exception) when (ExceptionFilter?.Invoke(exception) ?? true)
+         {
++            ExceptionHandler?.Invoke(exception);
+             exception.Ignore();
+             return Constants.Error;
+         }
+@@ -33,8 +40,9 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
+         {
+             return base.Each(restriction: restriction, handler: handler);
+         }
+-        catch (Exception exception)
++        catch (Exception exception) when (ExceptionFilter?.Invoke(exception) ?? true)
+         {
++            ExceptionHandler?.Invoke(exception);
+             exception.Ignore();
+             return Constants.Error;
+         }
+@@ -47,8 +55,9 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
+         {
+             return base.Create(substitution: substitution, handler: handler);
+         }
+-        catch (Exception exception)
++        catch (Exception exception) when (ExceptionFilter?.Invoke(exception) ?? true)
+         {
++            ExceptionHandler?.Invoke(exception);
+             exception.Ignore();
+             return Constants.Error;
+         }
+@@ -61,8 +70,9 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
+         {
+             return base.Update(restriction: restriction, substitution: substitution, handler: handler);
+         }
+-        catch (Exception exception)
++        catch (Exception exception) when (ExceptionFilter?.Invoke(exception) ?? true)
+         {
++            ExceptionHandler?.Invoke(exception);
+             exception.Ignore();
+             return Constants.Error;
+         }
+@@ -75,8 +85,9 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
+         {
+             return base.Delete(restriction: restriction, handler: handler);
+         }
+-        catch (Exception exception)
++        catch (Exception exception) when (ExceptionFilter?.Invoke(exception) ?? true)
+         {
++            ExceptionHandler?.Invoke(exception);
+             exception.Ignore();
+             return Constants.Error;
+         }
+diff --git a/csharp/Platform.Data.Doublets/ILinksExtensions.cs b/csharp/Platform.Data.Doublets/ILinksExtensions.cs
+index 760fcea57..5c93adfd0 100644
+--- a/csharp/Platform.Data.Doublets/ILinksExtensions.cs
++++ b/csharp/Platform.Data.Doublets/ILinksExtensions.cs
+@@ -155,6 +155,7 @@ namespace Platform.Data.Doublets
+             return links.Delete(new LinkAddress<TLinkAddress>(linkToDelete), handler);
+         }
+ 
++        /// <summary>Deletes every link in the store.</summary>
+         /// <remarks>
+         /// TODO: Возможно есть очень простой способ это сделать.
+         /// (Например просто удалить файл, или изменить его размер таким образом,
+@@ -272,6 +273,7 @@ namespace Platform.Data.Doublets
+ 
+         #region Paths
+ 
++        /// <summary>Checks whether the specified path exists.</summary>
+         /// <remarks>
+         /// TODO: Как так? Как то что ниже может быть корректно?
+         /// Скорее всего практически не применимо
+@@ -288,7 +290,6 @@ namespace Platform.Data.Doublets
+             {
+                 return false;
+             }
+-            var constants = links.Constants;
+             for (var i = 1; i < path.Length; i++)
+             {
+                 var next = path[i];
+@@ -310,6 +311,7 @@ namespace Platform.Data.Doublets
+             return true;
+         }
+ 
++        /// <summary>Gets the link reached by following the specified keys.</summary>
+         /// <remarks>
+         /// Может потребовать дополнительного стека для PathElement's при использовании SequenceWalker.
+         /// </remarks>
+@@ -501,6 +503,7 @@ namespace Platform.Data.Doublets
+ 
+ 
+ 
++        /// <summary>Counts links that use the specified link.</summary>
+         /// <param name="link">The link.</param>
+         /// <param name="links">Хранилище связей.</param>
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+@@ -521,11 +524,13 @@ namespace Platform.Data.Doublets
+             return usagesAsSource + usagesAsTarget;
+         }
+ 
++        /// <summary>Checks whether another link uses the specified link.</summary>
+         /// <param name="link">The link.</param>
+         /// <param name="links">Хранилище связей.</param>
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         public static bool HasUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link) where TLinkAddress : IUnsignedNumber<TLinkAddress> { return Comparer<TLinkAddress>.Default.Compare(links.CountUsages(link), TLinkAddress.Zero) > 0; }
+ 
++        /// <summary>Checks whether the link has the specified source and target.</summary>
+         /// <param name="link">The link.</param>
+         /// <param name="source">The source.</param>
+         /// <param name="target">The target.</param>
+@@ -533,7 +538,6 @@ namespace Platform.Data.Doublets
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         public static bool Equals<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, TLinkAddress source, TLinkAddress target) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+         {
+-            var constants = links.Constants;
+             var values = links.GetRequiredLink(link);
+             return links.GetSource(values) == source && links.GetTarget(values) == target;
+         }
+@@ -562,6 +566,7 @@ namespace Platform.Data.Doublets
+             return setter.Result;
+         }
+ 
++        /// <summary>Creates a self-referencing point and invokes the optional callback.</summary>
+         /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
+         /// <param name="links">Хранилище связей.</param>
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+@@ -589,6 +594,7 @@ namespace Platform.Data.Doublets
+         }
+ 
+ 
++        /// <summary>Creates a link with the specified source, target and callback.</summary>
+         /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
+         /// <param name="source">The source.</param>
+         /// <param name="target">The target.</param>
+@@ -689,7 +695,6 @@ namespace Platform.Data.Doublets
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         public static IList<TLinkAddress>? ResolveConstantAsSelfReference<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress constant, IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+         {
+-            var constants = links.Constants;
+             var restrictionIndex = links.GetIndex(restriction);
+             var substitutionIndex = links.GetIndex(substitution);
+             if (substitutionIndex == TLinkAddress.Zero)
+@@ -750,7 +755,6 @@ namespace Platform.Data.Doublets
+             }
+             if (newSource == source && newTarget == target)
+             {
+-                var linkStruct = new Link<TLinkAddress>(link, source, target);
+                 return link;
+             }
+             return links.Update(link, newSource, newTarget, handler);
+@@ -787,6 +791,7 @@ namespace Platform.Data.Doublets
+ 
+         public static void DeleteAllUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex) where TLinkAddress : IUnsignedNumber<TLinkAddress> { links.DeleteAllUsages(linkIndex, null); }
+ 
++        /// <summary>Deletes links that use the specified link and invokes the optional callback.</summary>
+         /// <remarks>Before execution of this method ensure that deleted link is detached (all values - source and target are reset to null) or it might enter into infinite recursion.</remarks>
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         public static TLinkAddress DeleteAllUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex, WriteHandler<TLinkAddress>? handler) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+@@ -1061,7 +1066,6 @@ namespace Platform.Data.Doublets
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         public static string Format<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+         {
+-            var constants = links.Constants;
+             return $"({links.GetIndex(link)}: {links.GetSource(link)} {links.GetTarget(link)})";
+         }
+ 
+diff --git a/csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs b/csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs
+index d04948f65..f6812abd5 100644
+--- a/csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs
++++ b/csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs
+@@ -182,7 +182,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+         _dataMemoryReservationStepInBytes = memoryReservationStep * LinkDataPartSizeInBytes;
+         _indexMemoryReservationStepInBytes = memoryReservationStep * LinkIndexPartSizeInBytes;
+         _useLinkedList = useLinkedList;
+-        Constants = constants;
++        _constants = constants;
+     }
+ 
+     /// <summary>
+@@ -225,11 +225,10 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+     ///     </para>
+     ///     <para></para>
+     /// </summary>
+-    public virtual LinksConstants<TLinkAddress> Constants
+-    {
+-        [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+-        get;
+-    }
++    protected readonly LinksConstants<TLinkAddress> _constants;
++
++    /// <summary>Gets the configured constants for the store.</summary>
++    public virtual LinksConstants<TLinkAddress> Constants => _constants;
+ 
+     /// <summary>
+     ///     <para>
+@@ -350,38 +349,23 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+                     }
+                     else if (externalReferencesRange.Value.Contains(value: target))
+                     {
+-                        if (_useLinkedList)
+-                        {
+-                            // The internal source has a list; the external target has a searchable tree.
+-                            link = RequiredExternalTargetsTreeMethods.Search(source: source, target: target);
+-                        }
+-                        else
+-                        {
+-                            link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+-                        }
++                        // The internal source has a list; the external target has a searchable tree.
++                        link = _useLinkedList
++                            ? RequiredExternalTargetsTreeMethods.Search(source: source, target: target)
++                            : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                     else
+                     {
+-                        if (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
+-                        {
+-                            link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
+-                        }
+-                        else
+-                        {
+-                            link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+-                        }
++                        link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
++                        ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
++                        : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                 }
+                 else
+                 {
+-                    if (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
+-                    {
+-                        link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
+-                    }
+-                    else
+-                    {
+-                        link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+-                    }
++                    link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
++                        ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
++                        : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                 }
+                 return (link == constants.Null) ? GetZero() : GetOne();
+             }
+@@ -550,38 +534,23 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+                     }
+                     else if (externalReferencesRange.Value.Contains(value: target))
+                     {
+-                        if (_useLinkedList)
+-                        {
+-                            // The internal source has a list; the external target has a searchable tree.
+-                            link = RequiredExternalTargetsTreeMethods.Search(source: source, target: target);
+-                        }
+-                        else
+-                        {
+-                            link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+-                        }
++                        // The internal source has a list; the external target has a searchable tree.
++                        link = _useLinkedList
++                            ? RequiredExternalTargetsTreeMethods.Search(source: source, target: target)
++                            : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                     else
+                     {
+-                        if (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
+-                        {
+-                            link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
+-                        }
+-                        else
+-                        {
+-                            link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+-                        }
++                        link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
++                        ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
++                        : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                     }
+                 }
+                 else
+                 {
+-                    if (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
+-                    {
+-                        link = RequiredInternalTargetsTreeMethods.Search(source: source, target: target);
+-                    }
+-                    else
+-                    {
+-                        link = RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+-                    }
++                    link = (_useLinkedList || (RequiredInternalSourcesTreeMethods.CountUsages(root: source) > RequiredInternalTargetsTreeMethods.CountUsages(root: target)))
++                        ? RequiredInternalTargetsTreeMethods.Search(source: source, target: target)
++                        : RequiredInternalSourcesTreeMethods.Search(source: source, target: target);
+                 }
+                 return (link == constants.Null) ? @continue : handler(link: GetLinkStruct(linkIndex: link));
+             }
+@@ -620,6 +589,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+         throw new NotSupportedException(message: "Other restriction sizes and methods are not supported.");
+     }
+ 
++    /// <summary>Updates the link that matches the restriction.</summary>
+     /// <remarks>
+     ///     TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в
+     ///     менеджере памяти, а в логике Links)
+@@ -702,6 +672,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+         return handler != null ? handler(before: before, after: new Link<TLinkAddress>(index: linkIndex, source: source, target: target)) : Constants.Continue;
+     }
+ 
++    /// <summary>Creates a link and invokes the optional callback.</summary>
+     /// <remarks>
+     ///     TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
+     /// </remarks>
+@@ -792,14 +763,18 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+     /// </param>
+     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+     protected virtual void Init(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
++        => InitializeMemory(dataMemory, indexMemory, () => SetPointers(dataMemory, indexMemory));
++
++    /// <summary>Initializes memory using a concrete pointer initializer during construction.</summary>
++    protected unsafe void InitializeMemory(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, Action setPointers)
+     {
+         // Read allocated links from header
+         if (indexMemory.ReservedCapacity < LinkHeaderSizeInBytes)
+         {
+             indexMemory.ReservedCapacity = LinkHeaderSizeInBytes;
+         }
+-        SetPointers(dataMemory: dataMemory, indexMemory: indexMemory);
+-        ref var header = ref GetHeaderReference();
++        setPointers();
++        ref var header = ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void*)indexMemory.Pointer);
+         var allocatedLinks = long.CreateTruncating(value: header.AllocatedLinks);
+         // Adjust reserved capacity
+         var minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+@@ -829,16 +804,16 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
+         {
+             minimumIndexReservedCapacity = minimumIndexReservedCapacity / _indexMemoryReservationStepInBytes * _indexMemoryReservationStepInBytes + _indexMemoryReservationStepInBytes;
+         }
+-        if (dataMemory.ReservedCapacity != minimumDataReservedCapacity)
++        if (dataMemory.ReservedCapacity < minimumDataReservedCapacity)
+         {
+             dataMemory.ReservedCapacity = minimumDataReservedCapacity;
+         }
+-        if (indexMemory.ReservedCapacity != minimumIndexReservedCapacity)
++        if (indexMemory.ReservedCapacity < minimumIndexReservedCapacity)
+         {
+             indexMemory.ReservedCapacity = minimumIndexReservedCapacity;
+         }
+-        SetPointers(dataMemory: dataMemory, indexMemory: indexMemory);
+-        header = ref GetHeaderReference();
++        setPointers();
++        header = ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void*)indexMemory.Pointer);
+         // Ensure correctness _memory.UsedCapacity over _header->AllocatedLinks
+         // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
+         dataMemory.UsedCapacity = ConvertToInt64(value: header.AllocatedLinks) * LinkDataPartSizeInBytes + LinkDataPartSizeInBytes; // First link is read only zero link.
+diff --git a/csharp/Platform.Data.Doublets/UInt64LinksTransactionsLayer.cs b/csharp/Platform.Data.Doublets/UInt64LinksTransactionsLayer.cs
+index d127a5911..97e079fa2 100644
+--- a/csharp/Platform.Data.Doublets/UInt64LinksTransactionsLayer.cs
++++ b/csharp/Platform.Data.Doublets/UInt64LinksTransactionsLayer.cs
+@@ -27,6 +27,7 @@ namespace Platform.Data.Doublets
+     /// <seealso cref="LinksDisposableDecoratorBase{TLinkAddress}"/>
+     public class UInt64LinksTransactionsLayer : LinksDisposableDecoratorBase<TLinkAddress> //-V3073 
+     {
++        /// <summary>Records a transaction transition between two link states.</summary>
+         /// <remarks>
+         /// Альтернативные варианты хранения трансформации (элемента транзакции):
+         /// 
+@@ -229,7 +230,7 @@ namespace Platform.Data.Doublets
+             /// <para></para>
+             /// </returns>
+             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-            public override bool Equals(object? obj) => obj is Transition transition ? Equals(transition) : false;
++            public override bool Equals(object? obj) => obj is Transition transition && Equals(transition);
+ 
+             /// <summary>
+             /// <para>
+@@ -268,6 +269,7 @@ namespace Platform.Data.Doublets
+             public static bool operator !=(Transition left, Transition right) => !(left == right);
+         }
+ 
++        /// <summary>Groups link changes for commit or rollback.</summary>
+         /// <remarks>
+         /// Другие варианты реализации транзакций (атомарности):
+         ///     1. Разделение хранения значения связи ((Source Target) или (Source Linker Target)) и индексов.
+@@ -617,7 +619,6 @@ namespace Platform.Data.Doublets
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
+         {
+-            var link = this.GetIndex(restriction);
+             return _links.Delete(restriction, (before, after) =>
+             {
+                 CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, before, after));
+@@ -697,24 +698,32 @@ namespace Platform.Data.Doublets
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         public Transaction BeginTransaction() => new Transaction(this);
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+-        private void DisposeTransitions()
++        private void DisposeTransitions(bool manual)
+         {
++            // A constructor may reject a damaged log before opening the stream.
++            if (_log == null) return;
+             try
+             {
+-                var pusher = _transitionsPusher;
+-                if (pusher != null)
++                try
+                 {
+-                    _transitionsPusher = null;
+-                    pusher.Wait();
++                    var pusher = _transitionsPusher;
++                    if (pusher != null)
++                    {
++                        _transitionsPusher = null;
++                        pusher.Wait();
++                    }
++                    if (_transitions != null)
++                    {
++                        PushTransitions();
++                    }
+                 }
+-                if (_transitions != null)
++                finally
+                 {
+-                    PushTransitions();
++                    _log.DisposeIfPossible();
+                 }
+-                _log.DisposeIfPossible();
+                 FileHelpers.WriteFirst(_logAddress, _lastCommitedTransition);
+             }
+-            catch (Exception ex)
++            catch (Exception ex) when (!manual)
+             {
+                 ex.Ignore();
+             }
+@@ -739,11 +748,17 @@ namespace Platform.Data.Doublets
+         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+         protected override void Dispose(bool manual, bool wasDisposed)
+         {
+-            if (!wasDisposed)
++            try
++            {
++                if (!wasDisposed)
++                {
++                    DisposeTransitions(manual);
++                }
++            }
++            finally
+             {
+-                DisposeTransitions();
++                base.Dispose(manual, wasDisposed);
+             }
+-            base.Dispose(manual, wasDisposed);
+         }
+ 
+         #endregion

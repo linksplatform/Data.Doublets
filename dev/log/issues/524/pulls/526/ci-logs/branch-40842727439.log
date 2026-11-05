@@ -1,0 +1,596 @@
+auto-merge	Set up job	﻿2026-10-29T08:31:26.1862122Z Current runner version: '2.338.0'
+auto-merge	Set up job	2026-10-29T08:31:26.1888622Z ##[group]Runner Image Provisioner
+auto-merge	Set up job	2026-10-29T08:31:26.1889527Z Hosted Compute Agent
+auto-merge	Set up job	2026-10-29T08:31:26.1890320Z Version: 20261021.618
+auto-merge	Set up job	2026-10-29T08:31:26.1890971Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+auto-merge	Set up job	2026-10-29T08:31:26.1891775Z Build Date: 2026-10-21T00:45:21Z
+auto-merge	Set up job	2026-10-29T08:31:26.1892524Z Worker ID: {b3623b4f-352f-4037-8320-033fc1aa66f9}
+auto-merge	Set up job	2026-10-29T08:31:26.1893245Z Region: westus2
+auto-merge	Set up job	2026-10-29T08:31:26.1893885Z Cloud: Azure
+auto-merge	Set up job	2026-10-29T08:31:26.1894532Z ##[endgroup]
+auto-merge	Set up job	2026-10-29T08:31:26.1896174Z ##[group]Operating System
+auto-merge	Set up job	2026-10-29T08:31:26.1896867Z Ubuntu
+auto-merge	Set up job	2026-10-29T08:31:26.1897393Z 24.04.5
+auto-merge	Set up job	2026-10-29T08:31:26.1898204Z LTS
+auto-merge	Set up job	2026-10-29T08:31:26.1898759Z ##[endgroup]
+auto-merge	Set up job	2026-10-29T08:31:26.1899472Z ##[group]Runner Image
+auto-merge	Set up job	2026-10-29T08:31:26.1900100Z Image: ubuntu-24.04
+auto-merge	Set up job	2026-10-29T08:31:26.1900668Z Version: 20261025.353.1
+auto-merge	Set up job	2026-10-29T08:31:26.1901834Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+auto-merge	Set up job	2026-10-29T08:31:26.1903722Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+auto-merge	Set up job	2026-10-29T08:31:26.1904743Z ##[endgroup]
+auto-merge	Set up job	2026-10-29T08:31:26.1908190Z ##[group]GITHUB_TOKEN Permissions
+auto-merge	Set up job	2026-10-29T08:31:26.1910426Z Actions: write
+auto-merge	Set up job	2026-10-29T08:31:26.1911207Z ArtifactMetadata: write
+auto-merge	Set up job	2026-10-29T08:31:26.1911878Z Attestations: write
+auto-merge	Set up job	2026-10-29T08:31:26.1912470Z Checks: write
+auto-merge	Set up job	2026-10-29T08:31:26.1913087Z CodeQuality: write
+auto-merge	Set up job	2026-10-29T08:31:26.1913706Z Contents: write
+auto-merge	Set up job	2026-10-29T08:31:26.1914334Z CopilotRequests: write
+auto-merge	Set up job	2026-10-29T08:31:26.1914965Z Deployments: write
+auto-merge	Set up job	2026-10-29T08:31:26.1915543Z Discussions: write
+auto-merge	Set up job	2026-10-29T08:31:26.1916157Z Drives: write
+auto-merge	Set up job	2026-10-29T08:31:26.1916714Z Issues: write
+auto-merge	Set up job	2026-10-29T08:31:26.1917448Z Metadata: read
+auto-merge	Set up job	2026-10-29T08:31:26.1918433Z Models: read
+auto-merge	Set up job	2026-10-29T08:31:26.1919046Z Packages: write
+auto-merge	Set up job	2026-10-29T08:31:26.1919691Z Pages: write
+auto-merge	Set up job	2026-10-29T08:31:26.1920270Z PullRequests: write
+auto-merge	Set up job	2026-10-29T08:31:26.1920976Z RepositoryProjects: write
+auto-merge	Set up job	2026-10-29T08:31:26.1921660Z SecurityEvents: write
+auto-merge	Set up job	2026-10-29T08:31:26.1922262Z Statuses: write
+auto-merge	Set up job	2026-10-29T08:31:26.1922897Z VulnerabilityAlerts: read
+auto-merge	Set up job	2026-10-29T08:31:26.1923528Z ##[endgroup]
+auto-merge	Set up job	2026-10-29T08:31:26.1925656Z Secret source: Actions
+auto-merge	Set up job	2026-10-29T08:31:26.1926764Z Cache mode: read
+auto-merge	Set up job	2026-10-29T08:31:26.1927498Z Prepare workflow directory
+auto-merge	Set up job	2026-10-29T08:31:26.2270838Z Prepare all required actions
+auto-merge	Set up job	2026-10-29T08:31:26.2322098Z Getting action download info
+auto-merge	Set up job	2026-10-29T08:31:26.6361191Z Download action repository 'actions/checkout@v2' (SHA:0717577d45739eb3c851188b29f50ed6c0b2194e)
+auto-merge	Set up job	2026-10-29T08:31:26.9324199Z Download action repository 'ahmadnassri/action-dependabot-auto-merge@v2' (SHA:45fc124d949b19b6b8bf6645b6c9d55f4f9ac61a)
+auto-merge	Set up job	2026-10-29T08:31:27.2178652Z Complete job name: auto-merge
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	﻿2026-10-29T08:31:27.2769996Z ##[group]Pull down action image 'ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6'
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:27.2893313Z ##[command]/usr/bin/docker pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:27.8750441Z 2.6.6: Pulling from ahmadnassri/action-dependabot-auto-merge
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.0180724Z c158987b0551: Pulling fs layer
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.0182235Z 27ae9ce8b069: Pulling fs layer
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.0183160Z ab5501735aae: Pulling fs layer
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.0184282Z 9ce0a5833ea2: Pulling fs layer
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.0185532Z 50992d27cc59: Pulling fs layer
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.0186960Z 4f4fb700ef54: Pulling fs layer
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.0188350Z 86b6187bfb6b: Pulling fs layer
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.0189286Z 16a9b0b01bb9: Pulling fs layer
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.0190255Z 9ce0a5833ea2: Waiting
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.0191156Z 50992d27cc59: Waiting
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.0192027Z 4f4fb700ef54: Waiting
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.0192837Z 86b6187bfb6b: Waiting
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.0193769Z 16a9b0b01bb9: Waiting
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.2823627Z ab5501735aae: Verifying Checksum
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.2826007Z ab5501735aae: Download complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.2939229Z c158987b0551: Verifying Checksum
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.2943438Z c158987b0551: Download complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.4153765Z c158987b0551: Pull complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.5016175Z 50992d27cc59: Verifying Checksum
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.5019585Z 50992d27cc59: Download complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.5151402Z 9ce0a5833ea2: Verifying Checksum
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.5154378Z 9ce0a5833ea2: Download complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.6293909Z 4f4fb700ef54: Download complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.7413365Z 86b6187bfb6b: Download complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.9304897Z 16a9b0b01bb9: Verifying Checksum
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:28.9306636Z 16a9b0b01bb9: Download complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:29.5247134Z 27ae9ce8b069: Verifying Checksum
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:29.5248592Z 27ae9ce8b069: Download complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:31.7165507Z 27ae9ce8b069: Pull complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:31.7735750Z ab5501735aae: Pull complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:31.7838793Z 9ce0a5833ea2: Pull complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:31.7966687Z 50992d27cc59: Pull complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:31.8045223Z 4f4fb700ef54: Pull complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:31.8241318Z 86b6187bfb6b: Pull complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:32.0408582Z 16a9b0b01bb9: Pull complete
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:32.0453757Z Digest: sha256:23911f794fd35017a9ed9e7b527bf5bb9b39db009c90c9fb52b50a21bc4ccb55
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:32.0466040Z Status: Downloaded newer image for ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:32.0474492Z ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6
+auto-merge	Pull ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6	2026-10-29T08:31:32.0499953Z ##[endgroup]
+auto-merge	Run actions/checkout@v2	﻿2026-10-29T08:31:32.0800736Z ##[group]Run actions/checkout@v2
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.0801422Z with:
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.0801713Z   repository: linksplatform/Data.Doublets
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.0804329Z   token: ***
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.0804555Z   ssh-strict: true
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.0804781Z   persist-credentials: true
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.0805038Z   clean: true
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.0805239Z   fetch-depth: 1
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.0805444Z   lfs: false
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.0805635Z   submodules: false
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.0805863Z   set-safe-directory: true
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.0806141Z   allow-unsafe-pr-checkout: false
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.0806614Z ##[endgroup]
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4116684Z (node:2475) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4117511Z (Use `node --trace-deprecation ...` to show where the warning was created)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4206388Z Syncing repository: linksplatform/Data.Doublets
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4207790Z ##[group]Getting Git version info
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4208824Z Working directory is '/home/runner/work/Data.Doublets/Data.Doublets'
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4209452Z [command]/usr/bin/git version
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4310703Z git version 2.56.0
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4332875Z ##[endgroup]
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4347555Z Temporarily overriding HOME='/home/runner/work/_temp/76840a15-2b3f-4b84-8b6c-4964c10e35c8' before making global git config changes
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4349106Z Adding repository directory to the temporary git global config as a safe directory
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4352469Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4406470Z Deleting the contents of '/home/runner/work/Data.Doublets/Data.Doublets'
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4411005Z ##[group]Initializing the repository
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4414169Z [command]/usr/bin/git init /home/runner/work/Data.Doublets/Data.Doublets
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4543859Z hint: Using 'master' as the name for the initial branch. This default branch name
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4544846Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4545442Z hint: to use in all of your new repositories, which will suppress this warning,
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4546016Z hint: call:
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4546231Z hint:
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4546543Z hint: 	git config --global init.defaultBranch <name>
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4546924Z hint:
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4547249Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4548526Z hint: 'development'. The just-created branch can be renamed via this command:
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4548994Z hint:
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4549232Z hint: 	git branch -m <name>
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4549496Z hint:
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4549854Z hint: Disable this message with "git config set advice.defaultBranchName false"
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4556731Z Initialized empty Git repository in /home/runner/work/Data.Doublets/Data.Doublets/.git/
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4567315Z [command]/usr/bin/git remote add origin https://github.com/linksplatform/Data.Doublets
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4617034Z ##[endgroup]
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4617512Z ##[group]Disabling automatic garbage collection
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4621276Z [command]/usr/bin/git config --local gc.auto 0
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4653842Z ##[endgroup]
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4654510Z ##[group]Setting up auth
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4661072Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.4696303Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.5078445Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.5109484Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.5343405Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.5383555Z ##[endgroup]
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.5393633Z ##[group]Fetching the repository
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.5394677Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +799502ce9275edc80d9fbc1953ff8892fe0eca19:refs/remotes/origin/main
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8767808Z remote: Enumerating objects: 241, done.        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8768723Z remote: Counting objects:   0% (1/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8769291Z remote: Counting objects:   1% (3/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8769824Z remote: Counting objects:   2% (5/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8770162Z remote: Counting objects:   3% (8/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8770496Z remote: Counting objects:   4% (10/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8770825Z remote: Counting objects:   5% (13/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8771180Z remote: Counting objects:   6% (15/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8771557Z remote: Counting objects:   7% (17/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8771887Z remote: Counting objects:   8% (20/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8772207Z remote: Counting objects:   9% (22/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8772528Z remote: Counting objects:  10% (25/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8772848Z remote: Counting objects:  11% (27/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8773167Z remote: Counting objects:  12% (29/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8773505Z remote: Counting objects:  13% (32/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8773841Z remote: Counting objects:  14% (34/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8774163Z remote: Counting objects:  15% (37/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8774487Z remote: Counting objects:  16% (39/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8774806Z remote: Counting objects:  17% (41/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8775135Z remote: Counting objects:  18% (44/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8775485Z remote: Counting objects:  19% (46/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8775831Z remote: Counting objects:  20% (49/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8776173Z remote: Counting objects:  21% (51/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8776512Z remote: Counting objects:  22% (54/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8776852Z remote: Counting objects:  23% (56/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8777186Z remote: Counting objects:  24% (58/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8777526Z remote: Counting objects:  25% (61/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8778387Z remote: Counting objects:  26% (63/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8778730Z remote: Counting objects:  27% (66/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8779080Z remote: Counting objects:  28% (68/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8779422Z remote: Counting objects:  29% (70/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8779764Z remote: Counting objects:  30% (73/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8780104Z remote: Counting objects:  31% (75/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8780451Z remote: Counting objects:  32% (78/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8780797Z remote: Counting objects:  33% (80/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8781136Z remote: Counting objects:  34% (82/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8781478Z remote: Counting objects:  35% (85/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8781817Z remote: Counting objects:  36% (87/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8782169Z remote: Counting objects:  37% (90/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8782522Z remote: Counting objects:  38% (92/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8782868Z remote: Counting objects:  39% (94/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8783209Z remote: Counting objects:  40% (97/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8783547Z remote: Counting objects:  41% (99/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8783892Z remote: Counting objects:  42% (102/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8784249Z remote: Counting objects:  43% (104/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8784598Z remote: Counting objects:  44% (107/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8784945Z remote: Counting objects:  45% (109/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8785584Z remote: Counting objects:  46% (111/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8785931Z remote: Counting objects:  47% (114/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8786279Z remote: Counting objects:  48% (116/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8786593Z remote: Counting objects:  49% (119/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8786900Z remote: Counting objects:  50% (121/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8787204Z remote: Counting objects:  51% (123/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8787507Z remote: Counting objects:  52% (126/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8787811Z remote: Counting objects:  53% (128/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8788539Z remote: Counting objects:  54% (131/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8788852Z remote: Counting objects:  55% (133/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8789156Z remote: Counting objects:  56% (135/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8789457Z remote: Counting objects:  57% (138/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8789757Z remote: Counting objects:  58% (140/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8790057Z remote: Counting objects:  59% (143/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8790355Z remote: Counting objects:  60% (145/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8790658Z remote: Counting objects:  61% (148/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8790956Z remote: Counting objects:  62% (150/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8791253Z remote: Counting objects:  63% (152/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8791568Z remote: Counting objects:  64% (155/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8791979Z remote: Counting objects:  65% (157/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8792286Z remote: Counting objects:  66% (160/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8792593Z remote: Counting objects:  67% (162/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8792894Z remote: Counting objects:  68% (164/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8871165Z remote: Counting objects:  69% (167/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8871728Z remote: Counting objects:  70% (169/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8872363Z remote: Counting objects:  71% (172/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8873047Z remote: Counting objects:  72% (174/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8873719Z remote: Counting objects:  73% (176/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8874336Z remote: Counting objects:  74% (179/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8874901Z remote: Counting objects:  75% (181/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8875396Z remote: Counting objects:  76% (184/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8875926Z remote: Counting objects:  77% (186/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8876470Z remote: Counting objects:  78% (188/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8877310Z remote: Counting objects:  79% (191/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8877815Z remote: Counting objects:  80% (193/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8878689Z remote: Counting objects:  81% (196/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8879242Z remote: Counting objects:  82% (198/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8879763Z remote: Counting objects:  83% (201/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8880291Z remote: Counting objects:  84% (203/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8880857Z remote: Counting objects:  85% (205/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8881494Z remote: Counting objects:  86% (208/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8882048Z remote: Counting objects:  87% (210/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8882608Z remote: Counting objects:  88% (213/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8883167Z remote: Counting objects:  89% (215/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8883713Z remote: Counting objects:  90% (217/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8884259Z remote: Counting objects:  91% (220/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.8884811Z remote: Counting objects:  92% (222/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9003314Z remote: Counting objects:  93% (225/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9004075Z remote: Counting objects:  94% (227/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9004761Z remote: Counting objects:  95% (229/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9005441Z remote: Counting objects:  96% (232/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9006100Z remote: Counting objects:  97% (234/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9007111Z remote: Counting objects:  98% (237/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9007789Z remote: Counting objects:  99% (239/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9008764Z remote: Counting objects: 100% (241/241)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9009231Z remote: Counting objects: 100% (241/241), done.        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9009687Z remote: Compressing objects:   0% (1/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9010089Z remote: Compressing objects:   1% (2/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9010483Z remote: Compressing objects:   2% (4/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9010895Z remote: Compressing objects:   3% (6/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9011281Z remote: Compressing objects:   4% (8/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9011669Z remote: Compressing objects:   5% (10/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9012068Z remote: Compressing objects:   6% (12/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9012460Z remote: Compressing objects:   7% (14/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9012785Z remote: Compressing objects:   8% (16/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9013115Z remote: Compressing objects:   9% (18/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9013500Z remote: Compressing objects:  10% (20/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9013818Z remote: Compressing objects:  11% (22/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9014138Z remote: Compressing objects:  12% (24/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9014449Z remote: Compressing objects:  13% (26/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9014777Z remote: Compressing objects:  14% (28/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9015094Z remote: Compressing objects:  15% (30/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9015408Z remote: Compressing objects:  16% (32/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9015717Z remote: Compressing objects:  17% (34/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9016031Z remote: Compressing objects:  18% (36/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9016341Z remote: Compressing objects:  19% (38/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9016657Z remote: Compressing objects:  20% (40/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9016963Z remote: Compressing objects:  21% (42/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9017276Z remote: Compressing objects:  22% (44/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9017589Z remote: Compressing objects:  23% (46/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9018191Z remote: Compressing objects:  24% (48/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9047660Z remote: Compressing objects:  25% (50/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9048892Z remote: Compressing objects:  26% (52/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9049615Z remote: Compressing objects:  27% (54/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9050184Z remote: Compressing objects:  28% (56/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9051018Z remote: Compressing objects:  29% (58/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9051576Z remote: Compressing objects:  30% (60/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9052197Z remote: Compressing objects:  31% (62/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9052800Z remote: Compressing objects:  32% (64/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9053284Z remote: Compressing objects:  33% (66/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9053633Z remote: Compressing objects:  34% (68/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9053987Z remote: Compressing objects:  35% (70/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9054316Z remote: Compressing objects:  36% (72/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9054652Z remote: Compressing objects:  37% (74/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9054969Z remote: Compressing objects:  38% (76/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9055289Z remote: Compressing objects:  39% (78/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9055613Z remote: Compressing objects:  40% (80/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9055946Z remote: Compressing objects:  41% (82/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9056261Z remote: Compressing objects:  42% (84/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9056575Z remote: Compressing objects:  43% (86/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9056891Z remote: Compressing objects:  44% (88/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9057226Z remote: Compressing objects:  45% (90/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9057544Z remote: Compressing objects:  46% (92/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9058135Z remote: Compressing objects:  47% (94/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9058746Z remote: Compressing objects:  48% (96/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9059074Z remote: Compressing objects:  49% (98/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9059394Z remote: Compressing objects:  50% (99/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9059718Z remote: Compressing objects:  51% (101/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9060056Z remote: Compressing objects:  52% (103/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9111283Z remote: Compressing objects:  53% (105/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9112087Z remote: Compressing objects:  54% (107/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9112818Z remote: Compressing objects:  55% (109/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9113468Z remote: Compressing objects:  56% (111/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9113900Z remote: Compressing objects:  57% (113/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9114314Z remote: Compressing objects:  58% (115/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9115135Z remote: Compressing objects:  59% (117/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9116492Z remote: Compressing objects:  60% (119/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9117245Z remote: Compressing objects:  61% (121/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9118983Z remote: Compressing objects:  62% (123/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9119624Z remote: Compressing objects:  63% (125/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9120223Z remote: Compressing objects:  64% (127/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9120689Z remote: Compressing objects:  65% (129/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9121028Z remote: Compressing objects:  66% (131/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9121376Z remote: Compressing objects:  67% (133/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9121704Z remote: Compressing objects:  68% (135/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9122020Z remote: Compressing objects:  69% (137/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9122333Z remote: Compressing objects:  70% (139/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9122646Z remote: Compressing objects:  71% (141/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9122959Z remote: Compressing objects:  72% (143/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9123281Z remote: Compressing objects:  73% (145/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9123598Z remote: Compressing objects:  74% (147/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9123907Z remote: Compressing objects:  75% (149/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9124219Z remote: Compressing objects:  76% (151/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9124536Z remote: Compressing objects:  77% (153/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9124865Z remote: Compressing objects:  78% (155/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9125390Z remote: Compressing objects:  79% (157/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9125707Z remote: Compressing objects:  80% (159/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9126028Z remote: Compressing objects:  81% (161/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9126349Z remote: Compressing objects:  82% (163/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9126665Z remote: Compressing objects:  83% (165/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9126983Z remote: Compressing objects:  84% (167/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9127309Z remote: Compressing objects:  85% (169/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9127641Z remote: Compressing objects:  86% (171/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9128281Z remote: Compressing objects:  87% (173/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9128615Z remote: Compressing objects:  88% (175/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9128933Z remote: Compressing objects:  89% (177/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9129278Z remote: Compressing objects:  90% (179/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9129598Z remote: Compressing objects:  91% (181/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9129923Z remote: Compressing objects:  92% (183/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9130244Z remote: Compressing objects:  93% (185/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9130559Z remote: Compressing objects:  94% (187/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9130872Z remote: Compressing objects:  95% (189/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9131191Z remote: Compressing objects:  96% (191/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9131515Z remote: Compressing objects:  97% (193/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9131985Z remote: Compressing objects:  98% (195/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9132303Z remote: Compressing objects:  99% (197/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9132611Z remote: Compressing objects: 100% (198/198)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9132952Z remote: Compressing objects: 100% (198/198), done.        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9159515Z Receiving objects:   0% (1/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9160247Z Receiving objects:   1% (3/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9160952Z Receiving objects:   2% (5/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9161663Z Receiving objects:   3% (8/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9162592Z Receiving objects:   4% (10/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9163404Z Receiving objects:   5% (13/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9163906Z Receiving objects:   6% (15/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9164245Z Receiving objects:   7% (17/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9164500Z Receiving objects:   8% (20/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9164771Z Receiving objects:   9% (22/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9165162Z Receiving objects:  10% (25/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9165635Z Receiving objects:  11% (27/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9166107Z Receiving objects:  12% (29/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9166358Z Receiving objects:  13% (32/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9166600Z Receiving objects:  14% (34/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9166860Z Receiving objects:  15% (37/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9167118Z Receiving objects:  16% (39/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9178146Z Receiving objects:  17% (41/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9178738Z Receiving objects:  18% (44/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9179059Z Receiving objects:  19% (46/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9179324Z Receiving objects:  20% (49/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9179585Z Receiving objects:  21% (51/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9179847Z Receiving objects:  22% (54/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9180094Z Receiving objects:  23% (56/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9180338Z Receiving objects:  24% (58/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9180597Z Receiving objects:  25% (61/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9180851Z Receiving objects:  26% (63/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9181094Z Receiving objects:  27% (66/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9181349Z Receiving objects:  28% (68/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9181846Z Receiving objects:  29% (70/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9182338Z Receiving objects:  30% (73/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9182845Z Receiving objects:  31% (75/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9183410Z Receiving objects:  32% (78/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9183904Z Receiving objects:  33% (80/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9184405Z Receiving objects:  34% (82/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9184720Z Receiving objects:  35% (85/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9185172Z Receiving objects:  36% (87/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9185426Z Receiving objects:  37% (90/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9185878Z Receiving objects:  38% (92/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9186124Z Receiving objects:  39% (94/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9186364Z Receiving objects:  40% (97/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9186604Z Receiving objects:  41% (99/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9187055Z Receiving objects:  42% (102/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9187498Z Receiving objects:  43% (104/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9187761Z Receiving objects:  44% (107/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9188700Z Receiving objects:  45% (109/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9189138Z Receiving objects:  46% (111/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9189426Z Receiving objects:  47% (114/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9189676Z Receiving objects:  48% (116/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9189930Z Receiving objects:  49% (119/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9190179Z Receiving objects:  50% (121/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9196974Z Receiving objects:  51% (123/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9197258Z Receiving objects:  52% (126/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9197519Z Receiving objects:  53% (128/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9197762Z Receiving objects:  54% (131/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9198312Z Receiving objects:  55% (133/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9198564Z Receiving objects:  56% (135/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9198812Z Receiving objects:  57% (138/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9199059Z Receiving objects:  58% (140/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9199307Z Receiving objects:  59% (143/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9199549Z Receiving objects:  60% (145/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9248701Z Receiving objects:  61% (148/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9249410Z Receiving objects:  62% (150/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9250036Z Receiving objects:  63% (152/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9250610Z Receiving objects:  64% (155/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9252364Z Receiving objects:  65% (157/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9252971Z Receiving objects:  66% (160/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9253529Z Receiving objects:  67% (162/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9254090Z Receiving objects:  68% (164/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9254656Z Receiving objects:  69% (167/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9259680Z Receiving objects:  70% (169/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9260208Z Receiving objects:  71% (172/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9260678Z Receiving objects:  72% (174/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9261125Z Receiving objects:  73% (176/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9261563Z Receiving objects:  74% (179/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9262013Z Receiving objects:  75% (181/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9268558Z Receiving objects:  76% (184/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9268944Z Receiving objects:  77% (186/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9269224Z Receiving objects:  78% (188/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9269486Z Receiving objects:  79% (191/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9269738Z Receiving objects:  80% (193/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9269981Z Receiving objects:  81% (196/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9270224Z Receiving objects:  82% (198/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9270465Z Receiving objects:  83% (201/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9270719Z Receiving objects:  84% (203/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9270971Z Receiving objects:  85% (205/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9271217Z Receiving objects:  86% (208/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9271460Z Receiving objects:  87% (210/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9271700Z Receiving objects:  88% (213/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9272010Z Receiving objects:  89% (215/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9272475Z Receiving objects:  90% (217/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9273171Z Receiving objects:  91% (220/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9275670Z Receiving objects:  92% (222/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9368313Z Receiving objects:  93% (225/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9675961Z Receiving objects:  94% (227/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9676912Z remote: Total 241 (delta 109), reused 83 (delta 37), pack-reused 0 (from 0)        
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9677640Z Receiving objects:  95% (229/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9678427Z Receiving objects:  96% (232/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9678904Z Receiving objects:  97% (234/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9679384Z Receiving objects:  98% (237/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9682157Z Receiving objects:  99% (239/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9683752Z Receiving objects: 100% (241/241)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9684444Z Receiving objects: 100% (241/241), 149.93 KiB | 2.78 MiB/s, done.
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9685133Z Resolving deltas:   0% (0/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9685644Z Resolving deltas:   1% (2/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9686132Z Resolving deltas:   2% (3/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9686612Z Resolving deltas:   3% (4/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9687801Z Resolving deltas:   4% (5/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9688829Z Resolving deltas:   5% (6/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9689427Z Resolving deltas:   6% (7/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9690164Z Resolving deltas:   7% (8/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9690679Z Resolving deltas:   8% (9/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9691139Z Resolving deltas:   9% (10/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9691577Z Resolving deltas:  10% (11/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9692012Z Resolving deltas:  11% (12/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9692442Z Resolving deltas:  12% (14/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9692862Z Resolving deltas:  13% (15/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9693298Z Resolving deltas:  14% (16/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9693730Z Resolving deltas:  15% (17/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9694147Z Resolving deltas:  16% (18/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9694574Z Resolving deltas:  17% (19/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9695588Z Resolving deltas:  18% (20/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9696271Z Resolving deltas:  19% (21/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9696873Z Resolving deltas:  20% (22/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9697453Z Resolving deltas:  21% (23/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9698613Z Resolving deltas:  22% (24/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9699323Z Resolving deltas:  23% (26/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9699842Z Resolving deltas:  24% (27/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9700278Z Resolving deltas:  25% (28/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9700706Z Resolving deltas:  26% (29/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9701127Z Resolving deltas:  27% (30/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9701551Z Resolving deltas:  28% (31/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9701977Z Resolving deltas:  29% (32/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9702400Z Resolving deltas:  30% (33/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9702839Z Resolving deltas:  31% (34/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9703272Z Resolving deltas:  32% (35/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9705166Z Resolving deltas:  33% (36/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9705983Z Resolving deltas:  34% (38/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9706502Z Resolving deltas:  35% (39/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9707002Z Resolving deltas:  36% (40/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9707460Z Resolving deltas:  37% (41/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9708274Z Resolving deltas:  38% (42/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9708694Z Resolving deltas:  39% (43/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9709174Z Resolving deltas:  40% (44/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9709670Z Resolving deltas:  41% (45/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9710115Z Resolving deltas:  42% (46/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9710605Z Resolving deltas:  43% (47/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9711083Z Resolving deltas:  44% (48/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9711534Z Resolving deltas:  45% (50/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9712002Z Resolving deltas:  46% (51/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9712439Z Resolving deltas:  47% (52/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9712903Z Resolving deltas:  48% (53/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9713558Z Resolving deltas:  49% (54/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9723321Z Resolving deltas:  50% (55/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9725337Z Resolving deltas:  51% (56/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9726190Z Resolving deltas:  52% (57/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9726946Z Resolving deltas:  53% (58/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9727498Z Resolving deltas:  54% (59/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9728567Z Resolving deltas:  55% (60/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9729291Z Resolving deltas:  56% (62/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9729850Z Resolving deltas:  57% (63/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9730279Z Resolving deltas:  58% (64/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9730995Z Resolving deltas:  59% (65/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9731766Z Resolving deltas:  60% (66/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9732437Z Resolving deltas:  61% (67/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9733270Z Resolving deltas:  62% (68/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9733912Z Resolving deltas:  63% (69/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9734824Z Resolving deltas:  64% (70/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9735641Z Resolving deltas:  65% (71/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9736466Z Resolving deltas:  66% (72/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9737096Z Resolving deltas:  67% (74/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9737513Z Resolving deltas:  68% (75/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9738202Z Resolving deltas:  69% (76/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9738675Z Resolving deltas:  70% (77/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9739074Z Resolving deltas:  71% (78/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9739465Z Resolving deltas:  72% (79/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9739869Z Resolving deltas:  73% (80/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9740255Z Resolving deltas:  74% (81/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9740641Z Resolving deltas:  75% (82/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9741181Z Resolving deltas:  76% (83/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9741797Z Resolving deltas:  77% (84/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9742231Z Resolving deltas:  78% (86/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9742615Z Resolving deltas:  79% (87/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9743002Z Resolving deltas:  80% (88/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9743399Z Resolving deltas:  81% (89/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9743814Z Resolving deltas:  82% (90/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9744223Z Resolving deltas:  83% (91/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9744618Z Resolving deltas:  84% (92/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9745008Z Resolving deltas:  85% (93/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9745398Z Resolving deltas:  86% (94/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9745902Z Resolving deltas:  87% (95/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9746452Z Resolving deltas:  88% (96/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9747502Z Resolving deltas:  89% (98/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9748518Z Resolving deltas:  90% (99/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9749215Z Resolving deltas:  91% (100/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9749721Z Resolving deltas:  92% (101/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9750312Z Resolving deltas:  93% (102/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9750741Z Resolving deltas:  94% (103/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9751165Z Resolving deltas:  95% (104/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9751661Z Resolving deltas:  96% (105/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9752264Z Resolving deltas:  97% (106/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9752708Z Resolving deltas:  98% (107/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9753136Z Resolving deltas: 100% (109/109)
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9753475Z Resolving deltas: 100% (109/109), done.
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9843670Z From https://github.com/linksplatform/Data.Doublets
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9844468Z  * [new ref]         799502ce9275edc80d9fbc1953ff8892fe0eca19 -> origin/main
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9851058Z ##[endgroup]
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9851821Z ##[group]Determining the checkout info
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9853363Z ##[endgroup]
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9854038Z ##[group]Checking out the ref
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:32.9866870Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:33.0075620Z Switched to a new branch 'main'
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:33.0081893Z branch 'main' set up to track 'origin/main'.
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:33.0088446Z ##[endgroup]
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:33.0135427Z [command]/usr/bin/git log -1 --format='%H'
+auto-merge	Run actions/checkout@v2	2026-10-29T08:31:33.0164164Z '799502ce9275edc80d9fbc1953ff8892fe0eca19'
+auto-merge	Run ahmadnassri/action-dependabot-auto-merge@v2	﻿2026-10-29T08:31:33.0507384Z ##[group]Run ahmadnassri/action-dependabot-auto-merge@v2
+auto-merge	Run ahmadnassri/action-dependabot-auto-merge@v2	2026-10-29T08:31:33.0507773Z with:
+auto-merge	Run ahmadnassri/action-dependabot-auto-merge@v2	2026-10-29T08:31:33.0508209Z   target: minor
+auto-merge	Run ahmadnassri/action-dependabot-auto-merge@v2	2026-10-29T08:31:33.0508673Z   github-token: ***
+auto-merge	Run ahmadnassri/action-dependabot-auto-merge@v2	2026-10-29T08:31:33.0508911Z   config: .github/auto-merge.yml
+auto-merge	Run ahmadnassri/action-dependabot-auto-merge@v2	2026-10-29T08:31:33.0509162Z   command: merge
+auto-merge	Run ahmadnassri/action-dependabot-auto-merge@v2	2026-10-29T08:31:33.0509379Z   botName: dependabot
+auto-merge	Run ahmadnassri/action-dependabot-auto-merge@v2	2026-10-29T08:31:33.0509593Z   approve: true
+auto-merge	Run ahmadnassri/action-dependabot-auto-merge@v2	2026-10-29T08:31:33.0509792Z ##[endgroup]
+auto-merge	Run ahmadnassri/action-dependabot-auto-merge@v2	2026-10-29T08:31:33.0605030Z ##[command]/usr/bin/docker run --name ghcrioahmadnassriactiondependabotautomerge266_1802e2 --label 688fbe --workdir /github/workspace --rm -e "INPUT_TARGET" -e "INPUT_GITHUB-TOKEN" -e "INPUT_CONFIG" -e "INPUT_COMMAND" -e "INPUT_BOTNAME" -e "INPUT_APPROVE" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "GITHUB_ARTIFACTS" -e "GITHUB_ARTIFACTS_LIST" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_ENVIRONMENT" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e "ACTIONS_RESULTS_URL" -e "ACTIONS_CACHE_MODE" -e "ACTIONS_ORCHESTRATION_ID" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp":"/github/runner_temp" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/Data.Doublets/Data.Doublets":"/github/workspace" ghcr.io/ahmadnassri/action-dependabot-auto-merge:2.6.6
+auto-merge	Run ahmadnassri/action-dependabot-auto-merge@v2	2026-10-29T08:31:33.5509041Z ##[warning]exiting early - expected PR by "dependabot[bot]", found "konard" instead
+auto-merge	Post Run actions/checkout@v2	﻿2026-10-29T08:31:33.6559667Z Post job cleanup.
+auto-merge	Post Run actions/checkout@v2	2026-10-29T08:31:33.7517477Z (node:2679) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+auto-merge	Post Run actions/checkout@v2	2026-10-29T08:31:33.7518720Z (Use `node --trace-deprecation ...` to show where the warning was created)
+auto-merge	Post Run actions/checkout@v2	2026-10-29T08:31:33.7549971Z [command]/usr/bin/git version
+auto-merge	Post Run actions/checkout@v2	2026-10-29T08:31:33.7590720Z git version 2.56.0
+auto-merge	Post Run actions/checkout@v2	2026-10-29T08:31:33.7629173Z Temporarily overriding HOME='/home/runner/work/_temp/6a6a703c-959e-49da-a730-6c1146916068' before making global git config changes
+auto-merge	Post Run actions/checkout@v2	2026-10-29T08:31:33.7630351Z Adding repository directory to the temporary git global config as a safe directory
+auto-merge	Post Run actions/checkout@v2	2026-10-29T08:31:33.7634459Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+auto-merge	Post Run actions/checkout@v2	2026-10-29T08:31:33.7675051Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+auto-merge	Post Run actions/checkout@v2	2026-10-29T08:31:33.7709827Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+auto-merge	Post Run actions/checkout@v2	2026-10-29T08:31:33.7949193Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+auto-merge	Post Run actions/checkout@v2	2026-10-29T08:31:33.7976864Z http.https://github.com/.extraheader
+auto-merge	Post Run actions/checkout@v2	2026-10-29T08:31:33.7985980Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+auto-merge	Post Run actions/checkout@v2	2026-10-29T08:31:33.8021378Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+auto-merge	Complete job	﻿2026-10-29T08:31:33.8442737Z Cleaning up orphan processes
+auto-merge	Complete job	2026-10-29T08:31:33.8894449Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v2. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

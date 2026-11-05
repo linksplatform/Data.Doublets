@@ -1,0 +1,3 @@
+[issue-524-b1512fd1c7a8 cfa7d101a] Isolate native package consumers from CMake dependency outputs
+ 2 files changed, 50 insertions(+), 1 deletion(-)
+ create mode 100644 experiments/test_package_consumer.py

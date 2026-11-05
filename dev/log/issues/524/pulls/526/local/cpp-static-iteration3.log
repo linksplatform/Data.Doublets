@@ -1,0 +1,621 @@
+[1/2] Processing file /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp.
+11 warnings generated.
+[2/2] Processing file /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp.
+438 warnings generated.
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:47:5: error: syntax error [syntaxError]
+    TEST(ResizableDirectMemoryLinksTests, BasicFileMappedMemoryTest)
+    ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h:100:14: warning: The class 'LinksTargetsSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheLeftOfSecond' also defined in its parent struct 'LinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h:46:14: note: Parent function 'LinksSizeBalancedTreeMethodsBase::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h:100:14: note: Derived function 'LinksTargetsSizeBalancedTreeMethods::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h:109:14: warning: The class 'LinksTargetsSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheRightOfSecond' also defined in its parent struct 'LinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h:55:14: note: Parent function 'LinksSizeBalancedTreeMethodsBase::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h:109:14: note: Derived function 'LinksTargetsSizeBalancedTreeMethods::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h:118:25: warning: The class 'LinksTargetsSizeBalancedTreeMethods' defines member function with name 'CountUsages' also defined in its parent struct 'LinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType CountUsages(LinkAddressType root)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h:115:25: note: Parent function 'LinksSizeBalancedTreeMethodsBase::CountUsages'
+        LinkAddressType CountUsages(LinkAddressType linkAddress)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h:118:25: note: Derived function 'LinksTargetsSizeBalancedTreeMethods::CountUsages'
+        LinkAddressType CountUsages(LinkAddressType root)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h:123:25: warning: The class 'LinksTargetsSizeBalancedTreeMethods' defines member function with name 'Search' also defined in its parent struct 'LinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h:90:25: note: Parent function 'LinksSizeBalancedTreeMethodsBase::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h:123:25: note: Derived function 'LinksTargetsSizeBalancedTreeMethods::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h:100:14: warning: The struct 'LinksSourcesSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheLeftOfSecond' also defined in its parent struct 'LinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h:46:14: note: Parent function 'LinksSizeBalancedTreeMethodsBase::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h:100:14: note: Derived function 'LinksSourcesSizeBalancedTreeMethods::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h:109:14: warning: The struct 'LinksSourcesSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheRightOfSecond' also defined in its parent struct 'LinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h:55:14: note: Parent function 'LinksSizeBalancedTreeMethodsBase::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h:109:14: note: Derived function 'LinksSourcesSizeBalancedTreeMethods::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h:118:25: warning: The struct 'LinksSourcesSizeBalancedTreeMethods' defines member function with name 'CountUsages' also defined in its parent struct 'LinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType CountUsages(LinkAddressType root)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h:115:25: note: Parent function 'LinksSizeBalancedTreeMethodsBase::CountUsages'
+        LinkAddressType CountUsages(LinkAddressType linkAddress)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h:118:25: note: Derived function 'LinksSourcesSizeBalancedTreeMethods::CountUsages'
+        LinkAddressType CountUsages(LinkAddressType root)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h:123:25: warning: The struct 'LinksSourcesSizeBalancedTreeMethods' defines member function with name 'Search' also defined in its parent struct 'LinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h:90:25: note: Parent function 'LinksSizeBalancedTreeMethodsBase::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h:123:25: note: Derived function 'LinksSourcesSizeBalancedTreeMethods::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:68:25: warning: The class 'LinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetTreeRoot' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:32:25: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::GetTreeRoot'
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:68:25: note: Derived function 'LinksTargetsRecursionlessSizeBalancedTreeMethods::GetTreeRoot'
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:74:25: warning: The class 'LinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetBasePartValue' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetBasePartValue(LinkAddressType linkAddress)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:38:25: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType linkAddress)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:74:25: note: Derived function 'LinksTargetsRecursionlessSizeBalancedTreeMethods::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType linkAddress)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:80:14: warning: The class 'LinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheLeftOfSecond' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:51:14: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:80:14: note: Derived function 'LinksTargetsRecursionlessSizeBalancedTreeMethods::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:87:14: warning: The class 'LinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheRightOfSecond' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:44:14: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:87:14: note: Derived function 'LinksTargetsRecursionlessSizeBalancedTreeMethods::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:103:14: warning: The class 'LinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheLeftOfSecond' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:77:14: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:103:14: note: Derived function 'LinksTargetsRecursionlessSizeBalancedTreeMethods::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:112:14: warning: The class 'LinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheRightOfSecond' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:86:14: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:112:14: note: Derived function 'LinksTargetsRecursionlessSizeBalancedTreeMethods::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:121:25: warning: The class 'LinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'CountUsages' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType CountUsages(LinkAddressType root)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:146:25: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::CountUsages'
+        LinkAddressType CountUsages(LinkAddressType linkAddress)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:121:25: note: Derived function 'LinksTargetsRecursionlessSizeBalancedTreeMethods::CountUsages'
+        LinkAddressType CountUsages(LinkAddressType root)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:126:25: warning: The class 'LinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'Search' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:121:25: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:126:25: note: Derived function 'LinksTargetsRecursionlessSizeBalancedTreeMethods::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:68:25: warning: The struct 'LinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetTreeRoot' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:32:25: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::GetTreeRoot'
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:68:25: note: Derived function 'LinksSourcesRecursionlessSizeBalancedTreeMethods::GetTreeRoot'
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:74:25: warning: The struct 'LinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetBasePartValue' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetBasePartValue(LinkAddressType linkAddress)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:38:25: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType linkAddress)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:74:25: note: Derived function 'LinksSourcesRecursionlessSizeBalancedTreeMethods::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType linkAddress)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:80:14: warning: The struct 'LinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheLeftOfSecond' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:51:14: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:80:14: note: Derived function 'LinksSourcesRecursionlessSizeBalancedTreeMethods::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:87:14: warning: The struct 'LinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheRightOfSecond' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:44:14: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:87:14: note: Derived function 'LinksSourcesRecursionlessSizeBalancedTreeMethods::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:103:14: warning: The struct 'LinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheLeftOfSecond' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:77:14: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:103:14: note: Derived function 'LinksSourcesRecursionlessSizeBalancedTreeMethods::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:112:14: warning: The struct 'LinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheRightOfSecond' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:86:14: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:112:14: note: Derived function 'LinksSourcesRecursionlessSizeBalancedTreeMethods::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:121:25: warning: The struct 'LinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'CountUsages' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType CountUsages(LinkAddressType root)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:146:25: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::CountUsages'
+        LinkAddressType CountUsages(LinkAddressType linkAddress)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:121:25: note: Derived function 'LinksSourcesRecursionlessSizeBalancedTreeMethods::CountUsages'
+        LinkAddressType CountUsages(LinkAddressType root)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:126:25: warning: The struct 'LinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'Search' also defined in its parent struct 'LinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:121:25: note: Parent function 'LinksRecursionlessSizeBalancedTreeMethodsBase::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:126:25: note: Derived function 'LinksSourcesRecursionlessSizeBalancedTreeMethods::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h:153:25: warning: The struct 'LinksTargetsAvlBalancedTreeMethods' defines member function with name 'CountUsages' also defined in its parent struct 'LinksAvlBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType CountUsages(LinkAddressType root)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.h:86:25: note: Parent function 'LinksAvlBalancedTreeMethodsBase::CountUsages'
+        LinkAddressType CountUsages(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h:153:25: note: Derived function 'LinksTargetsAvlBalancedTreeMethods::CountUsages'
+        LinkAddressType CountUsages(LinkAddressType root)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h:158:25: warning: The struct 'LinksTargetsAvlBalancedTreeMethods' defines member function with name 'Search' also defined in its parent struct 'LinksAvlBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.h:61:25: note: Parent function 'LinksAvlBalancedTreeMethodsBase::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h:158:25: note: Derived function 'LinksTargetsAvlBalancedTreeMethods::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesAvlBalancedTreeMethods.h:153:25: warning: The struct 'LinksSourcesAvlBalancedTreeMethods' defines member function with name 'CountUsages' also defined in its parent struct 'LinksAvlBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType CountUsages(LinkAddressType root)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.h:86:25: note: Parent function 'LinksAvlBalancedTreeMethodsBase::CountUsages'
+        LinkAddressType CountUsages(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesAvlBalancedTreeMethods.h:153:25: note: Derived function 'LinksSourcesAvlBalancedTreeMethods::CountUsages'
+        LinkAddressType CountUsages(LinkAddressType root)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesAvlBalancedTreeMethods.h:158:25: warning: The struct 'LinksSourcesAvlBalancedTreeMethods' defines member function with name 'Search' also defined in its parent struct 'LinksAvlBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.h:61:25: note: Parent function 'LinksAvlBalancedTreeMethodsBase::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesAvlBalancedTreeMethods.h:158:25: note: Derived function 'LinksSourcesAvlBalancedTreeMethods::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:21:31: warning: The class 'ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods' defines member variable with name 'Constants' also defined in its parent class 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:13:31: note: Parent variable 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:21:31: note: Derived variable 'ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:79:25: warning: The class 'ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetTreeRoot' also defined in its parent class 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:46:25: note: Parent function 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase::GetTreeRoot'
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:79:25: note: Derived function 'ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods::GetTreeRoot'
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:85:25: warning: The class 'ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetBasePartValue' also defined in its parent class 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:52:25: note: Parent function 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:85:25: note: Derived function 'ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:91:14: warning: The class 'ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheLeftOfSecond' also defined in its parent class 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:65:14: note: Parent function 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:91:14: note: Derived function 'ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:99:14: warning: The class 'ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheRightOfSecond' also defined in its parent class 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:58:14: note: Parent function 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:99:14: note: Derived function 'ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesSizeBalancedTreeMethods.h:17:31: warning: The class 'ExternalLinksSourcesSizeBalancedTreeMethods' defines member variable with name 'Constants' also defined in its parent class 'ExternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h:11:31: note: Parent variable 'ExternalLinksSizeBalancedTreeMethodsBase::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesSizeBalancedTreeMethods.h:17:31: note: Derived variable 'ExternalLinksSourcesSizeBalancedTreeMethods::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesSizeBalancedTreeMethods.h:75:25: warning: The class 'ExternalLinksSourcesSizeBalancedTreeMethods' defines member function with name 'GetTreeRoot' also defined in its parent class 'ExternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h:32:25: note: Parent function 'ExternalLinksSizeBalancedTreeMethodsBase::GetTreeRoot'
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesSizeBalancedTreeMethods.h:75:25: note: Derived function 'ExternalLinksSourcesSizeBalancedTreeMethods::GetTreeRoot'
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesSizeBalancedTreeMethods.h:81:25: warning: The class 'ExternalLinksSourcesSizeBalancedTreeMethods' defines member function with name 'GetBasePartValue' also defined in its parent class 'ExternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h:38:25: note: Parent function 'ExternalLinksSizeBalancedTreeMethodsBase::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesSizeBalancedTreeMethods.h:81:25: note: Derived function 'ExternalLinksSourcesSizeBalancedTreeMethods::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesSizeBalancedTreeMethods.h:87:14: warning: The class 'ExternalLinksSourcesSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheLeftOfSecond' also defined in its parent class 'ExternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h:51:14: note: Parent function 'ExternalLinksSizeBalancedTreeMethodsBase::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesSizeBalancedTreeMethods.h:87:14: note: Derived function 'ExternalLinksSourcesSizeBalancedTreeMethods::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesSizeBalancedTreeMethods.h:95:14: warning: The class 'ExternalLinksSourcesSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheRightOfSecond' also defined in its parent class 'ExternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h:44:14: note: Parent function 'ExternalLinksSizeBalancedTreeMethodsBase::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSourcesSizeBalancedTreeMethods.h:95:14: note: Derived function 'ExternalLinksSourcesSizeBalancedTreeMethods::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:16:31: warning: The class 'ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods' defines member variable with name 'Constants' also defined in its parent class 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:13:31: note: Parent variable 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:16:31: note: Derived variable 'ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:76:25: warning: The class 'ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetTreeRoot' also defined in its parent class 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:46:25: note: Parent function 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase::GetTreeRoot'
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:76:25: note: Derived function 'ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods::GetTreeRoot'
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:82:25: warning: The class 'ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetBasePartValue' also defined in its parent class 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:52:25: note: Parent function 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:82:25: note: Derived function 'ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:88:14: warning: The class 'ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheLeftOfSecond' also defined in its parent class 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:65:14: note: Parent function 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:88:14: note: Derived function 'ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:96:14: warning: The class 'ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheRightOfSecond' also defined in its parent class 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:58:14: note: Parent function 'ExternalLinksRecursionlessSizeBalancedTreeMethodsBase::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:96:14: note: Derived function 'ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsSizeBalancedTreeMethods.h:71:25: warning: The class 'ExternalLinksTargetsSizeBalancedTreeMethods' defines member function with name 'GetTreeRoot' also defined in its parent class 'ExternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h:32:25: note: Parent function 'ExternalLinksSizeBalancedTreeMethodsBase::GetTreeRoot'
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsSizeBalancedTreeMethods.h:71:25: note: Derived function 'ExternalLinksTargetsSizeBalancedTreeMethods::GetTreeRoot'
+        LinkAddressType GetTreeRoot()
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsSizeBalancedTreeMethods.h:77:25: warning: The class 'ExternalLinksTargetsSizeBalancedTreeMethods' defines member function with name 'GetBasePartValue' also defined in its parent class 'ExternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h:38:25: note: Parent function 'ExternalLinksSizeBalancedTreeMethodsBase::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsSizeBalancedTreeMethods.h:77:25: note: Derived function 'ExternalLinksTargetsSizeBalancedTreeMethods::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsSizeBalancedTreeMethods.h:83:14: warning: The class 'ExternalLinksTargetsSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheLeftOfSecond' also defined in its parent class 'ExternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h:51:14: note: Parent function 'ExternalLinksSizeBalancedTreeMethodsBase::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsSizeBalancedTreeMethods.h:83:14: note: Derived function 'ExternalLinksTargetsSizeBalancedTreeMethods::FirstIsToTheLeftOfSecond'
+        bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsSizeBalancedTreeMethods.h:91:14: warning: The class 'ExternalLinksTargetsSizeBalancedTreeMethods' defines member function with name 'FirstIsToTheRightOfSecond' also defined in its parent class 'ExternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h:44:14: note: Parent function 'ExternalLinksSizeBalancedTreeMethodsBase::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksTargetsSizeBalancedTreeMethods.h:91:14: note: Derived function 'ExternalLinksTargetsSizeBalancedTreeMethods::FirstIsToTheRightOfSecond'
+        bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget,
+             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:14:31: warning: The class 'InternalLinksSourcesRecursionlessSizeBalancedTreeMethods' defines member variable with name 'Constants' also defined in its parent class 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:16:31: note: Parent variable 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:14:31: note: Derived variable 'InternalLinksSourcesRecursionlessSizeBalancedTreeMethods::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:74:25: warning: The class 'InternalLinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetTreeRoot' also defined in its parent class 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetTreeRoot(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:43:25: note: Parent function 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase::GetTreeRoot'
+        LinkAddressType GetTreeRoot(LinkAddressType linkAddress)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:74:25: note: Derived function 'InternalLinksSourcesRecursionlessSizeBalancedTreeMethods::GetTreeRoot'
+        LinkAddressType GetTreeRoot(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:80:25: warning: The class 'InternalLinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetBasePartValue' also defined in its parent class 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:49:25: note: Parent function 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:80:25: note: Derived function 'InternalLinksSourcesRecursionlessSizeBalancedTreeMethods::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:86:25: warning: The class 'InternalLinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetKeyPartValue' also defined in its parent class 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetKeyPartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:55:25: note: Parent function 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase::GetKeyPartValue'
+        LinkAddressType GetKeyPartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:86:25: note: Derived function 'InternalLinksSourcesRecursionlessSizeBalancedTreeMethods::GetKeyPartValue'
+        LinkAddressType GetKeyPartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:101:25: warning: The class 'InternalLinksSourcesRecursionlessSizeBalancedTreeMethods' defines member function with name 'Search' also defined in its parent class 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:120:25: note: Parent function 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h:101:25: note: Derived function 'InternalLinksSourcesRecursionlessSizeBalancedTreeMethods::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesSizeBalancedTreeMethods.h:14:31: warning: The class 'InternalLinksSourcesSizeBalancedTreeMethods' defines member variable with name 'Constants' also defined in its parent class 'InternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:11:31: note: Parent variable 'InternalLinksSizeBalancedTreeMethodsBase::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesSizeBalancedTreeMethods.h:14:31: note: Derived variable 'InternalLinksSourcesSizeBalancedTreeMethods::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesSizeBalancedTreeMethods.h:75:25: warning: The class 'InternalLinksSourcesSizeBalancedTreeMethods' defines member function with name 'GetTreeRoot' also defined in its parent class 'InternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetTreeRoot(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:42:25: note: Parent function 'InternalLinksSizeBalancedTreeMethodsBase::GetTreeRoot'
+        LinkAddressType GetTreeRoot(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesSizeBalancedTreeMethods.h:75:25: note: Derived function 'InternalLinksSourcesSizeBalancedTreeMethods::GetTreeRoot'
+        LinkAddressType GetTreeRoot(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesSizeBalancedTreeMethods.h:81:25: warning: The class 'InternalLinksSourcesSizeBalancedTreeMethods' defines member function with name 'GetBasePartValue' also defined in its parent class 'InternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:48:25: note: Parent function 'InternalLinksSizeBalancedTreeMethodsBase::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesSizeBalancedTreeMethods.h:81:25: note: Derived function 'InternalLinksSourcesSizeBalancedTreeMethods::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesSizeBalancedTreeMethods.h:87:25: warning: The class 'InternalLinksSourcesSizeBalancedTreeMethods' defines member function with name 'GetKeyPartValue' also defined in its parent class 'InternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetKeyPartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:54:25: note: Parent function 'InternalLinksSizeBalancedTreeMethodsBase::GetKeyPartValue'
+        LinkAddressType GetKeyPartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesSizeBalancedTreeMethods.h:87:25: note: Derived function 'InternalLinksSourcesSizeBalancedTreeMethods::GetKeyPartValue'
+        LinkAddressType GetKeyPartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesSizeBalancedTreeMethods.h:102:25: warning: The class 'InternalLinksSourcesSizeBalancedTreeMethods' defines member function with name 'Search' also defined in its parent class 'InternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:133:25: note: Parent function 'InternalLinksSizeBalancedTreeMethodsBase::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesSizeBalancedTreeMethods.h:102:25: note: Derived function 'InternalLinksSourcesSizeBalancedTreeMethods::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:16:31: warning: The class 'InternalLinksTargetsRecursionlessSizeBalancedTreeMethods' defines member variable with name 'Constants' also defined in its parent class 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:16:31: note: Parent variable 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:16:31: note: Derived variable 'InternalLinksTargetsRecursionlessSizeBalancedTreeMethods::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:76:25: warning: The class 'InternalLinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetTreeRoot' also defined in its parent class 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetTreeRoot(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:43:25: note: Parent function 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase::GetTreeRoot'
+        LinkAddressType GetTreeRoot(LinkAddressType linkAddress)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:76:25: note: Derived function 'InternalLinksTargetsRecursionlessSizeBalancedTreeMethods::GetTreeRoot'
+        LinkAddressType GetTreeRoot(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:82:25: warning: The class 'InternalLinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetBasePartValue' also defined in its parent class 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:49:25: note: Parent function 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:82:25: note: Derived function 'InternalLinksTargetsRecursionlessSizeBalancedTreeMethods::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:88:25: warning: The class 'InternalLinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'GetKeyPartValue' also defined in its parent class 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetKeyPartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:55:25: note: Parent function 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase::GetKeyPartValue'
+        LinkAddressType GetKeyPartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:88:25: note: Derived function 'InternalLinksTargetsRecursionlessSizeBalancedTreeMethods::GetKeyPartValue'
+        LinkAddressType GetKeyPartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:103:25: warning: The class 'InternalLinksTargetsRecursionlessSizeBalancedTreeMethods' defines member function with name 'Search' also defined in its parent class 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:120:25: note: Parent function 'InternalLinksRecursionlessSizeBalancedTreeMethodsBase::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h:103:25: note: Derived function 'InternalLinksTargetsRecursionlessSizeBalancedTreeMethods::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsSizeBalancedTreeMethods.h:16:31: warning: The class 'InternalLinksTargetsSizeBalancedTreeMethods' defines member variable with name 'Constants' also defined in its parent class 'InternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:11:31: note: Parent variable 'InternalLinksSizeBalancedTreeMethodsBase::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsSizeBalancedTreeMethods.h:16:31: note: Derived variable 'InternalLinksTargetsSizeBalancedTreeMethods::Constants'
+        static constexpr auto Constants = LinksOptionsType::Constants;
+                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsSizeBalancedTreeMethods.h:77:25: warning: The class 'InternalLinksTargetsSizeBalancedTreeMethods' defines member function with name 'GetTreeRoot' also defined in its parent class 'InternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetTreeRoot(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:42:25: note: Parent function 'InternalLinksSizeBalancedTreeMethodsBase::GetTreeRoot'
+        LinkAddressType GetTreeRoot(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsSizeBalancedTreeMethods.h:77:25: note: Derived function 'InternalLinksTargetsSizeBalancedTreeMethods::GetTreeRoot'
+        LinkAddressType GetTreeRoot(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsSizeBalancedTreeMethods.h:83:25: warning: The class 'InternalLinksTargetsSizeBalancedTreeMethods' defines member function with name 'GetBasePartValue' also defined in its parent class 'InternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:48:25: note: Parent function 'InternalLinksSizeBalancedTreeMethodsBase::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsSizeBalancedTreeMethods.h:83:25: note: Derived function 'InternalLinksTargetsSizeBalancedTreeMethods::GetBasePartValue'
+        LinkAddressType GetBasePartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsSizeBalancedTreeMethods.h:89:25: warning: The class 'InternalLinksTargetsSizeBalancedTreeMethods' defines member function with name 'GetKeyPartValue' also defined in its parent class 'InternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType GetKeyPartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:54:25: note: Parent function 'InternalLinksSizeBalancedTreeMethodsBase::GetKeyPartValue'
+        LinkAddressType GetKeyPartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsSizeBalancedTreeMethods.h:89:25: note: Derived function 'InternalLinksTargetsSizeBalancedTreeMethods::GetKeyPartValue'
+        LinkAddressType GetKeyPartValue(LinkAddressType link)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsSizeBalancedTreeMethods.h:104:25: warning: The class 'InternalLinksTargetsSizeBalancedTreeMethods' defines member function with name 'Search' also defined in its parent class 'InternalLinksSizeBalancedTreeMethodsBase'. [duplInheritedMember]
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:133:25: note: Parent function 'InternalLinksSizeBalancedTreeMethodsBase::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksTargetsSizeBalancedTreeMethods.h:104:25: note: Derived function 'InternalLinksTargetsSizeBalancedTreeMethods::Search'
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                        ^
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/scripts/check-cpp.py", line 30, in <module>
+    run('cppcheck', '--enable=warning,performance,portability', '--error-exitcode=1', '--inline-suppr', '--std=c++20', '--check-level=exhaustive', '--suppress=missingIncludeSystem', '--quiet', '--project=' + str(database))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gh-issue-solver-1793248170197/scripts/check-cpp.py", line 11, in run
+    subprocess.run(args, cwd=ROOT, check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.pyenv/versions/3.15.0/lib/python3.15/subprocess.py", line 692, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '('cppcheck', '--enable=warning,performance,portability', '--error-exitcode=1', '--inline-suppr', '--std=c++20', '--check-level=exhaustive', '--suppress=missingIncludeSystem', '--quiet', '--project=/tmp/issue-524-cpp-baseline/compile_commands.json')' returned non-zero exit status 1.

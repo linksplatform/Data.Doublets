@@ -1,0 +1,9 @@
+[issue-524-b1512fd1c7a8 b7ab81c1e] Require security and link gates and repair cross-platform CI and deployment
+ 22 files changed, 470 insertions(+), 32 deletions(-)
+ create mode 100644 experiments/check_native_syntax.py
+ create mode 100644 experiments/compare_pipeline_templates.py
+ create mode 100644 experiments/constexpr_self_member.cpp
+ create mode 100644 experiments/measure_native_build.py
+ create mode 100644 experiments/test_docs_publish.py
+ create mode 100644 experiments/test_generated_docs.py
+ create mode 100644 experiments/test_release_race.py
