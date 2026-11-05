@@ -104,12 +104,12 @@ jobs:
     permissions:
       contents: read
       security-events: write # Allow the reusable CodeQL workflow to upload results.
-    uses: ./.github/workflows/security.yml
+    uses: $/.github/workflows/security.yml
   links:
     name: links
     needs: quality
     if: "!cancelled() && needs.quality.result == 'success'"
-    uses: ./.github/workflows/links.yml
+    uses: $/.github/workflows/links.yml
   credentials:
     name: credentials
     concurrency:
