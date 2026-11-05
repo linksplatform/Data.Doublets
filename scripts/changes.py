@@ -15,7 +15,13 @@ def categories(paths):
         if path.endswith(".md"):
             continue
         result["csharp"] |= path.startswith(
-            ("csharp/", "examples/ExternalReferences/", "examples/Deletion/", "examples/Update/")
+            (
+                "csharp/",
+                "examples/ExternalReferences/",
+                "examples/Deletion/",
+                "examples/Update/",
+                "examples/Structure/",
+            )
         ) or path in ("global.json", "Directory.Build.props")
         result["cpp"] |= path.startswith(("cpp/", "c/")) or path in (
             "examples/CppMemoryLinks.cpp",

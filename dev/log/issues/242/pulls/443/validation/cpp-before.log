@@ -1,0 +1,146 @@
+In file included from /home/box/.conan2/p/b/gtest7d8a045f56608/p/include/gtest/gtest.h:72,
+                 from /tmp/gh-issue-solver-1793910316518/experiments/issue-242/focused-native.cpp:2:
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h: In instantiation of ‘void Platform::Data::Doublets::Tests::CheckFormatStructure(auto:265) [with TStorage = Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory>; auto:265 = FormatStructureTests_UnitedMatchesCSharpStructureFormatting_Test::TestBody()::<lambda()>]’:
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:103:38:   required from here
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:23:38: error: ‘FormatStructure’ was not declared in this scope
+   23 |                       FormatStructure(storage, layer[0], noElements, true, true));
+      |                       ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:25:38: error: ‘FormatStructure’ was not declared in this scope
+   25 |                       FormatStructure(storage, layer[0], noElements));
+      |                       ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:37:55: error: ‘FormatStructure’ was not declared in this scope
+   37 |             EXPECT_EQ("(1:~100 ~101)", FormatStructure(storage, root, unexpected, true, true));
+      |                                        ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:38:51: error: ‘FormatStructure’ was not declared in this scope
+   38 |             EXPECT_EQ("(100 101)", FormatStructure(storage, root, unexpected));
+      |                                    ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:39:46: error: ‘FormatStructure’ was not declared in this scope
+   39 |             EXPECT_EQ("~100", FormatStructure(storage, Address{100}, unexpected, true, true));
+      |                               ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:40:45: error: ‘FormatStructure’ was not declared in this scope
+   40 |             EXPECT_EQ("100", FormatStructure(storage, Address{100}, unexpected));
+      |                              ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:43:46: error: ‘FormatStructure’ was not declared in this scope
+   43 |                 EXPECT_EQ("", FormatStructure(storage, value, unexpected, true, true));
+      |                               ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:45:51: error: ‘FormatStructure’ was not declared in this scope
+   45 |                 EXPECT_EQ("(1: )", FormatStructure(storage, root, unexpected, true, true));
+      |                                    ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:51:38: error: ‘FormatStructure’ was not declared in this scope
+   51 |                       FormatStructure(storage, root, noElements, true, true));
+      |                       ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:53:38: error: ‘FormatStructure’ was not declared in this scope
+   53 |                       FormatStructure(storage, root, [](const auto&) { return true; }, true, true));
+      |                       ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:58:49: error: ‘FormatStructure’ was not declared in this scope
+   58 |             EXPECT_EQ("(1:1 1)", FormatStructure(storage, point, noElements, true, true));
+      |                                  ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:59:47: error: ‘FormatStructure’ was not declared in this scope
+   59 |             EXPECT_EQ("(1 1)", FormatStructure(storage, point, noElements));
+      |                                ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:62:56: error: ‘FormatStructure’ was not declared in this scope
+   62 |             EXPECT_EQ("(2:(1:1 1) *1)", FormatStructure(storage, root, noElements, true, true));
+      |                                         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:64:49: error: ‘FormatStructure’ was not declared in this scope
+   64 |             EXPECT_EQ("(2:1 1)", FormatStructure(storage, root, allElements, true, true));
+      |                                  ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:71:55: error: ‘FormatStructure’ was not declared in this scope
+   71 |             EXPECT_EQ("(2:leaf leaf)", FormatStructure(storage, root, allElements, appendElement, true, true));
+      |                                        ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793910316518/experiments/issue-242/focused-native.cpp:4:
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:79:28: error: ‘AppendStructure’ was not declared in this scope
+   79 |             AppendStructure(storage, output, visited, point, noElements, appendIndex, true, true);
+      |             ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:80:28: error: ‘AppendStructure’ was not declared in this scope, and no declarations were found by argument-dependent lookup at the point of instantiation
+   80 |             AppendStructure(storage, output, visited, point, noElements, appendIndex, true, true);
+      |             ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:79:28: note: ‘AppendStructure’ declared here, later in the translation unit
+   79 |             AppendStructure(storage, output, visited, point, noElements, appendIndex, true, true);
+      |             ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:84:51: error: ‘FormatStructure’ was not declared in this scope
+   84 |             EXPECT_EQ("(2:~1 ~1)", FormatStructure(storage, root, noElements, true, true));
+      |                                    ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:92:51: error: ‘FormatStructure’ was not declared in this scope
+   92 |             EXPECT_EQ("((1 1) 2)", FormatStructure(storage, one, noElements));
+      |                                    ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:93:54: error: ‘FormatStructure’ was not declared in this scope
+   93 |             EXPECT_EQ("((*1 *1) *2)", FormatStructure(storage, one, noElements, false, true));
+      |                                       ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:94:55: error: ‘FormatStructure’ was not declared in this scope
+   94 |             EXPECT_EQ("(1:(2:1 1) 2)", FormatStructure(storage, one, noElements, true, false));
+      |                                        ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:95:58: error: ‘FormatStructure’ was not declared in this scope
+   95 |             EXPECT_EQ("(1:(2:*1 *1) *2)", FormatStructure(storage, one, noElements, true, true));
+      |                                           ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h: In instantiation of ‘void Platform::Data::Doublets::Tests::CheckFormatStructure(auto:265) [with TStorage = Platform::Data::Doublets::Memory::Split::Generic::SplitMemoryLinks<Platform::Data::Doublets::LinksOptions<unsigned int>, Platform::Memory::HeapResizableDirectMemory>; auto:265 = FormatStructureTests_SplitMatchesCSharpStructureFormatting_Test::TestBody()::<lambda()>]’:
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:110:38:   required from here
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:23:38: error: ‘FormatStructure’ was not declared in this scope
+   23 |                       FormatStructure(storage, layer[0], noElements, true, true));
+      |                       ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:25:38: error: ‘FormatStructure’ was not declared in this scope
+   25 |                       FormatStructure(storage, layer[0], noElements));
+      |                       ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:37:55: error: ‘FormatStructure’ was not declared in this scope
+   37 |             EXPECT_EQ("(1:~100 ~101)", FormatStructure(storage, root, unexpected, true, true));
+      |                                        ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:38:51: error: ‘FormatStructure’ was not declared in this scope
+   38 |             EXPECT_EQ("(100 101)", FormatStructure(storage, root, unexpected));
+      |                                    ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:39:46: error: ‘FormatStructure’ was not declared in this scope
+   39 |             EXPECT_EQ("~100", FormatStructure(storage, Address{100}, unexpected, true, true));
+      |                               ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:40:45: error: ‘FormatStructure’ was not declared in this scope
+   40 |             EXPECT_EQ("100", FormatStructure(storage, Address{100}, unexpected));
+      |                              ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:43:46: error: ‘FormatStructure’ was not declared in this scope
+   43 |                 EXPECT_EQ("", FormatStructure(storage, value, unexpected, true, true));
+      |                               ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:45:51: error: ‘FormatStructure’ was not declared in this scope
+   45 |                 EXPECT_EQ("(1: )", FormatStructure(storage, root, unexpected, true, true));
+      |                                    ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:51:38: error: ‘FormatStructure’ was not declared in this scope
+   51 |                       FormatStructure(storage, root, noElements, true, true));
+      |                       ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:53:38: error: ‘FormatStructure’ was not declared in this scope
+   53 |                       FormatStructure(storage, root, [](const auto&) { return true; }, true, true));
+      |                       ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:58:49: error: ‘FormatStructure’ was not declared in this scope
+   58 |             EXPECT_EQ("(1:1 1)", FormatStructure(storage, point, noElements, true, true));
+      |                                  ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:59:47: error: ‘FormatStructure’ was not declared in this scope
+   59 |             EXPECT_EQ("(1 1)", FormatStructure(storage, point, noElements));
+      |                                ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:62:56: error: ‘FormatStructure’ was not declared in this scope
+   62 |             EXPECT_EQ("(2:(1:1 1) *1)", FormatStructure(storage, root, noElements, true, true));
+      |                                         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:64:49: error: ‘FormatStructure’ was not declared in this scope
+   64 |             EXPECT_EQ("(2:1 1)", FormatStructure(storage, root, allElements, true, true));
+      |                                  ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:71:55: error: ‘FormatStructure’ was not declared in this scope
+   71 |             EXPECT_EQ("(2:leaf leaf)", FormatStructure(storage, root, allElements, appendElement, true, true));
+      |                                        ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:79:28: error: ‘AppendStructure’ was not declared in this scope
+   79 |             AppendStructure(storage, output, visited, point, noElements, appendIndex, true, true);
+      |             ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:80:28: error: ‘AppendStructure’ was not declared in this scope, and no declarations were found by argument-dependent lookup at the point of instantiation
+   80 |             AppendStructure(storage, output, visited, point, noElements, appendIndex, true, true);
+      |             ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:79:28: note: ‘AppendStructure’ declared here, later in the translation unit
+   79 |             AppendStructure(storage, output, visited, point, noElements, appendIndex, true, true);
+      |             ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:84:51: error: ‘FormatStructure’ was not declared in this scope
+   84 |             EXPECT_EQ("(2:~1 ~1)", FormatStructure(storage, root, noElements, true, true));
+      |                                    ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:92:51: error: ‘FormatStructure’ was not declared in this scope
+   92 |             EXPECT_EQ("((1 1) 2)", FormatStructure(storage, one, noElements));
+      |                                    ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:93:54: error: ‘FormatStructure’ was not declared in this scope
+   93 |             EXPECT_EQ("((*1 *1) *2)", FormatStructure(storage, one, noElements, false, true));
+      |                                       ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:94:55: error: ‘FormatStructure’ was not declared in this scope
+   94 |             EXPECT_EQ("(1:(2:1 1) 2)", FormatStructure(storage, one, noElements, true, false));
+      |                                        ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793910316518/experiments/issue-242/../../cpp/Platform.Data.Doublets.Tests/FormatStructureTests.h:95:58: error: ‘FormatStructure’ was not declared in this scope
+   95 |             EXPECT_EQ("(1:(2:*1 *1) *2)", FormatStructure(storage, one, noElements, true, true));
+      |                                           ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Compiler peak RSS: 418316 KiB

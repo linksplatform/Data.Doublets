@@ -5,6 +5,7 @@
 #include "EitherEndpointQueryTests.h"
 #include "PositionalQueryTests.h"
 #include "MergeUsagesTests.h"
+#include "FormatStructureTests.h"
 #include "DeleteAllTests.h"
 #include "OwnershipTests.h"
 #include "LinksConstantsTests.h"

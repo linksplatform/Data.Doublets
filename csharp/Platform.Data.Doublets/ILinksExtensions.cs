@@ -1326,7 +1326,7 @@ namespace Platform.Data.Doublets
                     {
                         sb.Append(link.Index);
                     }
-                    else
+                    else if (links.Exists(link.Source))
                     {
                         var source = new Link<TLinkAddress>(links.GetRequiredLink(link.Source));
                         if (isElement(source))
@@ -1338,12 +1338,17 @@ namespace Platform.Data.Doublets
                             links.AppendStructure<TLinkAddress>(sb, visited, source.Index, isElement, appendElement, renderIndex, renderDebug);
                         }
                     }
+                    else
+                    {
+                        // Sequence leaves can be raw values without a stored link (issue #242).
+                        links.AppendStructure<TLinkAddress>(sb, visited, link.Source, isElement, appendElement, renderIndex, renderDebug);
+                    }
                     sb.Append(' ');
                     if (link.Target == link.Index)
                     {
                         sb.Append(link.Index);
                     }
-                    else
+                    else if (links.Exists(link.Target))
                     {
                         var target = new Link<TLinkAddress>(links.GetRequiredLink(link.Target));
                         if (isElement(target))
@@ -1354,6 +1359,10 @@ namespace Platform.Data.Doublets
                         {
                             links.AppendStructure<TLinkAddress>(sb, visited, target.Index, isElement, appendElement, renderIndex, renderDebug);
                         }
+                    }
+                    else
+                    {
+                        links.AppendStructure<TLinkAddress>(sb, visited, link.Target, isElement, appendElement, renderIndex, renderDebug);
                     }
                     sb.Append(')');
                 }

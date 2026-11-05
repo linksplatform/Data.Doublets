@@ -12,6 +12,7 @@ dotnet run --project examples/ExternalReferences -c Release
 dotnet run --project examples/Deletion -c Release
 dotnet run --project examples/Update -c Release
 dotnet run --project examples/Queries -c Release
+dotnet run --project examples/Structure -c Release
 # --no-build ensures publication uses precisely the assembly that passed tests.
 dotnet pack csharp/Platform.Data.Doublets -c Release --no-build --no-restore -o artifacts/packages -warnaserror
 python3 scripts/smoke_packages.py csharp
