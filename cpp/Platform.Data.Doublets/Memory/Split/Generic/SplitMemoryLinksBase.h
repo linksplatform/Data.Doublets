@@ -325,24 +325,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         return LinkAddressType{1};
                     }
                     auto& storedLinkValue = GetLinkDataPartReference(index);
-                    if ((source != any) && (target != any))
-                    {
-                        if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
-                        {
-                            return LinkAddressType{1};
-                        }
-                        return LinkAddressType{0};
-                    }
-                    auto value = LinkAddressType{};
-                    if (source == any)
-                    {
-                        value = target;
-                    }
-                    if (target == any)
-                    {
-                        value = source;
-                    }
-                    if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
+                    // Three-part restrictions match each endpoint in its own position.
+                    if ((source == any || storedLinkValue.Source == source) &&
+                        (target == any || storedLinkValue.Target == target))
                     {
                         return LinkAddressType{1};
                     }
@@ -545,24 +530,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         return LinkAddressType{1};
                     }
                     auto& storedLinkValue = GetLinkDataPartReference(index);
-                    if ((source != any) && (target != any))
-                    {
-                        if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
-                        {
-                            return LinkAddressType{1};
-                        }
-                        return LinkAddressType{0};
-                    }
-                    auto value = LinkAddressType{0};
-                    if (source == any)
-                    {
-                        value = target;
-                    }
-                    if (target == any)
-                    {
-                        value = source;
-                    }
-                    if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
+                    // Three-part restrictions match each endpoint in its own position.
+                    if ((source == any || storedLinkValue.Source == source) &&
+                        (target == any || storedLinkValue.Target == target))
                     {
                         return LinkAddressType{1};
                     }
@@ -758,24 +728,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         return handler(GetLinkStruct(index));
                     }
                     auto& storedLinkValue = GetLinkDataPartReference(index);
-                    if ((source != any) && (target != any))
-                    {
-                        if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
-                        {
-                            return handler(GetLinkStruct(index));
-                        }
-                        return $continue;
-                    }
-                    auto value = LinkAddressType{0};
-                    if (source == any)
-                    {
-                        value = target;
-                    }
-                    if (target == any)
-                    {
-                        value = source;
-                    }
-                    if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
+                    // Three-part restrictions match each endpoint in its own position.
+                    if ((source == any || storedLinkValue.Source == source) &&
+                        (target == any || storedLinkValue.Target == target))
                     {
                         return handler(GetLinkStruct(index));
                     }

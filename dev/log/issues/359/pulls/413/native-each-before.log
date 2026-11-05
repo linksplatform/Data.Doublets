@@ -1,0 +1,12 @@
+Running main() from /home/box/.conan2/p/b/gtest296144450da96/b/src/googletest/src/gtest_main.cc
+Note: Google Test filter = PositionalQueries.Each
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from PositionalQueries
+[ RUN      ] PositionalQueries.Each
+/tmp/gh-issue-solver-1793908007442/experiments/issue-359/../../cpp/Platform.Data.Doublets.Tests/PositionalQueryTests.h:46: Failure
+Value of: matches
+  Actual: false
+Expected: true
+Google Test trace:
+/tmp/gh-issue-solver-1793908007442/experiments/issue-359/../../cpp/Platform.Data.Doublets.Tests/PositionalQueryTests.h:61: query [3, 2147483644, 1]
