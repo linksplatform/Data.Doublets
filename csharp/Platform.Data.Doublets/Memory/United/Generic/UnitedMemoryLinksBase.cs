@@ -316,24 +316,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                         return GetOne();
                     }
                     ref var storedLinkValue = ref GetLinkReference(index);
-                    if (source != any && target != any)
-                    {
-                        if (AreEqual(storedLinkValue.Source, source) && AreEqual(storedLinkValue.Target, target))
-                        {
-                            return GetOne();
-                        }
-                        return GetZero();
-                    }
-                    var value = TLinkAddress.Zero;
-                    if (source == any)
-                    {
-                        value = target;
-                    }
-                    if (target == any)
-                    {
-                        value = source;
-                    }
-                    if (AreEqual(storedLinkValue.Source, value) || AreEqual(storedLinkValue.Target, value))
+                    // Three-part restrictions match each endpoint in its own position.
+                    if ((source == any || storedLinkValue.Source == source) &&
+                        (target == any || storedLinkValue.Target == target))
                     {
                         return GetOne();
                     }
@@ -473,26 +458,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                         return handler(GetLinkStruct(index));
                     }
                     ref var storedLinkValue = ref GetLinkReference(index);
-                    if (source != any && target != any)
-                    {
-                        if (AreEqual(storedLinkValue.Source, source) &&
-                            AreEqual(storedLinkValue.Target, target))
-                        {
-                            return handler(GetLinkStruct(index));
-                        }
-                        return @continue;
-                    }
-                    var value = TLinkAddress.Zero;
-                    if (source == any)
-                    {
-                        value = target;
-                    }
-                    if (target == any)
-                    {
-                        value = source;
-                    }
-                    if (AreEqual(storedLinkValue.Source, value) ||
-                        AreEqual(storedLinkValue.Target, value))
+                    // Three-part restrictions match each endpoint in its own position.
+                    if ((source == any || storedLinkValue.Source == source) &&
+                        (target == any || storedLinkValue.Target == target))
                     {
                         return handler(GetLinkStruct(index));
                     }

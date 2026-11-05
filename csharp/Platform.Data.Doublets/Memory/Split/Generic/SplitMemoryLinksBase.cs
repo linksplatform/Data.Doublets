@@ -390,27 +390,11 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 return GetOne();
             }
             ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
-            if ((source != any) && (target != any))
+            // Three-part restrictions match each endpoint in its own position.
+            if ((source == any || storedLinkValue.Source == source) &&
+                (target == any || storedLinkValue.Target == target))
             {
-                if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
-                {
-                    return GetOne();
-                }
-                return GetZero();
-            }
-            if ((source == any))
-            {
-                if ((storedLinkValue.Target == target))
-                {
-                    return GetOne();
-                }
-            }
-            if ((target == any))
-            {
-                if ((storedLinkValue.Source == source))
-                {
-                    return GetOne();
-                }
+                return GetOne();
             }
             return GetZero();
         }
@@ -582,24 +566,9 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 return handler(link: GetLinkStruct(linkIndex: index));
             }
             ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
-            if ((source != any) && (target != any))
-            {
-                if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
-                {
-                    return handler(link: GetLinkStruct(linkIndex: index));
-                }
-                return @continue;
-            }
-            var value = TLinkAddress.Zero;
-            if ((source == any))
-            {
-                value = target;
-            }
-            if ((target == any))
-            {
-                value = source;
-            }
-            if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
+            // Three-part restrictions match each endpoint in its own position.
+            if ((source == any || storedLinkValue.Source == source) &&
+                (target == any || storedLinkValue.Target == target))
             {
                 return handler(link: GetLinkStruct(linkIndex: index));
             }

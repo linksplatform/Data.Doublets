@@ -189,24 +189,9 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                         return LinkAddressType{1};
                     }
                     auto& storedLinkValue = GetLinkReference(index);
-                    if (source != any && target != any)
-                    {
-                        if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
-                        {
-                            return LinkAddressType{1};
-                        }
-                        return LinkAddressType{};
-                    }
-                    auto value = LinkAddressType();
-                    if (source == any)
-                    {
-                        value = target;
-                    }
-                    if (target == any)
-                    {
-                        value = source;
-                    }
-                    if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
+                    // Three-part restrictions match each endpoint in its own position.
+                    if ((source == any || storedLinkValue.Source == source) &&
+                        (target == any || storedLinkValue.Target == target))
                     {
                         return LinkAddressType{1};
                     }
@@ -328,24 +313,9 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                     // TODO: 'ref locals' are not converted by C# to C++ Converter:
                     // ORIGINAL LINE: ref var storedLinkValue = ref GetLinkReference(index);
                     auto& storedLinkValue = GetLinkReference(index);
-                    if (source != any && target != any)
-                    {
-                        if (storedLinkValue.Source == source && storedLinkValue.Target == target)
-                        {
-                            return handler(GetLinkStruct(index));
-                        }
-                        return _continue;
-                    }
-                    auto value = LinkAddressType();
-                    if (source == any)
-                    {
-                        value = target;
-                    }
-                    if (target == any)
-                    {
-                        value = source;
-                    }
-                    if (storedLinkValue.Source == value || storedLinkValue.Target == value)
+                    // Three-part restrictions match each endpoint in its own position.
+                    if ((source == any || storedLinkValue.Source == source) &&
+                        (target == any || storedLinkValue.Target == target))
                     {
                         return handler(GetLinkStruct(index));
                     }

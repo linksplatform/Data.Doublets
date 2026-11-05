@@ -3,6 +3,7 @@
 #include "ILinksTestExtensions.h"
 #include "ExtensionTests.h"
 #include "EitherEndpointQueryTests.h"
+#include "PositionalQueryTests.h"
 #include "MergeUsagesTests.h"
 #include "DeleteAllTests.h"
 #include "OwnershipTests.h"
