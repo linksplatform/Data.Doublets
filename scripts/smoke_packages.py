@@ -83,8 +83,8 @@ def smoke(language, build_dir=None):
     with zipfile.ZipFile(archive) as contents:
         names = contents.namelist()
         if language == "csharp":
-            assert any(n.startswith("lib/net8") and n.endswith(".dll") for n in names)
-            assert any(n.startswith("lib/net8") and n.endswith(".xml") for n in names)
+            assert any(n.startswith("lib/net10") and n.endswith(".dll") for n in names)
+            assert any(n.startswith("lib/net10") and n.endswith(".xml") for n in names)
             assert "README.md" in names and "icon.png" in names
         else:
             headers = list((ROOT / "cpp/Platform.Data.Doublets").rglob("*.h"))
@@ -127,7 +127,7 @@ def smoke(language, build_dir=None):
         ET.SubElement(sources, "add", key="nuget.org", value="https://api.nuget.org/v3/index.json")
         ET.ElementTree(config).write(consumer / "NuGet.Config")
         properties = (
-            "<TargetFramework>net8.0</TargetFramework><OutputType>Exe</OutputType>"
+            "<TargetFramework>net10.0</TargetFramework><OutputType>Exe</OutputType>"
             if language == "csharp"
             else "<TargetFramework>native</TargetFramework><TargetFrameworkIdentifier>native</TargetFrameworkIdentifier><TargetFrameworkVersion>v0.0</TargetFrameworkVersion>"
         )

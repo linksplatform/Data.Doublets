@@ -6,7 +6,7 @@
         <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
         <VersionPrefix>0.18.9</VersionPrefix>
         <Authors>konard, FreePhoenix888</Authors>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <AssemblyName>Platform.Data.Doublets</AssemblyName>
         <PackageId>Platform.Data.Doublets</PackageId>
@@ -30,13 +30,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Platform.Data" Version="0.16.1" />
-        <PackageReference Include="Platform.Data.Doublets.FFI" Version="0.9.0" />
-        <PackageReference Include="Platform.Random" Version="0.3.0" />
-        <PackageReference Include="Platform.Timestamps" Version="0.3.0" />
-        <PackageReference Include="Platform.Collections.Methods" Version="0.7.3" />
-        <PackageReference Include="Platform.Singletons" Version="0.3.0" />
-        <PackageReference Include="Platform.Memory" Version="0.4.1" />
+        <PackageReference Include="Platform.Data" />
+        <PackageReference Include="Platform.Data.Doublets.FFI" />
+        <PackageReference Include="Platform.Random" />
+        <PackageReference Include="Platform.Timestamps" />
+        <PackageReference Include="Platform.Collections.Methods" />
+        <PackageReference Include="Platform.Singletons" />
+        <PackageReference Include="Platform.Memory" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,18 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <IsPackable>false</IsPackable>
+        <OutputType>Exe</OutputType>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
-        <PackageReference Include="xunit" Version="2.9.3" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" PrivateAssets="All" />
-        <PackageReference Include="coverlet.collector" Version="10.1.0" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="xunit.v3.mtp-off" />
+        <PackageReference Include="xunit.runner.visualstudio" PrivateAssets="All" />
+        <PackageReference Include="coverlet.collector" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>
@@ -20,9 +21,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Platform.Counters" Version="0.0.2" />
-        <PackageReference Include="Platform.Diagnostics" Version="0.1.0" />
-        <PackageReference Include="Platform.Scopes" Version="0.1.0" />
+        <PackageReference Include="Platform.Counters" />
+        <PackageReference Include="Platform.Diagnostics" />
+        <PackageReference Include="Platform.Scopes" />
     </ItemGroup>
 
 </Project>

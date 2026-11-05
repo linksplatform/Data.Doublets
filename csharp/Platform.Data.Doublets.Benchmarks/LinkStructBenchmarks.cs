@@ -6,7 +6,6 @@ using TLinkAddress = System.UInt64;
 
 namespace Platform.Data.Doublets.Benchmarks
 {
-    [SimpleJob]
     [MemoryDiagnoser]
     public class LinkStructBenchmarks
     {

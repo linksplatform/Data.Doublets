@@ -1,0 +1,1 @@
+{"summary":"Require .NET 10, update dependency APIs and refresh native dependencies and validation tools.","releases":{"csharp":"major","cpp":"minor"}}
