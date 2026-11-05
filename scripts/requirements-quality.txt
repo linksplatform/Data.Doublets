@@ -1,6 +1,10 @@
+-c requirements.lock.txt
 PyYAML==6.0.3
-conan==2.33.0
-ruff==0.17.3
-mypy==1.18.2
-types-PyYAML==6.0.12.20260906
-pyflakes==3.4.0
+conan==2.34.0
+ruff==0.17.4
+mypy==2.4.1
+types-PyYAML==6.0.12.20261103
+pyflakes==4.1.0
+clang-format==23.1.5
+pre-commit==4.7.0
+pip==26.3

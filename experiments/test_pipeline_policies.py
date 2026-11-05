@@ -44,6 +44,14 @@ class RoutingTests(unittest.TestCase):
     def test_structure_example_runs_csharp_validation(self):
         self.assertTrue(changes.categories(['examples/Structure/Program.cs'])['csharp'])
 
+    def test_queries_and_central_packages_run_csharp_validation(self):
+        for path in ('examples/Queries/Program.cs', 'Directory.Packages.props'):
+            self.assertTrue(changes.categories([path])['csharp'])
+
+    def test_rust_dependency_changes_run_pipeline_validation(self):
+        for path in ('rust', 'rust-toolchain.toml', 'experiments/issue-359/RustParity/Cargo.toml', 'experiments/issue-519/Cargo.lock'):
+            self.assertTrue(changes.categories([path])['pipeline'])
+
     def test_deleted_files_are_included_from_the_actual_push_base(self):
         with patch.object(changes, 'git', return_value=b'cpp/deleted.h\0csharp/deleted.cs\0') as git:
             self.assertEqual(changes.changed_paths({'before': 'base-sha'}, 'push'), ['cpp/deleted.h', 'csharp/deleted.cs'])
@@ -57,11 +65,12 @@ class RoutingTests(unittest.TestCase):
 
 class GateTests(unittest.TestCase):
     def jobs(self):
-        result = {name: {'result': 'skipped'} for name in ('changes', 'quality', 'credentials', 'csharp', 'cpp', 'docs', 'publish', 'security', 'links')}
+        result = {name: {'result': 'skipped'} for name in ('changes', 'quality', 'credentials', 'csharp', 'cpp', 'docs', 'publish', 'security', 'links', 'rust')}
         result['changes'] = {'result': 'success', 'outputs': {'cpp': 'true'}}
         result['quality']['result'] = 'success'
         result['security']['result'] = 'success'
         result['links']['result'] = 'success'
+        result['rust']['result'] = 'success'
         return result
 
     def test_applicable_skipped_validation_fails(self):
@@ -82,7 +91,7 @@ class GateTests(unittest.TestCase):
             check_required.validate(jobs, main=True)
 
     def test_security_and_links_cannot_silently_skip(self):
-        for name in ('security', 'links'):
+        for name in ('security', 'links', 'rust'):
             jobs = self.jobs()
             jobs['cpp']['result'] = 'success'
             jobs['docs']['result'] = 'success'

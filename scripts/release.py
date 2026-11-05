@@ -71,8 +71,9 @@ def request(url, *, method="GET", headers=None):
             return response.status, response.read()
     except urllib.error.HTTPError as error:
         # Preserve a bounded server explanation, never headers or exception text.
-        return error.code, error.read(8192)
-    except (OSError, urllib.error.URLError):
+        with error:
+            return error.code, error.read(8192)
+    except OSError, urllib.error.URLError:
         return 0, b""
 
 
@@ -120,7 +121,7 @@ def authenticate_fallback(token, package):
         key = json.loads(body)["Key"]
         if not isinstance(key, str) or not key:
             raise ValueError("Missing authentication result")
-    except (ValueError, KeyError, TypeError):
+    except ValueError, KeyError, TypeError:
         raise RuntimeError("authentication probe returned a malformed response") from None
     print(
         "Provided key authenticated for push actions; package scope remains unverified. "
@@ -188,7 +189,7 @@ def verify_nuget(key, package):
             or not re.fullmatch(r"[0-9A-Za-z.+-]+", versions[-1])
         ):
             raise ValueError("No versions")
-    except (ValueError, KeyError, TypeError):
+    except ValueError, KeyError, TypeError:
         return "NuGet package index is malformed; refusing to assume publish permissions."
     print(
         f"::notice::NuGet package scope for {package['id']} is unverified/unsupported by non-upload probes for push-only keys; actual publication must enforce ownership and package authorization."
@@ -214,7 +215,7 @@ def verify_github(mode):
         return f"GitHub repository access probe failed (HTTP {status or 'unreachable'}): {diagnostic(body, github_token)}"
     try:
         accessible = json.loads(body).get("full_name", "").lower() == repository.lower()
-    except (ValueError, TypeError, AttributeError):
+    except ValueError, TypeError, AttributeError:
         accessible = False
     if not accessible:
         return (
@@ -416,7 +417,7 @@ def release_state(body):
         ):
             raise ValueError("Invalid release metadata")
         return draft, assets
-    except (ValueError, KeyError, TypeError):
+    except ValueError, KeyError, TypeError:
         raise RuntimeError("GitHub release lookup returned malformed metadata") from None
 
 

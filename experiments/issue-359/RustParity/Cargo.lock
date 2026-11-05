@@ -34,8 +34,8 @@ checksum = "4e7648175b45a9a48536d676f68d918270699102aa8dab5496df06904c914600"
 
 [[package]]
 name = "doublets"
-version = "0.19.0"
-source = "git+https://github.com/linksplatform/doublets-rs?rev=e58169a34f02d506d006c4399535ba1a097e7db2#e58169a34f02d506d006c4399535ba1a097e7db2"
+version = "0.20.0"
+source = "git+https://github.com/linksplatform/doublets-rs?rev=18d6a81da69ee661c6fa7563abca4c8b20c3404d#18d6a81da69ee661c6fa7563abca4c8b20c3404d"
 dependencies = [
  "cfg-if",
  "leak_slice",

@@ -43,6 +43,7 @@ class PreflightCompatibilityTests(unittest.TestCase):
             status, diagnostic = release.request('https://www.nuget.org/')
             rendered = release.diagnostic(diagnostic)
         self.assertEqual(status, 400)
+        self.assertTrue(error.closed)
         self.assertIn('policy rejected', rendered)
         self.assertNotIn('temporary-private', rendered)
         self.assertNotIn('\n', rendered)

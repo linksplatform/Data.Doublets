@@ -1,9 +1,10 @@
 //! Bounded issue 519 parity audit against the pinned current Rust implementation.
 use doublets::{
+    Doublets, Error, Link,
     data::Flow,
     decorators::{DecoratorsExt, LoggingDecorator},
     mem::Global,
-    split, unit, Doublets, Error, Link,
+    split, unit,
 };
 
 fn audit(mut links: impl Doublets<usize>, automatic: bool) -> Result<(), Error<usize>> {
