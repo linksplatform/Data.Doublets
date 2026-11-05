@@ -1,3 +1,11 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": ["# Structure formatting in C# and C++", "*"]
+  }
+}
+-->
+
 # Structure formatting in C# and C++
 
 `FormatStructure` renders a reachable link structure as parenthesized source
@@ -9,7 +17,8 @@ Formatting reads the store without allocating or creating links in it.
 For a fresh C# store, a link with raw endpoints can be formatted directly:
 
 ```csharp
-using var links = new UnitedMemoryLinks<ulong>(new HeapResizableDirectMemory(), 4096);
+using var links = new UnitedMemoryLinks<ulong>(
+    new HeapResizableDirectMemory(), 4096);
 var root = links.CreateAndUpdate(100UL, 101UL);
 Console.WriteLine(links.FormatStructure(root, _ => false, true, true));
 // (1:~100 ~101)
@@ -25,7 +34,8 @@ using Storage = Memory::United::Generic::UnitedMemoryLinks<
 Storage links{Platform::Memory::HeapResizableDirectMemory{}};
 auto root = Create(links);
 Update(links, root, std::uint64_t{100}, std::uint64_t{101});
-auto notation = FormatStructure(links, root, [](const auto&) { return false; }, true, true);
+auto notation = FormatStructure(
+    links, root, [](const auto&) { return false; }, true, true);
 // (1:~100 ~101)
 ```
 
@@ -52,7 +62,7 @@ the C# API's existing convention. Deleted endpoints are missing references.
 `AppendStructure` accepts the caller's output builder/stream and visited set,
 which can be reused across calls. A later reference to an already visited
 address uses the same repeated-link notation. The traversal remains recursive;
-the visited set prevents cycles but does not bound the depth of an acyclic graph.
+the visited set prevents cycles but does not bound acyclic graph depth.
 
 ## Issue 242 reproduction
 
@@ -79,7 +89,8 @@ checks this output:
 ```
 
 The exact issue snippet with the published Sequences 0.6.5 converter is also
-runnable with `dotnet run --project experiments/issue-242/OriginalReport -c Release`.
+available in `experiments/issue-242/OriginalReport`.
+Run `dotnet run --project experiments/issue-242/OriginalReport -c Release`.
 It asserts the same output. The normal unit suites use the equivalent pair
 layers to keep their dependencies limited to this repository.
 

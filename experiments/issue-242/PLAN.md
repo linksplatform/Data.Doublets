@@ -1,3 +1,11 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": ["# Issue 242 requirement and verification plan", "*"]
+  }
+}
+-->
+
 # Issue 242 requirement and verification plan
 
 Issue: <https://github.com/linksplatform/Data.Doublets/issues/242>
@@ -9,17 +17,26 @@ comments (none), reviews (none), and sub-issues (none). The substantive PR
 feedback asks to validate the report, fix C# and C++, cover tests/docs, and
 comment on the original issue.
 
-| Requirement | Implementation | Verification |
-| --- | --- | --- |
-| Validate the reported `super_name` conversion | Reproduce the converter's adjacent-pair layers with raw character addresses | Before/after focused C# test and runnable example |
-| Fix the actual C# exception | Check endpoint existence before constructing a stored link; route raw leaves through existing formatting | Exact expected notation on united and split stores |
-| Validate the PR's recursion diagnosis | Existing visited set already bounds circular traversal; self references have a direct path | Exact cycle, self-reference and shared-subtree tests |
-| Preserve nested debug options | Forward `renderDebug` for both source and target | All combinations of index/debug flags on a cycle |
-| Cover C++ | Supply absent native FormatStructure/AppendStructure with matching behavior | United uint64 and split uint32 cases in normal CTest suite |
-| Preserve custom elements and caller-owned state | Retain predicate/element callback semantics and visited/builder behavior | Exact callback counts, output and visited set |
-| Handle absent, deleted, external and reserved addresses | Numeric missing leaves; preserve external points and skip reserved constants | Both language suites; no callbacks on absent internal leaves |
-| Document behavior and explain issue | User guide, corrected example, original issue comment | Docs CI and links to verified evidence |
-| Prepare release and final PR | Independent C# patch/C++ minor changeset, merge main, final diff review | Current-head CI, clean tree, updated PR marked ready |
+1. Validate the reported `super_name` conversion: reproduce the converter's
+   adjacent-pair layers with raw character addresses. Verify before/after
+   focused C# tests and the runnable example.
+2. Fix the C# exception: check endpoint existence before reading stored links;
+   format raw leaves numerically. Check exact united and split store notation.
+3. Validate the recursion diagnosis: retain the visited set and direct self
+   reference path. Check exact cycle, point and shared-subtree output.
+4. Preserve nested debug options: forward `renderDebug` for both endpoints.
+   Test every combination of index/debug flags on a cycle.
+5. Cover C++: add the absent FormatStructure/AppendStructure APIs with matching
+   behavior. Run united uint64 and split uint32 cases in normal CTest discovery.
+6. Preserve custom elements and caller-owned state: retain callbacks and shared
+   visited/builder behavior. Assert callback counts, output and visited set.
+7. Handle absent, deleted, external and reserved addresses: render numeric
+   missing leaves, preserve virtual points and skip reserved constants. Test
+   both languages and reject callbacks on absent internal leaves.
+8. Document behavior and explain the issue: add the guide, corrected example
+   and original issue comment. Check docs CI and links to verified evidence.
+9. Prepare the release and final PR: add a C# patch/C++ minor changeset, merge
+   main and review the diff. Verify current-head CI, clean tree and ready PR.
 
 Local verification is sequential and focused. Full suites, native compilers,
 sanitizers, static analysis, package consumers and generated docs run in CI.

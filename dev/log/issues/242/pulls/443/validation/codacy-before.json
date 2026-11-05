@@ -1,0 +1,579 @@
+{
+  "analyzed": true,
+  "data": [
+    {
+      "commitIssue": {
+        "issueId": "f37ac475ea0e92652c0e61513cc004d1",
+        "resultDataId": 131560752559,
+        "filePath": "experiments/issue-242/PLAN.md",
+        "fileId": 244276764093,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 16,
+        "message": "Expected: 80; Actual: 189",
+        "language": "Markdown",
+        "lineText": "| Validate the PR's recursion diagnosis | Existing visited set already bounds circular traversal; self references have a direct path | Exact cycle, self-reference and shared-subtree tests |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "a334691bb9fe8b850aa13533c8a73100",
+        "resultDataId": 131560752561,
+        "filePath": "dev/log/issues/242/pulls/443/README.md",
+        "fileId": 244276764414,
+        "patternInfo": {
+          "id": "markdownlint_MD043",
+          "category": "BestPractice",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 1,
+        "message": "Expected: [None]; Actual: # Issue 242 validation evidence",
+        "language": "Markdown",
+        "lineText": "# Issue 242 validation evidence",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "8978c82b0cb43cc88996f382b8f461ae",
+        "resultDataId": 131560752568,
+        "filePath": "experiments/issue-242/PLAN.md",
+        "fileId": 244276764093,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 19,
+        "message": "Expected: 80; Actual: 174",
+        "language": "Markdown",
+        "lineText": "| Preserve custom elements and caller-owned state | Retain predicate/element callback semantics and visited/builder behavior | Exact callback counts, output and visited set |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "4f9026008ae8b8e210069443a80019fb",
+        "resultDataId": 131560752563,
+        "filePath": "experiments/issue-242/PLAN.md",
+        "fileId": 244276764093,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 20,
+        "message": "Expected: 80; Actual: 201",
+        "language": "Markdown",
+        "lineText": "| Handle absent, deleted, external and reserved addresses | Numeric missing leaves; preserve external points and skip reserved constants | Both language suites; no callbacks on absent internal leaves |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "10a82661bf97814829fdca370e56368b",
+        "resultDataId": 131560752569,
+        "filePath": "experiments/issue-242/PLAN.md",
+        "fileId": 244276764093,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 15,
+        "message": "Expected: 80; Actual: 191",
+        "language": "Markdown",
+        "lineText": "| Fix the actual C# exception | Check endpoint existence before constructing a stored link; route raw leaves through existing formatting | Exact expected notation on united and split stores |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "b71c5fd874468667bc74358c4ff3ae60",
+        "resultDataId": 131560752566,
+        "filePath": "docs/structure-formatting.md",
+        "fileId": 244276764674,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 12,
+        "message": "Expected: 80; Actual: 86",
+        "language": "Markdown",
+        "lineText": "using var links = new UnitedMemoryLinks<ulong>(new HeapResizableDirectMemory(), 4096);",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "38c4279188be70476bfda1d3de823fb3",
+        "resultDataId": 131560752567,
+        "filePath": "experiments/issue-242/PLAN.md",
+        "fileId": 244276764093,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 22,
+        "message": "Expected: 80; Actual: 161",
+        "language": "Markdown",
+        "lineText": "| Prepare release and final PR | Independent C# patch/C++ minor changeset, merge main, final diff review | Current-head CI, clean tree, updated PR marked ready |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "616e928dcb6db805e6e48d3998ba18d3",
+        "resultDataId": 131560752571,
+        "filePath": "experiments/issue-242/PLAN.md",
+        "fileId": 244276764093,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 14,
+        "message": "Expected: 80; Actual: 179",
+        "language": "Markdown",
+        "lineText": "| Validate the reported `super_name` conversion | Reproduce the converter's adjacent-pair layers with raw character addresses | Before/after focused C# test and runnable example |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "f7132ecd0624913c1ddd805493aab508",
+        "resultDataId": 131560752570,
+        "filePath": "experiments/issue-242/PLAN.md",
+        "fileId": 244276764093,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 21,
+        "message": "Expected: 80; Actual: 136",
+        "language": "Markdown",
+        "lineText": "| Document behavior and explain issue | User guide, corrected example, original issue comment | Docs CI and links to verified evidence |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "2707f77949e4da3498ebbfb41c61e03d",
+        "resultDataId": 131560752565,
+        "filePath": "experiments/issue-242/PLAN.md",
+        "fileId": 244276764093,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 17,
+        "message": "Expected: 80; Actual: 135",
+        "language": "Markdown",
+        "lineText": "| Preserve nested debug options | Forward `renderDebug` for both source and target | All combinations of index/debug flags on a cycle |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "637c67847fc02dcdba5ef9b095ab0d73",
+        "resultDataId": 131560752564,
+        "filePath": "docs/structure-formatting.md",
+        "fileId": 244276764674,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 28,
+        "message": "Expected: 80; Actual: 92",
+        "language": "Markdown",
+        "lineText": "auto notation = FormatStructure(links, root, [](const auto&) { return false; }, true, true);",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "2d8a64b2356a0a6e64cb38f33742edf0",
+        "resultDataId": 131560752572,
+        "filePath": "experiments/issue-242/PLAN.md",
+        "fileId": 244276764093,
+        "patternInfo": {
+          "id": "markdownlint_MD043",
+          "category": "BestPractice",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 1,
+        "message": "Expected: [None]; Actual: # Issue 242 requirement and verification plan",
+        "language": "Markdown",
+        "lineText": "# Issue 242 requirement and verification plan",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "c414623240f72459066bf158e0174c9e",
+        "resultDataId": 131560752560,
+        "filePath": "docs/structure-formatting.md",
+        "fileId": 244276764674,
+        "patternInfo": {
+          "id": "markdownlint_MD043",
+          "category": "BestPractice",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 1,
+        "message": "Expected: [None]; Actual: # Structure formatting in C# and C++",
+        "language": "Markdown",
+        "lineText": "# Structure formatting in C# and C++",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "7fd52649be1a3823781f32bb610b60b1",
+        "resultDataId": 131560752562,
+        "filePath": "experiments/issue-242/PLAN.md",
+        "fileId": 244276764093,
+        "patternInfo": {
+          "id": "markdownlint_MD013",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "547ff16b-d57c-4d75-8067-5ccf3ea88a00",
+          "name": "markdownlint"
+        },
+        "lineNumber": 18,
+        "message": "Expected: 80; Actual: 152",
+        "language": "Markdown",
+        "lineText": "| Cover C++ | Supply absent native FormatStructure/AppendStructure with matching behavior | United uint64 and split uint32 cases in normal CTest suite |",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "cfcc00f0a672af2c172e77e569142323",
+        "resultDataId": 131560752701,
+        "filePath": "csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs",
+        "fileId": 244276764565,
+        "patternInfo": {
+          "id": "SonarCSharp_S121",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "8954dff3-f19c-429c-ac76-c45fa5e73b62",
+          "name": "SonarC#"
+        },
+        "lineNumber": 36,
+        "message": "Add curly braces around the nested statement(s) in this 'for' block.",
+        "language": "CSharp",
+        "lineText": "            for (var i = 0; i < layer.Length; i += 2)",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "33e99f8e24181585457cd594e82ea1c5",
+        "resultDataId": 131560752704,
+        "filePath": "examples/Structure/Program.cs",
+        "fileId": 244276764385,
+        "patternInfo": {
+          "id": "SonarCSharp_S121",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "8954dff3-f19c-429c-ac76-c45fa5e73b62",
+          "name": "SonarC#"
+        },
+        "lineNumber": 11,
+        "message": "Add curly braces around the nested statement(s) in this 'for' block.",
+        "language": "CSharp",
+        "lineText": "    for (var i = 0; i < layer.Length; i += 2)",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "dd1d333c2b1cf9b776bbbc4a7b8e828",
+        "resultDataId": 131560752702,
+        "filePath": "examples/Structure/Program.cs",
+        "fileId": 244276764385,
+        "patternInfo": {
+          "id": "SonarCSharp_S121",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "8954dff3-f19c-429c-ac76-c45fa5e73b62",
+          "name": "SonarC#"
+        },
+        "lineNumber": 18,
+        "message": "Add curly braces around the nested statement(s) in this 'if' block.",
+        "language": "CSharp",
+        "lineText": "if (notation != expected)",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "ebc8360533a95d12e05cddb81acdbac8",
+        "resultDataId": 131560752705,
+        "filePath": "experiments/issue-242/OriginalReport/Program.cs",
+        "fileId": 244276764473,
+        "patternInfo": {
+          "id": "SonarCSharp_S121",
+          "category": "CodeStyle",
+          "level": "Info",
+          "severityLevel": "Info"
+        },
+        "toolInfo": {
+          "uuid": "8954dff3-f19c-429c-ac76-c45fa5e73b62",
+          "name": "SonarC#"
+        },
+        "lineNumber": 12,
+        "message": "Add curly braces around the nested statement(s) in this 'if' block.",
+        "language": "CSharp",
+        "lineText": "if (notation != expected)",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    },
+    {
+      "commitIssue": {
+        "issueId": "fdebd07296fe928bec610e0299e6b76",
+        "resultDataId": 131560752703,
+        "filePath": "csharp/Platform.Data.Doublets.Tests/FormatStructureTests.cs",
+        "fileId": 244276764565,
+        "patternInfo": {
+          "id": "SonarCSharp_S1944",
+          "category": "ErrorProne",
+          "level": "High",
+          "severityLevel": "High"
+        },
+        "toolInfo": {
+          "uuid": "8954dff3-f19c-429c-ac76-c45fa5e73b62",
+          "name": "SonarC#"
+        },
+        "lineNumber": 22,
+        "message": "Review this cast; in this project there's no type that extends 'ILinks<ulong>' and implements 'IDisposable'.",
+        "language": "CSharp",
+        "lineText": "        return (IDisposable)links;",
+        "falsePositiveThreshold": 80,
+        "commitInfo": {
+          "sha": "3ccaf8c7341e622d1b77ae0723a58456e7681a37",
+          "commiter": "drakonard@gmail.com",
+          "commiterName": "konard",
+          "timestamp": "2026-11-05T20:41:07Z"
+        }
+      },
+      "deltaType": "Added"
+    }
+  ],
+  "pagination": {
+    "limit": 100,
+    "total": 19
+  }
+}

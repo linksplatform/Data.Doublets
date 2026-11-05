@@ -10,4 +10,6 @@ var notation = links.FormatStructure(name_root, _ => false, true, true);
 Console.WriteLine(notation);
 const string expected = "(9:(8:(6:(1:~115 ~117) (2:~112 ~101)) (7:(3:~114 ~95) (4:~110 ~97))) (5:~109 ~101))";
 if (notation != expected)
+{
     throw new InvalidOperationException($"Unexpected structure: {notation}");
+}

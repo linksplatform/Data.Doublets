@@ -1,3 +1,11 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": ["# Issue 242 validation evidence", "*"]
+  }
+}
+-->
+
 # Issue 242 validation evidence
 
 Issue: <https://github.com/linksplatform/Data.Doublets/issues/242>
@@ -42,7 +50,7 @@ callbacks. No existing formatter is replaced.
 
 The local Clang 21 distribution rejects pre-existing, unused interface methods
 with `no member named 'object'`. The focused native verification therefore uses
-the configured GCC compiler; CI's pinned Clang 18 jobs cover Clang and sanitizers.
+the configured GCC compiler; pinned Clang 18 CI covers Clang and sanitizers.
 Only supported endpoint values are persisted in tests: query constants are
 checked as roots, rather than stored as invalid internal addresses.
 
@@ -55,3 +63,10 @@ Commands and acceptance mapping are in `experiments/issue-242/PLAN.md`.
 Reproduction helpers restore the fixed source in `finally` blocks. The normal
 suite tests reconstruct the converter's exact pair layers; the standalone
 `OriginalReport` experiment additionally uses the actual published converter.
+
+The first hosted Codacy check reported 19 findings. Its original response is
+saved in `validation/codacy-before.json`: the only high-severity finding points
+to the test helper's interface-to-disposable cast at test line 22. It now
+returns each concrete disposable store directly. The other findings request
+braces, shorter Markdown lines and explicit per-file heading declarations;
+these corrections preserve the same test assertions and documentation.

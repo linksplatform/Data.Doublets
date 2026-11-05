@@ -16,10 +16,15 @@ public class FormatStructureTests
     private static IDisposable CreateStore(bool split, out ILinks<ulong> links, bool external = false)
     {
         var constants = new LinksConstants<ulong>(enableExternalReferencesSupport: external);
-        links = split
-            ? new SplitMemoryLinks<ulong>(new HeapResizableDirectMemory(), new HeapResizableDirectMemory(), 4096, constants)
-            : new UnitedMemoryLinks<ulong>(new HeapResizableDirectMemory(), 4096, constants, IndexTreeType.Default);
-        return (IDisposable)links;
+        if (split)
+        {
+            var store = new SplitMemoryLinks<ulong>(new HeapResizableDirectMemory(), new HeapResizableDirectMemory(), 4096, constants);
+            links = store;
+            return store;
+        }
+        var united = new UnitedMemoryLinks<ulong>(new HeapResizableDirectMemory(), 4096, constants, IndexTreeType.Default);
+        links = united;
+        return united;
     }
 
     [Theory]
@@ -34,7 +39,9 @@ public class FormatStructureTests
         {
             var next = new List<ulong>();
             for (var i = 0; i < layer.Length; i += 2)
+            {
                 next.Add(i + 1 < layer.Length ? links.GetOrCreate(layer[i], layer[i + 1]) : layer[i]);
+            }
             layer = next.ToArray();
         }
         Assert.Equal(9UL, layer[0]);
@@ -140,10 +147,7 @@ public class FormatStructureTests
     [InlineData(true)]
     public void ExternalReferencesKeepTheirVirtualPointBehavior(bool split)
     {
-        var constants = new LinksConstants<ulong>(enableExternalReferencesSupport: true);
-        using var united = split ? null : new UnitedMemoryLinks<ulong>(new HeapResizableDirectMemory(), 4096, constants, IndexTreeType.Default);
-        using var separated = split ? new SplitMemoryLinks<ulong>(new HeapResizableDirectMemory(), new HeapResizableDirectMemory(), 4096, constants) : null;
-        ILinks<ulong> links = split ? separated! : united!;
+        using var store = CreateStore(split, out var links, external: true);
         var external = new Hybrid<ulong>(20, isExternal: true).Value;
         var root = links.CreateAndUpdate(external, external);
         Assert.Equal($"({root}:({external}:{external} {external}) *{external})", links.FormatStructure(root, _ => false, true, true));
