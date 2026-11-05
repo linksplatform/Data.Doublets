@@ -90,5 +90,25 @@
     <PackageVersion Include="xunit.analyzers" Version="2.2.0" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="4.0.1" />
     <PackageVersion Include="xunit.v3.mtp-off" Version="4.0.2" />
+    <PackageVersion Include="Azure.Core" Version="1.64.0" />
+    <PackageVersion Include="Azure.Identity" Version="1.21.0" />
+    <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.Abstractions" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Extensions.FileProviders.Abstractions" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Identity.Client" Version="4.92.0" />
+    <PackageVersion Include="Microsoft.Identity.Client.Extensions.Msal" Version="4.92.0" />
+    <PackageVersion Include="Microsoft.IdentityModel.Abstractions" Version="8.23.0" />
+    <PackageVersion Include="Microsoft.Security.AntiSSRF" Version="1.0.1" />
+    <PackageVersion Include="System.ClientModel" Version="1.16.0" />
+    <PackageVersion Include="System.Memory.Data" Version="10.0.14" />
+    <PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="10.0.14" />
+    <PackageVersion Include="xunit.v3.assert" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3.common" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3.core.mtp-off" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3.extensibility.core" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3.runner.common" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3.runner.inproc.console" Version="4.0.2" />
   </ItemGroup>
 </Project>
