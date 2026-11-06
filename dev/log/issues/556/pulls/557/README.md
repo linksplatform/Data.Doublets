@@ -1,6 +1,6 @@
 # Issue 556 implementation and evidence
 
-Issue: https://github.com/linksplatform/Data.Doublets/issues/556. Pull request: https://github.com/linksplatform/Data.Doublets/pull/557. Research and registry resolution took place on 2026-11-05/06 UTC. The complete issue, its comment, all three PR feedback endpoints, and required-sub-issue endpoint are preserved in [github](github). There are no required sub-issues or additional PR review requirements.
+Issue: https://github.com/linksplatform/Data.Doublets/issues/556. Pull request: https://github.com/linksplatform/Data.Doublets/pull/557. Research and registry resolution took place on 2026-11-05/06 UTC. The complete issue, its comment, all three PR feedback endpoints, and required-sub-issue endpoint are preserved in [github](github). There are no required sub-issues. The later automated CodeQL review identified two unsupported-input findings in the new registry helper; both are corrected with a reproducing regression test (see github/pr-codeql-comments.json and VALIDATION.md).
 
 ## Requirement inventory and solution decisions
 
