@@ -1,0 +1,146 @@
+  Determining projects to restore...
+  Restored /tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj (in 839 ms).
+  Restored /tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Tests/Platform.Data.Doublets.Tests.csproj (in 839 ms).
+  Restored /tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/Platform.Data.Doublets.Benchmarks.csproj (in 839 ms).
+  Platform.Data.Doublets -> /tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets/bin/Release/net10.0/Platform.Data.Doublets.dll
+  Platform.Data.Doublets.Tests -> /tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Tests/bin/Release/net10.0/Platform.Data.Doublets.Tests.dll
+  Platform.Data.Doublets.Benchmarks -> /tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net10.0/Platform.Data.Doublets.Benchmarks.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:13.91
+Test run for /tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Tests/bin/Release/net10.0/Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
+Results File: /tmp/gh-issue-solver-1793921173521/artifacts/test-results/_750b9c74810b_2026-11-05_23_45_51_net10.0.trx
+
+Passed!  - Failed:     0, Passed:   479, Skipped:     0, Total:   479, Duration: 10 s - Platform.Data.Doublets.Tests.dll (net10.0)
+
+Attachments:
+  /tmp/gh-issue-solver-1793921173521/artifacts/test-results/afc2166e-d096-491d-9a4f-0b47fb21deb1/coverage.cobertura.xml
+// Validating benchmarks:
+//    * Assembly Platform.Data.Doublets.Benchmarks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null is located in temp. If you are running benchmarks from xUnit you need to disable shadow copy. It's not supported by design.
+
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 1 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore --nodeReuse:false /p:UseSharedCompilation=false /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="/tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net10.0/Platform.Data.Doublets.Benchmarks-Dry-1/" /p:OutDir="/tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net10.0/Platform.Data.Doublets.Benchmarks-Dry-1/bin/Release/net10.0/" /p:OutputPath="/tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net10.0/Platform.Data.Doublets.Benchmarks-Dry-1/bin/Release/net10.0/" /p:PublishDir="/tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net10.0/Platform.Data.Doublets.Benchmarks-Dry-1/publish/" in /tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net10.0/Platform.Data.Doublets.Benchmarks-Dry-1
+// command took 4.15 sec and exited with 0
+// start dotnet  build -c Release --no-restore --nodeReuse:false /p:UseSharedCompilation=false /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="/tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net10.0/Platform.Data.Doublets.Benchmarks-Dry-1/" /p:OutDir="/tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net10.0/Platform.Data.Doublets.Benchmarks-Dry-1/bin/Release/net10.0/" /p:OutputPath="/tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net10.0/Platform.Data.Doublets.Benchmarks-Dry-1/bin/Release/net10.0/" /p:PublishDir="/tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net10.0/Platform.Data.Doublets.Benchmarks-Dry-1/publish/" --output "/tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net10.0/Platform.Data.Doublets.Benchmarks-Dry-1/bin/Release/net10.0/" in /tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net10.0/Platform.Data.Doublets.Benchmarks-Dry-1
+// command took 17.31 sec and exited with 0
+// ***** Done, took 00:00:21 (21.94 sec)   *****
+// Found 1 benchmarks:
+//   LinkStructBenchmarks.Struct: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+
+// **************************
+// Benchmark: LinkStructBenchmarks.Struct: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet Platform.Data.Doublets.Benchmarks-Dry-1.dll --anonymousPipes 137 138 --benchmarkName Platform.Data.Doublets.Benchmarks.LinkStructBenchmarks.Struct --job Dry --benchmarkId 0 in /tmp/gh-issue-solver-1793921173521/csharp/Platform.Data.Doublets.Benchmarks/bin/Release/net10.0/Platform.Data.Doublets.Benchmarks-Dry-1/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 1932186.00 ns, 1.9322 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 1932186.00 ns, 1.9322 ms/op
+// GC:  0 0 0 40 1
+// Threading:  0 0 1
+
+// AfterAll
+// Benchmark Process 16964 has exited with code 0.
+
+Mean = 1.932 ms, StdErr = 0.000 ms (0.00%), N = 1, StdDev = 0.000 ms
+Min = 1.932 ms, Q1 = 1.932 ms, Median = 1.932 ms, Q3 = 1.932 ms, Max = 1.932 ms
+IQR = 0.000 ms, LowerFence = 1.932 ms, UpperFence = 1.932 ms
+ConfidenceInterval = [NaN ms; NaN ms] (CI 99.9%), Margin = NaN ms (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+
+// ** Remained 0 (0.0 %) benchmark(s) to run. Estimated finish 2026-11-05 23:46 (0h 0m from now) **
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  artifacts/benchmarks/results/Platform.Data.Doublets.Benchmarks.LinkStructBenchmarks-report.csv
+  artifacts/benchmarks/results/Platform.Data.Doublets.Benchmarks.LinkStructBenchmarks-report-github.md
+  artifacts/benchmarks/results/Platform.Data.Doublets.Benchmarks.LinkStructBenchmarks-report.html
+
+// * Detailed results *
+LinkStructBenchmarks.Struct: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+Runtime = .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 1.932 ms, StdErr = 0.000 ms (0.00%), N = 1, StdDev = 0.000 ms
+Min = 1.932 ms, Q1 = 1.932 ms, Median = 1.932 ms, Q3 = 1.932 ms, Max = 1.932 ms
+IQR = 0.000 ms, LowerFence = 1.932 ms, UpperFence = 1.932 ms
+ConfidenceInterval = [NaN ms; NaN ms] (CI 99.9%), Margin = NaN ms (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+-------------------- Histogram --------------------
+[1.932 ms ; 1.932 ms) | @
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet v0.15.8, Linux Ubuntu 24.04.5 LTS (Noble Numbat)
+AMD EPYC Processor (with IBPB) 2.79GHz, 1 CPU, 6 logical and 6 physical cores
+.NET SDK 10.0.403
+  [Host] : .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+  Dry    : .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+
+Job=Dry  IterationCount=1  LaunchCount=1  
+RunStrategy=ColdStart  UnrollFactor=1  WarmupCount=1  
+
+| Method | Mean     | Error | Allocated |
+|------- |---------:|------:|----------:|
+| Struct | 1.932 ms |    NA |      40 B |
+
+// * Warnings *
+MinIterationTime
+  LinkStructBenchmarks.Struct: Dry -> The minimum observed iteration time is 1.932ms which is very small. It's recommended to increase it to at least 100ms using more operations.
+
+// * Legends *
+  Mean      : Arithmetic mean of all measurements
+  Error     : Half of 99.9% confidence interval
+  Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  1 ms      : 1 Millisecond (0.001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:00:00 (0.49 sec), executed benchmarks: 1
+
+Global total time: 00:00:22 (22.63 sec), executed benchmarks: 1
+// * Artifacts cleanup *
+Artifacts cleanup is finished
+united: created 2 = (1, 18446744073709551596)
+  Each -> [2], Count -> 1, SearchOrDefault -> 2
+split: created 2 = (1, 18446744073709551596)
+  Each -> [2], Count -> 1, SearchOrDefault -> 2
+United: all deletion examples passed.
+Split: all deletion examples passed.
+United: all update examples passed.
+Split: all update examples passed.
+Stored record: (3: 1 2); Any = 4294967292
+[3, 4294967292, 1]: Count=0, visits=[]
+[3, 2, 4294967292]: Count=0, visits=[]
+[3, 4294967292, 2]: Count=1, visits=[3]
+[3, 1, 4294967292]: Count=1, visits=[3]
+[3, 4294967292, 4294967292]: Count=1, visits=[3]
+[3, 1, 2]: Count=1, visits=[3]
+[3, 2, 1]: Count=0, visits=[]
+[3, 1]: Count=1, visits=[3]
+[3, 2]: Count=1, visits=[3]
+(9:(8:(6:(1:~115 ~117) (2:~112 ~101)) (7:(3:~114 ~95) (4:~110 ~97))) (5:~109 ~101))
+  Successfully created package '/tmp/gh-issue-solver-1793921173521/artifacts/packages/Platform.Data.Doublets.0.18.9.nupkg'.
+  Successfully created package '/tmp/gh-issue-solver-1793921173521/artifacts/packages/Platform.Data.Doublets.0.18.9.snupkg'.
+  Determining projects to restore...
+  Restored /tmp/tmpiezmi9t2/Consumer.csproj (in 1.54 sec).
+Validated packaged consumer of Platform.Data.Doublets 0.18.9

@@ -27,6 +27,6 @@ while i < len(arguments):
 binary = '/tmp/issue-524-' + args.source.stem
 libraries = [arg for arg in shlex.split((args.build_dir / 'CMakeFiles/Platform.Data.Doublets.Tests.dir/link.txt').read_text())
              if (arg.endswith('.a') or arg.startswith('-l') or arg.startswith('-Wl,')) and 'gtest' not in arg]
-subprocess.run(['clang++-18', '-std=c++20', '-O0', '-g0', '-fsanitize=address,undefined', *includes,
+subprocess.run(['clang++-23', '-std=c++20', '-O0', '-g0', '-fsanitize=address,undefined', *includes,
                 str(args.source.resolve()), *libraries, '-o', binary], check=True)
 raise SystemExit(subprocess.run([binary]).returncode)

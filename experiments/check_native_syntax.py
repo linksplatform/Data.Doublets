@@ -7,7 +7,7 @@ import subprocess
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('build_dir', type=Path)
-parser.add_argument('--compiler', default='clang++-18')
+parser.add_argument('--compiler', default='clang++-23')
 args = parser.parse_args()
 for entry in json.loads((args.build_dir / 'compile_commands.json').read_text()):
     command = shlex.split(entry['command'])

@@ -1,0 +1,99 @@
+{
+  "info": {
+    "author": null,
+    "author_email": null,
+    "bugtrack_url": null,
+    "classifiers": [
+      "Programming Language :: Python :: 3",
+      "Typing :: Stubs Only"
+    ],
+    "description": "## Typing stubs for PyYAML\n\nThis is a [type stub package](https://typing.python.org/en/latest/tutorials/external_libraries.html)\nfor the [`PyYAML`](https://github.com/yaml/pyyaml) package. It can be used by type checkers\nto check code that uses `PyYAML`. This version of\n`types-PyYAML` aims to provide accurate annotations for\n`PyYAML==6.0.*`.\n\nThis package is part of the [typeshed project](https://github.com/python/typeshed).\nAll fixes for types and metadata should be contributed there.\nSee [the README](https://github.com/python/typeshed/blob/main/README.md)\nfor more details. The source for this package can be found in the\n[`stubs/PyYAML`](https://github.com/python/typeshed/tree/main/stubs/PyYAML)\ndirectory.\n\nThis package was tested with the following type checkers:\n* [mypy](https://www.mypy-lang.org/) 2.4.0\n* [pyrefly](https://pyrefly.org/) 1.4.0\n* [pyright](https://microsoft.github.io/pyright/) 1.1.414\n* [ty](https://docs.astral.sh/ty/) 0.0.92\n\nIt was generated from typeshed commit\n[`92b4407b6ed288e6d7cc4a0f7017e18991854e41`](https://github.com/python/typeshed/commit/92b4407b6ed288e6d7cc4a0f7017e18991854e41).\n",
+    "description_content_type": "text/markdown",
+    "docs_url": null,
+    "download_url": null,
+    "downloads": {
+      "last_day": -1,
+      "last_month": -1,
+      "last_week": -1
+    },
+    "dynamic": [
+      "License-File"
+    ],
+    "home_page": null,
+    "keywords": null,
+    "license": null,
+    "license_expression": "Apache-2.0",
+    "license_files": [
+      "LICENSE"
+    ],
+    "maintainer": null,
+    "maintainer_email": null,
+    "name": "types-PyYAML",
+    "package_url": "https://pypi.org/project/types-PyYAML/",
+    "platform": null,
+    "project_url": "https://pypi.org/project/types-PyYAML/",
+    "project_urls": {
+      "Changes": "https://github.com/typeshed-internal/stub_uploader/blob/main/data/changelogs/PyYAML.md",
+      "Chat": "https://gitter.im/python/typing",
+      "GitHub": "https://github.com/python/typeshed",
+      "Homepage": "https://github.com/python/typeshed",
+      "Issue tracker": "https://github.com/python/typeshed/issues"
+    },
+    "provides_extra": null,
+    "release_url": "https://pypi.org/project/types-PyYAML/6.0.12.20261103/",
+    "requires_dist": null,
+    "requires_python": ">=3.10",
+    "summary": "Typing stubs for PyYAML",
+    "version": "6.0.12.20261103",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "urls": [
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "d7c77c80e28c7c36d7486eb72be601b3a75ff56c8b3a7d0921bf81cf8e2fc70b"
+      },
+      "digests": {
+        "blake2b_256": "e8104353eb86278f6a59aeb9fe2be4d979c20b110b4009fa455a3ea6467cf5cb",
+        "md5": "37c1b9bab46402584d6b34d56fd4fffb",
+        "sha256": "444654c61f635dab82c092a511aa96a0ce31164810784b9a37314e3e56532ac8"
+      },
+      "downloads": -1,
+      "filename": "types_pyyaml-6.0.12.20261103-py3-none-any.whl",
+      "has_sig": false,
+      "md5_digest": "37c1b9bab46402584d6b34d56fd4fffb",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.10",
+      "size": 21299,
+      "upload_time": "2026-11-03T08:45:22",
+      "upload_time_iso_8601": "2026-11-03T08:45:22.749525Z",
+      "url": "https://files.pythonhosted.org/packages/e8/10/4353eb86278f6a59aeb9fe2be4d979c20b110b4009fa455a3ea6467cf5cb/types_pyyaml-6.0.12.20261103-py3-none-any.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": false,
+      "digests": {
+        "blake2b_256": "d9822ed4d215a2840b467a9a864f03b0d21904250e28f5e1f006ad36fba0311a",
+        "md5": "80e43be358a4e75fd52b8c53788edf01",
+        "sha256": "7a1b5f837881dd35d5448b5f18275164f89f206185e31e8eae6e0b42607bc001"
+      },
+      "downloads": -1,
+      "filename": "types_pyyaml-6.0.12.20261103.tar.gz",
+      "has_sig": false,
+      "md5_digest": "80e43be358a4e75fd52b8c53788edf01",
+      "packagetype": "sdist",
+      "python_version": "source",
+      "requires_python": ">=3.10",
+      "size": 18911,
+      "upload_time": "2026-11-03T08:45:23",
+      "upload_time_iso_8601": "2026-11-03T08:45:23.714134Z",
+      "url": "https://files.pythonhosted.org/packages/d9/82/2ed4d215a2840b467a9a864f03b0d21904250e28f5e1f006ad36fba0311a/types_pyyaml-6.0.12.20261103.tar.gz",
+      "yanked": false,
+      "yanked_reason": null
+    }
+  ]
+}

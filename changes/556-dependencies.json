@@ -1,0 +1,1 @@
+{"summary":"Require .NET 10, update dependency APIs and native tools, and repair abstract native method interfaces for current compilers.","releases":{"csharp":"major","cpp":"major"}}

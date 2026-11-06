@@ -4,11 +4,9 @@ namespace Platform.Data.Doublets.Benchmarks
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            BenchmarkRunner.Run<CountBenchmarks>();
-            BenchmarkRunner.Run<LinkStructBenchmarks>();
-            // BenchmarkRunner.Run<MemoryBenchmarks>();
+            BenchmarkSwitcher.FromTypes(new[] { typeof(CountBenchmarks), typeof(LinkStructBenchmarks) }).Run(args.Length == 0 ? new[] { "--filter", "*" } : args);
         }
     }
 }

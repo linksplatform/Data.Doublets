@@ -1,0 +1,67 @@
+1271:quality	Check Python helpers and run pipeline regression tests	2026-11-06T00:12:03.4709130Z test_notes_warnings_and_errors_fail_even_after_successful_analysis (test_sarif_gate.SarifGateTests.test_notes_warnings_and_errors_fail_even_after_successful_analysis) ... ok
+1692:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:24.8800791Z [command]/usr/bin/tar -x --zstd --ignore-zeros --warning=no-unknown-keyword --overwrite -f - -C /opt/hostedtoolcache/CodeQL/2.27.4/x64
+1734:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:30.0702258Z     "suppressesMissingFileBaselineWarning": true,
+1801:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:31.3332124Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+1803:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:31.3334203Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+1908:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:31.3390310Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+1910:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:31.3392430Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+1938:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:31.3406423Z                 "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+1940:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:31.3408773Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+2258:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:32.3627132Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+2260:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:32.3629636Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+2375:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:32.3676903Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+2377:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:32.3678496Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+2405:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:32.3701450Z                 "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+2407:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:32.3703245Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+2790:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:50.5380296Z [46/174] Loaded /opt/hostedtoolcache/CodeQL/2.27.4/x64/codeql/qlpacks/codeql/python-queries/1.9.0/Diagnostics/ExtractionWarnings.qlx.
+2941:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:55.7769049Z Starting evaluation of codeql/python-queries/Diagnostics/ExtractionWarnings.ql.
+2944:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:12:55.7830165Z [3/174 eval 5ms] Evaluation done; writing results to codeql/python-queries/Diagnostics/ExtractionWarnings.bqrs.
+3368:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:13:04.0882083Z Interpreting /opt/hostedtoolcache/CodeQL/2.27.4/x64/codeql/qlpacks/codeql/python-queries/1.9.0/Diagnostics/ExtractionWarnings.ql...
+3369:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:13:04.0949634Z  ... found results file at /home/runner/work/_temp/codeql_databases/python/results/codeql/python-queries/Diagnostics/ExtractionWarnings.bqrs.
+3668:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:13:04.7862638Z Interpreted diagnostic query "Python extraction warnings" (py/diagnostics/extraction-warnings) at path /home/runner/work/_temp/codeql_databases/python/results/codeql/python-queries/Diagnostics/ExtractionWarnings.bqrs.
+3725:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:13:04.8065006Z Interpreted problem query "Deprecated slice method" (py/deprecated-slice-method) at path /home/runner/work/_temp/codeql_databases/python/results/codeql/python-queries/Functions/DeprecatedSliceMethod.bqrs.
+3783:security / codeql (python)	UNKNOWN STEP	2026-11-06T00:13:04.8321237Z Interpreted problem query "Import of deprecated module" (py/import-deprecated-module) at path /home/runner/work/_temp/codeql_databases/python/results/codeql/python-queries/Imports/DeprecatedModule.bqrs.
+4099:rust	Install the pinned Rust toolchain and advisory auditor	2026-11-06T00:12:28.8279671Z warn: auto-installation is deprecated for most `rustup` commands
+4108:rust	Install the pinned Rust toolchain and advisory auditor	2026-11-06T00:12:29.1459699Z warning: default toolchain implicitly overridden with `1.99.1-x86_64-unknown-linux-gnu` by rustup toolchain file
+6094:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:12:43.1234310Z [command]/usr/bin/tar -x --zstd --ignore-zeros --warning=no-unknown-keyword --overwrite -f - -C /home/runner/work/_temp/a9534212-4a8d-471a-a2b3-fbe2031bb582
+6135:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:12:44.7052926Z     "suppressesMissingFileBaselineWarning": true,
+6180:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:12:45.8755748Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+6182:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:12:45.8756900Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+6240:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:12:46.6263521Z                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+6242:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:12:46.6265679Z                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+6307:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:12:50.8968955Z   CODEQL_VERBOSITY: warnings
+6358:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:12:51.8264911Z   CODEQL_VERBOSITY: warnings
+6391:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:13:37.0583981Z     0 Warning(s)
+6402:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:13:47.7337831Z     0 Warning(s)
+6411:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:13:51.1781386Z     0 Warning(s)
+6422:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:13:57.7600073Z     0 Warning(s)
+6433:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:14:04.2499486Z     0 Warning(s)
+6444:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:14:10.7136956Z     0 Warning(s)
+6455:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:14:17.0201199Z     0 Warning(s)
+6466:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:14:23.6667732Z     0 Warning(s)
+6477:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:14:30.1764975Z     0 Warning(s)
+6488:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:14:37.3715330Z     0 Warning(s)
+6499:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:14:44.4592113Z     0 Warning(s)
+6510:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:14:50.9582370Z     0 Warning(s)
+6548:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:14:50.9990506Z   CODEQL_VERBOSITY: warnings
+7672:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:15:40.3764628Z   CODEQL_VERBOSITY: warnings
+7731:security / codeql (csharp)	UNKNOWN STEP	2026-11-06T00:15:40.4199872Z   CODEQL_VERBOSITY: warnings
+7991:security / codeql (actions)	UNKNOWN STEP	2026-11-06T00:12:24.8939306Z [command]/usr/bin/tar -x --zstd --ignore-zeros --warning=no-unknown-keyword --overwrite -f - -C /home/runner/work/_temp/495bf8de-0710-4c5c-98ca-912134066ffe
+8032:security / codeql (actions)	UNKNOWN STEP	2026-11-06T00:12:26.5667846Z     "suppressesMissingFileBaselineWarning": true,
+9074:docs	Build API documentation and Unicode source PDF	2026-11-06T00:12:27.7264780Z ^[[36;1mdotnet docfx docfx.json --warningsAsErrors^[[0m
+9229:docs	Build API documentation and Unicode source PDF	2026-11-06T00:13:38.2692835Z ^[[38;5;15m    0 warning(s)^[[0m
+9232:docs	Build API documentation and Unicode source PDF	2026-11-06T00:13:38.5331859Z index:0: error: unable to resolve reference to '/home/runner/work/Data.Doublets/Data.Doublets/README.ru.md' for \ref command (warning treated as error, aborting now)
+9446:security / codeql (c-cpp)	UNKNOWN STEP	2026-11-06T00:12:27.3110000Z [command]/usr/bin/tar -x --zstd --ignore-zeros --warning=no-unknown-keyword --overwrite -f - -C /home/runner/work/_temp/34da1d44-bd1a-4073-b870-8981f7fea397
+9487:security / codeql (c-cpp)	UNKNOWN STEP	2026-11-06T00:12:28.9782929Z     "suppressesMissingFileBaselineWarning": true,
+9688:security / codeql (c-cpp)	UNKNOWN STEP	2026-11-06T00:12:39.2376905Z   CODEQL_VERBOSITY: warnings
+9744:security / codeql (c-cpp)	UNKNOWN STEP	2026-11-06T00:12:39.3849947Z   CODEQL_VERBOSITY: warnings
+10165:security / codeql (c-cpp)	UNKNOWN STEP	2026-11-06T00:13:26.0502783Z   CODEQL_VERBOSITY: warnings
+10717:security / codeql (c-cpp)	UNKNOWN STEP	2026-11-06T00:15:14.4636249Z CMake Warning (unused-cli):
+11315:security / codeql (c-cpp)	UNKNOWN STEP	2026-11-06T00:18:11.4979179Z   CODEQL_VERBOSITY: warnings
+12783:cpp (gcc)	Build and execute discovered tests	2026-11-06T00:14:09.0405678Z CMake Warning (unused-cli):
+13855:csharp (ubuntu-26.04)	Restore, build, test, package and consume	2026-11-06T00:12:49.8458846Z     0 Warning(s)
+13947:csharp (ubuntu-26.04)	Restore, build, test, package and consume	2026-11-06T00:13:16.3671588Z // * Warnings *
+14496:csharp (windows-2025)	Restore, build, test, package and consume	2026-11-06T00:13:19.9742261Z     0 Warning(s)
+14589:csharp (windows-2025)	Restore, build, test, package and consume	2026-11-06T00:13:55.0638912Z // * Warnings *
+16137:cpp (clang-sanitized)	Build and execute discovered tests	2026-11-06T00:14:07.7964695Z CMake Warning (unused-cli):
+18193:cpp (clang)	Build and execute discovered tests	2026-11-06T00:13:54.5544586Z CMake Warning (unused-cli):

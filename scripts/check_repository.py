@@ -112,6 +112,16 @@ def trusted_publishing_errors(workflow):
     return errors
 
 
+def action_pin_errors(name, source):
+    errors = []
+    for action in re.findall(r"uses:\s*([^\s#]+)", source):
+        if action.startswith("./") or re.fullmatch(r"\$/\.github/workflows/[\w.-]+\.ya?ml", action):
+            continue
+        if not re.fullmatch(r"[^@]+@[0-9a-f]{40}", action):
+            errors.append(f"{name}: action must be pinned to reviewed commit: {action}")
+    return errors
+
+
 def main():
     errors = []
     paths = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT).decode().split("\0")
@@ -153,9 +163,7 @@ def main():
         elif path.suffix == ".sh":
             subprocess.run(["bash", "-n", str(path)], check=True)
         if name.startswith(".github/workflows/"):
-            for action in re.findall(r"uses:\s*([^\s#]+)", source):
-                if not action.startswith("./") and not re.fullmatch(r"[^@]+@[0-9a-f]{40}", action):
-                    errors.append(f"{name}: action must be pinned to reviewed commit: {action}")
+            errors.extend(action_pin_errors(name, source))
             if name == ".github/workflows/ci.yml":
                 errors.extend(trusted_publishing_errors(yaml.safe_load(source)))
     if errors:

@@ -1,0 +1,172 @@
+Name:      docker.io/library/golang:1.27.3-alpine
+MediaType: application/vnd.oci.image.index.v1+json
+Digest:    sha256:dbaa054703263d06c8b49576667418473b6231f8c0fa69dee103207fdb8e3654
+           
+Manifests: 
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:0fd028db9bdd4f01657bc8047c209b04d8ce19b853d776bd6f1e76a41729b936
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/amd64
+  Annotations: 
+    org.opencontainers.image.base.name:       alpine:3.24
+    org.opencontainers.image.created:         2026-11-05T19:19:34Z
+    org.opencontainers.image.revision:        41d9b4da70324ae7b6461ac2cc401b06719ff57d
+    org.opencontainers.image.source:          https://github.com/docker-library/golang.git#41d9b4da70324ae7b6461ac2cc401b06719ff57d:1.27/alpine3.24
+    org.opencontainers.image.url:             https://hub.docker.com/_/golang
+    org.opencontainers.image.version:         1.27.3-alpine3.24
+    com.docker.official-images.bashbrew.arch: amd64
+    org.opencontainers.image.base.digest:     sha256:0f49f331d9212aff11b932863be4eb01cdf962969aa86dab7d1ee21ac6f5f52b
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:24f7cc2225db04dbd85da755a965124c6bfa4ed33442e6fee98ab65b9a81d385
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    unknown/unknown
+  Annotations: 
+    com.docker.official-images.bashbrew.arch: amd64
+    vnd.docker.reference.digest:              sha256:0fd028db9bdd4f01657bc8047c209b04d8ce19b853d776bd6f1e76a41729b936
+    vnd.docker.reference.type:                attestation-manifest
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:dfa28e7a9ed96fc5217c64710e86091e0ea9465194e1aeb7de794f1b58323f78
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/arm/v6
+  Annotations: 
+    org.opencontainers.image.created:         2026-11-05T18:49:17Z
+    org.opencontainers.image.revision:        41d9b4da70324ae7b6461ac2cc401b06719ff57d
+    org.opencontainers.image.source:          https://github.com/docker-library/golang.git#41d9b4da70324ae7b6461ac2cc401b06719ff57d:1.27/alpine3.24
+    org.opencontainers.image.url:             https://hub.docker.com/_/golang
+    org.opencontainers.image.version:         1.27.3-alpine3.24
+    com.docker.official-images.bashbrew.arch: arm32v6
+    org.opencontainers.image.base.digest:     sha256:24744e247e00c323a54ca655da31f3ac39761bab0247939599b711d7f7a4b0e3
+    org.opencontainers.image.base.name:       alpine:3.24
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:fe85957e624ad9eba72077b8bfba344ee278b397f9bd6748cb786871ccd9dc17
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    unknown/unknown
+  Annotations: 
+    vnd.docker.reference.digest:              sha256:dfa28e7a9ed96fc5217c64710e86091e0ea9465194e1aeb7de794f1b58323f78
+    vnd.docker.reference.type:                attestation-manifest
+    com.docker.official-images.bashbrew.arch: arm32v6
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:1358f64d1e2e860bf29e21e694551ecbf43d73b519ba5008f5087ece46b03979
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/arm/v7
+  Annotations: 
+    org.opencontainers.image.revision:        41d9b4da70324ae7b6461ac2cc401b06719ff57d
+    org.opencontainers.image.source:          https://github.com/docker-library/golang.git#41d9b4da70324ae7b6461ac2cc401b06719ff57d:1.27/alpine3.24
+    org.opencontainers.image.url:             https://hub.docker.com/_/golang
+    org.opencontainers.image.version:         1.27.3-alpine3.24
+    com.docker.official-images.bashbrew.arch: arm32v7
+    org.opencontainers.image.base.digest:     sha256:d8d3f7634d0afcb22c20139248d0255a89cf7807c2e96a7c7ff0ab0217ef557b
+    org.opencontainers.image.base.name:       alpine:3.24
+    org.opencontainers.image.created:         2026-11-05T18:49:13Z
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:a547eefe55037c64a30be5c2b7f812ea8fb940326af40c152d394c4a90b6187e
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    unknown/unknown
+  Annotations: 
+    vnd.docker.reference.digest:              sha256:1358f64d1e2e860bf29e21e694551ecbf43d73b519ba5008f5087ece46b03979
+    vnd.docker.reference.type:                attestation-manifest
+    com.docker.official-images.bashbrew.arch: arm32v7
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:12c7838918df713b810a0576d68d06ab17971b730a0e8855b731d9ddd07094d8
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/arm64/v8
+  Annotations: 
+    org.opencontainers.image.created:         2026-11-05T19:14:35Z
+    org.opencontainers.image.revision:        41d9b4da70324ae7b6461ac2cc401b06719ff57d
+    org.opencontainers.image.source:          https://github.com/docker-library/golang.git#41d9b4da70324ae7b6461ac2cc401b06719ff57d:1.27/alpine3.24
+    org.opencontainers.image.url:             https://hub.docker.com/_/golang
+    org.opencontainers.image.version:         1.27.3-alpine3.24
+    com.docker.official-images.bashbrew.arch: arm64v8
+    org.opencontainers.image.base.digest:     sha256:1829893486be257df5049ab3b7fc95afbd0fc09d89803cbc580bda1ba5386b29
+    org.opencontainers.image.base.name:       alpine:3.24
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:e6a4c28a4f09a6b716e7d4861778a4a1b38bacee2eb6bfa8a5d781117a45b38e
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    unknown/unknown
+  Annotations: 
+    com.docker.official-images.bashbrew.arch: arm64v8
+    vnd.docker.reference.digest:              sha256:12c7838918df713b810a0576d68d06ab17971b730a0e8855b731d9ddd07094d8
+    vnd.docker.reference.type:                attestation-manifest
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:9991d42f1f68631395116dd44cdd58c09c5d6da05ce13ce4446016621c76b685
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/386
+  Annotations: 
+    org.opencontainers.image.base.name:       alpine:3.24
+    org.opencontainers.image.created:         2026-11-05T18:31:30Z
+    org.opencontainers.image.revision:        41d9b4da70324ae7b6461ac2cc401b06719ff57d
+    org.opencontainers.image.source:          https://github.com/docker-library/golang.git#41d9b4da70324ae7b6461ac2cc401b06719ff57d:1.27/alpine3.24
+    org.opencontainers.image.url:             https://hub.docker.com/_/golang
+    org.opencontainers.image.version:         1.27.3-alpine3.24
+    com.docker.official-images.bashbrew.arch: i386
+    org.opencontainers.image.base.digest:     sha256:55d68c85222dd92297b0f8885354739d89f0dc17fc2f903c49dc1d9c129c3d6a
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:26fdf94cc8bdd4d9ed7b92ead4d51b7f924e4e9d4dd41adc2a6c8d71054f79ee
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    unknown/unknown
+  Annotations: 
+    vnd.docker.reference.digest:              sha256:9991d42f1f68631395116dd44cdd58c09c5d6da05ce13ce4446016621c76b685
+    vnd.docker.reference.type:                attestation-manifest
+    com.docker.official-images.bashbrew.arch: i386
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:18b7e8d84b36bcd5ebb804451004011e3c749b0e22894f3dd2033f9862a861c6
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/ppc64le
+  Annotations: 
+    org.opencontainers.image.revision:        41d9b4da70324ae7b6461ac2cc401b06719ff57d
+    org.opencontainers.image.source:          https://github.com/docker-library/golang.git#41d9b4da70324ae7b6461ac2cc401b06719ff57d:1.27/alpine3.24
+    org.opencontainers.image.url:             https://hub.docker.com/_/golang
+    org.opencontainers.image.version:         1.27.3-alpine3.24
+    com.docker.official-images.bashbrew.arch: ppc64le
+    org.opencontainers.image.base.digest:     sha256:8603c585662f0dcd519f4838a40ea3ef98542466848021ffd3c7b7979896362a
+    org.opencontainers.image.base.name:       alpine:3.24
+    org.opencontainers.image.created:         2026-10-22T13:42:56Z
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:7ae18abeb90b53c09d2fe6ea343dad7260472152507eed3a8635b4530f164350
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    unknown/unknown
+  Annotations: 
+    vnd.docker.reference.digest:              sha256:18b7e8d84b36bcd5ebb804451004011e3c749b0e22894f3dd2033f9862a861c6
+    vnd.docker.reference.type:                attestation-manifest
+    com.docker.official-images.bashbrew.arch: ppc64le
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:4877448f1426e1d0aaf8e07aa9f178e59820baae5fb3b8cd05b2a49cbf5167d4
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/riscv64
+  Annotations: 
+    org.opencontainers.image.base.digest:     sha256:4451fbe20381b2a23da80f7a6f68f30f3ff0ff2f4a4a074505a52bd46423fb39
+    org.opencontainers.image.base.name:       alpine:3.24
+    org.opencontainers.image.created:         2026-10-27T00:20:21Z
+    org.opencontainers.image.revision:        41d9b4da70324ae7b6461ac2cc401b06719ff57d
+    org.opencontainers.image.source:          https://github.com/docker-library/golang.git#41d9b4da70324ae7b6461ac2cc401b06719ff57d:1.27/alpine3.24
+    org.opencontainers.image.url:             https://hub.docker.com/_/golang
+    org.opencontainers.image.version:         1.27.3-alpine3.24
+    com.docker.official-images.bashbrew.arch: riscv64
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:dd471d87cdbb039f687030e32323344e93faad665e3086e042a600892040c117
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    unknown/unknown
+  Annotations: 
+    com.docker.official-images.bashbrew.arch: riscv64
+    vnd.docker.reference.digest:              sha256:4877448f1426e1d0aaf8e07aa9f178e59820baae5fb3b8cd05b2a49cbf5167d4
+    vnd.docker.reference.type:                attestation-manifest
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:a5cd4479805b518a06005e1a3544e5309af0af36191a97027eacc8c4fab46179
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/s390x
+  Annotations: 
+    org.opencontainers.image.version:         1.27.3-alpine3.24
+    com.docker.official-images.bashbrew.arch: s390x
+    org.opencontainers.image.base.digest:     sha256:5731f4bc195f1efc2807ea6a33a2d2bc0f5abbf5bfb799269129f67560209c22
+    org.opencontainers.image.base.name:       alpine:3.24
+    org.opencontainers.image.created:         2026-11-05T19:15:20Z
+    org.opencontainers.image.revision:        41d9b4da70324ae7b6461ac2cc401b06719ff57d
+    org.opencontainers.image.source:          https://github.com/docker-library/golang.git#41d9b4da70324ae7b6461ac2cc401b06719ff57d:1.27/alpine3.24
+    org.opencontainers.image.url:             https://hub.docker.com/_/golang
+               
+  Name:        docker.io/library/golang:1.27.3-alpine@sha256:a0e7fd05fbcc9e9c9a16e27e905d5c2742017c00adc20e6eab15aacdf1fd520f
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    unknown/unknown
+  Annotations: 
+    com.docker.official-images.bashbrew.arch: s390x
+    vnd.docker.reference.digest:              sha256:a5cd4479805b518a06005e1a3544e5309af0af36191a97027eacc8c4fab46179
+    vnd.docker.reference.type:                attestation-manifest

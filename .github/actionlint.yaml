@@ -1,0 +1,6 @@
+# Ubuntu 26.04 is GA; extend the linter's hosted-runner catalog.
+# Use actionlint's supported additional-label configuration, retaining all checks.
+# https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Readme.md
+self-hosted-runner:
+  labels:
+    - ubuntu-26.04

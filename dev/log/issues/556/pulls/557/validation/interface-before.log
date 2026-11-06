@@ -1,0 +1,37 @@
+In file included from experiments/issue-556/interface_dispatch.cpp:5:
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksListMethods.h: In instantiation of ‘void Platform::Data::Doublets::Memory::ILinksListMethods<TLinkAddress>::AttachAsFirst(TLinkAddress) [with TLinkAddress = long unsigned int]’:
+experiments/issue-556/interface_dispatch.cpp:33:32:   required from here
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksListMethods.h:13:26: error: ‘struct Platform::Data::Doublets::Memory::ILinksListMethods<long unsigned int>’ has no member named ‘object’
+   13 |             return this->object().AttachAsFirst(link);
+      |                    ~~~~~~^~~~~~
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksListMethods.h: In instantiation of ‘void Platform::Data::Doublets::Memory::ILinksListMethods<TLinkAddress>::Detach(TLinkAddress) [with TLinkAddress = long unsigned int]’:
+experiments/issue-556/interface_dispatch.cpp:35:25:   required from here
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksListMethods.h:8:26: error: ‘struct Platform::Data::Doublets::Memory::ILinksListMethods<long unsigned int>’ has no member named ‘object’
+    8 |             return this->object().Detach(freeLink);
+      |                    ~~~~~~^~~~~~
+In file included from experiments/issue-556/interface_dispatch.cpp:6:
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksTreeMethods.h: In instantiation of ‘Platform::Data::Doublets::Memory::ILinksTreeMethods<TLinksOptions>::LinkAddressType Platform::Data::Doublets::Memory::ILinksTreeMethods<TLinksOptions>::CountUsages(LinkAddressType) [with TLinksOptions = Options; LinkAddressType = long unsigned int]’:
+experiments/issue-556/interface_dispatch.cpp:40:5:   required from here
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksTreeMethods.h:13:26: error: ‘struct Platform::Data::Doublets::Memory::ILinksTreeMethods<Options>’ has no member named ‘object’
+   13 |             return this->object().CountUsages(root);
+      |                    ~~~~~~^~~~~~
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksTreeMethods.h: In instantiation of ‘Platform::Data::Doublets::Memory::ILinksTreeMethods<TLinksOptions>::LinkAddressType Platform::Data::Doublets::Memory::ILinksTreeMethods<TLinksOptions>::Search(LinkAddressType, LinkAddressType) [with TLinksOptions = Options; LinkAddressType = long unsigned int]’:
+experiments/issue-556/interface_dispatch.cpp:41:5:   required from here
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksTreeMethods.h:18:26: error: ‘struct Platform::Data::Doublets::Memory::ILinksTreeMethods<Options>’ has no member named ‘object’
+   18 |             return this->object().Search(source, target);
+      |                    ~~~~~~^~~~~~
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksTreeMethods.h: In instantiation of ‘Platform::Data::Doublets::Memory::ILinksTreeMethods<TLinksOptions>::LinkAddressType Platform::Data::Doublets::Memory::ILinksTreeMethods<TLinksOptions>::EachUsage(LinkAddressType, const ReadHandlerType&) [with TLinksOptions = Options; LinkAddressType = long unsigned int; ReadHandlerType = std::function<long unsigned int(long unsigned int)>]’:
+experiments/issue-556/interface_dispatch.cpp:42:5:   required from here
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksTreeMethods.h:23:26: error: ‘struct Platform::Data::Doublets::Memory::ILinksTreeMethods<Options>’ has no member named ‘object’
+   23 |             return this->object().EachUsage(root, handler);
+      |                    ~~~~~~^~~~~~
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksTreeMethods.h: In instantiation of ‘void Platform::Data::Doublets::Memory::ILinksTreeMethods<TLinksOptions>::Attach(LinkAddressType&, LinkAddressType) [with TLinksOptions = Options; LinkAddressType = long unsigned int]’:
+experiments/issue-556/interface_dispatch.cpp:43:25:   required from here
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksTreeMethods.h:33:19: error: ‘struct Platform::Data::Doublets::Memory::ILinksTreeMethods<Options>’ has no member named ‘object’
+   33 |             this->object().Attach(root, linkIndex);
+      |             ~~~~~~^~~~~~
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksTreeMethods.h: In instantiation of ‘void Platform::Data::Doublets::Memory::ILinksTreeMethods<TLinksOptions>::Detach(LinkAddressType&, LinkAddressType) [with TLinksOptions = Options; LinkAddressType = long unsigned int]’:
+experiments/issue-556/interface_dispatch.cpp:45:25:   required from here
+experiments/issue-556/../../cpp/Platform.Data.Doublets/Memory/ILinksTreeMethods.h:28:19: error: ‘struct Platform::Data::Doublets::Memory::ILinksTreeMethods<Options>’ has no member named ‘object’
+   28 |             this->object().Detach(root, linkIndex);
+      |             ~~~~~~^~~~~~

@@ -41,6 +41,8 @@ def profile():
             f"compiler.libcxx={'libc++' if system == 'Darwin' else 'libstdc++11'}",
             "compiler.cppstd=20",
             "build_type=Release",
+            "[platform_tool_requires]",
+            "cmake/4.4.5",
             "",
         )
     )

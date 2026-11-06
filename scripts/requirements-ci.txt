@@ -1,5 +1,6 @@
+-c requirements.lock.txt
 # CI and local validation use the same versions.
-conan==2.33.0
-fpdf2==2.8.9
+conan==2.34.0
+fpdf2==2.9.0
 PyYAML==6.0.3
 gcovr==8.8

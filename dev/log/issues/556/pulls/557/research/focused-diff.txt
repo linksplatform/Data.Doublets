@@ -1,0 +1,104 @@
+diff --git a/.github/workflows/AutoMerge.yml b/.github/workflows/AutoMerge.yml
+index f57102d31..3f4616b6d 100644
+--- a/.github/workflows/AutoMerge.yml
++++ b/.github/workflows/AutoMerge.yml
+@@ -11,13 +11,13 @@ jobs:
+       group: dependabot-auto-merge-${{ github.event.pull_request.number }}
+       cancel-in-progress: true
+     if: github.event.pull_request.user.id == 49699333 && github.event.pull_request.user.login == 'dependabot[bot]'
+-    runs-on: ubuntu-24.04
++    runs-on: ubuntu-26.04
+     timeout-minutes: 5
+     permissions:
+       contents: write # Enable GitHub-managed auto-merge for reviewed dependency updates.
+       pull-requests: write # Approve eligible official Dependabot updates.
+     steps:
+-      - uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3
++      - uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+         id: metadata
+         with:
+           github-token: ${{ github.token }}
+diff --git a/scripts/check_repository.py b/scripts/check_repository.py
+index b52807068..e1b5645f2 100644
+--- a/scripts/check_repository.py
++++ b/scripts/check_repository.py
+@@ -112,6 +112,16 @@ def trusted_publishing_errors(workflow):
+     return errors
+ 
+ 
++def action_pin_errors(name, source):
++    errors = []
++    for action in re.findall(r"uses:\s*([^\s#]+)", source):
++        if action.startswith("./") or re.fullmatch(r"\$/\.github/workflows/[\w.-]+\.ya?ml", action):
++            continue
++        if not re.fullmatch(r"[^@]+@[0-9a-f]{40}", action):
++            errors.append(f"{name}: action must be pinned to reviewed commit: {action}")
++    return errors
++
++
+ def main():
+     errors = []
+     paths = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT).decode().split("\0")
+@@ -153,9 +163,7 @@ def main():
+         elif path.suffix == ".sh":
+             subprocess.run(["bash", "-n", str(path)], check=True)
+         if name.startswith(".github/workflows/"):
+-            for action in re.findall(r"uses:\s*([^\s#]+)", source):
+-                if not action.startswith("./") and not re.fullmatch(r"[^@]+@[0-9a-f]{40}", action):
+-                    errors.append(f"{name}: action must be pinned to reviewed commit: {action}")
++            errors.extend(action_pin_errors(name, source))
+             if name == ".github/workflows/ci.yml":
+                 errors.extend(trusted_publishing_errors(yaml.safe_load(source)))
+     if errors:
+diff --git a/scripts/release.py b/scripts/release.py
+index bc8222667..137a8279d 100644
+--- a/scripts/release.py
++++ b/scripts/release.py
+@@ -71,8 +71,9 @@ def request(url, *, method="GET", headers=None):
+             return response.status, response.read()
+     except urllib.error.HTTPError as error:
+         # Preserve a bounded server explanation, never headers or exception text.
+-        return error.code, error.read(8192)
+-    except (OSError, urllib.error.URLError):
++        with error:
++            return error.code, error.read(8192)
++    except OSError, urllib.error.URLError:
+         return 0, b""
+ 
+ 
+@@ -120,7 +121,7 @@ def authenticate_fallback(token, package):
+         key = json.loads(body)["Key"]
+         if not isinstance(key, str) or not key:
+             raise ValueError("Missing authentication result")
+-    except (ValueError, KeyError, TypeError):
++    except ValueError, KeyError, TypeError:
+         raise RuntimeError("authentication probe returned a malformed response") from None
+     print(
+         "Provided key authenticated for push actions; package scope remains unverified. "
+@@ -188,7 +189,7 @@ def verify_nuget(key, package):
+             or not re.fullmatch(r"[0-9A-Za-z.+-]+", versions[-1])
+         ):
+             raise ValueError("No versions")
+-    except (ValueError, KeyError, TypeError):
++    except ValueError, KeyError, TypeError:
+         return "NuGet package index is malformed; refusing to assume publish permissions."
+     print(
+         f"::notice::NuGet package scope for {package['id']} is unverified/unsupported by non-upload probes for push-only keys; actual publication must enforce ownership and package authorization."
+@@ -214,7 +215,7 @@ def verify_github(mode):
+         return f"GitHub repository access probe failed (HTTP {status or 'unreachable'}): {diagnostic(body, github_token)}"
+     try:
+         accessible = json.loads(body).get("full_name", "").lower() == repository.lower()
+-    except (ValueError, TypeError, AttributeError):
++    except ValueError, TypeError, AttributeError:
+         accessible = False
+     if not accessible:
+         return (
+@@ -416,7 +417,7 @@ def release_state(body):
+         ):
+             raise ValueError("Invalid release metadata")
+         return draft, assets
+-    except (ValueError, KeyError, TypeError):
++    except ValueError, KeyError, TypeError:
+         raise RuntimeError("GitHub release lookup returned malformed metadata") from None
+ 
+ 

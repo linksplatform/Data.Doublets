@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Migrating Unit Tests from v2 to v3 [2025 April 12] | xUnit.net </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Migrating Unit Tests from v2 to v3 | xUnit.net ">
+      
+      
+      <link rel="icon" href="../../../images/logo-128-transparent.png">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/xunit/xunit.net/blob/main/site/docs/getting-started/v3/migration.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../logo.svg" alt="xUnit.net">
+            xUnit.net
+          </a>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+        </div>
+
+        <article data-uid="">
+          <h1>Migrating Unit Tests from v2 to v3 <span class="label label-title-version">2025 April 12</span></h1>
+          
+
+
+
+
+<p>This migration guide aims to be a comprehensive list helping developers migrate from xUnit.net v2 to v3. This guide is focused on what to expect for unit test authors. Extensibility authors will want to review this document, and then read the <a href="/docs/getting-started/v3/migration-extensibility">migration guide specifically for extensibility authors</a>.</p>
+<p>Because this is a comprehensive guide, you may wish to only skim parts of it, and use search functionality to find information on specific issues that arise, rather than trying to read the guide entirely. You should read the first informational section titled &quot;Architectural Changes&quot;, then follow the next three sections related to (a) updating NuGet packages, (b) updating to create an executable instead of a library, and (c) updating your target framework. All sections after that should be consider reference material.</p>
+<p>In addition to this migration document (which only covers the differences between v2 and v3), we have a parallel document which covers <a href="/docs/getting-started/v3/whats-new">what's new in v3</a>. The &quot;What's New&quot; document describes newly available features (including information on the best way to create new xUnit.net v3 projects), and should be consulted after you've successfully migrated your project from v2 to v3.</p>
+<p>The current builds are:</p>
+<table class="table latest" :="">
+<thead>
+<tr>
+<th>Package</th>
+<th>NuGet Version</th>
+<th><a href="/docs/using-ci-builds">CI Version</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>xunit.v3.*</code></td>
+<td><a href="https://www.nuget.org/packages/xunit.v3"><img src="https://img.shields.io/nuget/v/xunit.v3.svg?logo=nuget" alt=""></a></td>
+<td><a href="https://feedz.io/org/xunit/repository/xunit/packages/xunit.v3"><img src="https://img.shields.io/endpoint.svg?url=https://f.feedz.io/xunit/xunit/shield/xunit.v3/latest&amp;logo=nuget&amp;color=f58142" alt=""></a></td>
+</tr>
+<tr>
+<td><code>xunit.analyzers</code></td>
+<td><a href="https://www.nuget.org/packages/xunit.analyzers"><img src="https://img.shields.io/nuget/v/xunit.analyzers.svg?logo=nuget" alt=""></a></td>
+<td><a href="https://feedz.io/org/xunit/repository/xunit/packages/xunit.analyzers"><img src="https://img.shields.io/endpoint.svg?url=https://f.feedz.io/xunit/xunit/shield/xunit.analyzers/latest&amp;logo=nuget&amp;color=f58142" alt=""></a></td>
+</tr>
+<tr>
+<td><code>xunit.runner.visualstudio</code></td>
+<td><a href="https://www.nuget.org/packages/xunit.runner.visualstudio"><img src="https://img.shields.io/nuget/v/xunit.runner.visualstudio.svg?logo=nuget" alt=""></a></td>
+<td><a href="https://feedz.io/org/xunit/repository/xunit/packages/xunit.runner.visualstudio"><img src="https://img.shields.io/endpoint.svg?url=https://f.feedz.io/xunit/xunit/shield/xunit.runner.visualstudio/latest&amp;logo=nuget&amp;color=f58142" alt=""></a></td>
+</tr>
+</tbody>
+</table>
+<p>Note that while we attempt to ensure that CI builds are always usable, we cannot make guarantees. If you come across issues using a CI build, please <a href="https://github.com/xunit/xunit/issues">let us know</a>!</p>
+<h2 id="architectural-changes">Architectural Changes</h2>
+<p>Before we talk about the migration process, we need to provide information about architectural changes that have occurred between v2 and v3 that impact you as a developer.</p>
+<h3 id="new-minimum-runtime-requirements">New minimum runtime requirements</h3>
+<p>We have set new minimum runtime requirements for xUnit.net v3:</p>
+<ul>
+<li>.NET Framework 4.7.2 (or later)</li>
+<li>.NET 8 (or later)</li>
+</ul>
+<p>Our target frameworks for v3 currently are:</p>
+<ul>
+<li>.NET Standard 2.0 (<code>netstandard2.0</code>)</li>
+<li>.NET Framework 4.7.2 (<code>net472</code>)</li>
+<li>.NET 8 (<code>net8.0</code>)</li>
+</ul>
+<p>Also new for v3: Mono is officially supported on Linux and macOS for .NET Framework test projects. While it did often work with v1 and v2, we do officially test and verify with it now.</p>
+<p>For a complete list of which packages target which frameworks, please see <a href="https://github.com/xunit/xunit/issues/2330">this issue</a>.</p>
+<h3 id="stand-alone-executables">Stand-alone executables</h3>
+<p>Test projects in v2 are library projects, and runners were required to run the tests. Those runners loaded the assemblies into their own address space and ran them from there. This was a design from back in .NET Framework days, where Application Domains could be used as a semi-effective isolation layer between the runner and the unit test code. This relatively complex isolation system was removed from .NET Core, so it's no longer available. Application Domains not only solved a very real isolation problem (and loading/unloading problem), but also a much more significant dependency resolution problem.</p>
+<p>Test projects in v3 are stand-alone executables now, capable of running themselves. Rather than worrying about dependency resolution at runtime, we allow the compiler to do its job for us. The isolation of running your tests in a separate process is significantly simpler and more effective than Application Domains were in .NET Framework, and works for .NET as well.</p>
+<p>When you build a v3 test project, the result is directly executable.</p>
+<ul>
+<li>For .NET Framework projects, the resulting <code>.exe</code> file is your unit test project and can be run</li>
+<li>For .NET projects, the resulting <code>.dll</code> file is your unit test project, and the build process also creates a <code>.exe</code> file (or extension-less executable, on Linux and macOS) that can be used to run your test project. <em>(It's important to remember that the executable for .NET projects is just a stub launcher; the actual unit tests live inside the <code>.dll</code>, and when using any multi-assembly runner, you will pass the path to the <code>.dll</code> file for .NET projects, not the <code>.exe</code> file.)</em></li>
+</ul>
+<p>If you run the executable without any command line options, all your tests will run:</p>
+<p><img src="/images/v3-migration/stand-alone-executable.png" class="border oversize" :="" alt=""></p>
+<p>You can pass <code>-?</code> to the executable for a complete list of command line switches that are available. The list will be very similar to the console runner's command line options, except slightly reduced because of the fact that you're only running a single test assembly.</p>
+<p>If you want to build and run in a single step, <code>dotnet run</code> will work with both .NET Framework and .NET test projects. Just bear in mind that passing command line options with <code>dotnet run</code> requires prefixing options for the test project with <code>--</code>. For example, if you want to generate an XML report of the test run, these two are equivalent:</p>
+<pre><code class="lang-shell">$ dotnet build
+$ .\bin\Debug\TestProject.exe -xml results.xml
+</code></pre>
+<pre><code class="lang-shell">$ dotnet run -- -xml results.xml
+</code></pre>
+<h3 id="only-sdk-style-projects-are-supported">Only SDK-style projects are supported</h3>
+<p>While we are aware that you may be able to make xUnit.net v3 work with older, pre-SDK-style projects, this is not a supported scenario by our team.</p>
+<h3 id="async-void-tests-are-no-longer-supported">async void tests are no longer supported</h3>
+<p>Tests which are <code>async void</code> will be fast-failed at runtime to indicate that their signatures need to be updated from <code>void</code> to either <code>Task</code> or <code>ValueTask</code>.</p>
+<h3 id="iasynclifetime-now-inherits-from-iasyncdisposable-and-disposal-guidelines-have-been-updated"><code>IAsyncLifetime</code> now inherits from <code>IAsyncDisposable</code> and disposal guidelines have been updated</h3>
+<p>In v2, <code>IAsyncLifetime</code> defined its own <code>DisposeAsync</code> method, and if you implemented both <code>IAsyncLifetime</code> and <code>IDisposable</code>, we would call both <code>DisposeAsync</code> and <code>Dispose</code>.</p>
+<p>In v3, <code>IAsyncLifetime</code> now inherits <code>IAsyncDisposable</code>, so the <code>DisposeAsync</code> method comes from there. We are also now following framework guidance which says that when an object implements both <code>IAsyncDisposable</code> and <code>IDisposable</code>, you should only call one or the other, and not both. For xUnit.net, that means it will call <code>DisposeAsync</code> but not <code>Dispose</code>. This is true even for objects which implement both <code>IAsyncDisposable</code> and <code>IDisposable</code>, regardless of whether they implement <code>IAsyncLifetime</code> or not.</p>
+<p>This could be a breaking change if you were previously relying on us calling both.</p>
+<h3 id="attribute-instance-lifetime-may-differ">Attribute instance lifetime may differ</h3>
+<p>Due to differences in the way v2 and v3 acquire attribute instances, it may appear that we are now caching attribute instances where we previously did not. The truth is that the previous behavior (of over-creating attribute instances) was actually the bug in this scenario, as it differs from the normal .NET behavior (where attribute instances are cached when they're first created).</p>
+<h2 id="migrating-to-v3-packages">Migrating to v3 Packages</h2>
+<p>Most of the packages for v3 Core Framework have moved to new names that start with <code>xunit.v3</code>.</p>
+<p>Change the following package references (and use versions from the table at the top of this page):</p>
+<table>
+<thead>
+<tr>
+<th>v2 package</th>
+<th>v3 package</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>xunit</code></td>
+<td><code>xunit.v3</code></td>
+</tr>
+<tr>
+<td><code>xunit.abstractions</code></td>
+<td><em>Remove, no longer required</em></td>
+</tr>
+<tr>
+<td><code>xunit.analyzers</code></td>
+<td><em>Unchanged</em></td>
+</tr>
+<tr>
+<td><code>xunit.assert</code></td>
+<td><code>xunit.v3.assert</code></td>
+</tr>
+<tr>
+<td><code>xunit.assert.source</code></td>
+<td><code>xunit.v3.assert.source</code></td>
+</tr>
+<tr>
+<td><code>xunit.console</code></td>
+<td><em>Remove, no longer supported</em></td>
+</tr>
+<tr>
+<td><code>xunit.core</code></td>
+<td><code>xunit.v3.core</code></td>
+</tr>
+<tr>
+<td><code>xunit.extensibility.core</code><br><code>xunit.extensibility.execution</code></td>
+<td><code>xunit.v3.extensibility.core</code> (*)</td>
+</tr>
+<tr>
+<td><code>xunit.runner.console</code></td>
+<td><code>xunit.v3.runner.console</code></td>
+</tr>
+<tr>
+<td><code>xunit.runner.msbuild</code></td>
+<td><code>xunit.v3.runner.msbuild</code></td>
+</tr>
+<tr>
+<td><code>xunit.runner.reporters</code><br><code>xunit.runner.utility</code></td>
+<td><code>xunit.v3.runner.utility</code> (*)</td>
+</tr>
+<tr>
+<td><code>xunit.runner.visualstudio</code></td>
+<td><em>Make sure to pick up version 3.0.0 or later</em></td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>Note:</strong> In some cases multiple libraries/packages were merged together into a single new library/package, as denoted in the table above with (*).</em></p>
+<p>If you want to use the MSBuild runner, we now ship both a .NET Framework and .NET Core/.NET version in the same package. It will dynamically select the correct version depending on whether you use the .NET Framework MSBuild or the .NET MSBuild (via <code>dotnet build</code> or <code>dotnet msbuild</code>). However, the .NET version only supports v3 test projects. If you need to still run v1 and/or v2 test projects, you must use the .NET Framework version. (Mono ships with a .NET Framework version of MSBuild, so all comments about .NET Framework also apply to Mono.)</p>
+<h3 id="why-did-we-change-the-package-names">Why did we change the package names?</h3>
+<p>We changed the package naming scheme from <code>xunit.*</code> to <code>xunit.v3.*</code> for two primary reasons and one secondary reason:</p>
+<ul>
+<li><p>We wanted users to make a conscious choice to upgrade and understand what the scope of that work is, rather than being offered a NuGet package upgrade in Visual Studio and then have everything be broken without being told why.</p>
+</li>
+<li><p>We have frequently been asked to observe SemVer for our package versions, which has been impossible previously. Our package naming and versioning system predates SemVer, and trying to adopt it after the fact would be painful. The <code>2</code> in the <code>2.x.y</code> package versioning scheme implied a <em><strong>product version</strong></em> but it was living in the major version of the package. The new package name allows the v3 <em><strong>product version</strong></em> to live in the package name instead of the major version, and this allows us to evolve those package versions according to SemVer without implying a new production version has been released.</p>
+</li>
+</ul>
+<p>The secondary reason was:</p>
+<ul>
+<li>As shown above, some packages have been merged (and new intermediate packages have been introduced). We previously tried the &quot;upgrade an obsoleted package&quot; strategy from v1 -&gt; v2 with the <code>xunit.extensions</code> package and found that process less than ideal for most users. This is not an area where NuGet is particularly helpful. We would've preferred that we could have automatically removed <code>xunit.extensions</code> rather than having a v2 version in place with no code inside as a dead reference. By having users follow this migration guide, we can clearly tell them which packages changed and which should be removed.</li>
+</ul>
+<h2 id="convert-to-executable-project">Convert to Executable Project</h2>
+<p>Update your project file (i.e., <code>.csproj</code>) and change <code>OutputType</code> from <code>Library</code> to <code>Exe</code>. You may need to add <code>OutputType</code> if it's not present, since <code>Library</code> is the default value:</p>
+<pre><code class="lang-xml">&lt;PropertyGroup&gt;
+  &lt;OutputType&gt;Exe&lt;/OutputType&gt;
+&lt;/PropertyGroup&gt;
+</code></pre>
+<h2 id="update-target-framework">Update Target Framework</h2>
+<p>Per the new <a href="#new-minimum-runtime-requirements">minimum target framework versions</a>, make sure to update your target framework(s) if you're currently targeting something that's no longer supported.</p>
+<p>At this point, you should be able to successfully run <code>dotnet restore</code>.</p>
+<p>From this point forward, we will discuss the changes you'll see, and where common compilation errors might occur.</p>
+<h2 id="removal-of-xunitabstractions">Removal of <code>xunit.abstractions</code></h2>
+<p>The <code>xunit.abstractions</code> package in v2 was used to communicate across the Application Domain between unit tests and unit test runners. Now that the runner lives in the same process with your unit test project, this abstraction layer is no longer necessary.</p>
+<p>There are several abstraction interfaces that were previously in the <code>Xunit.Abstractions</code> namespace that have been moved to new namespaces. Because <code>xunit.v3.runner.utility</code> still needs to link against <code>xunit.abstractions</code> to be able to run v2 tests, these types all needed to move into new namespaces to prevent naming collisions with the v2 types.</p>
+<p>The follow types have been moved to <code>Xunit</code> (in <code>xunit.v3.extensibility.core</code>):</p>
+<ul>
+<li><code>ITestOutputHelper</code></li>
+</ul>
+<p>The following types have been moved to <code>Xunit.Runner.Common</code> (in <code>xunit.v3.runner.common</code>):</p>
+<ul>
+<li><code>ISourceInformationProvider</code></li>
+</ul>
+<p>The following types have been moved to <code>Xunit.Sdk</code> (in <code>xunit.v3.common</code>):</p>
+<ul>
+<li><code>IAfterTestFinished</code></li>
+<li><code>IAfterTestStarting</code></li>
+<li><code>IBeforeTestFinished</code></li>
+<li><code>IBeforeTestStarting</code></li>
+<li><code>IDiagnosticMessage</code> (note that internal diagnostic messages now send <code>IInternalDiagnosticMessage</code>)</li>
+<li><code>IDiscoveryCompleteMessage</code> (renamed to <code>IDiscoveryComplete</code>)</li>
+<li><code>IErrorMessage</code></li>
+<li><code>IFailureInformation</code> (renamed to <code>IErrorMetadata</code>)</li>
+<li><code>IFinishedMessage</code> (renamed to <code>IExecutionSummaryMetadata</code>)</li>
+<li><code>IMessageSink</code></li>
+<li><code>IMessageSinkMessage</code></li>
+<li><code>ITest</code></li>
+<li><code>ITestAssembly</code></li>
+<li><code>ITestAssemblyCleanupFailure</code></li>
+<li><code>ITestAssemblyFinished</code></li>
+<li><code>ITestAssemblyMessage</code></li>
+<li><code>ITestAssemblyStarting</code></li>
+<li><code>ITestCase</code></li>
+<li><code>ITestCaseCleanupFailure</code></li>
+<li><code>ITestCaseDiscoveryMessage</code> (renamed to <code>ITestCaseDiscovered</code>)</li>
+<li><code>ITestCaseFinished</code></li>
+<li><code>ITestCaseMessage</code></li>
+<li><code>ITestCaseStarting</code></li>
+<li><code>ITestClass</code></li>
+<li><code>ITestClassCleanupFailure</code></li>
+<li><code>ITestClassConstructionFinished</code></li>
+<li><code>ITestClassConstructionStarting</code></li>
+<li><code>ITestClassDisposeFinished</code></li>
+<li><code>ITestClassDisposeStarting</code></li>
+<li><code>ITestClassFinished</code></li>
+<li><code>ITestClassMessage</code></li>
+<li><code>ITestClassStarting</code></li>
+<li><code>ITestCleanupFailure</code></li>
+<li><code>ITestCollection</code></li>
+<li><code>ITestCollectionCleanupFailure</code></li>
+<li><code>ITestCollectionFinished</code></li>
+<li><code>ITestCollectionMessage</code></li>
+<li><code>ITestCollectionStarting</code></li>
+<li><code>ITestFailed</code></li>
+<li><code>ITestFinished</code></li>
+<li><code>ITestFrameworkDiscoveryOptions</code></li>
+<li><code>ITestFrameworkExecutionOptions</code></li>
+<li><code>ITestFrameworkOptions</code></li>
+<li><code>ITestMessage</code></li>
+<li><code>ITestMethod</code></li>
+<li><code>ITestMethodCleanupFailure</code></li>
+<li><code>ITestMethodFinished</code></li>
+<li><code>ITestMethodMessage</code></li>
+<li><code>ITestMethodStarting</code></li>
+<li><code>ITestOutput</code></li>
+<li><code>ITestPassed</code></li>
+<li><code>ITestResultMessage</code></li>
+<li><code>ITestSkipped</code></li>
+<li><code>ITestStarting</code></li>
+<li><code>IXunitSerializable</code></li>
+<li><code>IXunitSerializationInfo</code></li>
+</ul>
+<p>The following types have been moved to <code>Xunit.v3</code> (in <code>xunit.v3.extensibility.core</code>):</p>
+<ul>
+<li><code>ITestFramework</code></li>
+<li><code>ITestFrameworkDiscoverer</code></li>
+<li><code>ITestFrameworkExecutor</code></li>
+</ul>
+<p>The following types have been removed:</p>
+<ul>
+<li><code>IAssemblyInfo</code></li>
+<li><code>IAttributeInfo</code></li>
+<li><code>IExecutionMessage</code></li>
+<li><code>IMethodInfo</code></li>
+<li><code>IParameterInfo</code></li>
+<li><code>IReflectionAssemblyInfo</code></li>
+<li><code>IReflectionAttributeInfo</code></li>
+<li><code>IReflectionMethodInfo</code></li>
+<li><code>IReflectionParameterInfo</code></li>
+<li><code>IReflectionTypeInfo</code></li>
+<li><code>ISourceInformation</code> (replaced with <code>SourceInformation</code>)</li>
+<li><code>ITypeInfo</code></li>
+</ul>
+<h2 id="changes-to-assertion-library">Changes to Assertion Library</h2>
+<p>By and large, the assertion library in v3 is a small superset of the assertion library in v2 2.9. There are new assertions as well as overloads to existing assertions that might conflict with any custom assertions you've added and/or might cause compilation issues due to ambiguous overloads now available.</p>
+<p>A complete list of what was added is available in the <a href="/docs/getting-started/v3/whats-new#whats-new-in-the-assertion-library">what's new in v3</a> document.</p>
+<h2 id="changes-to-core-framework">Changes to Core Framework</h2>
+<p>The core framework has undergone some extension re-working internally. We aimed to make as few disruptive changes as possible, trying to limit those to where it was unavoidable and/or the usability improvement warranted the change. We hope that the vast majority of these will involve just modifying or cleaning up <code>using</code> statements.</p>
+<h3 id="attributes-that-took-type-name-and-assembly-name-strings">Attributes that took type name and assembly name strings</h3>
+<p>There were several attributes in the system that allowed you to take type names as two strings: the fully qualified type name, and the name of the assembly where that type resides. This was to support source-based test discovery, which is a feature that has been removed from v3.</p>
+<p>These attributes have been updated so that their constructors now simply take a <code>Type</code>, and you can use <code>typeof</code> to specify the type of the object.</p>
+<p>For example:</p>
+<pre><code class="lang-csharp">[assembly: CollectionBehavior(&quot;MyNamespace.MyCollectionFactory&quot;, &quot;MyAssembly&quot;)]
+</code></pre>
+<p>can be converted to:</p>
+<pre><code class="lang-csharp">[assembly: CollectionBehavior(typeof(MyCollectionFactory))]
+</code></pre>
+<p>The list of the affected attributes include:</p>
+<ul>
+<li><code>CollectionBehaviorAttribute</code></li>
+<li><code>TestCaseOrdererAttribute</code></li>
+<li><code>TestCollectionOrdererAttribute</code></li>
+<li><code>TestFrameworkAttribute</code></li>
+</ul>
+<h3 id="removal-of-reflection-abstractions">Removal of reflection abstractions</h3>
+<p>The removal of reflection abstractions means that many previous splits between attributes and discoverers have been collapsed, and the attributes become responsible for their own behavior rather than relying on discoverers (which were previously written in terms of the reflection abstractions rather than depending on compiled code).</p>
+<p>One obvious example of this is the removal of <code>IDataDiscoverer</code> (previously in <code>Xunit.Abstractions</code>) and <code>DataDiscoverer</code> (previously in <code>Xunit.Sdk</code>). The <code>IDataDiscoverer.GetData</code> method has been moved to <code>IDataAttribute.GetData</code>, and becomes an abstract method on the base <code>DataAttribute</code> class. The previous method was given an <code>IAttributeInfo</code> (which pointed to the <code>DataAttribute</code>-derived attribute) and <code>IMethodInfo</code> (which pointed to the test method); the updated method provides access to the <code>MethodInfo</code> (rather than the reflection abstraction version), and also to a disposal tracker so that it can add any data that it creates which might need to be disposed when cleaning up.</p>
+<p>If you're looking for a type that has disappeared and it's a discoverer, chances are the thing it previously discovered is now responsible for describing itself, rather than relying on an external discoverer.</p>
+<h3 id="namespace-changes">Namespace changes</h3>
+<p>Many of the namespace changes here have been done in the name of consistency. Generally speaking, when you see a type that now lives in the <code>Xunit.Sdk</code> namespace, it comes from <code>xunit.v3.common</code>, and when you see it in the <code>Xunit.v3</code> namespace, it comes from <code>xunit.v3.extensibility.core</code>.</p>
+<ul>
+<li><p>The concrete test messages in the <code>Xunit.Sdk</code> namespace (for example, <code>DiagnosticMessage</code>) have moved to the <code>Xunit.v3</code> namespace. In the case where messages had non-empty constructors (for example, <code>ErrorMessage</code>) they have been converted to a single parameterless constructor (for serialization/deserialization purposes), and helper static creation methods like <code>FromException</code> have been added to replace the previous constructor usage.</p>
+</li>
+<li><p>The runner classes (i.e., <code>TestAssemblyRunner</code>, <code>TestCollectionRunner</code>, etc.) have moved from <code>Xunit.Sdk</code> to <code>Xunit.v3</code>. The non-abstract classes (i.e., <code>XunitTestAssemblyRunner</code>, <code>XunitTestCollectionRunner</code>, etc.) have been converted to singletons. As such, their constructors have been replaced by <code>RunAsync</code> methods which accept the information previously passed to the constructor. Their state is now stored in context classes that are constructed and passed between layers. The base runner classes now also have expanded generic types required to match the new context requirements.</p>
+</li>
+<li><p><code>CollectionPerAssemblyTestCollectionFactory</code> and <code>CollectionPerTestClassTestCollectionFactory</code> have moved from the <code>Xunit.Sdk</code> to the <code>Xunit.v3</code> namespace.</p>
+</li>
+<li><p>The abstract <code>DataAttribute</code> class has moved from the <code>Xunit.Sdk</code> to the <code>Xunit.v3</code> namespace.</p>
+</li>
+<li><p><code>DiscoveryCompleteMessage</code> has been renamed to <code>DiscoveryComplete</code>, and moved from <code>Xunit.Sdk</code> to <code>Xunit.v3</code>.</p>
+</li>
+<li><p><code>DisplayNameFormatter</code> has moved from <code>Xunit.Sdk</code> to <code>Xunit.v3</code>.</p>
+</li>
+<li><p><code>ExceptionAggregator</code> has moved from <code>Xunit.Sdk</code> to <code>Xunit.v3</code>, and been converted to a <code>struct</code> rather than a <code>class</code>. The <code>RunAsync</code> methods have been converted from <code>Task</code> to <code>ValueTask</code> to align with the framework moving to <code>ValueTask</code> internally.</p>
+</li>
+<li><p><code>ExecutionErrorTestCase</code> has moved from <code>Xunit.Sdk</code> to <code>Xunit.v3</code>, and its primary constructor has been updated.</p>
+</li>
+<li><p><code>ExecutionTimer</code> has moved from <code>Xunit.Sdk</code> to <code>Xunit.v3</code>, made static, and its <code>Aggregate</code> methods have been renamed to <code>Measure</code>. The async versions have converted from accepting <code>Task</code> to accepting <code>ValueTask</code> and <code>ValueTask&lt;T&gt;</code>. These methods now return the measured time rather than aggregating a count inside the timer itself.</p>
+</li>
+<li><p><code>ExtensibilityPointFactory</code> has moved from <code>Xunit.Sdk</code> to <code>Xunit.v3</code> and been completely overhauled, given the removal of the reflection abstractions when the source-based discovery feature was removed from v3.</p>
+</li>
+<li><p><code>ITestCaseOrderer</code> has moved from <code>Xunit.Sdk</code> to <code>Xunit.v3</code>, and <code>OrderTestCases</code> now both accepts and returns <code>IReadOnlyCollection&lt;TTestCase&gt;</code> instead of <code>IEnumerable&lt;TTestCase&gt;</code>.</p>
+</li>
+<li><p><code>ITestCollectionOrderer</code> has moved from <code>Xunit</code> to <code>Xunit.v3</code>, and <code>OrderTestCollections</code> now both accepts and returns <code>IReadOnlyCollection&lt;TTestCollection&gt;</code> instead of <code>IEnumerable&lt;TTestCollection&gt;</code>.</p>
+</li>
+<li><p><code>IXunitTestCaseDiscoverer</code> has moved from <code>Xunit.Sdk</code> to <code>Xunit.v3</code> and the <code>Discover</code> method has been made async.</p>
+</li>
+<li><p><code>IXunitTestCollectionFactory</code> has moved from <code>Xunit.Sdk</code> to <code>Xunit.v3</code>.</p>
+</li>
+<li><p><code>MaxConcurrencySyncContext</code> has moved from <code>Xunit.Sdk</code> to <code>Xunit.v3</code>.</p>
+</li>
+<li><p><code>TestCollectionComparer</code> has moved from <code>Xunit.Sdk</code> to <code>Xunit.v3</code> and been made generic.</p>
+</li>
+</ul>
+<h3 id="types-removed">Types removed</h3>
+<ul>
+<li><p>The <code>AsyncTestSyncContext</code> class which made <code>async void</code> tests work has been removed.</p>
+</li>
+<li><p><code>AssemblyTraitAttribute</code> has been removed and <code>TraitAttribute</code> can be used on assemblies now.</p>
+</li>
+<li><p><code>LongLivedMarshalByRefObject</code> (in the <code>Xunit</code> namespace) has been removed from the core framework, since v3 does not support running in Application Domains.</p>
+</li>
+<li><p><code>PlatformSpecificAssemblyAttribute</code> has been removed, as <code>xunit.v3.extensibility.core</code> is based purely on <code>netstandard2.0</code> now rather than the previous multi-targeted <code>xunit.execution.*</code> libraries.</p>
+</li>
+<li><p><code>PropertyDataAttribute</code>, which had been obsoleted in favor of <code>MemberDataAttribute</code>, has been removed.</p>
+</li>
+<li><p><code>Reflector</code> (and all the <code>ReflectionXyz</code> classes it returned) has been removed, since the reflection abstractions have been removed from v3.</p>
+</li>
+<li><p><code>TestCaseBulkDeserializer</code> and <code>TestCaseDescriptorFactory</code> have been removed, as the cross-Application Domain performance problems they were solving are no longer present in v3.</p>
+</li>
+<li><p><code>TestClassException</code> has been removed, and replaced with a more generalized <code>TestPipelineException</code>.</p>
+</li>
+</ul>
+<h3 id="miscellaneous-changes">Miscellaneous changes</h3>
+<ul>
+<li><p>In an effort to track down and eliminate cases of double enumeration, many method signatures may have changed from <code>IEnumerable&lt;T&gt;</code> to <code>IReadOnlyCollection&lt;T&gt;</code> when it's known that the data is safe to double enumerate.</p>
+</li>
+<li><p><code>BeforeAfterTestAttribute</code> is now given the instance of <code>IXunitTest</code> for the currently running test.</p>
+</li>
+<li><p><code>DisposalTracker</code> has been switched from <code>IDisposable</code> to <code>IAsyncDisposable</code>, and is capable of disposing of objects which implement either interface. Note that if an object implements both interfaces, only <code>IAsyncDisposable</code> will be called.</p>
+</li>
+<li><p><code>ExceptionUtility.ConvertExceptionToFailureInformation</code> has been replaced by <code>.ExtractMetadata</code>, which returns the exception metadata as a tuple rather than an interface.</p>
+</li>
+<li><p><code>IAsyncLifetime</code> has been updated to inherit from <code>IAsyncDisposable</code>, and both <code>DisposeAsync</code> and <code>InitializeAsync</code> have been converted from <code>Task</code> to <code>ValueTask</code>.</p>
+</li>
+<li><p><code>MemberDataAttributeBase.Parameters</code> has been renamed to <code>Arguments</code> to better align with the fact that it contains parameter argument values, not parameters. <code>ConvertDataItem</code> has been renamed to <code>ConvertDataRow</code> (and now returns the new <code>ITheoryDataRow</code> object rather than <code>object[]</code>). The <code>GetDataMethod</code> has been made async, and now returns <code>IReadOnlyCollection&lt;ITheoryDataRow&gt;</code> rather than <code>IEnumerable&lt;object[]&gt;</code>.</p>
+</li>
+<li><p><code>Record.ExceptionAsync</code> has been updated to return <code>ValueTask</code> as well as accepting lambdas that return <code>ValueTask</code>.</p>
+</li>
+<li><p><code>SerializationHelper.GetType</code> and <code>.GetTypeNameForSerialization</code> have been replaced with <code>.SerializedTypeNameToType</code> and <code>.TypeToSerializedTypeName</code>, respectively. A non-generic version of <code>.Deserialize</code> has been added, and the <code>.Serialize</code> method now requires a <code>Type</code> to be passed in addition to the value.</p>
+</li>
+<li><p><code>TheoryDataBase</code> is the new base type for the <code>TheoryData&lt;&gt;</code> classes as well as the untyped <code>TheoryData</code>.</p>
+</li>
+</ul>
+<h2 id="changes-to-runner-utility">Changes to Runner Utility</h2>
+<p>The runner utility libraries have had a fairly extensive overhaul. The two previous libraries (<code>xunit.runner.reporters</code> and <code>xunit.runner.utility</code>) were merged into a single library (<code>xunit.v3.runner.utility</code>). Most of the types in this library have retained the <code>Xunit</code> namespace, just like they previously had. Some sub-namespaces have been introduced to isolate code that's specific to running v1 vs. v2 vs. v3 tests.</p>
+<p>A second new library (<code>xunit.v3.runner.common</code>) was introduced. Types in this library primarily have the <code>Xunit.Runner.Common</code> namespace.</p>
+<p>The split between these two libraries comes from the fact that we now have an in-process console runner (that is the runner that is linked into your unit test projects, from the <code>xunit.v3.runner.inproc.console</code> package) and an out-of-process console runner (the one in <code>xunit.v3.runner.console</code>). The former only has to be able to run v3 test projects, whereas the latter has to be able to run projects from v1, v2, and v3.</p>
+<p>The in-process console runner takes dependencies on <code>xunit.v3.extensibility.core</code> and <code>xunit.v3.runner.common</code> to be able to perform its runner duties, whereas <code>xunit.v3.runner.utility</code> takes dependencies only on <code>xunit.abstractions</code> to be able run v2 tests (and <code>Mono.Cecil</code> to be able to read assembly metadata without loading the assembly into memory).</p>
+<p>At the moment, third party reporters are not supported. We have an <a href="https://github.com/xunit/xunit/issues/1874">open issue</a> to solve the problem of how to enable third party reporters without creating the strong dependency on <code>xunit.v3.runner.utility</code>, as the strong dependency in v2 on <code>xunit.runner.utility</code> made writing third party reporters exceptionally fragile.</p>
+<h3 id="updated-support-for-custom-runner-reporters">Updated support for custom runner reporters</h3>
+<p>We have overhauled the way custom runner reporters are supported in v3. The new design for runner reporters directly links them into your test assembly, and the reporter is now chosen via the <code>-reporter</code> switch (only available when you run your test project directly).</p>
+<p>For more information, see the <a href="/docs/getting-started/v3/custom-runner-reporter">documentation page</a>.</p>
+<h3 id="namespace-changes-1">Namespace changes</h3>
+<ul>
+<li><p>The concrete test messages in the <code>Xunit</code> namespace (for example, <code>DiagnosticMessage</code>) have moved to the <code>Xunit.Runner.Common</code> namespace. In the case where messages had non-empty constructors (for example, <code>ErrorMessage</code>) they have been converted to a single parameterless constructor (for serialization/deserialization purposes), and helper static creation methods like <code>FromException</code> have been added to replace the previous constructor usage.</p>
+</li>
+<li><p>The runner reporters (i.e., <code>AppVeyorReporter</code>, <code>DefaultRunnerReporter</code>, etc.) and their message handlers have moved from <code>Xunit.Runner.Reporters</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>AggregateMessageSink</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>AppDomainSupport</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>ConfigReader</code>, <code>ConfigReader_Configuration</code>, and <code>ConfigReader_Json</code> have moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>. The <code>Load</code> method overloads that took <code>Stream</code> have been removed.</p>
+</li>
+<li><p><code>ConsoleRunnerLogger</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>, and has been consolidated down to a single constructor that requires passing a <code>ConsoleHelper</code> object.</p>
+</li>
+<li><p><code>DefaultTestCaseBulkDeserializer</code> and <code>ITestCaseBulkDeserializer</code> have moved from <code>Xunit</code> to <code>Xunit.Internal</code> and are no longer directly supported for third party usage.</p>
+</li>
+<li><p><code>DiagnosticEventSink</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>DiscoveryCompleteMessage</code> has been renamed to <code>DiscoveryComplete</code>, and moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>DiscoveryEventSink</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>ExecutionEventSink</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>ExecutionSink</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>ExecutionSinkOptions</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>ExecutionSummary</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>IMessageSinkWithTypes</code> and <code>IMessageSinkMessageWithTypes</code> have moved from <code>Xunit</code> to <code>Xunit.Runner.v2</code>.</p>
+</li>
+<li><p><code>IRunnerLogger</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>IRunnerReporter</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>IXunit1Executor</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.v1</code>.</p>
+</li>
+<li><p><code>LongRunningTestsSummary</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>MessageHandler&lt;T&gt;</code>, <code>MessageHandlerArgs</code>, and <code>MessageHandlerArgs&lt;T&gt;</code> have moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>NullSourceInformationProvider</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>RunnerEventSink</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>RunnerReporterUtility</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>, and now offers a way to directly retrieve just the embedded runner reporters.</p>
+</li>
+<li><p><code>StackFrameInfo</code> and <code>StackFrameTransformer</code> have moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>TestCaseDiscoveryMessage</code> has been renamed to <code>TestCaseDiscovered</code>, and has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>TestFrameworkOptions</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code> and now can be serialized.</p>
+</li>
+<li><p><code>TransformFactory</code> has moved from <code>Xunit.ConsoleClient</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>Xunit1</code>, <code>Xunit1Executor</code>, <code>Xunit1RunSummary</code>, and <code>Xunit1TestCase</code> have moved from <code>Xunit</code> to <code>Xunit.Runner.v1</code> and been updated for the new front controller contract.</p>
+</li>
+<li><p><code>Xunit2</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.v2</code> and been updated for the new front controller contract.</p>
+</li>
+<li><p><code>XunitFilters</code> has moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code>.</p>
+</li>
+<li><p><code>XunitProject</code> and <code>XunitProjectAssembly</code> have moved from <code>Xunit</code> to <code>Xunit.Runner.Common</code> and been significantly restructured.</p>
+</li>
+</ul>
+<h3 id="types-removed-1">Types removed</h3>
+<ul>
+<li><p><code>DefaultTestCaseDescriptorProvider</code> has been removed.</p>
+</li>
+<li><p><code>DelegatingExecutionSummarySink</code>, <code>DelegatingFailSkipSink</code>, <code>DelegatingLongRunningTestDetectionSink</code>, <code>DelegatingXmlCreationSink</code>, <code>FailSkipVisitor</code>, <code>XmlAggregateVisitor</code>, and <code>XmlTestExecutionVisitor</code> have been removed. They have been consolidated into a single <code>ExecutionSink</code> class that ensures correct ordering behavior. Accordingly, <code>IExecutionSink</code> and <code>IExecutionVisitor</code> have also been removed.</p>
+</li>
+<li><p><code>ITestCaseDescriptorProvider</code> and <code>TestCaseDescriptor</code> have been removed.</p>
+</li>
+<li><p><code>MessageSinkAdapter</code> and <code>MessageSinkWithTypesAdapter</code> have been removed.</p>
+</li>
+<li><p><code>TestDiscoveryVisitor</code> has been removed.</p>
+</li>
+<li><p><code>TestMessageVisitor</code> and <code>TestMessageVisitor&lt;T&gt;</code> have been removed.</p>
+</li>
+</ul>
+<h3 id="miscellaneous-changes-1">Miscellaneous changes</h3>
+<ul>
+<li><p><code>AppVeyorClient</code> and <code>VstsClient</code> have been moved from <code>public</code> to <code>internal</code>.</p>
+</li>
+<li><p><code>IFrontController</code> has had <code>CanUseAppDomains</code> removed, and has added <code>FindAndRun</code> and <code>Run</code> methods to run tests. It has also been converted from <code>IDisposable</code> to <code>IAsyncDisposable</code>.</p>
+</li>
+<li><p><code>IFrontControllerDiscoverer</code> has been added, with a <code>Find</code> method for finding tests (without running them), as well as exposing the metadata about the test project (including the <code>CanUseAppDomains</code> property that was removed from <code>IFrontController</code>).</p>
+</li>
+<li><p><code>ISourceInformationProvider.GetSourceInformation</code> has changed its return value from <code>ISourceInformation</code> to <code>(string? sourceFile, int? sourceLine)</code>.</p>
+</li>
+<li><p><code>TestExecutionSummary</code> (for a single test assembly) has been replaced by <code>TestExecutionSummaries</code> (for multiple test assemblies).</p>
+</li>
+<li><p><code>XunitFrontController</code> has been updated for the new front controller contract, and is now <code>IAsyncDisposable</code> instead of <code>IDisposable</code>. Bulk deserializer and test descriptor functionality has been removed.</p>
+</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/xunit/xunit.net/blob/main/site/docs/getting-started/v3/migration.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Copyright &copy; <a href='https://dotnetfoundation.org/'>.NET Foundation</a>. Contributions welcomed at <a href='https://github.com/xunit/xunit.net'>https://github.com/xunit/xunit.net</a>. Updates posted to <a href='https://dotnet.social/@xunit' rel='me'>Mastodon</a> and <a href='https://bsky.app/profile/xunit.net'>Bluesky</a>.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

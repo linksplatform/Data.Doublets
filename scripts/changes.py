@@ -9,7 +9,10 @@ import subprocess
 def categories(paths):
     result = dict(csharp=False, cpp=False, docs=False, pipeline=False)
     for path in paths:
-        if path.startswith(("dev/log/", "experiments/")) or path.endswith(".gitkeep"):
+        if (
+            path.startswith(("dev/log/", "experiments/"))
+            and not path.startswith(("experiments/issue-359/RustParity/", "experiments/issue-519/"))
+        ) or path.endswith(".gitkeep"):
             continue
         result["docs"] |= path.endswith(".md") or path.startswith("docs/")
         if path.endswith(".md"):
@@ -21,12 +24,18 @@ def categories(paths):
                 "examples/Deletion/",
                 "examples/Update/",
                 "examples/Structure/",
+                "examples/Queries/",
             )
-        ) or path in ("global.json", "Directory.Build.props")
+        ) or path in ("global.json", "Directory.Build.props", "Directory.Packages.props")
         result["cpp"] |= path.startswith(("cpp/", "c/")) or path in (
             "examples/CppMemoryLinks.cpp",
             ".clang-format",
             ".clang-tidy",
+        )
+        result["pipeline"] |= (
+            path == "rust"
+            or path.startswith("experiments/issue-359/RustParity/")
+            or path.startswith("experiments/issue-519/")
         )
         result["pipeline"] |= path.startswith((".github/", "scripts/", ".config/")) or path in (
             ".gitpod.yml",
@@ -38,6 +47,7 @@ def categories(paths):
             ".gitleaksignore",
             ".pre-commit-config.yaml",
             "pyproject.toml",
+            "rust-toolchain.toml",
         )
     return result
 

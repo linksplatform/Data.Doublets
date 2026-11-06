@@ -1,0 +1,1164 @@
+[
+  {
+    "ecosystem": "Cargo",
+    "name": "allocator-api2",
+    "selected": "0.4.0",
+    "latest": "0.4.0",
+    "source": "https://index.crates.io/al/lo/allocator-api2"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "autocfg",
+    "selected": "1.5.1",
+    "latest": "1.5.1",
+    "source": "https://index.crates.io/au/to/autocfg"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "beef",
+    "selected": "0.5.2",
+    "latest": "0.5.2",
+    "source": "https://index.crates.io/be/ef/beef"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "bitflags",
+    "selected": "2.13.2",
+    "latest": "2.13.2",
+    "source": "https://index.crates.io/bi/tf/bitflags"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "cfg-if",
+    "selected": "1.0.5",
+    "latest": "1.0.5",
+    "source": "https://index.crates.io/cf/g-/cfg-if"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "errno",
+    "selected": "0.3.14",
+    "latest": "0.3.14",
+    "source": "https://index.crates.io/er/rn/errno"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "fastrand",
+    "selected": "2.5.0",
+    "latest": "2.5.0",
+    "source": "https://index.crates.io/fa/st/fastrand"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "getrandom",
+    "selected": "0.4.3",
+    "latest": "0.4.3",
+    "source": "https://index.crates.io/ge/tr/getrandom"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "leak_slice",
+    "selected": "0.2.0",
+    "latest": "0.2.0",
+    "source": "https://index.crates.io/le/ak/leak_slice"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "libc",
+    "selected": "0.2.191",
+    "latest": "0.2.191",
+    "source": "https://index.crates.io/li/bc/libc"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "linux-raw-sys",
+    "selected": "0.12.1",
+    "latest": "0.12.1",
+    "source": "https://index.crates.io/li/nu/linux-raw-sys"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "memmap2",
+    "selected": "0.9.12",
+    "latest": "0.9.12",
+    "source": "https://index.crates.io/me/mm/memmap2"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "num-traits",
+    "selected": "0.2.19",
+    "latest": "0.2.19",
+    "source": "https://index.crates.io/nu/m-/num-traits"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "once_cell",
+    "selected": "1.21.4",
+    "latest": "1.21.4",
+    "source": "https://index.crates.io/on/ce/once_cell"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "platform-data",
+    "selected": "2.0.0",
+    "latest": "3.0.0",
+    "source": "https://index.crates.io/pl/at/platform-data"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "platform-mem",
+    "selected": "0.4.0",
+    "latest": "0.4.0",
+    "source": "https://index.crates.io/pl/at/platform-mem"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "platform-num",
+    "selected": "0.8.0",
+    "latest": "0.8.0",
+    "source": "https://index.crates.io/pl/at/platform-num"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "platform-trees",
+    "selected": "0.3.5",
+    "latest": "0.3.5",
+    "source": "https://index.crates.io/pl/at/platform-trees"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "proc-macro2",
+    "selected": "1.0.107",
+    "latest": "1.0.107",
+    "source": "https://index.crates.io/pr/oc/proc-macro2"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "quote",
+    "selected": "1.0.47",
+    "latest": "1.0.47",
+    "source": "https://index.crates.io/qu/ot/quote"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "r-efi",
+    "selected": "6.0.0",
+    "latest": "7.1.0",
+    "source": "https://index.crates.io/r-/ef/r-efi"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "rustix",
+    "selected": "1.1.6",
+    "latest": "1.1.6",
+    "source": "https://index.crates.io/ru/st/rustix"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "syn",
+    "selected": "3.0.9",
+    "latest": "3.0.9",
+    "source": "https://index.crates.io/3/s/syn"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "tap",
+    "selected": "1.0.1",
+    "latest": "1.0.1",
+    "source": "https://index.crates.io/3/t/tap"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "tempfile",
+    "selected": "3.27.0",
+    "latest": "3.27.0",
+    "source": "https://index.crates.io/te/mp/tempfile"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "thiserror",
+    "selected": "2.0.21",
+    "latest": "2.0.21",
+    "source": "https://index.crates.io/th/is/thiserror"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "thiserror-impl",
+    "selected": "2.0.21",
+    "latest": "2.0.21",
+    "source": "https://index.crates.io/th/is/thiserror-impl"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "unicode-ident",
+    "selected": "1.0.27",
+    "latest": "1.0.27",
+    "source": "https://index.crates.io/un/ic/unicode-ident"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "windows-link",
+    "selected": "0.2.1",
+    "latest": "0.100.0",
+    "source": "https://index.crates.io/wi/nd/windows-link"
+  },
+  {
+    "ecosystem": "Cargo",
+    "name": "windows-sys",
+    "selected": "0.61.2",
+    "latest": "0.61.2",
+    "source": "https://index.crates.io/wi/nd/windows-sys"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Azure.Core",
+    "selected": "1.64.0",
+    "latest": "1.64.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/azure.core/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Azure.Identity",
+    "selected": "1.21.0",
+    "latest": "1.21.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/azure.identity/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "BenchmarkDotNet",
+    "selected": "0.15.8",
+    "latest": "0.15.8",
+    "source": "https://api.nuget.org/v3-flatcontainer/benchmarkdotnet/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "BenchmarkDotNet.Annotations",
+    "selected": "0.15.8",
+    "latest": "0.15.8",
+    "source": "https://api.nuget.org/v3-flatcontainer/benchmarkdotnet.annotations/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "CommandLineParser",
+    "selected": "2.9.1",
+    "latest": "2.9.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/commandlineparser/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Gee.External.Capstone",
+    "selected": "2.3.0",
+    "latest": "2.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/gee.external.capstone/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Iced",
+    "selected": "1.22.0",
+    "latest": "1.22.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/iced/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Bcl.AsyncInterfaces",
+    "selected": "10.0.14",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.bcl.asyncinterfaces/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.CodeAnalysis.Analyzers",
+    "selected": "5.9.0",
+    "latest": "5.9.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.codeanalysis.analyzers/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.CodeAnalysis.CSharp",
+    "selected": "5.9.0",
+    "latest": "5.9.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.codeanalysis.csharp/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.CodeAnalysis.Common",
+    "selected": "5.9.0",
+    "latest": "5.9.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.codeanalysis.common/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.CodeCoverage",
+    "selected": "18.11.0",
+    "latest": "18.11.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.codecoverage/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Diagnostics.NETCore.Client",
+    "selected": "0.2.750501",
+    "latest": "0.2.750501",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.diagnostics.netcore.client/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Diagnostics.Runtime",
+    "selected": "4.2.751201",
+    "latest": "4.2.751201",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.diagnostics.runtime/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Diagnostics.Tracing.TraceEvent",
+    "selected": "4.0.0",
+    "latest": "4.0.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.diagnostics.tracing.traceevent/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.DotNet.PlatformAbstractions",
+    "selected": "3.1.6",
+    "latest": "3.1.6",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.dotnet.platformabstractions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.Configuration.Abstractions",
+    "selected": "10.0.14",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.configuration.abstractions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.DependencyInjection.Abstractions",
+    "selected": "10.0.14",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.dependencyinjection.abstractions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.Diagnostics.Abstractions",
+    "selected": "10.0.14",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.diagnostics.abstractions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.FileProviders.Abstractions",
+    "selected": "10.0.14",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.fileproviders.abstractions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.Hosting.Abstractions",
+    "selected": "10.0.14",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.hosting.abstractions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.Logging.Abstractions",
+    "selected": "10.0.14",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.logging.abstractions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.Options",
+    "selected": "10.0.14",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.options/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.Primitives",
+    "selected": "10.0.14",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.primitives/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Identity.Client",
+    "selected": "4.92.0",
+    "latest": "4.92.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.identity.client/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Identity.Client.Extensions.Msal",
+    "selected": "4.92.0",
+    "latest": "4.92.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.identity.client.extensions.msal/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.IdentityModel.Abstractions",
+    "selected": "8.23.0",
+    "latest": "8.23.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.identitymodel.abstractions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.NET.Test.Sdk",
+    "selected": "18.11.0",
+    "latest": "18.11.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.net.test.sdk/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Security.AntiSSRF",
+    "selected": "1.0.1",
+    "latest": "1.0.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.security.antissrf/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.TestPlatform.ObjectModel",
+    "selected": "18.11.0",
+    "latest": "18.11.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.testplatform.objectmodel/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.TestPlatform.TestHost",
+    "selected": "18.11.0",
+    "latest": "18.11.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.testplatform.testhost/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Win32.Registry",
+    "selected": "5.0.0",
+    "latest": "5.0.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.win32.registry/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Perfolizer",
+    "selected": "0.6.1",
+    "latest": "0.7.5",
+    "source": "https://api.nuget.org/v3-flatcontainer/perfolizer/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Collections",
+    "selected": "0.4.0",
+    "latest": "0.4.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.collections/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Collections.Methods",
+    "selected": "0.7.3",
+    "latest": "1.0.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.collections.methods/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Converters",
+    "selected": "0.4.0",
+    "latest": "0.4.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.converters/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Counters",
+    "selected": "0.0.2",
+    "latest": "0.0.2",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.counters/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Data",
+    "selected": "0.16.1",
+    "latest": "0.16.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.data/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Data.Doublets.FFI",
+    "selected": "0.9.0",
+    "latest": "0.9.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.data.doublets.ffi/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Data.Doublets.Sequences",
+    "selected": "0.6.5",
+    "latest": "0.6.5",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.data.doublets.sequences/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Delegates",
+    "selected": "0.1.1",
+    "latest": "0.1.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.delegates/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Diagnostics",
+    "selected": "0.1.0",
+    "latest": "0.1.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.diagnostics/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Disposables",
+    "selected": "0.4.0",
+    "latest": "0.4.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.disposables/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Exceptions",
+    "selected": "0.5.0",
+    "latest": "0.5.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.exceptions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.IO",
+    "selected": "0.5.1",
+    "latest": "0.5.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.io/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Interfaces",
+    "selected": "0.5.0",
+    "latest": "0.5.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.interfaces/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Memory",
+    "selected": "0.4.1",
+    "latest": "0.4.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.memory/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Numbers",
+    "selected": "0.9.0",
+    "latest": "0.9.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.numbers/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Random",
+    "selected": "0.3.0",
+    "latest": "0.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.random/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Ranges",
+    "selected": "0.5.0",
+    "latest": "0.5.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.ranges/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Reflection",
+    "selected": "0.7.0",
+    "latest": "0.7.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.reflection/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Scopes",
+    "selected": "0.1.0",
+    "latest": "0.1.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.scopes/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Setters",
+    "selected": "0.5.0",
+    "latest": "0.5.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.setters/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Singletons",
+    "selected": "0.3.0",
+    "latest": "0.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.singletons/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Threading",
+    "selected": "0.5.0",
+    "latest": "0.5.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.threading/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Timestamps",
+    "selected": "0.3.0",
+    "latest": "0.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.timestamps/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Unsafe",
+    "selected": "0.6.2",
+    "latest": "0.6.2",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.unsafe/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Pragmastat",
+    "selected": "3.2.4",
+    "latest": "14.0.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/pragmastat/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.ClientModel",
+    "selected": "1.16.0",
+    "latest": "1.16.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.clientmodel/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.CodeDom",
+    "selected": "10.0.14",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.codedom/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Management",
+    "selected": "10.0.14",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.management/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Memory.Data",
+    "selected": "10.0.14",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.memory.data/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Reflection.TypeExtensions",
+    "selected": "4.7.0",
+    "latest": "4.7.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.reflection.typeextensions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Security.AccessControl",
+    "selected": "6.0.1",
+    "latest": "6.0.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.security.accesscontrol/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Security.Cryptography.ProtectedData",
+    "selected": "10.0.14",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.security.cryptography.protecteddata/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "coverlet.collector",
+    "selected": "10.1.0",
+    "latest": "10.1.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/coverlet.collector/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "docfx",
+    "selected": "2.81.0",
+    "latest": "2.81.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/docfx/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.analyzers",
+    "selected": "2.2.0",
+    "latest": "2.2.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.analyzers/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.runner.visualstudio",
+    "selected": "4.0.1",
+    "latest": "4.0.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.runner.visualstudio/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.v3.assert",
+    "selected": "4.0.2",
+    "latest": "4.0.2",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.v3.assert/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.v3.common",
+    "selected": "4.0.2",
+    "latest": "4.0.2",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.v3.common/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.v3.core.mtp-off",
+    "selected": "4.0.2",
+    "latest": "4.0.2",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.v3.core.mtp-off/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.v3.extensibility.core",
+    "selected": "4.0.2",
+    "latest": "4.0.2",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.v3.extensibility.core/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.v3.mtp-off",
+    "selected": "4.0.2",
+    "latest": "4.0.2",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.v3.mtp-off/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.v3.runner.common",
+    "selected": "4.0.2",
+    "latest": "4.0.2",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.v3.runner.common/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.v3.runner.inproc.console",
+    "selected": "4.0.2",
+    "latest": "4.0.2",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.v3.runner.inproc.console/index.json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "CacheControl",
+    "selected": "0.14.4",
+    "latest": "0.14.4",
+    "source": "https://pypi.org/pypi/CacheControl/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "Jinja2",
+    "selected": "3.1.6",
+    "latest": "3.1.6",
+    "source": "https://pypi.org/pypi/Jinja2/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "MarkupSafe",
+    "selected": "3.0.4",
+    "latest": "3.0.4",
+    "source": "https://pypi.org/pypi/MarkupSafe/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "PyYAML",
+    "selected": "6.0.3",
+    "latest": "6.0.3",
+    "source": "https://pypi.org/pypi/PyYAML/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "Pygments",
+    "selected": "2.21.0",
+    "latest": "2.21.0",
+    "source": "https://pypi.org/pypi/Pygments/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "ast_serialize",
+    "selected": "0.13.1",
+    "latest": "0.13.1",
+    "source": "https://pypi.org/pypi/ast_serialize/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "boolean.py",
+    "selected": "5.0",
+    "latest": "5.0",
+    "source": "https://pypi.org/pypi/boolean.py/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "certifi",
+    "selected": "2026.10.23",
+    "latest": "2026.10.23",
+    "source": "https://pypi.org/pypi/certifi/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "cfgv",
+    "selected": "3.5.0",
+    "latest": "3.5.0",
+    "source": "https://pypi.org/pypi/cfgv/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "charset-normalizer",
+    "selected": "3.5.2",
+    "latest": "3.5.2",
+    "source": "https://pypi.org/pypi/charset-normalizer/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "clang-format",
+    "selected": "23.1.5",
+    "latest": "23.1.5",
+    "source": "https://pypi.org/pypi/clang-format/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "colorama",
+    "selected": "0.4.6",
+    "latest": "0.4.6",
+    "source": "https://pypi.org/pypi/colorama/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "colorlog",
+    "selected": "6.12.0",
+    "latest": "6.12.0",
+    "source": "https://pypi.org/pypi/colorlog/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "conan",
+    "selected": "2.34.0",
+    "latest": "2.34.0",
+    "source": "https://pypi.org/pypi/conan/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "cyclonedx-python-lib",
+    "selected": "11.12.0",
+    "latest": "11.12.0",
+    "source": "https://pypi.org/pypi/cyclonedx-python-lib/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "defusedxml",
+    "selected": "0.7.1",
+    "latest": "0.7.1",
+    "source": "https://pypi.org/pypi/defusedxml/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "distlib",
+    "selected": "0.4.4",
+    "latest": "0.4.4",
+    "source": "https://pypi.org/pypi/distlib/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "distro",
+    "selected": "1.9.0",
+    "latest": "1.9.0",
+    "source": "https://pypi.org/pypi/distro/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "fasteners",
+    "selected": "0.20",
+    "latest": "0.20",
+    "source": "https://pypi.org/pypi/fasteners/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "filelock",
+    "selected": "4.2.9",
+    "latest": "4.2.9",
+    "source": "https://pypi.org/pypi/filelock/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "fonttools",
+    "selected": "4.68.0",
+    "latest": "4.68.0",
+    "source": "https://pypi.org/pypi/fonttools/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "fpdf2",
+    "selected": "2.9.0",
+    "latest": "2.9.0",
+    "source": "https://pypi.org/pypi/fpdf2/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "gcovr",
+    "selected": "8.8",
+    "latest": "8.8",
+    "source": "https://pypi.org/pypi/gcovr/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "identify",
+    "selected": "2.6.20",
+    "latest": "2.6.20",
+    "source": "https://pypi.org/pypi/identify/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "idna",
+    "selected": "3.20",
+    "latest": "3.20",
+    "source": "https://pypi.org/pypi/idna/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "librt",
+    "selected": "0.16.0",
+    "latest": "0.16.0",
+    "source": "https://pypi.org/pypi/librt/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "license-expression",
+    "selected": "30.4.4",
+    "latest": "30.4.4",
+    "source": "https://pypi.org/pypi/license-expression/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "lxml",
+    "selected": "6.1.3",
+    "latest": "6.1.3",
+    "source": "https://pypi.org/pypi/lxml/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "markdown-it-py",
+    "selected": "4.2.0",
+    "latest": "4.2.0",
+    "source": "https://pypi.org/pypi/markdown-it-py/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "mdurl",
+    "selected": "0.1.2",
+    "latest": "0.1.2",
+    "source": "https://pypi.org/pypi/mdurl/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "msgpack",
+    "selected": "1.2.4",
+    "latest": "1.2.4",
+    "source": "https://pypi.org/pypi/msgpack/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "mypy",
+    "selected": "2.4.1",
+    "latest": "2.4.1",
+    "source": "https://pypi.org/pypi/mypy/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "mypy_extensions",
+    "selected": "1.2.0",
+    "latest": "1.2.0",
+    "source": "https://pypi.org/pypi/mypy_extensions/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "nodeenv",
+    "selected": "1.12.0",
+    "latest": "1.12.0",
+    "source": "https://pypi.org/pypi/nodeenv/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "packageurl-python",
+    "selected": "0.17.6",
+    "latest": "0.17.6",
+    "source": "https://pypi.org/pypi/packageurl-python/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "packaging",
+    "selected": "26.3",
+    "latest": "26.3",
+    "source": "https://pypi.org/pypi/packaging/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "patch-ng",
+    "selected": "1.19.1",
+    "latest": "1.19.1",
+    "source": "https://pypi.org/pypi/patch-ng/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "pathspec",
+    "selected": "1.1.1",
+    "latest": "1.1.1",
+    "source": "https://pypi.org/pypi/pathspec/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "pillow",
+    "selected": "13.0.0",
+    "latest": "13.0.0",
+    "source": "https://pypi.org/pypi/pillow/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "pip",
+    "selected": "26.3",
+    "latest": "26.3",
+    "source": "https://pypi.org/pypi/pip/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "pip-requirements-parser",
+    "selected": "32.0.1",
+    "latest": "32.0.1",
+    "source": "https://pypi.org/pypi/pip-requirements-parser/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "pip_api",
+    "selected": "0.0.35",
+    "latest": "0.0.35",
+    "source": "https://pypi.org/pypi/pip_api/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "pip_audit",
+    "selected": "2.10.1",
+    "latest": "2.10.1",
+    "source": "https://pypi.org/pypi/pip_audit/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "platformdirs",
+    "selected": "4.14.5",
+    "latest": "4.14.5",
+    "source": "https://pypi.org/pypi/platformdirs/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "pre_commit",
+    "selected": "4.7.0",
+    "latest": "4.7.0",
+    "source": "https://pypi.org/pypi/pre_commit/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "py-serializable",
+    "selected": "2.1.0",
+    "latest": "2.1.0",
+    "source": "https://pypi.org/pypi/py-serializable/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "pyflakes",
+    "selected": "4.1.0",
+    "latest": "4.1.0",
+    "source": "https://pypi.org/pypi/pyflakes/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "pyparsing",
+    "selected": "3.3.3",
+    "latest": "3.3.3",
+    "source": "https://pypi.org/pypi/pyparsing/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "python-discovery",
+    "selected": "1.9.4",
+    "latest": "1.9.4",
+    "source": "https://pypi.org/pypi/python-discovery/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "requests",
+    "selected": "2.34.2",
+    "latest": "2.34.2",
+    "source": "https://pypi.org/pypi/requests/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "rich",
+    "selected": "15.0.0",
+    "latest": "15.0.0",
+    "source": "https://pypi.org/pypi/rich/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "ruff",
+    "selected": "0.17.4",
+    "latest": "0.17.4",
+    "source": "https://pypi.org/pypi/ruff/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "sortedcontainers",
+    "selected": "2.4.0",
+    "latest": "2.4.0",
+    "source": "https://pypi.org/pypi/sortedcontainers/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "tomli",
+    "selected": "2.5.0",
+    "latest": "2.5.0",
+    "source": "https://pypi.org/pypi/tomli/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "tomli_w",
+    "selected": "1.2.0",
+    "latest": "1.2.0",
+    "source": "https://pypi.org/pypi/tomli_w/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "truststore",
+    "selected": "0.10.5",
+    "latest": "0.10.5",
+    "source": "https://pypi.org/pypi/truststore/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "types-PyYAML",
+    "selected": "6.0.12.20261103",
+    "latest": "6.0.12.20261103",
+    "source": "https://pypi.org/pypi/types-PyYAML/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "typing_extensions",
+    "selected": "4.16.0",
+    "latest": "4.16.0",
+    "source": "https://pypi.org/pypi/typing_extensions/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "urllib3",
+    "selected": "2.8.0",
+    "latest": "2.8.0",
+    "source": "https://pypi.org/pypi/urllib3/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "virtualenv",
+    "selected": "21.15.5",
+    "latest": "21.15.5",
+    "source": "https://pypi.org/pypi/virtualenv/json"
+  }
+]

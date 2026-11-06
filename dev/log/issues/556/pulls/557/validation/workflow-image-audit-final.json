@@ -1,0 +1,125 @@
+{
+  "results": [],
+  "experimental_config": {
+    "licenses": {
+      "summary": false,
+      "allowlist": null
+    }
+  },
+  "image_metadata": {
+    "os": "Alpine Linux v3.24",
+    "layer_metadata": [
+      {
+        "diff_id": "sha256:75f1d9657d880da5f75298e8f40e9928bb6e260c50d26f97af196845307e3064",
+        "command": "ADD alpine-minirootfs-3.24.4-x86_64.tar.gz / # buildkit",
+        "is_empty": false,
+        "base_image_index": 2
+      },
+      {
+        "diff_id": "",
+        "command": "CMD [\"/bin/sh\"]",
+        "is_empty": true,
+        "base_image_index": 2
+      },
+      {
+        "diff_id": "",
+        "command": "ENV PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "is_empty": true,
+        "base_image_index": 1
+      },
+      {
+        "diff_id": "",
+        "command": "ENV LANG=C.UTF-8",
+        "is_empty": true,
+        "base_image_index": 1
+      },
+      {
+        "diff_id": "sha256:e61c8fdd71b8d037c5f2fd4009fc6e7969bd78930721e396bc2fb276f8e8636d",
+        "command": "RUN /bin/sh -c set -eux; \tapk add --no-cache \t\tca-certificates \t\ttzdata \t; # buildkit",
+        "is_empty": false,
+        "base_image_index": 1
+      },
+      {
+        "diff_id": "",
+        "command": "ENV PYTHON_VERSION=3.15.2",
+        "is_empty": true,
+        "base_image_index": 1
+      },
+      {
+        "diff_id": "",
+        "command": "ENV PYTHON_SHA256=8b5536d280142ecf6cdfe15d12a21ba1c65e300bbf7b28a8d0cdb849575797de",
+        "is_empty": true,
+        "base_image_index": 1
+      },
+      {
+        "diff_id": "sha256:1785d0ff8cbc36b58de0c0186677afc589ed138f6b8ea8d99c18e6526c418dac",
+        "command": "RUN /bin/sh -c set -eux; \t\tapk add --no-cache --virtual .build-deps \t\tbluez-dev \t\tbzip2-dev \t\tdpkg-dev dpkg \t\tfindutils \t\tg++ \t\tgcc \t\tgdbm-dev \t\tgnupg \t\tlibc-dev \t\tlibffi-dev \t\tlibnsl-dev \t\tlibtirpc-dev \t\tlinux-headers \t\tmake \t\tmpdecimal-dev \t\tncurses-dev \t\topenssl-dev \t\tpax-utils \t\treadline-dev \t\tsqlite-dev \t\ttar \t\ttcl-dev \t\ttk \t\ttk-dev \t\tutil-linux-dev \t\txz \t\txz-dev \t\tzlib-dev \t\tzstd-dev \t; \t\twget -O python.tar.xz \"https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz\"; \techo \"$PYTHON_SHA256 *python.tar.xz\" | sha256sum -c -; \tmkdir -p /usr/src/python; \ttar --extract --directory /usr/src/python --strip-components=1 --file python.tar.xz; \trm python.tar.xz; \t\tcd /usr/src/python; \tgnuArch=\"$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)\"; \t./configure \t\t--build=\"$gnuArch\" \t\t--enable-loadable-sqlite-extensions \t\t--enable-option-checking=fatal \t\t--enable-shared \t\t$(test \"${gnuArch%%-*}\" != 'riscv64' \u0026\u0026 echo '--with-lto') \t\t--with-ensurepip \t; \tnproc=\"$(nproc)\"; \tEXTRA_CFLAGS=\"-DTHREAD_STACK_SIZE=0x100000\"; \tLDFLAGS=\"${LDFLAGS:-} -Wl,--strip-all\"; \tarch=\"$(apk --print-arch)\"; \tcase \"$arch\" in \t\tx86_64|aarch64) \t\t\tEXTRA_CFLAGS=\"${EXTRA_CFLAGS:-} -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer\"; \t\t\t;; \t\tx86) \t\t\t;; \t\t*) \t\t\tEXTRA_CFLAGS=\"${EXTRA_CFLAGS:-} -fno-omit-frame-pointer\"; \t\t\t;; \tesac; \tmake -j \"$nproc\" \t\t\"EXTRA_CFLAGS=${EXTRA_CFLAGS:-}\" \t\t\"LDFLAGS=${LDFLAGS:-}\" \t; \trm python; \tmake -j \"$nproc\" \t\t\"EXTRA_CFLAGS=${EXTRA_CFLAGS:-}\" \t\t\"LDFLAGS=${LDFLAGS:-} -Wl,-rpath='\\$\\$ORIGIN/../lib'\" \t\tpython \t; \tmake install; \t\tcd /; \trm -rf /usr/src/python; \t\tfind /usr/local -depth \t\t\\( \t\t\t\\( -type d -a \\( -name test -o -name tests -o -name idle_test \\) \\) \t\t\t-o \\( -type f -a \\( -name '*.pyc' -o -name '*.pyo' -o -name 'libpython*.a' \\) \\) \t\t\\) -exec rm -rf '{}' + \t; \t\tfind /usr/local -type f -executable -not \\( -name '*tkinter*' \\) -exec scanelf --needed --nobanner --format '%n#p' '{}' ';' \t\t| tr ',' '\\n' \t\t| sort -u \t\t| awk 'system(\"[ -e /usr/local/lib/\" $1 \" ]\") == 0 { next } { print \"so:\" $1 }' \t\t| xargs -rt apk add --no-network --virtual .python-rundeps \t; \tapk del --no-network .build-deps; \t\texport PYTHONDONTWRITEBYTECODE=1; \tpython3 --version; \tpip3 --version # buildkit",
+        "is_empty": false,
+        "base_image_index": 1
+      },
+      {
+        "diff_id": "sha256:ba5aa3c157e6d705f195f364b7b7f0728cc14fad95fc1d5bce9715ce09b9eb7c",
+        "command": "RUN /bin/sh -c set -eux; \tfor src in idle3 pip3 pydoc3 python3 python3-config; do \t\tdst=\"$(echo \"$src\" | tr -d 3)\"; \t\t[ -s \"/usr/local/bin/$src\" ]; \t\t[ ! -e \"/usr/local/bin/$dst\" ]; \t\tln -svT \"$src\" \"/usr/local/bin/$dst\"; \tdone # buildkit",
+        "is_empty": false,
+        "base_image_index": 1
+      },
+      {
+        "diff_id": "",
+        "command": "CMD [\"python3\"]",
+        "is_empty": true,
+        "base_image_index": 1
+      },
+      {
+        "diff_id": "sha256:98249f53ec9f1f4f4a9e80cb662ffdb9573a33c1c38385eb161e7dcfcc437609",
+        "command": "COPY /actionlint /usr/local/bin/actionlint # buildkit",
+        "is_empty": false,
+        "base_image_index": 0
+      },
+      {
+        "diff_id": "sha256:cbcd6cd582b8c81d09f80183f181fe452dd089d1a0ed228bfd7fcb8accc41a52",
+        "command": "COPY /usr/local/bin/shellcheck /usr/local/bin/shellcheck # buildkit",
+        "is_empty": false,
+        "base_image_index": 0
+      },
+      {
+        "diff_id": "sha256:ba456e28c9b24c3de6874a2df00043c292bb1f0d593b2749f7be05fea048d768",
+        "command": "COPY scripts/requirements.lock.txt /tmp/requirements.lock.txt # buildkit",
+        "is_empty": false,
+        "base_image_index": 0
+      },
+      {
+        "diff_id": "sha256:459403f1d29c9b95075d8c2b529ebf4757922fa2dd3cfa01bd5cd3a246776b9e",
+        "command": "RUN /bin/sh -c pip install --no-cache-dir --upgrade --constraint /tmp/requirements.lock.txt pip pyflakes # buildkit",
+        "is_empty": false,
+        "base_image_index": 0
+      },
+      {
+        "diff_id": "sha256:0cdf5b9be11b68d4f023215b24856dd0bcff7014118a2a4715912368c3ba96a2",
+        "command": "WORKDIR /work",
+        "is_empty": false,
+        "base_image_index": 0
+      },
+      {
+        "diff_id": "",
+        "command": "ENTRYPOINT [\"actionlint\"]",
+        "is_empty": true,
+        "base_image_index": 0
+      }
+    ],
+    "base_images": [
+      [],
+      [
+        {
+          "name": "python",
+          "tags": null
+        }
+      ],
+      [
+        {
+          "name": "alpine",
+          "tags": null
+        }
+      ]
+    ]
+  }
+}

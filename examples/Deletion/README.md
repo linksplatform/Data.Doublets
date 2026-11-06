@@ -11,7 +11,7 @@
 
 # Deletion choices
 
-Run `dotnet run --project examples/Deletion -c Release` with .NET 8.
+Run `dotnet run --project examples/Deletion -c Release` with .NET 10.
 
 The program checks caller-managed deletion, per-call checks, the pair-based
 helper, outer throw/ignore decorators, incoming-usage rejection, cascading and

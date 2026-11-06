@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Visual Studio adapter 4.0.0 [2026 August 14] | xUnit.net </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Visual Studio adapter 4.0.0 | xUnit.net ">
+      
+      
+      <link rel="icon" href="../../images/logo-128-transparent.png">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <link rel="stylesheet" href="../../public/release-notes.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/xunit/xunit.net/blob/main/site/releases/visualstudio/4.0.0.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="xUnit.net">
+            xUnit.net
+          </a>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+        </div>
+
+        <article data-uid="">
+          <h1>Visual Studio adapter 4.0.0 <span class="label label-title-version">2026 August 14</span></h1>
+          <p><img src="https://raw.githubusercontent.com/xunit/media/main/dotnet-foundation.svg" class="dnflogo" title=".NET Foundation logo"></p>
+
+
+
+
+<p>Today, we're shipping three new releases:</p>
+<ul>
+<li>xUnit.net Core Framework v3 <code>4.0.0</code> (<a href="/releases/v3/4.0.0">release notes</a>)</li>
+<li>xUnit.net Analyzers <code>2.0.0</code> (<a href="/releases/analyzers/2.0.0">release notes</a>)</li>
+<li><strong>xUnit.net Visual Studio adapter <code>4.0.0</code></strong></li>
+</ul>
+<h2 id="hello-40">Hello, 4.0!</h2>
+<p>The last major release (3.0.0) was 20 months ago, and the last minor release (3.1.5) was 11 months ago. The changes in this library have been slower than the core framework. The purpose of this package is to support third party VSTest runners, and Microsoft's TestFx team has been fully focused on Microsoft Testing Framework. At some point in the future, this package will probably be entirely deprecated, since most (if not all) of the major third party runners which support VSTest, also support MTP.</p>
+<p>As always, we'd like to thank all the users who contributed to the success of xUnit.net through usage, feedback, and code. 🎉</p>
+<h2 id="release-notes">Release Notes</h2>
+<p>These release notes are a comprehensive list of changes from <code>3.1.5</code> to <code>4.0.0</code>.</p>
+<h3 id="features-and-fixes">Features and Fixes</h3>
+<ul>
+<li><p>This package supports xUnit.net v3 4.0 test projects, including <a href="/schema/">the updated configuration file schema</a> and Native AOT test projects. Note that VSTest specifically (and <code>dotnet test</code> in general) does not support published Native AOT binaries, so this package is only applicable for unpublished test projects.</p>
+</li>
+<li><p><strong>BUG:</strong> We fixed an issue where ordering of messages was incorrect during shutdown when a foreground thread was left running. While this was previously fixed the native UX, MTP UX, and <code>dotnet test</code> in MTP mode in 3.2.2, this update now also fixes the issue in that package for users using <code>dotnet test</code> in VSTest mode. Note that the issue where test assemblies appear to be pass in this scenario in Test Explorer appears at this point to be unfixable, but at least any command line builds (like CI builds) should fail appropriately. <a href="https://github.com/xunit/xunit/issues/3452#issuecomment-4227722181" class="issue-link" :="">xunit/xunit#3452</a></p>
+</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/xunit/xunit.net/blob/main/site/releases/visualstudio/4.0.0.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Copyright &copy; <a href='https://dotnetfoundation.org/'>.NET Foundation</a>. Contributions welcomed at <a href='https://github.com/xunit/xunit.net'>https://github.com/xunit/xunit.net</a>. Updates posted to <a href='https://dotnet.social/@xunit' rel='me'>Mastodon</a> and <a href='https://bsky.app/profile/xunit.net'>Bluesky</a>.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

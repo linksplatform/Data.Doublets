@@ -1,7 +1,8 @@
 use doublets::{
+    Doublets, Error, Links,
     data::{Flow, LinksConstants},
     mem::Global,
-    split, unit, Doublets, Error, Links,
+    split, unit,
 };
 
 fn check(
@@ -93,7 +94,9 @@ fn check(
                     if actual != u32::from(matches) {
                         differences += 1;
                         if differences <= 3 {
-                            println!("{name}: [{index}, {source}], row={row:?}: Count={actual}, Each calls={calls}");
+                            println!(
+                                "{name}: [{index}, {source}], row={row:?}: Count={actual}, Each calls={calls}"
+                            );
                         }
                     }
                 }

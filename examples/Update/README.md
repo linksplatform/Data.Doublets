@@ -6,7 +6,7 @@
 
 # Update choices
 
-Run `dotnet run --project examples/Update -c Release` with .NET 8.
+Run `dotnet run --project examples/Update -c Release` with .NET 10.
 
 The program checks valid caller-managed updates, per-call rejection and skipping,
 and an outer existence validator around plain and automatic stacks. Both issue

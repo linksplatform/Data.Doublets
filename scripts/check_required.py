@@ -8,7 +8,7 @@ def validate(jobs, main=False):
     failed = [name for name, job in jobs.items() if job["result"] not in ("success", "skipped")]
     if failed:
         raise ValueError("Validation did not pass: " + ", ".join(failed))
-    expected = {"changes", "quality", "security", "links"}
+    expected = {"changes", "quality", "security", "links", "rust"}
     outputs = jobs["changes"]["outputs"]
     pipeline = outputs.get("pipeline") == "true"
     for language in ("csharp", "cpp"):

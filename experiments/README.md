@@ -39,7 +39,7 @@ and the [architecture review](https://github.com/linksplatform/Data.Doublets/pul
 Read the [C# guide](../docs/deletion-csharp.md), [Rust guide](../docs/deletion-rust.md),
 and [design/audit evidence](../docs/deletion-audit.md) for the selected contracts.
 
-Run from this repository root with .NET 8:
+Run from this repository root with the .NET 10 SDK selected by `global.json`:
 
 ```sh
 dotnet test csharp/Platform.Data.Doublets.Tests -c Release \

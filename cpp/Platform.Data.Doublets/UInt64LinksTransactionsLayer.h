@@ -157,9 +157,9 @@
                     _layer.ResetCurrentTransation();
                 }
             }
-        }
+      }
 
-        public : inline static const TimeSpan DefaultPushDelay = TimeSpan.FromSeconds(0.1);
+      public : inline static const TimeSpan DefaultPushDelay = TimeSpan.FromSeconds(0.1);
 
       private:
         std::string _logAddress = 0;

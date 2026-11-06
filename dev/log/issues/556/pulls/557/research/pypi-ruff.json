@@ -1,0 +1,496 @@
+{
+  "info": {
+    "author": null,
+    "author_email": "\"Astral Software Inc.\" <hey@astral.sh>",
+    "bugtrack_url": null,
+    "classifiers": [
+      "Development Status :: 5 - Production/Stable",
+      "Environment :: Console",
+      "Intended Audience :: Developers",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 3 :: Only",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Programming Language :: Python :: 3.13",
+      "Programming Language :: Python :: 3.14",
+      "Programming Language :: Python :: 3.15",
+      "Programming Language :: Python :: 3.7",
+      "Programming Language :: Python :: 3.8",
+      "Programming Language :: Python :: 3.9",
+      "Programming Language :: Rust",
+      "Topic :: Software Development :: Libraries :: Python Modules",
+      "Topic :: Software Development :: Quality Assurance"
+    ],
+    "description": "<!-- Begin section: Overview -->\n\n# Ruff\n\n[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)\n[![image](https://img.shields.io/pypi/v/ruff.svg)](https://pypi.python.org/pypi/ruff)\n[![image](https://img.shields.io/pypi/l/ruff.svg)](https://github.com/astral-sh/ruff/blob/main/LICENSE)\n[![image](https://img.shields.io/pypi/pyversions/ruff.svg)](https://pypi.python.org/pypi/ruff)\n[![Actions status](https://github.com/astral-sh/ruff/workflows/CI/badge.svg)](https://github.com/astral-sh/ruff/actions)\n[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?logo=discord&logoColor=white)](https://discord.com/invite/astral-sh)\n\n[**Docs**](https://docs.astral.sh/ruff/) | [**Playground**](https://play.ruff.rs/)\n\nAn extremely fast Python linter and code formatter, written in Rust.\n\n<p align=\"center\">\n  <img alt=\"Shows a bar chart with benchmark results.\" src=\"https://user-images.githubusercontent.com/1309177/232603516-4fb4892d-585c-4b20-b810-3db9161831e4.svg\">\n</p>\n\n<p align=\"center\">\n  <i>Linting the CPython codebase from scratch.</i>\n</p>\n\n- \u26a1\ufe0f 10-100x faster than existing linters (like Flake8) and formatters (like Black)\n- \ud83d\udc0d Installable via `pip`\n- \ud83d\udee0\ufe0f `pyproject.toml` support\n- \ud83e\udd1d Python 3.15 compatibility\n- \u2696\ufe0f Drop-in parity with [Flake8](https://docs.astral.sh/ruff/faq/#how-does-ruffs-linter-compare-to-flake8), [isort](https://docs.astral.sh/ruff/faq/#how-does-ruffs-import-sorting-compare-to-isort), and [Black](https://docs.astral.sh/ruff/faq/#how-does-ruffs-formatter-compare-to-black)\n- \ud83d\udce6 Built-in caching, to avoid re-analyzing unchanged files\n- \ud83d\udd27 Fix support, for automatic error correction (e.g., automatically remove unused imports)\n- \ud83d\udccf Over [900 built-in rules](https://docs.astral.sh/ruff/rules/), with native re-implementations\n    of popular Flake8 plugins, like flake8-bugbear\n- \u2328\ufe0f First-party [editor integrations](https://docs.astral.sh/ruff/editors) for [VS Code](https://github.com/astral-sh/ruff-vscode) and [more](https://docs.astral.sh/ruff/editors/setup)\n- \ud83c\udf0e Monorepo-friendly, with [hierarchical and cascading configuration](https://docs.astral.sh/ruff/configuration/#config-file-discovery)\n\nRuff aims to be orders of magnitude faster than alternative tools while integrating more\nfunctionality behind a single, common interface.\n\nRuff can be used to replace [Flake8](https://pypi.org/project/flake8/) (plus dozens of plugins),\n[Black](https://github.com/psf/black), [isort](https://pypi.org/project/isort/),\n[pydocstyle](https://pypi.org/project/pydocstyle/), [pyupgrade](https://pypi.org/project/pyupgrade/),\n[autoflake](https://pypi.org/project/autoflake/), and more, all while executing tens or hundreds of\ntimes faster than any individual tool.\n\nRuff is actively developed and used in major open-source projects like:\n\n- [Apache Airflow](https://github.com/apache/airflow)\n- [Apache Superset](https://github.com/apache/superset)\n- [FastAPI](https://github.com/tiangolo/fastapi)\n- [Hugging Face](https://github.com/huggingface/transformers)\n- [Pandas](https://github.com/pandas-dev/pandas)\n- [SciPy](https://github.com/scipy/scipy)\n\nRuff is backed by [Astral](https://astral.sh), the creators of\n[uv](https://github.com/astral-sh/uv) and [ty](https://github.com/astral-sh/ty).\n\nRead the [launch\npost](https://astral.sh/blog/announcing-astral-the-company-behind-ruff), or the\noriginal [project\nannouncement](https://notes.crmarsh.com/python-tooling-could-be-much-much-faster).\n\n## Testimonials\n\n[**Sebasti\u00e1n Ram\u00edrez**](https://twitter.com/tiangolo/status/1591912354882764802), creator\nof [FastAPI](https://github.com/tiangolo/fastapi):\n\n> Ruff is so fast that sometimes I add an intentional bug in the code just to confirm it's actually\n> running and checking the code.\n\n[**Nick Schrock**](https://twitter.com/schrockn/status/1612615862904827904), founder of [Elementl](https://www.elementl.com/),\nco-creator of [GraphQL](https://graphql.org/):\n\n> Why is Ruff a gamechanger? Primarily because it is nearly 1000x faster. Literally. Not a typo. On\n> our largest module (dagster itself, 250k LOC) pylint takes about 2.5 minutes, parallelized across 4\n> cores on my M1. Running ruff against our _entire_ codebase takes .4 seconds.\n\n[**Bryan Van de Ven**](https://github.com/bokeh/bokeh/pull/12605), co-creator\nof [Bokeh](https://github.com/bokeh/bokeh/), original author\nof [Conda](https://docs.conda.io/en/latest/):\n\n> Ruff is ~150-200x faster than flake8 on my machine, scanning the whole repo takes ~0.2s instead of\n> ~20s. This is an enormous quality of life improvement for local dev. It's fast enough that I added\n> it as an actual commit hook, which is terrific.\n\n[**Timothy Crosley**](https://twitter.com/timothycrosley/status/1606420868514877440),\ncreator of [isort](https://github.com/PyCQA/isort):\n\n> Just switched my first project to Ruff. Only one downside so far: it's so fast I couldn't believe\n> it was working till I intentionally introduced some errors.\n\n[**Tim Abbott**](https://github.com/zulip/zulip/pull/23431#issuecomment-1302557034), lead developer of [Zulip](https://github.com/zulip/zulip) (also [here](https://github.com/astral-sh/ruff/issues/465#issuecomment-1317400028)):\n\n> This is just ridiculously fast... `ruff` is amazing.\n\n<!-- End section: Overview -->\n\n## Table of Contents\n\nFor more, see the [documentation](https://docs.astral.sh/ruff/).\n\n1. [Getting Started](#getting-started)\n1. [Configuration](#configuration)\n1. [Rules](#rules)\n1. [Contributing](#contributing)\n1. [Support](#support)\n1. [Acknowledgements](#acknowledgements)\n1. [Show Your Support](#show-your-support)\n1. [License](#license)\n\n## Getting Started<a id=\"getting-started\"></a>\n\nFor more, see the [documentation](https://docs.astral.sh/ruff/).\n\n### Installation\n\nRuff is available as [`ruff`](https://pypi.org/project/ruff/) on PyPI.\n\nInvoke Ruff directly with [`uvx`](https://docs.astral.sh/uv/):\n\n```shell\nuvx ruff@0.17.4 check   # Lint all files in the current directory.\nuvx ruff@0.17.4 format  # Format all files in the current directory.\n```\n\nOr install Ruff with `uv` (recommended), `pip`, or `pipx`:\n\n```shell\n# With uv.\nuv tool install ruff@latest  # Install Ruff globally.\nuv add --dev ruff            # Or add Ruff to your project.\n\n# With pip.\npip install ruff\n\n# With pipx.\npipx install ruff\n```\n\nStarting with version `0.5.0`, Ruff can be installed with our standalone installers:\n\n```shell\n# On macOS and Linux.\ncurl -LsSf https://astral.sh/ruff/install.sh | sh\n\n# On Windows.\npowershell -c \"irm https://astral.sh/ruff/install.ps1 | iex\"\n\n# For a specific version.\ncurl -LsSf https://astral.sh/ruff/0.17.4/install.sh | sh\npowershell -c \"irm https://astral.sh/ruff/0.17.4/install.ps1 | iex\"\n```\n\nYou can also install Ruff via [Homebrew](https://formulae.brew.sh/formula/ruff), [Conda](https://anaconda.org/conda-forge/ruff),\nand with [a variety of other package managers](https://docs.astral.sh/ruff/installation/).\n\n### Usage\n\nTo run Ruff as a linter, try any of the following:\n\n```shell\nruff check                          # Lint all files in the current directory (and any subdirectories).\nruff check path/to/code/            # Lint all files in `/path/to/code` (and any subdirectories).\nruff check path/to/code/*.py        # Lint all `.py` files in `/path/to/code`.\nruff check path/to/code/to/file.py  # Lint `file.py`.\nruff check @arguments.txt           # Lint using an input file, treating its contents as newline-delimited command-line arguments.\n```\n\nOr, to run Ruff as a formatter:\n\n```shell\nruff format                          # Format all files in the current directory (and any subdirectories).\nruff format path/to/code/            # Format all files in `/path/to/code` (and any subdirectories).\nruff format path/to/code/*.py        # Format all `.py` files in `/path/to/code`.\nruff format path/to/code/to/file.py  # Format `file.py`.\nruff format @arguments.txt           # Format using an input file, treating its contents as newline-delimited command-line arguments.\n```\n\nRuff can also be used as a [pre-commit](https://pre-commit.com/) hook via [`ruff-pre-commit`](https://github.com/astral-sh/ruff-pre-commit):\n\n```yaml\n- repo: https://github.com/astral-sh/ruff-pre-commit\n  # Ruff version.\n  rev: v0.17.4\n  hooks:\n    # Run the linter.\n    - id: ruff-check\n      args: [ --fix ]\n    # Run the formatter.\n    - id: ruff-format\n```\n\nRuff can also be used as a [VS Code extension](https://github.com/astral-sh/ruff-vscode) or with [various other editors](https://docs.astral.sh/ruff/editors/setup).\n\nRuff can also be used as a [GitHub Action](https://github.com/features/actions) via\n[`ruff-action`](https://github.com/astral-sh/ruff-action):\n\n```yaml\nname: Ruff\non: [ push, pull_request ]\njobs:\n  ruff:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: astral-sh/ruff-action@v3\n```\n\n### Configuration<a id=\"configuration\"></a>\n\nRuff can be configured through a `pyproject.toml`, `ruff.toml`, or `.ruff.toml` file (see:\n[_Configuration_](https://docs.astral.sh/ruff/configuration/), or [_Settings_](https://docs.astral.sh/ruff/settings/)\nfor a complete list of all configuration options).\n\nFor the complete list of enabled rules, see [_Default Rules_](https://docs.astral.sh/ruff/default-rules/).\n\nIf left unspecified, Ruff's default configuration is equivalent to the following `ruff.toml` file:\n\n```toml\n# Exclude a variety of commonly ignored directories.\nexclude = [\n    \".bzr\",\n    \".direnv\",\n    \".eggs\",\n    \".git\",\n    \".git-rewrite\",\n    \".hg\",\n    \".ipynb_checkpoints\",\n    \".mypy_cache\",\n    \".nox\",\n    \".pants.d\",\n    \".pyenv\",\n    \".pytest_cache\",\n    \".pytype\",\n    \".ruff_cache\",\n    \".svn\",\n    \".tox\",\n    \".venv\",\n    \".vscode\",\n    \"__pypackages__\",\n    \"_build\",\n    \"buck-out\",\n    \"build\",\n    \"dist\",\n    \"node_modules\",\n    \"site-packages\",\n    \"venv\",\n]\n\n# Same as Black.\nline-length = 88\nindent-width = 4\n\n# Assume Python 3.11\ntarget-version = \"py311\"\n\n[lint]\n# select = [...]  # See the Default Rules page for the full listing.\nignore = []\n\n# Allow fix for all enabled rules (when `--fix`) is provided.\nfixable = [\"ALL\"]\nunfixable = []\n\n# Allow unused variables when underscore-prefixed.\ndummy-variable-rgx = \"^(_+|(_+[\\\\p{XID_Continue}]*[\\\\p{XID_Continue}--_]+?))$\"\n\n[format]\n# Like Black, use double quotes for strings.\nquote-style = \"double\"\n\n# Like Black, indent with spaces, rather than tabs.\nindent-style = \"space\"\n\n# Like Black, respect magic trailing commas.\nskip-magic-trailing-comma = false\n\n# Like Black, automatically detect the appropriate line ending.\nline-ending = \"auto\"\n```\n\nNote that, in a `pyproject.toml`, each section header should be prefixed with `tool.ruff`. For\nexample, `[lint]` should be replaced with `[tool.ruff.lint]`.\n\nSome configuration options can be provided via dedicated command-line arguments, such as those\nrelated to rule enablement and disablement, file discovery, and logging level:\n\n```shell\nruff check --select F401 --select F403 --quiet\n```\n\nThe remaining configuration options can be provided through a catch-all `--config` argument:\n\n```shell\nruff check --config \"lint.per-file-ignores = {'some_file.py' = ['F841']}\"\n```\n\nTo opt in to the latest lint rules, formatter style changes, interface updates, and more, enable\n[preview mode](https://docs.astral.sh/ruff/preview/) by setting `preview = true` in your configuration\nfile or passing `--preview` on the command line. Preview mode enables a collection of unstable\nfeatures that may change prior to stabilization.\n\nSee `ruff help` for more on Ruff's top-level commands, or `ruff help check` and `ruff help format`\nfor more on the linting and formatting commands, respectively.\n\n## Rules<a id=\"rules\"></a>\n\n<!-- Begin section: Rules -->\n\n**Ruff supports over 900 lint rules**, many of which are inspired by popular tools like Flake8,\nisort, pyupgrade, and others. Regardless of the rule's origin, Ruff re-implements every rule in\nRust as a first-party feature.\n\nBy default, Ruff enables rules from the `F`, `E`, `B`, `UP`, and `RUF` categories,\nas well as many more, omitting any stylistic rules that overlap with the use of a formatter, like\n`ruff format` or [Black](https://github.com/psf/black).\n\nIf you're just getting started with Ruff, **the default rule set is a great place to start**: it\ncatches a wide variety of common errors (like unused imports) with zero configuration. See\n[_Default Rules_](https://docs.astral.sh/ruff/default-rules/) for the complete list.\n\n<!-- End section: Rules -->\n\nBeyond the defaults, Ruff re-implements some of the most popular Flake8 plugins and related code\nquality tools, including:\n\n- [autoflake](https://pypi.org/project/autoflake/)\n- [eradicate](https://pypi.org/project/eradicate/)\n- [flake8-2020](https://pypi.org/project/flake8-2020/)\n- [flake8-annotations](https://pypi.org/project/flake8-annotations/)\n- [flake8-async](https://pypi.org/project/flake8-async)\n- [flake8-bandit](https://pypi.org/project/flake8-bandit/) ([#1646](https://github.com/astral-sh/ruff/issues/1646))\n- [flake8-blind-except](https://pypi.org/project/flake8-blind-except/)\n- [flake8-boolean-trap](https://pypi.org/project/flake8-boolean-trap/)\n- [flake8-bugbear](https://pypi.org/project/flake8-bugbear/)\n- [flake8-builtins](https://pypi.org/project/flake8-builtins/)\n- [flake8-commas](https://pypi.org/project/flake8-commas/)\n- [flake8-comprehensions](https://pypi.org/project/flake8-comprehensions/)\n- [flake8-copyright](https://pypi.org/project/flake8-copyright/)\n- [flake8-datetimez](https://pypi.org/project/flake8-datetimez/)\n- [flake8-debugger](https://pypi.org/project/flake8-debugger/)\n- [flake8-django](https://pypi.org/project/flake8-django/)\n- [flake8-docstrings](https://pypi.org/project/flake8-docstrings/)\n- [flake8-eradicate](https://pypi.org/project/flake8-eradicate/)\n- [flake8-errmsg](https://pypi.org/project/flake8-errmsg/)\n- [flake8-executable](https://pypi.org/project/flake8-executable/)\n- [flake8-future-annotations](https://pypi.org/project/flake8-future-annotations/)\n- [flake8-gettext](https://pypi.org/project/flake8-gettext/)\n- [flake8-implicit-str-concat](https://pypi.org/project/flake8-implicit-str-concat/)\n- [flake8-import-conventions](https://github.com/joaopalmeiro/flake8-import-conventions)\n- [flake8-logging](https://pypi.org/project/flake8-logging/)\n- [flake8-logging-format](https://pypi.org/project/flake8-logging-format/)\n- [flake8-no-pep420](https://pypi.org/project/flake8-no-pep420)\n- [flake8-pie](https://pypi.org/project/flake8-pie/)\n- [flake8-print](https://pypi.org/project/flake8-print/)\n- [flake8-pyi](https://pypi.org/project/flake8-pyi/)\n- [flake8-pytest-style](https://pypi.org/project/flake8-pytest-style/)\n- [flake8-quotes](https://pypi.org/project/flake8-quotes/)\n- [flake8-raise](https://pypi.org/project/flake8-raise/)\n- [flake8-return](https://pypi.org/project/flake8-return/)\n- [flake8-self](https://pypi.org/project/flake8-self/)\n- [flake8-simplify](https://pypi.org/project/flake8-simplify/)\n- [flake8-slots](https://pypi.org/project/flake8-slots/)\n- [flake8-super](https://pypi.org/project/flake8-super/)\n- [flake8-tidy-imports](https://pypi.org/project/flake8-tidy-imports/)\n- [flake8-todos](https://pypi.org/project/flake8-todos/)\n- [flake8-type-checking](https://pypi.org/project/flake8-type-checking/)\n- [flake8-use-pathlib](https://pypi.org/project/flake8-use-pathlib/)\n- [flynt](https://pypi.org/project/flynt/) ([#2102](https://github.com/astral-sh/ruff/issues/2102))\n- [isort](https://pypi.org/project/isort/)\n- [mccabe](https://pypi.org/project/mccabe/)\n- [pandas-vet](https://pypi.org/project/pandas-vet/)\n- [pep8-naming](https://pypi.org/project/pep8-naming/)\n- [pydocstyle](https://pypi.org/project/pydocstyle/)\n- [pygrep-hooks](https://github.com/pre-commit/pygrep-hooks)\n- [pylint-airflow](https://pypi.org/project/pylint-airflow/)\n- [pyupgrade](https://pypi.org/project/pyupgrade/)\n- [tryceratops](https://pypi.org/project/tryceratops/)\n- [yesqa](https://pypi.org/project/yesqa/)\n\nFor the complete list of supported rules, see [_Rules_](https://docs.astral.sh/ruff/rules/).\n\n## Contributing<a id=\"contributing\"></a>\n\nContributions are welcome and highly appreciated. To get started, check out the\n[**contributing guidelines**](https://docs.astral.sh/ruff/contributing/).\n\nYou can also join us on [**Discord**](https://discord.com/invite/astral-sh).\n\n## Support<a id=\"support\"></a>\n\nHaving trouble? Check out the existing issues on [**GitHub**](https://github.com/astral-sh/ruff/issues),\nor feel free to [**open a new one**](https://github.com/astral-sh/ruff/issues/new).\n\nYou can also ask for help on [**Discord**](https://discord.com/invite/astral-sh).\n\n## Acknowledgements<a id=\"acknowledgements\"></a>\n\nRuff's linter draws on both the APIs and implementation details of many other\ntools in the Python ecosystem, especially [Flake8](https://github.com/PyCQA/flake8), [Pyflakes](https://github.com/PyCQA/pyflakes),\n[pycodestyle](https://github.com/PyCQA/pycodestyle), [pydocstyle](https://github.com/PyCQA/pydocstyle),\n[pyupgrade](https://github.com/asottile/pyupgrade), and [isort](https://github.com/PyCQA/isort).\n\nIn some cases, Ruff includes a \"direct\" Rust port of the corresponding tool.\nWe're grateful to the maintainers of these tools for their work, and for all\nthe value they've provided to the Python community.\n\nRuff's formatter is built on a fork of Rome's [`rome_formatter`](https://github.com/rome/tools/tree/main/crates/rome_formatter),\nand again draws on both API and implementation details from [Rome](https://github.com/rome/tools),\n[Prettier](https://github.com/prettier/prettier), and [Black](https://github.com/psf/black).\n\nRuff's import resolver is based on the import resolution algorithm from [Pyright](https://github.com/microsoft/pyright).\n\nRuff is also influenced by a number of tools outside the Python ecosystem, like\n[Clippy](https://github.com/rust-lang/rust-clippy) and [ESLint](https://github.com/eslint/eslint).\n\nRuff is the beneficiary of a large number of [contributors](https://github.com/astral-sh/ruff/graphs/contributors).\n\nRuff is released under the MIT license.\n\n## Show Your Support\n\nIf you're using Ruff, consider adding the Ruff badge to your project's `README.md`:\n\n```md\n[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)\n```\n\n...or `README.rst`:\n\n```rst\n.. image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json\n    :target: https://github.com/astral-sh/ruff\n    :alt: Ruff\n```\n\n...or, as HTML:\n\n```html\n<a href=\"https://github.com/astral-sh/ruff\"><img src=\"https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json\" alt=\"Ruff\" style=\"max-width:100%;\"></a>\n```\n\n## License<a id=\"license\"></a>\n\nThis repository is licensed under the [MIT License](https://github.com/astral-sh/ruff/blob/main/LICENSE)\n\n<div align=\"center\">\n  <a target=\"_blank\" href=\"https://astral.sh\" style=\"background:none\">\n    <img src=\"https://raw.githubusercontent.com/astral-sh/ruff/main/assets/svg/Astral.svg\" alt=\"Made by Astral\">\n  </a>\n</div>\n\n",
+    "description_content_type": "text/markdown; charset=UTF-8; variant=GFM",
+    "docs_url": null,
+    "download_url": null,
+    "downloads": {
+      "last_day": -1,
+      "last_month": -1,
+      "last_week": -1
+    },
+    "dynamic": null,
+    "home_page": "https://docs.astral.sh/ruff",
+    "keywords": "automation, flake8, pycodestyle, pyflakes, pylint, clippy",
+    "license": null,
+    "license_expression": "MIT",
+    "license_files": [
+      "LICENSE"
+    ],
+    "maintainer": null,
+    "maintainer_email": null,
+    "name": "ruff",
+    "package_url": "https://pypi.org/project/ruff/",
+    "platform": null,
+    "project_url": "https://pypi.org/project/ruff/",
+    "project_urls": {
+      "Changelog": "https://github.com/astral-sh/ruff/blob/main/CHANGELOG.md",
+      "Documentation": "https://docs.astral.sh/ruff/",
+      "Homepage": "https://docs.astral.sh/ruff",
+      "Repository": "https://github.com/astral-sh/ruff"
+    },
+    "provides_extra": null,
+    "release_url": "https://pypi.org/project/ruff/0.17.4/",
+    "requires_dist": null,
+    "requires_python": ">=3.7",
+    "summary": "An extremely fast Python linter and code formatter, written in Rust.",
+    "version": "0.17.4",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "urls": [
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "e061c83c78bbb6108f6c6270a106cf12b54175f4f42da088b9bb880f18e31289",
+        "md5": "555ecf0e7b887948f776c59441529a06",
+        "sha256": "2b08c4ff98dc234f4a3871a3105353b922fa875ea1073ca31001eb8c06bb4d89"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-linux_armv6l.whl",
+      "has_sig": false,
+      "md5_digest": "555ecf0e7b887948f776c59441529a06",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 10252195,
+      "upload_time": "2026-11-05T18:51:36",
+      "upload_time_iso_8601": "2026-11-05T18:51:36.594688Z",
+      "url": "https://files.pythonhosted.org/packages/e0/61/c83c78bbb6108f6c6270a106cf12b54175f4f42da088b9bb880f18e31289/ruff-0.17.4-py3-none-linux_armv6l.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "0a12dd158708378866e8b53e145a465dbc51a7cccb9fa197a74d67eaedde7234",
+        "md5": "656a1268a547e71096b506b3720e9ee9",
+        "sha256": "13e781c3c5f663e7fba737eaaeb70dd943dd55171daf316afb25cd5268cfe0c7"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-macosx_10_12_x86_64.whl",
+      "has_sig": false,
+      "md5_digest": "656a1268a547e71096b506b3720e9ee9",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 10266044,
+      "upload_time": "2026-11-05T18:51:39",
+      "upload_time_iso_8601": "2026-11-05T18:51:39.502528Z",
+      "url": "https://files.pythonhosted.org/packages/0a/12/dd158708378866e8b53e145a465dbc51a7cccb9fa197a74d67eaedde7234/ruff-0.17.4-py3-none-macosx_10_12_x86_64.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "283289a94a8eb11fd505a381ae6f04e190d038d9958695209dc1786ce5cfcda3",
+        "md5": "e34ac5705f690932fd84310f9a8f98c4",
+        "sha256": "7ed2f416349944f908f9574215994602242b0836844eba48eec61473033afca0"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-macosx_11_0_arm64.whl",
+      "has_sig": false,
+      "md5_digest": "e34ac5705f690932fd84310f9a8f98c4",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 9432227,
+      "upload_time": "2026-11-05T18:51:41",
+      "upload_time_iso_8601": "2026-11-05T18:51:41.968586Z",
+      "url": "https://files.pythonhosted.org/packages/28/32/89a94a8eb11fd505a381ae6f04e190d038d9958695209dc1786ce5cfcda3/ruff-0.17.4-py3-none-macosx_11_0_arm64.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "58dea392dc38b215798ae72e639d228b7f6c02d826a95d1c0ad7c4c0ee49ef5b",
+        "md5": "4f983ad6d99fbe204adcddd037541c8e",
+        "sha256": "8ea6e0017c785f7282092b11e46338e4ebed1b9e575ebf2e55a8a1eda968241a"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+      "has_sig": false,
+      "md5_digest": "4f983ad6d99fbe204adcddd037541c8e",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 10136900,
+      "upload_time": "2026-11-05T18:51:44",
+      "upload_time_iso_8601": "2026-11-05T18:51:44.562560Z",
+      "url": "https://files.pythonhosted.org/packages/58/de/a392dc38b215798ae72e639d228b7f6c02d826a95d1c0ad7c4c0ee49ef5b/ruff-0.17.4-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "b78fa880f60f42005f6ffdf58f77af34c7ee327000b5607f48a2f6a69d8b242c",
+        "md5": "9794dc7b7f86629902d1e17acb729108",
+        "sha256": "7e061dcc0933c7031a616ac8d66ac540309b2aa21ab558101a8f53e9ac7a1185"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-manylinux_2_17_armv7l.manylinux2014_armv7l.whl",
+      "has_sig": false,
+      "md5_digest": "9794dc7b7f86629902d1e17acb729108",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 10051245,
+      "upload_time": "2026-11-05T18:51:46",
+      "upload_time_iso_8601": "2026-11-05T18:51:46.700515Z",
+      "url": "https://files.pythonhosted.org/packages/b7/8f/a880f60f42005f6ffdf58f77af34c7ee327000b5607f48a2f6a69d8b242c/ruff-0.17.4-py3-none-manylinux_2_17_armv7l.manylinux2014_armv7l.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "095598844264108af7d5ec27ca3a9cd5a989094ca657a14599c4b69a537a0e9a",
+        "md5": "d394e28eceb1458eeb8835a3caa0a9db",
+        "sha256": "f99e95a1515161138be3cbd1b06c06e739d8feb38ade35564556999fffc3686e"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-manylinux_2_17_i686.manylinux2014_i686.whl",
+      "has_sig": false,
+      "md5_digest": "d394e28eceb1458eeb8835a3caa0a9db",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 10704341,
+      "upload_time": "2026-11-05T18:51:49",
+      "upload_time_iso_8601": "2026-11-05T18:51:49.228001Z",
+      "url": "https://files.pythonhosted.org/packages/09/55/98844264108af7d5ec27ca3a9cd5a989094ca657a14599c4b69a537a0e9a/ruff-0.17.4-py3-none-manylinux_2_17_i686.manylinux2014_i686.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "28a25edf97659c3ac7c73f978003bd314936f671037fdac6b978e9de3e4b2b65",
+        "md5": "ef0154bb83581cb1a18175c4e8e3d6fc",
+        "sha256": "5f28cf0dd37cb172fa5a8d2e92e6ada3a9dbd0609f094ed24039929eef0b7524"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl",
+      "has_sig": false,
+      "md5_digest": "ef0154bb83581cb1a18175c4e8e3d6fc",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 11394465,
+      "upload_time": "2026-11-05T18:51:51",
+      "upload_time_iso_8601": "2026-11-05T18:51:51.534410Z",
+      "url": "https://files.pythonhosted.org/packages/28/a2/5edf97659c3ac7c73f978003bd314936f671037fdac6b978e9de3e4b2b65/ruff-0.17.4-py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "f28f51371ae856b2bef4d15a044a574695fbc0f6ae63aafa42a2a22428070fb6",
+        "md5": "2ce6403883d40e965dd03d3211ae8fa8",
+        "sha256": "6b21c771b296888e8a35c6f48555f4b44e4483f61675d6ed51810a5203469ce6"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-manylinux_2_17_s390x.manylinux2014_s390x.whl",
+      "has_sig": false,
+      "md5_digest": "2ce6403883d40e965dd03d3211ae8fa8",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 10988262,
+      "upload_time": "2026-11-05T18:51:53",
+      "upload_time_iso_8601": "2026-11-05T18:51:53.910365Z",
+      "url": "https://files.pythonhosted.org/packages/f2/8f/51371ae856b2bef4d15a044a574695fbc0f6ae63aafa42a2a22428070fb6/ruff-0.17.4-py3-none-manylinux_2_17_s390x.manylinux2014_s390x.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "af1b62874f14c7873f27c7887d2b1ea41de990e14ba9518801ffe8eacb5d51a6",
+        "md5": "7438f6ece54a00e09021dda29efeccec",
+        "sha256": "2cd025509b2e15721b426fc70fd946d71f43b3db3b08e946dfec2d696d911690"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "has_sig": false,
+      "md5_digest": "7438f6ece54a00e09021dda29efeccec",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 10572829,
+      "upload_time": "2026-11-05T18:51:56",
+      "upload_time_iso_8601": "2026-11-05T18:51:56.129056Z",
+      "url": "https://files.pythonhosted.org/packages/af/1b/62874f14c7873f27c7887d2b1ea41de990e14ba9518801ffe8eacb5d51a6/ruff-0.17.4-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "9830860b9dae67432b16b88558a9cb2d3194825fa62838f8b9cc49f5d9022095",
+        "md5": "631cfc4cca979aab6ad18763f6b9b04c",
+        "sha256": "49b77f7b3921669466882a4881168801bdb06ec2cd83fb936049016cf5fdece1"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-manylinux_2_31_riscv64.whl",
+      "has_sig": false,
+      "md5_digest": "631cfc4cca979aab6ad18763f6b9b04c",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 10617545,
+      "upload_time": "2026-11-05T18:51:58",
+      "upload_time_iso_8601": "2026-11-05T18:51:58.172874Z",
+      "url": "https://files.pythonhosted.org/packages/98/30/860b9dae67432b16b88558a9cb2d3194825fa62838f8b9cc49f5d9022095/ruff-0.17.4-py3-none-manylinux_2_31_riscv64.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "0f08781a4b41a1c83fd6e30fea610d6502a6f94e49cf94693fd37bdcbc6bfe11",
+        "md5": "5f1ed32e0bcb5df97f03eb049f6108db",
+        "sha256": "e3b84eb74f260d1c2dbd236fd9d4c011d4fdd0a52bdf8aea57a10e3a1b71fca5"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-musllinux_1_2_aarch64.whl",
+      "has_sig": false,
+      "md5_digest": "5f1ed32e0bcb5df97f03eb049f6108db",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 10111955,
+      "upload_time": "2026-11-05T18:52:00",
+      "upload_time_iso_8601": "2026-11-05T18:52:00.590808Z",
+      "url": "https://files.pythonhosted.org/packages/0f/08/781a4b41a1c83fd6e30fea610d6502a6f94e49cf94693fd37bdcbc6bfe11/ruff-0.17.4-py3-none-musllinux_1_2_aarch64.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "3ce994b1c7b677120f30839254518924f73a8157e9bcfa200edcd5796fecdb99",
+        "md5": "df10430ba3bb5662fce185ac9db8b12d",
+        "sha256": "20e43d7a08e712e33067ba887e6574546c79bd4831596ce8f16803ac7ff9ad90"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-musllinux_1_2_armv7l.whl",
+      "has_sig": false,
+      "md5_digest": "df10430ba3bb5662fce185ac9db8b12d",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 10058355,
+      "upload_time": "2026-11-05T18:52:03",
+      "upload_time_iso_8601": "2026-11-05T18:52:03.610432Z",
+      "url": "https://files.pythonhosted.org/packages/3c/e9/94b1c7b677120f30839254518924f73a8157e9bcfa200edcd5796fecdb99/ruff-0.17.4-py3-none-musllinux_1_2_armv7l.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "275fa825910b9f309336dc33cb8c0774126662c1d2f765699b3e0a1bd538d01f",
+        "md5": "6a8948976e08b2436f1a806e9d08fff6",
+        "sha256": "0d1f4848fd2ec0499be4046db9b7dfcc952666885f00233cc7033515282556a8"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-musllinux_1_2_i686.whl",
+      "has_sig": false,
+      "md5_digest": "6a8948976e08b2436f1a806e9d08fff6",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 10415932,
+      "upload_time": "2026-11-05T18:52:06",
+      "upload_time_iso_8601": "2026-11-05T18:52:06.264068Z",
+      "url": "https://files.pythonhosted.org/packages/27/5f/a825910b9f309336dc33cb8c0774126662c1d2f765699b3e0a1bd538d01f/ruff-0.17.4-py3-none-musllinux_1_2_i686.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "012610932dce35ebd07b287a9a1e9032ab89a5025a41a2dbbc476c1ae2f9323f"
+      },
+      "digests": {
+        "blake2b_256": "8bb80796468423413ea4df1a6e2442ae26cf49b8f7dda0eecf246e0d5d0dde54",
+        "md5": "bc09d6ba9362d72052226da6474566f7",
+        "sha256": "6007e7f3a0e55b0fbdb947af69cf24c21b4928df6be8ef3e767c69b5ccccf496"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-musllinux_1_2_x86_64.whl",
+      "has_sig": false,
+      "md5_digest": "bc09d6ba9362d72052226da6474566f7",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 10826033,
+      "upload_time": "2026-11-05T18:52:08",
+      "upload_time_iso_8601": "2026-11-05T18:52:08.675499Z",
+      "url": "https://files.pythonhosted.org/packages/8b/b8/0796468423413ea4df1a6e2442ae26cf49b8f7dda0eecf246e0d5d0dde54/ruff-0.17.4-py3-none-musllinux_1_2_x86_64.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "ad7f5d568335b381cfcee5c0287633740e2dba9d57d089883130f52913a687f6"
+      },
+      "digests": {
+        "blake2b_256": "b9abd8e407669ffe5014429baf780c2df47e001968a6e4c17f615e2e7b13a9ba",
+        "md5": "7570ff8d7eabe5f3c987b6ff74852071",
+        "sha256": "3971a78cba76298b284c8321e6d40d93045ed348bec5c369d85099efc97fb7cf"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-win32.whl",
+      "has_sig": false,
+      "md5_digest": "7570ff8d7eabe5f3c987b6ff74852071",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 9931993,
+      "upload_time": "2026-11-05T18:52:11",
+      "upload_time_iso_8601": "2026-11-05T18:52:11.169994Z",
+      "url": "https://files.pythonhosted.org/packages/b9/ab/d8e407669ffe5014429baf780c2df47e001968a6e4c17f615e2e7b13a9ba/ruff-0.17.4-py3-none-win32.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "ad7f5d568335b381cfcee5c0287633740e2dba9d57d089883130f52913a687f6"
+      },
+      "digests": {
+        "blake2b_256": "bd1542af8a72d8946e3c9efd2bbf6641e462b6832783b0d043d63ef5b280ba7f",
+        "md5": "8f51a83f73e8fa3dfa0d4825dc092e53",
+        "sha256": "67c5a894fc054cf41f75f7afa24815de5a74329d97634126c2a1015740ff4e8c"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-win_amd64.whl",
+      "has_sig": false,
+      "md5_digest": "8f51a83f73e8fa3dfa0d4825dc092e53",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 10292922,
+      "upload_time": "2026-11-05T18:52:13",
+      "upload_time_iso_8601": "2026-11-05T18:52:13.436805Z",
+      "url": "https://files.pythonhosted.org/packages/bd/15/42af8a72d8946e3c9efd2bbf6641e462b6832783b0d043d63ef5b280ba7f/ruff-0.17.4-py3-none-win_amd64.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "ad7f5d568335b381cfcee5c0287633740e2dba9d57d089883130f52913a687f6"
+      },
+      "digests": {
+        "blake2b_256": "689ef1dbffcfb8ff25dadbc21f87a8b73c3848abe4abada9d4b08ccef8bec40c",
+        "md5": "25c0dff54fc635f7b86efbd824df751d",
+        "sha256": "181ae38a9a8fb94925bf7d0794327b48d7fd7f4b50cfd84c0e999cc09ef8d131"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4-py3-none-win_arm64.whl",
+      "has_sig": false,
+      "md5_digest": "25c0dff54fc635f7b86efbd824df751d",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.7",
+      "size": 9889396,
+      "upload_time": "2026-11-05T18:52:15",
+      "upload_time_iso_8601": "2026-11-05T18:52:15.549069Z",
+      "url": "https://files.pythonhosted.org/packages/68/9e/f1dbffcfb8ff25dadbc21f87a8b73c3848abe4abada9d4b08ccef8bec40c/ruff-0.17.4-py3-none-win_arm64.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": false,
+      "digests": {
+        "blake2b_256": "840e3d154514b5bad104f7e1c13169c2d09aa9959fccdc06eb47610ccdfa83ed",
+        "md5": "ba142f2d898a9996b46bb7b914946724",
+        "sha256": "f32d178b50e826e00f6c6c1be3f56333068acb9b67fe167143527fa9b81e890d"
+      },
+      "downloads": -1,
+      "filename": "ruff-0.17.4.tar.gz",
+      "has_sig": false,
+      "md5_digest": "ba142f2d898a9996b46bb7b914946724",
+      "packagetype": "sdist",
+      "python_version": "source",
+      "requires_python": ">=3.7",
+      "size": 5357750,
+      "upload_time": "2026-11-05T18:52:17",
+      "upload_time_iso_8601": "2026-11-05T18:52:17.638366Z",
+      "url": "https://files.pythonhosted.org/packages/84/0e/3d154514b5bad104f7e1c13169c2d09aa9959fccdc06eb47610ccdfa83ed/ruff-0.17.4.tar.gz",
+      "yanked": false,
+      "yanked_reason": null
+    }
+  ]
+}

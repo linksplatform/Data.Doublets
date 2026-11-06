@@ -16,9 +16,9 @@
             {
                 get = > true;
             }
-        }
+      }
 
-        public : DisposableWithMultipleCallsAllowed Disposable = 0;
+      public : DisposableWithMultipleCallsAllowed Disposable = 0;
 
       public:
         LinksDisposableDecoratorBase(ILinks<TLinkAddress>& storage) : base(storage)

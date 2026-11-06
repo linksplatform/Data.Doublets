@@ -1,0 +1,238 @@
+{
+  "results": [
+    {
+      "source": {
+        "path": "/tmp/gh-issue-solver-1793921173521/cpp/conan.lock",
+        "type": "lockfile"
+      },
+      "packages": [
+        {
+          "package": {
+            "name": "benchmark",
+            "version": "1.10.0",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/benchmark@1.10.0"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "cmake",
+            "version": "4.4.5",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/cmake@4.4.5"
+          },
+          "dependency_groups": [
+            "build-requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "cpuinfo",
+            "version": "cci.20260612",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/cpuinfo@cci.20260612"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "gtest",
+            "version": "1.18.0",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/gtest@1.18.0"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "mio",
+            "version": "cci.20230303",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/mio@cci.20230303"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "ms-gsl",
+            "version": "5.0.1",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/ms-gsl@5.0.1"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-collections",
+            "version": "0.2.1",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-collections@0.2.1"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-collections-methods",
+            "version": "0.3.0",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-collections-methods@0.3.0"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-converters",
+            "version": "0.2.0",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-converters@0.2.0"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-data",
+            "version": "0.1.1",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-data@0.1.1"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-delegates",
+            "version": "0.3.7",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-delegates@0.3.7"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-equality",
+            "version": "0.0.1",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-equality@0.0.1"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-exceptions",
+            "version": "0.3.2",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-exceptions@0.3.2"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-hashing",
+            "version": "0.5.6",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-hashing@0.5.6"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-interfaces",
+            "version": "0.3.41",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-interfaces@0.3.41"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-memory",
+            "version": "0.1.0",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-memory@0.1.0"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-numbers",
+            "version": "0.1.0",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-numbers@0.1.0"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-random",
+            "version": "0.2.0",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-random@0.2.0"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-ranges",
+            "version": "0.2.0",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-ranges@0.2.0"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        },
+        {
+          "package": {
+            "name": "platform-setters",
+            "version": "0.1.0",
+            "ecosystem": "ConanCenter",
+            "purl": "pkg:conan/platform-setters@0.1.0"
+          },
+          "dependency_groups": [
+            "requires"
+          ]
+        }
+      ]
+    }
+  ],
+  "experimental_config": {
+    "licenses": {
+      "summary": false,
+      "allowlist": null
+    }
+  }
+}

@@ -20,7 +20,7 @@ for change in changes:
         # Retain quoted strings while excluding comments from this review view.
         pattern = r'("(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|//[^\n]*|/\*.*?\*/)'
         source = re.sub(pattern, lambda match: match[0] if match[0].startswith(('"', "'")) else '', source.decode('utf-8-sig'), flags=re.DOTALL).encode()
-        text = subprocess.check_output(['clang-format-18', '--assume-filename=' + after, '--style=' + style], input=source).decode('utf-8-sig')
+        text = subprocess.check_output(['clang-format', '--assume-filename=' + after, '--style=' + style], input=source).decode('utf-8-sig')
         if suffix == '.cs':
             text = '\n'.join(line for line in text.splitlines() if not line.strip().startswith('///')) + '\n'
         return [line for line in text.splitlines(keepends=True) if line.strip()]

@@ -1,0 +1,83 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="BenchmarkDotNet" Version="0.15.8" />
+    <PackageVersion Include="BenchmarkDotNet.Annotations" Version="0.15.8" />
+    <PackageVersion Include="CommandLineParser" Version="2.9.1" />
+    <PackageVersion Include="Gee.External.Capstone" Version="2.3.0" />
+    <PackageVersion Include="Iced" Version="1.22.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="5.9.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.9.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="5.9.0" />
+    <PackageVersion Include="Microsoft.CodeCoverage" Version="18.11.0" />
+    <PackageVersion Include="Microsoft.Diagnostics.NETCore.Client" Version="0.2.750501" />
+    <PackageVersion Include="Microsoft.Diagnostics.Runtime" Version="4.2.751201" />
+    <PackageVersion Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="4.0.0" />
+    <PackageVersion Include="Microsoft.DotNet.PlatformAbstractions" Version="3.1.6" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Extensions.Options" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
+    <PackageVersion Include="Microsoft.TestPlatform.ObjectModel" Version="18.11.0" />
+    <PackageVersion Include="Microsoft.TestPlatform.TestHost" Version="18.11.0" />
+    <PackageVersion Include="Microsoft.Win32.Registry" Version="5.0.0" />
+    <PackageVersion Include="Perfolizer" Version="0.6.1" />
+    <PackageVersion Include="Platform.Collections" Version="0.4.0" />
+    <PackageVersion Include="Platform.Collections.Methods" Version="0.7.3" />
+    <PackageVersion Include="Platform.Converters" Version="0.4.0" />
+    <PackageVersion Include="Platform.Counters" Version="0.0.2" />
+    <PackageVersion Include="Platform.Data" Version="0.16.1" />
+    <PackageVersion Include="Platform.Data.Doublets.FFI" Version="0.9.0" />
+    <PackageVersion Include="Platform.Data.Doublets.Sequences" Version="0.6.5" />
+    <PackageVersion Include="Platform.Delegates" Version="0.1.1" />
+    <PackageVersion Include="Platform.Diagnostics" Version="0.1.0" />
+    <PackageVersion Include="Platform.Disposables" Version="0.4.0" />
+    <PackageVersion Include="Platform.Exceptions" Version="0.5.0" />
+    <PackageVersion Include="Platform.IO" Version="0.5.1" />
+    <PackageVersion Include="Platform.Interfaces" Version="0.5.0" />
+    <PackageVersion Include="Platform.Memory" Version="0.4.1" />
+    <PackageVersion Include="Platform.Numbers" Version="0.9.0" />
+    <PackageVersion Include="Platform.Random" Version="0.3.0" />
+    <PackageVersion Include="Platform.Ranges" Version="0.5.0" />
+    <PackageVersion Include="Platform.Reflection" Version="0.7.0" />
+    <PackageVersion Include="Platform.Scopes" Version="0.1.0" />
+    <PackageVersion Include="Platform.Setters" Version="0.5.0" />
+    <PackageVersion Include="Platform.Singletons" Version="0.3.0" />
+    <PackageVersion Include="Platform.Threading" Version="0.5.0" />
+    <PackageVersion Include="Platform.Timestamps" Version="0.3.0" />
+    <PackageVersion Include="Platform.Unsafe" Version="0.6.2" />
+    <PackageVersion Include="Pragmastat" Version="3.2.4" />
+    <PackageVersion Include="System.CodeDom" Version="10.0.14" />
+    <PackageVersion Include="System.Management" Version="10.0.14" />
+    <PackageVersion Include="System.Reflection.TypeExtensions" Version="4.7.0" />
+    <PackageVersion Include="System.Security.AccessControl" Version="6.0.1" />
+    <PackageVersion Include="coverlet.collector" Version="10.1.0" />
+    <PackageVersion Include="xunit.analyzers" Version="2.2.0" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="4.0.1" />
+    <PackageVersion Include="xunit.v3.mtp-off" Version="4.0.2" />
+    <PackageVersion Include="Azure.Core" Version="1.64.0" />
+    <PackageVersion Include="Azure.Identity" Version="1.21.0" />
+    <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.Abstractions" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Extensions.FileProviders.Abstractions" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.Identity.Client" Version="4.92.0" />
+    <PackageVersion Include="Microsoft.Identity.Client.Extensions.Msal" Version="4.92.0" />
+    <PackageVersion Include="Microsoft.IdentityModel.Abstractions" Version="8.23.0" />
+    <PackageVersion Include="Microsoft.Security.AntiSSRF" Version="1.0.1" />
+    <PackageVersion Include="System.ClientModel" Version="1.16.0" />
+    <PackageVersion Include="System.Memory.Data" Version="10.0.14" />
+    <PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="10.0.14" />
+    <PackageVersion Include="xunit.v3.assert" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3.common" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3.core.mtp-off" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3.extensibility.core" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3.runner.common" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3.runner.inproc.console" Version="4.0.2" />
+  </ItemGroup>
+</Project>

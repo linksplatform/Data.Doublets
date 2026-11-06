@@ -1,0 +1,5 @@
+**
+!scripts/
+!scripts/requirements.lock.txt
+!scripts/workflow-lint/
+!scripts/workflow-lint/Dockerfile

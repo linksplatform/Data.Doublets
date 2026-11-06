@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PLATFORM_DATA_DOUBLETS_TOOLS_TEMPORARYDIRECTORY_H
+#define PLATFORM_DATA_DOUBLETS_TOOLS_TEMPORARYDIRECTORY_H
 
 #include <filesystem>
 #include <random>
@@ -47,3 +48,5 @@ namespace Platform::Data::Doublets::Tools
         }
     };
 } // namespace Platform::Data::Doublets::Tools
+
+#endif // PLATFORM_DATA_DOUBLETS_TOOLS_TEMPORARYDIRECTORY_H

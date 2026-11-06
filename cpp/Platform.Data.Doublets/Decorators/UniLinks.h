@@ -22,13 +22,13 @@
                 Before = before;
                 After = after;
             }
-        }
+      }
 
-        public : TLinkAddress
-                 Trigger(const LinkType& restriction,
-                         Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> matchedHandler,
-                         const LinkType& substitution,
-                         Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> substitutedHandler)
+      public : TLinkAddress
+               Trigger(const LinkType& restriction,
+                       Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> matchedHandler,
+                       const LinkType& substitution,
+                       Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> substitutedHandler)
         {
             return _constants.Continue;
         }

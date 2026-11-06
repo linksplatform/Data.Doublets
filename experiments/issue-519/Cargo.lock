@@ -34,8 +34,8 @@ checksum = "4e7648175b45a9a48536d676f68d918270699102aa8dab5496df06904c914600"
 
 [[package]]
 name = "doublets"
-version = "0.15.0"
-source = "git+https://github.com/linksplatform/doublets-rs?rev=645dd2b8e5c9bff1e38335da42e3c008b5d2769e#645dd2b8e5c9bff1e38335da42e3c008b5d2769e"
+version = "0.20.0"
+source = "git+https://github.com/linksplatform/doublets-rs?rev=18d6a81da69ee661c6fa7563abca4c8b20c3404d#18d6a81da69ee661c6fa7563abca4c8b20c3404d"
 dependencies = [
  "cfg-if",
  "leak_slice",
@@ -157,9 +157,9 @@ dependencies = [
 
 [[package]]
 name = "platform-trees"
-version = "0.3.4"
+version = "0.3.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "40e25a531617fa762c8505826c930f6c1cfcc226f63dea09882b56ae0b8ed078"
+checksum = "9979e14bb2788f13943906daa7ea9695a2b1dfcec64d9eb7302e775ffe475c5a"
 dependencies = [
  "platform-num",
 ]

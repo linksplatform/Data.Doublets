@@ -27,8 +27,24 @@ conan export '-cc=core:warnings_as_errors=["*"]' "$recipes_dir/recipes/platform.
 conan export '-cc=core:warnings_as_errors=["*"]' "$recipes_dir/recipes/platform.memory/all" --version 0.1.0
 conan export '-cc=core:warnings_as_errors=["*"]' "$recipes_dir/recipes/platform.collections.methods/all" --version 0.3.0
 
-# Pinned upstream build/metadata repairs use the same reviewed recipe snapshot.
-conan export '-cc=core:warnings_as_errors=["*"]' "$recipes_dir/recipes/benchmark/all" --version 1.6.0
-conan export '-cc=core:warnings_as_errors=["*"]' "$recipes_dir/recipes/cpuinfo/all" --version cci.20220228
-conan export '-cc=core:warnings_as_errors=["*"]' "$recipes_dir/recipes/gtest/all" --version 1.13.0
-conan export '-cc=core:warnings_as_errors=["*"]' "$recipes_dir/recipes/ms-gsl/all" --version 4.0.0
+# Current Conan Center recipes: GSL still needs its legacy metadata removed
+# (conan-center-index#31362); cpuinfo's newest source recipe is not on the remote.
+center_revision=dbfaf1c016d9ed37b2d536d479cf5f0499bb361a
+for dependency in ms-gsl/5.0.1 cpuinfo/cci.20260612; do
+    IFS=/ read -r name version <<< "$dependency"
+    recipe_dir="$recipes_dir/modern/$name"
+    mkdir -p "$recipe_dir"
+    for file in conanfile.py conandata.yml; do
+        curl --fail --silent --show-error --location \
+            "https://raw.githubusercontent.com/conan-io/conan-center-index/$center_revision/recipes/$name/all/$file" -o "$recipe_dir/$file"
+    done
+    python3 - "$cpp_root/../scripts" "$recipe_dir/conanfile.py" <<'PYTHON'
+from pathlib import Path
+import sys
+sys.path.insert(0, sys.argv[1])
+from patch_conan_recipes import modern_metadata, package_id_metadata
+recipe = Path(sys.argv[2])
+recipe.write_text(modern_metadata(package_id_metadata(recipe.read_text(), recipe.parent.name)))
+PYTHON
+    conan export '-cc=core:warnings_as_errors=["*"]' "$recipe_dir" --version "$version"
+done

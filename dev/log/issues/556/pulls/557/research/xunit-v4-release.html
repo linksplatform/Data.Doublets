@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Core Framework v3 4.0.0 [2026 August 14] | xUnit.net </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Core Framework v3 4.0.0 | xUnit.net ">
+      
+      
+      <link rel="icon" href="../../images/logo-128-transparent.png">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <link rel="stylesheet" href="../../public/release-notes.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/xunit/xunit.net/blob/main/site/releases/v3/4.0.0.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="xUnit.net">
+            xUnit.net
+          </a>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+        </div>
+
+        <article data-uid="">
+          <h1>Core Framework v3 4.0.0 <span class="label label-title-version">2026 August 14</span></h1>
+          <p><img src="https://raw.githubusercontent.com/xunit/media/main/dotnet-foundation.svg" class="dnflogo" title=".NET Foundation logo"></p>
+
+
+
+
+<p>Today, we're shipping three new releases:</p>
+<ul>
+<li><strong>xUnit.net Core Framework v3 <code>4.0.0</code></strong></li>
+<li>xUnit.net Analyzers <code>2.0.0</code> (<a href="/releases/analyzers/2.0.0">release notes</a>)</li>
+<li>xUnit.net Visual Studio adapter <code>4.0.0</code> (<a href="/releases/visualstudio/4.0.0">release notes</a>)</li>
+</ul>
+<h2 id="hello-40">Hello, 4.0!</h2>
+<p>The last major release (3.0.0) was 13 months ago, and the last minor release (3.2.2) was 7 months ago. This release was a major undertaking, adding support for building tests for Native AOT, as well as full test case parallelization. As a result, there are many breaking changes (mostly limited to extensibility APIs), which are documented below.</p>
+<p>As always, we'd like to thank all the users who contributed to the success of xUnit.net through usage, feedback, and code. 🎉</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>With 4.0, we are discontinuing official support for Microsoft Testing Platform v1. The default version of Microsoft Testing Platform support now is v2 (currently at version 2.3.3), and we will continue to offer packages to turn off Microsoft Testing Platform support as well (for those who wish to be able to use VSTest on .NET 10+ SDK).</p>
+<p>If you see the message &quot;Testing with VSTest target is no longer supported by Microsoft.Testing.Platform on .NET 10 SDK and later&quot;, please update your <code>global.json</code> file as shown on the <a href="https://learn.microsoft.com/dotnet/core/testing/unit-testing-with-dotnet-test#mtp-mode-of-dotnet-test">Testing with 'dotnet test'</a> documentation page.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>With 4.0, we are discontinuing official support for Mono. While we anticipate that it will <em>usually</em> continue to work, we have noticed occasional Mono-related issues in our own CI process. Given that Mono is now abandoned, we don't anticipate being able to get any support for resolving them. Any requests for xUnit.net support for Mono-related issues will be declined. We may accept bug fixes based on their severity and the impact to the codebase.</p>
+</div>
+<h2 id="release-notes">Release Notes</h2>
+<p>These release notes are a comprehensive list of changes from <code>3.2.2</code> to <code>4.0.0</code>.</p>
+<h3 id="core-framework">Core Framework</h3>
+<ul>
+<li><p>Version 4.0 introduces support for Native AOT. For more information on how to use Native AOT and the difference between Native AOT and the traditional reflection-based version of xUnit.net, please see <a href="/docs/getting-started/v3/native-aot">Testing with Native AOT</a>.</p>
+</li>
+<li><p>We have added support for full test parallelization. When enabled, this allows all tests to run in parallel against each other, regardless of test collections or shared context. We have added ways to opt out of parallelization at the test collection, test class, test method, theory data source, and theory data row levels; once you have opted out of parallelization at a layer, you cannot opt back in at a lower layer. For more information, see the <a href="/docs/running-tests-in-parallel#parallel-modes">Parallel Modes section of the Running Tests in Parallel</a> documentation page. <a href="https://github.com/xunit/xunit/issues/1986" class="issue-link" :="">xunit/xunit#1986</a> <a href="https://github.com/xunit/xunit/issues/2055" class="issue-link" :="">xunit/xunit#2055</a></p>
+</li>
+<li><p>We have introduced test class and test method orderers (in addition to the existing test collection and test case orderers). Ordering is performed as collection =&gt; class =&gt; method =&gt; case. <em><strong>This is a breaking change, please read the issue for more information about ordering scope.</strong></em> <a href="https://github.com/xunit/xunit/issues/3424" class="issue-link" :="">xunit/xunit#3424</a></p>
+</li>
+<li><p>We have added <code>ITestMetadata.TestLabel</code>, making <code>Label</code> from data attributes available via metadata and <code>TestContext.Current.Test.TestLabel</code>. <a href="https://github.com/xunit/xunit/issues/3388" class="issue-link" :="">xunit/xunit#3388</a></p>
+</li>
+<li><p>We have added the ability to supplement theory method display names with a numeric index to improve lexical sorting of the test names with lots of theory data rows. <a href="https://github.com/xunit/xunit/issues/3472" class="issue-link" :="">xunit/xunit#3472</a></p>
+</li>
+<li><p>We have added several generic versions of attributes:</p>
+<ul>
+<li><code>AssemblyFixtureAttribute&lt;TFixture&gt;</code></li>
+<li><code>CollectionBehaviorAttribute&lt;TCollectionFactory&gt;</code></li>
+<li><code>TestCaseOrderAttribute&lt;TOrderer&gt;</code></li>
+<li><code>TestClassOrderAttribute&lt;TOrderer&gt;</code></li>
+<li><code>TestCollectionOrderAttribute&lt;TOrderer&gt;</code></li>
+<li><code>TestFrameworkAttribute&lt;TTestFramework&gt;</code></li>
+<li><code>TestMethodOrderAttribute&lt;TOrderer&gt;</code></li>
+<li><code>TestPipelineStartupAttribute&lt;TPipelineStartup&gt;</code></li>
+<li><code>XunitTestCaseDiscovererAttribute&lt;TDiscoverer&gt;</code></li>
+</ul>
+<p>These attribute are alternatives to their non-generic counterparts, and only supported on .NET 8+ (as .NET Framework does not support generic attributes, though the compiler will not complain about them). <a href="https://github.com/xunit/xunit/issues/3497" class="issue-link" :="">xunit/xunit#3497</a></p>
+</li>
+<li><p>We have added a new test method display option: <code>RemoveAsyncSuffix</code>. This will remove the word <code>Async</code> from the test method name, if present. <a href="https://github.com/xunit/xunit/issues/3520" class="issue-link" :="">xunit/xunit#3520</a></p>
+</li>
+<li><p>We have added support for fixtures to get notified of test execution pipeline events.</p>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Usable by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INotifyTestAssemblyLifecycle</code><br><code>INotifyTestAssemblyLifecycleAsync</code></td>
+<td>Assembly fixtures</td>
+</tr>
+<tr>
+<td><code>INotifyTestCollectionLifecycle</code><br><code>INotifyTestCollectionLifecycleAsync</code></td>
+<td>Assembly and collection fixtures</td>
+</tr>
+<tr>
+<td><code>INotifyTestClassLifecycle</code><br><code>INotifyTestClassLifecycleAsync</code></td>
+<td>Assembly, collection, and class fixtures</td>
+</tr>
+<tr>
+<td><code>INotifyTestMethodLifecycle</code><br><code>INotifyTestMethodLifecycleAsync</code></td>
+<td>Assembly, collection, and class fixtures</td>
+</tr>
+<tr>
+<td><code>INotifyTestCaseLifecycle</code><br><code>INotifyTestCaseLifecycleAsync</code></td>
+<td>Assembly, collection, and class fixtures</td>
+</tr>
+<tr>
+<td><code>INotifyTestLifecycle</code><br><code>INotifyTestLifecycleAsync</code></td>
+<td>Assembly, collection, and class fixtures</td>
+</tr>
+</tbody>
+</table>
+<p>Any fixture class can implement one or more of these interfaces, and they will be called when the test execution pipeline is underway.</p>
+<p>An example of where this might be useful: A fixture would like to create and tear down a database at its normal lifecycle point (for example, a shared database as a collection fixture would create the database when the collection starts, and tear it down when the collection ends). I would also like to reset the data in the database before each test begins. The fixture itself is injectable into the test class via constructor so that the test can be access to the connection information for the test database.</p>
+<p>The test-level events are similar in timing today with what's possible via <code>[BeforeAfterTestAttribute]</code>, except that this also supports asynchronous operations (the attribute only supports synchronous). <a href="https://github.com/xunit/xunit/issues/3504" class="issue-link" :="">xunit/xunit#3504</a> <a href="https://github.com/xunit/xunit/issues/3528" class="issue-link" :="">xunit/xunit#3528</a></p>
+</li>
+<li><p>We have extended <code>ITypeActivator</code> to be used for fixture creation (in reflection mode). This should extend dependency injection-like capabilities to fixtures (in addition to test classes). <a href="https://github.com/xunit/xunit/discussions/3567" class="issue-link" :="">xunit/xunit#3567</a></p>
+</li>
+<li><p>We have added two new MSBuild properties:</p>
+<table>
+<thead>
+<tr>
+<th>NuGet package</th>
+<th>$(XunitTestProject)</th>
+<th>$(XunitTestProjectAOT)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xunit.v3.core<br>xunit.v3.core.mtp-v2<br>xunit.v3.core.mtp-off</td>
+<td>true<br>true<br>true</td>
+<td></td>
+</tr>
+<tr>
+<td>xunit.v3.core.aot<br>xunit.v3.core.aot.mtp-v2<br>xunit.v3.core.aot.mtp-off</td>
+<td>true<br>true<br>true</td>
+<td>true<br>true<br>true</td>
+</tr>
+</tbody>
+</table>
+<p>The purpose of these properties is to provide developers with the ability to trigger behavior off knowing whether they're being used in the context of an xUnit.net test project, which can be useful when mixing multiple Microsoft Testing Platform enabled test frameworks.</p>
+<p>These MSBuild properties are only set by the above named packages to correlate with test projects (in particular, they are not set when referencing <code>xunit.v3.extensibility.core</code>, which correlates with extensibility projects). <a href="https://github.com/microsoft/testfx/issues/7773" class="issue-link" :="">microsoft/testfx#7773</a></p>
+</li>
+<li><p><strong>BUG:</strong> <code>TestContext.Current.CancellationToken</code> and <code>TestContext.Current.CancelCurrentTest()</code> were throwing when the test context had been disposed. Now, these operations either return a default <code>CancellationToken</code> or are ignored. <a href="https://github.com/xunit/xunit/issues/3554" class="issue-link" :="">xunit/xunit#3554</a></p>
+</li>
+<li><p><strong>BUG:</strong> Debugger detection was moved from discovery time to execution time. This issue manifested as debugger-specific behavior not working when using VSTest inside Visual Studio's Test Explorer (for example, tests with timeouts would still run their timeouts, which is behavior that is normally disabled when running under a debugger). <a href="https://github.com/xunit/visualstudio.xunit/issues/450" class="issue-link" :="">xunit/visualstudio.xunit#450</a></p>
+</li>
+<li><p><strong>BUG:</strong> We fixed an issue where <code>SkipUnless</code> and <code>SkipWhen</code> could not properly resolve if the property were defined on a base class. <a href="https://github.com/xunit/xunit/issues/3194" class="issue-link" :="">xunit/xunit#3194</a></p>
+</li>
+<li><p><strong>BUG:</strong> We fixed an issue where the initial thread pool size may be undersized in some situations, causing initial delays during early test execution while the thread pool spun up additional threads dynamically rather than allocating them immediately.</p>
+</li>
+</ul>
+<h3 id="assertion-library">Assertion Library</h3>
+<ul>
+<li><p>We have added an overload to <code>Assert.All</code> and <code>Assert.AllAsync</code> with a boolean <code>strict</code> parameter. When this is <code>false</code>, it behaves like the original version; when it's <code>true</code>, the assertion will fail if the collection is empty. <a href="https://github.com/xunit/xunit/issues/3476" class="issue-link" :="">xunit/xunit#3476</a></p>
+</li>
+<li><p>We have added the ability to override the way assertion messages are formatted on a per-test basis. This includes:</p>
+<ul>
+<li><code>Assert.OverrideMaxEnumerableLength</code><br>Changes the number of items to display in an enumerable/collection</li>
+<li><code>Assert.OverrideMaxObjectDepth</code><br>Changes the depth to recurse into complex objects when printing them</li>
+<li><code>Assert.OverrideMaxObjectMemberCount</code><br>Changes the number of members to show when printing a complex object</li>
+<li><code>Assert.OverrideMaxStringLength</code><br>Changes the length of strings to print before truncation</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p><code>OverrideMaxObjectDepth</code> and <code>OverrideMaxObjectMemberCount</code> have no effect in Native AOT mode, since the assertion results do not print complex objects in Native AOT (due to reflection limitations).</p>
+</div>
+<p>Setting these overrides uses <code>AsyncLocal</code> functionality, so the override only affects the current test in which the override is set. Attempting to override these values outside of a test method is not supported, and may have unanticipated consequences (may affect an unknown set of tests). <a href="https://github.com/xunit/xunit/issues/3526" class="issue-link" :="">xunit/xunit#3526</a></p>
+</li>
+<li><p><strong>BUG:</strong> We have fixed an issue with the <a href="https://github.com/xunit/assert.xunit">assert.xunit</a> repository when used as a Git submodule to no longer depend on a source file (<code>EnvironmentVariables.cs</code>) from the main project. <a href="https://github.com/xunit/xunit/issues/3511" class="issue-link" :="">xunit/xunit#3511</a></p>
+</li>
+<li><p><strong>BUG:</strong> We have fixed an issue where <code>AssertEqualityComparer.GetDefaultComparer()</code> and <code>AssertEqualityComparer.GetDefaultInnerComparer()</code> could throw <code>NullReferenceException</code> on Mono due to improper circular initialization logic. <a href="https://github.com/xunit/assert.xunit/pull/73" class="issue-link" :="">xunit/assert.xunit#73</a></p>
+</li>
+<li><p><strong>BUG:</strong> We fixed an issue with string trimming when trimming in the middle of a surrogate pair, which left an illegal string (rather than escaping the first half of the pair). This could cause issues when generating reports. <a href="https://github.com/xunit/xunit/issues/3568" class="issue-link" :="">xunit/xunit#3568</a></p>
+</li>
+<li><p><strong>BUG:</strong> We fixed an issue where <code>Assert.Equivalent</code> was treating <code>Type</code> incorrectly, causing comparison failures that should have succeeded and/or generating generally useless error messages. <a href="https://github.com/xunit/xunit/issues/3578" class="issue-link" :="">xunit/xunit#3578</a></p>
+</li>
+<li><p><strong>BUG:</strong> We fixed an issue while printing results with <code>Assert.Equal</code> that could cause the output to either be printed incorrectly (or in some cases cause <code>System.ArgumentOutOfRangeException</code> to be thrown). <a href="https://github.com/xunit/xunit/issues/3585" class="issue-link" :="">xunit/xunit#3585</a></p>
+</li>
+<li><p><strong>BUG:</strong> We fixed a spurious compiler warning when using assertions with <code>Span&lt;T&gt;</code> or <code>Memory&lt;T&gt;</code> where <code>T</code> is nullable <a href="https://github.com/xunit/xunit/issues/3591" class="issue-link" :="">xunit/xunit#3591</a></p>
+</li>
+</ul>
+<h3 id="runners">Runners</h3>
+<ul>
+<li><p>Version 4.0 introduces the xUnit.net native console runner as a .NET Tool. Install this tool with <code>dotnet tool install -g xunit-console-tool</code> and run it with <code>dotnet xunit-console</code>. It contains the <code>xunit.v3.runner.console</code> binary, with builds supporting Linux (32-bit Arm, 64-bit Arm, and 64-bit Intel/AMD), macOS (64-bit Arm and 64-bit Intel/AMD), and Windows (64-bit Arm, 64-bit Intel/AMD, and 32-bit Intel/AMD). Installing this requires you are using .NET 10 SDK or later.</p>
+</li>
+<li><p>We have added support for configuring how long a runner will wait for foreground threads to terminate after the test run is complete (the default remains at 10 seconds). Configuration: <a href="/docs/config-xunit-runner-json#shutdownForegroundThreadWaitSeconds">xunit.runner.json</a>, <a href="/docs/config-testconfig-json#shutdownForegroundThreadWaitSeconds">testconfig.json</a> <a href="https://github.com/xunit/xunit/issues/3587" class="issue-link" :="">xunit/xunit#3587</a></p>
+</li>
+<li><p>The CTRF result report has been updated to fix several issues and to bring it more closely in alignment with the Microsoft Testing Platform CTRF report:</p>
+<ul>
+<li>Updated <code>/results/environment/osPlatform</code> to return the example values from the documentation (e.g., <code>win32</code>, <code>linux</code>, <code>darwin</code>, <code>freebsd</code> and <code>unknown</code>)</li>
+<li>Added <code>/results/environment/osVersion</code> (with the same value from <code>/results/environment/osRelease</code>)</li>
+<li>The value in <code>/results/tests/[]/suite</code> was incorrectly formatted as a single string; it is now a string array</li>
+<li>Added <code>start</code> and <code>stop</code> values to <code>/result/tests/[]</code></li>
+<li>Added <code>Not run (due to explicit filtering)</code> to <code>/results/tests/[]/message</code> for tests that were not run</li>
+<li>Moved <code>/results/tests/[]/extra/output</code> to <code>/results/tests/[]/stdout</code></li>
+<li>Moved <code>/results/tests/[]/extra/traits</code> to <code>/results/tests/[]/labels</code></li>
+</ul>
+</li>
+<li><p><strong>BUG:</strong> We fixed an issue where ordering of messages was incorrect during shutdown when a foreground thread was left running. While this was previously fixed the native UX, MTP UX, and <code>dotnet test</code> in MTP mode in 3.2.2, this update now also fixes the issue our first party runners (like <code>xunit.v3.runner.console</code>) and <code>dotnet test</code> in VSTest mode (with the co-released <code>xunit.runner.visualstudio</code>). Note that the issue where test assemblies appear to be pass in this scenario in Test Explorer appears at this point to be unfixable, but at least any command line builds (like CI builds) should fail appropriately. <a href="https://github.com/xunit/xunit/issues/3452#issuecomment-4227722181" class="issue-link" :="">xunit/xunit#3452</a></p>
+</li>
+</ul>
+<h3 id="console-runner">Console Runner</h3>
+<ul>
+<li><p>We have added <code>-displayName</code> and <code>-displayName-</code> as new simple filters. These complement the method name filters, except that they allow filtering based on display name, which allows the user to specify an individual theory data row to run based on its display name.</p>
+</li>
+<li><p>The <code>-list full</code> output now includes an indication when tests are marked as explicit. <a href="https://github.com/xunit/xunit/issues/3502" class="issue-link" :="">xunit/xunit#3502</a></p>
+</li>
+<li><p>We've added warning messages for deprecated command line switches. These include:</p>
+<table class="table-compact-with-header">
+<thead>
+<tr>
+<th>Deprecated</th>
+<th>Replacement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-ctrf &lt;file&gt;</code></td>
+<td><code>-result-ctrf &lt;file&gt;</code></td>
+</tr>
+<tr>
+<td><code>-html &lt;file&gt;</code></td>
+<td><code>-result-html &lt;file&gt;</code></td>
+</tr>
+<tr>
+<td><code>-json</code></td>
+<td><code>-reporter json</code></td>
+</tr>
+<tr>
+<td><code>-junit &lt;file&gt;</code></td>
+<td><code>-result-junit &lt;file&gt;</code></td>
+</tr>
+<tr>
+<td><code>-noclass &lt;filter&gt;</code></td>
+<td><code>-class- &lt;filter&gt;</code></td>
+</tr>
+<tr>
+<td><code>-nomethod &lt;filter&gt;</code></td>
+<td><code>-method- &lt;filter&gt;</code></td>
+</tr>
+<tr>
+<td><code>-nonamespace &lt;filter&gt;</code></td>
+<td><code>-namespace- &lt;filter&gt;</code></td>
+</tr>
+<tr>
+<td><code>-notrait &lt;filter&gt;</code></td>
+<td><code>-trait- &lt;filter&gt;</code></td>
+</tr>
+<tr>
+<td><code>-nunit &lt;file&gt;</code></td>
+<td><code>-result-nunit &lt;file&gt;</code></td>
+</tr>
+<tr>
+<td><code>-parallel all</code></td>
+<td><code>-parallelizeAssemblies on -parallelMode collections</code></td>
+</tr>
+<tr>
+<td><code>-parallel assemblies</code></td>
+<td><code>-parallelizeAssemblies on -parallelMode off</code></td>
+</tr>
+<tr>
+<td><code>-parallel collections</code></td>
+<td><code>-parallelizeAssemblies off -parallelMode collections</code></td>
+</tr>
+<tr>
+<td><code>-parallel off</code></td>
+<td><code>-parallelizeAssemblies off -parallelMode off</code></td>
+</tr>
+<tr>
+<td><code>-quiet</code></td>
+<td><code>-reporter quiet</code></td>
+</tr>
+<tr>
+<td><code>-silent</code></td>
+<td><code>-reporter silent</code></td>
+</tr>
+<tr>
+<td><code>-teamcity</code></td>
+<td><code>-reporter teamcity</code></td>
+</tr>
+<tr>
+<td><code>-trx &lt;file&gt;</code></td>
+<td><code>-result-trx</code></td>
+</tr>
+<tr>
+<td><code>-verbose</code></td>
+<td><code>-reporter verbose</code></td>
+</tr>
+<tr>
+<td><code>-xml &lt;file&gt;</code></td>
+<td><code>-result-xml &lt;file&gt;</code></td>
+</tr>
+<tr>
+<td><code>-xmlV1 &lt;file&gt;</code></td>
+<td><code>-result-xmlV1 &lt;file&gt;</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="runner-common--runner-utility">Runner Common / Runner Utility</h3>
+<ul>
+<li><p>We have added several generic versions of attributes:</p>
+<ul>
+<li><code>RegisterConsoleResultWriterAttribute&lt;TFixture&gt;</code></li>
+<li><code>RegisterMicrosoftTestingPlatformResultWriterAttribute&lt;TCollectionFactory&gt;</code></li>
+<li><code>RegisterResultWriterAttribute&lt;TOrderer&gt;</code></li>
+<li><code>RegisterRunnerReporterAttribute&lt;TOrderer&gt;</code></li>
+</ul>
+<p>These attribute are alternatives to their non-generic counterparts, and only supported on .NET 8+ (as .NET Framework does not support generic attributes, though the compiler will not complain about them). <a href="https://github.com/xunit/xunit/issues/3497" class="issue-link" :="">xunit/xunit#3497</a></p>
+</li>
+<li><p>We have updated the logic used to sanitize attachment filenames to always exclude all invalid characters from Windows, Linux, and macOS (rather than just the ones from the current OS). This better supports scenarios where attachment files are generated on one OS and then copied to another (e.g., in CI build scenarios). <a href="https://github.com/xunit/xunit/pull/3561" class="issue-link" :="">xunit/xunit#3561</a></p>
+</li>
+<li><p>We have added a settable <code>InProcessTestProcessLauncher.LoadContext</code> (of type <code>AssemblyLoadContext</code>) to be used when the in-process launcher loads the test assembly. This property is only available in .NET 8+ (and not in .NET Framework). <a href="https://github.com/xunit/xunit/issues/3559" class="issue-link" :="">xunit/xunit#3559</a></p>
+</li>
+<li><p><strong>BUG:</strong> We have fixed an issue with <code>AssemblyRunner</code> which was causing it to hang indefinitely due to incorrect cancellation handling. <a href="https://github.com/xunit/xunit/issues/3522" class="issue-link" :="">xunit/xunit#3522</a></p>
+</li>
+</ul>
+<h3 id="microsoft-testing-platform">Microsoft Testing Platform</h3>
+<ul>
+<li><p>We have removed support for Microsoft Testing Platform v1.</p>
+</li>
+<li><p>The Microsoft Testing Platform v2 packages have been updated to version 2.3.3.</p>
+</li>
+<li><p>Several of the report command line switches have changed, to help prevent future collisions when reports are added by MTP:</p>
+<table class="table-compact-with-header">
+<thead>
+<tr>
+<th>3.2.2</th>
+<th>4.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-report-ctrf</code></td>
+<td><code>-report-xunit-ctrf</code></td>
+</tr>
+<tr>
+<td><code>-report-ctrf-filename</code></td>
+<td><code>-report-xunit-ctrf-filename</code></td>
+</tr>
+<tr>
+<td><code>-report-junit</code></td>
+<td><code>-report-xunit-junit</code></td>
+</tr>
+<tr>
+<td><code>-report-junit-filename</code></td>
+<td><code>-report-xunit-junit-filename</code></td>
+</tr>
+<tr>
+<td><code>-report-nunit</code></td>
+<td><code>-report-xunit-nunit</code></td>
+</tr>
+<tr>
+<td><code>-report-nunit-filename</code></td>
+<td><code>-report-xunit-nunit-filename</code></td>
+</tr>
+<tr>
+<td><code>-report-xunit</code></td>
+<td><code>-report-xunit-xml</code></td>
+</tr>
+<tr>
+<td><code>-report-xunit-filename</code></td>
+<td><code>-report-xunit-xml-filename</code></td>
+</tr>
+</tbody>
+</table>
+<p>The switches that already included <code>xunit</code> in their names (<code>-report-xunit-html</code> and <code>-report-xunit-trx</code>) are unaffected.</p>
+</li>
+<li><p>We have updated the default file extensions for three of the reports, so that they are more useful when auto-generating the file name:</p>
+<ul>
+<li>JUnit report, changed from <code>.junit</code> to <code>.junit.xml</code></li>
+<li>NUnit report, changed from <code>.nunit</code> to <code>.nunit.xml</code></li>
+<li>xUnit.net v2 report, changed from <code>.xunit</code> to <code>.xunit.xml</code></li>
+</ul>
+<p>This should make it easier to open and inspect these default report files. <a href="https://github.com/xunit/xunit/issues/3498" class="issue-link" :="">xunit/xunit#3498</a></p>
+</li>
+<li><p>We have added <code>--filter</code>, which accepts the older VSTest filter syntax. This should assist users who are porting from VSTest to Microsoft Testing Platform. <a href="https://github.com/xunit/xunit/pull/3466" class="issue-link" :="">xunit/xunit#3466</a></p>
+</li>
+<li><p>We have added <code>--filter-display-name</code> and <code>--filter-not-display-name</code> as new simple filters. These complement the method name filters, except that they allow filtering based on display name, which allows the user to specify an individual theory data row to run based on its display name.</p>
+</li>
+<li><p>We have added <code>--xunit-list</code>, which is similar to the <code>-list</code> option in the console runner. <em>The implementation has some quirks, so check the issue description for discussion of those.</em> <a href="https://github.com/xunit/xunit/issues/3529" class="issue-link" :="">xunit/xunit#3529</a></p>
+</li>
+<li><p>The output folder for attachments is now the results directory (which can be overridden with <code>--results-directory</code>). Previously these were being written into the temp folder. <a href="https://github.com/xunit/xunit/issues/3562" class="issue-link" :="">xunit/xunit#3562</a></p>
+</li>
+<li><p>We are setting MSBuild property <code>&lt;IsTestingPlatformApplication&gt;true&lt;/IsTestingPlatformApplication&gt;</code> in anticipation of a potentially breaking change coming in Microsoft Testing Platform v3. <a href="https://github.com/microsoft/testfx/issues/7665" class="issue-link" :="">microsoft/testfx#7665</a></p>
+</li>
+<li><p>We have exposed access to the Microsoft Testing Platform Session UID, through <code>TestContext.Current.MicrosoftTestingPlatformSession()</code>. This API is only available when the test project supports MTP, and will only return a value when the test is running from within MTP (it will otherwise return <code>null</code>). <a href="https://github.com/xunit/xunit/issues/3594" class="issue-link" :="">xunit/xunit#3594</a></p>
+</li>
+<li><p><strong>BUG:</strong> Exceptions thrown in <code>ITestPipelineStartup.StopAsync</code> were not being caught, causing issues during cleanup. <a href="https://github.com/xunit/xunit/issues/3536" class="issue-link" :="">xunit/xunit#3536</a></p>
+</li>
+</ul>
+<h3 id="extensibility">Extensibility</h3>
+<ul>
+<li><p>We have added <code>StartTime</code> and <code>FinishTime</code> on the major pipeline events via <code>IStartedMessage</code> and <code>IFinishedMessage</code>. This should mean every starting or finished message now includes the UTC start or finish time associated with the event.</p>
+</li>
+<li><p>The result reports (HTML, XML, etc.) have been converted from XSL-T to custom code, to support Native AOT. Developers can now implement the appropriate interfaces (<code>IConsoleResultWriter</code> and <code>IMicrosoftTestingPlatformResultWriter</code>) and register them via assembly-level attributes (<code>[RegisterConsoleResultWriter]</code>, <code>[RegisterMicrosoftTestingPlatformResultWriter]</code>, as well as <code>[RegisterResultWriter]</code> which can be used for a result writer which supports both (all the built-in writers support both, except for xUnit.net v1 XML, which we consider a deprecated holdover and no longer appropriate for MTP).</p>
+</li>
+<li><p>We have added <code>ISelfExecutingCodeGenTestCase</code> as a Native AOT equivalent to <code>ISelfExecutingXunitTestCase</code>.</p>
+</li>
+<li><p>We have introduced a new Native AOT runner stack (i.e., <code>CodeGenTestXyzRunner</code> classes) with base classes (i.e., <code>CodeGenTestXyzRunnerBase</code>) which allow overridable context classes. This matches the model provided in reflection (i.e., <code>XunitTestXyzRunner</code> and <code>XunitTestXyzRunnerBase</code> and the associated context classes). In addition, we have introduced a new layer with shared code between reflection-mode and Native AOT-mode, which are in the classes named <code>CoreTestXyzRunner</code> and friends.</p>
+</li>
+<li><p>We have added <code>CoreTestFrameworkDiscoverer</code> and <code>CoreTestFrameworkExecutor</code>, derived from <code>TestFrameworkDiscoverer</code> and <code>TestFrameworkExecutor</code> respectively. These new layers ensure that the environment variables for assertions and argument formatting will be set correctly in both reflection-mode and Native AOT-mode.</p>
+</li>
+</ul>
+<h3 id="nuget-packages">NuGet Packages</h3>
+<ul>
+<li>We have created a new source-based NuGet package (<code>xunit.v3.generatorutility</code>) to help developers extending xUnit.net in Native AOT. You can see more information in <a href="/docs/getting-started/v3/native-aot#extensibility-samples">Testing with Native AOT</a> including links to extensibility samples that include the required source generators.</li>
+</ul>
+<h3 id="breaking-changes">Breaking changes</h3>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Any obsoleted APIs listed here will be removed in the next major version.</p>
+<p>In addition to the list of obsoleted APIs below, there are types and APIs which are only supported in reflection-mode. These have been marked as <code>[Obsolete]</code> (and non-functional) in Native AOT, pointing to their AOT counterparts when such things exist. These API differences between reflection-mode and Native AOT-mode will not be removed across major versions, since they are only conditionally obsolete. At this point, we have not done the opposite (importing Native AOT-only APIs into the reflection-mode, marked as <code>[Obsolete]</code>) as we assume that extension developers will typically be adding Native AOT-mode support to existing reflection-mode extensions rather than starting with AOT and then adding reflection later.</p>
+</div>
+<ul>
+<li><p>Test ordering has changed with the introduction of class and method orderers, which likely breaks existing implementations of <code>ITestCaseOrderer</code>. Please read <a href="https://github.com/xunit/xunit/issues/3424">issue #3424</a> for more information.</p>
+</li>
+<li><p>We have marked <code>AssemblyRunnerOptions.ParallelizeTestCollections</code> as obsolete in favor of <code>ParallelMode</code>. The existing property will continue to function, with loss of support for <code>ParallelMode.All</code>. Developers should use <code>ParallelMode</code> to ensure they are reacting to all valid user requests.</p>
+</li>
+<li><p><code>[assembly: CollectionBehavior]</code> has marked <code>DisableTestParallelization</code>, <code>MaxParallelThreads</code> and <code>ParallelAlgorithm</code> as obsolete and un-callable, as these configuration options are no longer limited to collection-level parallelization. Users should use <code>[assembly: Parallelization]</code> properties <code>Mode</code>, <code>MaxThreads</code>, and <code>Algorithm</code> respectively.</p>
+</li>
+<li><p>We have updated <code>EqualException.ForMismatchedValues</code> and <code>EqualException.ForMismatchedValuesWithError</code> to include the ability to send in pre-formatted <code>string</code> values. The old signature accepting <code>object</code> values is marked obsolete and will format the incoming values appropriately.</p>
+</li>
+<li><p>We have updated <code>ErrorMessage.FromException</code> to include the assembly unique ID as a parameter. The old signature is marked obsolete and will pass <code>null</code> for the assembly unique ID.</p>
+</li>
+<li><p>We have marked <code>ExecutionSinkOptions.AssemblyElement</code> as obsolete, as it is no longer used by <code>ExecutionSink</code> since XSL-T support has been removed from result reports.</p>
+</li>
+<li><p>The following methods have been obsoleted on <code>ExtensibilityPointFactory</code> and moved to <code>RegisteredEngineConfig</code>:</p>
+<ul>
+<li><code>ExtensibilityPointFactory.GetAssemblyTestCaseOrder</code><br>=&gt; <code>RegisterEngineConfig.GetAssemblyTestCaseOrder</code></li>
+<li><code>ExtensibilityPointFactory.GetAssemblyTestCollectionOrder</code><br>=&gt; <code>RegisterEngineConfig.GetAssemblyTestCollectionOrder</code></li>
+<li><code>ExtensibilityPointFactory.GetClassTestCaseOrderer</code><br>=&gt; <code>RegisterEngineConfig.GetClassTestCaseOrderer</code></li>
+<li><code>ExtensibilityPointFactory.GetCollectionTestCaseOrderer</code><br>=&gt; <code>RegisterEngineConfig.GetCollectionTestCaseOrderer</code></li>
+<li><code>ExtensibilityPointFactory.GetTestFramework</code><br>=&gt; <code>RegisterEngineConfig.GetTestFramework</code></li>
+<li><code>ExtensibilityPointFactory.GetXunitTestCollectionFactory</code><br>=&gt; <code>RegisterEngineConfig.GetTestCollectionFactory</code></li>
+</ul>
+<p>Any argument changes were made to accommodate Native AOT support.</p>
+</li>
+<li><p>The <code>FrontControllerRunSettings</code> constructor has been obsoleted and is not callable. Static factory functions <code>WithSerializedTestCases</code>, <code>WithTestCaseIDs</code>, and <code>WithSerializedTestCasesAndTestCaseIDs</code> have been added as replacements.</p>
+</li>
+<li><p>We have marked <code>ITestFrameworkExecutionOptions</code> extension methods related to disabling parallelization as obsolete, with the following replacements:</p>
+<ul>
+<li><code>options.DisableParallelization()</code><br>=&gt; <code>options.ParallelMode()</code></li>
+<li><code>options.DisableParallelizationOrDefault()</code><br>=&gt; <code>options.ParallelModeOrDefault()</code></li>
+<li><code>options.GetDisableParallelization()</code><br>=&gt; <code>options.GetParallelMode()</code></li>
+<li><code>options.GetDisableParallelizationOrDefault()</code><br>=&gt; <code>options.GetParallelModeOrDefault()</code></li>
+<li><code>options.SetDisableParallelization()</code><br>=&gt; <code>options.SetParallelMode()</code></li>
+</ul>
+<p>These currently transform values, with loss of support for <code>ParallelMode.All</code>. Developers should use the parallel mode variants to ensure they are reacting to all valid user requests.</p>
+</li>
+<li><p>We have modified <code>OutOfProcessTestProcessLauncherBase.StartTestProcess</code> to add <code>shutdownProcessWaitSeconds</code>, to accommodate configurable forced runner shutdown timing. The old signature is marked obsolete and is not called by the platform. Developers should override the new signature.</p>
+</li>
+<li><p>We have modified <code>ProjectAssemblyRunner.Run</code> to add <code>resultWriters</code> and <code>testContextInitializedCallback</code>. The old signature is marked obsolete, and calls the new overload with an empty result writers dictionary and a <code>null</code> callback.</p>
+</li>
+<li><p>We have marked <code>RegisteredRunnerReporters.Get()</code> as obsolete, in favor of <code>RegisteredRunnerConfig.GetRunnerReporters()</code>.</p>
+</li>
+<li><p>We have marked <code>TestAssemblyConfiguration</code> properties <code>ParallelizeTestCollections</code> and <code>ParallelizeTestCollectionsOrDefault</code> as obsolete in favor of <code>ParallelMode</code> and <code>ParallelModeOrDefault</code>. The existing property will continue to function, with loss of support for <code>ParallelMode.All</code>. Developers should use the parallel mode variants to ensure they are reacting to all valid user requests.</p>
+</li>
+<li><p>We have modified the <code>TestAssemblyInfo</code> constructor to require <code>maxParallelThreads</code>, <code>parallelAlgorithm</code>, and <code>parallelMode</code>. The old signature is marked as obsolete and is un-callable.</p>
+</li>
+<li><p>We have marked the non-generic version of <code>TestClassComparer</code> as obsolete in favor of <code>TestClassComparer&lt;TTestClass&gt;</code>. Using the non-generic version is equivalent to <code>TestClassComparer&lt;ITestClass&gt;</code>.</p>
+</li>
+<li><p>We have updated <code>TestClassRunner.FailTestMethod</code> to remove the <code>constructorArguments</code> parameter. Developers should override the new overload, as the existing signature will always be called with an empty array.</p>
+</li>
+<li><p>We have marked <code>TestClassRunner.OrderTestCases</code> as obsolete and un-callable, due to the addition of extra ordering layers introduced in 4.0. Developers should override <code>TestClassRunner.OrderTestMethods</code> (or <code>TestMethodRunner.OrderTestCases</code>) instead.</p>
+</li>
+<li><p>We have updated <code>TestClassRunner.RunTestMethod</code> to remove the <code>constructorArguments</code> parameter, and is no longer callable. Developers should override the new overload.</p>
+</li>
+<li><p>We have marked the non-generic version of <code>TestMethodComparer</code> as obsolete in favor of <code>TestMethodComparer&lt;TTestMethod&gt;</code>. Using the non-generic version is equivalent to <code>TestMethodComparer&lt;ITestMethod&gt;</code>.</p>
+</li>
+<li><p>We have marked <code>TestRunner.InvokeTestMethod</code> as obsolete and un-callable. The functionality that lived here has been moved to <code>CoreTestRunnerContext.InvokeTest</code>.</p>
+</li>
+<li><p>We have updated the <code>TestRunnerContext</code> constructor to remove the <code>testMethod</code> and <code>testMethodArguments</code> parameters.  The old signature is marked obsolete and will call the new overload, ignoring those parameter values.</p>
+</li>
+<li><p>We have updated <code>TheoryDiscoverer.CreateTestCasesForDataRow</code> to include a index string (an optional zero-padded index to append to the test case display name). Developers should call or override the new signature.</p>
+</li>
+<li><p>We have marked <code>TransformFactory</code> as obsolete and un-callable, since XSL-T support has been removed from result reports. Instead, developers should call <code>RegisteredRunnerConfig.GetConsoleResultWriters()</code> or <code>RegisteredRunnerConfig.GetMicrosoftTestingPlatformResultWriters</code>.</p>
+</li>
+<li><p>We have updated <code>XunitFilters.ToXunit3Arguments</code> to pass a required <code>Version</code> parameter (which represents the version of xUnit.net v3 that the test assembly is linked against). This helps the filters properly construct command line arguments to invoke v3 test assemblies. The following command line filter arguments are unsupported for xUnit.net v3 less than 4.0.0 (and will thus not be part of the active filter): <code>-displayName</code> and <code>-displayName-</code>.</p>
+</li>
+<li><p>We have updated <code>XunitRunnerHelper.RunXunitTestCase</code> to require parameters for the current parallel mode, scheduler, and method fixture mappings. The obsolete version is no longer callable.</p>
+</li>
+<li><p>We have updated the <code>XunitTest</code> constructor to include the test label and a flag to indicate whether the test is allowed to run in parallel. The old signature is marked obsolete and will pass <code>null</code> for the test label, and <code>false</code> for supporting parallelization.</p>
+</li>
+<li><p>We have updated the <code>XunitTestAssembly</code> constructor to allow the developer to override the assembly display name, assembly path, and target framework. The old signature is marked obsolete and will pass <code>null</code> for the new values.</p>
+</li>
+<li><p>We have marked <code>XunitTestAssemblyRunnerBaseContext.DisableParallelization</code> as obsolete. Developers should call <code>ParallelMode</code> instead.</p>
+</li>
+<li><p>We have updated <code>XunitTestAssemblyRunnerBaseContext.RunTestCollection</code> to remove the <code>testCaseOrderer</code> parameter. The old signature is marked obsolete and will ignore the unused parameter.</p>
+</li>
+<li><p>We have removed <code>XunitTestAssemblyRunnerBaseContext.SetupParallelism</code> as obsolete and un-callable. Developers should call/override <code>CoreTestAssemblyRunnerContext.CreateScheduler</code> instead.</p>
+</li>
+<li><p>We have updated the <code>XunitTestCaseRunnerBaseContext</code>, <code>XunitTestCaseRunnerContext</code>, and <code>XunitTestCaseRunner</code> constructors to include <code>parallelMode</code>, <code>scheduler</code>, and <code>methodFixtureMappings</code>. The old signatures are marked obsolete and are un-callable.</p>
+</li>
+<li><p>We have marked <code>XunitTestClassRunnerBaseContext.TestCaseOrderer</code> as obsolete. The replacement is found on <code>TestClass.TestCaseOrderer</code>; however, this value is optional, so the full getter replacement to ensure the correct orderer is to chain call:</p>
+<pre><code class="lang-csharp">TestClass.TestCaseOrderer
+    ?? TestClass.TestCollection.TestCaseOrderer
+    ?? TestClass.TestCollection.TestAssembly.TestCaseOrderer
+    ?? DefaultTestCaseOrderer.Instance
+</code></pre>
+<p>The value is no longer settable.</p>
+</li>
+<li><p>We have updated the <code>XunitTestClassRunnerBaseContext</code>, <code>XunitTestClassRunnerContext</code>, and <code>XunitTestClassRunner</code> constructors to remove <code>testCaseOrderer</code> and add <code>parallelMode</code> and <code>scheduler</code>. The old signatures are marked obsolete and are un-callable.</p>
+</li>
+<li><p>We have marked <code>XunitTestCollectionRunnerBaseContext.TestCaseOrderer</code> as obsolete. The replacement is found on <code>TestCollection.TestCaseOrderer</code>; however, this value is optional, so the full getter replacement to ensure the correct orderer is to chain call:</p>
+<pre><code class="lang-csharp">TestCollection.TestCaseOrderer
+    ?? TestCollection.TestAssembly.TestCaseOrderer
+    ?? DefaultTestCaseOrderer.Instance
+</code></pre>
+<p>The value is no longer settable.</p>
+</li>
+<li><p>We have updated the <code>XunitTestCollectionRunnerBaseContext</code>, <code>XunitTestCollectionRunnerContext</code>, and <code>XunitTestCollectionRunner</code> constructors to remove <code>testCaseOrderer</code> and add <code>parallelMode</code> and <code>scheduler</code>. The old signatures are marked obsolete and are un-callable.</p>
+</li>
+<li><p>We have removed <code>XunitTestCollectionRunnerBase.GetTestCaseOrderer()</code>. It is no longer called or callable. Providing access to the test case orderer is done via the context <code>TestCaseOrderer</code> property.</p>
+</li>
+<li><p>We have updated the <code>XunitTestMethodRunnerBaseContext</code>, <code>XunitTestMethodRunnerContext</code>, and <code>XunitTestMethodRunner</code> constructors to add <code>parallelMode</code> and <code>scheduler</code>. The old signatures are marked obsolete and are un-callable.</p>
+</li>
+<li><p>We have updated the <code>XunitTestRunnerBaseContext</code>, <code>XunitTestRunnerContext</code>, and <code>XunitTestRunner</code> constructors to add <code>parallelMode</code>, <code>scheduler</code>, and <code>caseFixtureMappings</code>. The old signatures are marked obsolete and are un-callable.</p>
+</li>
+</ul>
+<h3 id="obsolete-apis-removed">Obsolete APIs removed</h3>
+<p>We have removed the following APIs that were marked obsolete during 3.x:</p>
+<ul>
+<li><code>CecilSourceinformationProvider</code> has been replaced by compiler-provided arguments to <code>FactAttribute</code></li>
+<li><code>ExecutionErrorTestCase ctor</code> without <code>sourceFilePath</code> and <code>sourceLineNumber</code></li>
+<li><code>FixtureMappingManager.InitializeAsync()</code> without <code>createInstances</code></li>
+<li><code>TestIntrospectionHelper.GetTestCaseDetails()</code> without <code>label</code></li>
+<li><code>Xunit3ArgumentFactory.ForRun()</code> without <code>testCaseIDs</code></li>
+<li><code>XunitTestClassRunnerBase.FormatConstructorArgsMissingMessage</code> (no longer called)</li>
+<li><code>XunitTestCollectionRunnerBase.GetTestCaseOrderer</code> (newly introduced test class runner takes precedence)</li>
+<li><code>XunitTestMethod.GetDisplayName()</code> without <code>label</code></li>
+<li>The classes in namespace <code>Xunit.Runners</code> have been removed (in favor of the classes in <code>Xunit.SimpleRunner</code>)</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/xunit/xunit.net/blob/main/site/releases/v3/4.0.0.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Copyright &copy; <a href='https://dotnetfoundation.org/'>.NET Foundation</a>. Contributions welcomed at <a href='https://github.com/xunit/xunit.net'>https://github.com/xunit/xunit.net</a>. Updates posted to <a href='https://dotnet.social/@xunit' rel='me'>Mastodon</a> and <a href='https://bsky.app/profile/xunit.net'>Bluesky</a>.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,7 +1,8 @@
 # Contributing
 
 Use a pull request against `main`. Install the .NET SDK selected by `global.json`,
-Python 3.12+, CMake, a C++20 compiler, clang-format/clang-tidy 18, Cppcheck and
+Python 3.15.2, CMake 4.4.5, a C++20 compiler, clang-format 23.1.5,
+clang-tidy 23.1.5, Cppcheck 2.22.0 and
 ShellCheck. Install Python tools with
 `python3 -m pip install -r scripts/requirements-ci.txt -r scripts/requirements-quality.txt`.
 
@@ -20,8 +21,11 @@ python3 scripts/check-cpp.py --build-dir cpp/build
 bash scripts/check-secrets.sh
 ```
 
-The workflow linter runs the digest-pinned actionlint container, including
-ShellCheck and Pyflakes. Native execution requires all three tools on PATH and
+The workflow linter builds a container from digest-pinned Python 3.15.2 and
+kjanat/actionlint 1.17.0 images, using the locked Pyflakes and bundled ShellCheck.
+This maintained fork supports GitHub's
+`concurrency.queue` and `$/` workflow references directly. Native execution
+requires that version and both embedded-code checkers on PATH and
 fails if an embedded-code checker is missing. Archived upstream scripts under
 `dev/log/` are frozen evidence, excluded from the standalone ShellCheck pass.
 Python helpers under `scripts/` must pass Ruff lint/format and mypy; historical
@@ -125,7 +129,7 @@ hyphens; public CMake targets and headers retain their original names.
 Upstream reports and
 reproduction evidence are under `dev/log/issues/524/pulls/526/upstream/`.
 
-The scheduled security workflow audits transitive NuGet and Python dependencies, runs
+The scheduled security workflow audits transitive NuGet, Python and Conan dependencies, runs
 full-repository CodeQL with a fatal gate on every SARIF finding, and scans
 complete Git history for credentials. `.gitleaksignore` contains exact historical
 fingerprints for a removed key independently verified revoked (HTTP 401) and
