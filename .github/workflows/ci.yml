@@ -477,8 +477,8 @@ jobs:
           persist-credentials: false
       - name: Install the pinned Rust toolchain and advisory auditor
         run: |
-          rustup show
-          cargo install cargo-audit --version 0.22.2 --locked -j 1
+          rustup toolchain install
+          cargo +"$(rustup show active-toolchain | cut -d ' ' -f 1)" install cargo-audit --version 0.22.2 --locked -j 1
       - name: Build, lint, test, execute parity probes and audit Rust
         run: bash scripts/check-rust.sh
   required:
