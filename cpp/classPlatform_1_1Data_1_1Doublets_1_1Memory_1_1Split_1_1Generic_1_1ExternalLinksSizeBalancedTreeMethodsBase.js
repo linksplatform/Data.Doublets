@@ -1,0 +1,28 @@
+var classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase =
+[
+    [ "LinkAddressType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a087819ce830bb45a6976e33ef6b63240", null ],
+    [ "LinksOptionsType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a2616d3730aa58bc92c03504f39a0a8ca", null ],
+    [ "LinkType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a8870d63b666a75a33816544f46d02aea", null ],
+    [ "ReadHandlerType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#afda6f971a76e2c9a10b8f82ebce446e9", null ],
+    [ "WriteHandlerType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#af548b43aadf841cad88c83115406d4cb", null ],
+    [ "ExternalLinksSizeBalancedTreeMethodsBase", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#ab36d254b92086abaa5ae4a83be240bec", null ],
+    [ "CountUsages", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a6a6713eaafe9843f67ac02ff2d279611", null ],
+    [ "EachUsage", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a45b62e5c032bfba3253e379dc6090a01", null ],
+    [ "FirstIsToTheLeftOfSecond", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#acac18aa57eaadf4fa32ce92f85afa18c", null ],
+    [ "FirstIsToTheLeftOfSecond", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a150f561c47576369154e3d9c64c5897d", null ],
+    [ "FirstIsToTheRightOfSecond", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#abe4fa1df388f953160e468b3df338965", null ],
+    [ "FirstIsToTheRightOfSecond", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a5772c9d7672e063d778d793d69d517e1", null ],
+    [ "GetBasePartValue", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#ae2c040907c9895963b14daba76544fb7", null ],
+    [ "GetHeaderReference", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a1a943892731ce8bd201f7ced737ef1b4", null ],
+    [ "GetLinkDataPartReference", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a6e92acb3636d6b7997d2a778367bb02d", null ],
+    [ "GetLinkDataPartReference", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a15f0b7ac06e79e1195504765202e9fbf", null ],
+    [ "GetLinkIndexPartReference", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#ad67eb9a0af24299f51fbec002d5429d5", null ],
+    [ "GetLinkIndexPartReference", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a26de22deb61b42c23601f45c533e1704", null ],
+    [ "GetLinkValues", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#adee3c3204a59503f2436bb02d2ef9c66", null ],
+    [ "GetTreeRoot", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a7c0c311a8ecd93d9d6d3ea7ecdd24d4b", null ],
+    [ "operator[]", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#aef8facf510295006272417b192136393", null ],
+    [ "Search", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a57443a8f5808bfc7e86658501cb8f267", null ],
+    [ "Header", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a75176b290d572558164acaf5cd10971f", null ],
+    [ "LinksDataParts", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#a5d28740a3933f28a45f2b4e19d1c1cfd", null ],
+    [ "LinksIndexParts", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksSizeBalancedTreeMethodsBase.html#accbbf65918a165975753af733797bda1", null ]
+];

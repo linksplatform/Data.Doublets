@@ -1,0 +1,28 @@
+var classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods =
+[
+    [ "LinkAddressType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a5d717d27c635733bb63427dde7570279", null ],
+    [ "LinksOptionsType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a3d050ffe16730c49b567da061f38cb91", null ],
+    [ "LinkType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#ab435e9285fcb8a831aa81a4b77cf113c", null ],
+    [ "ReadHandlerType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a194caa8d1c65e85f0d80cf0a75311c4c", null ],
+    [ "WriteHandlerType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a4798eb75476bcc6453f065d8d852bf3b", null ],
+    [ "InternalLinksSourcesLinkedListMethods", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a56a825d20021f2bdb1eaa727e3fa1efe", null ],
+    [ "CountUsages", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a8f0f09a7adf1e3ea5b46e717bcbd7d39", null ],
+    [ "EachUsage", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a2fc78fac6cdc0f023bfb37bf2627b0b1", null ],
+    [ "GetFirst", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a7e9f29efe678bdb6a0d5b956d0faf240", null ],
+    [ "GetLast", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#ad271f75f07f8344e5f695bc06af3afa1", null ],
+    [ "GetLinkDataPartReference", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a17922b057b5984d54c301a7f2d56f69b", null ],
+    [ "GetLinkDataPartReference", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#af7d7a83885ed7738dcd493620ae960ed", null ],
+    [ "GetLinkIndexPartReference", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#afdf97f18469eacc1e0aeafdc1bb9af8e", null ],
+    [ "GetLinkIndexPartReference", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a1a787ab60b938a28f2c1c04279158542", null ],
+    [ "GetLinkValues", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a7f55899acc7a36151e6768c139c693d6", null ],
+    [ "GetNext", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a538ba927301e8825f3b4270276a73ea5", null ],
+    [ "GetPrevious", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a0953fa34a0a5a85b9888fadf485bb420", null ],
+    [ "GetSize", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a82351d248947cb953634338b840adce8", null ],
+    [ "SetFirst", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a90842d08c030a048a2edc299fd83f986", null ],
+    [ "SetLast", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#ab052530a866752c1b3a9c3984f8d2ec7", null ],
+    [ "SetNext", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#aed87d496c7cf7c3e2fa4bbcc4b135133", null ],
+    [ "SetPrevious", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a0663646459a593340283de7ad2a7455d", null ],
+    [ "SetSize", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a12dd1bfcea120a217f19ec764a957eaf", null ],
+    [ "Break", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a5e668713febca47b52c55bcdc9e55aa2", null ],
+    [ "Continue", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1InternalLinksSourcesLinkedListMethods.html#a81ac7ee4556e7b8d96c726c04f8b14f9", null ]
+];

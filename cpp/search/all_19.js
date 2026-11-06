@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['версия_0',['&lt;a href=&quot;https://github.com/linksplatform/Data.Doublets&quot; &gt;Data.Doublets&lt;/a&gt; (@ref &quot;/home/runner/work/Data.Doublets/Data.Doublets/README.ru.md&quot; &quot;русская версия&quot;)',['../index.html#autotoc_md0',1,'']]]
+  ['граф_20зависимостей_20c_0',['Граф зависимостей C',['../md_README_8ru.html#autotoc_md13',1,'Граф зависимостей [C#]'],['../md_README_8ru.html#autotoc_md14',1,'Граф зависимостей [C++]']]]
 ];

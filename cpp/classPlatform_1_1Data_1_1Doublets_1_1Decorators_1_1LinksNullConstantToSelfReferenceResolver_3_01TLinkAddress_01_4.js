@@ -1,0 +1,6 @@
+var classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksNullConstantToSelfReferenceResolver_3_01TLinkAddress_01_4 =
+[
+    [ "LinksNullConstantToSelfReferenceResolver", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksNullConstantToSelfReferenceResolver_3_01TLinkAddress_01_4.html#a742a45d6637672e72c8701d76860ae74", null ],
+    [ "Create", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksNullConstantToSelfReferenceResolver_3_01TLinkAddress_01_4.html#a066d4d1faaec572719de7833e8264d2b", null ],
+    [ "Update", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksNullConstantToSelfReferenceResolver_3_01TLinkAddress_01_4.html#a7f5d4bdc0c5d9dc27fab0a6a0e7f4b60", null ]
+];

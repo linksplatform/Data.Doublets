@@ -1,6 +1,6 @@
 var indexSectionsWithContent =
 {
-  0: "$_abcdefghilmnoprstuvwxy~вр",
+  0: "$_abcdefghilmnoprstuvwx~вгдзикнопру",
   1: "defhilnprstu",
   2: "ps",
   3: "deilnprstu",
@@ -10,7 +10,7 @@ var indexSectionsWithContent =
   7: "i",
   8: "drs",
   9: "o",
-  10: "cdp"
+  10: "acdefghmnoprsuvwвгдзикнопру"
 };
 
 var indexSectionNames =

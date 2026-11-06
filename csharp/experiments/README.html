@@ -104,7 +104,7 @@ or source edits, then rebuild to restore current binaries. Logs/TRX stay in
 and the <a href="https://github.com/linksplatform/Data.Doublets/pull/527#issuecomment-6492081425">architecture review</a>.
 Read the <a href="../deletion-csharp.html">C# guide</a>, <a href="../deletion-rust.html">Rust guide</a>,
 and <a href="../deletion-audit.html">design/audit evidence</a> for the selected contracts.</p>
-<p>Run from this repository root with .NET 8:</p>
+<p>Run from this repository root with the .NET 10 SDK selected by <code>global.json</code>:</p>
 <pre><code class="lang-sh">dotnet test csharp/Platform.Data.Doublets.Tests -c Release \
   --filter 'FullyQualifiedName~Deletion' \
   --blame-hang-timeout 3m -m:1 -p:UseSharedCompilation=false

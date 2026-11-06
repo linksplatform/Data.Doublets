@@ -1,0 +1,26 @@
+var namespacePlatform_1_1Data_1_1Doublets_1_1Decorators =
+[
+    [ "LinksCascadeUniquenessAndUsagesResolver", "structPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksCascadeUniquenessAndUsagesResolver.html", "structPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksCascadeUniquenessAndUsagesResolver" ],
+    [ "LinksCascadeUsagesResolver", "structPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksCascadeUsagesResolver.html", "structPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksCascadeUsagesResolver" ],
+    [ "LinksDisposableDecoratorBase", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksDisposableDecoratorBase.html", null ],
+    [ "LinksDisposableDecoratorBase&lt; TLinkAddress &gt;", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksDisposableDecoratorBase_3_01TLinkAddress_01_4.html", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksDisposableDecoratorBase_3_01TLinkAddress_01_4" ],
+    [ "LinksInnerReferenceExistenceValidator", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksInnerReferenceExistenceValidator.html", null ],
+    [ "LinksInnerReferenceExistenceValidator&lt; TLinkAddress &gt;", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksInnerReferenceExistenceValidator_3_01TLinkAddress_01_4.html", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksInnerReferenceExistenceValidator_3_01TLinkAddress_01_4" ],
+    [ "LinksItselfConstantToSelfReferenceResolver", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksItselfConstantToSelfReferenceResolver.html", null ],
+    [ "LinksItselfConstantToSelfReferenceResolver&lt; TLinkAddress &gt;", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksItselfConstantToSelfReferenceResolver_3_01TLinkAddress_01_4.html", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksItselfConstantToSelfReferenceResolver_3_01TLinkAddress_01_4" ],
+    [ "LinksNonExistentDependenciesCreator", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksNonExistentDependenciesCreator.html", null ],
+    [ "LinksNonExistentDependenciesCreator&lt; TLinkAddress &gt;", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksNonExistentDependenciesCreator_3_01TLinkAddress_01_4.html", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksNonExistentDependenciesCreator_3_01TLinkAddress_01_4" ],
+    [ "LinksNullConstantToSelfReferenceResolver", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksNullConstantToSelfReferenceResolver.html", null ],
+    [ "LinksNullConstantToSelfReferenceResolver&lt; TLinkAddress &gt;", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksNullConstantToSelfReferenceResolver_3_01TLinkAddress_01_4.html", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksNullConstantToSelfReferenceResolver_3_01TLinkAddress_01_4" ],
+    [ "LinksUniquenessResolver", "structPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksUniquenessResolver.html", "structPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksUniquenessResolver" ],
+    [ "LinksUniquenessValidator", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksUniquenessValidator.html", null ],
+    [ "LinksUniquenessValidator&lt; TLinkAddress &gt;", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksUniquenessValidator_3_01TLinkAddress_01_4.html", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksUniquenessValidator_3_01TLinkAddress_01_4" ],
+    [ "LinksUsagesValidator", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksUsagesValidator.html", null ],
+    [ "LinksUsagesValidator&lt; TLinkAddress &gt;", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksUsagesValidator_3_01TLinkAddress_01_4.html", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1LinksUsagesValidator_3_01TLinkAddress_01_4" ],
+    [ "NonNullContentsLinkDeletionResolver", "structPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1NonNullContentsLinkDeletionResolver.html", "structPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1NonNullContentsLinkDeletionResolver" ],
+    [ "UInt32Links", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1UInt32Links.html", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1UInt32Links" ],
+    [ "UInt64Links", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1UInt64Links.html", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1UInt64Links" ],
+    [ "UniLinks", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1UniLinks.html", null ],
+    [ "UniLinks&lt; TLinkAddress &gt;", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1UniLinks_3_01TLinkAddress_01_4.html", "classPlatform_1_1Data_1_1Doublets_1_1Decorators_1_1UniLinks_3_01TLinkAddress_01_4" ],
+    [ "LinksDecoratedWithAutomaticUniquenessAndUsagesResolution", "namespacePlatform_1_1Data_1_1Doublets_1_1Decorators.html#afa888ac483afa8f8e55eac885b83119f", null ]
+];

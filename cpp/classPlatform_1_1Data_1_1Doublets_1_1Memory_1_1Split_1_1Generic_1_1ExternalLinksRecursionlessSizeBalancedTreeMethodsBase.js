@@ -1,0 +1,26 @@
+var classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase =
+[
+    [ "LinkAddressType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#ab249b4c77a6dc299a51f3abfd2eb927e", null ],
+    [ "LinksOptionsType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#aad592d163ef709f0b1b26f9812a2c9ff", null ],
+    [ "LinkType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a5327adc8c63be65b64d2effd2642dcef", null ],
+    [ "ReadHandlerType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#ae059690c4c88e113b6ca2ce07fe909db", null ],
+    [ "WriteHandlerType", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#aeddf09fa10bf52de1b177c9beb19ed27", null ],
+    [ "ExternalLinksRecursionlessSizeBalancedTreeMethodsBase", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#acd57e6483ade01daeea3e40cf136d090", null ],
+    [ "CountUsages", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a0a6fc5d13f701fd3593fca44e3eb72ce", null ],
+    [ "EachUsage", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#aaff91f771961ded0d76ea8b37ed9773a", null ],
+    [ "FirstIsToTheLeftOfSecond", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#aff4e062a217f2368ce41de96e1783b51", null ],
+    [ "FirstIsToTheLeftOfSecond", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a26a162771da1343669c2ec62d9a325ef", null ],
+    [ "FirstIsToTheRightOfSecond", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a9853d98ed8b8838b33da3c2f911fdf36", null ],
+    [ "FirstIsToTheRightOfSecond", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a829a7f2ce5dc4ac9259ab972d8118ad3", null ],
+    [ "GetBasePartValue", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a6e30829b74a99eff5a02daf7365a675b", null ],
+    [ "GetHeaderReference", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a3a6ceb4561b81b488a38ef1b0add28a5", null ],
+    [ "GetLinkDataPartReference", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a1f71c298334baac0596a4f2cb9c15417", null ],
+    [ "GetLinkIndexPartReference", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a6f3bf514e9b572c330012965178ed35d", null ],
+    [ "GetLinkValues", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a6aa395cf0e8a6ffcf541782bc5d79e5e", null ],
+    [ "GetTreeRoot", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a3c77b83d9881d6442c6fe77e47b65e38", null ],
+    [ "operator[]", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a80b7751838d13e01a77683922d99a5a0", null ],
+    [ "Search", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a028c58f47ef067888344d135c0d14664", null ],
+    [ "Header", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#ad682c13173af65e540882469a3c8885e", null ],
+    [ "LinksDataParts", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#ac58e4389248b99277604fdab87b8fb12", null ],
+    [ "LinksIndexParts", "classPlatform_1_1Data_1_1Doublets_1_1Memory_1_1Split_1_1Generic_1_1ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.html#a998dd8e9c5bf89a84da8be7d97369cc5", null ]
+];
