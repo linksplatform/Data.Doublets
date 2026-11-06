@@ -107,6 +107,15 @@ class GateTests(unittest.TestCase):
 
 
 class WorkflowSchemaTests(unittest.TestCase):
+    def test_self_repository_reference_keeps_local_callee_validation(self):
+        checker = load('workflow_checker', ROOT / 'scripts/check-workflows.py')
+        source = 'jobs:\n  audit:\n    uses: $/.github/workflows/security.yml\n'
+        self.assertEqual(checker.actionlint_source(source), source.replace('$/', './'))
+        for invalid in ('$/../security.yml', '$/.github/workflows/../security.yml', '$/missing.yml'):
+            with self.subTest(invalid=invalid):
+                source = '    uses: ' + invalid + '\n'
+                self.assertEqual(checker.actionlint_source(source), source)
+
     def test_queue_policy(self):
         checker = load('workflow_checker', ROOT / 'scripts/check-workflows.py')
         checker.validate_queue({'jobs': {'publish': {'concurrency': {'queue': 'max', 'cancel-in-progress': False}}}})

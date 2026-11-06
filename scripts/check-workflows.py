@@ -8,11 +8,22 @@ Every other syntax, expression and embedded-shell diagnostic remains fatal.
 import argparse
 import os
 from pathlib import Path
+import re
 from shutil import which
 import subprocess
 import yaml
 
 IMAGE = "rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667"
+
+
+def actionlint_source(source):
+    # actionlint 1.7.12 predates GitHub's self-repository syntax. Give its
+    # parser the equivalent local reference so it still loads/checks the callee.
+    return re.sub(
+        r"(?m)^(\s+uses: )\$/(\.github/workflows/[\w.-]+\.ya?ml)(\s*)$",
+        r"\1./\2\3",
+        source,
+    )
 
 
 def check_tools():
@@ -47,17 +58,22 @@ if __name__ == "__main__":
     for path in Path(".github/workflows").glob("*.yml"):
         validate_queue(yaml.safe_load(path.read_text()))
     if args.container:
-        command = ["docker", "run", "--rm", "-v", f"{Path.cwd()}:/work", "-w", "/work", IMAGE]
+        command = ["docker", "run", "--rm", "-i", "-v", f"{Path.cwd()}:/work", "-w", "/work", IMAGE]
     else:
         check_tools()
         command = [os.environ.get("ACTIONLINT", "actionlint")]
-    subprocess.run(
-        [
-            *command,
-            "-color",
-            "-ignore",
-            '^unexpected key "queue" for "concurrency" section\\.',
-            *map(str, Path(".github/workflows").glob("*.yml")),
-        ],
-        check=True,
-    )
+    for path in Path(".github/workflows").glob("*.yml"):
+        subprocess.run(
+            [
+                *command,
+                "-color",
+                "-ignore",
+                '^unexpected key "queue" for "concurrency" section\\.',
+                "-stdin-filename",
+                str(path),
+                "-",
+            ],
+            input=actionlint_source(path.read_text()),
+            text=True,
+            check=True,
+        )
