@@ -59,6 +59,17 @@ jobs:
           python3 scripts/check-workflows.py --container
           python3 experiments/issue-556/check_workflow_schema.py
           git ls-files -z '*.sh' ':(exclude)dev/log/**' | xargs -0 shellcheck
+      - name: Audit the workflow checker image
+        run: |
+          bash scripts/setup-native-tools.sh osv-scanner
+          "$HOME/.local/native-tools/bin/osv-scanner" scan image --format json --output-file workflow-image-audit.json data-doublets-workflow-lint:local
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: workflow-image-audit
+          path: workflow-image-audit.json
+          if-no-files-found: error
+          retention-days: 14
       - uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
         with:
           version: v1.32.0
@@ -176,6 +187,9 @@ jobs:
       - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
         with:
           global-json-file: global.json
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.15.2'
       - name: Restore, build, test, package and consume
         shell: bash
         run: bash scripts/check-csharp.sh
@@ -266,8 +280,10 @@ jobs:
           python3 scripts/check-cpp.py --build-dir cpp/build
       - name: Compile C and C++ FFI declarations
         run: |
-          printf '#include "c/ffi.h"\nint main(void) { return 0; }\n' | cc -x c -std=c11 -Werror -Wall -Wextra -I . -fsyntax-only -
-          printf '#include "c/ffi.h"\nint main() { return 0; }\n' | c++ -x c++ -std=c++20 -Werror -Wall -Wextra -I . -fsyntax-only -
+          printf '#include "c/ffi.h"\nint main(void) { return 0; }\n' | "$CC" -x c -std=c11 -Werror -Wall -Wextra -I . -fsyntax-only -
+          printf '#include "c/ffi.h"\nint main() { return 0; }\n' | "$CXX" -x c++ -std=c++20 -Werror -Wall -Wextra -I . -fsyntax-only -
+          "$CXX" -std=c++20 -Werror -Wall -Wextra experiments/issue-556/interface_dispatch.cpp -o "$RUNNER_TEMP/interface-dispatch"
+          "$RUNNER_TEMP/interface-dispatch"
       - name: Package C++ headers and validate native NuGet consumer
         run: |
           python3 scripts/release.py pack-cpp

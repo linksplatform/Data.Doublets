@@ -6,6 +6,13 @@ scratch=$(mktemp -d)
 trap 'rm -rf "$scratch"' EXIT
 mkdir -p "$install_dir/bin"
 case ${1:-} in
+    osv-scanner)
+        curl --fail --silent --show-error --location \
+            https://github.com/google/osv-scanner/releases/download/v2.7.0/osv-scanner_linux_amd64 -o "$scratch/osv-scanner"
+        echo "160c6253e2922e9e0a6a9771c5c4c40a4b3c6090b34a3cdd5e80c96cc2e4218b  $scratch/osv-scanner" | sha256sum --check
+        install -m 755 "$scratch/osv-scanner" "$install_dir/bin/osv-scanner"
+        "$install_dir/bin/osv-scanner" --version
+        ;;
     doxygen)
         curl --fail --silent --show-error --location \
             https://github.com/doxygen/doxygen/releases/download/Release_1_18_0/doxygen-1.18.0.linux.bin.tar.gz -o "$scratch/tool.tar.gz"
@@ -23,6 +30,6 @@ case ${1:-} in
             CXXFLAGS='-O2 -DNDEBUG' FILESDIR="$install_dir/share/cppcheck" PREFIX="$install_dir" install
         "$install_dir/bin/cppcheck" --version
         ;;
-    *) echo 'Usage: setup-native-tools.sh {doxygen|cppcheck}' >&2; exit 2 ;;
+    *) echo 'Usage: setup-native-tools.sh {doxygen|cppcheck|osv-scanner}' >&2; exit 2 ;;
 esac
 if [[ -n ${GITHUB_PATH:-} ]]; then echo "$install_dir/bin" >> "$GITHUB_PATH"; fi

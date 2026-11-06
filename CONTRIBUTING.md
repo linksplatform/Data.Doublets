@@ -129,7 +129,7 @@ hyphens; public CMake targets and headers retain their original names.
 Upstream reports and
 reproduction evidence are under `dev/log/issues/524/pulls/526/upstream/`.
 
-The scheduled security workflow audits transitive NuGet and Python dependencies, runs
+The scheduled security workflow audits transitive NuGet, Python and Conan dependencies, runs
 full-repository CodeQL with a fatal gate on every SARIF finding, and scans
 complete Git history for credentials. `.gitleaksignore` contains exact historical
 fingerprints for a removed key independently verified revoked (HTTP 401) and

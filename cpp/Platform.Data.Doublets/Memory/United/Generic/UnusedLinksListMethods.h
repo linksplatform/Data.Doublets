@@ -94,13 +94,13 @@
         }
 
       public:
-        void Detach(LinkAddressType link)
+        void Detach(LinkAddressType link) override
         {
             base::Detach(link);
         }
 
       public:
-        void AttachAsFirst(LinkAddressType link)
+        void AttachAsFirst(LinkAddressType link) override
         {
             base::AttachAsFirst(link);
         }
