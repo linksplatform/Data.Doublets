@@ -1,0 +1,26 @@
+Name:      docker.io/kjanat/actionlint:1.17.0
+MediaType: application/vnd.oci.image.index.v1+json
+Digest:    sha256:d484cccadf56b6a356466ade9af4c8e05c5dce1badaf0a9ecd0d7639d68d9c92
+           
+Manifests: 
+  Name:        docker.io/kjanat/actionlint:1.17.0@sha256:6a692acb05bec1ce98d3b48035363b15b82e2ea920a5e69de1620063346b1d16
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/amd64
+               
+  Name:        docker.io/kjanat/actionlint:1.17.0@sha256:8184e8557396513cb2a801bb1b6a0474b9f550571dba3814c98d3f13e1af70ba
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/arm64
+               
+  Name:        docker.io/kjanat/actionlint:1.17.0@sha256:32859389eb74b8e6d70b7be1ce2010f993990e795ca257a1a7992ba1d2f83ab0
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    unknown/unknown
+  Annotations: 
+    vnd.docker.reference.digest: sha256:6a692acb05bec1ce98d3b48035363b15b82e2ea920a5e69de1620063346b1d16
+    vnd.docker.reference.type:   attestation-manifest
+               
+  Name:        docker.io/kjanat/actionlint:1.17.0@sha256:c9c1a7b472c494c9141a75d1040f96002a4b89303b53d3a84aae1f96661c3c8d
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    unknown/unknown
+  Annotations: 
+    vnd.docker.reference.digest: sha256:8184e8557396513cb2a801bb1b6a0474b9f550571dba3814c98d3f13e1af70ba
+    vnd.docker.reference.type:   attestation-manifest

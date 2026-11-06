@@ -1,0 +1,42 @@
+{
+  "NuGet/login": {
+    "tag": "v1.2.0",
+    "sha": "8d196754b4036150537f80ac539e15c2f1028841"
+  },
+  "actions/checkout": {
+    "tag": "v7.0.1",
+    "sha": "3d3c42e5aac5ba805825da76410c181273ba90b1"
+  },
+  "actions/download-artifact": {
+    "tag": "v8.0.2",
+    "sha": "9000827ccba6bdab643e8b6fd33ac0654aef8333"
+  },
+  "actions/setup-dotnet": {
+    "tag": "v6.1.0",
+    "sha": "0f4a354dd5547a28c70b7853dbd95d5b67886e73"
+  },
+  "actions/setup-python": {
+    "tag": "v7.1.0",
+    "sha": "6d4fd22b20465ccc0f7354476588e8df7c9ca0e0"
+  },
+  "actions/upload-artifact": {
+    "tag": "v7.0.2",
+    "sha": "cf430e030ddbb5b0abf93d22962f4752f3646cd9"
+  },
+  "dependabot/fetch-metadata": {
+    "tag": "v3.1.0",
+    "sha": "25dd0e34f4fe68f24cc83900b1fe3fe149efef98"
+  },
+  "github/codeql-action": {
+    "tag": "v4.39.3",
+    "sha": "33d7b85da1a04171e211befe2c739303b9a4c066"
+  },
+  "lycheeverse/lychee-action": {
+    "tag": "v2.9.0",
+    "sha": "e7477775783ea5526144ba13e8db5eec57747ce8"
+  },
+  "zizmorcore/zizmor-action": {
+    "tag": "v0.8.1",
+    "sha": "45d7276c9ca790aabd705e31ca99c6185c3e76dd"
+  }
+}

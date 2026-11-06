@@ -1,0 +1,17 @@
+127593344881	changes	success
+127593552702	quality	success
+127594000822	credentials	success
+127594000839	links / links	success
+127594001881	security / audit	success
+127594002095	security / codeql (python)	success
+127594002101	security / codeql (csharp)	success
+127594002153	security / codeql (actions)	success
+127594002256	security / codeql (c-cpp)	failure
+127594104102	csharp (windows-2025)	success
+127594104458	cpp (gcc)	success
+127594104480	docs	success
+127594104525	csharp (ubuntu-24.04)	success
+127594104582	cpp (clang)	success
+127594106954	cpp (clang-sanitized)	success
+127600926822	required	failure
+127600927125	publish	skipped

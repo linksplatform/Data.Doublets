@@ -1,0 +1,3 @@
+Starting filesystem walk for root: /
+Scanned /tmp/gh-issue-solver-1793921173521/cpp/conan.lock file and found 20 packages
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 421.847µs elapsed, 422.028µs wall time

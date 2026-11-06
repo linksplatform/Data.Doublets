@@ -1,0 +1,58 @@
+Visual Studio adapter 4.0.0 [2026 August 14] | xUnit.net 
+
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      
+
+            xUnit.net
+          
+Table of Contents
+Visual Studio adapter 4.0.0 
+2026 August 14
+Today, we're shipping three new releases:
+xUnit.net Core Framework v3 
+4.0.0
+ (
+release notes
+)
+xUnit.net Analyzers 
+2.0.0
+ (
+release notes
+)
+xUnit.net Visual Studio adapter 
+4.0.0
+Hello, 4.0!
+The last major release (3.0.0) was 20 months ago, and the last minor release (3.1.5) was 11 months ago. The changes in this library have been slower than the core framework. The purpose of this package is to support third party VSTest runners, and Microsoft's TestFx team has been fully focused on Microsoft Testing Framework. At some point in the future, this package will probably be entirely deprecated, since most (if not all) of the major third party runners which support VSTest, also support MTP.
+As always, we'd like to thank all the users who contributed to the success of xUnit.net through usage, feedback, and code. 🎉
+Release Notes
+These release notes are a comprehensive list of changes from 
+3.1.5
+ to 
+4.0.0
+.
+Features and Fixes
+This package supports xUnit.net v3 4.0 test projects, including 
+the updated configuration file schema
+ and Native AOT test projects. Note that VSTest specifically (and 
+dotnet test
+ in general) does not support published Native AOT binaries, so this package is only applicable for unpublished test projects.
+BUG:
+ We fixed an issue where ordering of messages was incorrect during shutdown when a foreground thread was left running. While this was previously fixed the native UX, MTP UX, and 
+dotnet test
+ in MTP mode in 3.2.2, this update now also fixes the issue in that package for users using 
+dotnet test
+ in VSTest mode. Note that the issue where test assemblies appear to be pass in this scenario in Test Explorer appears at this point to be unfixable, but at least any command line builds (like CI builds) should fail appropriately. 
+xunit/xunit#3452
+Edit this page
+
+          Copyright © 
+.NET Foundation
+. Contributions welcomed at 
+https://github.com/xunit/xunit.net
+. Updates posted to 
+Mastodon
+ and 
+Bluesky
+.
+        

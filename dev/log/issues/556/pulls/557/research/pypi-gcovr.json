@@ -1,0 +1,148 @@
+{
+  "info": {
+    "author": null,
+    "author_email": "Lukas Atkinson <opensource@lukasatkinson.de>, Michael F\u00f6rderer <michael.foerderer@gmx.de>",
+    "bugtrack_url": null,
+    "classifiers": [
+      "Development Status :: 5 - Production/Stable",
+      "Environment :: Console",
+      "Intended Audience :: Developers",
+      "Intended Audience :: Science/Research",
+      "License :: OSI Approved :: BSD License",
+      "Natural Language :: English",
+      "Operating System :: MacOS :: MacOS X",
+      "Operating System :: Microsoft :: Windows",
+      "Operating System :: POSIX",
+      "Operating System :: Unix",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Programming Language :: Python :: 3.13",
+      "Programming Language :: Python :: 3.14",
+      "Topic :: Software Development",
+      "Topic :: Software Development :: Quality Assurance",
+      "Topic :: Software Development :: Testing",
+      "Topic :: Utilities"
+    ],
+    "description": "gcovr\n=====\n\ngenerate GCC code coverage reports\n\n`website and documentation <website_>`__ \u2022 bugtracker_ \u2022 `GitHub <repo_>`__\n\n|GitHub-Actions-badge| |codacy-quality-badge| |codacy-coverage-badge| |pypi-badge| |pypi-stats-badge| |Readthedocs-badge| |gitter-badge|\n\n.. begin abstract\n\nGcovr provides a utility for managing the use of the GNU gcov_ utility\nand generating summarized code coverage results. This command is\ninspired by the Python coverage.py_ package, which provides a similar\nutility for Python.\n\nThe ``gcovr`` command can produce different kinds of coverage reports:\n\n.. list-table::\n   :header-rows: 1\n\n   * - CLI Option\n     - User Guide\n     - Description\n\n   * - default, |abstract-option-txt|\n     - |abstract-guide-txt|\n     - compact human-readable summaries\n\n   * - |abstract-option-html|\n     - |abstract-guide-html|\n     - overview of all files\n\n   * - |abstract-option-html-details|\n     - |abstract-guide-html-details|\n     - annotated source files\n\n   * - |abstract-option-html-template-dir|\n     - |abstract-guide-html-template-dir|\n     - use custom set of Jinja2 templates\n\n   * - |abstract-option-csv|\n     - |abstract-guide-csv|\n     - CSV report summarizing the coverage of each file\n\n   * - |abstract-option-json|\n     - |abstract-guide-json|\n     - JSON report with source file structure and coverage\n\n   * - |abstract-option-json-summary|\n     - |abstract-guide-json-summary|\n     - JSON summary coverage report\n\n   * - |abstract-option-markdown|\n     - |abstract-guide-markdown|\n     - Markdown coverage report\n\n   * - |abstract-option-markdown-summary|\n     - |abstract-guide-markdown-summary|\n     - Markdown summary coverage report\n\n   * - |abstract-option-clover|\n     - |abstract-guide-clover|\n     - machine readable XML reports in Clover_ format\n\n   * - |abstract-option-cobertura|\n     - |abstract-guide-cobertura|\n     - machine readable XML reports in Cobertura_ format\n\n   * - |abstract-option-coveralls|\n     - |abstract-guide-coveralls|\n     - machine readable JSON report in Coveralls_ format\n\n   * - |abstract-option-jacoco|\n     - |abstract-guide-jacoco|\n     - machine readable XML reports in JaCoCo_ format\n\n   * - |abstract-option-lcov|\n     - |abstract-guide-lcov|\n     - machine readable report in LCOV_ info format\n\n   * - |abstract-option-sonarqube|\n     - |abstract-guide-sonarqube|\n     - machine readable XML reports in SonarQube_ format\n\n\nThus, gcovr can be viewed\nas a command-line alternative to the lcov_ utility, which runs gcov\nand generates an HTML-formatted report.\nThe development of gcovr was motivated by the need for\ntext summaries and XML reports.\n\n.. _gcov: https://gcc.gnu.org/onlinedocs/gcc/Gcov.html\n.. _coverage.py: https://coverage.readthedocs.io/\n.. _clover: https://bitbucket.org/atlassian/clover/src/master/\n.. _cobertura: https://github.com/cobertura/cobertura/\n.. _coveralls: https://coveralls.io/\n.. _jacoco: https://www.eclemma.org/jacoco/\n.. _lcov: https://github.com/linux-test-project/lcov\n.. _sonarqube: https://www.sonarsource.com/products/sonarqube/\n\n.. end abstract\n\n.. The above table contains links into the documentation.\n.. Here are the default targets that are used for rendering on GH or on PyPI.\n.. The targets for within the Sphinx docs are given in doc/source/index.rst\n\n.. |abstract-option-txt| replace:: ``--txt``\n.. |abstract-option-html| replace:: ``--html``\n.. |abstract-option-html-details| replace:: ``--html-details``\n.. |abstract-option-html-nested| replace:: ``--html-nested``\n.. |abstract-option-html-template-dir| replace:: ``--html-template-dir``\n.. |abstract-option-csv| replace:: ``--csv``\n.. |abstract-option-json| replace:: ``--json``\n.. |abstract-option-json-summary| replace:: ``--json-summary``\n.. |abstract-option-markdown| replace:: ``--markdown``\n.. |abstract-option-markdown-summary| replace:: ``--markdown-summary``\n\n.. |abstract-option-clover| replace:: ``--clover``\n.. |abstract-option-cobertura| replace:: ``--cobertura``\n.. |abstract-option-coveralls| replace:: ``--coveralls``\n.. |abstract-option-jacoco| replace:: ``--jacoco``\n.. |abstract-option-lcov| replace:: ``--lcov``\n.. |abstract-option-sonarqube| replace:: ``--sonarqube``\n\n.. |abstract-guide-txt| replace:: `Text Output <https://gcovr.com/en/stable/output/txt.html>`__\n.. |abstract-guide-html| replace:: `HTML Output <https://gcovr.com/en/stable/output/html.html>`__\n.. |abstract-guide-html-details| replace:: `HTML Output <https://gcovr.com/en/stable/output/html.html>`__\n.. |abstract-guide-html-template-dir| replace:: `HTML Output <https://gcovr.com/en/stable/output/html.html>`__\n.. |abstract-guide-csv| replace:: `CSV Output <https://gcovr.com/en/stable/output/csv.html>`__\n.. |abstract-guide-json| replace:: `JSON Output <https://gcovr.com/en/stable/output/json.html>`__\n.. |abstract-guide-json-summary| replace:: `JSON Output <https://gcovr.com/en/stable/output/json.html>`__\n.. |abstract-guide-markdown| replace:: `Markdown Output <https://gcovr.com/en/stable/output/markdown.html>`__\n.. |abstract-guide-markdown-summary| replace:: `Markdown Output <https://gcovr.com/en/stable/output/markdown.html>`__\n\n.. |abstract-guide-clover| replace:: `Clover XML Output <https://gcovr.com/en/stable/output/clover.html>`__\n.. |abstract-guide-cobertura| replace:: `Cobertura XML Output <https://gcovr.com/en/stable/output/cobertura.html>`__\n.. |abstract-guide-coveralls| replace:: `Coveralls JSON Output <https://gcovr.com/en/stable/output/coveralls.html>`__\n.. |abstract-guide-jacoco| replace:: `JaCoCo XML Output <https://gcovr.com/en/stable/output/jacoco.html>`__\n.. |abstract-guide-lcov| replace:: `LCOV info Output <https://gcovr.com/en/stable/output/lcov.html>`__\n.. |abstract-guide-sonarqube| replace:: `SonarQube XML Output <https://gcovr.com/en/stable/output/sonarqube.html>`__\n\n\nExample HTML summary:\n\n.. image:: https://raw.githubusercontent.com/gcovr/gcovr/8.8/doc/images/screenshot-html.jpeg\n\nExample HTML details:\n\n.. image:: https://raw.githubusercontent.com/gcovr/gcovr/8.8/doc/images/screenshot-html-details.example.cpp.jpeg\n\n.. begin links\n\n.. _website:        https://gcovr.com/\n.. _documentation:  website_\n.. _repo:       https://github.com/gcovr/gcovr/\n.. _bugtracker: https://github.com/gcovr/gcovr/issues\n.. |GitHub-Actions-badge| image:: https://github.com/gcovr/gcovr/actions/workflows/CI.yml/badge.svg?event=push\n   :target: https://github.com/gcovr/gcovr/actions/workflows/CI.yml?query=branch%3Amain+event%3Apush\n   :alt: GitHub Actions build status\n.. |codacy-quality-badge| image:: https://app.codacy.com/project/badge/Grade/c50ef51a78024cf4a3025c464560a534\n   :target: https://app.codacy.com/gh/gcovr/gcovr/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade\n   :alt: Codacy quality status\n.. |codacy-coverage-badge| image:: https://app.codacy.com/project/badge/Coverage/c50ef51a78024cf4a3025c464560a534\n   :target: https://app.codacy.com/gh/gcovr/gcovr/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage\n   :alt: Codacy coverage status\n.. |pypi-badge| image:: https://img.shields.io/pypi/v/gcovr.svg\n   :target: https://pypi.python.org/pypi/gcovr\n   :alt: Install from PyPI\n.. |pypi-stats-badge| image:: https://img.shields.io/pypi/dm/gcovr\n   :target: https://pypistats.org/packages/gcovr\n   :alt: Downloads from PyPI\n.. |Readthedocs-badge| image:: https://readthedocs.org/projects/gcovr/badge/?version=latest\n   :target: https://gcovr.com/en/latest/?badge=latest\n   :alt: Documentation Status\n.. |gitter-badge| image:: https://badges.gitter.im/gcovr/gcovr.svg\n   :target: https://gitter.im/gcovr/gcovr\n   :alt: Gitter chat\n\n.. end links\n\nInstallation\n------------\n\n.. begin installation\n\nGcovr is available as a Python package that can be installed via pip_.\n\n.. _pip: https://pip.pypa.io/en/stable\n\nInstall newest stable ``gcovr`` release from PyPI:\n\n.. code:: bash\n\n    pip install gcovr\n\nInstall development version from GitHub (needs at least version `21.3` of pip):\n\n.. code:: bash\n\n    pip install git+https://github.com/gcovr/gcovr.git\n\n.. end installation\n\nQuickstart\n----------\n\n.. begin quickstart\n\nGCC can instrument the executables to emit coverage data.\nYou need to recompile your code with the following flags:\n\n::\n\n    --coverage -g -O0\n\nNext, run your test suite.\nThis will generate raw coverage files.\n\nFinally, invoke gcovr.\nThis will print a tabular report on the console.\n\n::\n\n    gcovr\n\nYou can also generate detailed or nested HTML reports:\n\n::\n\n    gcovr --html-details coverage.html\n    gcovr --html-nested coverage.html\n\nGcovr will create one HTML report per source file and for\n``--html-nested`` also per directory next to the coverage.html\nsummary.\n\nYou should run gcovr from the build directory.\nThe ``-r`` option should point to the root of your project.\nThis only matters if you have a separate build directory.\nFor example::\n\n    cd build; gcovr -r ..\n\n.. end quickstart\n\nFor complete documentation, read the `manual <documentation_>`__.\n\nContributing\n------------\n\nIf you want to report a bug or contribute to gcovr development,\nplease read our contributing guidelines first:\n`<https://gcovr.com/en/latest/contributing.html>`_\n\nLicense\n-------\n\nThis software is distributed under the 3-clause BSD License.\nSee `<https://gcovr.com/en/latest/license.html#license-terms>`_ for details.\nSee `<https://gcovr.com/en/latest/license.html#acknowledgements>`_\nfor the full list of contributors.\n",
+    "description_content_type": "text/x-rst",
+    "docs_url": null,
+    "download_url": null,
+    "downloads": {
+      "last_day": -1,
+      "last_month": -1,
+      "last_week": -1
+    },
+    "dynamic": null,
+    "home_page": null,
+    "keywords": "Cobertura, Jenkins, coverage, gcc, gcov, lcov",
+    "license": null,
+    "license_expression": "BSD-3-Clause",
+    "license_files": [
+      "LICENSE.txt"
+    ],
+    "maintainer": null,
+    "maintainer_email": null,
+    "name": "gcovr",
+    "package_url": "https://pypi.org/project/gcovr/",
+    "platform": null,
+    "project_url": "https://pypi.org/project/gcovr/",
+    "project_urls": {
+      "Documentation": "https://gcovr.com",
+      "Github": "https://github.com/gcovr/gcovr",
+      "Issues": "https://github.com/gcovr/gcovr/issues"
+    },
+    "provides_extra": [
+      "dev"
+    ],
+    "release_url": "https://pypi.org/project/gcovr/8.8/",
+    "requires_dist": [
+      "colorlog",
+      "jinja2",
+      "lxml",
+      "pygments>=2.13.0",
+      "tomli>=1.1.0; python_version < \"3.11\"",
+      "typing-extensions; python_version < \"3.11\"",
+      "bandit[toml]; extra == \"dev\"",
+      "build; extra == \"dev\"",
+      "cmake; extra == \"dev\"",
+      "coverage; extra == \"dev\"",
+      "mypy; extra == \"dev\"",
+      "nox; extra == \"dev\"",
+      "pre-commit; extra == \"dev\"",
+      "pygments==2.21.0; extra == \"dev\"",
+      "pyinstaller~=6.16.0; extra == \"dev\"",
+      "pylint<4.0.0; extra == \"dev\"",
+      "pytest; extra == \"dev\"",
+      "pytest-check; extra == \"dev\"",
+      "pytest-cov; extra == \"dev\"",
+      "pytest-env; extra == \"dev\"",
+      "pytest-timeout; extra == \"dev\"",
+      "pytest-xdist; extra == \"dev\"",
+      "pywin32; sys_platform == \"win32\" and extra == \"dev\"",
+      "requests; extra == \"dev\"",
+      "ruff~=0.16.7; extra == \"dev\"",
+      "tomli>=1.1.0; python_version < \"3.11\" and extra == \"dev\"",
+      "twine; extra == \"dev\"",
+      "wheel; extra == \"dev\"",
+      "yamllint; extra == \"dev\"",
+      "yaxmldiff; extra == \"dev\"",
+      "zizmor~=1.31.1; extra == \"dev\""
+    ],
+    "requires_python": ">=3.10",
+    "summary": "Generate C/C++ code coverage reports with gcov",
+    "version": "8.8",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "urls": [
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "21a497456356c7ed988a5fb9699896bae45872634ac47f0d157de6a14ac295e8"
+      },
+      "digests": {
+        "blake2b_256": "5389d70fe863ff3549aadd3eabde823796639f8d313912c990fe7dc26cba798d",
+        "md5": "a3771854f5e1279677732f90100c9f03",
+        "sha256": "a5c3e3d4a9c8ab4a95aa8e4b072fcaec7962b1d9fb2add3f10645f649ef29545"
+      },
+      "downloads": -1,
+      "filename": "gcovr-8.8-py3-none-any.whl",
+      "has_sig": false,
+      "md5_digest": "a3771854f5e1279677732f90100c9f03",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.10",
+      "size": 863676,
+      "upload_time": "2026-10-27T12:52:43",
+      "upload_time_iso_8601": "2026-10-27T12:52:43.743198Z",
+      "url": "https://files.pythonhosted.org/packages/53/89/d70fe863ff3549aadd3eabde823796639f8d313912c990fe7dc26cba798d/gcovr-8.8-py3-none-any.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": false,
+      "digests": {
+        "blake2b_256": "845d75f6913653852720651790bf611e37355ee53cdd298c7f1561cde8773e02",
+        "md5": "6c7b59be40b2e385385c54c656f80021",
+        "sha256": "0320230a432c033c1a41f34ba943082f450008c789bee05d414e532f380fd788"
+      },
+      "downloads": -1,
+      "filename": "gcovr-8.8.tar.gz",
+      "has_sig": false,
+      "md5_digest": "6c7b59be40b2e385385c54c656f80021",
+      "packagetype": "sdist",
+      "python_version": "source",
+      "requires_python": ">=3.10",
+      "size": 808751,
+      "upload_time": "2026-10-27T12:52:45",
+      "upload_time_iso_8601": "2026-10-27T12:52:45.668324Z",
+      "url": "https://files.pythonhosted.org/packages/84/5d/75f6913653852720651790bf611e37355ee53cdd298c7f1561cde8773e02/gcovr-8.8.tar.gz",
+      "yanked": false,
+      "yanked_reason": null
+    }
+  ]
+}

@@ -1,0 +1,4238 @@
+{
+    "graph": {
+        "nodes": {
+            "0": {
+                "ref": "conanfile",
+                "id": "0",
+                "recipe": "Consumer",
+                "package_id": null,
+                "prev": null,
+                "rrev": null,
+                "rrev_timestamp": null,
+                "prev_timestamp": null,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": null,
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": null,
+                "user": null,
+                "channel": null,
+                "url": null,
+                "license": null,
+                "author": null,
+                "description": null,
+                "homepage": null,
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": null,
+                "topics": null,
+                "package_type": "unknown",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [
+                    "CMakeDeps",
+                    "CMakeToolchain"
+                ],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": null,
+                "source_folder": "/tmp/gh-issue-solver-1793921173521/cpp",
+                "build_folder": "/tmp/gh-issue-solver-1793921173521/cpp/build",
+                "generators_folder": "/tmp/gh-issue-solver-1793921173521/cpp/build",
+                "package_folder": null,
+                "immutable_package_folder": null,
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "lib"
+                        ],
+                        "resdirs": [],
+                        "bindirs": [
+                            "bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": null,
+                        "properties": null,
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "conanfile.txt",
+                "vendor": false,
+                "dependencies": {
+                    "1": {
+                        "ref": "gtest/1.18.0",
+                        "require": "gtest/1.18.0",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "3": {
+                        "ref": "benchmark/1.10.0",
+                        "require": "benchmark/1.10.0",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "7": {
+                        "ref": "platform-collections-methods/0.3.0",
+                        "require": "platform-collections-methods/0.3.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "18": {
+                        "ref": "platform-memory/0.1.0",
+                        "require": "platform-memory/0.1.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "9": {
+                        "ref": "platform-collections/0.2.1",
+                        "require": "platform-collections/0.2.1",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "10": {
+                        "ref": "platform-equality/0.0.1",
+                        "require": "platform-equality/0.0.1",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "20": {
+                        "ref": "platform-data/0.1.1",
+                        "require": "platform-data/0.1.1",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "21": {
+                        "ref": "platform-setters/0.1.0",
+                        "require": "platform-setters/0.1.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "14": {
+                        "ref": "platform-random/0.2.0",
+                        "require": "platform-random/0.2.0",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "8": {
+                        "ref": "platform-interfaces/0.3.41",
+                        "require": "platform-interfaces/0.3.41",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "15": {
+                        "ref": "platform-ranges/0.2.0",
+                        "require": "platform-ranges/0.2.0",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "5": {
+                        "ref": "platform-exceptions/0.3.2",
+                        "require": "platform-exceptions/0.3.2",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "16": {
+                        "ref": "platform-converters/0.2.0",
+                        "require": "platform-converters/0.2.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "6": {
+                        "ref": "platform-delegates/0.3.7",
+                        "require": "platform-delegates/0.3.7",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "11": {
+                        "ref": "platform-hashing/0.5.6",
+                        "require": "platform-hashing/0.5.6",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "12": {
+                        "ref": "cpuinfo/cci.20260612",
+                        "require": "cpuinfo/cci.20260612",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "22": {
+                        "ref": "platform-numbers/0.1.0",
+                        "require": "platform-numbers/0.1.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "19": {
+                        "ref": "mio/cci.20230303",
+                        "require": "mio/cci.20230303",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    },
+                    "17": {
+                        "ref": "ms-gsl/5.0.1",
+                        "require": "ms-gsl/5.0.1",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": true,
+                        "package_id_mode": null,
+                        "visible": true
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "1": {
+                "ref": "gtest/1.18.0#e2507fc4efe2ec9e2db9e5c91eefab9f",
+                "id": "1",
+                "recipe": "Cache",
+                "package_id": "c961d8c62795395aeeebf1696bec18f00505c7ea",
+                "prev": "e35b400ca942b2fcc62e9585d0d23261",
+                "rrev": "e2507fc4efe2ec9e2db9e5c91eefab9f",
+                "rrev_timestamp": 1786446847.733,
+                "prev_timestamp": 1793921794.3769364,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "gtest",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "BSD-3-Clause",
+                "author": null,
+                "description": "Google's C++ test framework",
+                "homepage": "https://github.com/google/googletest",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": {
+                    "shared": false,
+                    "fPIC": true,
+                    "build_gmock": true,
+                    "no_main": false,
+                    "hide_symbols": false,
+                    "disable_pthreads": false
+                },
+                "options_description": null,
+                "version": "1.18.0",
+                "topics": [
+                    "testing",
+                    "google-testing",
+                    "unit-test"
+                ],
+                "package_type": "static-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {
+                    "build_gmock": "True",
+                    "disable_pthreads": "False",
+                    "fPIC": "True",
+                    "hide_symbols": "False",
+                    "no_main": "False",
+                    "shared": "False"
+                },
+                "options_definitions": {
+                    "shared": [
+                        "True",
+                        "False"
+                    ],
+                    "fPIC": [
+                        "True",
+                        "False"
+                    ],
+                    "build_gmock": [
+                        "True",
+                        "False"
+                    ],
+                    "no_main": [
+                        "True",
+                        "False"
+                    ],
+                    "hide_symbols": [
+                        "True",
+                        "False"
+                    ],
+                    "disable_pthreads": [
+                        "True",
+                        "False"
+                    ]
+                },
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/gtesta889918188a25/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/lib"
+                        ],
+                        "resdirs": null,
+                        "bindirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_find_mode": "both",
+                            "cmake_file_name": "GTest"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    },
+                    "libgtest": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/lib"
+                        ],
+                        "resdirs": [],
+                        "bindirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/bin"
+                        ],
+                        "builddirs": [],
+                        "frameworkdirs": [],
+                        "system_libs": [
+                            "m",
+                            "pthread"
+                        ],
+                        "frameworks": [],
+                        "libs": [
+                            "gtest"
+                        ],
+                        "defines": [],
+                        "cflags": [],
+                        "cxxflags": [],
+                        "sharedlinkflags": [],
+                        "exelinkflags": [],
+                        "objects": [],
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_target_name": "GTest::gtest",
+                            "cmake_target_aliases": [
+                                "GTest::GTest"
+                            ],
+                            "pkg_config_name": "gtest"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    },
+                    "gtest_main": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/lib"
+                        ],
+                        "resdirs": [],
+                        "bindirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/bin"
+                        ],
+                        "builddirs": [],
+                        "frameworkdirs": [],
+                        "system_libs": [],
+                        "frameworks": [],
+                        "libs": [
+                            "gtest_main"
+                        ],
+                        "defines": [],
+                        "cflags": [],
+                        "cxxflags": [],
+                        "sharedlinkflags": [],
+                        "exelinkflags": [],
+                        "objects": [],
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [
+                            "libgtest"
+                        ],
+                        "properties": {
+                            "cmake_target_name": "GTest::gtest_main",
+                            "cmake_target_aliases": [
+                                "GTest::Main"
+                            ],
+                            "pkg_config_name": "gtest_main"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    },
+                    "gmock": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/lib"
+                        ],
+                        "resdirs": [],
+                        "bindirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/bin"
+                        ],
+                        "builddirs": [],
+                        "frameworkdirs": [],
+                        "system_libs": [],
+                        "frameworks": [],
+                        "libs": [
+                            "gmock"
+                        ],
+                        "defines": [],
+                        "cflags": [],
+                        "cxxflags": [],
+                        "sharedlinkflags": [],
+                        "exelinkflags": [],
+                        "objects": [],
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [
+                            "libgtest"
+                        ],
+                        "properties": {
+                            "cmake_target_name": "GTest::gmock",
+                            "pkg_config_name": "gmock"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    },
+                    "gmock_main": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/lib"
+                        ],
+                        "resdirs": [],
+                        "bindirs": [
+                            "/home/box/.conan2/p/b/gtest9cd5a04ced28f/p/bin"
+                        ],
+                        "builddirs": [],
+                        "frameworkdirs": [],
+                        "system_libs": [],
+                        "frameworks": [],
+                        "libs": [
+                            "gmock_main"
+                        ],
+                        "defines": [],
+                        "cflags": [],
+                        "cxxflags": [],
+                        "sharedlinkflags": [],
+                        "exelinkflags": [],
+                        "objects": [],
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [
+                            "gmock"
+                        ],
+                        "properties": {
+                            "cmake_target_name": "GTest::gmock_main",
+                            "pkg_config_name": "gmock_main"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "gtest/1.18.0",
+                "info": {
+                    "settings": {
+                        "os": "Linux",
+                        "arch": "x86_64",
+                        "compiler": "gcc",
+                        "compiler.cppstd": "20",
+                        "compiler.libcxx": "libstdc++11",
+                        "compiler.version": "13",
+                        "build_type": "Release"
+                    },
+                    "options": {
+                        "build_gmock": "True",
+                        "disable_pthreads": "False",
+                        "fPIC": "True",
+                        "hide_symbols": "False",
+                        "shared": "False"
+                    }
+                },
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "1.18.0": {
+                            "sha256": "6e3191c1455468b3fc35a417fb565c1c5071aee1b7e7f85e30cf48a98d37d8b5",
+                            "url": "https://github.com/google/googletest/archive/v1.18.0.tar.gz"
+                        }
+                    }
+                },
+                "dependencies": {
+                    "2": {
+                        "ref": "cmake/4.4.5",
+                        "require": "cmake/4.4.5",
+                        "run": true,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": true,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": false,
+                        "package_id_mode": null,
+                        "visible": false
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "2": {
+                "ref": "cmake/4.4.5#platform",
+                "id": "2",
+                "recipe": "Platform",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": null,
+                "rrev": "platform",
+                "rrev_timestamp": null,
+                "prev_timestamp": null,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Skip",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": null,
+                "user": null,
+                "channel": null,
+                "url": null,
+                "license": null,
+                "author": null,
+                "description": null,
+                "homepage": null,
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": null,
+                "topics": null,
+                "package_type": "None",
+                "languages": [],
+                "settings": {},
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": null,
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": null,
+                "immutable_package_folder": null,
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "lib"
+                        ],
+                        "resdirs": null,
+                        "bindirs": [
+                            "bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": null,
+                        "properties": null,
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "cmake/4.4.5",
+                "info": {},
+                "vendor": false,
+                "dependencies": {},
+                "context": "build",
+                "test": false
+            },
+            "3": {
+                "ref": "benchmark/1.10.0#7fcf1950d0dfaeb2456561a379daa894",
+                "id": "3",
+                "recipe": "Cache",
+                "package_id": "b9f787d17ef5bad341b94a8396aebe379bf83c14",
+                "prev": "ff99a90b6d98cc0028a06874d32b03d8",
+                "rrev": "7fcf1950d0dfaeb2456561a379daa894",
+                "rrev_timestamp": 1793610279.35,
+                "prev_timestamp": 1793610490.703,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "benchmark",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Apache-2.0",
+                "author": null,
+                "description": "A microbenchmark support library.",
+                "homepage": "https://github.com/google/benchmark",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": {
+                    "shared": false,
+                    "fPIC": true,
+                    "enable_lto": false,
+                    "enable_exceptions": true,
+                    "enable_libpfm": false
+                },
+                "options_description": null,
+                "version": "1.10.0",
+                "topics": [
+                    "google",
+                    "microbenchmark"
+                ],
+                "package_type": "static-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "gnu17",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {
+                    "enable_exceptions": "True",
+                    "enable_libpfm": "False",
+                    "enable_lto": "False",
+                    "fPIC": "True",
+                    "shared": "False"
+                },
+                "options_definitions": {
+                    "shared": [
+                        "True",
+                        "False",
+                        "ANY"
+                    ],
+                    "fPIC": [
+                        "True",
+                        "False",
+                        "ANY"
+                    ],
+                    "enable_lto": [
+                        "True",
+                        "False",
+                        "ANY"
+                    ],
+                    "enable_exceptions": [
+                        "True",
+                        "False",
+                        "ANY"
+                    ],
+                    "enable_libpfm": [
+                        "True",
+                        "False",
+                        "ANY"
+                    ]
+                },
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/benchfecc52522db97/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/bencha8b2ae85bcd98/p",
+                "immutable_package_folder": "/home/box/.conan2/p/bencha8b2ae85bcd98/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/bencha8b2ae85bcd98/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "/home/box/.conan2/p/bencha8b2ae85bcd98/p/lib"
+                        ],
+                        "resdirs": null,
+                        "bindirs": [
+                            "/home/box/.conan2/p/bencha8b2ae85bcd98/p/bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "benchmark",
+                            "pkg_config_name": "benchmark",
+                            "cmake_target_name": "benchmark::benchmark_main"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    },
+                    "_benchmark": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/bencha8b2ae85bcd98/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "/home/box/.conan2/p/bencha8b2ae85bcd98/p/lib"
+                        ],
+                        "resdirs": [],
+                        "bindirs": [
+                            "/home/box/.conan2/p/bencha8b2ae85bcd98/p/bin"
+                        ],
+                        "builddirs": [],
+                        "frameworkdirs": [],
+                        "system_libs": [
+                            "pthread",
+                            "rt",
+                            "m"
+                        ],
+                        "frameworks": [],
+                        "libs": [
+                            "benchmark"
+                        ],
+                        "defines": [
+                            "BENCHMARK_STATIC_DEFINE"
+                        ],
+                        "cflags": [],
+                        "cxxflags": [],
+                        "sharedlinkflags": [],
+                        "exelinkflags": [],
+                        "objects": [],
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_target_name": "benchmark::benchmark"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    },
+                    "benchmark_main": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/bencha8b2ae85bcd98/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "/home/box/.conan2/p/bencha8b2ae85bcd98/p/lib"
+                        ],
+                        "resdirs": [],
+                        "bindirs": [
+                            "/home/box/.conan2/p/bencha8b2ae85bcd98/p/bin"
+                        ],
+                        "builddirs": [],
+                        "frameworkdirs": [],
+                        "system_libs": [],
+                        "frameworks": [],
+                        "libs": [
+                            "benchmark_main"
+                        ],
+                        "defines": [],
+                        "cflags": [],
+                        "cxxflags": [],
+                        "sharedlinkflags": [],
+                        "exelinkflags": [],
+                        "objects": [],
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [
+                            "_benchmark"
+                        ],
+                        "properties": {
+                            "cmake_target_name": "benchmark::benchmark_main"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "benchmark/1.10.0",
+                "info": {
+                    "settings": {
+                        "os": "Linux",
+                        "arch": "x86_64",
+                        "compiler": "gcc",
+                        "compiler.cppstd": "gnu17",
+                        "compiler.libcxx": "libstdc++11",
+                        "compiler.version": "13",
+                        "build_type": "Release"
+                    },
+                    "options": {
+                        "enable_exceptions": "True",
+                        "enable_libpfm": "False",
+                        "enable_lto": "False",
+                        "fPIC": "True",
+                        "shared": "False"
+                    },
+                    "compatibility_delta": {
+                        "settings": [
+                            [
+                                "compiler.cppstd",
+                                "gnu17"
+                            ]
+                        ]
+                    }
+                },
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "1.10.0": {
+                            "sha256": "acc5c7c0fbed855c4aaa2d7c3c36fb82b0c15c28f4e151e3f679c2fc0aa404af",
+                            "url": "https://github.com/google/benchmark/archive/v1.10.0.tar.gz"
+                        }
+                    }
+                },
+                "dependencies": {
+                    "4": {
+                        "ref": "cmake/4.4.5",
+                        "require": "cmake/4.4.5",
+                        "run": true,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": true,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": false,
+                        "package_id_mode": null,
+                        "visible": false
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "4": {
+                "ref": "cmake/4.4.5#platform",
+                "id": "4",
+                "recipe": "Platform",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": null,
+                "rrev": "platform",
+                "rrev_timestamp": null,
+                "prev_timestamp": null,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Skip",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": null,
+                "user": null,
+                "channel": null,
+                "url": null,
+                "license": null,
+                "author": null,
+                "description": null,
+                "homepage": null,
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": null,
+                "topics": null,
+                "package_type": "None",
+                "languages": [],
+                "settings": {},
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": null,
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": null,
+                "immutable_package_folder": null,
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "lib"
+                        ],
+                        "resdirs": null,
+                        "bindirs": [
+                            "bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": null,
+                        "properties": null,
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "cmake/4.4.5",
+                "info": {},
+                "vendor": false,
+                "dependencies": {},
+                "context": "build",
+                "test": false
+            },
+            "5": {
+                "ref": "platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a",
+                "id": "5",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "95f257de01c9f578ae93a77a93a5950e",
+                "rrev": "f85774f1881822f0ffd9f7095bd3085a",
+                "rrev_timestamp": 1793922665.5414052,
+                "prev_timestamp": 1793921795.5388517,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-exceptions",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Unlicense",
+                "author": null,
+                "description": "platform.exceptions is one of the libraries of the LinksPlatform modular framework, to ensure exceptions",
+                "homepage": "https://github.com/linksplatform/Exceptions",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.3.2",
+                "topics": [
+                    "linksplatform",
+                    "cpp20",
+                    "exceptions",
+                    "any",
+                    "ranges",
+                    "native"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platfee8cb09287d88/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platf7ce0c8aac1a45/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platf7ce0c8aac1a45/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platf7ce0c8aac1a45/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "Platform.Exceptions",
+                            "cmake_target_name": "Platform.Exceptions::Platform.Exceptions"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-exceptions/0.3.2",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.2.0": {
+                            "source": {
+                                "url": "https://github.com/linksplatform/Exceptions/archive/refs/tags/0.4.0_0.2.0.zip",
+                                "sha256": "9e4513da667e41f0bbe776123747ac63958972edb00eaee300c495ae3b39eb9b"
+                            }
+                        },
+                        "0.3.0": {
+                            "source": {
+                                "url": "https://github.com/linksplatform/Exceptions/archive/refs/tags/cpp_0.3.0.zip",
+                                "sha256": "08506f334098e8c9106ff357efd7f68b83a3c1f4dc03b6b97b6229b14737d0ce"
+                            }
+                        },
+                        "0.3.2": {
+                            "source": {
+                                "url": "https://github.com/linksplatform/Exceptions/releases/download/cpp_0.3.2/platform.exceptions_0.3.2.zip",
+                                "sha256": "62BE3FC1AAA735D8BB7D4BB31329A2703AFA5A337FF4CD2D3A33CA12F1B4FC65"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {
+                    "6": {
+                        "ref": "platform-delegates/0.3.7",
+                        "require": "platform-delegates/0.3.7",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "6": {
+                "ref": "platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0",
+                "id": "6",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "e51ebaea1ce5334ac62fb7ecaaf705bf",
+                "rrev": "fa6d4052c342718034aaa3fefe278fd0",
+                "rrev_timestamp": 1793922664.9083471,
+                "prev_timestamp": 1793921720.9176738,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-delegates",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Unlicense",
+                "author": null,
+                "description": "platform.delegates is one of the libraries of the LinksPlatform modular framework, which uses \n    innovations from the C++17 standard, for easier use delegates/events in csharp style.",
+                "homepage": "https://github.com/linksplatform/Delegates",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.3.7",
+                "topics": [
+                    "linksplatform",
+                    "cpp17",
+                    "delegates",
+                    "events",
+                    "header-only"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platff04892e2dfb10/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platf8985741d9c80c/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platf8985741d9c80c/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platf8985741d9c80c/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "Platform.Delegates",
+                            "cmake_target_name": "Platform.Delegates::Platform.Delegates"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-delegates/0.3.7",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.1.3": {
+                            "source": {
+                                "url": "https://github.com/linksplatform/Delegates/archive/refs/tags/0.1.3.zip",
+                                "sha256": "e30b2e3c8aff6ffaa366b1c66a7af79f6bc828822f428a4427a7a89e14412fec"
+                            }
+                        },
+                        "0.2.7": {
+                            "source": {
+                                "url": "https://github.com/linksplatform/Delegates/archive/refs/tags/cpp_0.2.7.zip",
+                                "sha256": "440e628dba541497a4d4075b0fd97e42279c5ed73a4156fbcb06556f09109435"
+                            }
+                        },
+                        "0.3.7": {
+                            "source": {
+                                "url": "https://github.com/linksplatform/Delegates/archive/refs/tags/cpp_0.3.7.zip",
+                                "sha256": "368C3316359151EDCDE8AC8DBC9DBACF11B011F7BDEA97B97C6F116EF802104E"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {},
+                "context": "host",
+                "test": false
+            },
+            "7": {
+                "ref": "platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202",
+                "id": "7",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "805323c60df80a61563931fcfb9b5823",
+                "rrev": "7bf9addb258962e4c904ace39794c202",
+                "rrev_timestamp": 1793922671.9289205,
+                "prev_timestamp": 1793921795.112173,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-collections-methods",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Unlicense",
+                "author": null,
+                "description": "The Collections.Methods.h library in C++ provides robust methods and implementations for manipulating complex data structures, with a particular emphasis on lists and trees. It includes bases and specialized methods for different types of doubly linked lists, and various tree structures including size-balanced, AVL balanced, and recursionless size-balanced trees.",
+                "homepage": "https://github.com/linksplatform/Collections.Methods",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.3.0",
+                "topics": [
+                    "linksplatform",
+                    "cpp20",
+                    "exceptions",
+                    "any",
+                    "ranges",
+                    "native"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platfaa5f0f1339589/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platfa0a5ab3d07b03/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platfa0a5ab3d07b03/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platfa0a5ab3d07b03/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "Platform.Collections.Methods",
+                            "cmake_target_name": "Platform.Collections.Methods::Platform.Collections.Methods"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-collections-methods/0.3.0",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.3.0": {
+                            "source": {
+                                "sha256": "79086e5d951f72f42acccd380554592f2bcae2b778fbb4b5637d055de0388422",
+                                "url": "https://github.com/linksplatform/Collections.Methods/releases/download/cpp_0.3.0/platform.collections.methods_0.3.0.zip"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {
+                    "8": {
+                        "ref": "platform-interfaces/0.3.41",
+                        "require": "platform-interfaces/0.3.41",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "8": {
+                "ref": "platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93",
+                "id": "8",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "89402c1ce8c65d2b3bff73d1fad91950",
+                "rrev": "2749e377587371071b89193878f3ad93",
+                "rrev_timestamp": 1793922664.297159,
+                "prev_timestamp": 1793921722.329743,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-interfaces",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Unlicense",
+                "author": null,
+                "description": "platform.interfaces is one of the libraries of the LinksPlatform modular framework, which uses\n    innovations from the C++20 standard, for easier use of static polymorphism. It also includes some auxiliary\n    structures for more convenient work with containers.",
+                "homepage": "https://github.com/linksplatform/Interfaces",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.3.41",
+                "topics": [
+                    "platform",
+                    "concepts",
+                    "header-only"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platf07908f02326eb/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platfa75b7ac1b8aeb/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platfa75b7ac1b8aeb/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platfa75b7ac1b8aeb/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "Platform.Interfaces",
+                            "cmake_target_name": "Platform.Interfaces::Platform.Interfaces"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-interfaces/0.3.41",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.3.41": {
+                            "source": {
+                                "url": "https://github.com/linksplatform/Interfaces/releases/download/cpp_0.3.41/platform.interfaces_0.3.41.zip",
+                                "sha256": "26bfb96f8918db86390cf326eba5c76cfc29f06a785d30c789445fe59371bab4"
+                            },
+                            "license": {
+                                "url": "https://raw.githubusercontent.com/linksplatform/Interfaces/cpp_0.3.41/LICENSE",
+                                "sha256": "79d0fc44716007dddc375601bca8879ad45bc1165bf9342b7a16572b4f41abe8"
+                            }
+                        },
+                        "0.1.2": {
+                            "source": {
+                                "url": "https://github.com/linksplatform/Interfaces/archive/refs/tags/0.4.0_0.1.2.tar.gz",
+                                "sha256": "61283bf6488b9051e9f9e80e89ab0d1f85b76a1dbee3fd27f193e678f23903e2"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {},
+                "context": "host",
+                "test": false
+            },
+            "9": {
+                "ref": "platform-collections/0.2.1#4fc02982a3b2cbb22574ee47d8627d4f",
+                "id": "9",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "45e0a5351397729f623902347fdf0072",
+                "rrev": "4fc02982a3b2cbb22574ee47d8627d4f",
+                "rrev_timestamp": 1793922669.0970383,
+                "prev_timestamp": 1793921857.3007731,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-collections",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Unlicense",
+                "author": null,
+                "description": "Platform.Collections.h is a comprehensive C++ library that provides a variety of utilities, interfaces, and extensions for working with data structures and algorithms. These include arrays, lists, segments, sets, stacks, bitstrings, strings, dictionaries, and trees.",
+                "homepage": "https://github.com/linksplatform/Collections",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.2.1",
+                "topics": [
+                    "linksplatform",
+                    "cpp20",
+                    "collections"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platf33f313e14c233/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platf2c04b82626109/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platf2c04b82626109/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platf2c04b82626109/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "Platform.Collections",
+                            "cmake_target_name": "Platform.Collections::Platform.Collections"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-collections/0.2.1",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.2.1": {
+                            "source": {
+                                "sha256": "0da58fc45ab70295e6fffc041379a6d46a091609294f2fa5892b8acc2975b815",
+                                "url": "https://github.com/linksplatform/Collections/releases/download/cpp_0.2.1/platform.collections_0.2.1.zip"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {
+                    "8": {
+                        "ref": "platform-interfaces/0.3.41",
+                        "require": "platform-interfaces/0.3.41",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "10": {
+                        "ref": "platform-equality/0.0.1",
+                        "require": "platform-equality/0.0.1",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "14": {
+                        "ref": "platform-random/0.2.0",
+                        "require": "platform-random/0.2.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "15": {
+                        "ref": "platform-ranges/0.2.0",
+                        "require": "platform-ranges/0.2.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "5": {
+                        "ref": "platform-exceptions/0.3.2",
+                        "require": "platform-exceptions/0.3.2",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "16": {
+                        "ref": "platform-converters/0.2.0",
+                        "require": "platform-converters/0.2.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "6": {
+                        "ref": "platform-delegates/0.3.7",
+                        "require": "platform-delegates/0.3.7",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "11": {
+                        "ref": "platform-hashing/0.5.6",
+                        "require": "platform-hashing/0.5.6",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "12": {
+                        "ref": "cpuinfo/cci.20260612",
+                        "require": "cpuinfo/cci.20260612",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "17": {
+                        "ref": "ms-gsl/5.0.1",
+                        "require": "ms-gsl/5.0.1",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "10": {
+                "ref": "platform-equality/0.0.1#4c269c237c780cf97734b306fef30799",
+                "id": "10",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "3a5ac2fd4b138217270bcbfc0d560603",
+                "rrev": "4c269c237c780cf97734b306fef30799",
+                "rrev_timestamp": 1793922668.4751217,
+                "prev_timestamp": 1793921721.3268447,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-equality",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Unlicense",
+                "author": null,
+                "description": "platform.equality is one of the libraries of the LinksPlatform modular framework, which uses\n    innovations from the C++20 standard, for slow parody any typing dictionary and others.",
+                "homepage": "https://github.com/linksplatform/Equality",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.0.1",
+                "topics": [
+                    "platform",
+                    "concepts",
+                    "header-only"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platfbf8c1581d4676/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platfa2f4e77461a42/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platfa2f4e77461a42/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platfa2f4e77461a42/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "Platform.Equality",
+                            "cmake_target_name": "Platform.Equality::Platform.Equality"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-equality/0.0.1",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.0.1": {
+                            "source": {
+                                "url": "https://github.com/linksplatform/Equality/archive/refs/tags/0.0.1.zip",
+                                "sha256": "84c363152ab7eef69a9d72a1aebcfabcd63fc889efce591350ec56ddec544981"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {},
+                "context": "host",
+                "test": false
+            },
+            "11": {
+                "ref": "platform-hashing/0.5.6#53a24358f1c1ee4c7082413929d67e80",
+                "id": "11",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "a6036d56e42b1b976b5769d839b117e0",
+                "rrev": "53a24358f1c1ee4c7082413929d67e80",
+                "rrev_timestamp": 1793922666.788326,
+                "prev_timestamp": 1793922684.6656823,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-hashing",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Unlicense",
+                "author": null,
+                "description": "platform.hashing is one of the libraries of the LinksPlatform modular framework, which contains std::hash specializations for:\n - trivial and standard-layout types\n - types constrained by std::ranges::range\n - std::any",
+                "homepage": "https://github.com/linksplatform/Hashing",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.5.6",
+                "topics": [
+                    "linksplatform",
+                    "cpp20",
+                    "hashing",
+                    "any",
+                    "ranges",
+                    "native"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platfe4ffe5e6c6efe/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platf43c9bece99b27/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platf43c9bece99b27/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platf43c9bece99b27/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "suggested_flags": "-march=haswell",
+                            "cmake_file_name": "Platform.Hashing",
+                            "cmake_target_name": "Platform.Hashing::Platform.Hashing"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-hashing/0.5.6",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.5.6": {
+                            "source": {
+                                "url": "https://github.com/linksplatform/Hashing/releases/download/cpp_0.5.6/platform.hashing_0.5.6.zip",
+                                "sha256": "875866da000eafe9d3caabb00007213d9fba8f39f41bd4985d10ace3ac8354bc"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {
+                    "12": {
+                        "ref": "cpuinfo/cci.20260612",
+                        "require": "cpuinfo/cci.20260612",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "12": {
+                "ref": "cpuinfo/cci.20260612#1b16cf0bcf6fbf386954c8d145705d98",
+                "id": "12",
+                "recipe": "Cache",
+                "package_id": "4d9e6a210329116850cff601cc4db23e561d9a71",
+                "prev": "a12bdfa21baaa1d9f24a3111651070c2",
+                "rrev": "1b16cf0bcf6fbf386954c8d145705d98",
+                "rrev_timestamp": 1793922673.8851342,
+                "prev_timestamp": 1793922684.3135881,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "cpuinfo",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "BSD-2-Clause",
+                "author": null,
+                "description": "cpuinfo is a library to detect essential for performance optimization information about host CPU.",
+                "homepage": "https://github.com/pytorch/cpuinfo",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": {
+                    "shared": false,
+                    "fPIC": true,
+                    "log_level": "default"
+                },
+                "options_description": null,
+                "version": "cci.20260612",
+                "topics": [
+                    "cpu",
+                    "cpuid",
+                    "cpu-cache",
+                    "cpu-model",
+                    "instruction-set",
+                    "cpu-topology"
+                ],
+                "package_type": "static-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {
+                    "fPIC": "True",
+                    "log_level": "default",
+                    "shared": "False"
+                },
+                "options_definitions": {
+                    "shared": [
+                        "True",
+                        "False"
+                    ],
+                    "fPIC": [
+                        "True",
+                        "False"
+                    ],
+                    "log_level": [
+                        "default",
+                        "debug",
+                        "info",
+                        "warning",
+                        "error",
+                        "fatal",
+                        "none"
+                    ]
+                },
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/cpuin35e32de242bbf/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/cpuin127d39dbb6eb6/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/cpuin127d39dbb6eb6/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/cpuin127d39dbb6eb6/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "/home/box/.conan2/p/b/cpuin127d39dbb6eb6/p/lib"
+                        ],
+                        "resdirs": null,
+                        "bindirs": [
+                            "/home/box/.conan2/p/b/cpuin127d39dbb6eb6/p/bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "cpuinfo",
+                            "pkg_config_name": "libcpuinfo"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    },
+                    "cpuinfo": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/cpuin127d39dbb6eb6/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "/home/box/.conan2/p/b/cpuin127d39dbb6eb6/p/lib"
+                        ],
+                        "resdirs": [],
+                        "bindirs": [
+                            "/home/box/.conan2/p/b/cpuin127d39dbb6eb6/p/bin"
+                        ],
+                        "builddirs": [],
+                        "frameworkdirs": [],
+                        "system_libs": [
+                            "pthread"
+                        ],
+                        "frameworks": [],
+                        "libs": [
+                            "cpuinfo"
+                        ],
+                        "defines": [],
+                        "cflags": [],
+                        "cxxflags": [],
+                        "sharedlinkflags": [],
+                        "exelinkflags": [],
+                        "objects": [],
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_target_name": "cpuinfo::cpuinfo"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "cpuinfo/cci.20260612",
+                "info": {
+                    "settings": {
+                        "os": "Linux",
+                        "arch": "x86_64",
+                        "compiler": "gcc",
+                        "compiler.version": "13",
+                        "build_type": "Release"
+                    },
+                    "options": {
+                        "fPIC": "True",
+                        "log_level": "default",
+                        "shared": "False"
+                    }
+                },
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "cci.20260612": {
+                            "url": "https://github.com/pytorch/cpuinfo/archive/4628dc060ce4e82345dc166bbac875609db4ff69.tar.gz",
+                            "sha256": "a550205e891f9f1982044a306cb54556347645cba129af34cd907160f83bd0f1"
+                        },
+                        "cci.20251210": {
+                            "url": "https://github.com/pytorch/cpuinfo/archive/ff24ffee8340fbd9001cce6a9ef41cdd16aa2bd3.tar.gz",
+                            "sha256": "59a0a35488762568c7b7575352d726cb11fee361455e451ad820bdf5a01b856e"
+                        },
+                        "cci.20250110": {
+                            "url": "https://github.com/pytorch/cpuinfo/archive/8a1772a0c5c447df2d18edf33ec4603a8c9c04a6.tar.gz",
+                            "sha256": "37bb2fd2d1e87102baea8d131a0c550c4ceff5a12fba61faeb1bff63868155f1"
+                        },
+                        "cci.20231129": {
+                            "url": "https://github.com/pytorch/cpuinfo/archive/9d809924011af8ff49dadbda1499dc5193f1659c.tar.gz",
+                            "sha256": "0d769b7e3cc7d16205f4cc8988f869910db19f2d274db005c1ed74e961936d34"
+                        },
+                        "cci.20230118": {
+                            "url": "https://github.com/pytorch/cpuinfo/archive/3dc310302210c1891ffcfb12ae67b11a3ad3a150.tar.gz",
+                            "sha256": "f2f4df6d2b01036f36c5e372954e536881cdd59f5c2461c67aa0a92c6d755c61"
+                        },
+                        "cci.20220618": {
+                            "url": "https://github.com/pytorch/cpuinfo/archive/082deffc80ce517f81dc2f3aebe6ba671fcd09c9.tar.gz",
+                            "sha256": "4379348ec3127b37e854a0a66f85ea1d3c606e5f3a6dce235dc9c69ce663c026"
+                        },
+                        "cci.20220228": {
+                            "url": "https://github.com/pytorch/cpuinfo/archive/6288930068efc8dff4f3c0b95f062fc5ddceba04.tar.gz",
+                            "sha256": "9e9e937b3569320d23d8b1c8c26ed3603affe55c3e4a3e49622e8a2c6d6e1696"
+                        },
+                        "cci.20201217": {
+                            "url": "https://github.com/pytorch/cpuinfo/archive/5916273f79a21551890fd3d56fc5375a78d1598d.tar.gz",
+                            "sha256": "f3c16d5d393d6d1fa6b6ed8621dd0a535552df9bc88cbba739375dde38a93142"
+                        }
+                    }
+                },
+                "dependencies": {
+                    "13": {
+                        "ref": "cmake/4.4.5",
+                        "require": "cmake/4.4.5",
+                        "run": true,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": true,
+                        "transitive_headers": null,
+                        "transitive_libs": null,
+                        "headers": false,
+                        "package_id_mode": null,
+                        "visible": false
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "13": {
+                "ref": "cmake/4.4.5#platform",
+                "id": "13",
+                "recipe": "Platform",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": null,
+                "rrev": "platform",
+                "rrev_timestamp": null,
+                "prev_timestamp": null,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Skip",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": null,
+                "user": null,
+                "channel": null,
+                "url": null,
+                "license": null,
+                "author": null,
+                "description": null,
+                "homepage": null,
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": null,
+                "topics": null,
+                "package_type": "None",
+                "languages": [],
+                "settings": {},
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": null,
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": null,
+                "immutable_package_folder": null,
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "lib"
+                        ],
+                        "resdirs": null,
+                        "bindirs": [
+                            "bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": null,
+                        "properties": null,
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "cmake/4.4.5",
+                "info": {},
+                "vendor": false,
+                "dependencies": {},
+                "context": "build",
+                "test": false
+            },
+            "14": {
+                "ref": "platform-random/0.2.0#596375061030beacc935a1ac82ef6e46",
+                "id": "14",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "7368fa153a09f12eddea710548981718",
+                "rrev": "596375061030beacc935a1ac82ef6e46",
+                "rrev_timestamp": 1793922667.913255,
+                "prev_timestamp": 1793921856.9319837,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-random",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "unlicense",
+                "author": null,
+                "description": "platform.random is one of the libraries of the LinksPlatform modular framework, to generate random numbers",
+                "homepage": "https://github.com/linksplatform/Random",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.2.0",
+                "topics": [
+                    "linksplatform",
+                    "cpp20",
+                    "random",
+                    "any",
+                    "ranges",
+                    "native"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platf49909db6bc31d/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platfd5a08042cfffe/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platfd5a08042cfffe/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platfd5a08042cfffe/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "Platform.Random",
+                            "cmake_target_name": "Platform.Random::Platform.Random"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-random/0.2.0",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.2.0": {
+                            "source": {
+                                "url": "https://github.com/linksplatform/Random/releases/download/cpp_0.2.0/platform.random_0.2.0.zip",
+                                "sha256": "BDAD51D2ACC030C97C8588DB29E6E2354A9BC5EFE23491B0E39B148265BD31F7"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {
+                    "15": {
+                        "ref": "platform-ranges/0.2.0",
+                        "require": "platform-ranges/0.2.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "5": {
+                        "ref": "platform-exceptions/0.3.2",
+                        "require": "platform-exceptions/0.3.2",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "16": {
+                        "ref": "platform-converters/0.2.0",
+                        "require": "platform-converters/0.2.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "6": {
+                        "ref": "platform-delegates/0.3.7",
+                        "require": "platform-delegates/0.3.7",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "11": {
+                        "ref": "platform-hashing/0.5.6",
+                        "require": "platform-hashing/0.5.6",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "12": {
+                        "ref": "cpuinfo/cci.20260612",
+                        "require": "cpuinfo/cci.20260612",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "15": {
+                "ref": "platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288",
+                "id": "15",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "81a558cde0554f2a22f31692b29c9020",
+                "rrev": "f74638320e5bd4f2efd11a9e10091288",
+                "rrev_timestamp": 1793922667.3893554,
+                "prev_timestamp": 1793921856.2301784,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-ranges",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Unlicense",
+                "author": null,
+                "description": "The Platform.Ranges library, as shown in this C++ code, is a comprehensive toolkit for handling and manipulating ranges of values. It provides a customizable Range data structure, equipped with methods for range containment checks, string conversion, stream output, and hash computation, making it a powerful tool for handling ranges in various computational scenarios.",
+                "homepage": "https://github.com/linksplatform/Ranges",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.2.0",
+                "topics": [
+                    "linksplatform",
+                    "cpp20",
+                    "any",
+                    "ranges",
+                    "native"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platf2e261b468060d/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platf98aa121007377/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platf98aa121007377/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platf98aa121007377/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "Platform.Ranges",
+                            "cmake_target_name": "Platform.Ranges::Platform.Ranges"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-ranges/0.2.0",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.2.0": {
+                            "source": {
+                                "url": "https://github.com/linksplatform/Ranges/releases/download/cpp_0.2.0/platform.ranges_0.2.0.zip",
+                                "sha256": "84576CDC59A460A3F132A7E6E87D2F52131D6A3B53B97BCB1D335252F65267B7"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {
+                    "5": {
+                        "ref": "platform-exceptions/0.3.2",
+                        "require": "platform-exceptions/0.3.2",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "16": {
+                        "ref": "platform-converters/0.2.0",
+                        "require": "platform-converters/0.2.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "6": {
+                        "ref": "platform-delegates/0.3.7",
+                        "require": "platform-delegates/0.3.7",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "11": {
+                        "ref": "platform-hashing/0.5.6",
+                        "require": "platform-hashing/0.5.6",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "12": {
+                        "ref": "cpuinfo/cci.20260612",
+                        "require": "cpuinfo/cci.20260612",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "16": {
+                "ref": "platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be",
+                "id": "16",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "adf5a6a6a0d890617af517db1cc3bbc5",
+                "rrev": "e5210600d15a224117023e6b4fb0c1be",
+                "rrev_timestamp": 1793922666.2365792,
+                "prev_timestamp": 1793921720.3957186,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-converters",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "MIT",
+                "author": null,
+                "description": "platform.converters is one of the libraries of the LinksPlatform modular framework, to provide conversions between different types",
+                "homepage": "https://github.com/linksplatform/Converters",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.2.0",
+                "topics": [
+                    "linksplatform",
+                    "cpp20",
+                    "converters",
+                    "any",
+                    "native"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platf07f1970403490/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platf4160d08ce4ddc/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platf4160d08ce4ddc/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platf4160d08ce4ddc/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [
+                            "/home/box/.conan2/p/b/platf4160d08ce4ddc/p/lib"
+                        ],
+                        "resdirs": null,
+                        "bindirs": [
+                            "/home/box/.conan2/p/b/platf4160d08ce4ddc/p/bin"
+                        ],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "pkg_config_name": "Platform.Converters",
+                            "cmake_target_name": "Platform.Converters::Platform.Converters",
+                            "cmake_file_name": "Platform.Converters"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-converters/0.2.0",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.2.0": {
+                            "source": {
+                                "url": "https://github.com/linksplatform/Converters/releases/download/cpp_0.2.0/platform.converters_0.2.0.zip",
+                                "sha256": "DCCB042CFE36343ED8061D48FC0176DA12590BA7328D908317211A902DF81321"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {},
+                "context": "host",
+                "test": false
+            },
+            "17": {
+                "ref": "ms-gsl/5.0.1#1978e4265615a57adce9bb225b5e574b",
+                "id": "17",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "9447186274116c60abebfb07b56578bb",
+                "rrev": "1978e4265615a57adce9bb225b5e574b",
+                "rrev_timestamp": 1793922672.9518492,
+                "prev_timestamp": 1793922370.1849747,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "ms-gsl",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "MIT",
+                "author": null,
+                "description": "Microsoft's implementation of the Guidelines Support Library",
+                "homepage": "https://github.com/microsoft/GSL",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": {
+                    "on_contract_violation": "terminate"
+                },
+                "options_description": null,
+                "version": "5.0.1",
+                "topics": [
+                    "gsl",
+                    "guidelines",
+                    "core",
+                    "span",
+                    "header-only"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/ms-gsded03ec173dad/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/ms-gse4366c8d56c45/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/ms-gse4366c8d56c45/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/ms-gse4366c8d56c45/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "Microsoft.GSL",
+                            "cmake_target_name": "Microsoft.GSL::GSL"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    },
+                    "_ms-gsl": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/ms-gse4366c8d56c45/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": [],
+                        "bindirs": [],
+                        "builddirs": [],
+                        "frameworkdirs": [],
+                        "system_libs": [],
+                        "frameworks": [],
+                        "libs": [],
+                        "defines": [],
+                        "cflags": [],
+                        "cxxflags": [],
+                        "sharedlinkflags": [],
+                        "exelinkflags": [],
+                        "objects": [],
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_target_name": "Microsoft.GSL::GSL"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "ms-gsl/5.0.1",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "5.0.1": {
+                            "url": "https://github.com/microsoft/GSL/archive/v5.0.1.tar.gz",
+                            "sha256": "733a87a7eea56db075ee060735ba7616a27c1c55955f264d5473bf9e83294ad0"
+                        },
+                        "4.2.2": {
+                            "url": "https://github.com/microsoft/GSL/archive/v4.2.2.tar.gz",
+                            "sha256": "59e2a0a0ea22e8bcf9db2dc4d4bd21212ac6595748295fc27a7e02cf75eac4b5"
+                        },
+                        "4.2.0": {
+                            "url": "https://github.com/microsoft/GSL/archive/v4.2.0.tar.gz",
+                            "sha256": "2c717545a073649126cb99ebd493fa2ae23120077968795d2c69cbab821e4ac6"
+                        },
+                        "4.1.0": {
+                            "url": "https://github.com/microsoft/GSL/archive/v4.1.0.tar.gz",
+                            "sha256": "0a227fc9c8e0bf25115f401b9a46c2a68cd28f299d24ab195284eb3f1d7794bd"
+                        },
+                        "4.0.0": {
+                            "url": "https://github.com/microsoft/GSL/archive/v4.0.0.tar.gz",
+                            "sha256": "f0e32cb10654fea91ad56bde89170d78cfbf4363ee0b01d8f097de2ba49f6ce9"
+                        },
+                        "3.1.0": {
+                            "url": "https://github.com/microsoft/GSL/archive/v3.1.0.tar.gz",
+                            "sha256": "d3234d7f94cea4389e3ca70619b82e8fb4c2f33bb3a070799f1e18eef500a083"
+                        },
+                        "3.0.1": {
+                            "url": "https://github.com/microsoft/GSL/archive/v3.0.1.tar.gz",
+                            "sha256": "7ceba191e046e5347357c6b605f53e6bed069c974aeda851254cb6962a233572"
+                        },
+                        "2.1.0": {
+                            "url": "https://github.com/microsoft/GSL/archive/v2.1.0.tar.gz",
+                            "sha256": "ef73814657b073e1be86c8f7353718771bf4149b482b6cb54f99e79b23ff899d"
+                        },
+                        "2.0.0": {
+                            "url": "https://github.com/microsoft/GSL/archive/v2.0.0.tar.gz",
+                            "sha256": "6cce6fb16b651e62711a4f58e484931013c33979b795d1b1f7646f640cfa9c8e"
+                        }
+                    }
+                },
+                "dependencies": {},
+                "context": "host",
+                "test": false
+            },
+            "18": {
+                "ref": "platform-memory/0.1.0#806c161978dc578042a643687ce673e3",
+                "id": "18",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "8b2048ec0988e4a6096a572799df9a5c",
+                "rrev": "806c161978dc578042a643687ce673e3",
+                "rrev_timestamp": 1793922671.3982034,
+                "prev_timestamp": 1793921857.6227367,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-memory",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Unlicense",
+                "author": null,
+                "description": "The Platform.Memory library, as implemented in C++, provides a robust and comprehensive set of tools for memory management, including direct memory, array memory, and resizable direct memory functionalities. By incorporating system-level, standard, and third-party libraries, it offers a versatile platform for handling complex memory-related tasks, making it an essential resource for high-performance, memory-intensive C++ applications.",
+                "homepage": "https://github.com/linksplatform/Memory",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.1.0",
+                "topics": [
+                    "linksplatform",
+                    "cpp20",
+                    "exceptions",
+                    "any",
+                    "ranges",
+                    "native"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platf4aeb63eb199f9/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platf34d7d95b4c4cb/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platf34d7d95b4c4cb/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platf34d7d95b4c4cb/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "Platform.Memory",
+                            "cmake_target_name": "Platform.Memory::Platform.Memory"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-memory/0.1.0",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.1.0": {
+                            "source": {
+                                "sha256": "8cc7b6228cb6eeb27666b78c370c2daa3605892878f50849ff03add2cafe6a9d",
+                                "url": "https://github.com/linksplatform/Memory/releases/download/cpp_0.1.0/platform.memory_0.1.0.zip"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {
+                    "9": {
+                        "ref": "platform-collections/0.2.1",
+                        "require": "platform-collections/0.2.1",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "8": {
+                        "ref": "platform-interfaces/0.3.41",
+                        "require": "platform-interfaces/0.3.41",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "10": {
+                        "ref": "platform-equality/0.0.1",
+                        "require": "platform-equality/0.0.1",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "14": {
+                        "ref": "platform-random/0.2.0",
+                        "require": "platform-random/0.2.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "15": {
+                        "ref": "platform-ranges/0.2.0",
+                        "require": "platform-ranges/0.2.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "5": {
+                        "ref": "platform-exceptions/0.3.2",
+                        "require": "platform-exceptions/0.3.2",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "16": {
+                        "ref": "platform-converters/0.2.0",
+                        "require": "platform-converters/0.2.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "6": {
+                        "ref": "platform-delegates/0.3.7",
+                        "require": "platform-delegates/0.3.7",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "11": {
+                        "ref": "platform-hashing/0.5.6",
+                        "require": "platform-hashing/0.5.6",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "12": {
+                        "ref": "cpuinfo/cci.20260612",
+                        "require": "cpuinfo/cci.20260612",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "17": {
+                        "ref": "ms-gsl/5.0.1",
+                        "require": "ms-gsl/5.0.1",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "19": {
+                        "ref": "mio/cci.20230303",
+                        "require": "mio/cci.20230303",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "19": {
+                "ref": "mio/cci.20230303#5282b6d56ac5f9601e17186dbd763db1",
+                "id": "19",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "311c24eb6b34a78ff86d4a1ea984b990",
+                "rrev": "5282b6d56ac5f9601e17186dbd763db1",
+                "rrev_timestamp": 1701388788.407,
+                "prev_timestamp": 1701440483.334,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "mio",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "MIT",
+                "author": null,
+                "description": "Cross-platform C++11 header-only library for memory mapped file IO.",
+                "homepage": "https://github.com/mandreyel/mio",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "cci.20230303",
+                "topics": [
+                    "mmap",
+                    "memory-mapping",
+                    "fileviewer"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/miof6a183aa1a5b8/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/miofc2037bac7adf/p",
+                "immutable_package_folder": "/home/box/.conan2/p/miofc2037bac7adf/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/miofc2037bac7adf/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "mio",
+                            "cmake_target_name": "mio::mio"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    },
+                    "mio-headers": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/miofc2037bac7adf/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": [],
+                        "bindirs": [],
+                        "builddirs": [],
+                        "frameworkdirs": [],
+                        "system_libs": [],
+                        "frameworks": [],
+                        "libs": [],
+                        "defines": [],
+                        "cflags": [],
+                        "cxxflags": [],
+                        "sharedlinkflags": [],
+                        "exelinkflags": [],
+                        "objects": [],
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_target_name": "mio::mio-headers"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "mio/cci.20230303",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "cci.20230303": {
+                            "sha256": "86248113bb2f1484f9cd44a260fe09beaa911307073c6f21fa9e765588d54b4b",
+                            "url": "https://github.com/mandreyel/mio/archive/8b6b7d878c89e81614d05edca7936de41ccdd2da.tar.gz"
+                        }
+                    }
+                },
+                "dependencies": {},
+                "context": "host",
+                "test": false
+            },
+            "20": {
+                "ref": "platform-data/0.1.1#049284bd2691fcdd21308ff118193883",
+                "id": "20",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "0241816b818ea9c75939d2925cf838f8",
+                "rrev": "049284bd2691fcdd21308ff118193883",
+                "rrev_timestamp": 1793922670.221528,
+                "prev_timestamp": 1793921856.5960586,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-data",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Unlicense",
+                "author": null,
+                "description": "The Platform.Data library, as showcased by the ILinks interface in C++, provides mechanisms for manipulating data in the 'Links' storage format. It is designed to handle entities of varying sizes, from doublets and triplets to sequences of links of any size.",
+                "homepage": "https://github.com/linksplatform/Data",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.1.1",
+                "topics": [
+                    "linksplatform",
+                    "cpp20",
+                    "exceptions",
+                    "any",
+                    "ranges",
+                    "native"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platf6097b0a9e7303/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platf9d1449a84f95b/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platf9d1449a84f95b/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platf9d1449a84f95b/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "Platform.Data",
+                            "cmake_target_name": "Platform.Data::Platform.Data"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-data/0.1.1",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.1.1": {
+                            "source": {
+                                "sha256": "7f5b03605f0c35c147262d5d325816d5ceb0f15e222c43e69c6507fbdb38159e",
+                                "url": "https://github.com/linksplatform/Data/releases/download/cpp_0.1.1/platform.data_0.1.1.zip"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {
+                    "15": {
+                        "ref": "platform-ranges/0.2.0",
+                        "require": "platform-ranges/0.2.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "5": {
+                        "ref": "platform-exceptions/0.3.2",
+                        "require": "platform-exceptions/0.3.2",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "16": {
+                        "ref": "platform-converters/0.2.0",
+                        "require": "platform-converters/0.2.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "6": {
+                        "ref": "platform-delegates/0.3.7",
+                        "require": "platform-delegates/0.3.7",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "11": {
+                        "ref": "platform-hashing/0.5.6",
+                        "require": "platform-hashing/0.5.6",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "12": {
+                        "ref": "cpuinfo/cci.20260612",
+                        "require": "cpuinfo/cci.20260612",
+                        "run": false,
+                        "libs": true,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": false,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "21": {
+                        "ref": "platform-setters/0.1.0",
+                        "require": "platform-setters/0.1.0",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    },
+                    "8": {
+                        "ref": "platform-interfaces/0.3.41",
+                        "require": "platform-interfaces/0.3.41",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "21": {
+                "ref": "platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a",
+                "id": "21",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "93ba0987edf1adbbf9b7b8b979f9a2e2",
+                "rrev": "0b7fdbec025f7e225a919bacf70f9c3a",
+                "rrev_timestamp": 1793922669.666312,
+                "prev_timestamp": 1793921855.872483,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-setters",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Unlicense",
+                "author": null,
+                "description": "The Platform.Setters library, as seen in this C++ code, provides a fundamental SetterBase template class that encapsulates the functionality of a setter for a variable of a given type. The library offers simple yet versatile interfaces for setting and retrieving values, making it an essential tool for managing data in C++ applications that follow encapsulation principles.",
+                "homepage": "https://github.com/linksplatform/Setters",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.1.0",
+                "topics": [
+                    "linksplatform",
+                    "cpp20",
+                    "exceptions",
+                    "any",
+                    "ranges",
+                    "native"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platfea0cb3e0e6873/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platf975cefaff091c/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platf975cefaff091c/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platf975cefaff091c/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "Platform.Setters",
+                            "cmake_target_name": "Platform.Setters::Platform.Setters"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-setters/0.1.0",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.1.0": {
+                            "source": {
+                                "sha256": "932b4e9fb76c69c32775d58b7ae3dc819901261a95f3be2e9fa0c0b0295da105",
+                                "url": "https://github.com/linksplatform/Setters/releases/download/cpp_0.1.0/platform.setters_0.1.0.zip"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {
+                    "8": {
+                        "ref": "platform-interfaces/0.3.41",
+                        "require": "platform-interfaces/0.3.41",
+                        "run": false,
+                        "libs": false,
+                        "skip": false,
+                        "test": false,
+                        "force": false,
+                        "direct": true,
+                        "build": false,
+                        "transitive_headers": true,
+                        "transitive_libs": true,
+                        "headers": true,
+                        "package_id_mode": "unrelated_mode",
+                        "visible": true
+                    }
+                },
+                "context": "host",
+                "test": false
+            },
+            "22": {
+                "ref": "platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7",
+                "id": "22",
+                "recipe": "Cache",
+                "package_id": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "prev": "010b41966b0ff8d92bea24d7491eee11",
+                "rrev": "8d5c367883c12491634bda6b216fdcd7",
+                "rrev_timestamp": 1793922670.7921603,
+                "prev_timestamp": 1793921722.7583795,
+                "remote": null,
+                "binary_remote": null,
+                "build_id": null,
+                "binary": "Cache",
+                "invalid_build": false,
+                "info_invalid": null,
+                "name": "platform-numbers",
+                "user": null,
+                "channel": null,
+                "url": "https://github.com/conan-io/conan-center-index",
+                "license": "Unlicense",
+                "author": null,
+                "description": "The Platform.Numbers library, as presented in this C++ code, offers a specialized set of numerical computation and manipulation tools focused on bit-level operations. It provides functions for operations such as counting bits, identifying the position of the lowest bit, and partial reading and writing of numerical data at the bit level, making it a key asset for applications requiring low-level, bit-wise data manipulation.",
+                "homepage": "https://github.com/linksplatform/Numbers",
+                "build_policy": null,
+                "upload_policy": null,
+                "revision_mode": "hash",
+                "provides": null,
+                "deprecated": null,
+                "win_bash": null,
+                "win_bash_run": null,
+                "default_options": null,
+                "options_description": null,
+                "version": "0.1.0",
+                "topics": [
+                    "linksplatform",
+                    "cpp20",
+                    "exceptions",
+                    "any",
+                    "ranges",
+                    "native"
+                ],
+                "package_type": "header-library",
+                "languages": [],
+                "settings": {
+                    "os": "Linux",
+                    "arch": "x86_64",
+                    "compiler": "gcc",
+                    "compiler.cppstd": "20",
+                    "compiler.libcxx": "libstdc++11",
+                    "compiler.version": "13",
+                    "build_type": "Release"
+                },
+                "options": {},
+                "options_definitions": {},
+                "generators": [],
+                "python_requires": null,
+                "system_requires": {},
+                "recipe_folder": "/home/box/.conan2/p/platf4e4a40c6d8bf5/e",
+                "source_folder": null,
+                "build_folder": null,
+                "generators_folder": null,
+                "package_folder": "/home/box/.conan2/p/b/platf6e17010af80c1/p",
+                "immutable_package_folder": "/home/box/.conan2/p/b/platf6e17010af80c1/p",
+                "cpp_info": {
+                    "root": {
+                        "includedirs": [
+                            "/home/box/.conan2/p/b/platf6e17010af80c1/p/include"
+                        ],
+                        "srcdirs": null,
+                        "libdirs": [],
+                        "resdirs": null,
+                        "bindirs": [],
+                        "builddirs": null,
+                        "frameworkdirs": null,
+                        "system_libs": null,
+                        "frameworks": null,
+                        "libs": null,
+                        "defines": null,
+                        "cflags": null,
+                        "cxxflags": null,
+                        "sharedlinkflags": null,
+                        "exelinkflags": null,
+                        "objects": null,
+                        "sources": null,
+                        "sysroot": null,
+                        "requires": [],
+                        "properties": {
+                            "cmake_file_name": "Platform.Numbers",
+                            "cmake_target_name": "Platform.Numbers::Platform.Numbers"
+                        },
+                        "exe": null,
+                        "type": null,
+                        "location": null,
+                        "link_location": null,
+                        "languages": null
+                    }
+                },
+                "conf_info": {},
+                "label": "platform-numbers/0.1.0",
+                "info": {},
+                "vendor": false,
+                "conandata": {
+                    "sources": {
+                        "0.1.0": {
+                            "source": {
+                                "sha256": "442fc978490a9221085182b2e7a6e5cddec2ea04d5baf58dab5534a74640c603",
+                                "url": "https://github.com/linksplatform/Numbers/releases/download/cpp_0.1.0/platform.numbers_0.1.0.zip"
+                            }
+                        }
+                    }
+                },
+                "dependencies": {},
+                "context": "host",
+                "test": false
+            }
+        },
+        "root": {
+            "0": "None"
+        },
+        "overrides": {},
+        "resolved_ranges": {},
+        "replaced_requires": {},
+        "error": null
+    }
+}

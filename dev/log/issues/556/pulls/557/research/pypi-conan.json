@@ -1,0 +1,155 @@
+{
+  "info": {
+    "author": "JFrog LTD",
+    "author_email": "luism@jfrog.com",
+    "bugtrack_url": null,
+    "classifiers": [
+      "Development Status :: 5 - Production/Stable",
+      "Intended Audience :: Developers",
+      "License :: OSI Approved :: MIT License",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Programming Language :: Python :: 3.13",
+      "Programming Language :: Python :: 3.8",
+      "Programming Language :: Python :: 3.9",
+      "Topic :: Software Development :: Build Tools"
+    ],
+    "description": "<picture>\n  <!-- These are also used for https://github.com/conan-io/.github/blob/main/profile/README.md -->\n  <source media=\"(prefers-color-scheme: dark)\" srcset=\"https://raw.githubusercontent.com/conan-io/conan/develop2/.github/conan2-logo-for-dark.svg\">\n  <source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/conan-io/conan/develop2/.github/conan2-logo-for-light.svg\">\n  <img alt=\"JFrog | Conan 2.0 Logo\" src=\"https://raw.githubusercontent.com/conan-io/conan/develop2/.github/conan2-logo-with-bg.svg\">\n</picture>\n\n# Conan\n\nDecentralized, open-source (MIT), C/C++ package manager.\n\n- Homepage: https://conan.io/\n- Github: https://github.com/conan-io/conan\n- Docs: https://docs.conan.io\n- Slack: https://cpplang.slack.com (#conan channel. Please, click [here](https://cppalliance.org/slack/#cpp-slack) to get an invitation)\n- Twitter: https://twitter.com/conan_io\n- Blog: https://blog.conan.io\n- Security reports: https://jfrog.com/trust/report-vulnerability\n\n\nConan is a package manager for C and C++ developers:\n\n- It is fully decentralized. Users can host their packages on their servers, privately. Integrates with Artifactory and Bintray.\n- Portable. Works across all platforms, including Linux, OSX, Windows (with native and first-class support, WSL, MinGW),\n  Solaris, FreeBSD, embedded and cross-compiling, docker, WSL\n- Manage binaries. It can create, upload and download binaries for any configuration and platform,\n  even cross-compiling, saving lots of time in development and continuous integration. The binary compatibility can be configured\n  and customized. Manage all your artifacts in the same way on all platforms.\n- Integrates with any build system, including any proprietary and custom one. Provides tested support for major build systems\n  (CMake, MSBuild, Makefiles, Meson, etc).\n- Extensible: Its Python-based recipes, together with extension points allow for great power and flexibility.\n- Large and active community, especially in GitHub (https://github.com/conan-io/conan) and Slack (https://cppalliance.org/slack/ #conan channel).\n  This community also creates and maintains packages in ConanCenter and Bincrafters repositories in Bintray.\n- Stable. Used in production by many companies, since 1.0 there is a commitment not to break package recipes and documented behavior.\n\n\nThis is the **developer/maintainer** documentation. For user documentation, go to https://docs.conan.io\n\n\n## Setup\n\nYou can run Conan from source in Windows, MacOS, and Linux:\n\n- **Install pip following** [pip docs](https://pip.pypa.io/en/stable/installation/).\n\n- **Clone Conan repository:**\n\n  ```bash\n  $ git clone https://github.com/conan-io/conan.git conan-io\n  ```\n\n  > **Note**: repository directory name matters, some directories are known to be problematic to run tests (e.g. `conan`). `conan-io` directory name was tested and guaranteed to be working.\n\n- **Install in editable mode**\n\n  ```bash\n  $ cd conan-io && sudo pip install -e .\n  ```\n\n  If you are in Windows, using ``sudo`` is not required. Some Linux distros won't allow you to put Python packages in editable mode in the root Python installation, and creating a virtual environment ``venv`` first, is mandatory.\n\n- **You are ready, try to run Conan:**\n\n  ```bash\n  $ conan --help\n\n  Consumer commands\n    install    Installs the requirements specified in a recipe (conanfile.py or conanfile.txt).\n    ...\n\n    Conan commands. Type \"conan <command> -h\" for help\n  ```\n\n## Contributing to the project\n\n\nFeedback and contribution are always welcome in this project.\nPlease read our [contributing guide](https://github.com/conan-io/conan/blob/develop2/.github/CONTRIBUTING.md).\nAlso, if you plan to contribute, please add some testing for your changes. You can read the [Conan\ntests guidelines section](https://github.com/conan-io/conan/blob/develop2/test/README.md) for\nsome advice on how to write tests for Conan.\n\n### Running the tests\n\n\n**Install Python requirements**\n\n```bash\n$ python -m pip install -r conans/requirements.txt\n$ python -m pip install -r conans/requirements_server.txt\n$ python -m pip install -r conans/requirements_dev.txt\n```\n\nIf you are not on Windows and you are not using a Python virtual environment, you will need to run these\ncommands using `sudo`.\n\nBefore you can run the tests, you need to set a few environment variables first.\n\n```bash\n$ export PYTHONPATH=$PYTHONPATH:$(pwd)\n```\n\nOn Windows it would be (while being in the Conan root directory):\n\n```bash\n$ set PYTHONPATH=.\n```\n\nConan test suite defines and configures some required tools (CMake, Ninja, etc) in the\n``conftest.py`` and allows to define a custom ``conftest_user.py``.\nSome specific versions, like cmake>=3.15 are necessary.\n\n\nYou can run the tests like this:\n\n```bash\n$ python -m pytest .\n```\n\nA few minutes later it should print ``OK``:\n\n```bash\n............................................................................................\n----------------------------------------------------------------------\nRan 146 tests in 50.993s\n\nOK\n```\n\nTo run specific tests, you can specify the test name too, something like:\n\n```bash\n$ python -m pytest test/functional/command/export_test.py::TestRevisionModeSCM::test_revision_mode_scm -s\n```\n\nThe `-s` argument can be useful to see some output that otherwise is captured by *pytest*.\n\nAlso, you can run tests against an instance of Artifactory. Those tests should add the attribute\n`artifactory_ready`.\n\n```bash\n$ python -m pytest . -m artifactory_ready\n```\n\nSome environment variables have to be defined to run them. For example, for an\nArtifactory instance that is running on the localhost with default user and password configured, the\nvariables could take the values:\n\n```bash\n$ export CONAN_TEST_WITH_ARTIFACTORY=1\n$ export ARTIFACTORY_DEFAULT_URL=http://localhost:8081/artifactory\n$ export ARTIFACTORY_DEFAULT_USER=admin\n$ export ARTIFACTORY_DEFAULT_PASSWORD=password\n```\n\n`ARTIFACTORY_DEFAULT_URL` is the base URL for the Artifactory repo, not one for a specific\nrepository. Running the tests with a real Artifactory instance will create repos on the fly so please\nuse a separate server for testing purposes.\n\n## License\n\n[MIT LICENSE](LICENSE.md)\n",
+    "description_content_type": "text/markdown",
+    "docs_url": null,
+    "download_url": null,
+    "downloads": {
+      "last_day": -1,
+      "last_month": -1,
+      "last_week": -1
+    },
+    "dynamic": [
+      "Author",
+      "Author-Email",
+      "Classifier",
+      "Description",
+      "Description-Content-Type",
+      "Home-Page",
+      "Keywords",
+      "License",
+      "License-File",
+      "Project-Url",
+      "Provides-Extra",
+      "Requires-Dist",
+      "Requires-Python",
+      "Summary"
+    ],
+    "home_page": "https://conan.io",
+    "keywords": "C/C++, package, libraries, developer, manager, dependency, tool, c, c++, cpp",
+    "license": "MIT",
+    "license_expression": null,
+    "license_files": [
+      "LICENSE.md"
+    ],
+    "maintainer": null,
+    "maintainer_email": null,
+    "name": "conan",
+    "package_url": "https://pypi.org/project/conan/",
+    "platform": null,
+    "project_url": "https://pypi.org/project/conan/",
+    "project_urls": {
+      "Documentation": "https://docs.conan.io",
+      "Homepage": "https://conan.io",
+      "Source": "https://github.com/conan-io/conan",
+      "Tracker": "https://github.com/conan-io/conan/issues"
+    },
+    "provides_extra": [
+      "dev",
+      "test",
+      "runners"
+    ],
+    "release_url": "https://pypi.org/project/conan/2.34.0/",
+    "requires_dist": [
+      "requests<3.0.0,>=2.25",
+      "urllib3<3.0,>=1.26.6",
+      "colorama<0.5.0,>=0.4.3",
+      "PyYAML<7.0,>=6.0",
+      "patch-ng<1.20,>=1.18.0",
+      "fasteners>=0.15",
+      "distro<2.0.0,>=1.4.0; platform_system == \"Linux\" or platform_system == \"FreeBSD\"",
+      "Jinja2<4.0.0,>=3.0",
+      "python-dateutil<3,>=2.8.0; python_version < \"3.11\"",
+      "truststore<1.0,>=0.8; python_version >= \"3.10\"",
+      "pytest; extra == \"dev\"",
+      "pytest-xdist; extra == \"dev\"",
+      "WebTest<4,>=3.0.0; extra == \"dev\"",
+      "bottle; extra == \"dev\"",
+      "PyJWT; extra == \"dev\"",
+      "pluginbase; extra == \"dev\"",
+      "docker; extra == \"dev\"",
+      "setuptools; extra == \"dev\"",
+      "pytest-cov; extra == \"dev\"",
+      "pytest; extra == \"test\"",
+      "pytest-xdist; extra == \"test\"",
+      "WebTest<4,>=3.0.0; extra == \"test\"",
+      "bottle; extra == \"test\"",
+      "PyJWT; extra == \"test\"",
+      "pluginbase; extra == \"test\"",
+      "docker; extra == \"test\"",
+      "setuptools; extra == \"test\"",
+      "pytest-cov; extra == \"test\"",
+      "paramiko; extra == \"runners\"",
+      "docker>=7.1.0; extra == \"runners\""
+    ],
+    "requires_python": ">=3.8",
+    "summary": "Conan C/C++ package manager",
+    "version": "2.34.0",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "urls": [
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "9e54e0d91041bc43a35604f330aa06b5b7e214b653ed2c4003f385043a0b7e79"
+      },
+      "digests": {
+        "blake2b_256": "e012c1e94f9c47eda7276a4d6c21e757e46a8c77f64e96f652f7f7849a973cf3",
+        "md5": "50cb083b226008580410d80a2d11ba37",
+        "sha256": "4e268bb9ad38614141c7274a769c7226122e3660e4d5eb545a0c7f7170b53272"
+      },
+      "downloads": -1,
+      "filename": "conan-2.34.0-py3-none-any.whl",
+      "has_sig": false,
+      "md5_digest": "50cb083b226008580410d80a2d11ba37",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3.8",
+      "size": 750722,
+      "upload_time": "2026-10-28T11:55:45",
+      "upload_time_iso_8601": "2026-10-28T11:55:45.076309Z",
+      "url": "https://files.pythonhosted.org/packages/e0/12/c1e94f9c47eda7276a4d6c21e757e46a8c77f64e96f652f7f7849a973cf3/conan-2.34.0-py3-none-any.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": false,
+      "digests": {
+        "blake2b_256": "63d5d7d5bd89e5870923be85940bf63885fc0b80d2c347ea236325003488a8e1",
+        "md5": "a9fd2c3f339bd5dce3e7f3b70236f414",
+        "sha256": "9c65681300550638be20a25908673b8683533e8fc2dbbdac38ea0d9642a8124d"
+      },
+      "downloads": -1,
+      "filename": "conan-2.34.0.tar.gz",
+      "has_sig": false,
+      "md5_digest": "a9fd2c3f339bd5dce3e7f3b70236f414",
+      "packagetype": "sdist",
+      "python_version": "source",
+      "requires_python": ">=3.8",
+      "size": 612999,
+      "upload_time": "2026-10-28T11:55:47",
+      "upload_time_iso_8601": "2026-10-28T11:55:47.006451Z",
+      "url": "https://files.pythonhosted.org/packages/63/d5/d7d5bd89e5870923be85940bf63885fc0b80d2c347ea236325003488a8e1/conan-2.34.0.tar.gz",
+      "yanked": false,
+      "yanked_reason": null
+    }
+  ]
+}

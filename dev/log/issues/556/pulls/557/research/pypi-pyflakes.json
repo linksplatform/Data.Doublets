@@ -1,0 +1,112 @@
+{
+  "info": {
+    "author": "A lot of people",
+    "author_email": "code-quality@python.org",
+    "bugtrack_url": null,
+    "classifiers": [
+      "Development Status :: 6 - Mature",
+      "Environment :: Console",
+      "Intended Audience :: Developers",
+      "License :: OSI Approved :: MIT License",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3 :: Only",
+      "Programming Language :: Python :: Implementation :: CPython",
+      "Programming Language :: Python :: Implementation :: PyPy",
+      "Topic :: Software Development",
+      "Topic :: Utilities"
+    ],
+    "description": "========\nPyflakes\n========\n\nA simple program which checks Python source files for errors.\n\nPyflakes analyzes programs and detects various errors.  It works by\nparsing the source file, not importing it, so it is safe to use on\nmodules with side effects.  It's also much faster.\n\nIt is `available on PyPI <https://pypi.org/project/pyflakes/>`_\nand it supports all active versions of Python: 3.9+.\n\n\n\nInstallation\n------------\n\nIt can be installed with::\n\n  $ pip install --upgrade pyflakes\n\n\nUseful tips:\n\n* Be sure to install it for a version of Python which is compatible\n  with your codebase: ``python#.# -m pip install pyflakes`` (for example,\n  ``python3.15 -m pip install pyflakes``)\n\n* You can also invoke Pyflakes with ``python#.# -m pyflakes .`` if you want\n  to run it for a specific python version.\n\n* If you require more options and more flexibility, you could give a\n  look to Flake8_ too.\n\n\nDesign Principles\n-----------------\nPyflakes makes a simple promise: it will never complain about style,\nand it will try very, very hard to never emit false positives.\n\nPyflakes is also faster than Pylint_. This is\nlargely because Pyflakes only examines the syntax tree of each file\nindividually. As a consequence, Pyflakes is more limited in the\ntypes of things it can check.\n\nIf you like Pyflakes but also want stylistic checks, you want\nflake8_, which combines\nPyflakes with style checks against\n`PEP 8`_ and adds\nper-project configuration ability.\n\n\nMailing-list\n------------\n\nShare your feedback and ideas: `subscribe to the mailing-list\n<https://mail.python.org/mailman/listinfo/code-quality>`_\n\nContributing\n------------\n\nIssues are tracked on `GitHub <https://github.com/PyCQA/pyflakes/issues>`_.\n\nPatches may be submitted via a `GitHub pull request`_.\nIf you are comfortable doing so, please `rebase your changes`_\nso they may be applied to main with a fast-forward merge, and each commit is\na coherent unit of work with a well-written log message.  If you are not\ncomfortable with this rebase workflow, the project maintainers will be happy to\nrebase your commits for you.\n\nAll changes should include tests and pass flake8_.\n\n.. image:: https://github.com/PyCQA/pyflakes/workflows/Test/badge.svg\n   :target: https://github.com/PyCQA/pyflakes/actions\n   :alt: GitHub Actions build status\n\n.. _Pylint: https://pylint.pycqa.org/\n.. _flake8: https://pypi.org/project/flake8/\n.. _`PEP 8`: https://www.python.org/dev/peps/pep-0008/\n.. _`rebase your changes`: https://git-scm.com/book/en/v2/Git-Branching-Rebasing\n.. _`GitHub pull request`: https://github.com/PyCQA/pyflakes/pulls\n\nChangelog\n---------\n\nPlease see `NEWS.rst <https://github.com/PyCQA/pyflakes/blob/main/NEWS.rst>`_.\n",
+    "description_content_type": null,
+    "docs_url": null,
+    "download_url": null,
+    "downloads": {
+      "last_day": -1,
+      "last_month": -1,
+      "last_week": -1
+    },
+    "dynamic": [
+      "Author",
+      "Author-Email",
+      "Classifier",
+      "Description",
+      "Home-Page",
+      "License",
+      "License-File",
+      "Requires-Python",
+      "Summary"
+    ],
+    "home_page": "https://github.com/PyCQA/pyflakes",
+    "keywords": null,
+    "license": "MIT",
+    "license_expression": null,
+    "license_files": [
+      "LICENSE"
+    ],
+    "maintainer": null,
+    "maintainer_email": null,
+    "name": "pyflakes",
+    "package_url": "https://pypi.org/project/pyflakes/",
+    "platform": null,
+    "project_url": "https://pypi.org/project/pyflakes/",
+    "project_urls": {
+      "Homepage": "https://github.com/PyCQA/pyflakes"
+    },
+    "provides_extra": null,
+    "release_url": "https://pypi.org/project/pyflakes/4.1.0/",
+    "requires_dist": null,
+    "requires_python": ">=3.11",
+    "summary": "passive checker of Python programs",
+    "version": "4.1.0",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "urls": [
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "d68213a9cbfe77863c8774b679203751107e11c2ce6f8d5e1e106ece0d47ca23"
+      },
+      "digests": {
+        "blake2b_256": "fd5298c9a0e4718abe887121279457bc7140115df22d714b7183880eb61e359f",
+        "md5": "185c5c0e8168d93ced3fea547d0fb27e",
+        "sha256": "b2e05e6bac8e49b67be2a6ffa63422c60f7193fc72e8180255907b41ec997dc1"
+      },
+      "downloads": -1,
+      "filename": "pyflakes-4.1.0-py2.py3-none-any.whl",
+      "has_sig": false,
+      "md5_digest": "185c5c0e8168d93ced3fea547d0fb27e",
+      "packagetype": "bdist_wheel",
+      "python_version": "py2.py3",
+      "requires_python": ">=3.11",
+      "size": 66258,
+      "upload_time": "2026-10-28T20:10:01",
+      "upload_time_iso_8601": "2026-10-28T20:10:01.109972Z",
+      "url": "https://files.pythonhosted.org/packages/fd/52/98c9a0e4718abe887121279457bc7140115df22d714b7183880eb61e359f/pyflakes-4.1.0-py2.py3-none-any.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": false,
+      "digests": {
+        "blake2b_256": "9b43f4566b992ab97abd18426aeba516a83c7a833230614a2c3f4d3e9d8ff0f0",
+        "md5": "6c23bf65e3c0bc19ad084e4d41162211",
+        "sha256": "592beb57058eb82eb190fb7514f2081c555c51000b029ff71286a681e6cf2f83"
+      },
+      "downloads": -1,
+      "filename": "pyflakes-4.1.0.tar.gz",
+      "has_sig": false,
+      "md5_digest": "6c23bf65e3c0bc19ad084e4d41162211",
+      "packagetype": "sdist",
+      "python_version": "source",
+      "requires_python": ">=3.11",
+      "size": 67243,
+      "upload_time": "2026-10-28T20:10:02",
+      "upload_time_iso_8601": "2026-10-28T20:10:02.469800Z",
+      "url": "https://files.pythonhosted.org/packages/9b/43/f4566b992ab97abd18426aeba516a83c7a833230614a2c3f4d3e9d8ff0f0/pyflakes-4.1.0.tar.gz",
+      "yanked": false,
+      "yanked_reason": null
+    }
+  ]
+}

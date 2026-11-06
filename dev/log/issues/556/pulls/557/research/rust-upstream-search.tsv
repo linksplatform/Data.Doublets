@@ -1,0 +1,41 @@
+86	create_link_with loses Flow::Break when LoggingDecorator wraps the store	https://github.com/linksplatform/doublets-rs/issues/86
+83	We should drop doublets-decorators, in favor of main doublets library, that fully support decorators	https://github.com/linksplatform/doublets-rs/issues/83
+82	Allow source/target indexing to be selected independently from minimal link storage	https://github.com/linksplatform/doublets-rs/issues/82
+81	Make deletion endpoint reset an explicit layer over a minimal release primitive	https://github.com/linksplatform/doublets-rs/issues/81
+80	Separate compulsory mutation contract checks from an explicitly unchecked store API	https://github.com/linksplatform/doublets-rs/issues/80
+74	split::Store loses a link that refers to an id created later	https://github.com/linksplatform/doublets-rs/issues/74
+69	We need to double check we use exact memory layouts for Link struct	https://github.com/linksplatform/doublets-rs/issues/69
+68	resize_mem returns only the grown region, causing unit-store panics after 1,040,383 links	https://github.com/linksplatform/doublets-rs/issues/68
+67	with_automatic_uniqueness_and_usages_resolution: cascaded deletions skip the reset to (0 0) that C# reports	https://github.com/linksplatform/doublets-rs/issues/67
+66	CascadeUniquenessAndUsagesResolver: update of a missing link returns Ok when the new pair already exists	https://github.com/linksplatform/doublets-rs/issues/66
+65	delete_all fails with NotExists, deleting nothing or only part of the store, when the store has holes	https://github.com/linksplatform/doublets-rs/issues/65
+64	delete, delete_by and rebase_and_delete return 0 instead of the documented index	https://github.com/linksplatform/doublets-rs/issues/64
+63	usages and count_usages list a link twice when it uses the value as both source and target; delete_usages and delete_query_with then fail with NotExists	https://github.com/linksplatform/doublets-rs/issues/63
+62	rebase_with leaves a link that uses old as both source and target pointing at old	https://github.com/linksplatform/doublets-rs/issues/62
+61	No transactions layer: C# has UInt64LinksTransactionsLayer, Rust has nothing	https://github.com/linksplatform/doublets-rs/issues/61
+60	No Rust counterpart for Platform.Data.Doublets.Sequences (sequences, Unicode strings, walkers)	https://github.com/linksplatform/doublets-rs/issues/60
+58	Port all C# decorators, composed as zero-cost abstractions that fuse into one function per operation	https://github.com/linksplatform/doublets-rs/issues/58
+55	README still mentions nightly Rust and old doublets version	https://github.com/linksplatform/doublets-rs/issues/55
+52	Badge shows benchmark is failing	https://github.com/linksplatform/doublets-rs/issues/52
+49	CI/CD publishing failed	https://github.com/linksplatform/doublets-rs/issues/49
+47	Double check we don't depend on any non stable features of rust and use all the latest best practices and versions of rust in the code	https://github.com/linksplatform/doublets-rs/issues/47
+44	100% tests coverage	https://github.com/linksplatform/doublets-rs/issues/44
+42	Make detailed README.md about the project	https://github.com/linksplatform/doublets-rs/issues/42
+23	Error of build	https://github.com/linksplatform/doublets-rs/issues/23
+22	Remove dependency on nightly versions	https://github.com/linksplatform/doublets-rs/issues/22
+21	Update LICENSE on cargo	https://github.com/linksplatform/doublets-rs/issues/21
+19	error[E0658]: `impl Trait` in associated types is unstable (on latest rust nightly and git dependency)	https://github.com/linksplatform/doublets-rs/issues/19
+18	error[E0432]: unresolved import `thiserror` (in latest cargo version)	https://github.com/linksplatform/doublets-rs/issues/18
+17	error[E0412]: cannot find type `Link` in this scope	https://github.com/linksplatform/doublets-rs/issues/17
+16	Add web demo playground	https://github.com/linksplatform/doublets-rs/issues/16
+12	Add log level resetting for FFI	https://github.com/linksplatform/doublets-rs/issues/12
+11	Improve `ffi::specialize_for`	https://github.com/linksplatform/doublets-rs/issues/11
+9	Use `rayon` and `bump-herd` to crazy fast parallel search 	https://github.com/linksplatform/doublets-rs/issues/9
+8	Inline initiative 	https://github.com/linksplatform/doublets-rs/issues/8
+7	Create iterators from generators with std	https://github.com/linksplatform/doublets-rs/issues/7
+6	Use Links trait from data	https://github.com/linksplatform/doublets-rs/issues/6
+5	Use associated types in Doublets trait 	https://github.com/linksplatform/doublets-rs/issues/5
+4	Unnecessary trailing Flow::Continue	https://github.com/linksplatform/doublets-rs/issues/4
+3	Use buffered iterators to speed up the search	https://github.com/linksplatform/doublets-rs/issues/3
+2	Wrap all exported functions to catch and unwind	https://github.com/linksplatform/doublets-rs/issues/2
+1	Stacked borrows Initiative 	https://github.com/linksplatform/doublets-rs/issues/1

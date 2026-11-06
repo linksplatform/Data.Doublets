@@ -1,0 +1,119 @@
+{
+  "checked_at": "2026-11-06T00:11:51.409947+00:00",
+  "sources": [
+    {
+      "package": "gtest/1.18.0",
+      "source": "https://github.com/google/googletest/archive/v1.18.0.tar.gz",
+      "commit": "063de7e9578f82b369302001269680b4b1553359",
+      "vulnerabilities": []
+    },
+    {
+      "package": "benchmark/1.10.0",
+      "source": "https://github.com/google/benchmark/archive/v1.10.0.tar.gz",
+      "commit": "a6b4a9f00b36c19af9997d68a1cf6e0b5b3d032c",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-exceptions/0.3.2",
+      "source": "https://github.com/linksplatform/Exceptions/releases/download/cpp_0.3.2/platform.exceptions_0.3.2.zip",
+      "commit": "353cf4e4969321c1a20234dc7947839a04fdc419",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-delegates/0.3.7",
+      "source": "https://github.com/linksplatform/Delegates/archive/refs/tags/cpp_0.3.7.zip",
+      "commit": "d7cd2d867f02d94ca78b9349cb4ed40ca7772141",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-collections-methods/0.3.0",
+      "source": "https://github.com/linksplatform/Collections.Methods/releases/download/cpp_0.3.0/platform.collections.methods_0.3.0.zip",
+      "commit": "b91bce445cf75d8a6bc02f371b75acf96d8b908f",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-interfaces/0.3.41",
+      "source": "https://github.com/linksplatform/Interfaces/releases/download/cpp_0.3.41/platform.interfaces_0.3.41.zip",
+      "commit": "6b48e959bf25b5574fe2ee30afcccd8d7261403a",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-collections/0.2.1",
+      "source": "https://github.com/linksplatform/Collections/releases/download/cpp_0.2.1/platform.collections_0.2.1.zip",
+      "commit": "c1b9d88471e9808738dca13b09f0672930d6c269",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-equality/0.0.1",
+      "source": "https://github.com/linksplatform/Equality/archive/refs/tags/0.0.1.zip",
+      "commit": "41d7c22e8acf68877ee309f840d8ba9613e6e772",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-hashing/0.5.6",
+      "source": "https://github.com/linksplatform/Hashing/releases/download/cpp_0.5.6/platform.hashing_0.5.6.zip",
+      "commit": "c9e2e17955919879f0ff04ff612058ebcb75bf20",
+      "vulnerabilities": []
+    },
+    {
+      "package": "cpuinfo/cci.20260612",
+      "source": "https://github.com/pytorch/cpuinfo/archive/4628dc060ce4e82345dc166bbac875609db4ff69.tar.gz",
+      "commit": "4628dc060ce4e82345dc166bbac875609db4ff69",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-random/0.2.0",
+      "source": "https://github.com/linksplatform/Random/releases/download/cpp_0.2.0/platform.random_0.2.0.zip",
+      "commit": "13e3bf44c9c4a38c73a8b3cd8fafa79ba367e659",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-ranges/0.2.0",
+      "source": "https://github.com/linksplatform/Ranges/releases/download/cpp_0.2.0/platform.ranges_0.2.0.zip",
+      "commit": "335c168a97f62361dbbeee30e69a22fc347adc72",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-converters/0.2.0",
+      "source": "https://github.com/linksplatform/Converters/releases/download/cpp_0.2.0/platform.converters_0.2.0.zip",
+      "commit": "61673f006ff0baed6e42ab75116f228002c183e0",
+      "vulnerabilities": []
+    },
+    {
+      "package": "ms-gsl/5.0.1",
+      "source": "https://github.com/microsoft/GSL/archive/v5.0.1.tar.gz",
+      "commit": "fbd20b8e8c52cba04dbc869cc9068a7800a5665d",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-memory/0.1.0",
+      "source": "https://github.com/linksplatform/Memory/releases/download/cpp_0.1.0/platform.memory_0.1.0.zip",
+      "commit": "8859bbbdc62179baa761c51218338152da608030",
+      "vulnerabilities": []
+    },
+    {
+      "package": "mio/cci.20230303",
+      "source": "https://github.com/mandreyel/mio/archive/8b6b7d878c89e81614d05edca7936de41ccdd2da.tar.gz",
+      "commit": "8b6b7d878c89e81614d05edca7936de41ccdd2da",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-data/0.1.1",
+      "source": "https://github.com/linksplatform/Data/releases/download/cpp_0.1.1/platform.data_0.1.1.zip",
+      "commit": "941d6835bc4826071a4c2b51ce829fb7d7f37742",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-setters/0.1.0",
+      "source": "https://github.com/linksplatform/Setters/releases/download/cpp_0.1.0/platform.setters_0.1.0.zip",
+      "commit": "fedc166d7814232f3be3290a8da679e5111865f6",
+      "vulnerabilities": []
+    },
+    {
+      "package": "platform-numbers/0.1.0",
+      "source": "https://github.com/linksplatform/Numbers/releases/download/cpp_0.1.0/platform.numbers_0.1.0.zip",
+      "commit": "6c48aadf101e7c25e18a7af4a58e04bd069fd86b",
+      "vulnerabilities": []
+    }
+  ]
+}

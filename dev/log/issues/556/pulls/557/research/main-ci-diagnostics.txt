@@ -1,0 +1,4 @@
+10795:security / codeql (c-cpp)	UNKNOWN STEP	2026-11-05T23:25:00.0613869Z ##[warning]Server Error
+10796:security / codeql (c-cpp)	UNKNOWN STEP	2026-11-05T23:25:00.0619719Z ##[error]Server Error
+19623:required	Require every applicable validation	2026-11-05T23:25:13.2904090Z ValueError: Validation did not pass: security
+19624:required	Require every applicable validation	2026-11-05T23:25:13.3060654Z ##[error]Process completed with exit code 1.

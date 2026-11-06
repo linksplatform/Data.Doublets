@@ -1,0 +1,4 @@
+info: using existing install for 1.99.1-x86_64-unknown-linux-gnu
+info: the active toolchain `1.99.1-x86_64-unknown-linux-gnu` has been installed
+info: it's active because: overridden by '/tmp/gh-issue-solver-1793921173521/rust-toolchain.toml'
+info: checking for self-update (current version: 1.29.3)

@@ -1,0 +1,855 @@
+[
+  {
+    "ecosystem": "GitHub",
+    "name": "Kitware/CMake",
+    "old": "3.13",
+    "latest": "v4.4.5",
+    "source": "https://api.github.com/repos/Kitware/CMake/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "NuGet/login",
+    "old": "8d196754b4036150537f80ac539e15c2f1028841",
+    "latest": "v1.2.0",
+    "source": "https://api.github.com/repos/NuGet/login/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "actions/checkout",
+    "old": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+    "latest": "v7.0.1",
+    "source": "https://api.github.com/repos/actions/checkout/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "actions/download-artifact",
+    "old": "9000827ccba6bdab643e8b6fd33ac0654aef8333",
+    "latest": "v8.0.2",
+    "source": "https://api.github.com/repos/actions/download-artifact/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "actions/setup-dotnet",
+    "old": "a98b56852c35b8e3190ac28c8c2271da59106c68",
+    "latest": "v6.1.0",
+    "source": "https://api.github.com/repos/actions/setup-dotnet/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "actions/setup-python",
+    "old": "6d4fd22b20465ccc0f7354476588e8df7c9ca0e0",
+    "latest": "v7.1.0",
+    "source": "https://api.github.com/repos/actions/setup-python/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "actions/upload-artifact",
+    "old": "cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+    "latest": "v7.0.2",
+    "source": "https://api.github.com/repos/actions/upload-artifact/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "dependabot/fetch-metadata",
+    "old": "25dd0e34f4fe68f24cc83900b1fe3fe149efef98",
+    "latest": "v3.1.0",
+    "source": "https://api.github.com/repos/dependabot/fetch-metadata/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "github/codeql-action",
+    "old": "9b3254085494b55a0f7c4c2b3d2d52cc712ce370",
+    "latest": "codeql-bundle-v2.27.4",
+    "source": "https://api.github.com/repos/github/codeql-action/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "gitleaks/gitleaks",
+    "old": "v8.30.1",
+    "latest": "v8.30.1",
+    "source": "https://api.github.com/repos/gitleaks/gitleaks/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "google/benchmark",
+    "old": "v1.6.0",
+    "latest": "v1.10.0",
+    "source": "https://api.github.com/repos/google/benchmark/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "google/googletest",
+    "old": "v1.13.0",
+    "latest": "v1.18.0",
+    "source": "https://api.github.com/repos/google/googletest/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "lycheeverse/lychee",
+    "old": "v0.23.0",
+    "latest": "lychee-v0.24.2",
+    "source": "https://api.github.com/repos/lycheeverse/lychee/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "lycheeverse/lychee-action",
+    "old": "e7477775783ea5526144ba13e8db5eec57747ce8",
+    "latest": "v2.9.0",
+    "source": "https://api.github.com/repos/lycheeverse/lychee-action/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "microsoft/GSL",
+    "old": "v4.0.0",
+    "latest": "v5.0.1",
+    "source": "https://api.github.com/repos/microsoft/GSL/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "python/cpython",
+    "old": "3.12",
+    "error": "Command '['gh', 'api', 'repos/python/cpython/releases/latest']' returned non-zero exit status 1."
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "rhysd/actionlint",
+    "old": "v1.7.12",
+    "latest": "v1.7.12",
+    "source": "https://api.github.com/repos/rhysd/actionlint/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "rust-lang/rust",
+    "old": "1.99.0",
+    "latest": "1.99.1",
+    "source": "https://api.github.com/repos/rust-lang/rust/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "zizmorcore/zizmor",
+    "old": "v1.29.0",
+    "latest": "v1.32.0",
+    "source": "https://api.github.com/repos/zizmorcore/zizmor/releases/latest"
+  },
+  {
+    "ecosystem": "GitHub",
+    "name": "zizmorcore/zizmor-action",
+    "old": "53290badfa369cb0bf7ad16342cb62c2fa47ac7b",
+    "latest": "v0.8.1",
+    "source": "https://api.github.com/repos/zizmorcore/zizmor-action/releases/latest"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "BenchmarkDotNet",
+    "old": "0.15.8",
+    "latest": "0.15.8",
+    "source": "https://api.nuget.org/v3-flatcontainer/benchmarkdotnet/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "BenchmarkDotNet.Annotations",
+    "old": "0.15.8",
+    "latest": "0.15.8",
+    "source": "https://api.nuget.org/v3-flatcontainer/benchmarkdotnet.annotations/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "CommandLineParser",
+    "old": "2.9.1",
+    "latest": "2.9.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/commandlineparser/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Gee.External.Capstone",
+    "old": "2.3.0",
+    "latest": "2.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/gee.external.capstone/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Iced",
+    "old": "1.21.0",
+    "latest": "1.22.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/iced/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.CodeAnalysis.Analyzers",
+    "old": "3.11.0",
+    "latest": "5.9.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.codeanalysis.analyzers/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.CodeAnalysis.CSharp",
+    "old": "4.14.0",
+    "latest": "5.9.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.codeanalysis.csharp/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.CodeAnalysis.Common",
+    "old": "4.14.0",
+    "latest": "5.9.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.codeanalysis.common/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.CodeCoverage",
+    "old": "18.11.0",
+    "latest": "18.11.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.codecoverage/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Diagnostics.NETCore.Client",
+    "old": "0.2.510501",
+    "latest": "0.2.750501",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.diagnostics.netcore.client/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Diagnostics.Runtime",
+    "old": "3.1.512801",
+    "latest": "4.2.751201",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.diagnostics.runtime/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Diagnostics.Tracing.TraceEvent",
+    "old": "3.1.21",
+    "latest": "4.0.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.diagnostics.tracing.traceevent/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.DotNet.PlatformAbstractions",
+    "old": "3.1.6",
+    "latest": "3.1.6",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.dotnet.platformabstractions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.DependencyInjection",
+    "old": "6.0.0",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.dependencyinjection/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.DependencyInjection.Abstractions",
+    "old": "6.0.0",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.dependencyinjection.abstractions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.Logging",
+    "old": "6.0.0",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.logging/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.Logging.Abstractions",
+    "old": "6.0.0",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.logging.abstractions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.Options",
+    "old": "6.0.0",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.options/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Extensions.Primitives",
+    "old": "6.0.0",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.primitives/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.NET.Test.Sdk",
+    "old": "18.11.0",
+    "latest": "18.11.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.net.test.sdk/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.NETCore.Platforms",
+    "old": "1.1.0",
+    "latest": "7.0.4",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.netcore.platforms/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.NETCore.Platforms",
+    "old": "5.0.0",
+    "latest": "7.0.4",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.netcore.platforms/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.NETCore.Targets",
+    "old": "1.1.0",
+    "latest": "5.0.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.netcore.targets/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.TestPlatform.ObjectModel",
+    "old": "18.11.0",
+    "latest": "18.11.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.testplatform.objectmodel/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.TestPlatform.TestHost",
+    "old": "18.11.0",
+    "latest": "18.11.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.testplatform.testhost/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Microsoft.Win32.Registry",
+    "old": "5.0.0",
+    "latest": "5.0.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/microsoft.win32.registry/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Perfolizer",
+    "old": "0.6.1",
+    "latest": "0.7.5",
+    "source": "https://api.nuget.org/v3-flatcontainer/perfolizer/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Collections",
+    "old": "0.4.0",
+    "latest": "0.4.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.collections/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Collections.Methods",
+    "old": "0.7.3",
+    "latest": "1.0.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.collections.methods/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Converters",
+    "old": "0.4.0",
+    "latest": "0.4.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.converters/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Counters",
+    "old": "0.0.2",
+    "latest": "0.0.2",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.counters/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Data",
+    "old": "0.16.1",
+    "latest": "0.16.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.data/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Data.Doublets.FFI",
+    "old": "0.9.0",
+    "latest": "0.9.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.data.doublets.ffi/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Data.Doublets.Sequences",
+    "old": "0.6.5",
+    "latest": "0.6.5",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.data.doublets.sequences/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Delegates",
+    "old": "0.1.1",
+    "latest": "0.1.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.delegates/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Diagnostics",
+    "old": "0.1.0",
+    "latest": "0.1.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.diagnostics/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Disposables",
+    "old": "0.4.0",
+    "latest": "0.4.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.disposables/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Exceptions",
+    "old": "0.5.0",
+    "latest": "0.5.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.exceptions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.IO",
+    "old": "0.5.1",
+    "latest": "0.5.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.io/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Interfaces",
+    "old": "0.5.0",
+    "latest": "0.5.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.interfaces/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Memory",
+    "old": "0.4.1",
+    "latest": "0.4.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.memory/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Numbers",
+    "old": "0.9.0",
+    "latest": "0.9.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.numbers/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Random",
+    "old": "0.3.0",
+    "latest": "0.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.random/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Ranges",
+    "old": "0.5.0",
+    "latest": "0.5.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.ranges/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Reflection",
+    "old": "0.7.0",
+    "latest": "0.7.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.reflection/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Scopes",
+    "old": "0.1.0",
+    "latest": "0.1.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.scopes/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Setters",
+    "old": "0.5.0",
+    "latest": "0.5.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.setters/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Singletons",
+    "old": "0.3.0",
+    "latest": "0.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.singletons/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Threading",
+    "old": "0.5.0",
+    "latest": "0.5.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.threading/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Timestamps",
+    "old": "0.3.0",
+    "latest": "0.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.timestamps/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Platform.Unsafe",
+    "old": "0.6.1",
+    "latest": "0.6.2",
+    "source": "https://api.nuget.org/v3-flatcontainer/platform.unsafe/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "Pragmastat",
+    "old": "3.2.4",
+    "latest": "14.0.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/pragmastat/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Buffers",
+    "old": "4.3.0",
+    "latest": "4.6.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.buffers/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.CodeDom",
+    "old": "9.0.5",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.codedom/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Collections.Immutable",
+    "old": "9.0.0",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.collections.immutable/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Diagnostics.Debug",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.diagnostics.debug/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Diagnostics.DiagnosticSource",
+    "old": "6.0.0",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.diagnostics.diagnosticsource/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Diagnostics.Tracing",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.diagnostics.tracing/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Globalization",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.globalization/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.IO",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.io/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.IO.FileSystem",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.io.filesystem/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.IO.FileSystem.Primitives",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.io.filesystem.primitives/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.IO.MemoryMappedFiles",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.io.memorymappedfiles/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.IO.UnmanagedMemoryStream",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.io.unmanagedmemorystream/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Management",
+    "old": "9.0.5",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.management/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Numerics.Vectors",
+    "old": "4.5.0",
+    "latest": "4.6.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.numerics.vectors/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Reflection",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.reflection/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Reflection.Metadata",
+    "old": "9.0.0",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.reflection.metadata/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Reflection.Primitives",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.reflection.primitives/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Reflection.TypeExtensions",
+    "old": "4.7.0",
+    "latest": "4.7.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.reflection.typeextensions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Resources.ResourceManager",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.resources.resourcemanager/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Runtime",
+    "old": "4.3.0",
+    "latest": "4.3.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.runtime/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Runtime.CompilerServices.Unsafe",
+    "old": "6.0.0",
+    "latest": "6.1.2",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.runtime.compilerservices.unsafe/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Runtime.Extensions",
+    "old": "4.3.0",
+    "latest": "4.3.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.runtime.extensions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Runtime.Handles",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.runtime.handles/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Runtime.InteropServices",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.runtime.interopservices/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Security.AccessControl",
+    "old": "5.0.0",
+    "latest": "6.0.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.security.accesscontrol/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Security.Principal.Windows",
+    "old": "5.0.0",
+    "latest": "5.0.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.security.principal.windows/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Text.Encoding",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.text.encoding/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Text.Json",
+    "old": "8.0.5",
+    "latest": "10.0.14",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.text.json/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Threading",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.threading/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "System.Threading.Tasks",
+    "old": "4.3.0",
+    "latest": "4.3.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/system.threading.tasks/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "coverlet.collector",
+    "old": "10.1.0",
+    "latest": "10.1.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/coverlet.collector/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "docfx",
+    "old": "2.81.0",
+    "latest": "2.81.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/docfx/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "runtime.native.System",
+    "old": "4.3.0",
+    "latest": "4.3.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/runtime.native.system/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit",
+    "old": "2.9.3",
+    "latest": "2.9.3",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.abstractions",
+    "old": "2.0.3",
+    "latest": "2.0.3",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.abstractions/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.analyzers",
+    "old": "1.18.0",
+    "latest": "2.2.0",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.analyzers/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.assert",
+    "old": "2.9.3",
+    "latest": "2.9.3",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.assert/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.core",
+    "old": "2.9.3",
+    "latest": "2.9.3",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.core/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.extensibility.core",
+    "old": "2.9.3",
+    "latest": "2.9.3",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.extensibility.core/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.extensibility.execution",
+    "old": "2.9.3",
+    "latest": "2.9.3",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.extensibility.execution/index.json"
+  },
+  {
+    "ecosystem": "NuGet",
+    "name": "xunit.runner.visualstudio",
+    "old": "3.1.5",
+    "latest": "4.0.1",
+    "source": "https://api.nuget.org/v3-flatcontainer/xunit.runner.visualstudio/index.json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "PyYAML",
+    "old": "6.0.3",
+    "latest": "6.0.3",
+    "source": "https://pypi.org/pypi/PyYAML/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "conan",
+    "old": "2.33.0",
+    "latest": "2.34.0",
+    "source": "https://pypi.org/pypi/conan/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "fpdf2",
+    "old": "2.8.9",
+    "latest": "2.9.0",
+    "source": "https://pypi.org/pypi/fpdf2/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "gcovr",
+    "old": "8.8",
+    "latest": "8.8",
+    "source": "https://pypi.org/pypi/gcovr/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "mypy",
+    "old": "1.18.2",
+    "latest": "2.4.1",
+    "source": "https://pypi.org/pypi/mypy/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "pip-audit",
+    "old": "2.10.1",
+    "latest": "2.10.1",
+    "source": "https://pypi.org/pypi/pip-audit/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "pyflakes",
+    "old": "3.4.0",
+    "latest": "4.1.0",
+    "source": "https://pypi.org/pypi/pyflakes/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "ruff",
+    "old": "0.17.3",
+    "latest": "0.17.4",
+    "source": "https://pypi.org/pypi/ruff/json"
+  },
+  {
+    "ecosystem": "PyPI",
+    "name": "types-PyYAML",
+    "old": "6.0.12.20260906",
+    "latest": "6.0.12.20261103",
+    "source": "https://pypi.org/pypi/types-PyYAML/json"
+  }
+]
