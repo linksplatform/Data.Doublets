@@ -1,3 +1,11 @@
+## csharp 1.0.0
+
+- Require .NET 10, update dependency APIs and native tools, and repair abstract native method interfaces for current compilers.
+
+## cpp 1.0.0
+
+- Require .NET 10, update dependency APIs and native tools, and repair abstract native method interfaces for current compilers.
+
 ## csharp 0.18.10
 
 - Format raw sequence leaves safely, preserve nested debug markers, and add equivalent C++ structure formatting.
