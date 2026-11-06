@@ -9,7 +9,7 @@ against the library in this checkout:
 dotnet run --project examples/ExternalReferences -c Release
 ```
 
-Requires .NET 8. With only a newer runtime installed, set `DOTNET_ROLL_FORWARD=Major`.
+Requires the .NET 10 SDK selected by `global.json`.
 The example uses small memory reservations and runs the two stores sequentially.
 
 It creates point 1, then link 2 with source 1 and external target

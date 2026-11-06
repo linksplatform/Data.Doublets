@@ -70,7 +70,7 @@ overflow the stack. A case reports the remaining links and whether a fresh
 ```sh
 probe=experiments/issue-354/DeleteAllProbe
 dotnet build "$probe" -c Release
-dotnet "$probe/bin/Release/net8.0/DeleteAllProbe.dll"
+dotnet "$probe/bin/Release/net10.0/DeleteAllProbe.dll"
 ```
 
 Results are in
