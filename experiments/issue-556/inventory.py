@@ -40,6 +40,8 @@ def resolve(item):
             (OUT / ("github-" + name.replace("/", "-") + ".json")).write_text(
                 json.dumps(data, indent=2) + "\n"
             )
+        else:
+            raise ValueError(f"Unsupported ecosystem: {ecosystem}")
         return dict(ecosystem=ecosystem, name=name, old=old, latest=latest, source=url)
     except Exception as error:
         return dict(ecosystem=ecosystem, name=name, old=old, error=str(error))

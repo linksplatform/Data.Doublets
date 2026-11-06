@@ -1,0 +1,17 @@
+F
+======================================================================
+FAIL: test_unsupported_ecosystem_retains_an_actionable_diagnostic (test_dependency_inventory.InventoryTests.test_unsupported_ecosystem_retains_an_actionable_diagnostic)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793921173521/experiments/test_dependency_inventory.py", line 20, in test_unsupported_ecosystem_retains_an_actionable_diagnostic
+    self.assertEqual(result["error"], "Unsupported ecosystem: unsupported")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "cannot access local variable 'latest' where it is not associated with a value" != 'Unsupported ecosystem: unsupported'
+- cannot access local variable 'latest' where it is not associated with a value
++ Unsupported ecosystem: unsupported
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)
