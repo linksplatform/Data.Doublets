@@ -1,29 +1,13 @@
-"""Keep actionlint's checks while validating its known queue-key false positive.
-
-actionlint 1.7.12 lacks GitHub's concurrency.queue schema (upstream #657).
-Validate that field here and exclude only that exact obsolete-schema diagnostic.
-Every other syntax, expression and embedded-shell diagnostic remains fatal.
-"""
+"""Validate current GitHub workflow syntax, including embedded shell and Python."""
 
 import argparse
 import os
 from pathlib import Path
-import re
 from shutil import which
 import subprocess
-import yaml
 
-IMAGE = "rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667"
-
-
-def actionlint_source(source):
-    # actionlint 1.7.12 predates GitHub's self-repository syntax. Give its
-    # parser the equivalent local reference so it still loads/checks the callee.
-    return re.sub(
-        r"(?m)^(\s+uses: )\$/(\.github/workflows/[\w.-]+\.ya?ml)(\s*)$",
-        r"\1./\2\3",
-        source,
-    )
+# kjanat/actionlint 1.17.0 supports concurrency.queue and self-repository refs.
+IMAGE = "data-doublets-workflow-lint:local"
 
 
 def check_tools():
@@ -34,46 +18,21 @@ def check_tools():
             )
 
 
-def validate_queue(workflow):
-    scopes = [workflow, *workflow.get("jobs", {}).values()]
-    for scope in scopes:
-        concurrency = scope.get("concurrency", {})
-        if not isinstance(concurrency, dict) or "queue" not in concurrency:
-            continue
-        if concurrency["queue"] not in ("single", "max"):
-            raise ValueError("concurrency.queue must be single or max")
-        if (
-            concurrency["queue"] == "max"
-            and concurrency.get("cancel-in-progress", False) is not False
-        ):
-            raise ValueError("queue: max requires cancel-in-progress: false")
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--container", action="store_true", help="Use the pinned image with ShellCheck and Pyflakes"
     )
     args = parser.parse_args()
-    for path in Path(".github/workflows").glob("*.yml"):
-        validate_queue(yaml.safe_load(path.read_text()))
     if args.container:
-        command = ["docker", "run", "--rm", "-i", "-v", f"{Path.cwd()}:/work", "-w", "/work", IMAGE]
+        subprocess.run(
+            ["docker", "build", "-q", "-t", IMAGE, "-f", "scripts/workflow-lint/Dockerfile", "."],
+            check=True,
+        )
+        command = ["docker", "run", "--rm", "-v", f"{Path.cwd()}:/work", "-w", "/work", IMAGE]
     else:
         check_tools()
         command = [os.environ.get("ACTIONLINT", "actionlint")]
-    for path in Path(".github/workflows").glob("*.yml"):
-        subprocess.run(
-            [
-                *command,
-                "-color",
-                "-ignore",
-                '^unexpected key "queue" for "concurrency" section\\.',
-                "-stdin-filename",
-                str(path),
-                "-",
-            ],
-            input=actionlint_source(path.read_text()),
-            text=True,
-            check=True,
-        )
+    subprocess.run(
+        [*command, "-color", *map(str, Path(".github/workflows").glob("*.yml"))], check=True
+    )

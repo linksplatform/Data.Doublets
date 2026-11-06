@@ -21,8 +21,11 @@ python3 scripts/check-cpp.py --build-dir cpp/build
 bash scripts/check-secrets.sh
 ```
 
-The workflow linter runs the digest-pinned actionlint container, including
-ShellCheck and Pyflakes. Native execution requires all three tools on PATH and
+The workflow linter builds a container from digest-pinned Python 3.15.2 and
+kjanat/actionlint 1.17.0 images, using the locked Pyflakes and bundled ShellCheck.
+This maintained fork supports GitHub's
+`concurrency.queue` and `$/` workflow references directly. Native execution
+requires that version and both embedded-code checkers on PATH and
 fails if an embedded-code checker is missing. Archived upstream scripts under
 `dev/log/` are frozen evidence, excluded from the standalone ShellCheck pass.
 Python helpers under `scripts/` must pass Ruff lint/format and mypy; historical

@@ -36,6 +36,10 @@ updates:
       default-days: 7
     schedule:
       interval: weekly
+  - package-ecosystem: docker
+    directory: /scripts/workflow-lint
+    schedule:
+      interval: weekly
   - package-ecosystem: gitsubmodule
     directory: /
     cooldown:

@@ -107,21 +107,17 @@ class GateTests(unittest.TestCase):
 
 
 class WorkflowSchemaTests(unittest.TestCase):
-    def test_self_repository_reference_keeps_local_callee_validation(self):
-        checker = load('workflow_checker', ROOT / 'scripts/check-workflows.py')
-        source = 'jobs:\n  audit:\n    uses: $/.github/workflows/security.yml\n'
-        self.assertEqual(checker.actionlint_source(source), source.replace('$/', './'))
-        for invalid in ('$/../security.yml', '$/.github/workflows/../security.yml', '$/missing.yml'):
-            with self.subTest(invalid=invalid):
-                source = '    uses: ' + invalid + '\n'
-                self.assertEqual(checker.actionlint_source(source), source)
+    def test_self_repository_workflow_is_pinned_to_the_current_commit(self):
+        checker = load('repository_checker', ROOT / 'scripts/check_repository.py')
+        for reference in ('$/.github/workflows/security.yml', './.github/workflows/links.yml', 'actions/checkout@' + 'a' * 40):
+            with self.subTest(reference=reference):
+                self.assertEqual(checker.action_pin_errors('ci.yml', '    uses: ' + reference), [])
 
-    def test_queue_policy(self):
-        checker = load('workflow_checker', ROOT / 'scripts/check-workflows.py')
-        checker.validate_queue({'jobs': {'publish': {'concurrency': {'queue': 'max', 'cancel-in-progress': False}}}})
-        for invalid in ({'queue': 'max', 'cancel-in-progress': True}, {'queue': 'all'}):
-            with self.assertRaises(ValueError):
-                checker.validate_queue({'concurrency': invalid})
+    def test_self_repository_syntax_does_not_allow_unpinned_external_actions(self):
+        checker = load('repository_checker', ROOT / 'scripts/check_repository.py')
+        for invalid in ('$/../security.yml', '$/.github/workflows/../security.yml', '$/missing.yml', 'actions/checkout@v7'):
+            with self.subTest(invalid=invalid):
+                self.assertTrue(checker.action_pin_errors('ci.yml', '    uses: ' + invalid))
 
 
 class VersionTests(unittest.TestCase):

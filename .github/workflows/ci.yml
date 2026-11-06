@@ -57,6 +57,7 @@ jobs:
           python3 -m pip install -r scripts/requirements-ci.txt
           python3 -m pip install -r scripts/requirements-quality.txt
           python3 scripts/check-workflows.py --container
+          python3 experiments/issue-556/check_workflow_schema.py
           git ls-files -z '*.sh' ':(exclude)dev/log/**' | xargs -0 shellcheck
       - uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
         with:
