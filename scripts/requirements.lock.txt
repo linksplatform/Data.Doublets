@@ -47,7 +47,7 @@ pre_commit==4.7.0
 py-serializable==2.1.0
 pyflakes==4.1.0
 pyparsing==3.3.3
-python-discovery==1.9.4
+python-discovery==1.9.5
 requests==2.34.2
 rich==15.0.0
 ruff==0.17.4
