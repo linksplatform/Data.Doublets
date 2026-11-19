@@ -47,13 +47,13 @@
       },
       "xunit.v3.mtp-off": {
         "type": "Direct",
-        "requested": "[4.0.2, )",
-        "resolved": "4.0.2",
-        "contentHash": "AD40mPViEyfFKfYH2JKFnqIkwjvqdey+ZeBH/gV91Sq2MRF4UwQMGdymD8m7JLw6Pz4J4yJ3zn+QI+Ja8gNlyg==",
+        "requested": "[4.0.3, )",
+        "resolved": "4.0.3",
+        "contentHash": "/2DllJSdr4mnMdnY5gN5ndxGdTGwTX6brIpmZv2PEV7D2N1PwwdSW4t+3ARD/5JwYXFBl1XV+8ozwSTyq2wbEg==",
         "dependencies": {
-          "xunit.analyzers": "2.2.0",
-          "xunit.v3.assert": "[4.0.2]",
-          "xunit.v3.core.mtp-off": "[4.0.2]"
+          "xunit.analyzers": "2.3.0",
+          "xunit.v3.assert": "[4.0.3]",
+          "xunit.v3.core.mtp-off": "[4.0.3]"
         }
       },
       "platform.data.doublets": {
