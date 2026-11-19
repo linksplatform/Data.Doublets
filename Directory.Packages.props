@@ -58,7 +58,7 @@
     <PackageVersion Include="coverlet.collector" Version="10.1.0" />
     <PackageVersion Include="xunit.analyzers" Version="2.2.0" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="4.0.1" />
-    <PackageVersion Include="xunit.v3.mtp-off" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3.mtp-off" Version="4.0.3" />
     <PackageVersion Include="Azure.Core" Version="1.64.0" />
     <PackageVersion Include="Azure.Identity" Version="1.21.0" />
     <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.14" />
