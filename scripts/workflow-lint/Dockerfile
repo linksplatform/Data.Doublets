@@ -1,5 +1,5 @@
 FROM kjanat/actionlint:1.17.1@sha256:c0a63b3e5c974c2466ead39404b70e448176beaff8c5ec7af0b2e96191aea661 AS binaries
-FROM golang:1.27.3-alpine@sha256:dbaa054703263d06c8b49576667418473b6231f8c0fa69dee103207fdb8e3654 AS builder
+FROM golang:1.27.4-alpine@sha256:70bd7ddea8b6cbe5d6943cde279d6b67feb10cc924fb9100d1d8757c1575b280 AS builder
 # The released binary embeds Go 1.27.0, which has outstanding OSV advisories.
 ADD --checksum=sha256:78def64642f4c85bf32a1a9ffc73b67fd5378a022bb8e3bd918d8fe42282729d https://github.com/kjanat/actionlint/archive/refs/tags/v1.17.0.tar.gz /tmp/source.tar.gz
 RUN mkdir /source && tar -xzf /tmp/source.tar.gz -C /source --strip-components=1
