@@ -37,6 +37,13 @@ namespace Platform.Data.Doublets.Memory
         /// </para>
         /// <para></para>
         /// </summary>
-        SizedAndThreadedAVLBalancedTree = 3
+        SizedAndThreadedAVLBalancedTree = 3,
+        /// <summary>
+        /// <para>
+        /// The bitstring index tree type.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        BitStringIndex = 4
     }
 }
