@@ -48,6 +48,12 @@ link = links.Update(link, newSource: default, newTarget: default);
 links.Delete(link);
 ```
 
+## Optional BitArray index
+
+The C# `BitArrayLinksIndex<TLinkAddress>` decorator adds sparse source/target
+indexes while preserving the underlying store and its tree indexes. See
+[configuration, CRUD usage and verification](csharp/BITARRAY_INDEX.md).
+
 ## [SQLite vs Doublets](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
 
 [![Image with result of performance comparison between SQLite and Doublets.](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Examples/sqlite_vs_doublets_performance.png "Result of performance comparison between SQLite and Doublets")](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
