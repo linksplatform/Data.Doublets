@@ -29,20 +29,20 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="address">
-        /// <para>A address.</para>
+        /// <param name="path">
+        /// <para>A path.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UnitedMemoryLinks(string address) : this(address, DefaultLinksSizeStep) { }
+        public UnitedMemoryLinks(string path) : this(path, DefaultLinksSizeStep) { }
 
         /// <summary>
         /// Создаёт экземпляр базы данных Links в файле по указанному адресу, с указанным минимальным шагом расширения базы данных.
         /// </summary>
-        /// <param name="address">Полный пусть к файлу базы данных.</param>
+        /// <param name="path">Полный пусть к файлу базы данных.</param>
         /// <param name="memoryReservationStep">Минимальный шаг расширения базы данных в байтах.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UnitedMemoryLinks(string address, long memoryReservationStep) : this(new FileMappedResizableDirectMemory(address, memoryReservationStep), memoryReservationStep) { }
+        public UnitedMemoryLinks(string path, long memoryReservationStep) : this(new FileMappedResizableDirectMemory(path, memoryReservationStep), memoryReservationStep) { }
 
         /// <summary>
         /// <para>
