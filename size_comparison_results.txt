@@ -1,0 +1,72 @@
+=== Run 1 ===
+/home/hive/.nuget/packages/microsoft.build.tasks.git/1.1.1/build/Microsoft.Build.Tasks.Git.targets(25,5): warning : Could not find file '/tmp/gh-issue-solver-1757831741575/rust/.git'. The source code won't be available via Source Link. [/tmp/gh-issue-solver-1757831741575/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+=== Quick Size Comparison Test ===
+Iterations: 10,000,000
+
+--- TestStruct (4 x ulong) ---
+Unsafe.SizeOf<T>(): 9.214 ms (Result: 32)
+Size field:        27.788 ms (Result: 32)
+Ratio (SizeOf/Field): 0.33x
+
+--- RawLink<ulong> (8 x ulong) ---
+Unsafe.SizeOf<T>():  11.351 ms (Result: 64)
+Size field:         34.384 ms (Result: 64)
+Platform.Unsafe:    34.217 ms (Result: 64)
+Ratio (SizeOf/Field): 0.33x
+Ratio (Platform.Unsafe/Field): 1.00x
+
+--- RawLinkDataPart<ulong> (2 x ulong) ---
+Unsafe.SizeOf<T>():  10.641 ms (Result: 16)
+Size field:         37.950 ms (Result: 16)
+Platform.Unsafe:    33.413 ms (Result: 16)
+Ratio (SizeOf/Field): 0.28x
+Ratio (Platform.Unsafe/Field): 0.88x
+
+=== Run 2 ===
+/home/hive/.nuget/packages/microsoft.build.tasks.git/1.1.1/build/Microsoft.Build.Tasks.Git.targets(25,5): warning : Could not find file '/tmp/gh-issue-solver-1757831741575/rust/.git'. The source code won't be available via Source Link. [/tmp/gh-issue-solver-1757831741575/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+=== Quick Size Comparison Test ===
+Iterations: 10,000,000
+
+--- TestStruct (4 x ulong) ---
+Unsafe.SizeOf<T>(): 39.480 ms (Result: 32)
+Size field:        113.735 ms (Result: 32)
+Ratio (SizeOf/Field): 0.35x
+
+--- RawLink<ulong> (8 x ulong) ---
+Unsafe.SizeOf<T>():  57.610 ms (Result: 64)
+Size field:         128.985 ms (Result: 64)
+Platform.Unsafe:    122.790 ms (Result: 64)
+Ratio (SizeOf/Field): 0.45x
+Ratio (Platform.Unsafe/Field): 0.95x
+
+--- RawLinkDataPart<ulong> (2 x ulong) ---
+Unsafe.SizeOf<T>():  39.838 ms (Result: 16)
+Size field:         78.595 ms (Result: 16)
+Platform.Unsafe:    72.801 ms (Result: 16)
+Ratio (SizeOf/Field): 0.51x
+Ratio (Platform.Unsafe/Field): 0.93x
+
+=== Run 3 ===
+/home/hive/.nuget/packages/microsoft.build.tasks.git/1.1.1/build/Microsoft.Build.Tasks.Git.targets(25,5): warning : Could not find file '/tmp/gh-issue-solver-1757831741575/rust/.git'. The source code won't be available via Source Link. [/tmp/gh-issue-solver-1757831741575/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+=== Quick Size Comparison Test ===
+Iterations: 10,000,000
+
+--- TestStruct (4 x ulong) ---
+Unsafe.SizeOf<T>(): 17.480 ms (Result: 32)
+Size field:        55.991 ms (Result: 32)
+Ratio (SizeOf/Field): 0.31x
+
+--- RawLink<ulong> (8 x ulong) ---
+Unsafe.SizeOf<T>():  22.754 ms (Result: 64)
+Size field:         62.179 ms (Result: 64)
+Platform.Unsafe:    84.200 ms (Result: 64)
+Ratio (SizeOf/Field): 0.37x
+Ratio (Platform.Unsafe/Field): 1.35x
+
+--- RawLinkDataPart<ulong> (2 x ulong) ---
+Unsafe.SizeOf<T>():  41.018 ms (Result: 16)
+Size field:         83.563 ms (Result: 16)
+Platform.Unsafe:    72.077 ms (Result: 16)
+Ratio (SizeOf/Field): 0.49x
+Ratio (Platform.Unsafe/Field): 0.86x
+
