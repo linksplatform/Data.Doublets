@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Description>LinksPlatform's Platform.Data.Doublets Native Library</Description>
+        <Copyright>konard, FreePhoenix888</Copyright>
+        <AssemblyTitle>Platform.Data.Doublets.NativeLibrary</AssemblyTitle>
+        <VersionPrefix>0.1.0</VersionPrefix>
+        <Authors>konard, FreePhoenix888</Authors>
+        <TargetFramework>net8</TargetFramework>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <AssemblyName>Platform.Data.Doublets.NativeLibrary</AssemblyName>
+        <PackageId>Platform.Data.Doublets.NativeLibrary</PackageId>
+        <PackageTags>LinksPlatform;Data.Doublets;NativeLibrary;CoreRT;NativeAOT</PackageTags>
+        <PackageProjectUrl>https://linksplatform.github.io/Data.Doublets</PackageProjectUrl>
+        <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>git://github.com/linksplatform/Data.Doublets</RepositoryUrl>
+        <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+        <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <PublishAot>true</PublishAot>
+        <OutputType>Library</OutputType>
+        <EnableDynamicLoading>true</EnableDynamicLoading>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Platform.Data.Doublets\Platform.Data.Doublets.csproj" />
+    </ItemGroup>
+
+</Project>
