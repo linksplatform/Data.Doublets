@@ -169,7 +169,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetSize(TLinkAddress node, TLinkAddress size) => SetSizeValue(ref GetLinkReference(node).SizeAsSource, size);
+        protected override void SetSize(TLinkAddress node, TLinkAddress size) => SetSizeValue(ref GetLinkReference(node).SizeAsSource.Value, size);
 
         /// <summary>
         /// <para>
@@ -203,7 +203,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetLeftIsChild(TLinkAddress node, bool value) => SetLeftIsChildValue(ref GetLinkReference(node).SizeAsSource, value);
+        protected override void SetLeftIsChild(TLinkAddress node, bool value) => SetLeftIsChildValue(ref GetLinkReference(node).SizeAsSource.Value, value);
 
         /// <summary>
         /// <para>
@@ -237,7 +237,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetRightIsChild(TLinkAddress node, bool value) => SetRightIsChildValue(ref GetLinkReference(node).SizeAsSource, value);
+        protected override void SetRightIsChild(TLinkAddress node, bool value) => SetRightIsChildValue(ref GetLinkReference(node).SizeAsSource.Value, value);
 
         /// <summary>
         /// <para>
@@ -271,7 +271,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetBalance(TLinkAddress node, sbyte value) => SetBalanceValue(ref GetLinkReference(node).SizeAsSource, value);
+        protected override void SetBalance(TLinkAddress node, sbyte value) => SetBalanceValue(ref GetLinkReference(node).SizeAsSource.Value, value);
 
         /// <summary>
         /// <para>
