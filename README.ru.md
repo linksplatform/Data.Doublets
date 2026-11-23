@@ -12,38 +12,44 @@
 
 NuGet пакет: [Platform.Data.Doublets](https://www.nuget.org/packages/Platform.Data.Doublets)
 
-## [Пример](https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet) | [Запустить .NET fiddle](https://dotnetfiddle.net/Y7Zvt0)
+## [Пример](https://github.com/linksplatform/Examples.Doublets.CRUD) | [Запустить .NET fiddle](https://dotnetfiddle.net/Y7Zvt0)
 ```C#
 using System;
 using Platform.Data;
 using Platform.Data.Doublets;
 using Platform.Data.Doublets.Memory.United.Generic;
 
-// Хранилище дуплетов привязывается к файлу "db.links":
-using var links = new UnitedMemoryLinks<uint>("db.links");
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Хранилище дуплетов привязывается к файлу "db.links":
+        using var links = new UnitedMemoryLinks<uint>("db.links");
 
-// Создание связи-дуплета: 
-var link = links.Create();
+        // Создание связи-дуплета: 
+        var link = links.Create();
 
-// Связь обновляется чтобы ссылаться на себя дважды (в качестве начала и конца):
-link = links.Update(link, newSource: link, newTarget: link);
+        // Связь обновляется чтобы ссылаться на себя дважды (в качестве начала и конца):
+        link = links.Update(link, newSource: link, newTarget: link);
 
-// Операции чтения:
-Console.WriteLine($"Количество связей в хранилище данных: {links.Count()}.");
-Console.WriteLine("Содержимое хранилища данных:");
-var any = links.Constants.Any; // Означает любой адрес связи или отсутствие ограничения на адрес связи
-// Аргументы запроса интерпретируются в качестве органичений
-var query = new Link<uint>(index: any, source: any, target: any);
-links.Each((link) => {
-    Console.WriteLine(links.Format(link));
-    return links.Constants.Continue;
-}, query);
+        // Операции чтения:
+        Console.WriteLine($"Количество связей в хранилище данных: {links.Count()}.");
+        Console.WriteLine("Содержимое хранилища данных:");
+        
+        var any = links.Constants.Any; 
+        var query = new Link<uint>(index: any, source: any, target: any);
+        links.Each((link) => {
+            Console.WriteLine(links.Format(link));
+            return links.Constants.Continue;
+        }, query);
 
-// Сброс содержимого связи:
-link = links.Update(link, newSource: default, newTarget: default);
+        // Очистка (сброс) содержимого связи:
+        link = links.Update(link, newSource: default, newTarget: default);
 
-// Удаление связи:
-links.Delete(link);
+        // Удаление связи
+        links.Delete(link);
+    }
+}
 ```
 
 ## [SQLite против Дуплетов](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
