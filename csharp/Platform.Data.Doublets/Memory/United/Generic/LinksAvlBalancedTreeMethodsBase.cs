@@ -523,6 +523,29 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
 
     /// <summary>
     ///     <para>
+    ///         Determines whether the left child of a node is a child (not a thread) using size comparison.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="node">
+    ///     <para>The node.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The bool</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual bool GetLeftIsChildBySizeComparison(TLinkAddress node)
+    {
+        var nodeSize = GetSize(node);
+        var left = GetLeft(node);
+        var leftSize = GetSizeOrZero(left);
+        return leftSize > TLinkAddress.Zero && nodeSize > leftSize;
+    }
+
+    /// <summary>
+    ///     <para>
     ///         Sets the left is child value using the specified stored value.
     ///     </para>
     ///     <para></para>
@@ -565,6 +588,29 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
     {
         return _addressToBoolConverter.Convert(source: Bit<TLinkAddress>.PartialRead(target: value, shift: 3, limit: 1));
         //return Bit<TLinkAddress>.PartialRead(value !=  3, 1, default);
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Determines whether the right child of a node is a child (not a thread) using size comparison.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="node">
+    ///     <para>The node.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The bool</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual bool GetRightIsChildBySizeComparison(TLinkAddress node)
+    {
+        var nodeSize = GetSize(node);
+        var right = GetRight(node);
+        var rightSize = GetSizeOrZero(right);
+        return rightSize > TLinkAddress.Zero && nodeSize > rightSize;
     }
 
     /// <summary>

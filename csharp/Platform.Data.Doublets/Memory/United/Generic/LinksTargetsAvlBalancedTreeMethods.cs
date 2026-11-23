@@ -173,7 +173,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Determines whether this instance get left is child.
+        /// Determines whether this instance get left is child using size comparison.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -186,7 +186,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool GetLeftIsChild(TLinkAddress node) => GetLeftIsChildValue(GetLinkReference(node).SizeAsTarget);
+        protected override bool GetLeftIsChild(TLinkAddress node) => GetLeftIsChildBySizeComparison(node);
 
         /// <summary>
         /// <para>
@@ -207,7 +207,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Determines whether this instance get right is child.
+        /// Determines whether this instance get right is child using size comparison.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -220,7 +220,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool GetRightIsChild(TLinkAddress node) => GetRightIsChildValue(GetLinkReference(node).SizeAsTarget);
+        protected override bool GetRightIsChild(TLinkAddress node) => GetRightIsChildBySizeComparison(node);
 
         /// <summary>
         /// <para>
