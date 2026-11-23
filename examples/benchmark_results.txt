@@ -1,0 +1,38 @@
+Bitstring Deleted Links Map Performance Test
+Issue #398: Try to use bitstring for a map of deleted links to test if it is faster
+
+Deleted Links Tracking Performance Comparison
+===================================================
+
+Testing BitArray...
+Completed in 26 ms
+
+Testing Custom Bitstring...
+Completed in 27 ms
+
+Testing Linked List...
+Completed in 1395 ms
+
+Results Summary:
+===================================================
+BitArray:         26.56 ms
+Custom Bitstring: 27.70 ms
+Linked List:      1395.73 ms
+
+Speed Comparison (vs fastest):
+BitArray:         1.00x
+Custom Bitstring: 1.04x
+Linked List:      52.55x
+
+Test completed successfully!
+
+Recommendations:
+- Custom Bitstring approach should show the best performance for most operations
+- BitArray is good for general use but has more overhead
+- Linked List approach (current) has overhead of HashSet + LinkedList
+- Bitstring approaches use significantly less memory for sparse deletion patterns
+
+Press any key to exit...
+Unhandled exception. System.InvalidOperationException: Cannot read keys when either application does not have a console or when console input has been redirected. Try Console.Read.
+   at System.ConsolePal.ReadKey(Boolean intercept)
+   at Platform.Data.Doublets.Examples.Program.Main(String[] args) in /tmp/gh-issue-solver-1757570449597/examples/Program.cs:line 35
