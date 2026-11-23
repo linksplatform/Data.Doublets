@@ -265,6 +265,79 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
 
     /// <summary>
     ///     <para>
+    ///         Eaches the usage from the middle using the specified base.
+    ///         Starts from root, then proceeds with left and right subtrees level by level for faster access to initial links.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="@base">
+    ///     <para>The base.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="handler">
+    ///     <para>The handler.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public TLinkAddress EachUsageFromMiddle(TLinkAddress @base, ReadHandler<TLinkAddress>? handler)
+    {
+        var @continue = Continue;
+        var @break = Break;
+        var root = GetTreeRoot();
+        if (root == TLinkAddress.Zero)
+        {
+            return @continue;
+        }
+
+        var queue = new Queue<TLinkAddress>();
+        queue.Enqueue(root);
+
+        while (queue.Count > 0)
+        {
+            var current = queue.Dequeue();
+            if (current == TLinkAddress.Zero)
+            {
+                continue;
+            }
+
+            var linkBasePart = GetBasePartValue(link: current);
+            
+            if (linkBasePart == @base)
+            {
+                if (handler(link: GetLinkValues(linkIndex: current)) == @break)
+                {
+                    return @break;
+                }
+            }
+
+            if (linkBasePart >= @base)
+            {
+                var left = GetLeftOrDefault(node: current);
+                if (left != TLinkAddress.Zero)
+                {
+                    queue.Enqueue(left);
+                }
+            }
+
+            if (linkBasePart <= @base)
+            {
+                var right = GetRightOrDefault(node: current);
+                if (right != TLinkAddress.Zero)
+                {
+                    queue.Enqueue(right);
+                }
+            }
+        }
+
+        return @continue;
+    }
+
+    /// <summary>
+    ///     <para>
     ///         Gets the tree root.
     ///     </para>
     ///     <para></para>
