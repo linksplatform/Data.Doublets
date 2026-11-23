@@ -6,7 +6,6 @@ using Platform.Converters;
 using Platform.Delegates;
 using static System.Runtime.CompilerServices.Unsafe;
 
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 namespace Platform.Data.Doublets.Memory.Split.Generic;
 
