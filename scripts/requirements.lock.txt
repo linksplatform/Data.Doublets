@@ -42,7 +42,7 @@ pip-requirements-parser==32.0.1
 pip==26.3
 pip_api==0.0.35
 pip_audit==2.10.1
-platformdirs==4.14.5
+platformdirs==4.14.7
 pre_commit==4.7.0
 py-serializable==2.2.0
 pyflakes==4.1.0
