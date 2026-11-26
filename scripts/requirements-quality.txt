@@ -1,7 +1,7 @@
 -c requirements.lock.txt
 PyYAML==6.0.3
 conan==2.34.0
-ruff==0.17.4
+ruff==0.17.5
 mypy==2.4.1
 types-PyYAML==6.0.12.20261111
 pyflakes==4.1.0
