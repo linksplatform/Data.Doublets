@@ -18,7 +18,7 @@ defusedxml==0.7.1
 distlib==0.4.4
 distro==1.9.0
 fasteners==0.20
-filelock==4.2.10
+filelock==4.2.12
 fonttools==4.68.0
 fpdf2==2.9.0
 gcovr==8.8
