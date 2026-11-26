@@ -50,7 +50,7 @@ pyparsing==3.3.3
 python-discovery==1.9.5
 requests==2.34.2
 rich==15.0.0
-ruff==0.17.4
+ruff==0.17.5
 sortedcontainers==2.4.0
 tomli==2.5.0
 tomli_w==1.2.0
