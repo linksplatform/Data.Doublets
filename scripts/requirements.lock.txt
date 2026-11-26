@@ -1,5 +1,5 @@
 # Full Python 3.15 resolution. Regenerate with experiments/issue-556/lock_python.py.
-CacheControl==0.14.4
+CacheControl==0.15.0
 Jinja2==3.1.6
 MarkupSafe==3.0.4
 PyYAML==6.0.3
