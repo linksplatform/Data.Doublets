@@ -55,7 +55,7 @@ sortedcontainers==2.4.0
 tomli==2.5.0
 tomli_w==1.2.0
 truststore==0.10.5
-types-PyYAML==6.0.12.20261111
+types-PyYAML==6.0.12.20261113
 typing_extensions==4.16.0
 urllib3==2.8.0
 virtualenv==21.15.6
