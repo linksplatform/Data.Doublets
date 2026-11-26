@@ -5,7 +5,7 @@ ADD --checksum=sha256:78def64642f4c85bf32a1a9ffc73b67fd5378a022bb8e3bd918d8fe422
 RUN mkdir /source && tar -xzf /tmp/source.tar.gz -C /source --strip-components=1
 WORKDIR /source
 RUN CGO_ENABLED=0 GOMEMLIMIT=512MiB GOMAXPROCS=2 go build -p 1 -trimpath -ldflags='-s -w' -o /actionlint ./cmd/actionlint
-FROM python:3.16.0a1-alpine@sha256:57d59f9badcd47eabb3ed920d3bd5ae02f44664fc224ae57f1687980227741d2
+FROM python:3.16.0a2-alpine@sha256:ccab9cdd439368f389d4821cd5a04019269ef716ce3d540b33361e3339a38325
 COPY --from=builder /actionlint /usr/local/bin/actionlint
 COPY --from=binaries /usr/local/bin/shellcheck /usr/local/bin/shellcheck
 COPY scripts/requirements.lock.txt /tmp/requirements.lock.txt
