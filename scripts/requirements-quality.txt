@@ -3,7 +3,7 @@ PyYAML==6.0.3
 conan==2.34.0
 ruff==0.17.4
 mypy==2.4.1
-types-PyYAML==6.0.12.20261111
+types-PyYAML==6.0.12.20261113
 pyflakes==4.1.0
 clang-format==23.1.5
 pre-commit==4.7.0
