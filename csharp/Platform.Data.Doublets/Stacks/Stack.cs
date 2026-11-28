@@ -85,7 +85,7 @@ namespace Platform.Data.Doublets.Stacks
                 var top = GetTop();
                 var previousTop = _links.GetSource(top);
                 _links.Update(_stack, GetStackMarker(), previousTop);
-                _links.Delete(top);
+                _links.Delete(top, null);
             }
             return element;
         }

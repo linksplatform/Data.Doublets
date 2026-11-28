@@ -56,7 +56,7 @@
     <PackageVersion Include="System.Reflection.TypeExtensions" Version="4.7.0" />
     <PackageVersion Include="System.Security.AccessControl" Version="6.0.1" />
     <PackageVersion Include="coverlet.collector" Version="10.1.0" />
-    <PackageVersion Include="xunit.analyzers" Version="2.2.0" />
+    <PackageVersion Include="xunit.analyzers" Version="2.3.0" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="4.0.1" />
     <PackageVersion Include="xunit.v3.mtp-off" Version="4.0.3" />
     <PackageVersion Include="Azure.Core" Version="1.64.0" />
@@ -73,11 +73,11 @@
     <PackageVersion Include="System.ClientModel" Version="1.16.0" />
     <PackageVersion Include="System.Memory.Data" Version="10.0.14" />
     <PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="10.0.14" />
-    <PackageVersion Include="xunit.v3.assert" Version="4.0.2" />
-    <PackageVersion Include="xunit.v3.common" Version="4.0.2" />
-    <PackageVersion Include="xunit.v3.core.mtp-off" Version="4.0.2" />
-    <PackageVersion Include="xunit.v3.extensibility.core" Version="4.0.2" />
-    <PackageVersion Include="xunit.v3.runner.common" Version="4.0.2" />
-    <PackageVersion Include="xunit.v3.runner.inproc.console" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3.assert" Version="4.0.3" />
+    <PackageVersion Include="xunit.v3.common" Version="4.0.3" />
+    <PackageVersion Include="xunit.v3.core.mtp-off" Version="4.0.3" />
+    <PackageVersion Include="xunit.v3.extensibility.core" Version="4.0.3" />
+    <PackageVersion Include="xunit.v3.runner.common" Version="4.0.3" />
+    <PackageVersion Include="xunit.v3.runner.inproc.console" Version="4.0.3" />
   </ItemGroup>
 </Project>

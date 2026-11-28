@@ -1,0 +1,1 @@
+{"summary":"Document unchecked C# deletion, add an opt-in address-based DeleteIfExists, and reset indexed endpoints in deletion helpers.","releases":{"csharp":"patch"}}
