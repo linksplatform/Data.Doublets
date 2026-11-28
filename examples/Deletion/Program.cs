@@ -22,10 +22,7 @@ foreach (var split in new[] { false, true })
         raw.EnsureLinkExists(id, nameof(id));
         raw.Delete(id, null); // This overload resets endpoints before deleting.
         ExpectMissing(() => raw.EnsureLinkExists(id, nameof(id)));
-        if (raw.Exists(id))
-        {
-            raw.Delete(id, null); // Explicit address-based no-op.
-        }
+        Check(raw.DeleteIfExists(id) == raw.Constants.Null, "ignore a missing address");
         Check(raw.Count() == 0, "per-call policies");
     });
     Run(split, raw =>
@@ -54,13 +51,17 @@ foreach (var split in new[] { false, true })
     });
     Run(split, raw =>
     {
-        // The pair helper checks the search result. The resolver supplies endpoint reset.
-        ILinks<uint> links = new NonNullContentsLinkDeletionResolver<uint>(raw);
-        var first = links.CreatePoint();
-        var second = links.CreatePoint();
-        var pair = links.CreateAndUpdate(first, second);
-        Check(links.DeleteIfExists(first, second) == pair, "delete by pair");
-        Check(links.DeleteIfExists(first, second) == links.Constants.Null, "missing pair");
+        // The two per-call helpers reset endpoints on a raw store.
+        var first = raw.CreatePoint();
+        var second = raw.CreatePoint();
+        var third = raw.CreateAndUpdate(first, second);
+        var victim = raw.CreateAndUpdate(second, first);
+        var survivor = raw.CreateAndUpdate(second, third);
+        Check(raw.DeleteIfExists(victim) == victim, "delete by address");
+        Check(raw.SearchOrDefault(second, second) == second, "find the second point after deletion");
+        Check(raw.SearchOrDefault(second, third) == survivor, "find the surviving pair after deletion");
+        Check(raw.DeleteIfExists(second, third) == survivor, "delete by pair");
+        Check(raw.DeleteIfExists(second, third) == raw.Constants.Null, "missing pair");
     });
     Run(split, raw =>
     {

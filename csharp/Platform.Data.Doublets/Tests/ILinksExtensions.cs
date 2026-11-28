@@ -245,18 +245,12 @@ namespace Platform.Data.Doublets.Tests
                 for (var i = 0; i < N; i++)
                 {
                     var id = createdAddresses[random.Next(deletedLinksAddressRange.Minimum, deletedLinksAddressRange.Maximum)];
-                    if (links.Exists(id))
-                    {
-                        links.Delete(id);
-                    }
+                    links.DeleteIfExists(id);
                 }
                 // Delete all remaining links
                 for (var i = 0; i < createdAddresses.Count; i++)
                 {
-                    if (links.Exists(createdAddresses[i]))
-                    {
-                        links.Delete(createdAddresses[i]);
-                    }
+                    links.DeleteIfExists(createdAddresses[i]);
                 }
                 EnsureTrue(addressToUInt64Converter.Convert(links.Count()) == 0L);
             }
@@ -362,21 +356,6 @@ namespace Platform.Data.Doublets.Tests
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RunRandomDeletions<TLink>(this ILinks<TLink> links, TLink amountOfDeletions) where TLink : IUnsignedNumber<TLink>, IComparisonOperators<TLink, TLink, bool>
-        {
-            var random = RandomHelpers.Default;
-            var linksCount = links.Count();
-            var min = amountOfDeletions > linksCount ? TLink.Zero : linksCount - amountOfDeletions;
-            for (var i = TLink.Zero; i < amountOfDeletions; i++)
-            {
-                linksCount = links.Count();
-                if (linksCount <= min)
-                {
-                    break;
-                }
-                var linksAddressRange = new Range<ulong>(ulong.CreateTruncating(min), ulong.CreateTruncating(linksCount));
-                var link = TLink.CreateTruncating(random.NextUInt64(linksAddressRange));
-                links.Delete(link);
-            }
-        }
+            => Doublets.ILinksExtensions.RunRandomDeletions(links, amountOfDeletions);
     }
 }

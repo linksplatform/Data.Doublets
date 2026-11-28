@@ -107,6 +107,7 @@ namespace Platform.Data.Doublets
         /// <para>The amount of deletions.</para>
         /// <para></para>
         /// </param>
+        /// <remarks>Samples may name missing slots. An incoming-usage policy may be needed for live samples.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RunRandomDeletions<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfDeletions) where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
         {
@@ -121,8 +122,8 @@ namespace Platform.Data.Doublets
                     break;
                 }
                 var linksAddressRange = new Range<ulong>(ulong.CreateTruncating(min), ulong.CreateTruncating(linksCount));
-                var link = (random.NextUInt64(linksAddressRange));
-                links.Delete<TLinkAddress>(TLinkAddress.CreateTruncating(link));
+                var link = TLinkAddress.CreateTruncating(random.NextUInt64(linksAddressRange));
+                links.DeleteIfExists(link);
             }
         }
 
@@ -149,7 +150,8 @@ namespace Platform.Data.Doublets
         /// Resets endpoints for an existing link, then forwards deletion. A missing address is
         /// still forwarded; choose EnsureLinkExists, an Exists guard, or an outer policy decorator.
         /// This helper does not resolve incoming usages. The overload without a handler from
-        /// Platform.Data does not perform this reset.
+        /// Platform.Data leaves endpoint reset to the caller. Use <c>DeleteIfExists(id)</c>
+        /// to reset and delete only when the address is live.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress Delete<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkToDelete, WriteHandler<TLinkAddress>? handler) where TLinkAddress : IUnsignedNumber<TLinkAddress>
@@ -796,13 +798,31 @@ namespace Platform.Data.Doublets
             return links.Update(link, newSource, newTarget, handler);
         }
 
-        /// <summary>Удаляет связь с указанными началом (Source) и концом (Target).</summary>
+        /// <summary>Resets the endpoints of an existing link and deletes it by address.</summary>
+        /// <param name="links">The link store.</param>
+        /// <param name="linkToDelete">The address to delete.</param>
+        /// <returns>The deleted address, or <c>Null</c> if no link was deleted.</returns>
+        /// <remarks>The caller is responsible for incoming usages unless the store applies a usage policy.</remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress DeleteIfExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkToDelete) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var constants = links.Constants;
+            if (!constants.IsInternalReference(linkToDelete) || !links.Exists(linkToDelete))
+            {
+                return constants.Null;
+            }
+
+            links.EnforceResetValues(linkToDelete);
+            return links.Delete(linkToDelete);
+        }
+
+        /// <summary>Finds a link by its endpoints, resets them, and deletes the link.</summary>
         /// <param name="links">Хранилище связей.</param>
         /// <param name="source">Индекс связи, которая является началом удаляемой связи.</param>
         /// <param name="target">Индекс связи, которая является концом удаляемой связи.</param>
         /// <remarks>
-        /// Skips deletion when the pair is absent. A successful lookup does not supply endpoint
-        /// reset or usage resolution; compose those policies or satisfy their preconditions.
+        /// Returns the matched address, or <c>Null</c> if the pair is absent. The caller is
+        /// responsible for incoming usages unless the store applies a usage policy.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress DeleteIfExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target) where TLinkAddress : IUnsignedNumber<TLinkAddress>
@@ -810,6 +830,7 @@ namespace Platform.Data.Doublets
             var link = links.SearchOrDefault(source, target);
             if (!EqualityComparer<TLinkAddress>.Default.Equals(link, TLinkAddress.Zero))
             {
+                links.EnforceResetValues(link);
                 links.Delete(link);
                 return link;
             }
@@ -819,13 +840,14 @@ namespace Platform.Data.Doublets
         /// <summary>Удаляет несколько связей.</summary>
         /// <param name="links">Хранилище связей.</param>
         /// <param name="deletedLinks">Список адресов связей к удалению.</param>
+        /// <remarks>Resets endpoints before deletion. Apply the intended missing-address and incoming-usage policies.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteMany<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? deletedLinks) where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             deletedLinks ??= Array.Empty<TLinkAddress>();
             for (int i = 0; i < deletedLinks.Count; i++)
             {
-                links.Delete(deletedLinks[i]);
+                links.Delete(deletedLinks[i], null);
             }
         }
 
@@ -874,6 +896,7 @@ namespace Platform.Data.Doublets
         /// <para>The query.</para>
         /// <para></para>
         /// </param>
+        /// <remarks>Resets endpoints before deletion. Use a missing-address policy if cascades can remove other matches.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteByQuery<TLinkAddress>(this ILinks<TLinkAddress> links, Link<TLinkAddress> query) where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -882,7 +905,7 @@ namespace Platform.Data.Doublets
             links.Each(link => queryResultFiller.AddFirstAndReturnConstant(link ?? throw new InvalidOperationException("Read callback did not provide a link.")), query);
             foreach (var link in queryResult)
             {
-                links.Delete(link);
+                links.Delete(link, null);
             }
         }
 
@@ -1034,7 +1057,7 @@ namespace Platform.Data.Doublets
             if (oldLinkIndex != newLinkIndex)
             {
                 links.MergeUsages(oldLinkIndex, newLinkIndex);
-                links.Delete(oldLinkIndex);
+                links.Delete(oldLinkIndex, null);
             }
             return newLinkIndex;
         }

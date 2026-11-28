@@ -35,7 +35,8 @@ Import `Platform.Data`, `Platform.Data.Doublets`, and
 | `Delete(id)` | `Platform.Data` address adapter; return deleted address from callback | Same preconditions as the inner deletion; no automatic reset or missing check |
 | `Delete(id, handler)` | Reset endpoints when `Exists(id)`, then call inner deletion | Address still must exist; missing addresses are forwarded; incoming usages handled separately |
 | `EnsureLinkExists(id, name)` | Throw `ArgumentLinkDoesNotExistsException<T>` if missing | No deletion; caller chooses the subsequent operation |
-| `DeleteIfExists(source, target)` | Search by pair; delete only if found; return address or `Null` | Endpoint reset and incoming-usage policy supplied separately |
+| `DeleteIfExists(id)` | Check for a live internal address, reset endpoints, and delete. Return the deleted address or `Null` | Handle incoming usages or select a usage policy |
+| `DeleteIfExists(source, target)` | Search by pair, reset the matched link's endpoints, and delete it. Return the matched address or `Null` | Handle incoming usages or select a usage policy |
 
 `Delete(id)` and `Delete(id, null)` select different helpers. Do not infer safety
 from the method name alone. A handler overload returns a flow constant, not the
@@ -53,6 +54,14 @@ raw.Update(id, 0u, 0u);
 raw.Delete(new[] { id }, null);
 ```
 
+The unchecked path deliberately trusts the caller's operation order. Resetting
+through `Update` removes the link from the source and target indexes before the
+allocator can overwrite or reuse its slot. Releasing an indexed slot directly
+can leave stale entries and cause `SearchOrDefault` to miss other live links.
+For example, create `(1, 1)`, `(2, 2)`, `(1, 2)`, `(2, 1)`, and `(2, 3)` in
+that order. To delete address 4, reset it first so searches for `(2, 2)` and
+`(2, 3)` still find addresses 2 and 5.
+
 The memory backend performs no existence validation for this deletion. Never use
 repeated deletion of a raw address as a membership test. Zero, service constants,
 external references, freed slots and unallocated addresses do not satisfy the
@@ -68,19 +77,15 @@ raw.EnsureLinkExists(id, nameof(id));
 raw.Delete(id, null); // This helper supplies endpoint reset.
 ```
 
-For an address-based no-op, skip the whole operation when absent:
+For an address-based no-op, use the optional per-call helper:
 
 ```csharp
-if (raw.Exists(id))
-{
-    raw.Delete(id, null);
-}
+var deleted = raw.DeleteIfExists(id); // Returns Null for a missing address.
 ```
 
-The existing pair-based `DeleteIfExists(source, target)` already skips a failed
-search. Wrap the raw store in `NonNullContentsLinkDeletionResolver<T>` to supply
-resetting before using that helper on links with non-null contents. A successful
-search alone does not reset endpoints or handle incoming usages.
+The address helper skips non-internal addresses and performs no writes when the
+slot is absent. The pair-based `DeleteIfExists(source, target)` skips a failed
+search. Both helpers reset the link before deleting it, including on a raw store.
 
 ## Store-wide policies
 
@@ -133,13 +138,11 @@ link. Choose one of these contracts:
   links too; C# cycle/recursion behavior is not strengthened by this PR.
 
 `DeleteMany`, `DeleteByQuery`, `DeleteAllUsages`, `DeleteAll`, and `MergeAndDelete`
-are compound helpers, not universal validators. Apply the chosen contract to
-every inner deletion, and account for links already removed by cascades. For
-bulk deletion with holes, enumerate a snapshot of actual addresses, then delete
-through the ignore policy (or test `Exists` before each call). The executable
-example demonstrates this. The old `DeleteAll` count-based loop has a separate
-[known issue](https://github.com/linksplatform/Data.Doublets/issues/354);
-`MergeUsages` also has a separate [known issue](https://github.com/linksplatform/Data.Doublets/issues/515).
+reset endpoints before releasing slots. Apply the chosen incoming-usage and
+missing-address policies to each operation. For a snapshot that may contain links
+removed by earlier cascades, use `DeleteIfExists(id)` for each address or wrap the
+store in the ignore policy. `DeleteAll` accounts for holes and works down from
+the highest live address. `MergeAndDelete` rewrites incoming usages first.
 
 `NoExceptionsDecorator` suppresses exceptions; it does not undo earlier writes
 and cannot make an invalid unchecked deletion safe. Callback `Break` affects

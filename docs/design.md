@@ -40,6 +40,9 @@ The option to bypass validation is intentional. It does not promise correct
 results for invalid inputs. In particular, deleting a freed raw C# address can
 corrupt the free list, and unchecked addresses can access invalid memory. A user
 may take responsibility for operation ordering, or choose a checked boundary.
+A live slot in a raw C# memory store must also have its endpoints reset before
+release. Callers can detach the link themselves or select a helper or resolver
+that performs the indexed update first.
 A dangling reference or raw numeric endpoint is not automatically invalid for
 all applications; the configured reference and indexing model determines that.
 

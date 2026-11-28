@@ -712,6 +712,11 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     ///     <para>The restriction containing the index of the link to delete.</para>
     ///     <para></para>
     /// </param>
+    /// <remarks>
+    ///     This primitive releases the slot directly. Reset both endpoints through Update to detach
+    ///     the link from the indexes first and handle incoming usages according to your data model.
+    ///     Use <c>DeleteIfExists(id)</c> to check for a live address and reset its endpoints per call.
+    /// </remarks>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public virtual TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
     {

@@ -39,11 +39,8 @@ links.Each((link) => {
     return links.Constants.Continue;
 }, query);
 
-// Сброс содержимого связи:
-link = links.Update(link, newSource: default, newTarget: default);
-
-// Удаление связи:
-links.Delete(link);
+// Сброс начала и конца связи и её удаление, если она существует.
+links.DeleteIfExists(link);
 ```
 
 ## [SQLite против Дуплетов](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
@@ -78,6 +75,9 @@ links.Delete(link);
 ## Контракты удаления и принципы проектирования
 
 Проверки и обработка удаления выбираются вызывающим кодом или декораторами.
+При вызове низкоуровневого `Delete` вызывающий код сбрасывает начало и конец
+существующей связи и обрабатывает ссылки на неё. `DeleteIfExists(id)` проверяет
+наличие связи и сбрасывает её начало и конец перед удалением.
 См. [рецепты C#](https://linksplatform.github.io/Data.Doublets/csharp/deletion-csharp.html),
 [рецепты Rust](https://linksplatform.github.io/Data.Doublets/csharp/deletion-rust.html),
 [общие принципы](https://linksplatform.github.io/Data.Doublets/csharp/design.html)

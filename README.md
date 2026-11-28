@@ -41,11 +41,8 @@ links.Each((link) => {
     return links.Constants.Continue;
 }, query);
 
-// The link's content reset:
-link = links.Update(link, newSource: default, newTarget: default);
-
-// The link deletion:
-links.Delete(link);
+// Reset both endpoints and delete the link if its address is live.
+links.DeleteIfExists(link);
 ```
 
 ## [SQLite vs Doublets](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
@@ -56,6 +53,7 @@ links.Delete(link);
 
 Choose validation and resolution per call or through optional decorators. Raw
 C# deletion requires a live link, reset endpoints and caller-managed usages.
+`DeleteIfExists(id)` checks for a live slot and resets its endpoints on demand.
 Raw updates require a live internal address and valid endpoint/index state.
 
 * [C# update recipes and checked boundaries](https://linksplatform.github.io/Data.Doublets/csharp/update-csharp.html)
