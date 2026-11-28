@@ -6,6 +6,8 @@ RUN mkdir /source && tar -xzf /tmp/source.tar.gz -C /source --strip-components=1
 WORKDIR /source
 RUN CGO_ENABLED=0 GOMEMLIMIT=512MiB GOMAXPROCS=2 go build -p 1 -trimpath -ldflags='-s -w' -o /actionlint ./cmd/actionlint
 FROM python:3.16.0a2-alpine@sha256:ccab9cdd439368f389d4821cd5a04019269ef716ce3d540b33361e3339a38325
+# Apply Alpine security updates to the OpenSSL libraries in the pinned base image.
+RUN apk upgrade --no-cache libcrypto3 libssl3
 COPY --from=builder /actionlint /usr/local/bin/actionlint
 COPY --from=binaries /usr/local/bin/shellcheck /usr/local/bin/shellcheck
 COPY scripts/requirements.lock.txt /tmp/requirements.lock.txt
